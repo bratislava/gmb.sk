@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_richtext_sections",
+  "info": {
+    "displayName": "richtext section",
+    "icon": "align-center"
+  },
+  "options": {},
+  "attributes": {
+    "submenuTitle": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

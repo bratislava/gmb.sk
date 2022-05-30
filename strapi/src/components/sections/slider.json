@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_sliders",
+  "info": {
+    "displayName": "slider",
+    "icon": "arrows-alt-h"
+  },
+  "options": {},
+  "attributes": {
+    "submenuTitle": {
+      "type": "string"
+    },
+    "medias": {
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
