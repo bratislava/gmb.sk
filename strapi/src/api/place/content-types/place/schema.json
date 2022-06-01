@@ -43,6 +43,12 @@
       },
       "type": "string",
       "required": true
+    },
+    "contentPages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::content-page.content-page",
+      "mappedBy": "place"
     }
   }
 }

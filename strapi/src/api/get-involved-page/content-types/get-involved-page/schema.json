@@ -1,0 +1,53 @@
+{
+  "kind": "singleType",
+  "collectionName": "get_involved_pages",
+  "info": {
+    "singularName": "get-involved-page",
+    "pluralName": "get-involved-pages",
+    "displayName": "get involved page"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "highlights": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "sections.highlights-section"
+    },
+    "sections": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "dynamiczone",
+      "components": [
+        "sections.page-section",
+        "sections.news-section",
+        "sections.contact-section",
+        "sections.newsletter-section"
+      ]
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "blocks.seo"
+    }
+  }
+}

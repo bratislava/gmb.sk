@@ -48,6 +48,12 @@
           "localized": false
         }
       }
+    },
+    "contentPages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::content-page.content-page",
+      "mappedBy": "partners"
     }
   }
 }

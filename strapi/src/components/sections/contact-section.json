@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_sections_contact_sections",
+  "info": {
+    "displayName": "contact section",
+    "icon": "clock"
+  },
+  "options": {},
+  "attributes": {
+    "submenuTitle": {
+      "type": "string"
+    }
+  }
+}

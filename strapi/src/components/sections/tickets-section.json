@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_tickets_sections",
+  "info": {
+    "displayName": "tickets section",
+    "icon": "ticket-alt"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "submenuTitle": {
+      "type": "string"
+    },
+    "text": {
+      "type": "richtext"
+    }
+  }
+}

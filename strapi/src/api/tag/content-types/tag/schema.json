@@ -40,6 +40,12 @@
       "relation": "manyToOne",
       "target": "api::tag-category.tag-category",
       "inversedBy": "tags"
+    },
+    "contentPages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::content-page.content-page",
+      "mappedBy": "tags"
     }
   }
 }

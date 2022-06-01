@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_blocks_seos",
+  "info": {
+    "displayName": "seo",
+    "icon": "bolt"
+  },
+  "options": {},
+  "attributes": {
+    "metaTitle": {
+      "type": "string"
+    },
+    "metaDescription": {
+      "type": "text"
+    },
+    "keywords": {
+      "type": "string"
+    },
+    "metaRobots": {
+      "type": "string"
+    },
+    "metaViewport": {
+      "type": "string"
+    },
+    "canonicalUrl": {
+      "type": "string"
+    }
+  }
+}

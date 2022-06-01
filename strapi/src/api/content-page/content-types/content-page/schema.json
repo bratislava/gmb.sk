@@ -4,7 +4,7 @@
   "info": {
     "singularName": "content-page",
     "pluralName": "content-pages",
-    "displayName": "content page",
+    "displayName": "Content Pages",
     "description": ""
   },
   "options": {
@@ -93,6 +93,42 @@
         "sections.video-section"
       ]
     },
+    "slider": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "sections.slider-section"
+    },
+    "relatedContentTitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "relatedContentSubmenuTitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "downloadSection": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "sections.download-section"
+    },
     "dateFrom": {
       "pluginOptions": {
         "i18n": {
@@ -177,6 +213,46 @@
         }
       },
       "component": "blocks.highlight-override"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "blocks.seo"
+    },
+    "place": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::place.place",
+      "inversedBy": "contentPages"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "contentPages"
+    },
+    "parentPage": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::content-page.content-page",
+      "inversedBy": "childPages"
+    },
+    "childPages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::content-page.content-page",
+      "mappedBy": "parentPage"
+    },
+    "partners": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::partner.partner",
+      "inversedBy": "contentPages"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_sections_sliders",
+  "collectionName": "components_sections_slider_sections",
   "info": {
-    "displayName": "slider",
+    "displayName": "slider section",
     "icon": "arrows-alt-h"
   },
   "options": {},
@@ -11,8 +11,7 @@
     },
     "medias": {
       "allowedTypes": [
-        "images",
-        "videos"
+        "images"
       ],
       "type": "media",
       "multiple": true
