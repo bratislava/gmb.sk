@@ -1,4 +1,5 @@
-// @ts-strict-ignore
+// TODO remove ts-ignore flags
+
 import { SSRConfig } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import cfg from '../next.config';
