@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_sections_page_sections",
+  "info": {
+    "displayName": "page section",
+    "icon": "bars"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "submenuTitle": {
+      "type": "string"
+    },
+    "layout": {
+      "type": "enumeration",
+      "enum": [
+        "chessboard",
+        "cards",
+        "fullwidth"
+      ],
+      "default": "chessboard"
+    },
+    "contentPages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::content-page.content-page"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_blocks_position_items",
+  "info": {
+    "displayName": "position item",
+    "icon": "user"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "names": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "kind": "singleType",
+  "collectionName": "explore_pages",
+  "info": {
+    "singularName": "explore-page",
+    "pluralName": "explore-pages",
+    "displayName": "explore page"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "highlights": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "sections.highlights-section"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "blocks.seo"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "kind": "singleType",
+  "collectionName": "exhibitions_pages",
+  "info": {
+    "singularName": "exhibitions-page",
+    "pluralName": "exhibitions-pages",
+    "displayName": "exhibitions page"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "highlights": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "sections.highlights-section"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "blocks.seo"
+    }
+  }
+}

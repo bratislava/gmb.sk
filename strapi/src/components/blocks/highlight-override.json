@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_blocks_highlight_overrides",
+  "info": {
+    "displayName": "highlight override",
+    "icon": "exclamation"
+  },
+  "options": {},
+  "attributes": {
+    "highlightContent": {
+      "type": "richtext"
+    }
+  }
+}

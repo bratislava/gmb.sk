@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_download_sections",
+  "info": {
+    "displayName": "download section",
+    "icon": "cloud-download-alt"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "submenuTitle": {
+      "type": "string"
+    },
+    "files": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.file-item"
+    }
+  }
+}

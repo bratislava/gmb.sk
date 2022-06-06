@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_blocks_palaces",
+  "info": {
+    "displayName": "palace",
+    "icon": "building"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    }
+  }
+}

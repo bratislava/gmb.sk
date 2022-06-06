@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_map_sections",
+  "info": {
+    "displayName": "map section",
+    "icon": "map"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "submenuTitle": {
+      "type": "string"
+    }
+  }
+}
