@@ -1,18 +1,18 @@
-import cx from 'classnames';
-import NextLink from 'next/link';
-import { isDefined } from '../../utils/isDefined';
+import cx from 'classnames'
+import NextLink from 'next/link'
+import { isDefined } from '../../utils/isDefined'
 
 type LinkProps = React.ComponentPropsWithoutRef<'a'> & {
-  locale?: string;
-  className?: string;
-  href: string;
-  target?: string;
-  rel?: string;
-  children: React.ReactNode;
-  replace?: boolean;
-  preserveStyle?: boolean;
-  noUnderline?: boolean;
-};
+  locale?: string
+  className?: string
+  href: string
+  target?: string
+  rel?: string
+  children: React.ReactNode
+  replace?: boolean
+  preserveStyle?: boolean
+  noUnderline?: boolean
+}
 
 export const Link = ({
   href,
@@ -26,7 +26,7 @@ export const Link = ({
   noUnderline,
   onClick,
 }: LinkProps) => {
-  if (!isDefined(href)) return null;
+  if (!isDefined(href)) return null
 
   return (
     <NextLink href={href} locale={locale} replace={replace}>
@@ -37,8 +37,7 @@ export const Link = ({
         onClick={onClick}
         className={cx(
           {
-            'flex items-center uppercase cursor-pointer text-nav group':
-              !preserveStyle,
+            'flex items-center uppercase cursor-pointer text-nav group': !preserveStyle,
             'hover:underline underline-offset-2': !noUnderline,
           },
           className
@@ -47,7 +46,7 @@ export const Link = ({
         {children}
       </a>
     </NextLink>
-  );
-};
+  )
+}
 
-export default Link;
+export default Link

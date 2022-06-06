@@ -1,64 +1,60 @@
-import cx from 'classnames';
-import { useRouter } from 'next/router';
-import React from 'react';
-import { useCookies } from 'react-cookie';
-import { useTranslation } from 'react-i18next';
-import { ContentPageEntityFragment } from '../../graphql';
-import { LocalStorageEnum } from '../../types/localStorage.d';
-import { WithAttributes } from '../../utils/isDefined';
-import { getEquivalentRouteInTargetLocale } from '../../utils/localeRoutes';
+import cx from 'classnames'
+import { useRouter } from 'next/router'
+import React from 'react'
+import { useCookies } from 'react-cookie'
+import { useTranslation } from 'react-i18next'
+import { ContentPageEntityFragment } from '../../graphql'
+import { LocalStorageEnum } from '../../types/localStorage.d'
+import { WithAttributes } from '../../utils/isDefined'
+import { getEquivalentRouteInTargetLocale } from '../../utils/localeRoutes'
 
 interface AppLangSwitchersProps {
-  contentPage?: WithAttributes<ContentPageEntityFragment>;
+  contentPage?: WithAttributes<ContentPageEntityFragment>
 }
 
 const AppLangSwitchers = ({ contentPage }: AppLangSwitchersProps) => {
-  const [, setCookies] = useCookies([LocalStorageEnum.LANG]);
-  const router = useRouter();
-  const { i18n } = useTranslation();
-  const currentLanguage = i18n.language;
+  const [, setCookies] = useCookies([LocalStorageEnum.LANG])
+  const router = useRouter()
+  const { i18n } = useTranslation()
+  const currentLanguage = i18n.language
 
   const onLocaleChange = React.useCallback(
     (locale: string) => {
-      const equivalentRouteInTargetLocale = getEquivalentRouteInTargetLocale(
-        router.pathname,
-        locale,
-        contentPage
-      );
+      const equivalentRouteInTargetLocale = getEquivalentRouteInTargetLocale(router.pathname, locale, contentPage)
 
       switch (locale) {
         case 'sk':
           setCookies(LocalStorageEnum.LANG, locale, {
             path: '/',
             sameSite: true,
-          });
+          })
           router.replace(
             {
               pathname: equivalentRouteInTargetLocale,
             },
             undefined,
             { locale: 'sk' }
-          );
-          break;
+          )
+          break
         case 'en':
           setCookies(LocalStorageEnum.LANG, locale, {
             path: '/',
             sameSite: true,
-          });
+          })
           router.replace(
             {
               pathname: equivalentRouteInTargetLocale,
             },
             undefined,
             { locale: 'en' }
-          );
-          break;
+          )
+          break
         default:
-          return;
+          return
       }
     },
     [router, setCookies, contentPage]
-  );
+  )
 
   return (
     <div className="flex">
@@ -80,7 +76,7 @@ const AppLangSwitchers = ({ contentPage }: AppLangSwitchersProps) => {
         English
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default AppLangSwitchers;
+export default AppLangSwitchers

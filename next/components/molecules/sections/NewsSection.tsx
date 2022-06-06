@@ -1,18 +1,18 @@
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import { NewsItemEntityFragment } from '../../../graphql';
-import { WithAttributes } from '../../../utils/isDefined';
-import NewsBar from '../NewsBar';
-import Section from './Section';
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import { NewsItemEntityFragment } from '../../../graphql'
+import { WithAttributes } from '../../../utils/isDefined'
+import NewsBar from '../NewsBar'
+import Section from './Section'
 
 interface NewsProps {
-  items: WithAttributes<NewsItemEntityFragment>[];
-  title?: string;
-  anchor?: string;
+  items: WithAttributes<NewsItemEntityFragment>[]
+  title?: string
+  anchor?: string
 }
 
 const NewsSection = ({ items, title, anchor }: NewsProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <Section anchor={anchor} title={title}>
@@ -28,7 +28,7 @@ const NewsSection = ({ items, title, anchor }: NewsProps) => {
         </div>
       )}
     </Section>
-  );
-};
+  )
+}
 
-export default NewsSection;
+export default NewsSection

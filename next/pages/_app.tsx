@@ -1,13 +1,13 @@
-import { appWithTranslation, useTranslation } from 'next-i18next';
-import { AppProps } from 'next/app';
-import Head from 'next/head';
-import React from 'react';
-import { ParallaxProvider } from 'react-scroll-parallax';
-import Navigation from '../components/molecules/Navigation';
-import '../styles/globals.css';
+import { appWithTranslation, useTranslation } from 'next-i18next'
+import { AppProps } from 'next/app'
+import Head from 'next/head'
+import React from 'react'
+import { ParallaxProvider } from 'react-scroll-parallax'
+import Navigation from '../components/molecules/Navigation'
+import '../styles/globals.css'
 
 function CustomApp({ Component, pageProps }: AppProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   return (
     <>
       <Head>
@@ -24,7 +24,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
         </div>
       </ParallaxProvider>
     </>
-  );
+  )
 }
 
 export default appWithTranslation(CustomApp, {
@@ -37,4 +37,4 @@ export default appWithTranslation(CustomApp, {
     process.env.NODE_ENV === 'development'
       ? require('path').resolve('./public/locales')
       : require('path').resolve('./public/locales'),
-});
+})

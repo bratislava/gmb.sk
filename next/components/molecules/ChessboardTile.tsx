@@ -1,29 +1,24 @@
-import cx from 'classnames';
-import { useTranslation } from 'next-i18next';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import React from 'react';
-import { SectionItemEntityFragment } from '../../graphql';
-import { getContentPageColor } from '../../utils/getContentPageColor';
-import { hasAttributes, WithAttributes } from '../../utils/isDefined';
-import Button from '../atoms/Button';
-import Link from '../atoms/Link';
+import cx from 'classnames'
+import { useTranslation } from 'next-i18next'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import React from 'react'
+import { SectionItemEntityFragment } from '../../graphql'
+import { getContentPageColor } from '../../utils/getContentPageColor'
+import { hasAttributes, WithAttributes } from '../../utils/isDefined'
+import Button from '../atoms/Button'
+import Link from '../atoms/Link'
 export interface ChessboardTileProps {
-  sectionItem: WithAttributes<SectionItemEntityFragment>;
-  isLeft?: boolean;
-  showTags?: boolean;
+  sectionItem: WithAttributes<SectionItemEntityFragment>
+  isLeft?: boolean
+  showTags?: boolean
 }
 
-export const ChessboardTile = ({
-  sectionItem,
-  isLeft,
-  showTags,
-}: ChessboardTileProps) => {
-  const { t } = useTranslation();
-  const router = useRouter();
+export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTileProps) => {
+  const { t } = useTranslation()
+  const router = useRouter()
 
-  const { slug, coverMedia, title, subtitle, tags, perex } =
-    sectionItem.attributes;
+  const { slug, coverMedia, title, subtitle, tags, perex } = sectionItem.attributes
 
   return (
     <Link href={`/detail/${slug}`} preserveStyle noUnderline>
@@ -55,10 +50,7 @@ export const ChessboardTile = ({
           {showTags && tags && (
             <div className="flex space-x-3">
               {tags.data.filter(hasAttributes).map((tag) => (
-                <Link
-                  href={`${router.pathname}/?tags=${tag.attributes.slug}`}
-                  key={tag.attributes.slug}
-                >
+                <Link href={`${router.pathname}/?tags=${tag.attributes.slug}`} key={tag.attributes.slug}>
                   {tag.attributes.title}
                 </Link>
               ))}
@@ -68,9 +60,7 @@ export const ChessboardTile = ({
           {/* empty div to push button to the bottom of the tile */}
           <div className="flex-grow hidden p-0 m-0 lg:block" />
 
-          {perex ? (
-            <div className="text-md">{perex?.substring(0, 200)}…</div>
-          ) : null}
+          {perex ? <div className="text-md">{perex?.substring(0, 200)}…</div> : null}
 
           <Button
             // href={`/detail/${data.slug}`}
@@ -81,7 +71,7 @@ export const ChessboardTile = ({
         </div>
       </article>
     </Link>
-  );
-};
+  )
+}
 
-export default ChessboardTile;
+export default ChessboardTile

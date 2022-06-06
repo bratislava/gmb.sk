@@ -1,29 +1,25 @@
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import TimeIcon from '../../assets/icons/time.svg';
-import { DatetimeFragment } from '../../graphql';
-import { formatDateString } from '../../utils/formatDateString';
-import { formatTimeString } from '../../utils/formatTimeString';
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import TimeIcon from '../../assets/icons/time.svg'
+import { DatetimeFragment } from '../../graphql'
+import { formatDateString } from '../../utils/formatDateString'
+import { formatTimeString } from '../../utils/formatTimeString'
 
 export interface SidePanelTimeProps {
-  datetime: DatetimeFragment;
-  isOneLine?: boolean;
-  noIcon?: boolean;
+  datetime: DatetimeFragment
+  isOneLine?: boolean
+  noIcon?: boolean
 }
 
-export const SidePanelTime = ({
-  datetime,
-  isOneLine,
-  noIcon,
-}: SidePanelTimeProps) => {
-  const { i18n } = useTranslation();
+export const SidePanelTime = ({ datetime, isOneLine, noIcon }: SidePanelTimeProps) => {
+  const { i18n } = useTranslation()
 
-  const { dateFrom, dateTo, timeFrom, timeTo } = datetime;
+  const { dateFrom, dateTo, timeFrom, timeTo } = datetime
 
-  const locale = i18n.language;
+  const locale = i18n.language
 
   if (!dateFrom && !dateTo && !timeFrom && !timeTo) {
-    return null;
+    return null
   }
 
   if (isOneLine) {
@@ -43,7 +39,7 @@ export const SidePanelTime = ({
           </span>
         </time>
       </div>
-    );
+    )
   } else {
     return (
       <div className="whitespace-nowrap text-nav">
@@ -67,6 +63,6 @@ export const SidePanelTime = ({
           </div>
         </time>
       </div>
-    );
+    )
   }
-};
+}

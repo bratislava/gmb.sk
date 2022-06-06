@@ -1,16 +1,16 @@
-import cx from 'classnames';
-import { useRouter } from 'next/router';
-import React from 'react';
-import { Link } from './Link';
+import cx from 'classnames'
+import { useRouter } from 'next/router'
+import React from 'react'
+import { Link } from './Link'
 
 export interface INavLinkProps {
-  url: string;
-  children: React.ReactNode;
+  url: string
+  children: React.ReactNode
 }
 
 const NavLink = ({ url, children }: INavLinkProps) => {
-  const router = useRouter();
-  const isActive = router.asPath === url;
+  const router = useRouter()
+  const isActive = router.asPath === url
 
   return (
     <Link
@@ -21,7 +21,7 @@ const NavLink = ({ url, children }: INavLinkProps) => {
     >
       {children}
     </Link>
-  );
-};
+  )
+}
 
-export default NavLink;
+export default NavLink

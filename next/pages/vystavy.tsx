@@ -1,29 +1,25 @@
-import { GetServerSideProps } from 'next';
-import React from 'react';
-import ExhibitionsPage from '../components/pages/ExhibitionsPage';
-import {
-  ExhibitionsPageQuery,
-  PlacesQuery,
-  TagsByCategorySlugQuery,
-} from '../graphql';
-import { getTodaysDate } from '../utils/getTodaysDate';
-import { client } from '../utils/gql';
-import { hasAttributes, withAttributes } from '../utils/isDefined';
-import { getRouteForLocale } from '../utils/localeRoutes';
-import { ssrTranslations } from '../utils/translations';
+import { GetServerSideProps } from 'next'
+import React from 'react'
+import ExhibitionsPage from '../components/pages/ExhibitionsPage'
+import { ExhibitionsPageQuery, PlacesQuery, TagsByCategorySlugQuery } from '../graphql'
+import { getTodaysDate } from '../utils/getTodaysDate'
+import { client } from '../utils/gql'
+import { hasAttributes, withAttributes } from '../utils/isDefined'
+import { getRouteForLocale } from '../utils/localeRoutes'
+import { ssrTranslations } from '../utils/translations'
 
 interface ExhibitionsProps {
-  exhibitionsPage: ExhibitionsPageQuery['exhibitionsPage'];
-  exhibitions: ExhibitionsPageQuery['exhibitions'];
-  permanentExhibitions: ExhibitionsPageQuery['permanentExhibitions'];
-  additionalProgram: ExhibitionsPageQuery['additionalProgram'];
-  contact: ExhibitionsPageQuery['contact'];
-  tagsProgram: TagsByCategorySlugQuery['tagCategoryBySlug'];
-  tagsTargetGroups: TagsByCategorySlugQuery['tagCategoryBySlug'];
-  tagsLanguages: TagsByCategorySlugQuery['tagCategoryBySlug'];
-  tagsProjects: TagsByCategorySlugQuery['tagCategoryBySlug'];
-  tagsOthers: TagsByCategorySlugQuery['tagCategoryBySlug'];
-  places: PlacesQuery['places'];
+  exhibitionsPage: ExhibitionsPageQuery['exhibitionsPage']
+  exhibitions: ExhibitionsPageQuery['exhibitions']
+  permanentExhibitions: ExhibitionsPageQuery['permanentExhibitions']
+  additionalProgram: ExhibitionsPageQuery['additionalProgram']
+  contact: ExhibitionsPageQuery['contact']
+  tagsProgram: TagsByCategorySlugQuery['tagCategoryBySlug']
+  tagsTargetGroups: TagsByCategorySlugQuery['tagCategoryBySlug']
+  tagsLanguages: TagsByCategorySlugQuery['tagCategoryBySlug']
+  tagsProjects: TagsByCategorySlugQuery['tagCategoryBySlug']
+  tagsOthers: TagsByCategorySlugQuery['tagCategoryBySlug']
+  places: PlacesQuery['places']
 }
 
 const Exhibitions = ({
@@ -40,7 +36,7 @@ const Exhibitions = ({
   places,
 }: ExhibitionsProps) => {
   if (!exhibitionsPage) {
-    return null;
+    return null
   }
 
   return (
@@ -50,30 +46,18 @@ const Exhibitions = ({
       permanentExhibitions={permanentExhibitions?.data.filter(hasAttributes)}
       additionalProgram={additionalProgram?.data.filter(hasAttributes)}
       contactInfo={withAttributes(contact?.data)}
-      tagsProgram={tagsProgram?.data?.attributes?.tags?.data.filter(
-        hasAttributes
-      )}
-      tagsTargetGroups={tagsTargetGroups?.data?.attributes?.tags?.data.filter(
-        hasAttributes
-      )}
-      tagsLanguages={tagsLanguages?.data?.attributes?.tags?.data.filter(
-        hasAttributes
-      )}
-      tagsProjects={tagsProjects?.data?.attributes?.tags?.data.filter(
-        hasAttributes
-      )}
-      tagsOthers={tagsOthers?.data?.attributes?.tags?.data.filter(
-        hasAttributes
-      )}
+      tagsProgram={tagsProgram?.data?.attributes?.tags?.data.filter(hasAttributes)}
+      tagsTargetGroups={tagsTargetGroups?.data?.attributes?.tags?.data.filter(hasAttributes)}
+      tagsLanguages={tagsLanguages?.data?.attributes?.tags?.data.filter(hasAttributes)}
+      tagsProjects={tagsProjects?.data?.attributes?.tags?.data.filter(hasAttributes)}
+      tagsOthers={tagsOthers?.data?.attributes?.tags?.data.filter(hasAttributes)}
       places={places?.data.filter(hasAttributes)}
     />
-  );
-};
+  )
+}
 
-export const getServerSideProps: GetServerSideProps<ExhibitionsProps> = async ({
-  locale = 'sk',
-}) => {
-  const today = getTodaysDate();
+export const getServerSideProps: GetServerSideProps<ExhibitionsProps> = async ({ locale = 'sk' }) => {
+  const today = getTodaysDate()
 
   const [
     { tagCategoryBySlug: tagsProgram },
@@ -106,31 +90,24 @@ export const getServerSideProps: GetServerSideProps<ExhibitionsProps> = async ({
     }),
     client.Places({ locale }),
     ssrTranslations({ locale }, ['common']),
-  ]);
+  ])
 
-  const tagExhibitions = getRouteForLocale('vystavy', locale);
-  const tagPermanentExhibitions = getRouteForLocale('stale-expozicie', locale);
+  const tagExhibitions = getRouteForLocale('vystavy', locale)
+  const tagPermanentExhibitions = getRouteForLocale('stale-expozicie', locale)
   const tagsAdditionalProgram =
     tagsProgram?.data?.attributes?.tags?.data
       .filter(hasAttributes)
       .map((tag) => tag.attributes.slug)
-      .filter(
-        (slug) => slug !== tagExhibitions && slug !== tagPermanentExhibitions
-      ) ?? [];
+      .filter((slug) => slug !== tagExhibitions && slug !== tagPermanentExhibitions) ?? []
 
-  const {
-    exhibitionsPage,
-    exhibitions,
-    permanentExhibitions,
-    additionalProgram,
-    contact,
-  } = await client.ExhibitionsPage({
-    locale,
-    today,
-    tagExhibitions,
-    tagPermanentExhibitions,
-    tagsAdditionalProgram,
-  });
+  const { exhibitionsPage, exhibitions, permanentExhibitions, additionalProgram, contact } =
+    await client.ExhibitionsPage({
+      locale,
+      today,
+      tagExhibitions,
+      tagPermanentExhibitions,
+      tagsAdditionalProgram,
+    })
 
   return {
     props: {
@@ -147,7 +124,7 @@ export const getServerSideProps: GetServerSideProps<ExhibitionsProps> = async ({
       places,
       ...translations,
     },
-  };
-};
+  }
+}
 
-export default Exhibitions;
+export default Exhibitions

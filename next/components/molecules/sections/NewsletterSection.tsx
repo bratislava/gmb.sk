@@ -1,57 +1,56 @@
-// @ts-strict-ignore
-import { useTranslation } from 'next-i18next';
-import Image from 'next/image';
-import React from 'react';
-import MailchimpSubscribe from 'react-mailchimp-subscribe';
-import NewsletterImg from '../../../assets/images/newsletterimg.png';
-import Button from '../../atoms/Button';
-import Section from './Section';
+import { useTranslation } from 'next-i18next'
+import Image from 'next/image'
+import React from 'react'
+import MailchimpSubscribe from 'react-mailchimp-subscribe'
+import NewsletterImg from '../../../assets/images/newsletterimg.png'
+import Button from '../../atoms/Button'
+import Section from './Section'
 
 export interface NewsletterSectionProps {
-  anchor?: string;
+  anchor?: string
 }
 
 const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
-  const { t } = useTranslation();
-  const [email, setEmail] = React.useState('');
-  const [agree, setAgree] = React.useState(false);
-  const [emailError, setEmailError] = React.useState<string | null>(null);
-  const [agreeError, setAgreeError] = React.useState<string | null>(null);
+  const { t } = useTranslation()
+  const [email, setEmail] = React.useState('')
+  const [agree, setAgree] = React.useState(false)
+  const [emailError, setEmailError] = React.useState<string | null>(null)
+  const [agreeError, setAgreeError] = React.useState<string | null>(null)
 
   const clear = () => {
-    setEmail('');
-    setAgree(false);
-    setEmailError(null);
-    setAgreeError(null);
-  };
+    setEmail('')
+    setAgree(false)
+    setEmailError(null)
+    setAgreeError(null)
+  }
 
   const isFormValid = (): boolean => {
-    let emailError: string | null;
-    let agreeError: string | null;
+    let emailError: string | null
+    let agreeError: string | null
 
     if (email.length <= 0) {
-      emailError = t('errors.emailMandatory');
+      emailError = t('errors.emailMandatory')
     } else if (
       !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
         String(email).toLowerCase()
       )
     ) {
-      emailError = t('errors.emailIncorrectFormat');
+      emailError = t('errors.emailIncorrectFormat')
     } else {
-      emailError = null;
+      emailError = null
     }
 
     if (!agree) {
-      agreeError = t('errors.fieldMandatory');
+      agreeError = t('errors.fieldMandatory')
     } else {
-      agreeError = null;
+      agreeError = null
     }
 
-    setEmailError(emailError);
-    setAgreeError(agreeError);
+    setEmailError(emailError)
+    setAgreeError(agreeError)
 
-    return !emailError && !agreeError;
-  };
+    return !emailError && !agreeError
+  }
 
   return (
     <Section
@@ -62,9 +61,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
       <div className="lg:w-4/6 xl:w-3/6">
         <hgroup>
           <h3 className="text-xxl">{t('newsletter.beInThePicture')}</h3>
-          <h4 className="font-regular text-xxl">
-            {t('newsletter.newsletter')}
-          </h4>
+          <h4 className="font-regular text-xxl">{t('newsletter.newsletter')}</h4>
         </hgroup>
 
         <MailchimpSubscribe
@@ -74,16 +71,14 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
               if (isFormValid()) {
                 subscribe({
                   EMAIL: email,
-                });
-                clear();
+                })
+                clear()
               }
-            };
+            }
             return (
               // <div className="mt-[43px] lg:mt-[68px]">
               <div>
-                <p className="pt-10 text-[18px] lg:text-[27px]">
-                  {t('newsletter.beInformedEvents')}
-                </p>
+                <p className="pt-10 text-[18px] lg:text-[27px]">{t('newsletter.beInformedEvents')}</p>
                 <div className="flex pt-10 pb-2">
                   <input
                     className="w-full p-2 bg-transparent border-2 border-white lg:mr-10 text-md"
@@ -99,9 +94,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                     {t('common.login')}
                   </Button>
                 </div>
-                {emailError ? (
-                  <p className="text-red-500 ">{emailError}</p>
-                ) : null}
+                {emailError ? <p className="text-red-500 ">{emailError}</p> : null}
                 <div className="flex items-center w-full mt-3 mb-6">
                   <input
                     id="gdprCheckbox"
@@ -110,26 +103,16 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                     checked={agree}
                     onChange={() => setAgree((prev) => !prev)}
                   />
-                  <label
-                    htmlFor="gdprCheckbox"
-                    className="cursor-pointer select-none text-btn"
-                  >
+                  <label htmlFor="gdprCheckbox" className="cursor-pointer select-none text-btn">
                     {t('common.gdprAccept')}
                   </label>
                 </div>
-                {agreeError ? (
-                  <p className="pb-5 -mt-3 text-red-500">{agreeError}</p>
-                ) : null}
-                <Button
-                  size="medium"
-                  color="light"
-                  onClick={handleSubmit}
-                  className="block w-full lg:hidden"
-                >
+                {agreeError ? <p className="pb-5 -mt-3 text-red-500">{agreeError}</p> : null}
+                <Button size="medium" color="light" onClick={handleSubmit} className="block w-full lg:hidden">
                   {t('common.login')}
                 </Button>
               </div>
-            );
+            )
           }}
         />
       </div>
@@ -139,7 +122,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
         </div>
       </div>
     </Section>
-  );
-};
+  )
+}
 
-export default NewsletterSection;
+export default NewsletterSection

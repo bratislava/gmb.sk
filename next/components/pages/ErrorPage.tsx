@@ -1,11 +1,11 @@
-import React from 'react';
-import Footer from '../../components/molecules/Footer';
-import { ContactEntityFragment } from '../../graphql';
-import { WithAttributes } from '../../utils/isDefined';
+import React from 'react'
+import Footer from '../../components/molecules/Footer'
+import { ContactEntityFragment } from '../../graphql'
+import { WithAttributes } from '../../utils/isDefined'
 
 interface ErrorPageProps {
-  contactInfo?: WithAttributes<ContactEntityFragment> | null;
-  statusCode: number;
+  contactInfo?: WithAttributes<ContactEntityFragment> | null
+  statusCode: number
 }
 
 const ErrorPage = ({ statusCode, contactInfo }: ErrorPageProps) => {
@@ -24,7 +24,7 @@ const ErrorPage = ({ statusCode, contactInfo }: ErrorPageProps) => {
       </div>
       {contactInfo && <Footer contactInfo={contactInfo} />}
     </>
-  );
-};
+  )
+}
 
-export default ErrorPage;
+export default ErrorPage

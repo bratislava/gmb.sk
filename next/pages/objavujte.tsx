@@ -1,29 +1,23 @@
-import { GetServerSideProps } from 'next';
-import React from 'react';
-import ExplorePage from '../components/pages/ExplorePage';
-import { ExplorePageQuery, TagsByCategorySlugQuery } from '../graphql';
-import { client } from '../utils/gql';
-import { hasAttributes, withAttributes } from '../utils/isDefined';
-import { getRouteForLocale } from '../utils/localeRoutes';
-import { ssrTranslations } from '../utils/translations';
+import { GetServerSideProps } from 'next'
+import React from 'react'
+import ExplorePage from '../components/pages/ExplorePage'
+import { ExplorePageQuery, TagsByCategorySlugQuery } from '../graphql'
+import { client } from '../utils/gql'
+import { hasAttributes, withAttributes } from '../utils/isDefined'
+import { getRouteForLocale } from '../utils/localeRoutes'
+import { ssrTranslations } from '../utils/translations'
 
 interface ExploreProps {
-  explorePage: ExplorePageQuery['explorePage'];
-  contact: ExplorePageQuery['contact'];
-  tagsTypes: TagsByCategorySlugQuery['tagCategoryBySlug'];
-  tagsProjects: TagsByCategorySlugQuery['tagCategoryBySlug'];
-  tagsOthers: TagsByCategorySlugQuery['tagCategoryBySlug'];
+  explorePage: ExplorePageQuery['explorePage']
+  contact: ExplorePageQuery['contact']
+  tagsTypes: TagsByCategorySlugQuery['tagCategoryBySlug']
+  tagsProjects: TagsByCategorySlugQuery['tagCategoryBySlug']
+  tagsOthers: TagsByCategorySlugQuery['tagCategoryBySlug']
 }
 
-const Explore = ({
-  explorePage,
-  contact,
-  tagsTypes,
-  tagsProjects,
-  tagsOthers,
-}: ExploreProps) => {
+const Explore = ({ explorePage, contact, tagsTypes, tagsProjects, tagsOthers }: ExploreProps) => {
   if (!explorePage) {
-    return null;
+    return null
   }
 
   return (
@@ -31,19 +25,13 @@ const Explore = ({
       explorePage={explorePage}
       contactInfo={withAttributes(contact?.data)}
       tagsTypes={tagsTypes?.data?.attributes?.tags?.data.filter(hasAttributes)}
-      tagsProjects={tagsProjects?.data?.attributes?.tags?.data.filter(
-        hasAttributes
-      )}
-      tagsOthers={tagsOthers?.data?.attributes?.tags?.data.filter(
-        hasAttributes
-      )}
+      tagsProjects={tagsProjects?.data?.attributes?.tags?.data.filter(hasAttributes)}
+      tagsOthers={tagsOthers?.data?.attributes?.tags?.data.filter(hasAttributes)}
     />
-  );
-};
+  )
+}
 
-export const getServerSideProps: GetServerSideProps<ExploreProps> = async ({
-  locale = 'sk',
-}) => {
+export const getServerSideProps: GetServerSideProps<ExploreProps> = async ({ locale = 'sk' }) => {
   const [
     { explorePage, contact },
     { tagCategoryBySlug: tagsTypes },
@@ -65,7 +53,7 @@ export const getServerSideProps: GetServerSideProps<ExploreProps> = async ({
       tag: getRouteForLocale('objavujte-ostatne', locale),
     }),
     ssrTranslations({ locale }, ['common']),
-  ]);
+  ])
 
   return {
     props: {
@@ -76,7 +64,7 @@ export const getServerSideProps: GetServerSideProps<ExploreProps> = async ({
       contact,
       ...translations,
     },
-  };
-};
+  }
+}
 
-export default Explore;
+export default Explore

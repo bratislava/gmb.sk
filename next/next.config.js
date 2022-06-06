@@ -1,6 +1,8 @@
+// TODO use @ts-check
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const path = require('path');
-const fs = require('fs');
+const path = require('path')
+const fs = require('fs')
 /**
  * @type {import('next').NextConfig}
  */
@@ -65,12 +67,12 @@ const nextConfig = {
           destination: '/zverejnovanie-informacii',
         },
       ],
-    };
+    }
   },
   serverRuntimeConfig: {
     strapiUrl: process.env.STRAPI_URL,
   },
-};
+}
 
 module.exports = (phase, { defaultConfig }) => {
   return {
@@ -80,9 +82,9 @@ module.exports = (phase, { defaultConfig }) => {
       config.module.rules.push({
         test: /\.svg$/,
         use: ['@svgr/webpack'],
-      });
+      })
 
-      return config;
+      return config
     },
-  };
-};
+  }
+}

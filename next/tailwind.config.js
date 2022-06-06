@@ -1,10 +1,7 @@
-const { join } = require('path');
+const { join } = require('path')
 
 module.exports = {
-  content: [
-    join(__dirname, 'pages/**/*.{js,jsx,ts,tsx}'),
-    join(__dirname, 'components/**/*.{js,jsx,ts,tsx}'),
-  ],
+  content: [join(__dirname, 'pages/**/*.{js,jsx,ts,tsx}'), join(__dirname, 'components/**/*.{js,jsx,ts,tsx}')],
   darkMode: 'media', // or 'class'
   theme: {
     fontSize: {
@@ -55,4 +52,4 @@ module.exports = {
     container: false,
   },
   mode: 'jit',
-};
+}

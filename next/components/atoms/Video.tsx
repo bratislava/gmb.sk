@@ -1,48 +1,47 @@
-import cx from 'classnames';
-import React from 'react';
+import cx from 'classnames'
+import React from 'react'
 
 interface IVideo {
-  url: string;
-  className?: string;
-  size?: 'default' | 'custom';
+  url: string
+  className?: string
+  size?: 'default' | 'custom'
 }
 
 const Video = ({ className, url, size = 'default' }: IVideo) => {
-  const [embedUrl, setEmbedUrl] = React.useState('');
+  const [embedUrl, setEmbedUrl] = React.useState('')
 
-  const isYoutubeVideo = url?.startsWith('https://youtu.be');
-  const isVimeoVideo = url?.startsWith('https://vimeo.com');
+  const isYoutubeVideo = url?.startsWith('https://youtu.be')
+  const isVimeoVideo = url?.startsWith('https://vimeo.com')
 
   React.useEffect(() => {
     if (isYoutubeVideo) {
       const parseYoutubeUrl = async () => {
-        const oembedUrl = `https://www.youtube.com/oembed?url=${url}&format=json`;
-        const res = await fetch(oembedUrl);
-        const { html }: { html: string } = await res.json();
+        const oembedUrl = `https://www.youtube.com/oembed?url=${url}&format=json`
+        const res = await fetch(oembedUrl)
+        const { html }: { html: string } = await res.json()
 
-        const substrStart = html.indexOf('src="') + 5;
-        const substrEnd = html.indexOf('oembed') + 6;
-        const embedUrl = html.substring(substrStart, substrEnd);
+        const substrStart = html.indexOf('src="') + 5
+        const substrEnd = html.indexOf('oembed') + 6
+        const embedUrl = html.substring(substrStart, substrEnd)
 
-        setEmbedUrl(embedUrl);
-      };
+        setEmbedUrl(embedUrl)
+      }
 
-      if (url) parseYoutubeUrl();
+      if (url) parseYoutubeUrl()
     }
     if (isVimeoVideo) {
       const parseVimeoUrl = async () => {
-        const regExp =
-          /^.*(vimeo\.com\/)((channels\/[A-z]+\/)|(groups\/[A-z]+\/videos\/))?([0-9]+)/;
-        const match = url?.match(regExp);
-        const videoId = match && match[5];
-        const embedUrl = `https://player.vimeo.com/video/${videoId}`;
+        const regExp = /^.*(vimeo\.com\/)((channels\/[A-z]+\/)|(groups\/[A-z]+\/videos\/))?([0-9]+)/
+        const match = url?.match(regExp)
+        const videoId = match && match[5]
+        const embedUrl = `https://player.vimeo.com/video/${videoId}`
 
-        setEmbedUrl(embedUrl);
-      };
+        setEmbedUrl(embedUrl)
+      }
 
-      if (url) parseVimeoUrl();
+      if (url) parseVimeoUrl()
     }
-  }, [isVimeoVideo, isYoutubeVideo, url]);
+  }, [isVimeoVideo, isYoutubeVideo, url])
 
   if (isYoutubeVideo && embedUrl) {
     return (
@@ -51,13 +50,9 @@ const Video = ({ className, url, size = 'default' }: IVideo) => {
           'w-72 h-[162px] lg:w-[780px] lg:h-[439px]': size === 'default',
         })}
       >
-        <iframe
-          className={cx('w-full h-full')}
-          src={embedUrl}
-          allowFullScreen
-        />
+        <iframe className={cx('w-full h-full')} src={embedUrl} allowFullScreen />
       </figure>
-    );
+    )
   }
 
   if (isVimeoVideo && embedUrl) {
@@ -67,16 +62,12 @@ const Video = ({ className, url, size = 'default' }: IVideo) => {
           'w-72 h-[162px] lg:w-[780px] lg:h-[439px]': size === 'default',
         })}
       >
-        <iframe
-          className={cx('w-full h-full')}
-          src={embedUrl}
-          allowFullScreen
-        />
+        <iframe className={cx('w-full h-full')} src={embedUrl} allowFullScreen />
       </figure>
-    );
+    )
   }
 
-  return null;
-};
+  return null
+}
 
-export default Video;
+export default Video

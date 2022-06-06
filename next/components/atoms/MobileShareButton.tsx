@@ -1,24 +1,20 @@
-import cx from 'classnames';
-import React, { useEffect, useState } from 'react';
+import cx from 'classnames'
+import React, { useEffect, useState } from 'react'
 
 interface MobileShareButtonProps {
-  className?: string;
-  slug: string;
-  title: string;
+  className?: string
+  slug: string
+  title: string
 }
 
-const MobileShareButton = ({
-  className,
-  slug,
-  title,
-}: MobileShareButtonProps) => {
-  const [hasNavigatorShare, setHasNavigatorShare] = useState<boolean>(true);
-  const url = `${process.env.NEXT_URL}/detail/${slug}`;
+const MobileShareButton = ({ className, slug, title }: MobileShareButtonProps) => {
+  const [hasNavigatorShare, setHasNavigatorShare] = useState<boolean>(true)
+  const url = `${process.env.NEXT_URL}/detail/${slug}`
 
   //else throwing errors because of some server side rendering, navigator is not defined
   useEffect(() => {
-    setHasNavigatorShare(!!navigator.share);
-  }, []);
+    setHasNavigatorShare(!!navigator.share)
+  }, [])
 
   const openShareDialog = () => {
     if (navigator.share) {
@@ -27,10 +23,10 @@ const MobileShareButton = ({
           title,
           url,
         })
-        .catch((error) => console.error(error));
+        .catch((error) => console.error(error))
     }
     //right now, this component will NOT be generated when navigator.share is not supported
-  };
+  }
 
   return (
     <>
@@ -40,7 +36,7 @@ const MobileShareButton = ({
         </button>
       )}
     </>
-  );
-};
+  )
+}
 
-export default MobileShareButton;
+export default MobileShareButton

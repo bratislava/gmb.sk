@@ -1,20 +1,20 @@
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import LocationIcon from '../../../assets/icons/location.svg';
-import { ContactEntityFragment } from '../../../graphql';
-import { WithAttributes } from '../../../utils/isDefined';
-import Link from '../../atoms/Link';
-import Section from './Section';
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import LocationIcon from '../../../assets/icons/location.svg'
+import { ContactEntityFragment } from '../../../graphql'
+import { WithAttributes } from '../../../utils/isDefined'
+import Link from '../../atoms/Link'
+import Section from './Section'
 
 interface ContactSectionProps {
-  contactInfo: WithAttributes<ContactEntityFragment>;
-  anchor?: string;
+  contactInfo: WithAttributes<ContactEntityFragment>
+  anchor?: string
 }
 
 const ContactSection = ({ contactInfo, anchor }: ContactSectionProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const followPlatformData = [
     {
@@ -33,14 +33,10 @@ const ContactSection = ({ contactInfo, anchor }: ContactSectionProps) => {
       href: 'https://soundcloud.com/user-620213737',
       title: 'SoundCloud',
     },
-  ];
+  ]
 
   return (
-    <Section
-      anchor={anchor}
-      color="dark"
-      className="grid grid-cols-2 px-xStandard lg:grid-cols-4 gap-9 py-yHigh"
-    >
+    <Section anchor={anchor} color="dark" className="grid grid-cols-2 px-xStandard lg:grid-cols-4 gap-9 py-yHigh">
       <div className="flex flex-col justify-between h-full col-span-2 lg:col-span-1">
         <h4 className="text-xl pb-yHigh">{t('common.openingHours')}</h4>
         {contactInfo.attributes.openingHours && (
@@ -49,9 +45,7 @@ const ContactSection = ({ contactInfo, anchor }: ContactSectionProps) => {
               remarkPlugins={[remarkGfm]}
               components={{
                 p: ({ children }) => <p className="text-md">{children}</p>,
-                ul: ({ children }) => (
-                  <ul className="list-disc list pl-5 pb-[55px]">{children}</ul>
-                ),
+                ul: ({ children }) => <ul className="list-disc list pl-5 pb-[55px]">{children}</ul>,
               }}
             >
               {contactInfo.attributes.openingHours ?? ''}
@@ -60,18 +54,14 @@ const ContactSection = ({ contactInfo, anchor }: ContactSectionProps) => {
         )}
       </div>
       <div className="flex flex-col justify-between h-full col-span-1">
-        <h3 className="text-xl pb-yHigh">
-          {contactInfo.attributes.mirbach?.title}
-        </h3>
+        <h3 className="text-xl pb-yHigh">{contactInfo.attributes.mirbach?.title}</h3>
         <div className="text-md justify-self-end">
           <LocationIcon stroke="white" height="48" className="mb-2" />
           <p>{contactInfo.attributes.mirbach?.address}</p>
         </div>
       </div>
       <div className="flex flex-col justify-between h-full col-span-1">
-        <h3 className="text-xl pb-yHigh">
-          {contactInfo.attributes.palffy?.title}
-        </h3>
+        <h3 className="text-xl pb-yHigh">{contactInfo.attributes.palffy?.title}</h3>
         <div className="text-md justify-self-end">
           <LocationIcon stroke="white" height="48" className="mb-2" />
           <p>{contactInfo.attributes.palffy?.address}</p>
@@ -81,20 +71,14 @@ const ContactSection = ({ contactInfo, anchor }: ContactSectionProps) => {
         <h3 className="text-xl pb-yHigh">{t('common.follow')}</h3>
         <div className="flex flex-col justify-between justify-self-end">
           {followPlatformData.map((platform, index) => (
-            <Link
-              href={platform.href}
-              target="_blank"
-              key={index}
-              className="uppercase text-md"
-              preserveStyle
-            >
+            <Link href={platform.href} target="_blank" key={index} className="uppercase text-md" preserveStyle>
               {platform.title}
             </Link>
           ))}
         </div>
       </div>
     </Section>
-  );
-};
+  )
+}
 
-export default ContactSection;
+export default ContactSection

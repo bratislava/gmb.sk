@@ -1,6 +1,6 @@
-import { ContentPageEntityFragment } from '../graphql';
-import { getKeyByValue } from './getKeyByValue';
-import { hasAttributes, isDefined, WithAttributes } from './isDefined';
+import { ContentPageEntityFragment } from '../graphql'
+import { getKeyByValue } from './getKeyByValue'
+import { hasAttributes, isDefined, WithAttributes } from './isDefined'
 
 const routesSkToEn = {
   // Routes
@@ -29,30 +29,30 @@ const routesSkToEn = {
   // Places
   'mirbachov-palac': 'mirbach-s-palace',
   'palffyho-palac': 'palffy-s-palace',
-};
+}
 
-type Route = keyof typeof routesSkToEn;
+type Route = keyof typeof routesSkToEn
 
 /** For a given slovak route, will return equivalent route in the current locale. */
 export function getRouteForLocale(route: Route, locale: string) {
   if (locale === 'en') {
-    return routesSkToEn[route];
+    return routesSkToEn[route]
   }
 
-  return route;
+  return route
 }
 /** For a given route (slovak or english), will return equivalent route in the target locale */
 export function getRouteForTargetLocale(route: string, targetLocale: string) {
   if (targetLocale === 'en' && isRoute(route)) {
-    return routesSkToEn[route];
+    return routesSkToEn[route]
   }
 
   /** Retrieves slovak route based on english route */
-  return getKeyByValue(routesSkToEn, route);
+  return getKeyByValue(routesSkToEn, route)
 }
 
 function isRoute(maybeRoute: string): maybeRoute is Route {
-  return maybeRoute in routesSkToEn;
+  return maybeRoute in routesSkToEn
 }
 
 function getContentPageDetailRouteForTargetLocale(
@@ -61,9 +61,9 @@ function getContentPageDetailRouteForTargetLocale(
 ) {
   const contentPageInTargetLocale = contentPageLocalizations?.data
     ?.filter(hasAttributes)
-    .find((localization) => localization.attributes.locale === targetLocale);
+    .find((localization) => localization.attributes.locale === targetLocale)
 
-  return `/detail/${contentPageInTargetLocale?.attributes.slug}`;
+  return `/detail/${contentPageInTargetLocale?.attributes.slug}`
 }
 
 function getContentPageTicketsRouteForTargetLocale(
@@ -72,11 +72,11 @@ function getContentPageTicketsRouteForTargetLocale(
 ) {
   const contentPageInTargetLocale = contentPageLocalizations?.data
     ?.filter(hasAttributes)
-    .find((localization) => localization.attributes.locale === targetLocale);
+    .find((localization) => localization.attributes.locale === targetLocale)
 
-  const ticketsRoute = getRouteForLocale('/vstupenky', targetLocale);
+  const ticketsRoute = getRouteForLocale('/vstupenky', targetLocale)
 
-  return `${ticketsRoute}/${contentPageInTargetLocale?.attributes.slug}`;
+  return `${ticketsRoute}/${contentPageInTargetLocale?.attributes.slug}`
 }
 
 export function getEquivalentRouteInTargetLocale(
@@ -84,26 +84,18 @@ export function getEquivalentRouteInTargetLocale(
   targetLocale: string,
   contentPage: WithAttributes<ContentPageEntityFragment> | undefined
 ) {
-  const isDetailRoute =
-    pathname.startsWith('/detail') && isDefined(contentPage);
+  const isDetailRoute = pathname.startsWith('/detail') && isDefined(contentPage)
 
   if (isDetailRoute) {
-    return getContentPageDetailRouteForTargetLocale(
-      contentPage.attributes.localizations,
-      targetLocale
-    );
+    return getContentPageDetailRouteForTargetLocale(contentPage.attributes.localizations, targetLocale)
   }
 
   const isTicketsRoute =
-    (pathname.startsWith('/tickets') || pathname.startsWith('/vstupenky')) &&
-    isDefined(contentPage);
+    (pathname.startsWith('/tickets') || pathname.startsWith('/vstupenky')) && isDefined(contentPage)
 
   if (isTicketsRoute) {
-    return getContentPageTicketsRouteForTargetLocale(
-      contentPage.attributes.localizations,
-      targetLocale
-    );
+    return getContentPageTicketsRouteForTargetLocale(contentPage.attributes.localizations, targetLocale)
   }
 
-  return getRouteForTargetLocale(pathname, targetLocale);
+  return getRouteForTargetLocale(pathname, targetLocale)
 }

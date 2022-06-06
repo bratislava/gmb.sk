@@ -1,12 +1,12 @@
-import { PageSectionFragment } from '../../../graphql';
-import { hasAttributes } from '../../../utils/isDefined';
-import CardSection from './CardSection';
-import ChessboardSection from './ChessboardSection';
-import FullWidthSection from './FullWidthSection';
+import { PageSectionFragment } from '../../../graphql'
+import { hasAttributes } from '../../../utils/isDefined'
+import CardSection from './CardSection'
+import ChessboardSection from './ChessboardSection'
+import FullWidthSection from './FullWidthSection'
 
 export interface SectionProps {
-  section: PageSectionFragment;
-  anchor?: string;
+  section: PageSectionFragment
+  anchor?: string
 }
 
 const PageSectionContainer = ({ section, anchor }: SectionProps) => {
@@ -17,7 +17,7 @@ const PageSectionContainer = ({ section, anchor }: SectionProps) => {
         title={section.title ?? undefined}
         anchor={anchor}
       />
-    );
+    )
   }
 
   if (section.layout === 'cards') {
@@ -27,7 +27,7 @@ const PageSectionContainer = ({ section, anchor }: SectionProps) => {
         title={section.title ?? undefined}
         anchor={anchor}
       />
-    );
+    )
   }
 
   if (section.layout === 'fullwidth') {
@@ -37,7 +37,7 @@ const PageSectionContainer = ({ section, anchor }: SectionProps) => {
         title={section.title ?? undefined}
         anchor={anchor}
       />
-    );
+    )
   }
 
   return (
@@ -46,7 +46,7 @@ const PageSectionContainer = ({ section, anchor }: SectionProps) => {
       title={section.title ?? undefined}
       anchor={anchor}
     />
-  );
-};
+  )
+}
 
-export default PageSectionContainer;
+export default PageSectionContainer

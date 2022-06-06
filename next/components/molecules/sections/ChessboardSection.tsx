@@ -1,29 +1,22 @@
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import { SectionItemEntityFragment } from '../../../graphql';
-import { WithAttributes } from '../../../utils/isDefined';
-import Button from '../../atoms/Button';
-import ChessboardTile from '../ChessboardTile';
-import Section from './Section';
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import { SectionItemEntityFragment } from '../../../graphql'
+import { WithAttributes } from '../../../utils/isDefined'
+import Button from '../../atoms/Button'
+import ChessboardTile from '../ChessboardTile'
+import Section from './Section'
 
 interface ChessboardProps {
-  title?: string;
-  sectionItems?: WithAttributes<SectionItemEntityFragment>[];
-  anchor?: string;
-  flipped?: boolean;
-  showTags?: boolean;
-  loadmore?: boolean;
+  title?: string
+  sectionItems?: WithAttributes<SectionItemEntityFragment>[]
+  anchor?: string
+  flipped?: boolean
+  showTags?: boolean
+  loadmore?: boolean
 }
 
-const ChessboardSection = ({
-  title,
-  sectionItems,
-  anchor,
-  flipped,
-  showTags,
-  loadmore,
-}: ChessboardProps) => {
-  const { t } = useTranslation();
+const ChessboardSection = ({ title, sectionItems, anchor, flipped, showTags, loadmore }: ChessboardProps) => {
+  const { t } = useTranslation()
 
   return (
     <Section anchor={anchor} title={title}>
@@ -50,7 +43,7 @@ const ChessboardSection = ({
         </div>
       )}
     </Section>
-  );
-};
+  )
+}
 
-export default ChessboardSection;
+export default ChessboardSection

@@ -1,6 +1,5 @@
 # Add files here to ignore them from prettier formatting
 
-/dist
-/coverage
-
-yarn.json
+yarn.lock
+.next
+graphql/index.ts

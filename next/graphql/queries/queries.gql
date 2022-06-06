@@ -24,12 +24,7 @@ query TagsByCategorySlug($locale: I18NLocaleCode!, $tag: String!) {
   }
 }
 
-query News(
-  $locale: I18NLocaleCode!
-  $tag: String!
-  $limit: Int = 5
-  $sort: [String] = ["publishedAt:desc"]
-) {
+query News($locale: I18NLocaleCode!, $tag: String!, $limit: Int = 5, $sort: [String] = ["publishedAt:desc"]) {
   news: contentPages(
     locale: $locale
     sort: $sort
@@ -52,10 +47,7 @@ query PreviewsByTags(
   contentPages(
     locale: $locale
     pagination: { start: $offset, limit: $limit }
-    filters: {
-      tags: { slug: { in: $tagSlugs } }
-      place: { slug: { in: $placesSlugs } }
-    }
+    filters: { tags: { slug: { in: $tagSlugs } }, place: { slug: { in: $placesSlugs } } }
   ) {
     data {
       ...SectionItemEntity
@@ -104,10 +96,7 @@ query ExhibitionsByPlace(
         { tags: { slug: { eq: $tagPermanentExhibitions } } }
         {
           tags: { slug: { eq: $tagExhibitions } }
-          or: [
-            { dateFrom: { lte: $today }, dateTo: { gte: $today } }
-            { dateFrom: { eq: $today } }
-          ]
+          or: [{ dateFrom: { lte: $today }, dateTo: { gte: $today } }, { dateFrom: { eq: $today } }]
         }
       ]
       place: { slug: { eq: $place } }

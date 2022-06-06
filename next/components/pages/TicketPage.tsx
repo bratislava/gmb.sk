@@ -1,33 +1,25 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import Footer from '../../components/molecules/Footer';
-import {
-  ContactEntityFragment,
-  ContentPageEntityFragment,
-  SectionItemEntityFragment,
-} from '../../graphql';
-import { WithAttributes } from '../../utils/isDefined';
-import { Link } from '../atoms/Link';
-import { SidePanelPlace } from '../atoms/SidePanelPlace';
-import { SidePanelTime } from '../atoms/SidePanelTime';
-import CardSection from '../molecules/sections/CardSection';
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import Footer from '../../components/molecules/Footer'
+import { ContactEntityFragment, ContentPageEntityFragment, SectionItemEntityFragment } from '../../graphql'
+import { WithAttributes } from '../../utils/isDefined'
+import { Link } from '../atoms/Link'
+import { SidePanelPlace } from '../atoms/SidePanelPlace'
+import { SidePanelTime } from '../atoms/SidePanelTime'
+import CardSection from '../molecules/sections/CardSection'
 
 interface ITicketPageProps {
-  contentPage: WithAttributes<ContentPageEntityFragment>;
-  contactInfo?: WithAttributes<ContactEntityFragment> | null;
-  currentEvents?: WithAttributes<SectionItemEntityFragment>[];
+  contentPage: WithAttributes<ContentPageEntityFragment>
+  contactInfo?: WithAttributes<ContactEntityFragment> | null
+  currentEvents?: WithAttributes<SectionItemEntityFragment>[]
 }
 
-const TicketPage = ({
-  contentPage,
-  contactInfo,
-  currentEvents,
-}: ITicketPageProps) => {
-  const { t } = useTranslation();
+const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProps) => {
+  const { t } = useTranslation()
 
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger)
   React.useEffect(() => {
     gsap.to('#sidebar', {
       bottom: '100vh',
@@ -38,24 +30,14 @@ const TicketPage = ({
         end: 'top top',
         scrub: 0,
       },
-    });
-  }, []);
+    })
+  }, [])
 
-  const {
-    title,
-    subtitle,
-    place,
-    placeTitle,
-    dateFrom,
-    dateTo,
-    timeFrom,
-    timeTo,
-    slug,
-  } = contentPage.attributes;
+  const { title, subtitle, place, placeTitle, dateFrom, dateTo, timeFrom, timeTo, slug } = contentPage.attributes
 
   const ticketIncludesText = t('common.ticketIncludesPalace', {
     place: place?.data?.attributes?.title,
-  });
+  })
 
   return (
     <div className="relative">
@@ -80,14 +62,8 @@ const TicketPage = ({
 
           <p className="my-10 lg:hidden">{ticketIncludesText}</p>
           <div className="flex flex-wrap justify-start w-full mt-6 gap-x-xStandard gap-y-yStandard">
-            <SidePanelPlace
-              placeFragment={{ place, placeTitle }}
-              isOneLine={true}
-            />
-            <SidePanelTime
-              datetime={{ dateFrom, dateTo, timeFrom, timeTo }}
-              isOneLine={true}
-            />
+            <SidePanelPlace placeFragment={{ place, placeTitle }} isOneLine={true} />
+            <SidePanelTime datetime={{ dateFrom, dateTo, timeFrom, timeTo }} isOneLine={true} />
           </div>
         </div>
         <div className="px-xStandard py-yStandard h-[800px] bg-gmbLightGray">
@@ -108,7 +84,7 @@ const TicketPage = ({
 
       {contactInfo && <Footer contactInfo={contactInfo} />}
     </div>
-  );
-};
+  )
+}
 
-export default TicketPage;
+export default TicketPage

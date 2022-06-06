@@ -1,35 +1,35 @@
-import cx from 'classnames';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { useTranslation } from 'next-i18next';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import React from 'react';
-import Hamburger from '../../assets/icons/ba-hamburger.svg';
-import CloseIcon from '../../assets/icons/close-x.svg';
-import SearchIcon from '../../assets/icons/search.svg';
-import Logo from '../../assets/images/gmb-logo-header.png';
-import { ContentPageEntityFragment } from '../../graphql';
-import { withAttributes } from '../../utils/isDefined';
-import { getRouteForLocale } from '../../utils/localeRoutes';
-import AppLangSwitchers from '../atoms/AppLangSwitchers';
-import Button from '../atoms/Button';
-import Link from '../atoms/Link';
-import NavLink from '../atoms/NavLink';
-import SearchBar from './SearchBar';
+import cx from 'classnames'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { useTranslation } from 'next-i18next'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import React from 'react'
+import Hamburger from '../../assets/icons/ba-hamburger.svg'
+import CloseIcon from '../../assets/icons/close-x.svg'
+import SearchIcon from '../../assets/icons/search.svg'
+import Logo from '../../assets/images/gmb-logo-header.png'
+import { ContentPageEntityFragment } from '../../graphql'
+import { withAttributes } from '../../utils/isDefined'
+import { getRouteForLocale } from '../../utils/localeRoutes'
+import AppLangSwitchers from '../atoms/AppLangSwitchers'
+import Button from '../atoms/Button'
+import Link from '../atoms/Link'
+import NavLink from '../atoms/NavLink'
+import SearchBar from './SearchBar'
 
 interface NavigationProps {
-  contentPage?: ContentPageEntityFragment;
+  contentPage?: ContentPageEntityFragment
 }
 
 const Navigation = ({ contentPage }: NavigationProps) => {
-  const { t, i18n } = useTranslation();
-  const router = useRouter();
+  const { t, i18n } = useTranslation()
+  const router = useRouter()
 
-  const [isSearchBarOpen, setIsSearchBarOpen] = React.useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isSearchBarOpen, setIsSearchBarOpen] = React.useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
 
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger)
   React.useEffect(() => {
     gsap.to('#navLogoText', {
       bottom: '+=120',
@@ -40,54 +40,54 @@ const Navigation = ({ contentPage }: NavigationProps) => {
         end: 'top -370px',
         scrub: 0,
       },
-    });
-  }, []);
+    })
+  }, [])
 
   React.useEffect(() => {
-    router.events.on('routeChangeStart', closeMobileMenu);
+    router.events.on('routeChangeStart', closeMobileMenu)
 
     return () => {
-      router.events.off('routeChangeStart', closeMobileMenu);
-    };
-  }, [router.events]);
+      router.events.off('routeChangeStart', closeMobileMenu)
+    }
+  }, [router.events])
 
   React.useEffect(() => {
-    router.events.on('routeChangeComplete', closeSearchBar);
+    router.events.on('routeChangeComplete', closeSearchBar)
 
     return () => {
-      router.events.off('routeChangeComplete', closeSearchBar);
-    };
-  }, [router.events]);
+      router.events.off('routeChangeComplete', closeSearchBar)
+    }
+  }, [router.events])
 
   React.useEffect(() => {
     if (isSearchBarOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = 'auto'
     }
     return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isSearchBarOpen]);
+      document.body.style.overflow = 'auto'
+    }
+  }, [isSearchBarOpen])
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
 
   const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
+    setIsMobileMenuOpen(false)
+  }
 
   const toggleSearchBar = () => {
-    setIsSearchBarOpen(!isSearchBarOpen);
+    setIsSearchBarOpen(!isSearchBarOpen)
     if (isMobileMenuOpen) {
-      closeMobileMenu();
+      closeMobileMenu()
     }
-  };
+  }
 
   const closeSearchBar = () => {
-    setIsSearchBarOpen(false);
-  };
+    setIsSearchBarOpen(false)
+  }
 
   return (
     <>
@@ -96,25 +96,16 @@ const Navigation = ({ contentPage }: NavigationProps) => {
           <Link href="/" preserveStyle noUnderline className="min-w-fit group">
             <div className="flex">
               <div className="h-logoHeight w-logoWidth">
-                <Image
-                  src={Logo}
-                  alt="Logo GMB"
-                  objectFit="scale-down"
-                  unoptimized
-                />
+                <Image src={Logo} alt="Logo GMB" objectFit="scale-down" unoptimized />
               </div>
 
               <span
                 id={'navLogoText'}
                 className="absolute ml-4 text-sm leading-4 pl-logoWidth whitespace-nowrap group-hover:underline"
               >
-                {i18n.language === 'sk'
-                  ? t('common.cityGallery')
-                  : t('common.bratislavaGenitiv')}
+                {i18n.language === 'sk' ? t('common.cityGallery') : t('common.bratislavaGenitiv')}
                 <br />
-                {i18n.language === 'sk'
-                  ? t('common.bratislavaGenitiv')
-                  : t('common.cityGallery')}
+                {i18n.language === 'sk' ? t('common.bratislavaGenitiv') : t('common.cityGallery')}
               </span>
             </div>
           </Link>
@@ -130,26 +121,13 @@ const Navigation = ({ contentPage }: NavigationProps) => {
               hidden: !isMobileMenuOpen,
             })}
           >
-            <NavLink url={getRouteForLocale('/vystavy', i18n.language)}>
-              {t('navigation.exhibitionsEvents')}
-            </NavLink>
-            <NavLink url={getRouteForLocale('/objavujte', i18n.language)}>
-              {t('navigation.explore')}
-            </NavLink>
-            <NavLink url={getRouteForLocale('/o-galerii', i18n.language)}>
-              {t('navigation.aboutGallery')}
-            </NavLink>
-            <NavLink url={getRouteForLocale('/zapoj-sa', i18n.language)}>
-              {t('navigation.getInvolved')}
-            </NavLink>
-            <NavLink url={getRouteForLocale('/zbierky', i18n.language)}>
-              {t('navigation.collections')}
-            </NavLink>
+            <NavLink url={getRouteForLocale('/vystavy', i18n.language)}>{t('navigation.exhibitionsEvents')}</NavLink>
+            <NavLink url={getRouteForLocale('/objavujte', i18n.language)}>{t('navigation.explore')}</NavLink>
+            <NavLink url={getRouteForLocale('/o-galerii', i18n.language)}>{t('navigation.aboutGallery')}</NavLink>
+            <NavLink url={getRouteForLocale('/zapoj-sa', i18n.language)}>{t('navigation.getInvolved')}</NavLink>
+            <NavLink url={getRouteForLocale('/zbierky', i18n.language)}>{t('navigation.collections')}</NavLink>
 
-            <Button
-              size="small"
-              href={getRouteForLocale('/navstivte', i18n.language)}
-            >
+            <Button size="small" href={getRouteForLocale('/navstivte', i18n.language)}>
               {t('navigation.visitUs')}
             </Button>
 
@@ -158,9 +136,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             </button>
 
             <div className="text-gray-500 xl:hidden">
-              <AppLangSwitchers
-                contentPage={withAttributes(contentPage) ?? undefined}
-              />
+              <AppLangSwitchers contentPage={withAttributes(contentPage) ?? undefined} />
             </div>
           </div>
         </div>
@@ -171,7 +147,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
       {isSearchBarOpen && <SearchBar closeSearchBar={closeSearchBar} />}
     </>
-  );
-};
+  )
+}
 
-export default Navigation;
+export default Navigation

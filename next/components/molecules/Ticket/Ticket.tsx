@@ -1,20 +1,20 @@
-import cx from 'classnames';
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import Button from '../../atoms/Button';
-import styles from './Ticket.module.css';
+import cx from 'classnames'
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import Button from '../../atoms/Button'
+import styles from './Ticket.module.css'
 
 interface ITicketProps {
-  title: string | null | undefined;
-  price: number | null | undefined;
-  description: string | null | undefined;
-  link: string | null | undefined;
+  title: string | null | undefined
+  price: number | null | undefined
+  description: string | null | undefined
+  link: string | null | undefined
 }
 
 export const Ticket = ({ title, price, description, link }: ITicketProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   return (
     <div
       className={cx(
@@ -32,19 +32,9 @@ export const Ticket = ({ title, price, description, link }: ITicketProps) => {
             remarkPlugins={[remarkGfm]}
             className="relative"
             components={{
-              p: ({ children }) => (
-                <p className="pb-yStandard text-btn">{children}</p>
-              ),
-              ul: ({ children }) => (
-                <ul className="pl-5 list-disc pb-yStandard text-btn">
-                  {children}
-                </ul>
-              ),
-              ol: ({ children }) => (
-                <ol className="pl-5 list-decimal pb-yStandard text-btn">
-                  {children}
-                </ol>
-              ),
+              p: ({ children }) => <p className="pb-yStandard text-btn">{children}</p>,
+              ul: ({ children }) => <ul className="pl-5 list-disc pb-yStandard text-btn">{children}</ul>,
+              ol: ({ children }) => <ol className="pl-5 list-decimal pb-yStandard text-btn">{children}</ol>,
             }}
           >
             {description ?? ''}
@@ -62,7 +52,7 @@ export const Ticket = ({ title, price, description, link }: ITicketProps) => {
         ) : null}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Ticket;
+export default Ticket

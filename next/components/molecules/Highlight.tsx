@@ -1,24 +1,24 @@
-import cx from 'classnames';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
-import React from 'react';
-import { HighlightsItemEntityFragment } from '../../graphql';
-import { getContentPageColor } from '../../utils/getContentPageColor';
-import { isDefined, WithAttributes } from '../../utils/isDefined';
-import { getRouteForLocale } from '../../utils/localeRoutes';
-import Button from '../atoms/Button';
-import { SidePanelTime } from '../atoms/SidePanelTime';
-import SidePanel from './SidePanel';
+import cx from 'classnames'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
+import React from 'react'
+import { HighlightsItemEntityFragment } from '../../graphql'
+import { getContentPageColor } from '../../utils/getContentPageColor'
+import { isDefined, WithAttributes } from '../../utils/isDefined'
+import { getRouteForLocale } from '../../utils/localeRoutes'
+import Button from '../atoms/Button'
+import { SidePanelTime } from '../atoms/SidePanelTime'
+import SidePanel from './SidePanel'
 
 interface HighlightProps {
-  highlight: WithAttributes<HighlightsItemEntityFragment>;
+  highlight: WithAttributes<HighlightsItemEntityFragment>
 }
 
 const Highlight = ({ highlight }: HighlightProps) => {
-  const { t, i18n } = useTranslation();
-  const router = useRouter();
+  const { t, i18n } = useTranslation()
+  const router = useRouter()
 
   const {
     dateFrom,
@@ -33,9 +33,9 @@ const Highlight = ({ highlight }: HighlightProps) => {
     override,
     perex,
     purchaseId,
-  } = highlight.attributes;
+  } = highlight.attributes
 
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger)
 
   React.useEffect(() => {
     gsap.to(`#header${highlight.attributes?.slug}`, {
@@ -47,8 +47,8 @@ const Highlight = ({ highlight }: HighlightProps) => {
         end: 'bottom top',
         scrub: 0,
       },
-    });
-  }, [highlight.attributes?.slug]);
+    })
+  }, [highlight.attributes?.slug])
 
   const renderSidePanel =
     placeAddress ||
@@ -58,9 +58,9 @@ const Highlight = ({ highlight }: HighlightProps) => {
     (positions && positions?.length > 0) ||
     perex ||
     override?.highlightContent ||
-    purchaseId;
+    purchaseId
 
-  const renderOverride = override?.highlightContent;
+  const renderOverride = override?.highlightContent
 
   return (
     <>
@@ -72,10 +72,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
           {highlight?.attributes.coverMedia?.data?.attributes?.url && (
             <img
               src={highlight.attributes.coverMedia.data.attributes.url}
-              alt={
-                highlight.attributes.coverMedia.data.attributes
-                  .alternativeText ?? ''
-              }
+              alt={highlight.attributes.coverMedia.data.attributes.alternativeText ?? ''}
               className="object-cover w-full h-full"
             />
           )}
@@ -90,25 +87,16 @@ const Highlight = ({ highlight }: HighlightProps) => {
         >
           <hgroup>
             <h1 className="text-xxl">{highlight.attributes.title}</h1>
-            <p className="font-regular text-xxl">
-              {highlight.attributes.subtitle}
-            </p>
+            <p className="font-regular text-xxl">{highlight.attributes.subtitle}</p>
           </hgroup>
 
           <div
-            className={cx(
-              'lg:hidden w-full flex-1 justify-self-stretch justify-between flex flex-col',
-              {
-                hidden: renderOverride,
-              }
-            )}
+            className={cx('lg:hidden w-full flex-1 justify-self-stretch justify-between flex flex-col', {
+              hidden: renderOverride,
+            })}
           >
             <div className="my-auto">
-              <SidePanelTime
-                datetime={{ dateFrom, dateTo, timeTo, timeFrom }}
-                isOneLine
-                noIcon
-              />
+              <SidePanelTime datetime={{ dateFrom, dateTo, timeTo, timeFrom }} isOneLine noIcon />
             </div>
 
             <div className="flex flex-row items-stretch w-full mt-auto space-x-4 justify-evenly">
@@ -116,19 +104,14 @@ const Highlight = ({ highlight }: HighlightProps) => {
                 <Button
                   size="small"
                   className="flex-none w-fit"
-                  href={`${getRouteForLocale(
-                    '/vstupenky',
-                    i18n.language
-                  )}/${slug}`}
+                  href={`${getRouteForLocale('/vstupenky', i18n.language)}/${slug}`}
                 >
                   {t('common.buyTickets')}
                 </Button>
               )}
               {(placeTitle || place?.data?.attributes?.title) && (
                 <div className="flex items-center justify-center flex-1">
-                  <span className="uppercase">
-                    {placeTitle || place?.data?.attributes?.title}
-                  </span>
+                  <span className="uppercase">{placeTitle || place?.data?.attributes?.title}</span>
                 </div>
               )}
             </div>
@@ -170,7 +153,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
       )}
       <div id={`paralaxAnchor${highlight.id}`} />
     </>
-  );
-};
+  )
+}
 
-export default Highlight;
+export default Highlight

@@ -1,18 +1,16 @@
-import React from 'react';
-import { PlaceEntityFragment, TagEntityFragment } from '../../graphql';
-import { WithAttributes } from '../../utils/isDefined';
-import Tag from '../atoms/Tag';
+import React from 'react'
+import { PlaceEntityFragment, TagEntityFragment } from '../../graphql'
+import { WithAttributes } from '../../utils/isDefined'
+import Tag from '../atoms/Tag'
 
 interface ITagGroupProps {
-  tags:
-    | WithAttributes<TagEntityFragment>[]
-    | WithAttributes<PlaceEntityFragment>[];
-  activeTags: string[];
-  setActiveTags: React.Dispatch<React.SetStateAction<string[]>>;
+  tags: WithAttributes<TagEntityFragment>[] | WithAttributes<PlaceEntityFragment>[]
+  activeTags: string[]
+  setActiveTags: React.Dispatch<React.SetStateAction<string[]>>
 }
 
 const TagGroup = ({ tags, activeTags, setActiveTags }: ITagGroupProps) => {
-  const {} = tags;
+  const {} = tags
 
   return (
     <>
@@ -25,15 +23,13 @@ const TagGroup = ({ tags, activeTags, setActiveTags }: ITagGroupProps) => {
           isActive={activeTags.includes(tag.attributes.slug)}
           onClick={() => {
             activeTags.includes(tag.attributes.slug)
-              ? setActiveTags((prev) =>
-                  prev.filter((item) => item !== tag.attributes.slug)
-                )
-              : setActiveTags((prev) => [...prev, tag.attributes.slug]);
+              ? setActiveTags((prev) => prev.filter((item) => item !== tag.attributes.slug))
+              : setActiveTags((prev) => [...prev, tag.attributes.slug])
           }}
         />
       ))}
     </>
-  );
-};
+  )
+}
 
-export default TagGroup;
+export default TagGroup

@@ -1,7 +1,7 @@
-import moment from 'moment';
+import moment from 'moment'
 
 function getDaysLeft(date: string) {
-  return moment(date).diff(moment(), 'days');
+  return moment(date).diff(moment(), 'days')
 }
 
-export default getDaysLeft;
+export default getDaysLeft

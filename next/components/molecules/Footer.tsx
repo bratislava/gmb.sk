@@ -1,26 +1,23 @@
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import BABrand from '../../assets/icons/BABrand.svg';
-import EULogo from '../../assets/icons/EULogo.svg';
-import FBLogo from '../../assets/icons/FB.svg';
-import IGLogo from '../../assets/icons/IG.svg';
-import YTLogo from '../../assets/icons/YT.svg';
-import {
-  ContactEntityFragment,
-  ContentPageEntityFragment,
-} from '../../graphql';
-import { isDefined, WithAttributes } from '../../utils/isDefined';
-import { getRouteForLocale } from '../../utils/localeRoutes';
-import AppLangSwitchers from '../atoms/AppLangSwitchers';
-import { Link } from '../atoms/Link';
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import BABrand from '../../assets/icons/BABrand.svg'
+import EULogo from '../../assets/icons/EULogo.svg'
+import FBLogo from '../../assets/icons/FB.svg'
+import IGLogo from '../../assets/icons/IG.svg'
+import YTLogo from '../../assets/icons/YT.svg'
+import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
+import { isDefined, WithAttributes } from '../../utils/isDefined'
+import { getRouteForLocale } from '../../utils/localeRoutes'
+import AppLangSwitchers from '../atoms/AppLangSwitchers'
+import { Link } from '../atoms/Link'
 
 interface FooterProps {
-  contactInfo: WithAttributes<ContactEntityFragment>;
-  contentPage?: WithAttributes<ContentPageEntityFragment>;
+  contactInfo: WithAttributes<ContactEntityFragment>
+  contentPage?: WithAttributes<ContentPageEntityFragment>
 }
 
 const Footer = ({ contactInfo, contentPage }: FooterProps) => {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation()
   return (
     <footer className="relative bg-gray-100 px-xStandard pt-14">
       <div className="border-t border-gray-300">
@@ -62,10 +59,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
             </div>
             <div className="flex flex-col gap-y-3">
               {contactInfo.attributes.email && (
-                <Link
-                  href={`mailto:${contactInfo.attributes.email}`}
-                  className="underline normal-case"
-                >
+                <Link href={`mailto:${contactInfo.attributes.email}`} className="underline normal-case">
                   {contactInfo.attributes.email}
                 </Link>
               )}
@@ -101,22 +95,14 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           <div>
             <p>{t('footer.quickLinks')}</p>
             <div>
-              <Link
-                href={getRouteForLocale(
-                  '/zverejnovanie-informacii',
-                  i18n.language
-                )}
-                preserveStyle
-              >
+              <Link href={getRouteForLocale('/zverejnovanie-informacii', i18n.language)} preserveStyle>
                 {t('footer.disclosureOfInformation')}
               </Link>
-              {contactInfo.attributes.quickLinks
-                ?.filter(isDefined)
-                .map((link) => (
-                  <Link href={link.url ?? '#'} key={link.url}>
-                    {link.title}
-                  </Link>
-                ))}
+              {contactInfo.attributes.quickLinks?.filter(isDefined).map((link) => (
+                <Link href={link.url ?? '#'} key={link.url}>
+                  {link.title}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -130,7 +116,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

@@ -1,35 +1,30 @@
-import cx from 'classnames';
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import {
-  ContentPagePlaceFragment,
-  DatetimeFragment,
-  PartnerEntityFragment,
-  PositionFragment,
-} from '../../graphql';
-import getDaysLeft from '../../utils/getDaysLeft';
-import { isDefined, WithAttributes } from '../../utils/isDefined';
-import { getRouteForLocale } from '../../utils/localeRoutes';
-import Button from '../atoms/Button';
-import CityGalleryMarkdown from '../atoms/CityGalleryMarkdown';
-import Link from '../atoms/Link';
-import MobileShareButton from '../atoms/MobileShareButton';
-import ShareButton from '../atoms/ShareButton';
-import { SidePanelPlace } from '../atoms/SidePanelPlace';
-import { SidePanelTime } from '../atoms/SidePanelTime';
+import cx from 'classnames'
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import { ContentPagePlaceFragment, DatetimeFragment, PartnerEntityFragment, PositionFragment } from '../../graphql'
+import getDaysLeft from '../../utils/getDaysLeft'
+import { isDefined, WithAttributes } from '../../utils/isDefined'
+import { getRouteForLocale } from '../../utils/localeRoutes'
+import Button from '../atoms/Button'
+import CityGalleryMarkdown from '../atoms/CityGalleryMarkdown'
+import Link from '../atoms/Link'
+import MobileShareButton from '../atoms/MobileShareButton'
+import ShareButton from '../atoms/ShareButton'
+import { SidePanelPlace } from '../atoms/SidePanelPlace'
+import { SidePanelTime } from '../atoms/SidePanelTime'
 
 interface SidePanelProps {
-  overrideText?: string;
-  title?: string;
-  perex?: string;
-  place?: ContentPagePlaceFragment;
-  datetime?: DatetimeFragment;
-  positions?: PositionFragment[];
-  partners?: WithAttributes<PartnerEntityFragment>[];
-  purchaseId?: string | null;
-  slug?: string;
-  showShare?: boolean;
-  className?: string;
+  overrideText?: string
+  title?: string
+  perex?: string
+  place?: ContentPagePlaceFragment
+  datetime?: DatetimeFragment
+  positions?: PositionFragment[]
+  partners?: WithAttributes<PartnerEntityFragment>[]
+  purchaseId?: string | null
+  slug?: string
+  showShare?: boolean
+  className?: string
 }
 
 const SidePanel = ({
@@ -45,8 +40,8 @@ const SidePanel = ({
   showShare,
   className,
 }: SidePanelProps) => {
-  const { t, i18n } = useTranslation();
-  const daysLeft = getDaysLeft(datetime?.dateFrom);
+  const { t, i18n } = useTranslation()
+  const daysLeft = getDaysLeft(datetime?.dateFrom)
 
   if (
     !place?.placeAddress &&
@@ -60,29 +55,19 @@ const SidePanel = ({
     !purchaseId &&
     !showShare
   ) {
-    return null;
+    return null
   }
 
   if (overrideText) {
     return (
-      <aside
-        className={cx(
-          className,
-          'flex flex-col justify-between w-full space-y-10 bg-white lg:space-y-20'
-        )}
-      >
+      <aside className={cx(className, 'flex flex-col justify-between w-full space-y-10 bg-white lg:space-y-20')}>
         <CityGalleryMarkdown content={overrideText} />
       </aside>
-    );
+    )
   }
 
   return (
-    <aside
-      className={cx(
-        className,
-        'flex flex-col justify-between w-full space-y-10 bg-white lg:space-y-20'
-      )}
-    >
+    <aside className={cx(className, 'flex flex-col justify-between w-full space-y-10 bg-white lg:space-y-20')}>
       {perex && <p className="text-md">{perex}</p>}
 
       <div className="flex justify-between gap-3">
@@ -107,11 +92,7 @@ const SidePanel = ({
       )}
 
       {purchaseId && slug ? (
-        <Button
-          size="small"
-          className="w-fit"
-          href={`${getRouteForLocale('/vstupenky', i18n.language)}/${slug}`}
-        >
+        <Button size="small" className="w-fit" href={`${getRouteForLocale('/vstupenky', i18n.language)}/${slug}`}>
           {t('common.buyTickets')}
         </Button>
       ) : null}
@@ -144,17 +125,10 @@ const SidePanel = ({
           <h4 className="mb-5 text-lg lg:mb-8">{t('common.partners')}</h4>
           <div className="flex flex-wrap gap-5">
             {partners?.map((partner, index) => (
-              <Link
-                key={index}
-                href={partner.attributes.link ?? '#'}
-                className="overflow-hidden"
-              >
+              <Link key={index} href={partner.attributes.link ?? '#'} className="overflow-hidden">
                 <img
                   src={partner.attributes.logo.data?.attributes?.url}
-                  alt={
-                    partner.attributes.logo.data?.attributes?.alternativeText ??
-                    ''
-                  }
+                  alt={partner.attributes.logo.data?.attributes?.alternativeText ?? ''}
                   className="h-[50px]"
                 />
               </Link>
@@ -163,7 +137,7 @@ const SidePanel = ({
         </div>
       ) : null}
     </aside>
-  );
-};
+  )
+}
 
-export default SidePanel;
+export default SidePanel
