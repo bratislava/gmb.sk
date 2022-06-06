@@ -1,0 +1,53 @@
+@media (min-width: 1024px) {
+  .ticket::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 20px;
+    right: 0;
+    top: 0;
+    background-image: linear-gradient(
+        to right,
+        #efefef -10px,
+        transparent 0,
+        transparent
+      ),
+      radial-gradient(132px circle at 20px 9px, white 7px, #efefef 0px);
+    background-size: 46px 19px;
+  }
+
+  .ticket::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 20px;
+    left: 0;
+    top: 0;
+    background-image: linear-gradient(
+        to right,
+        #efefef -10px,
+        transparent 0,
+        transparent
+      ),
+      radial-gradient(132px circle at 0px 9px, white 7px, #efefef 0px);
+    background-size: 46px 19px;
+  }
+}
+.ticket:hover::after {
+  background-image: linear-gradient(
+      to right,
+      #6cc7ed -10px,
+      transparent 0,
+      transparent
+    ),
+    radial-gradient(132px circle at 20px 9px, white 7px, #6cc7ed 0px);
+}
+.ticket:hover::before {
+  background-image: linear-gradient(
+      to right,
+      #6cc7ed -10px,
+      transparent 0,
+      transparent
+    ),
+    radial-gradient(132px circle at 0px 9px, white 7px, #6cc7ed 0px);
+}

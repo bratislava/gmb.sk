@@ -1,0 +1,97 @@
+{
+  "common": {
+    "open": "open",
+    "welcome": "Welcome to the City-Gallery!",
+    "capitalCityOfBratislava": "Capital city of Bratislava",
+    "gdprAccept": "I agree with the processing of personal data according to the GDPR",
+    "login": "Sign in",
+    "partners": "Partners",
+    "partner": "Partner",
+    "detail": "Detail",
+    "today": "today",
+    "remindMe": "remind me",
+    "searchText": "searched text",
+    "found": "Found",
+    "daysLeft_one": "{{count}} day left",
+    "daysLeft_other": "{{count}} days left",
+    "curator": "Curator",
+    "quickNavigation": "Quick navigation",
+    "topics": "Topics",
+    "filter": "Filter",
+    "showResults": "Show results",
+    "nothingToShow": "Nothing to show.",
+    "buy": "Buy",
+    "buyTickets": "Buy tickets",
+    "buyTicketsGoOut": "Buy tickets via GoOut",
+    "buyForYourself": "Buy for yourself",
+    "buyAsGift": "Buy as a gift",
+    "ticket": "Ticket",
+    "tickets": "Tickets",
+    "seasonTickets": "Season tickets",
+    "ticketIncludesPalace": "With this ticket you can visit any exhibition taking place in the {{place}}",
+    "ticketValidAlsoFor": "The ticket is also valid for the following exhibitions",
+    "aboutOrigin": "Bratislava City Gallery was established in 1961 as a standalone cultural organization under the founding scope of the capital city of the Slovak Republic.",
+    "name": "Name",
+    "address": "Adress",
+    "openingHours": "Opening hours",
+    "contact": "Contact",
+    "closed": "closed",
+    "follow": "Follow",
+    "share": "Share",
+    "download": "Download",
+    "relatedContent": "Related content",
+    "showIncludedEvents": "Show included events",
+    "noCurrentEvents": "Currently, there are no ongoing exhibitions and expositions at {{place}}.",
+    "places": {
+      "mirbachsPalace": "Mirbach's palace",
+      "palffysPalace": "Pálffy's palace"
+    },
+    "exhibitions": "Exhibitions",
+    "moreExhibitions": "More exhibitons and events",
+    "exploreMoreContent": "Explore more content",
+    "permanentExhibitions": "Permanent Exhibitions",
+    "additionalProgram": "Additional program",
+    "description": "Description",
+    "bratislavaGenitiv": "Bratislava",
+    "cityGallery": "City Gallery"
+  },
+  "navigation": {
+    "visitUs": "Visit us",
+    "exhibitionsEvents": "Exhibitions & Events",
+    "explore": "Explore",
+    "aboutGallery": "About",
+    "getInvolved": "Get Involved",
+    "collections": "Collections"
+  },
+  "footer": {
+    "siteMap": "Site map",
+    "quickLinks": "Quick links",
+    "disclosureOfInformation": "Disclosure of information",
+    "declarationOfAccessibility": "Declaration of accessibility"
+  },
+  "visitUs": {
+    "howToGetHere": "How to get here",
+    "mapNotWorking": "Map was not loaded properly"
+  },
+  "errors": {
+    "emailMandatory": "Email is mandatory",
+    "emailIncorrectFormat": "Incorrect email format",
+    "fieldMandatory": "This field is mandatory"
+  },
+  "newsletter": {
+    "beInThePicture": "Be „in the picture“",
+    "newsletter": "Newsletter",
+    "beInformedEvents": "Would you like to be informed about the events of the Bratislava City Gallery?"
+  },
+  "map": {
+    "ourPremises": "Our premises",
+    "byCar": "Car",
+    "publicTransport": "Public Transport",
+    "byBike": "Bicycle",
+    "virtualTour": "Virtal tour",
+    "navigate": "Navigate",
+    "carText": "Park in the closest parking garages or on the streets in the Old Town.",
+    "publicTransportText": "Visit us comfortably and without worries thanks to the public transport.",
+    "bikeText": "Leave your bicycle at any of the bike stands or use bike sharing."
+  }
+}
