@@ -6,8 +6,11 @@ export const CardSkeleton = () => {
       <div className="overflow-hidden bg-gmbLightGray h-[458px] w-full" />
 
       <div className="flex flex-wrap gap-6">
-        {[1, 2, 3].map(() => (
-          <div className="w-20 h-[var(--font-size-nav)] bg-gmbLightGray mb-[calc(var(--line-height-nav)_-_var(--font-size-nav))]" />
+        {[1, 2, 3].map((_, index) => (
+          <div
+            key={index}
+            className="w-20 h-[var(--font-size-nav)] bg-gmbLightGray mb-[calc(var(--line-height-nav)_-_var(--font-size-nav))]"
+          />
         ))}
       </div>
 

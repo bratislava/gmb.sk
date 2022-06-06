@@ -1,4 +1,3 @@
-import { ContentPageFragment } from '@bratislava/strapi-sdk-city-gallery';
 import cx from 'classnames';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -6,18 +5,21 @@ import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { ReactComponent as Hamburger } from '../../assets/icons/ba-hamburger.svg';
-import { ReactComponent as CloseIcon } from '../../assets/icons/close-x.svg';
-import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg';
+import Hamburger from '../../assets/icons/ba-hamburger.svg';
+import CloseIcon from '../../assets/icons/close-x.svg';
+import SearchIcon from '../../assets/icons/search.svg';
 import Logo from '../../assets/images/gmb-logo-header.png';
+import { ContentPageEntityFragment } from '../../graphql';
+import { withAttributes } from '../../utils/isDefined';
 import { getRouteForLocale } from '../../utils/localeRoutes';
 import AppLangSwitchers from '../atoms/AppLangSwitchers';
 import Button from '../atoms/Button';
 import Link from '../atoms/Link';
 import NavLink from '../atoms/NavLink';
 import SearchBar from './SearchBar';
+
 interface NavigationProps {
-  contentPage?: ContentPageFragment;
+  contentPage?: ContentPageEntityFragment;
 }
 
 const Navigation = ({ contentPage }: NavigationProps) => {
@@ -156,7 +158,9 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             </button>
 
             <div className="text-gray-500 xl:hidden">
-              <AppLangSwitchers contentPage={contentPage} />
+              <AppLangSwitchers
+                contentPage={withAttributes(contentPage) ?? undefined}
+              />
             </div>
           </div>
         </div>

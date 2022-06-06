@@ -1,34 +1,31 @@
-import {
-  AboutUsPageQuery,
-  NewsQuery,
-} from '@bratislava/strapi-sdk-city-gallery';
 import { GetServerSideProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import Page from '../components/pages/Page';
+import { AboutUsPageQuery, NewsQuery } from '../graphql';
 import { client } from '../utils/gql';
-import { isDefined } from '../utils/isDefined';
+import { hasAttributes, withAttributes } from '../utils/isDefined';
 import { ssrTranslations } from '../utils/translations';
 
 interface AboutProps {
-  aboutPage: AboutUsPageQuery['aboutPage'];
+  aboutUsPage: AboutUsPageQuery['aboutUsPage'];
   contact: AboutUsPageQuery['contact'];
   news: NewsQuery['news'];
 }
 
-const About = ({ aboutPage, contact, news }: AboutProps) => {
+const About = ({ aboutUsPage, contact, news }: AboutProps) => {
   const { t } = useTranslation();
 
-  if (!aboutPage) {
+  if (!aboutUsPage) {
     return null;
   }
 
   return (
     <Page
-      page={aboutPage}
+      page={aboutUsPage}
       title={t('navigation.aboutGallery')}
-      contactInfo={contact}
-      newsItems={news?.filter(isDefined)}
+      contactInfo={withAttributes(contact?.data)}
+      newsItems={news?.data.filter(hasAttributes)}
     />
   );
 };
@@ -36,7 +33,7 @@ const About = ({ aboutPage, contact, news }: AboutProps) => {
 export const getServerSideProps: GetServerSideProps<AboutProps> = async ({
   locale = 'sk',
 }) => {
-  const [{ aboutPage, contact }, { news }, translations] = await Promise.all([
+  const [{ aboutUsPage, contact }, { news }, translations] = await Promise.all([
     client.AboutUsPage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
     ssrTranslations({ locale }, ['common']),
@@ -44,7 +41,7 @@ export const getServerSideProps: GetServerSideProps<AboutProps> = async ({
 
   return {
     props: {
-      aboutPage,
+      aboutUsPage,
       contact,
       news,
       ...translations,

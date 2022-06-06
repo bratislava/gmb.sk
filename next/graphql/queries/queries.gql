@@ -1,0 +1,342 @@
+query Places($locale: I18NLocaleCode!) {
+  places(locale: $locale) {
+    data {
+      attributes {
+        title
+        slug
+        address
+      }
+    }
+  }
+}
+
+query TagsByCategorySlug($locale: I18NLocaleCode!, $tag: String!) {
+  tagCategoryBySlug(locale: $locale, slug: $tag) {
+    data {
+      attributes {
+        tags {
+          data {
+            ...TagEntity
+          }
+        }
+      }
+    }
+  }
+}
+
+query News(
+  $locale: I18NLocaleCode!
+  $tag: String!
+  $limit: Int = 5
+  $sort: [String] = ["publishedAt:desc"]
+) {
+  news: contentPages(
+    locale: $locale
+    sort: $sort
+    pagination: { limit: $limit }
+    filters: { tags: { slug: { eq: $tag } } }
+  ) {
+    data {
+      ...NewsItemEntity
+    }
+  }
+}
+
+query PreviewsByTags(
+  $locale: I18NLocaleCode!
+  $limit: Int
+  $offset: Int
+  $tagSlugs: [String]!
+  $placesSlugs: [String]!
+) {
+  contentPages(
+    locale: $locale
+    pagination: { start: $offset, limit: $limit }
+    filters: {
+      tags: { slug: { in: $tagSlugs } }
+      place: { slug: { in: $placesSlugs } }
+    }
+  ) {
+    data {
+      ...SectionItemEntity
+    }
+  }
+}
+
+query ContentPageBySlug($locale: I18NLocaleCode!, $slug: String!) {
+  contentPageBySlug(slug: $slug, locale: $locale) {
+    data {
+      ...ContentPageEntity
+    }
+  }
+  contact(locale: $locale) {
+    data {
+      ...ContactEntity
+    }
+  }
+}
+
+query TicketPageBySlug($locale: I18NLocaleCode!, $slug: String!) {
+  contentPageBySlug(slug: $slug, locale: $locale) {
+    data {
+      ...ContentPageEntity
+    }
+  }
+  contact(locale: $locale) {
+    data {
+      ...ContactEntity
+    }
+  }
+}
+
+query ExhibitionsByPlace(
+  $locale: I18NLocaleCode!
+  $slug: String!
+  $today: Date!
+  $tagExhibitions: String!
+  $tagPermanentExhibitions: String!
+  $place: String!
+) {
+  currentEvents: contentPages(
+    locale: $locale
+    filters: {
+      or: [
+        { tags: { slug: { eq: $tagPermanentExhibitions } } }
+        {
+          tags: { slug: { eq: $tagExhibitions } }
+          or: [
+            { dateFrom: { lte: $today }, dateTo: { gte: $today } }
+            { dateFrom: { eq: $today } }
+          ]
+        }
+      ]
+      place: { slug: { eq: $place } }
+      slug: { ne: $slug }
+    }
+  ) {
+    data {
+      ...SectionItemEntity
+    }
+  }
+}
+
+query AboutUsPage($locale: I18NLocaleCode!) {
+  aboutUsPage(locale: $locale) {
+    data {
+      attributes {
+        __typename
+        highlights {
+          ...Highlights
+        }
+        sections {
+          ...Sections
+        }
+        seo {
+          ...Seo
+        }
+      }
+    }
+  }
+  contact(locale: $locale) {
+    data {
+      ...ContactEntity
+    }
+  }
+}
+
+query HomePage($locale: I18NLocaleCode!) {
+  homePage(locale: $locale) {
+    data {
+      attributes {
+        __typename
+        highlights {
+          ...Highlights
+        }
+        sections {
+          ...Sections
+        }
+        partnersSection {
+          partners {
+            data {
+              ...PartnerEntity
+            }
+          }
+        }
+        seo {
+          ...Seo
+        }
+      }
+    }
+  }
+  contact(locale: $locale) {
+    data {
+      ...ContactEntity
+    }
+  }
+}
+
+query CollectionPage($locale: I18NLocaleCode!) {
+  collectionsPage(locale: $locale) {
+    data {
+      attributes {
+        __typename
+        highlights {
+          ...Highlights
+        }
+        sections {
+          ...Sections
+        }
+        seo {
+          ...Seo
+        }
+      }
+    }
+  }
+  contact(locale: $locale) {
+    data {
+      ...ContactEntity
+    }
+  }
+}
+
+query GetInvolvedPage($locale: I18NLocaleCode!) {
+  getInvolvedPage(locale: $locale) {
+    data {
+      attributes {
+        __typename
+        highlights {
+          ...Highlights
+        }
+        sections {
+          ...Sections
+        }
+        seo {
+          ...Seo
+        }
+      }
+    }
+  }
+  contact(locale: $locale) {
+    data {
+      ...ContactEntity
+    }
+  }
+}
+
+query VisitUsPage($locale: I18NLocaleCode!) {
+  visitUsPage(locale: $locale) {
+    data {
+      attributes {
+        __typename
+        highlights {
+          ...Highlights
+        }
+        sections {
+          ...Sections
+        }
+        seo {
+          ...Seo
+        }
+      }
+    }
+  }
+  tickets {
+    data {
+      ...TicketEntity
+    }
+  }
+  contact(locale: $locale) {
+    data {
+      ...ContactEntity
+    }
+  }
+}
+
+query ExplorePage($locale: I18NLocaleCode!) {
+  explorePage(locale: $locale) {
+    data {
+      attributes {
+        __typename
+        highlights {
+          ...Highlights
+        }
+        seo {
+          ...Seo
+        }
+      }
+    }
+  }
+  contact(locale: $locale) {
+    data {
+      ...ContactEntity
+    }
+  }
+}
+
+query ExhibitionsPage(
+  $locale: I18NLocaleCode!
+  $today: Date!
+  $tagExhibitions: String!
+  $tagPermanentExhibitions: String!
+  $tagsAdditionalProgram: [String]!
+) {
+  exhibitionsPage(locale: $locale) {
+    data {
+      attributes {
+        __typename
+        highlights {
+          ...Highlights
+        }
+        seo {
+          ...Seo
+        }
+      }
+    }
+  }
+  exhibitions: contentPages(
+    locale: $locale
+    filters: {
+      tags: { slug: { eq: $tagExhibitions } }
+      or: [{ dateFrom: { gte: $today } }, { dateTo: { gte: $today } }]
+    }
+  ) {
+    data {
+      ...SectionItemEntity
+    }
+  }
+  permanentExhibitions: contentPages(
+    locale: $locale
+    filters: {
+      tags: { slug: { eq: $tagPermanentExhibitions } }
+      or: [{ dateFrom: { gte: $today } }, { dateTo: { gte: $today } }]
+    }
+  ) {
+    data {
+      ...SectionItemEntity
+    }
+  }
+  additionalProgram: contentPages(
+    locale: $locale
+    filters: {
+      tags: { slug: { in: $tagsAdditionalProgram } }
+      or: [{ dateFrom: { gte: $today } }, { dateTo: { gte: $today } }]
+    }
+  ) {
+    data {
+      ...SectionItemEntity
+    }
+  }
+  contact(locale: $locale) {
+    data {
+      ...ContactEntity
+    }
+  }
+}
+
+query ErrorPage($locale: I18NLocaleCode!) {
+  contact(locale: $locale) {
+    data {
+      ...ContactEntity
+    }
+  }
+}

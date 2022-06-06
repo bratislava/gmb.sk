@@ -1,13 +1,10 @@
-import {
-  NewsQuery,
-  VisitUsPageQuery,
-} from '@bratislava/strapi-sdk-city-gallery';
 import { GetServerSideProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import Page from '../components/pages/Page';
+import { NewsQuery, VisitUsPageQuery } from '../graphql';
 import { client } from '../utils/gql';
-import { isDefined } from '../utils/isDefined';
+import { hasAttributes, withAttributes } from '../utils/isDefined';
 import { getRouteForLocale } from '../utils/localeRoutes';
 import { ssrTranslations } from '../utils/translations';
 
@@ -29,9 +26,9 @@ const VisitUs = ({ visitUsPage, contact, news, tickets }: VisitUsProps) => {
     <Page
       page={visitUsPage}
       title={t('navigation.visitUs')}
-      contactInfo={contact}
-      newsItems={news?.filter(isDefined)}
-      tickets={tickets?.filter(isDefined)}
+      contactInfo={withAttributes(contact?.data)}
+      newsItems={news?.data.filter(hasAttributes)}
+      tickets={tickets?.data.filter(hasAttributes)}
     />
   );
 };

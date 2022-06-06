@@ -4,7 +4,7 @@ import Head from 'next/head';
 import React from 'react';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import Navigation from '../components/molecules/Navigation';
-import './index.css';
+import '../styles/globals.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   const { t } = useTranslation();
@@ -35,6 +35,6 @@ export default appWithTranslation(CustomApp, {
   reloadOnPrerender: process.env.NODE_ENV === 'development',
   localePath:
     process.env.NODE_ENV === 'development'
-      ? require('path').resolve('./apps/next/city-gallery/public/locales')
+      ? require('path').resolve('./public/locales')
       : require('path').resolve('./public/locales'),
 });

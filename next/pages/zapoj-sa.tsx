@@ -1,14 +1,10 @@
-import {
-  GetInvolvedPageQuery,
-  HomePageQuery,
-  NewsQuery,
-} from '@bratislava/strapi-sdk-city-gallery';
 import { GetServerSideProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import Page from '../components/pages/Page';
+import { GetInvolvedPageQuery, HomePageQuery, NewsQuery } from '../graphql';
 import { client } from '../utils/gql';
-import { isDefined } from '../utils/isDefined';
+import { hasAttributes, withAttributes } from '../utils/isDefined';
 import { ssrTranslations } from '../utils/translations';
 
 interface GetInvolvedProps {
@@ -28,8 +24,8 @@ const GetInvolved = ({ getInvolvedPage, contact, news }: GetInvolvedProps) => {
     <Page
       page={getInvolvedPage}
       title={t('navigation.getInvolved')}
-      contactInfo={contact}
-      newsItems={news?.filter(isDefined)}
+      contactInfo={withAttributes(contact?.data)}
+      newsItems={news?.data.filter(hasAttributes)}
     />
   );
 };

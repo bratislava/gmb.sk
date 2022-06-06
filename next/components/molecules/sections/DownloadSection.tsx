@@ -1,5 +1,5 @@
-import { DownloadItemFragment } from '@bratislava/strapi-sdk-city-gallery';
 import React from 'react';
+import { DownloadItemFragment } from '../../../graphql';
 import { isDefined } from '../../../utils/isDefined';
 import DownloadItem from '../../atoms/DownloadItem';
 import Section from './Section';

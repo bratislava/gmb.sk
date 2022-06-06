@@ -1,33 +1,34 @@
-import {
-  PlaceTagFragment,
-  TagFragment,
-} from '@bratislava/strapi-sdk-city-gallery';
 import React from 'react';
+import { PlaceEntityFragment, TagEntityFragment } from '../../graphql';
+import { WithAttributes } from '../../utils/isDefined';
 import Tag from '../atoms/Tag';
 
 interface ITagGroupProps {
-  tags: TagFragment[] | PlaceTagFragment[];
+  tags:
+    | WithAttributes<TagEntityFragment>[]
+    | WithAttributes<PlaceEntityFragment>[];
   activeTags: string[];
   setActiveTags: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const TagGroup = ({ tags, activeTags, setActiveTags }: ITagGroupProps) => {
-  /* TODO remove ?? '' after each slug after the slug is required */
+  const {} = tags;
+
   return (
     <>
       {tags.map((tag) => (
         <Tag
           // title={`${tag.title} [${tag.contentPages?.filter(isDefined).length ?? 0}]`}
-          title={tag.title}
-          slug={tag.slug ?? ''}
-          key={tag.slug}
-          isActive={activeTags.includes(tag.slug ?? '')}
+          title={tag.attributes.title}
+          slug={tag.attributes.slug}
+          key={tag.attributes.slug}
+          isActive={activeTags.includes(tag.attributes.slug)}
           onClick={() => {
-            activeTags.includes(tag.slug ?? '')
+            activeTags.includes(tag.attributes.slug)
               ? setActiveTags((prev) =>
-                  prev.filter((item) => item !== tag.slug)
+                  prev.filter((item) => item !== tag.attributes.slug)
                 )
-              : setActiveTags((prev) => [...prev, tag.slug ?? '']);
+              : setActiveTags((prev) => [...prev, tag.attributes.slug]);
           }}
         />
       ))}

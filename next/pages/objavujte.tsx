@@ -1,12 +1,9 @@
-import {
-  ExplorePageQuery,
-  TagsByCategorySlugQuery,
-} from '@bratislava/strapi-sdk-city-gallery';
 import { GetServerSideProps } from 'next';
 import React from 'react';
 import ExplorePage from '../components/pages/ExplorePage';
+import { ExplorePageQuery, TagsByCategorySlugQuery } from '../graphql';
 import { client } from '../utils/gql';
-import { isDefined } from '../utils/isDefined';
+import { hasAttributes, withAttributes } from '../utils/isDefined';
 import { getRouteForLocale } from '../utils/localeRoutes';
 import { ssrTranslations } from '../utils/translations';
 
@@ -32,10 +29,14 @@ const Explore = ({
   return (
     <ExplorePage
       explorePage={explorePage}
-      contactInfo={contact}
-      tagsTypes={tagsTypes?.tags?.filter(isDefined)}
-      tagsProjects={tagsProjects?.tags?.filter(isDefined)}
-      tagsOthers={tagsOthers?.tags?.filter(isDefined)}
+      contactInfo={withAttributes(contact?.data)}
+      tagsTypes={tagsTypes?.data?.attributes?.tags?.data.filter(hasAttributes)}
+      tagsProjects={tagsProjects?.data?.attributes?.tags?.data.filter(
+        hasAttributes
+      )}
+      tagsOthers={tagsOthers?.data?.attributes?.tags?.data.filter(
+        hasAttributes
+      )}
     />
   );
 };
@@ -69,10 +70,10 @@ export const getServerSideProps: GetServerSideProps<ExploreProps> = async ({
   return {
     props: {
       explorePage,
-      contact,
       tagsTypes,
       tagsProjects,
       tagsOthers,
+      contact,
       ...translations,
     },
   };

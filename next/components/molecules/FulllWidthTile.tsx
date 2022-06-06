@@ -1,25 +1,33 @@
-import { SectionItemFragment } from '@bratislava/strapi-sdk-city-gallery';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { SectionItemEntityFragment } from '../../graphql';
 import { getContentPageColor } from '../../utils/getContentPageColor';
+import { WithAttributes } from '../../utils/isDefined';
 import Button from '../atoms/Button';
 import Link from '../atoms/Link';
 
 export interface IFullWidthTileProps {
-  sectionItem: SectionItemFragment;
+  sectionItem: WithAttributes<SectionItemEntityFragment>;
 }
 
 export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
   const { t } = useTranslation();
 
   return (
-    <Link href={`/detail/${sectionItem.slug}`} preserveStyle noUnderline>
+    <Link
+      href={`/detail/${sectionItem.attributes.slug}`}
+      preserveStyle
+      noUnderline
+    >
       <article className="w-full group">
         <div className="flex items-center justify-center w-full h-screen overflow-hidden lg:h-full">
-          {sectionItem?.coverMedia?.url && (
+          {sectionItem.attributes.coverMedia?.data?.attributes?.url && (
             <img
-              src={sectionItem.coverMedia.url}
-              alt={sectionItem.coverMedia.alternativeText ?? ''}
+              src={sectionItem.attributes.coverMedia.data.attributes.url}
+              alt={
+                sectionItem.attributes.coverMedia.data.attributes
+                  .alternativeText ?? ''
+              }
               className="object-cover min-w-full min-h-full"
             />
           )}
@@ -30,9 +38,9 @@ export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
           style={{ background: getContentPageColor(sectionItem) }}
         >
           <hgroup>
-            <h3 className="text-xl">{sectionItem?.title}</h3>
+            <h3 className="text-xl">{sectionItem.attributes.title}</h3>
             <p className="text-xl font-regular pb-yStandard">
-              {sectionItem?.subtitle}
+              {sectionItem.attributes.subtitle}
             </p>
           </hgroup>
 

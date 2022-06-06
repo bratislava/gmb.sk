@@ -1,22 +1,23 @@
-import {
-  ContactAndFooterFragment,
-  ContentPageFragment,
-  SectionItemFragment,
-} from '@bratislava/strapi-sdk-city-gallery';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import Footer from '../../components/molecules/Footer';
+import {
+  ContactEntityFragment,
+  ContentPageEntityFragment,
+  SectionItemEntityFragment,
+} from '../../graphql';
+import { WithAttributes } from '../../utils/isDefined';
 import { Link } from '../atoms/Link';
 import { SidePanelPlace } from '../atoms/SidePanelPlace';
 import { SidePanelTime } from '../atoms/SidePanelTime';
 import CardSection from '../molecules/sections/CardSection';
 
 interface ITicketPageProps {
-  contentPage: ContentPageFragment;
-  contactInfo?: ContactAndFooterFragment | null;
-  currentEvents?: SectionItemFragment[];
+  contentPage: WithAttributes<ContentPageEntityFragment>;
+  contactInfo?: WithAttributes<ContactEntityFragment> | null;
+  currentEvents?: WithAttributes<SectionItemEntityFragment>[];
 }
 
 const TicketPage = ({
@@ -50,10 +51,10 @@ const TicketPage = ({
     timeFrom,
     timeTo,
     slug,
-  } = contentPage;
+  } = contentPage.attributes;
 
   const ticketIncludesText = t('common.ticketIncludesPalace', {
-    place: place?.title,
+    place: place?.data?.attributes?.title,
   });
 
   return (
@@ -99,7 +100,9 @@ const TicketPage = ({
           anchor="relatedContent"
           title={t('common.ticketValidAlsoFor')}
           sectionItems={currentEvents}
-          noItemsMessage={t('common.noCurrentEvents', { place: place?.title })}
+          noItemsMessage={t('common.noCurrentEvents', {
+            place: place?.data?.attributes?.title,
+          })}
         />
       </div>
 

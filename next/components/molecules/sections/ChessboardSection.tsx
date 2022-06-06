@@ -1,13 +1,14 @@
-import { SectionItemFragment } from '@bratislava/strapi-sdk-city-gallery';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { SectionItemEntityFragment } from '../../../graphql';
+import { WithAttributes } from '../../../utils/isDefined';
 import Button from '../../atoms/Button';
 import ChessboardTile from '../ChessboardTile';
 import Section from './Section';
 
 interface ChessboardProps {
   title?: string;
-  sectionItems?: SectionItemFragment[];
+  sectionItems?: WithAttributes<SectionItemEntityFragment>[];
   anchor?: string;
   flipped?: boolean;
   showTags?: boolean;
@@ -32,7 +33,7 @@ const ChessboardSection = ({
             <ChessboardTile
               sectionItem={item}
               isLeft={flipped ? i % 2 !== 1 : i % 2 !== 0}
-              key={item.id}
+              key={item.attributes.slug}
               showTags={showTags}
             />
           ))}

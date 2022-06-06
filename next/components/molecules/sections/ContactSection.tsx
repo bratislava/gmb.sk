@@ -1,14 +1,15 @@
-import { ContactAndFooterFragment } from '@bratislava/strapi-sdk-city-gallery';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { ReactComponent as LocationIcon } from '../../../assets/icons/location.svg';
+import LocationIcon from '../../../assets/icons/location.svg';
+import { ContactEntityFragment } from '../../../graphql';
+import { WithAttributes } from '../../../utils/isDefined';
 import Link from '../../atoms/Link';
 import Section from './Section';
 
 interface ContactSectionProps {
-  contactInfo: ContactAndFooterFragment;
+  contactInfo: WithAttributes<ContactEntityFragment>;
   anchor?: string;
 }
 
@@ -42,7 +43,7 @@ const ContactSection = ({ contactInfo, anchor }: ContactSectionProps) => {
     >
       <div className="flex flex-col justify-between h-full col-span-2 lg:col-span-1">
         <h4 className="text-xl pb-yHigh">{t('common.openingHours')}</h4>
-        {contactInfo?.openingHours && (
+        {contactInfo.attributes.openingHours && (
           <div className="justify-self-end">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
@@ -53,23 +54,27 @@ const ContactSection = ({ contactInfo, anchor }: ContactSectionProps) => {
                 ),
               }}
             >
-              {contactInfo?.openingHours ?? ''}
+              {contactInfo.attributes.openingHours ?? ''}
             </ReactMarkdown>
           </div>
         )}
       </div>
       <div className="flex flex-col justify-between h-full col-span-1">
-        <h3 className="text-xl pb-yHigh">{contactInfo?.mirbach?.title}</h3>
+        <h3 className="text-xl pb-yHigh">
+          {contactInfo.attributes.mirbach?.title}
+        </h3>
         <div className="text-md justify-self-end">
           <LocationIcon stroke="white" height="48" className="mb-2" />
-          <p>{contactInfo?.mirbach?.address}</p>
+          <p>{contactInfo.attributes.mirbach?.address}</p>
         </div>
       </div>
       <div className="flex flex-col justify-between h-full col-span-1">
-        <h3 className="text-xl pb-yHigh">{contactInfo?.palffy?.title}</h3>
+        <h3 className="text-xl pb-yHigh">
+          {contactInfo.attributes.palffy?.title}
+        </h3>
         <div className="text-md justify-self-end">
           <LocationIcon stroke="white" height="48" className="mb-2" />
-          <p>{contactInfo.palffy?.address}</p>
+          <p>{contactInfo.attributes.palffy?.address}</p>
         </div>
       </div>
       <div className="flex flex-col justify-between h-full col-span-2 lg:col-span-1">

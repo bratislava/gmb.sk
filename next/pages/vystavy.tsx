@@ -1,13 +1,14 @@
+import { GetServerSideProps } from 'next';
+import React from 'react';
+import ExhibitionsPage from '../components/pages/ExhibitionsPage';
 import {
   ExhibitionsPageQuery,
   PlacesQuery,
   TagsByCategorySlugQuery,
-} from '@bratislava/strapi-sdk-city-gallery';
-import { GetServerSideProps } from 'next';
-import React from 'react';
-import ExhibitionsPage from '../components/pages/ExhibitionsPage';
+} from '../graphql';
+import { getTodaysDate } from '../utils/getTodaysDate';
 import { client } from '../utils/gql';
-import { isDefined } from '../utils/isDefined';
+import { hasAttributes, withAttributes } from '../utils/isDefined';
 import { getRouteForLocale } from '../utils/localeRoutes';
 import { ssrTranslations } from '../utils/translations';
 
@@ -45,16 +46,26 @@ const Exhibitions = ({
   return (
     <ExhibitionsPage
       exhibitionsPage={exhibitionsPage}
-      exhibitions={exhibitions?.filter(isDefined)}
-      permanentExhibitions={permanentExhibitions?.filter(isDefined)}
-      additionalProgram={additionalProgram?.filter(isDefined)}
-      contactInfo={contact}
-      tagsProgram={tagsProgram?.tags?.filter(isDefined)}
-      tagsTargetGroups={tagsTargetGroups?.tags?.filter(isDefined)}
-      tagsLanguages={tagsLanguages?.tags?.filter(isDefined)}
-      tagsProjects={tagsProjects?.tags?.filter(isDefined)}
-      tagsOthers={tagsOthers?.tags?.filter(isDefined)}
-      places={places?.filter(isDefined)}
+      exhibitions={exhibitions?.data.filter(hasAttributes)}
+      permanentExhibitions={permanentExhibitions?.data.filter(hasAttributes)}
+      additionalProgram={additionalProgram?.data.filter(hasAttributes)}
+      contactInfo={withAttributes(contact?.data)}
+      tagsProgram={tagsProgram?.data?.attributes?.tags?.data.filter(
+        hasAttributes
+      )}
+      tagsTargetGroups={tagsTargetGroups?.data?.attributes?.tags?.data.filter(
+        hasAttributes
+      )}
+      tagsLanguages={tagsLanguages?.data?.attributes?.tags?.data.filter(
+        hasAttributes
+      )}
+      tagsProjects={tagsProjects?.data?.attributes?.tags?.data.filter(
+        hasAttributes
+      )}
+      tagsOthers={tagsOthers?.data?.attributes?.tags?.data.filter(
+        hasAttributes
+      )}
+      places={places?.data.filter(hasAttributes)}
     />
   );
 };
@@ -62,7 +73,8 @@ const Exhibitions = ({
 export const getServerSideProps: GetServerSideProps<ExhibitionsProps> = async ({
   locale = 'sk',
 }) => {
-  const today = new Date().toISOString();
+  const today = getTodaysDate();
+
   const [
     { tagCategoryBySlug: tagsProgram },
     { tagCategoryBySlug: tagsTargetGroups },
@@ -99,9 +111,9 @@ export const getServerSideProps: GetServerSideProps<ExhibitionsProps> = async ({
   const tagExhibitions = getRouteForLocale('vystavy', locale);
   const tagPermanentExhibitions = getRouteForLocale('stale-expozicie', locale);
   const tagsAdditionalProgram =
-    tagsProgram?.tags
-      ?.filter(isDefined)
-      .map((tag) => tag.slug)
+    tagsProgram?.data?.attributes?.tags?.data
+      .filter(hasAttributes)
+      .map((tag) => tag.attributes.slug)
       .filter(
         (slug) => slug !== tagExhibitions && slug !== tagPermanentExhibitions
       ) ?? [];

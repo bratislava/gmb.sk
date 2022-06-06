@@ -1,12 +1,17 @@
-import {
-  ContactAndFooterFragment,
-  ContentPageFragment,
-} from '@bratislava/strapi-sdk-city-gallery';
+import { isError } from 'lodash';
 import Head from 'next/head';
 import React from 'react';
+import {
+  ContactEntityFragment,
+  ContentPageEntityFragment,
+} from '../../graphql';
 import { getAnchor } from '../../utils/getAnchor';
 import { getContentPageColor } from '../../utils/getContentPageColor';
-import { isDefined } from '../../utils/isDefined';
+import {
+  hasAttributes,
+  isDefined,
+  WithAttributes,
+} from '../../utils/isDefined';
 import Video from '../atoms/Video';
 import Footer from '../molecules/Footer';
 import ImgSwiper from '../molecules/ImgSwiper';
@@ -18,8 +23,8 @@ import SidePanel from '../molecules/SidePanel';
 import Submenu from '../molecules/Submenu';
 
 interface DetailPageProps {
-  contactInfo: ContactAndFooterFragment;
-  contentPage: ContentPageFragment;
+  contentPage: WithAttributes<ContentPageEntityFragment>;
+  contactInfo?: WithAttributes<ContactEntityFragment> | null;
 }
 
 const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
@@ -46,19 +51,31 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
     slider,
     downloadSection,
     seo,
-  } = contentPage;
+  } = contentPage.attributes;
 
   let submenu: string[] = [];
 
-  mainContent
-    ?.filter(isDefined)
-    .filter((section) => section.submenuTitle)
-    .forEach((section) => {
-      if (section.submenuTitle) {
-        submenu.push(section.submenuTitle);
-      }
-    });
-  if (relatedContentSubmenuTitle && childPages?.filter(isDefined).length) {
+  const definedSections = mainContent?.filter(isDefined);
+
+  const definedWithoutError = definedSections?.filter((section) =>
+    isError(section)
+  );
+  const sectionsWithSubtitle = definedWithoutError?.filter((section) => {
+    section;
+  });
+
+  // mainContent
+  //   ?.filter(isDefined)
+  //   .filter((section) => section.submenuTitle)
+  //   .forEach((section) => {
+  //     if (section.submenuTitle) {
+  //       submenu.push(section.submenuTitle);
+  //     }
+  //   });
+  if (
+    relatedContentSubmenuTitle &&
+    childPages?.data?.filter(hasAttributes).length
+  ) {
     submenu.push(relatedContentSubmenuTitle);
   }
   if (downloadSection?.submenuTitle) {
@@ -99,7 +116,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           datetime={{ dateFrom, dateTo, timeFrom, timeTo, showRemainingTime }}
           place={{ place, placeTitle, placeAddress }}
           positions={positions?.filter(isDefined)}
-          partners={partners?.filter(isDefined)}
+          partners={partners?.data.filter(hasAttributes)}
           purchaseId={purchaseId}
           slug={slug}
           showShare
@@ -148,20 +165,22 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           {/* Mobile sidepanel info part 2 */}
           <SidePanel
             positions={positions?.filter(isDefined)}
-            partners={partners?.filter(isDefined)}
+            partners={partners?.data.filter(hasAttributes)}
             slug={slug}
             showShare
             title={title}
           />
         </div>
       </div>
-      {slider && <ImgSwiper slides={slider?.medias?.filter(isDefined)} />}
+      {slider && (
+        <ImgSwiper slides={slider?.medias?.data.filter(hasAttributes)} />
+      )}
       {/*TODO Add parent page as related content*/}
-      {childPages && childPages.length > 0 && (
+      {childPages && childPages.data.length > 0 && (
         <ChessboardSection
           anchor={getAnchor(relatedContentSubmenuTitle)}
           title={relatedContentTitle ?? undefined}
-          sectionItems={childPages.filter(isDefined)}
+          sectionItems={childPages.data.filter(hasAttributes)}
         />
       )}
       {downloadSection && (

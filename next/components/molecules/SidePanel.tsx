@@ -1,14 +1,14 @@
-import {
-  DatetimeFragment,
-  PartnerFragment,
-  PlaceFragment,
-  PositionFragment,
-} from '@bratislava/strapi-sdk-city-gallery';
 import cx from 'classnames';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import {
+  ContentPagePlaceFragment,
+  DatetimeFragment,
+  PartnerEntityFragment,
+  PositionFragment,
+} from '../../graphql';
 import getDaysLeft from '../../utils/getDaysLeft';
-import { isDefined } from '../../utils/isDefined';
+import { isDefined, WithAttributes } from '../../utils/isDefined';
 import { getRouteForLocale } from '../../utils/localeRoutes';
 import Button from '../atoms/Button';
 import CityGalleryMarkdown from '../atoms/CityGalleryMarkdown';
@@ -22,10 +22,10 @@ interface SidePanelProps {
   overrideText?: string;
   title?: string;
   perex?: string;
-  place?: PlaceFragment;
+  place?: ContentPagePlaceFragment;
   datetime?: DatetimeFragment;
   positions?: PositionFragment[];
-  partners?: PartnerFragment[];
+  partners?: WithAttributes<PartnerEntityFragment>[];
   purchaseId?: string | null;
   slug?: string;
   showShare?: boolean;
@@ -50,7 +50,7 @@ const SidePanel = ({
 
   if (
     !place?.placeAddress &&
-    !place?.place &&
+    !place?.place?.data?.attributes &&
     !place?.placeTitle &&
     !datetime?.dateFrom &&
     positions?.length === 0 &&
@@ -143,15 +143,18 @@ const SidePanel = ({
         <div>
           <h4 className="mb-5 text-lg lg:mb-8">{t('common.partners')}</h4>
           <div className="flex flex-wrap gap-5">
-            {partners?.filter(isDefined).map((partner) => (
+            {partners?.map((partner, index) => (
               <Link
-                key={partner.id}
-                href={partner.link ?? '#'}
+                key={index}
+                href={partner.attributes.link ?? '#'}
                 className="overflow-hidden"
               >
                 <img
-                  src={partner.logo?.url}
-                  alt={partner.logo?.alternativeText ?? undefined}
+                  src={partner.attributes.logo.data?.attributes?.url}
+                  alt={
+                    partner.attributes.logo.data?.attributes?.alternativeText ??
+                    ''
+                  }
                   className="h-[50px]"
                 />
               </Link>

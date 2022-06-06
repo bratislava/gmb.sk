@@ -3,11 +3,17 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Ticket as TicketProps } from '../../../types/ticket';
 import Button from '../../atoms/Button';
 import styles from './Ticket.module.css';
 
-export const Ticket = ({ title, price, description, link }: TicketProps) => {
+interface ITicketProps {
+  title: string | null | undefined;
+  price: number | null | undefined;
+  description: string | null | undefined;
+  link: string | null | undefined;
+}
+
+export const Ticket = ({ title, price, description, link }: ITicketProps) => {
   const { t } = useTranslation();
   return (
     <div

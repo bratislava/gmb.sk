@@ -1,9 +1,9 @@
-import { PlaceFragment } from '@bratislava/strapi-sdk-city-gallery';
 import React from 'react';
-import { ReactComponent as LocationIcon } from '../../assets/icons/location.svg';
+import LocationIcon from '../../assets/icons/location.svg';
+import { ContentPagePlaceFragment } from '../../graphql';
 
 export interface SidePanelPlaceProps {
-  placeFragment: PlaceFragment;
+  placeFragment: ContentPagePlaceFragment;
   isOneLine?: boolean;
   className?: string;
 }
@@ -14,11 +14,13 @@ export const SidePanelPlace = ({
 }: SidePanelPlaceProps) => {
   const { place, placeTitle, placeAddress } = placeFragment;
 
-  if (!place && !placeTitle && !placeAddress) {
+  console.log(place, placeTitle, placeAddress);
+
+  if (!place?.data && !placeTitle && !placeAddress) {
     return null;
   }
 
-  if (!place?.title && !placeTitle && isOneLine) {
+  if (!place?.data?.attributes?.title && !placeTitle && isOneLine) {
     return null;
   }
 
@@ -32,9 +34,9 @@ export const SidePanelPlace = ({
       <address className="flex items-center gap-3 not-italic">
         {isOneLine && <LocationIcon height="24" width="24" />}
         <span>
-          {placeTitle || place?.title}
+          {placeTitle || place?.data?.attributes?.title}
           {!isOneLine && <br />}
-          {!isOneLine && (placeAddress || place?.address)}
+          {!isOneLine && (placeAddress || place?.data?.attributes?.address)}
         </span>
       </address>
     </div>

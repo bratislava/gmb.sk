@@ -1,9 +1,9 @@
-import { ContentPage } from '@bratislava/strapi-sdk-city-gallery';
-import { isNonEmptyArray } from 'apps/next/city-gallery/utils/isNonEmptyArray';
-import { useDebounce } from 'apps/next/city-gallery/utils/useDebounce';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { ReactComponent as CloseIcon } from '../../assets/icons/close-x.svg';
+import CloseIcon from '../../assets/icons/close-x.svg';
+import { ContentPage } from '../../graphql';
+import { isNonEmptyArray } from '../../utils/isNonEmptyArray';
+import { useDebounce } from '../../utils/useDebounce';
 import Results from './Results';
 
 interface SearchBarProps {

@@ -1,22 +1,22 @@
-import {
-  ContactAndFooterFragment,
-  ContentPageFragment,
-} from '@bratislava/strapi-sdk-city-gallery';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { ReactComponent as BABrand } from '../../assets/icons/BABrand.svg';
-import { ReactComponent as EULogo } from '../../assets/icons/EULogo.svg';
-import { ReactComponent as FBLogo } from '../../assets/icons/FB.svg';
-import { ReactComponent as IGLogo } from '../../assets/icons/IG.svg';
-import { ReactComponent as YTLogo } from '../../assets/icons/YT.svg';
-import { isDefined } from '../../utils/isDefined';
+import BABrand from '../../assets/icons/BABrand.svg';
+import EULogo from '../../assets/icons/EULogo.svg';
+import FBLogo from '../../assets/icons/FB.svg';
+import IGLogo from '../../assets/icons/IG.svg';
+import YTLogo from '../../assets/icons/YT.svg';
+import {
+  ContactEntityFragment,
+  ContentPageEntityFragment,
+} from '../../graphql';
+import { isDefined, WithAttributes } from '../../utils/isDefined';
 import { getRouteForLocale } from '../../utils/localeRoutes';
 import AppLangSwitchers from '../atoms/AppLangSwitchers';
 import { Link } from '../atoms/Link';
 
 interface FooterProps {
-  contactInfo: ContactAndFooterFragment;
-  contentPage?: ContentPageFragment;
+  contactInfo: WithAttributes<ContactEntityFragment>;
+  contentPage?: WithAttributes<ContentPageEntityFragment>;
 }
 
 const Footer = ({ contactInfo, contentPage }: FooterProps) => {
@@ -49,28 +49,28 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
         <div className="flex flex-col justify-between gap-20 pb-20 text-left lg:gap-0 lg:flex-row">
           <div>
             <div className="flex flex-col gap-y-3 mb-18">
-              <p>{contactInfo?.mirbach?.title}</p>
-              <p>{contactInfo?.mirbach?.address}</p>
-              <p>{contactInfo?.mirbach?.zip}</p>
-              <p>{contactInfo?.mirbach?.city}</p>
+              <p>{contactInfo.attributes.mirbach?.title}</p>
+              <p>{contactInfo.attributes.mirbach?.address}</p>
+              <p>{contactInfo.attributes.mirbach?.zip}</p>
+              <p>{contactInfo.attributes.mirbach?.city}</p>
             </div>
             <div className="flex flex-col gap-y-3 mb-18">
-              <p>{contactInfo?.palffy?.title}</p>
-              <p>{contactInfo?.palffy?.address}</p>
-              <p>{contactInfo?.palffy?.zip}</p>
-              <p>{contactInfo?.palffy?.city}</p>
+              <p>{contactInfo.attributes.palffy?.title}</p>
+              <p>{contactInfo.attributes.palffy?.address}</p>
+              <p>{contactInfo.attributes.palffy?.zip}</p>
+              <p>{contactInfo.attributes.palffy?.city}</p>
             </div>
             <div className="flex flex-col gap-y-3">
-              {contactInfo?.email && (
+              {contactInfo.attributes.email && (
                 <Link
-                  href={`mailto:${contactInfo.email}`}
+                  href={`mailto:${contactInfo.attributes.email}`}
                   className="underline normal-case"
                 >
-                  {contactInfo?.email}
+                  {contactInfo.attributes.email}
                 </Link>
               )}
-              <p>{contactInfo?.mirbach?.phone}</p>
-              <p>{contactInfo?.palffy?.phone}</p>
+              <p>{contactInfo.attributes.mirbach?.phone}</p>
+              <p>{contactInfo.attributes.palffy?.phone}</p>
             </div>
           </div>
 
@@ -110,11 +110,13 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
               >
                 {t('footer.disclosureOfInformation')}
               </Link>
-              {contactInfo?.quickLinks?.filter(isDefined).map((link) => (
-                <Link href={link.url ?? '#'} key={link.url}>
-                  {link.title}
-                </Link>
-              ))}
+              {contactInfo.attributes.quickLinks
+                ?.filter(isDefined)
+                .map((link) => (
+                  <Link href={link.url ?? '#'} key={link.url}>
+                    {link.title}
+                  </Link>
+                ))}
             </div>
           </div>
         </div>

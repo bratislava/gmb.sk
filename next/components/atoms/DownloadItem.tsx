@@ -1,7 +1,7 @@
-import { DownloadItemFragment } from '@bratislava/strapi-sdk-city-gallery';
 import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
-import { ReactComponent as FileIcon } from '../../assets/icons/file.svg';
+import FileIcon from '../../assets/icons/file.svg';
+import { DownloadItemFragment } from '../../graphql';
 import Button from './Button';
 
 interface DownloadProps {
@@ -12,6 +12,8 @@ export function DownloadItem({ downloadItem }: DownloadProps) {
   const [fetching, setFetching] = useState(false);
   const [_error, setError] = useState(false);
   const { t } = useTranslation();
+
+  const file = downloadItem?.file.data?.attributes;
 
   const download = (
     url: RequestInfo | undefined,
@@ -42,21 +44,19 @@ export function DownloadItem({ downloadItem }: DownloadProps) {
   return (
     <div>
       <h4 className="pb-8 text-lg lg:pb-10 3xl:pb-12">
-        {downloadItem.title ?? downloadItem.file?.name ?? ''}
+        {downloadItem.title ?? file?.name ?? ''}
       </h4>
       <div className="relative w-fit h-fit left-[-10px]">
         <FileIcon width={100} fill="#fff" className="relative" />
         <span className="absolute block uppercase -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-          {downloadItem?.file?.ext?.slice(1, 5)}
+          {file?.ext?.slice(1, 5)}
         </span>
       </div>
       <Button
         disabled={fetching}
         size="link"
         color="light"
-        onClick={() =>
-          download(downloadItem?.file?.url, downloadItem?.file?.name)
-        }
+        onClick={() => download(file?.url, file?.name)}
         aria-label="download file"
         className="pt-8 lg:pt-12"
       >

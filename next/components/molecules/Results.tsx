@@ -1,6 +1,6 @@
 import React from 'react';
-import { ContentPage } from '@bratislava/strapi-sdk-city-gallery';
-import { isDefined } from 'apps/next/city-gallery/utils/isDefined';
+import { ContentPage } from '../../graphql';
+import { hasAttributes } from '../../utils/isDefined';
 import Link from '../atoms/Link';
 
 interface ResultsProps {
@@ -16,7 +16,7 @@ const Results = ({ header, results }: ResultsProps) => {
         {results?.slice(0, 3).map((result) => {
           return (
             <Link
-              key={result.id}
+              key={result.slug}
               className="text-white"
               preserveStyle
               href={`/detail/${result.slug}`}
@@ -24,8 +24,8 @@ const Results = ({ header, results }: ResultsProps) => {
               <p className="text-md">{result.title}</p>
               {result.tags ? (
                 <div className="flex gap-2">
-                  {result.tags.filter(isDefined).map((tag) => {
-                    return <p key={tag.id}>{tag.title}</p>;
+                  {result.tags.data.filter(hasAttributes).map((tag) => {
+                    return <p key={tag.id}>{tag.attributes.title}</p>;
                   })}
                 </div>
               ) : null}

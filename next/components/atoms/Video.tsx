@@ -42,7 +42,7 @@ const Video = ({ className, url, size = 'default' }: IVideo) => {
 
       if (url) parseVimeoUrl();
     }
-  }, [url]);
+  }, [isVimeoVideo, isYoutubeVideo, url]);
 
   if (isYoutubeVideo && embedUrl) {
     return (

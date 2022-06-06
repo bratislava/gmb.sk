@@ -1,8 +1,8 @@
-import { SectionItemFragment } from '@bratislava/strapi-sdk-city-gallery';
 import { last } from 'lodash';
 import useSWRInfinite from 'swr/infinite';
+import { SectionItemEntityFragment } from '../graphql';
 import { client } from './gql';
-import { isDefined } from './isDefined';
+import { hasAttributes, isDefined } from './isDefined';
 
 export const PAGE_SIZE = 6;
 
@@ -16,7 +16,7 @@ export const usePreviewsByTags = ({
   locale: string;
 }) => {
   const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
-    (index, previousList: SectionItemFragment[]) => {
+    (index, previousList: SectionItemEntityFragment[]) => {
       if (index !== 0 && previousList.length === 0) {
         return null;
       }
@@ -34,9 +34,7 @@ export const usePreviewsByTags = ({
     (_key, variables) => client.PreviewsByTags(variables)
   );
 
-  const filteredPages = data
-    ?.flatMap((page) => page.contentPages)
-    .filter(isDefined);
+  const filteredPages = data?.map((page) => page.contentPages?.data).filter(isDefined).flat().filter(hasAttributes);
 
   const isLoadingInitialData = !data && !error;
 
@@ -46,7 +44,7 @@ export const usePreviewsByTags = ({
 
   const isEmpty = filteredPages?.length === 0;
 
-  const previousPagesLength = last(data)?.contentPages?.length || 0;
+  const previousPagesLength = last(data)?.contentPages?.data.length || 0;
 
   const isReachingEnd = isEmpty || previousPagesLength < PAGE_SIZE;
 

@@ -1,9 +1,10 @@
-import { ContactAndFooterFragment } from '@bratislava/strapi-sdk-city-gallery';
 import React from 'react';
 import Footer from '../../components/molecules/Footer';
+import { ContactEntityFragment } from '../../graphql';
+import { WithAttributes } from '../../utils/isDefined';
 
 interface ErrorPageProps {
-  contactInfo?: ContactAndFooterFragment | null;
+  contactInfo?: WithAttributes<ContactEntityFragment> | null;
   statusCode: number;
 }
 

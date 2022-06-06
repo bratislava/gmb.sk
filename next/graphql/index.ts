@@ -3085,7 +3085,7 @@ export const TagsByCategorySlugDocument = gql`
 }
     ${TagEntityFragmentDoc}`;
 export const NewsDocument = gql`
-    query News($locale: I18NLocaleCode!, $tag: String!, $limit: Int = 5, $sort: [String] = ["created_at:desc"]) {
+    query News($locale: I18NLocaleCode!, $tag: String!, $limit: Int = 5, $sort: [String] = ["publishedAt:desc"]) {
   news: contentPages(
     locale: $locale
     sort: $sort
