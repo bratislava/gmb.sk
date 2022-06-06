@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_partners_sections",
+  "info": {
+    "displayName": "partners section",
+    "icon": "user-friends"
+  },
+  "options": {},
+  "attributes": {
+    "partners": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::partner.partner"
+    }
+  }
+}

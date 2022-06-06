@@ -1,3 +1,33 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "plugin:@nrwl/nx/react-typescript",
+    "../../../.eslintrc.json",
+    "next",
+    "plugin:@next/next/recommended",
+    "next/core-web-vitals"
+  ],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@next/next/no-html-link-for-pages": [
+          "error",
+          "apps/next/city-gallery/pages"
+        ],
+        "@nrwl/nx/enforce-module-boundaries": "off"
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
+  ],
+  "env": {
+    "jest": true
+  }
 }

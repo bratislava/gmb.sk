@@ -4,7 +4,7 @@
   "info": {
     "singularName": "home-page",
     "pluralName": "home-pages",
-    "displayName": "Domov",
+    "displayName": "Home page",
     "description": ""
   },
   "options": {
@@ -49,6 +49,16 @@
         }
       },
       "component": "blocks.seo"
+    },
+    "partnersSection": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "sections.partners-section"
     }
   }
 }
