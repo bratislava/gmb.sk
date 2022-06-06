@@ -1,0 +1,98 @@
+{
+  "common": {
+    "open": "otvorené",
+    "welcome": "Vitajte v Mestskej galérii",
+    "capitalCityOfBratislava": "Hlavné mesto Bratislava",
+    "gdprAccept": "Súhlasím so spracovaním osobných údajov podľa GDPR",
+    "login": "Prihlásiť",
+    "partners": "Partneri",
+    "partner": "Partner",
+    "detail": "Detail",
+    "today": "dnes",
+    "remindMe": "pripomenúť",
+    "searchText": "vyhľadávaný výraz",
+    "found": "Nájdené",
+    "daysLeft_one": "Zostáva {{count}} deň",
+    "daysLeft_few": "Zostávajú {{count}} dni",
+    "daysLeft_other": "Zostáva {{count}} dní",
+    "curator": "Kurátor",
+    "quickNavigation": "Rýchla navigácia",
+    "topics": "Témy",
+    "filter": "Filtrovať",
+    "showResults": "Zobraziť výsledky",
+    "nothingToShow": "Nie je čo zobraziť.",
+    "buy": "Kúpiť",
+    "buyTickets": "Kúpiť vstupenky",
+    "buyTicketsGoOut": "Kúpiť vstupenky cez GoOut",
+    "buyForYourself": "Kúpiť pre seba",
+    "buyAsGift": "Kúpiť ako darček",
+    "ticket": "Vstupenka",
+    "tickets": "Vstupenky",
+    "seasonTickets": "Permanentky",
+    "ticketIncludesPalace": "V rámci vstupenky môžete navštíviť všetky výstavy v: {{place}}",
+    "ticketValidAlsoFor": "Vstupenka platí aj pre tieto výstavy",
+    "aboutOrigin": "Galéria mesta Bratislavy vznikla v roku 1961 ako samostatná kultúrna organizácia v zriaďovateľskej pôsobnosti hlavného mesta Slovenskej republiky.",
+    "name": "Názov",
+    "address": "Adresa",
+    "openingHours": "Otváracie hodiny",
+    "contact": "Kontakt",
+    "closed": "zatvorené",
+    "follow": "Sleduj",
+    "share": "Zdielať",
+    "download": "Stiahnuť",
+    "relatedContent": "Súvisiaci obsah",
+    "showIncludedEvents": "Ukáž, čo tam ešte je",
+    "noCurrentEvents": "Aktuálne neprebiehajú žiadne výstavy a expozície na mieste: {{place}}.",
+    "places": {
+      "mirbachsPalace": "Mirbachov palác",
+      "palffysPalace": "Pálffyho palác"
+    },
+    "exhibitions": "Výstavy",
+    "moreExhibitions": "Ďaľšie výstavy a akcie",
+    "exploreMoreContent": "Objaviť ďaľší obsah",
+    "permanentExhibitions": "Stále expozície",
+    "additionalProgram": "Sprievodný program",
+    "description": "Popis",
+    "bratislavaGenitiv": "Bratislavy",
+    "cityGallery": "Galéria mesta"
+  },
+  "navigation": {
+    "visitUs": "Navštívte",
+    "exhibitionsEvents": "Výstavy a akcie",
+    "explore": "Objavujte",
+    "aboutGallery": "O galérii",
+    "getInvolved": "Zapojte sa",
+    "collections": "Zbierky"
+  },
+  "footer": {
+    "siteMap": "Mapa stránky",
+    "quickLinks": "Rýchle odkazy",
+    "disclosureOfInformation": "Zverejňovanie informácií",
+    "declarationOfAccessibility": "Vyhlásenie o prístupnosti"
+  },
+  "visitUs": {
+    "howToGetHere": "Ako k nám",
+    "mapNotWorking": "Mapu sa nepodarilo načítať"
+  },
+  "errors": {
+    "emailMandatory": "Email je povinný",
+    "emailIncorrectFormat": "Nesprávny formát emailovej adresy",
+    "fieldMandatory": "Toto pole je povinné"
+  },
+  "newsletter": {
+    "beInThePicture": "Buďte „v obraze“",
+    "newsletter": "Newsletter",
+    "beInformedEvents": "Chcete byť informovaní o podujatiach Galérie mesta Bratislavy?"
+  },
+  "map": {
+    "ourPremises": "Naše priestory",
+    "byCar": "Autom",
+    "publicTransport": "MHD",
+    "byBike": "Bicyklom",
+    "virtualTour": "Virtuálna prehliadka",
+    "navigate": "Navigovať",
+    "carText": "Zaparkujte v najbližších parkovacích domoch alebo na uliciach v Starom Meste.",
+    "publicTransportText": "Navštívte nás pohodlne a bez starostí vďaka mestskej hromadnej doprave.",
+    "bikeText": "Odložte si svoj bicykel v niektorom zo stojanov alebo využite zdielané bicykle."
+  }
+}

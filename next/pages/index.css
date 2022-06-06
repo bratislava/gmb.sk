@@ -1,0 +1,135 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import '@bratislava/common-frontend-themes/themes/city-gallery.css';
+
+@layer base {
+  @font-face {
+    font-family: Denim;
+    font-weight: 300;
+    src: url(/fonts/Light/Denim-Light.woff2) format('woff2');
+    src: url(/fonts/Light/Denim-Light.woff) format('woff');
+  }
+  @font-face {
+    font-family: Denim;
+    font-weight: 400;
+    src: url(/fonts/Regular/Denim-Regular.woff2) format('woff2');
+    src: url(/fonts/Regular/Denim-Regular.woff) format('woff');
+  }
+  @font-face {
+    font-family: Denim;
+    font-weight: 500;
+    src: url(/fonts/Medium/Denim-Medium.woff2) format('woff2');
+    src: url(/fonts/Medium/Denim-Medium.woff) format('woff');
+  }
+  @font-face {
+    font-family: Denim;
+    font-weight: 600;
+    src: url(/fonts/SemiBold/Denim-SemiBold.woff2) format('woff2');
+    src: url(/fonts/SemiBold/Denim-SemiBold.woff) format('woff');
+  }
+  @font-face {
+    font-family: Denim;
+    font-weight: 700;
+    src: url(/fonts/Bold/Denim-Bold.woff2) format('woff2');
+    src: url(/fonts/Bold/Denim-Bold.woff) format('woff');
+  }
+  @font-face {
+    font-family: Denim;
+    font-weight: 900;
+    src: url(/fonts/Heavy/Denim-Heavy.woff2) format('woff2');
+    src: url(/fonts/Heavy/Denim-Heavy.woff) format('woff');
+  }
+}
+
+:root {
+  scroll-behavior: smooth;
+  width: 100%;
+
+  --sidepanel-width: min(40vw, 670px);
+
+  --font-size-xxl: 1.875rem;
+  --font-size-xl: 1.5rem;
+  --font-size-lg: 1.25rem;
+  --font-size-md: 1rem;
+  --font-size-sm: 0.875rem;
+  --font-size-nav: 1rem;
+  --font-size-btn: 1rem;
+
+  --line-height-xxl: 2rem;
+  --line-height-xl: 1.75rem;
+  --line-height-lg: 1.5rem;
+  --line-height-md: 1.25rem;
+  --line-height-sm: 1.1rem;
+  --line-height-nav: 1.25rem;
+  --line-height-btn: 1.25rem;
+
+  --padding-x: 24px;
+  --padding-y: 20px;
+  --padding-y-high: 56px;
+  --height-nav: 70px;
+  --logo-height: 32px;
+  --logo-width: 96px;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --font-size-xxl: 2.5rem;
+    --font-size-xl: 2rem;
+    --font-size-lg: 1.5625rem;
+    --font-size-md: 1.25rem;
+    --font-size-sm: 1.0625rem;
+    --font-size-nav: 1.1875rem;
+    --font-size-btn: 1.1875rem;
+
+    --line-height-xxl: 2.6875rem;
+    --line-height-xl: 2.25rem;
+    --line-height-lg: 1.8125rem;
+    --line-height-md: 1.5rem;
+    --line-height-sm: 1.3rem;
+    --line-height-nav: 1.5625rem;
+    --line-height-btn: 1.5625rem;
+
+    --padding-x: 36px;
+    --padding-y: 30px;
+    --padding-y-high: 84px;
+    --height-nav: 95px;
+    --logo-height: 50px;
+    --logo-width: 150px;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --font-size-xxl: 3.125rem;
+    --font-size-xl: 2.5rem;
+    --font-size-lg: 1.875rem;
+    --font-size-md: 1.5rem;
+    --font-size-sm: 1.25rem;
+    --font-size-nav: 1.375rem;
+    --font-size-btn: 1.375rem;
+
+    --line-height-xxl: 3.375rem;
+    --line-height-xl: 2.75rem;
+    --line-height-lg: 2.125rem;
+    --line-height-md: 1.75rem;
+    --line-height-sm: 1.5rem;
+    --line-height-nav: 1.875rem;
+    --line-height-btn: 1.875rem;
+
+    --padding-x: 48px;
+    --padding-y: 40px;
+    --padding-y-high: 112px;
+    --height-nav: 120px;
+    --logo-height: 68px;
+    --logo-width: 204px;
+  }
+}
+
+body {
+  font-family: 'Denim', sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
