@@ -1,32 +1,27 @@
-import cx from 'classnames';
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import FBLogo from '../../assets/icons/FB.svg';
-import Link from './Link';
+import cx from 'classnames'
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import FBLogo from '../../assets/icons/FB.svg'
+import Link from './Link'
 
 interface ShareButtonProps {
-  slug: string;
+  slug: string
   /* If platform is `'email'`, `title` attribute should be set */
-  platform: Platform;
+  platform: Platform
   /* Title is used only for e-mail links (as e-mail subject) */
-  title?: string;
-  className?: string;
+  title?: string
+  className?: string
 }
 
-type Platform = 'facebook' | 'email' | 'twitter' | 'whatsapp' | 'linkedin';
+type Platform = 'facebook' | 'email' | 'twitter' | 'whatsapp' | 'linkedin'
 
-const ShareButton = ({
-  slug,
-  platform,
-  title,
-  className,
-}: ShareButtonProps) => {
-  const { t } = useTranslation();
+const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => {
+  const { t } = useTranslation()
 
-  const defaultEmailSubject = 'Galéria mesta Bratislavy';
-  const url = `${process.env.NEXT_URL}/detail/${slug}`;
+  const defaultEmailSubject = 'Galéria mesta Bratislavy'
+  const url = `${process.env.NEXT_URL}/detail/${slug}`
 
-  const openInNewWindow: Platform[] = ['facebook'];
+  const openInNewWindow: Platform[] = ['facebook']
 
   const href = {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
@@ -34,9 +29,9 @@ const ShareButton = ({
     twitter: `https://www.twitter.com/share?url=${url}`,
     whatsapp: `https://wa.me/?text=${url}`,
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-  }[platform];
+  }[platform]
 
-  const encodedHref = encodeURI(href);
+  const encodedHref = encodeURI(href)
 
   const content = {
     facebook: <FBLogo height={24} width={24} />,
@@ -44,7 +39,7 @@ const ShareButton = ({
     twitter: 'TW',
     whatsapp: 'WA',
     linkedin: 'LI',
-  }[platform];
+  }[platform]
 
   return (
     <Link
@@ -52,17 +47,15 @@ const ShareButton = ({
       target="_blank"
       onClick={(event) => {
         if (!openInNewWindow.includes(platform)) {
-          return;
+          return
         }
-        window.open(href, t('common.share'), 'width=600,height=600');
-        event.preventDefault();
+        window.open(href, t('common.share'), 'width=600,height=600')
+        event.preventDefault()
       }}
     >
-      <span className={cx(className, 'w-10 h-10 border rounded-full')}>
-        {content}
-      </span>
+      <span className={cx(className, 'w-10 h-10 border rounded-full')}>{content}</span>
     </Link>
-  );
-};
+  )
+}
 
-export default ShareButton;
+export default ShareButton

@@ -1,22 +1,17 @@
-import React from 'react';
-import Modal from 'react-modal';
-import CloseIcon from '../../assets/icons/close-x.svg';
-import { getAnchor } from '../../utils/getAnchor';
-import Link from '../atoms/Link';
+import React from 'react'
+import Modal from 'react-modal'
+import CloseIcon from '../../assets/icons/close-x.svg'
+import { getAnchor } from '../../utils/getAnchor'
+import Link from '../atoms/Link'
 
 interface ISubmenuModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  items?: string[];
-  filters?: React.ReactNode;
+  isOpen: boolean
+  onClose: () => void
+  items?: string[]
+  filters?: React.ReactNode
 }
 
-const SubmenuModal = ({
-  isOpen,
-  onClose,
-  items,
-  filters,
-}: ISubmenuModalProps) => {
+const SubmenuModal = ({ isOpen, onClose, items, filters }: ISubmenuModalProps) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -31,19 +26,14 @@ const SubmenuModal = ({
       </button>
       <div className="flex flex-col items-center w-full gap-16 mt-20 text-white">
         {items?.map((item, index) => (
-          <Link
-            key={index}
-            href={`#${getAnchor(item)}`}
-            onClick={onClose}
-            replace
-          >
+          <Link key={index} href={`#${getAnchor(item)}`} onClick={onClose} replace>
             {item}
           </Link>
         ))}
       </div>
       {filters}
     </Modal>
-  );
-};
+  )
+}
 
-export default SubmenuModal;
+export default SubmenuModal

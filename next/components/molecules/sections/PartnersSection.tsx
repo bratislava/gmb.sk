@@ -1,13 +1,13 @@
-import React from 'react';
-import { PartnerEntityFragment } from '../../../graphql';
-import { WithAttributes } from '../../../utils/isDefined';
-import Link from '../../atoms/Link';
-import Section from './Section';
+import React from 'react'
+import { PartnerEntityFragment } from '../../../graphql'
+import { WithAttributes } from '../../../utils/isDefined'
+import Link from '../../atoms/Link'
+import Section from './Section'
 
 interface PartnersSectionProps {
-  title?: string;
-  anchor?: string;
-  partners?: WithAttributes<PartnerEntityFragment>[];
+  title?: string
+  anchor?: string
+  partners?: WithAttributes<PartnerEntityFragment>[]
 }
 
 const PartnersSection = ({ partners, title, anchor }: PartnersSectionProps) => {
@@ -23,16 +23,14 @@ const PartnersSection = ({ partners, title, anchor }: PartnersSectionProps) => {
           >
             <img
               src={partner?.attributes.logo.data?.attributes?.url}
-              alt={
-                partner?.attributes.logo.data?.attributes?.alternativeText ?? ''
-              }
+              alt={partner?.attributes.logo.data?.attributes?.alternativeText ?? ''}
               className="h-[115px] object-contain"
             />
           </Link>
         ))}
       </div>
     </Section>
-  );
-};
+  )
+}
 
-export default PartnersSection;
+export default PartnersSection

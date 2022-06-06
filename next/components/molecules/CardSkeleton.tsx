@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export const CardSkeleton = () => {
   return (
@@ -26,7 +26,7 @@ export const CardSkeleton = () => {
 
       <div className="w-40 h-12 py-2 lg:h-14 bg-gmbLightGray" />
     </div>
-  );
-};
+  )
+}
 
-export default CardSkeleton;
+export default CardSkeleton

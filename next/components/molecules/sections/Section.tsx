@@ -1,22 +1,16 @@
-import cx from 'classnames';
-import React from 'react';
-import SectionHeading from '../../atoms/SectionHeading';
+import cx from 'classnames'
+import React from 'react'
+import SectionHeading from '../../atoms/SectionHeading'
 
 interface ISectionProps {
-  title?: string;
-  anchor?: string;
-  color?: 'light' | 'dark' | 'gray';
-  children?: React.ReactNode;
-  className?: string;
+  title?: string
+  anchor?: string
+  color?: 'light' | 'dark' | 'gray'
+  children?: React.ReactNode
+  className?: string
 }
 
-const Section = ({
-  title,
-  anchor,
-  color = 'light',
-  children,
-  className,
-}: ISectionProps) => {
+const Section = ({ title, anchor, color = 'light', children, className }: ISectionProps) => {
   return (
     <section
       id={anchor}
@@ -33,7 +27,7 @@ const Section = ({
       {title ? <SectionHeading title={title} /> : null}
       {children}
     </section>
-  );
-};
+  )
+}
 
-export default Section;
+export default Section

@@ -1,3 +1,3 @@
 export function getTodaysDate() {
-    return new Date().toISOString().slice(0,10);
+  return new Date().toISOString().slice(0, 10)
 }

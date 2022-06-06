@@ -1,5 +1,5 @@
 function isServer() {
-  return typeof window === 'undefined';
+  return typeof window === 'undefined'
 }
 
-export default isServer;
+export default isServer

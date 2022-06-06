@@ -1,64 +1,54 @@
-import cx from 'classnames';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import { useTranslation } from 'next-i18next';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import Mapbox, { MapRef, Marker } from 'react-map-gl';
-import { usePreviousImmediate } from 'rooks';
-import GmbLogoIcon from '../../assets/icons/map-icons/gmb-logo.svg';
-import MirbachovPalacIcon from '../../assets/icons/map-icons/mirbachov-palac.svg';
-import PalffyhoPalacIcon from '../../assets/icons/map-icons/palffyho-palac.svg';
-import { ContactEntityFragment } from '../../graphql';
-import Link from '../atoms/Link';
+import cx from 'classnames'
+import 'mapbox-gl/dist/mapbox-gl.css'
+import { useTranslation } from 'next-i18next'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import Mapbox, { MapRef, Marker } from 'react-map-gl'
+import { usePreviousImmediate } from 'rooks'
+import GmbLogoIcon from '../../assets/icons/map-icons/gmb-logo.svg'
+import MirbachovPalacIcon from '../../assets/icons/map-icons/mirbachov-palac.svg'
+import PalffyhoPalacIcon from '../../assets/icons/map-icons/palffyho-palac.svg'
+import { ContactEntityFragment } from '../../graphql'
+import Link from '../atoms/Link'
 
 interface MapProps {
-  mapboxAccessToken: string;
-  contactInfo?: ContactEntityFragment;
+  mapboxAccessToken: string
+  contactInfo?: ContactEntityFragment
 }
 
-type TabKey = 'mhd' | 'bike' | 'car';
+type TabKey = 'mhd' | 'bike' | 'car'
 
 type Tab = {
-  label: string;
-  key: TabKey;
-  layerIds: string[];
-};
-
-interface DescriptionSection {
-  title?: string | null;
-  text?: string | null;
+  label: string
+  key: TabKey
+  layerIds: string[]
 }
 
-const customLayers = [
-  'on-street-parking',
-  'parking',
-  'city-transport',
-  'bike-stands',
-  'slovnaftbajk',
-];
+interface DescriptionSection {
+  title?: string | null
+  text?: string | null
+}
+
+const customLayers = ['on-street-parking', 'parking', 'city-transport', 'bike-stands', 'slovnaftbajk']
 
 const ZOOMED_IN_BOUNDS: mapboxgl.LngLatBoundsLike = [
   [17.102652962668316, 48.1409767752354],
   [17.111321800438162, 48.14679294590562],
-];
+]
 
 const ZOOMED_OUT_BOUNDS: mapboxgl.LngLatBoundsLike = [
   [17.10194304499541, 48.139388456891595],
   [17.117128583907345, 48.14890491740911],
-];
+]
 
 export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
-  const [selectedTab, setSelectedTab] = useState<Tab | null>(null);
-  const previousSelectedTab = usePreviousImmediate(selectedTab);
-  const [descriptionSections, setDescriptionSections] = useState<
-    DescriptionSection[]
-  >([]);
-  const [selectedFeaturePoint, setSelectedFeaturePoint] = useState<
-    [number, number] | null
-  >(null);
+  const [selectedTab, setSelectedTab] = useState<Tab | null>(null)
+  const previousSelectedTab = usePreviousImmediate(selectedTab)
+  const [descriptionSections, setDescriptionSections] = useState<DescriptionSection[]>([])
+  const [selectedFeaturePoint, setSelectedFeaturePoint] = useState<[number, number] | null>(null)
 
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
-  const [selectedPlaceUrl, setSelectedPlaceUrl] = useState<string | null>(null);
+  const [selectedPlaceUrl, setSelectedPlaceUrl] = useState<string | null>(null)
 
   const tabs: Tab[] = [
     {
@@ -76,7 +66,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
       key: 'car',
       layerIds: ['on-street-parking', 'parking'],
     },
-  ];
+  ]
 
   const galleries = [
     {
@@ -133,98 +123,93 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
         },
       ],
     },
-  ];
+  ]
 
-  const mapRef = useRef<MapRef>(null);
+  const mapRef = useRef<MapRef>(null)
 
   const onMapLoad = useCallback(() => {
-    const MAP = mapRef.current;
-    if (!MAP) return;
+    const MAP = mapRef.current
+    if (!MAP) return
 
     MAP.fitBounds(ZOOMED_IN_BOUNDS, {
       padding: { right: 100, top: 0, left: 32, bottom: 0 },
-    });
+    })
 
     customLayers.forEach((customLayer) => {
-      MAP.getMap().setLayoutProperty(customLayer, 'visibility', 'none');
-    });
+      MAP.getMap().setLayoutProperty(customLayer, 'visibility', 'none')
+    })
 
     MAP.getStyle()?.layers?.forEach((layer) => {
       if (layer.type === 'line') {
-        MAP.getMap().setLayoutProperty(layer.id, 'visibility', 'none');
+        MAP.getMap().setLayoutProperty(layer.id, 'visibility', 'none')
       }
-    });
-  }, [mapRef]);
+    })
+  }, [mapRef])
 
   const onMapClick = useCallback(
     (event: mapboxgl.MapLayerMouseEvent) => {
-      const MAP = mapRef.current;
-      if (!MAP) return;
+      const MAP = mapRef.current
+      if (!MAP) return
 
-      const clickedFeature = MAP.queryRenderedFeatures(event.point)[0];
+      const clickedFeature = MAP.queryRenderedFeatures(event.point)[0]
 
-      if (!clickedFeature) return;
+      if (!clickedFeature) return
 
-      if (
-        !customLayers.find(
-          (customLayer) => customLayer === clickedFeature.layer.id
-        )
-      ) {
-        setDescriptionSections([]);
-        setSelectedFeaturePoint(null);
-        setSelectedPlaceUrl(null);
-        return;
+      if (!customLayers.find((customLayer) => customLayer === clickedFeature.layer.id)) {
+        setDescriptionSections([])
+        setSelectedFeaturePoint(null)
+        setSelectedPlaceUrl(null)
+        return
       }
 
-      const properties = Object.keys(clickedFeature.properties ?? {});
+      const properties = Object.keys(clickedFeature.properties ?? {})
 
-      const descriptionSections: DescriptionSection[] = [];
+      const descriptionSections: DescriptionSection[] = []
 
       properties.forEach((property) => {
         descriptionSections.push({
           title: property,
-          text:
-            clickedFeature.properties && clickedFeature.properties[property],
-        });
-      });
+          text: clickedFeature.properties && clickedFeature.properties[property],
+        })
+      })
 
-      setDescriptionSections(descriptionSections);
-      setSelectedFeaturePoint([event.lngLat.lng, event.lngLat.lat]);
-      setSelectedPlaceUrl(null);
+      setDescriptionSections(descriptionSections)
+      setSelectedFeaturePoint([event.lngLat.lng, event.lngLat.lat])
+      setSelectedPlaceUrl(null)
     },
     [mapRef, setDescriptionSections]
-  );
+  )
 
   //on layers change
   useEffect(() => {
-    const MAP = mapRef.current;
-    if (!MAP) return;
+    const MAP = mapRef.current
+    if (!MAP) return
 
     if (previousSelectedTab) {
       previousSelectedTab.layerIds.forEach((layerId) => {
-        MAP.getMap().setLayoutProperty(layerId, 'visibility', 'none');
-      });
+        MAP.getMap().setLayoutProperty(layerId, 'visibility', 'none')
+      })
     }
 
     if (selectedTab) {
       selectedTab.layerIds.forEach((layerId) => {
-        MAP.getMap().setLayoutProperty(layerId, 'visibility', 'visible');
-      });
+        MAP.getMap().setLayoutProperty(layerId, 'visibility', 'visible')
+      })
 
       MAP.fitBounds(ZOOMED_OUT_BOUNDS, {
         padding: { right: 100, top: 0, left: 32, bottom: 0 },
-      });
+      })
     } else {
       MAP.fitBounds(ZOOMED_IN_BOUNDS, {
         padding: { right: 100, top: 0, left: 32, bottom: 0 },
-      });
+      })
     }
 
     //reset description
-    setDescriptionSections([]);
-    setSelectedFeaturePoint(null);
-    setSelectedPlaceUrl(null);
-  }, [mapRef, previousSelectedTab, selectedTab, setDescriptionSections]);
+    setDescriptionSections([])
+    setSelectedFeaturePoint(null)
+    setSelectedPlaceUrl(null)
+  }, [mapRef, previousSelectedTab, selectedTab, setDescriptionSections])
 
   return (
     <div className="grid items-stretch text-white bg-gmbDark text-nav lg:grid-cols-3">
@@ -233,21 +218,14 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
           return (
             <button
               key={tab.key}
-              className={cx(
-                'flex space-x-2 uppercase px-4 py-2 items-center underline-offset-2 hover:underline',
-                {
-                  underline: selectedTab?.key === tab.key,
-                }
-              )}
-              onClick={() =>
-                selectedTab?.key !== tab.key
-                  ? setSelectedTab(tab)
-                  : setSelectedTab(null)
-              }
+              className={cx('flex space-x-2 uppercase px-4 py-2 items-center underline-offset-2 hover:underline', {
+                underline: selectedTab?.key === tab.key,
+              })}
+              onClick={() => (selectedTab?.key !== tab.key ? setSelectedTab(tab) : setSelectedTab(null))}
             >
               {tab.label}
             </button>
-          );
+          )
         })}
       </div>
       <div className="relative w-full overflow-hidden pt-96 bg-gmbDark lg:col-start-1 lg:row-start-1 lg:row-span-3 lg:col-span-2">
@@ -271,25 +249,17 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
             interactive={false}
           >
             {galleries.map((gallery, key) => (
-              <Marker
-                longitude={gallery.coordinates[0]}
-                latitude={gallery.coordinates[1]}
-                key={key}
-              >
+              <Marker longitude={gallery.coordinates[0]} latitude={gallery.coordinates[1]} key={key}>
                 <button
                   className="group"
                   onClick={(e) => {
-                    e.stopPropagation();
-                    setDescriptionSections(gallery.descriptionSections);
-                    setSelectedFeaturePoint(null);
-                    setSelectedPlaceUrl(gallery.navigationLink);
+                    e.stopPropagation()
+                    setDescriptionSections(gallery.descriptionSections)
+                    setSelectedFeaturePoint(null)
+                    setSelectedPlaceUrl(gallery.navigationLink)
                   }}
                 >
-                  <gallery.icon
-                    className="transform group-hover:scale-0"
-                    width="64"
-                    height="64"
-                  />
+                  <gallery.icon className="transform group-hover:scale-0" width="64" height="64" />
                   <gallery.hoverIcon
                     className="absolute top-0 transform scale-0 group-hover:scale-100"
                     width="64"
@@ -329,11 +299,11 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
                       key={key}
                       className="flex items-center gap-2 hover:underline"
                       onClick={(e) => {
-                        e.stopPropagation();
-                        setDescriptionSections(gallery.descriptionSections);
-                        setSelectedFeaturePoint(null);
-                        setSelectedPlaceUrl(gallery.navigationLink);
-                        console.log(gallery.navigationLink);
+                        e.stopPropagation()
+                        setDescriptionSections(gallery.descriptionSections)
+                        setSelectedFeaturePoint(null)
+                        setSelectedPlaceUrl(gallery.navigationLink)
+                        console.log(gallery.navigationLink)
                       }}
                     >
                       <span>{gallery.descriptionSections[0].text}</span>
@@ -341,9 +311,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
                   ))}
                 </>
               )}
-              {selectedTab?.key === 'mhd' && (
-                <p>{t('map.publicTransportText')}</p>
-              )}
+              {selectedTab?.key === 'mhd' && <p>{t('map.publicTransportText')}</p>}
               {selectedTab?.key === 'bike' && <p>{t('map.bikeText')}</p>}
               {selectedTab?.key === 'car' && <p>{t('map.carText')}</p>}
             </>
@@ -371,7 +339,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Map;
+export default Map

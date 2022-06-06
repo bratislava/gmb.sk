@@ -1,24 +1,24 @@
-import { last } from 'lodash';
-import useSWRInfinite from 'swr/infinite';
-import { SectionItemEntityFragment } from '../graphql';
-import { client } from './gql';
-import { hasAttributes, isDefined } from './isDefined';
+import { last } from 'lodash'
+import useSWRInfinite from 'swr/infinite'
+import { SectionItemEntityFragment } from '../graphql'
+import { client } from './gql'
+import { hasAttributes, isDefined } from './isDefined'
 
-export const PAGE_SIZE = 6;
+export const PAGE_SIZE = 6
 
 export const usePreviewsByTags = ({
   activeTags,
   activePlaces,
   locale,
 }: {
-  activeTags: string[];
-  activePlaces: string[];
-  locale: string;
+  activeTags: string[]
+  activePlaces: string[]
+  locale: string
 }) => {
   const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
     (index, previousList: SectionItemEntityFragment[]) => {
       if (index !== 0 && previousList.length === 0) {
-        return null;
+        return null
       }
 
       const variables = {
@@ -27,26 +27,28 @@ export const usePreviewsByTags = ({
         offset: index * PAGE_SIZE,
         tagSlugs: activeTags,
         placesSlugs: activePlaces,
-      };
+      }
 
-      return ['PreviewsByTags', variables];
+      return ['PreviewsByTags', variables]
     },
     (_key, variables) => client.PreviewsByTags(variables)
-  );
+  )
 
-  const filteredPages = data?.map((page) => page.contentPages?.data).filter(isDefined).flat().filter(hasAttributes);
+  const filteredPages = data
+    ?.map((page) => page.contentPages?.data)
+    .filter(isDefined)
+    .flat()
+    .filter(hasAttributes)
 
-  const isLoadingInitialData = !data && !error;
+  const isLoadingInitialData = !data && !error
 
-  const isLoadingMore =
-    isLoadingInitialData ||
-    (size > 0 && data && typeof data[size - 1] === 'undefined');
+  const isLoadingMore = isLoadingInitialData || (size > 0 && data && typeof data[size - 1] === 'undefined')
 
-  const isEmpty = filteredPages?.length === 0;
+  const isEmpty = filteredPages?.length === 0
 
-  const previousPagesLength = last(data)?.contentPages?.data.length || 0;
+  const previousPagesLength = last(data)?.contentPages?.data.length || 0
 
-  const isReachingEnd = isEmpty || previousPagesLength < PAGE_SIZE;
+  const isReachingEnd = isEmpty || previousPagesLength < PAGE_SIZE
 
   return {
     data,
@@ -60,5 +62,5 @@ export const usePreviewsByTags = ({
     isLoadingMore,
     isEmpty,
     isReachingEnd,
-  };
-};
+  }
+}

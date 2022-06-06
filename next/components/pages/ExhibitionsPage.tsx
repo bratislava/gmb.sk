@@ -1,44 +1,40 @@
-import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 import {
   ContactEntityFragment,
   ExhibitionsPageQuery,
   PlaceEntityFragment,
   SectionItemEntityFragment,
   TagEntityFragment,
-} from '../../graphql';
-import { getAnchor } from '../../utils/getAnchor';
-import {
-  hasAttributes,
-  isDefined,
-  WithAttributes,
-} from '../../utils/isDefined';
-import { usePreviewsByTags } from '../../utils/usePreviewsByTags';
-import Button from '../atoms/Button';
-import Filters from '../molecules/Filters';
-import Footer from '../molecules/Footer';
-import Highlight from '../molecules/Highlight';
-import CardSection from '../molecules/sections/CardSection';
-import ChessboardSection from '../molecules/sections/ChessboardSection';
-import NewsletterSection from '../molecules/sections/NewsletterSection';
-import Submenu from '../molecules/Submenu';
+} from '../../graphql'
+import { getAnchor } from '../../utils/getAnchor'
+import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
+import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
+import Button from '../atoms/Button'
+import Filters from '../molecules/Filters'
+import Footer from '../molecules/Footer'
+import Highlight from '../molecules/Highlight'
+import CardSection from '../molecules/sections/CardSection'
+import ChessboardSection from '../molecules/sections/ChessboardSection'
+import NewsletterSection from '../molecules/sections/NewsletterSection'
+import Submenu from '../molecules/Submenu'
 
 interface ExhibitionsPageProps {
-  exhibitionsPage: ExhibitionsPageQuery['exhibitionsPage'];
-  exhibitions?: WithAttributes<SectionItemEntityFragment>[];
-  permanentExhibitions?: WithAttributes<SectionItemEntityFragment>[];
-  additionalProgram?: WithAttributes<SectionItemEntityFragment>[];
-  contactInfo?: WithAttributes<ContactEntityFragment> | null;
-  tagsProgram?: WithAttributes<TagEntityFragment>[];
-  tagsTargetGroups?: WithAttributes<TagEntityFragment>[];
-  tagsLanguages?: WithAttributes<TagEntityFragment>[];
-  tagsProjects?: WithAttributes<TagEntityFragment>[];
-  tagsOthers?: WithAttributes<TagEntityFragment>[];
-  places?: WithAttributes<PlaceEntityFragment>[];
+  exhibitionsPage: ExhibitionsPageQuery['exhibitionsPage']
+  exhibitions?: WithAttributes<SectionItemEntityFragment>[]
+  permanentExhibitions?: WithAttributes<SectionItemEntityFragment>[]
+  additionalProgram?: WithAttributes<SectionItemEntityFragment>[]
+  contactInfo?: WithAttributes<ContactEntityFragment> | null
+  tagsProgram?: WithAttributes<TagEntityFragment>[]
+  tagsTargetGroups?: WithAttributes<TagEntityFragment>[]
+  tagsLanguages?: WithAttributes<TagEntityFragment>[]
+  tagsProjects?: WithAttributes<TagEntityFragment>[]
+  tagsOthers?: WithAttributes<TagEntityFragment>[]
+  places?: WithAttributes<PlaceEntityFragment>[]
 }
 
-const PAGES_COUNT_PER_LOAD = 6;
+const PAGES_COUNT_PER_LOAD = 6
 
 const ExhibitionsPage = ({
   exhibitionsPage,
@@ -53,52 +49,39 @@ const ExhibitionsPage = ({
   tagsOthers,
   places,
 }: ExhibitionsPageProps) => {
-  const { t, i18n } = useTranslation();
-  const { query } = useRouter();
+  const { t, i18n } = useTranslation()
+  const { query } = useRouter()
 
-  const [activeTags, setActiveTags] = useState<string[]>([]);
-  const [activePlaces, setActivePlaces] = useState<string[]>([]);
+  const [activeTags, setActiveTags] = useState<string[]>([])
+  const [activePlaces, setActivePlaces] = useState<string[]>([])
 
-  const {
-    size,
-    setSize,
-    filteredPages,
-    isLoadingInitialData,
-    isReachingEnd,
-    isLoadingMore,
-  } = usePreviewsByTags({
+  const { size, setSize, filteredPages, isLoadingInitialData, isReachingEnd, isLoadingMore } = usePreviewsByTags({
     activeTags,
     activePlaces,
     locale: i18n.language,
-  });
+  })
 
   useEffect(() => {
-    const { tags } = query;
+    const { tags } = query
     if (!tags) {
-      return;
+      return
     }
-    setActivePlaces([]);
+    setActivePlaces([])
     if (typeof tags === 'string') {
-      setActiveTags([tags]);
+      setActiveTags([tags])
     } else {
-      setActiveTags(tags);
+      setActiveTags(tags)
     }
-  }, [query]);
+  }, [query])
 
   return (
     <>
-      {exhibitionsPage?.data?.attributes?.highlights?.contentPages?.data
-        ?.filter(hasAttributes)
-        .map((item) => (
-          <Highlight key={item.id} highlight={item} />
-        ))}
+      {exhibitionsPage?.data?.attributes?.highlights?.contentPages?.data?.filter(hasAttributes).map((item) => (
+        <Highlight key={item.id} highlight={item} />
+      ))}
 
       <Submenu
-        items={[
-          t('common.exhibitions'),
-          t('common.permanentExhibitions'),
-          t('common.additionalProgram'),
-        ]}
+        items={[t('common.exhibitions'), t('common.permanentExhibitions'), t('common.additionalProgram')]}
         filters={
           <Filters
             tagGroups={[
@@ -125,10 +108,7 @@ const ExhibitionsPage = ({
             loadmoreButton={
               !isReachingEnd && (
                 <div className="flex justify-center py-12">
-                  <Button
-                    onClick={() => setSize(size + 1)}
-                    disabled={isLoadingMore}
-                  >
+                  <Button onClick={() => setSize(size + 1)} disabled={isLoadingMore}>
                     {t('common.exploreMoreContent')}
                   </Button>
                 </div>
@@ -164,7 +144,7 @@ const ExhibitionsPage = ({
 
       {contactInfo && <Footer contactInfo={contactInfo} />}
     </>
-  );
-};
+  )
+}
 
-export default ExhibitionsPage;
+export default ExhibitionsPage

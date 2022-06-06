@@ -1,77 +1,54 @@
-import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import {
-  ContactEntityFragment,
-  ExplorePageQuery,
-  TagEntityFragment,
-} from '../../graphql';
-import {
-  hasAttributes,
-  isDefined,
-  WithAttributes,
-} from '../../utils/isDefined';
-import { usePreviewsByTags } from '../../utils/usePreviewsByTags';
-import Button from '../atoms/Button';
-import Filters from '../molecules/Filters';
-import Footer from '../molecules/Footer';
-import Highlight from '../molecules/Highlight';
-import CardSection from '../molecules/sections/CardSection';
-import NewsletterSection from '../molecules/sections/NewsletterSection';
-import Submenu from '../molecules/Submenu';
+import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
+import { ContactEntityFragment, ExplorePageQuery, TagEntityFragment } from '../../graphql'
+import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
+import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
+import Button from '../atoms/Button'
+import Filters from '../molecules/Filters'
+import Footer from '../molecules/Footer'
+import Highlight from '../molecules/Highlight'
+import CardSection from '../molecules/sections/CardSection'
+import NewsletterSection from '../molecules/sections/NewsletterSection'
+import Submenu from '../molecules/Submenu'
 
 interface ExplorePageProps {
-  explorePage: ExplorePageQuery['explorePage'];
-  contactInfo?: WithAttributes<ContactEntityFragment> | null;
-  tagsTypes?: WithAttributes<TagEntityFragment>[];
-  tagsProjects?: WithAttributes<TagEntityFragment>[];
-  tagsOthers?: WithAttributes<TagEntityFragment>[];
+  explorePage: ExplorePageQuery['explorePage']
+  contactInfo?: WithAttributes<ContactEntityFragment> | null
+  tagsTypes?: WithAttributes<TagEntityFragment>[]
+  tagsProjects?: WithAttributes<TagEntityFragment>[]
+  tagsOthers?: WithAttributes<TagEntityFragment>[]
 }
 
-const ExplorePage = ({
-  explorePage,
-  contactInfo,
-  tagsTypes,
-  tagsProjects,
-  tagsOthers,
-}: ExplorePageProps) => {
-  const { t, i18n } = useTranslation();
-  const { query } = useRouter();
+const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOthers }: ExplorePageProps) => {
+  const { t, i18n } = useTranslation()
+  const { query } = useRouter()
 
-  const [activeTags, setActiveTags] = useState<string[]>([]);
+  const [activeTags, setActiveTags] = useState<string[]>([])
 
-  const {
-    size,
-    setSize,
-    filteredPages,
-    isLoadingInitialData,
-    isLoadingMore,
-    isReachingEnd,
-  } = usePreviewsByTags({
+  const { size, setSize, filteredPages, isLoadingInitialData, isLoadingMore, isReachingEnd } = usePreviewsByTags({
     activeTags,
     activePlaces: [],
     locale: i18n.language,
-  });
+  })
 
   useEffect(() => {
-    const { tags } = query;
+    const { tags } = query
     if (!tags) {
-      return;
+      return
     }
     if (typeof tags === 'string') {
-      setActiveTags([tags]);
+      setActiveTags([tags])
     } else {
-      setActiveTags(tags);
+      setActiveTags(tags)
     }
-  }, [query]);
+  }, [query])
 
   return (
     <>
-      {explorePage?.data?.attributes?.highlights?.contentPages?.data
-        .filter(hasAttributes)
-        .map((item) => (
-          <Highlight key={item.id} highlight={item} />
-        ))}
+      {explorePage?.data?.attributes?.highlights?.contentPages?.data.filter(hasAttributes).map((item) => (
+        <Highlight key={item.id} highlight={item} />
+      ))}
       <Submenu
         filters={
           <Filters
@@ -88,10 +65,7 @@ const ExplorePage = ({
           loadmoreButton={
             !isReachingEnd && (
               <div className="flex justify-center py-12">
-                <Button
-                  onClick={() => setSize(size + 1)}
-                  disabled={isLoadingMore}
-                >
+                <Button onClick={() => setSize(size + 1)} disabled={isLoadingMore}>
                   {t('common.exploreMoreContent')}
                 </Button>
               </div>
@@ -103,7 +77,7 @@ const ExplorePage = ({
       <NewsletterSection />
       {contactInfo && <Footer contactInfo={contactInfo} />}contactInfo
     </>
-  );
-};
+  )
+}
 
-export default ExplorePage;
+export default ExplorePage

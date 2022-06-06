@@ -1,26 +1,26 @@
-import cx from 'classnames';
-import { useTranslation } from 'next-i18next';
-import React, { useState } from 'react';
-import ArrowDown from '../../assets/icons/chevron-down.svg';
-import { getAnchor } from '../../utils/getAnchor';
-import Button from '../atoms/Button';
-import Link from '../atoms/Link';
-import SubmenuModal from './SubmenuModal';
+import cx from 'classnames'
+import { useTranslation } from 'next-i18next'
+import React, { useState } from 'react'
+import ArrowDown from '../../assets/icons/chevron-down.svg'
+import { getAnchor } from '../../utils/getAnchor'
+import Button from '../atoms/Button'
+import Link from '../atoms/Link'
+import SubmenuModal from './SubmenuModal'
 
 interface SubmenuProps {
-  items?: string[];
-  button?: React.ReactNode;
-  filters?: React.ReactNode;
+  items?: string[]
+  button?: React.ReactNode
+  filters?: React.ReactNode
 }
 
 export const Submenu = ({ items, filters }: SubmenuProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
-  const [isFilterOpen, setFilterOpen] = useState(false);
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isFilterOpen, setFilterOpen] = useState(false)
+  const [isModalOpen, setModalOpen] = useState(false)
 
   if ((!items || items.length === 0) && !filters) {
-    return null;
+    return null
   }
 
   return (
@@ -42,7 +42,7 @@ export const Submenu = ({ items, filters }: SubmenuProps) => {
                 color="light"
                 className="flex items-center gap-2 text-nav"
                 onClick={() => {
-                  setFilterOpen((prev) => !prev);
+                  setFilterOpen((prev) => !prev)
                 }}
               >
                 {t('common.filter')} <ArrowDown />
@@ -64,7 +64,7 @@ export const Submenu = ({ items, filters }: SubmenuProps) => {
       <div
         role="button"
         onClick={() => {
-          setModalOpen((prev) => !prev);
+          setModalOpen((prev) => !prev)
         }}
         className="relative flex items-center justify-between w-full text-white uppercase py-yStandard px-xStandard text-md bg-gmbDark lg:hidden"
       >
@@ -72,14 +72,9 @@ export const Submenu = ({ items, filters }: SubmenuProps) => {
         <ArrowDown />
       </div>
 
-      <SubmenuModal
-        isOpen={isModalOpen}
-        onClose={() => setModalOpen(false)}
-        items={items}
-        filters={filters}
-      />
+      <SubmenuModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} items={items} filters={filters} />
     </>
-  );
-};
+  )
+}
 
-export default Submenu;
+export default Submenu

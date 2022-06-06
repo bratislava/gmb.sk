@@ -1,18 +1,18 @@
-import React from 'react';
-import { DownloadItemFragment } from '../../../graphql';
-import { isDefined } from '../../../utils/isDefined';
-import DownloadItem from '../../atoms/DownloadItem';
-import Section from './Section';
+import React from 'react'
+import { DownloadItemFragment } from '../../../graphql'
+import { isDefined } from '../../../utils/isDefined'
+import DownloadItem from '../../atoms/DownloadItem'
+import Section from './Section'
 
 interface DownloadSectionProps {
-  title?: string | null;
-  files?: DownloadItemFragment[];
-  anchor?: string;
+  title?: string | null
+  files?: DownloadItemFragment[]
+  anchor?: string
 }
 
 const DownloadSection = ({ files, title, anchor }: DownloadSectionProps) => {
   if (files?.length === 0) {
-    return null;
+    return null
   }
 
   return (
@@ -24,7 +24,7 @@ const DownloadSection = ({ files, title, anchor }: DownloadSectionProps) => {
         ))}
       </div>
     </Section>
-  );
-};
+  )
+}
 
-export default DownloadSection;
+export default DownloadSection

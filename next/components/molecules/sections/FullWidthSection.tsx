@@ -1,25 +1,20 @@
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import { SectionItemEntityFragment } from '../../../graphql';
-import { WithAttributes } from '../../../utils/isDefined';
-import Button from '../../atoms/Button';
-import FullWidthTile from '../FulllWidthTile';
-import Section from './Section';
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import { SectionItemEntityFragment } from '../../../graphql'
+import { WithAttributes } from '../../../utils/isDefined'
+import Button from '../../atoms/Button'
+import FullWidthTile from '../FulllWidthTile'
+import Section from './Section'
 
 interface FullWidthSectionProps {
-  title?: string;
-  sectionItems?: WithAttributes<SectionItemEntityFragment>[];
-  anchor?: string;
-  loadmore?: boolean;
+  title?: string
+  sectionItems?: WithAttributes<SectionItemEntityFragment>[]
+  anchor?: string
+  loadmore?: boolean
 }
 
-const FullWidthSection = ({
-  title,
-  sectionItems,
-  anchor,
-  loadmore,
-}: FullWidthSectionProps) => {
-  const { t } = useTranslation();
+const FullWidthSection = ({ title, sectionItems, anchor, loadmore }: FullWidthSectionProps) => {
+  const { t } = useTranslation()
 
   return (
     <Section anchor={anchor} title={title}>
@@ -33,7 +28,7 @@ const FullWidthSection = ({
         </div>
       )}
     </Section>
-  );
-};
+  )
+}
 
-export default FullWidthSection;
+export default FullWidthSection

@@ -1,25 +1,25 @@
-import cx from 'classnames';
-import Image from 'next/image';
-import React from 'react';
-import { Autoplay, Navigation, Pagination } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { NavigationOptions } from 'swiper/types';
-import { ImageEntityFragment } from '../../graphql';
-import { WithAttributes } from '../../utils/isDefined';
+import cx from 'classnames'
+import Image from 'next/image'
+import React from 'react'
+import { Autoplay, Navigation, Pagination } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { NavigationOptions } from 'swiper/types'
+import { ImageEntityFragment } from '../../graphql'
+import { WithAttributes } from '../../utils/isDefined'
 
 interface ImgSwiperProps {
-  slides?: WithAttributes<ImageEntityFragment>[];
-  anchor?: string;
+  slides?: WithAttributes<ImageEntityFragment>[]
+  anchor?: string
 }
 
 const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
-  const navigationPrevRef = React.useRef(null);
-  const navigationNextRef = React.useRef(null);
+  const navigationPrevRef = React.useRef(null)
+  const navigationNextRef = React.useRef(null)
   const navigationStyle =
-    'absolute cursor-pointer top-1/2 z-10 text-gmbDark font-[swiper-icons] text-[32px] font-heavy -mt-4 select-none';
+    'absolute cursor-pointer top-1/2 z-10 text-gmbDark font-[swiper-icons] text-[32px] font-heavy -mt-4 select-none'
 
   return slides ? (
     <Swiper
@@ -32,10 +32,8 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
       }}
       onBeforeInit={(swiper) => {
         if (swiper?.params?.navigation) {
-          (swiper.params.navigation as NavigationOptions).prevEl =
-            navigationPrevRef.current;
-          (swiper.params.navigation as NavigationOptions).nextEl =
-            navigationNextRef.current;
+          ;(swiper.params.navigation as NavigationOptions).prevEl = navigationPrevRef.current
+          ;(swiper.params.navigation as NavigationOptions).nextEl = navigationNextRef.current
         }
       }}
       pagination={{
@@ -68,7 +66,7 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
       </div>
       <div className="swiper-pagination absolute !bottom-12 z-10" />
     </Swiper>
-  ) : null;
-};
+  ) : null
+}
 
-export default ImgSwiper;
+export default ImgSwiper

@@ -1,24 +1,19 @@
-import cx from 'classnames';
-import React from 'react';
-import { TicketEntityFragment } from '../../../graphql';
-import { WithAttributes } from '../../../utils/isDefined';
-import CityGalleryMarkdown from '../../atoms/CityGalleryMarkdown';
-import Ticket from '../Ticket/Ticket';
-import Section from './Section';
+import cx from 'classnames'
+import React from 'react'
+import { TicketEntityFragment } from '../../../graphql'
+import { WithAttributes } from '../../../utils/isDefined'
+import CityGalleryMarkdown from '../../atoms/CityGalleryMarkdown'
+import Ticket from '../Ticket/Ticket'
+import Section from './Section'
 
 interface TicketsSectionProps {
-  tickets: WithAttributes<TicketEntityFragment>[];
-  title?: string;
-  text?: string;
-  anchor?: string;
+  tickets: WithAttributes<TicketEntityFragment>[]
+  title?: string
+  text?: string
+  anchor?: string
 }
 
-const TicketsSection = ({
-  tickets,
-  title,
-  text,
-  anchor,
-}: TicketsSectionProps) => {
+const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) => {
   return (
     <Section anchor={anchor} title={title}>
       <div
@@ -42,7 +37,7 @@ const TicketsSection = ({
         </div>
       </div>
     </Section>
-  );
-};
+  )
+}
 
-export default TicketsSection;
+export default TicketsSection

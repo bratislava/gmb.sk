@@ -1,14 +1,14 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "prettier"
-  ],
+  "extends": ["next/core-web-vitals", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error"]
+  },
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
-        "@next/next/no-img-element": "off",
-        "quotes": [2, "single", { "avoidEscape": true }]
+        "@next/next/no-img-element": "off"
       }
     },
     {

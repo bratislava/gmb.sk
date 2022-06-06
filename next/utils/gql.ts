@@ -1,16 +1,15 @@
-import { GraphQLClient } from 'graphql-request';
-import getConfig from 'next/config';
-import { getSdk } from '../graphql';
-import isServer from './isServer';
-const { serverRuntimeConfig } = getConfig();
+import { GraphQLClient } from 'graphql-request'
+import getConfig from 'next/config'
+import { getSdk } from '../graphql'
+import isServer from './isServer'
+const { serverRuntimeConfig } = getConfig()
 
 // URL becomes full url to strapi on server, but just /graphql (for proxy) on client
 const protocol =
   serverRuntimeConfig?.strapiUrl &&
-  (serverRuntimeConfig?.strapiUrl.startsWith('http://') ||
-    serverRuntimeConfig?.strapiUrl.startsWith('https://'))
+  (serverRuntimeConfig?.strapiUrl.startsWith('http://') || serverRuntimeConfig?.strapiUrl.startsWith('https://'))
     ? ''
-    : 'http://';
+    : 'http://'
 
 export const buildUrl = (path: string): string =>
   `${
@@ -19,8 +18,8 @@ export const buildUrl = (path: string): string =>
       : isServer()
       ? ''
       : window.location.origin
-  }${path}`;
+  }${path}`
 
-const gql = new GraphQLClient(buildUrl('/graphql'));
+const gql = new GraphQLClient(buildUrl('/graphql'))
 
-export const client = getSdk(gql);
+export const client = getSdk(gql)

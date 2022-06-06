@@ -1,24 +1,23 @@
-import { useTranslation } from 'next-i18next';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import React from 'react';
-import { SectionItemEntityFragment } from '../../graphql';
-import { hasAttributes, WithAttributes } from '../../utils/isDefined';
-import { isToday } from '../../utils/isToday';
-import Button from '../atoms/Button';
-import Link from '../atoms/Link';
+import { useTranslation } from 'next-i18next'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import React from 'react'
+import { SectionItemEntityFragment } from '../../graphql'
+import { hasAttributes, WithAttributes } from '../../utils/isDefined'
+import { isToday } from '../../utils/isToday'
+import Button from '../atoms/Button'
+import Link from '../atoms/Link'
 
 interface CardProps {
-  sectionItem: WithAttributes<SectionItemEntityFragment>;
-  showTags?: boolean;
+  sectionItem: WithAttributes<SectionItemEntityFragment>
+  showTags?: boolean
 }
 
 export const Card = ({ sectionItem, showTags }: CardProps) => {
-  const { t } = useTranslation();
-  const router = useRouter();
+  const { t } = useTranslation()
+  const router = useRouter()
 
-  const { slug, coverMedia, title, subtitle, tags, perex, dateFrom, dateTo } =
-    sectionItem.attributes;
+  const { slug, coverMedia, title, subtitle, tags, perex, dateFrom, dateTo } = sectionItem.attributes
 
   return (
     <Link href={`/detail/${slug}`} preserveStyle noUnderline>
@@ -42,16 +41,9 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
             {isToday({
               dateFrom: dateFrom as string,
               dateTo: dateTo as string,
-            }) && (
-              <span className="pr-3 text-red-600 uppercase text-nav">
-                {t('common.today')}!
-              </span>
-            )}
+            }) && <span className="pr-3 text-red-600 uppercase text-nav">{t('common.today')}!</span>}
             {tags?.data.filter(hasAttributes).map((tag) => (
-              <Link
-                href={`${router.pathname}/?tags=${tag.attributes.slug}`}
-                key={tag.attributes.slug}
-              >
+              <Link href={`${router.pathname}/?tags=${tag.attributes.slug}`} key={tag.attributes.slug}>
                 {tag.attributes.title}
               </Link>
             ))}
@@ -76,7 +68,7 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
         </Button>
       </article>{' '}
     </Link>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

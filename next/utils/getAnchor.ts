@@ -1,12 +1,10 @@
-import slugify from 'slugify';
-import { isDefined } from './isDefined';
+import slugify from 'slugify'
+import { isDefined } from './isDefined'
 
-export const getAnchor = (
-  text: string | null | undefined
-): string | undefined => {
+export const getAnchor = (text: string | null | undefined): string | undefined => {
   if (isDefined(text)) {
-    return slugify(text);
+    return slugify(text)
   } else {
-    return undefined;
+    return undefined
   }
-};
+}
