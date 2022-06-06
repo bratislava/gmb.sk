@@ -1,11 +1,12 @@
-import { NewsItemFragment } from '@bratislava/strapi-sdk-city-gallery';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { NewsItemEntityFragment } from '../../../graphql';
+import { WithAttributes } from '../../../utils/isDefined';
 import NewsBar from '../NewsBar';
 import Section from './Section';
 
 interface NewsProps {
-  items: NewsItemFragment[];
+  items: WithAttributes<NewsItemEntityFragment>[];
   title?: string;
   anchor?: string;
 }
@@ -18,7 +19,7 @@ const NewsSection = ({ items, title, anchor }: NewsProps) => {
       {items.length ? (
         <>
           {items.map((item) => (
-            <NewsBar key={item.id} newsItem={item} />
+            <NewsBar key={item.attributes?.slug} newsItem={item} />
           ))}
         </>
       ) : (

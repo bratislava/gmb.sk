@@ -1,15 +1,13 @@
-import {
-  PlaceTagFragment,
-  TagFragment,
-} from '@bratislava/strapi-sdk-city-gallery';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { PlaceEntityFragment, TagEntityFragment } from '../../graphql';
+import { WithAttributes } from '../../utils/isDefined';
 import Button from '../atoms/Button';
 import TagGroup from './TagGroup';
 
 interface FiltersProps {
-  tagGroups: TagFragment[][];
-  places?: PlaceTagFragment[];
+  tagGroups: WithAttributes<TagEntityFragment>[][];
+  places?: WithAttributes<PlaceEntityFragment>[];
   activeTags: string[];
   setActiveTags: React.Dispatch<React.SetStateAction<string[]>>;
   activePlaces?: string[];

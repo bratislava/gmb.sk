@@ -1,14 +1,15 @@
 import cx from 'classnames';
-import { ContentPageFragment } from '@bratislava/strapi-sdk-city-gallery';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
+import { ContentPageEntityFragment } from '../../graphql';
 import { LocalStorageEnum } from '../../types/localStorage.d';
+import { WithAttributes } from '../../utils/isDefined';
 import { getEquivalentRouteInTargetLocale } from '../../utils/localeRoutes';
 
 interface AppLangSwitchersProps {
-  contentPage?: ContentPageFragment;
+  contentPage?: WithAttributes<ContentPageEntityFragment>;
 }
 
 const AppLangSwitchers = ({ contentPage }: AppLangSwitchersProps) => {

@@ -1,32 +1,31 @@
-import {
-  ContentPageFragment,
-  ExpositionsByPlaceQuery,
-  TicketPageBySlugQuery,
-} from '@bratislava/strapi-sdk-city-gallery';
 import { GetServerSideProps } from 'next';
 import React from 'react';
 import TicketPage from '../../components/pages/TicketPage';
+import { ExhibitionsByPlaceQuery, TicketPageBySlugQuery } from '../../graphql';
+import { getTodaysDate } from '../../utils/getTodaysDate';
 import { client } from '../../utils/gql';
-import { isDefined } from '../../utils/isDefined';
+import { hasAttributes, withAttributes } from '../../utils/isDefined';
 import { getRouteForLocale } from '../../utils/localeRoutes';
 import { ssrTranslations } from '../../utils/translations';
 
 interface TicketProps {
-  contentPage: NonNullable<ContentPageFragment>;
+  contentPage: TicketPageBySlugQuery['contentPageBySlug'];
   contact: TicketPageBySlugQuery['contact'];
-  currentEvents?: ExpositionsByPlaceQuery['currentEvents'];
+  currentEvents?: ExhibitionsByPlaceQuery['currentEvents'];
 }
 
 const Tickets = ({ contentPage, contact, currentEvents }: TicketProps) => {
-  if (!contentPage) {
+  const contentPageWithAttributes = withAttributes(contentPage?.data);
+
+  if (!contentPage || !contentPageWithAttributes) {
     return null;
   }
 
   return (
     <TicketPage
-      contentPage={contentPage}
-      contactInfo={contact}
-      currentEvents={currentEvents?.filter(isDefined)}
+      contentPage={contentPageWithAttributes}
+      contactInfo={withAttributes(contact?.data)}
+      currentEvents={currentEvents?.data.filter(hasAttributes)}
     />
   );
 };
@@ -38,7 +37,7 @@ export const getServerSideProps: GetServerSideProps<TicketProps> = async ({
   const slug =
     (typeof query.slug === 'string' ? query.slug : query.slug?.join('/')) ?? '';
 
-  const today = new Date().toISOString();
+  const today = getTodaysDate();
 
   const [{ contentPageBySlug: contentPage, contact }, translations] =
     await Promise.all([
@@ -55,7 +54,7 @@ export const getServerSideProps: GetServerSideProps<TicketProps> = async ({
     };
   }
 
-  if (!contentPage?.place?.slug) {
+  if (!contentPage?.data?.attributes?.place?.data?.attributes?.slug) {
     return {
       props: {
         contentPage,
@@ -65,13 +64,13 @@ export const getServerSideProps: GetServerSideProps<TicketProps> = async ({
     };
   }
 
-  const { currentEvents } = await client.ExpositionsByPlace({
+  const { currentEvents } = await client.ExhibitionsByPlace({
     locale: locale,
     slug: slug,
     today,
     tagExhibitions: getRouteForLocale('vystavy', locale),
-    tagExpositions: getRouteForLocale('stale-expozicie', locale),
-    placeSlug: contentPage.place.slug,
+    tagPermanentExhibitions: getRouteForLocale('stale-expozicie', locale),
+    place: contentPage.data?.attributes?.place?.data?.attributes?.slug,
   });
 
   return {

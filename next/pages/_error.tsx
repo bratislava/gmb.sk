@@ -1,7 +1,8 @@
-import { ErrorPageQuery } from '@bratislava/strapi-sdk-city-gallery';
 import { GetServerSideProps, NextPage } from 'next';
 import ErrorPage from '../components/pages/ErrorPage';
+import { ErrorPageQuery } from '../graphql';
 import { client } from '../utils/gql';
+import { withAttributes } from '../utils/isDefined';
 import { ssrTranslations } from '../utils/translations';
 
 interface ErrorProps {
@@ -14,7 +15,12 @@ const Error: NextPage<ErrorProps> = ({ contact, statusCode }: ErrorProps) => {
     return null;
   }
 
-  return <ErrorPage contactInfo={contact} statusCode={statusCode} />;
+  return (
+    <ErrorPage
+      contactInfo={withAttributes(contact.data)}
+      statusCode={statusCode}
+    />
+  );
 };
 
 export const getServerSideProps: GetServerSideProps<ErrorProps> = async ({

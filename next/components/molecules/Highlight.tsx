@@ -1,19 +1,19 @@
-import { HighlightsItemFragment } from '@bratislava/strapi-sdk-city-gallery';
-import { getContentPageColor } from 'apps/next/city-gallery/utils/getContentPageColor';
-import { isDefined } from 'apps/next/city-gallery/utils/isDefined';
 import cx from 'classnames';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { HighlightsItemEntityFragment } from '../../graphql';
+import { getContentPageColor } from '../../utils/getContentPageColor';
+import { isDefined, WithAttributes } from '../../utils/isDefined';
 import { getRouteForLocale } from '../../utils/localeRoutes';
 import Button from '../atoms/Button';
 import { SidePanelTime } from '../atoms/SidePanelTime';
 import SidePanel from './SidePanel';
 
 interface HighlightProps {
-  highlight: HighlightsItemFragment;
+  highlight: WithAttributes<HighlightsItemEntityFragment>;
 }
 
 const Highlight = ({ highlight }: HighlightProps) => {
@@ -33,22 +33,22 @@ const Highlight = ({ highlight }: HighlightProps) => {
     override,
     perex,
     purchaseId,
-  } = highlight;
+  } = highlight.attributes;
 
   gsap.registerPlugin(ScrollTrigger);
 
   React.useEffect(() => {
-    gsap.to(`#header${highlight.id}`, {
+    gsap.to(`#header${highlight.attributes?.slug}`, {
       bottom: '100vh',
       ease: 'none',
       scrollTrigger: {
-        trigger: `#paralaxAnchor${highlight.id}`,
+        trigger: `#paralaxAnchor${highlight.attributes?.slug}`,
         start: 'bottom bottom',
         end: 'bottom top',
         scrub: 0,
       },
     });
-  }, [highlight.id]);
+  }, [highlight.attributes?.slug]);
 
   const renderSidePanel =
     placeAddress ||
@@ -66,13 +66,16 @@ const Highlight = ({ highlight }: HighlightProps) => {
     <>
       <article
         className="sticky top-0 w-full h-screen max-h-screen mb-0 overflow-hidden cursor-pointer lg:max-h-full bottom-full lg:mb-auto group"
-        onClick={() => router.push(`/detail/${highlight.slug}`)}
+        onClick={() => router.push(`/detail/${highlight.attributes.slug}`)}
       >
         <div className="relative flex items-center justify-center w-full h-screen bg-gmbLightGray lg:h-full">
-          {highlight?.coverMedia?.url && (
+          {highlight?.attributes.coverMedia?.data?.attributes?.url && (
             <img
-              src={highlight.coverMedia.url}
-              alt={highlight.coverMedia.alternativeText ?? ''}
+              src={highlight.attributes.coverMedia.data.attributes.url}
+              alt={
+                highlight.attributes.coverMedia.data.attributes
+                  .alternativeText ?? ''
+              }
               className="object-cover w-full h-full"
             />
           )}
@@ -86,8 +89,10 @@ const Highlight = ({ highlight }: HighlightProps) => {
           style={{ background: getContentPageColor(highlight) }}
         >
           <hgroup>
-            <h1 className="text-xxl">{highlight?.title}</h1>
-            <p className="font-regular text-xxl">{highlight?.subtitle}</p>
+            <h1 className="text-xxl">{highlight.attributes.title}</h1>
+            <p className="font-regular text-xxl">
+              {highlight.attributes.subtitle}
+            </p>
           </hgroup>
 
           <div
@@ -119,10 +124,10 @@ const Highlight = ({ highlight }: HighlightProps) => {
                   {t('common.buyTickets')}
                 </Button>
               )}
-              {(placeTitle || place?.title) && (
+              {(placeTitle || place?.data?.attributes?.title) && (
                 <div className="flex items-center justify-center flex-1">
                   <span className="uppercase">
-                    {placeTitle || place?.title}
+                    {placeTitle || place?.data?.attributes?.title}
                   </span>
                 </div>
               )}
@@ -130,7 +135,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
           </div>
 
           <Button
-            href={`/detail/${highlight.slug}`}
+            href={`/detail/${highlight.attributes.slug}`}
             className="hidden group-hover:text-white group-hover:bg-gmbDark lg:flex"
           >
             {t('common.detail')}

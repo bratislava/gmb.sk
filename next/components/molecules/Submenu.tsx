@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
-import { ReactComponent as ArrowDown } from '../../assets/icons/chevron-down.svg';
+import ArrowDown from '../../assets/icons/chevron-down.svg';
 import { getAnchor } from '../../utils/getAnchor';
 import Button from '../atoms/Button';
 import Link from '../atoms/Link';

@@ -1,14 +1,10 @@
-import {
-  CollectionPageQuery,
-  HomePageQuery,
-  NewsQuery,
-} from '@bratislava/strapi-sdk-city-gallery';
 import { GetServerSideProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import Page from '../components/pages/Page';
+import { CollectionPageQuery, HomePageQuery, NewsQuery } from '../graphql';
 import { client } from '../utils/gql';
-import { isDefined } from '../utils/isDefined';
+import { hasAttributes, withAttributes } from '../utils/isDefined';
 import { ssrTranslations } from '../utils/translations';
 
 interface CollectionProps {
@@ -32,8 +28,8 @@ export function Collection({
     <Page
       page={collectionsPage}
       title={t('navigation.collections')}
-      contactInfo={contact}
-      newsItems={news?.filter(isDefined)}
+      contactInfo={withAttributes(contact?.data)}
+      newsItems={news?.data.filter(hasAttributes)}
     />
   );
 }

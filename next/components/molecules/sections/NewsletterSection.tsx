@@ -15,8 +15,8 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
   const { t } = useTranslation();
   const [email, setEmail] = React.useState('');
   const [agree, setAgree] = React.useState(false);
-  const [emailError, setEmailError] = React.useState(null);
-  const [agreeError, setAgreeError] = React.useState(null);
+  const [emailError, setEmailError] = React.useState<string | null>(null);
+  const [agreeError, setAgreeError] = React.useState<string | null>(null);
 
   const clear = () => {
     setEmail('');

@@ -17,19 +17,20 @@ export const ssrTranslations = async (
 ): Promise<SSRConfig> => {
   const locale = ctx?.locale ?? 'sk';
   const namespaceString = (namespaces || []).join('-');
+  // @ts-ignore
   const cachedValue = cachedSsrTranslations[locale][namespaceString];
   if (cachedValue) {
     console.log(`Loading translations under cache key: ${namespaceString}`);
     return cachedValue;
   }
-  const { i18n, localePath, reloadOnPrerender } = cfg(null, {
+  const { i18n, reloadOnPrerender } = cfg(null, {
     defaultConfig: {},
   });
   const result = await serverSideTranslations(locale, namespaces, {
     i18n,
-    localePath,
     reloadOnPrerender,
   });
+  // @ts-ignore
   cachedSsrTranslations[locale][namespaceString] = result;
   return result;
 };

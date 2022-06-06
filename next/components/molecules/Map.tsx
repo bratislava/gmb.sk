@@ -1,18 +1,18 @@
-import { ContactAndFooterFragment } from '@bratislava/strapi-sdk-city-gallery';
 import cx from 'classnames';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useTranslation } from 'next-i18next';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Mapbox, { MapRef, Marker } from 'react-map-gl';
 import { usePreviousImmediate } from 'rooks';
-import { ReactComponent as GmbLogoIcon } from '../../assets/icons/map-icons/gmb-logo.svg';
-import { ReactComponent as MirbachovPalacIcon } from '../../assets/icons/map-icons/mirbachov-palac.svg';
-import { ReactComponent as PalffyhoPalacIcon } from '../../assets/icons/map-icons/palffyho-palac.svg';
+import GmbLogoIcon from '../../assets/icons/map-icons/gmb-logo.svg';
+import MirbachovPalacIcon from '../../assets/icons/map-icons/mirbachov-palac.svg';
+import PalffyhoPalacIcon from '../../assets/icons/map-icons/palffyho-palac.svg';
+import { ContactEntityFragment } from '../../graphql';
 import Link from '../atoms/Link';
 
 interface MapProps {
   mapboxAccessToken: string;
-  contactInfo?: ContactAndFooterFragment;
+  contactInfo?: ContactEntityFragment;
 }
 
 type TabKey = 'mhd' | 'bike' | 'car';
@@ -87,18 +87,18 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
         'https://www.google.com/maps/place/Gal%C3%A9ria+mesta+Bratislavy/@48.1448145,17.1078506,21z/data=!4m5!3m4!1s0x476c895ccb7fc10d:0xb128b708bec5bdcf!8m2!3d48.1447836!4d17.1078744',
       descriptionSections: [
         {
-          text: contactInfo?.mirbach?.title,
+          text: contactInfo?.attributes?.mirbach?.title,
         },
         {
-          text: `${contactInfo?.mirbach?.address} / ${contactInfo?.mirbach?.zip} ${contactInfo?.mirbach?.city}`,
+          text: `${contactInfo?.attributes?.mirbach?.address} / ${contactInfo?.attributes?.mirbach?.zip} ${contactInfo?.attributes?.mirbach?.city}`,
         },
         {
           title: t('common.openingHours'),
-          text: contactInfo?.openingHours,
+          text: contactInfo?.attributes?.openingHours,
         },
         {
           title: t('common.contact'),
-          text: contactInfo?.mirbach?.phone,
+          text: contactInfo?.attributes?.mirbach?.phone,
         },
         {
           title: t('map.virtualTour'),
@@ -114,18 +114,18 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
         'https://www.google.com/maps/place/Gal%C3%A9ria+mesta+Bratislavy/@48.1422218,17.1069777,20.77z/data=!3m1!5s0x476c8942afadda65:0x4baacd9ceb6cb32e!4m5!3m4!1s0x476c8942b13a89cf:0xc49fbc0f1319519e!8m2!3d48.1422134!4d17.1071462',
       descriptionSections: [
         {
-          text: contactInfo?.palffy?.title,
+          text: contactInfo?.attributes?.palffy?.title,
         },
         {
-          text: `${contactInfo?.palffy?.address} / ${contactInfo?.palffy?.zip} ${contactInfo?.palffy?.city}`,
+          text: `${contactInfo?.attributes?.palffy?.address} / ${contactInfo?.attributes?.palffy?.zip} ${contactInfo?.attributes?.palffy?.city}`,
         },
         {
           title: t('common.openingHours'),
-          text: contactInfo?.openingHours,
+          text: contactInfo?.attributes?.openingHours,
         },
         {
           title: t('common.contact'),
-          text: contactInfo?.palffy?.phone,
+          text: contactInfo?.attributes?.palffy?.phone,
         },
         {
           title: t('map.virtualTour'),

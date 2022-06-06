@@ -1,13 +1,14 @@
-import { SectionItemFragment } from '@bratislava/strapi-sdk-city-gallery';
 import cx from 'classnames';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { SectionItemEntityFragment } from '../../../graphql';
+import { WithAttributes } from '../../../utils/isDefined';
 import Card from '../Card';
 import CardSkeleton from '../CardSkeleton';
 import Section from './Section';
 interface CardsSectionProps {
   title?: string;
-  sectionItems?: SectionItemFragment[];
+  sectionItems?: WithAttributes<SectionItemEntityFragment>[];
   anchor?: string;
   showTags?: boolean;
   isLoading?: boolean;
@@ -54,7 +55,11 @@ const CardSection = ({
             )}
           >
             {sectionItems.map((item) => (
-              <Card key={item.id} sectionItem={item} showTags={showTags} />
+              <Card
+                key={item.attributes.slug}
+                sectionItem={item}
+                showTags={showTags}
+              />
             ))}
           </div>
 

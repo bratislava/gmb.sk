@@ -1,6 +1,6 @@
-import { ContentPageFragment } from '@bratislava/strapi-sdk-city-gallery';
+import { ContentPageEntityFragment } from '../graphql';
 import { getKeyByValue } from './getKeyByValue';
-import { isDefined } from './isDefined';
+import { hasAttributes, isDefined, WithAttributes } from './isDefined';
 
 const routesSkToEn = {
   // Routes
@@ -56,40 +56,40 @@ function isRoute(maybeRoute: string): maybeRoute is Route {
 }
 
 function getContentPageDetailRouteForTargetLocale(
-  contentPageLocalizations: ContentPageFragment['localizations'],
+  contentPageLocalizations: WithAttributes<ContentPageEntityFragment>['attributes']['localizations'],
   targetLocale: string
 ) {
-  const contentPageInTargetLocale = contentPageLocalizations
-    ?.filter(isDefined)
-    .find((localization) => localization.locale === targetLocale);
+  const contentPageInTargetLocale = contentPageLocalizations?.data
+    ?.filter(hasAttributes)
+    .find((localization) => localization.attributes.locale === targetLocale);
 
-  return `/detail/${contentPageInTargetLocale?.slug}`;
+  return `/detail/${contentPageInTargetLocale?.attributes.slug}`;
 }
 
 function getContentPageTicketsRouteForTargetLocale(
-  contentPageLocalizations: ContentPageFragment['localizations'],
+  contentPageLocalizations: WithAttributes<ContentPageEntityFragment>['attributes']['localizations'],
   targetLocale: string
 ) {
-  const contentPageInTargetLocale = contentPageLocalizations
-    ?.filter(isDefined)
-    .find((localization) => localization.locale === targetLocale);
+  const contentPageInTargetLocale = contentPageLocalizations?.data
+    ?.filter(hasAttributes)
+    .find((localization) => localization.attributes.locale === targetLocale);
 
   const ticketsRoute = getRouteForLocale('/vstupenky', targetLocale);
 
-  return `${ticketsRoute}/${contentPageInTargetLocale?.slug}`;
+  return `${ticketsRoute}/${contentPageInTargetLocale?.attributes.slug}`;
 }
 
 export function getEquivalentRouteInTargetLocale(
   pathname: string,
   targetLocale: string,
-  contentPage: ContentPageFragment | undefined
+  contentPage: WithAttributes<ContentPageEntityFragment> | undefined
 ) {
   const isDetailRoute =
     pathname.startsWith('/detail') && isDefined(contentPage);
 
   if (isDetailRoute) {
     return getContentPageDetailRouteForTargetLocale(
-      contentPage.localizations,
+      contentPage.attributes.localizations,
       targetLocale
     );
   }
@@ -100,7 +100,7 @@ export function getEquivalentRouteInTargetLocale(
 
   if (isTicketsRoute) {
     return getContentPageTicketsRouteForTargetLocale(
-      contentPage.localizations,
+      contentPage.attributes.localizations,
       targetLocale
     );
   }

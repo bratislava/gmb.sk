@@ -1,11 +1,11 @@
-import { ContactAndFooterFragment } from '@bratislava/strapi-sdk-city-gallery';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { ContactEntityFragment } from '../../../graphql';
 import Map from '../Map';
 import Section from './Section';
 
 interface IMapSectionProps {
-  contactInfo?: ContactAndFooterFragment;
+  contactInfo?: ContactEntityFragment;
   title?: string;
   anchor?: string;
 }

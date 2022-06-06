@@ -1,4 +1,3 @@
-import { SliderMediaFragment } from '@bratislava/strapi-sdk-city-gallery';
 import cx from 'classnames';
 import Image from 'next/image';
 import React from 'react';
@@ -8,9 +7,11 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { NavigationOptions } from 'swiper/types';
+import { ImageEntityFragment } from '../../graphql';
+import { WithAttributes } from '../../utils/isDefined';
 
 interface ImgSwiperProps {
-  slides?: SliderMediaFragment[];
+  slides?: WithAttributes<ImageEntityFragment>[];
   anchor?: string;
 }
 
@@ -48,13 +49,13 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
       className="w-full h-[300px] md:h-[450px] lg:h-[600px]"
       id={anchor}
     >
-      {slides?.map((item) => (
-        <SwiperSlide key={item.id}>
+      {slides?.map((item, index) => (
+        <SwiperSlide key={index}>
           <Image
-            src={item.url}
+            src={item.attributes.url}
             layout="fill"
             objectFit="cover"
-            alt={item.alternativeText ?? ''}
+            alt={item.attributes.alternativeText ?? ''}
             unoptimized
           />
         </SwiperSlide>

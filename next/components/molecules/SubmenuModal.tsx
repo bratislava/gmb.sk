@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { ReactComponent as CloseIcon } from '../../assets/icons/close-x.svg';
+import CloseIcon from '../../assets/icons/close-x.svg';
 import { getAnchor } from '../../utils/getAnchor';
 import Link from '../atoms/Link';
 

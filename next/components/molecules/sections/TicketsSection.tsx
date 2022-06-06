@@ -1,12 +1,13 @@
 import cx from 'classnames';
 import React from 'react';
-import { Ticket as TicketProps } from '../../../types/ticket';
+import { TicketEntityFragment } from '../../../graphql';
+import { WithAttributes } from '../../../utils/isDefined';
 import CityGalleryMarkdown from '../../atoms/CityGalleryMarkdown';
 import Ticket from '../Ticket/Ticket';
 import Section from './Section';
 
 interface TicketsSectionProps {
-  tickets: TicketProps[];
+  tickets: WithAttributes<TicketEntityFragment>[];
   title?: string;
   text?: string;
   anchor?: string;
@@ -31,11 +32,11 @@ const TicketsSection = ({
         <div className="flex flex-wrap justify-between mt-24 lg:justify-stretch lg:flex-nowrap">
           {tickets?.map((ticket) => (
             <Ticket
-              key={ticket.price}
-              title={ticket.title}
-              price={ticket.price}
-              description={ticket.description}
-              link={ticket.link}
+              key={ticket.attributes.price}
+              title={ticket.attributes.title}
+              price={ticket.attributes.price}
+              description={ticket.attributes.description}
+              link={ticket.attributes.link}
             />
           ))}
         </div>

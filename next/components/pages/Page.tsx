@@ -1,18 +1,23 @@
-import {
-  AboutUsPageQuery,
-  CollectionPageQuery,
-  ContactAndFooterFragment,
-  GetInvolvedPageQuery,
-  HomePageQuery,
-  NewsItemFragment,
-  VisitUsPageQuery,
-} from '@bratislava/strapi-sdk-city-gallery';
 import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
 import React from 'react';
-import { Ticket } from '../../types/ticket';
+import {
+  AboutUsPageQuery,
+  CollectionPageQuery,
+  ContactEntityFragment,
+  GetInvolvedPageQuery,
+  HomePageQuery,
+  NewsItemEntityFragment,
+  TicketEntityFragment,
+  VisitUsPageQuery,
+} from '../../graphql';
 import { getAnchor } from '../../utils/getAnchor';
-import { isDefined } from '../../utils/isDefined';
+import {
+  hasAttributes,
+  isDefined,
+  WithAttributes,
+  withAttributes,
+} from '../../utils/isDefined';
 import Footer from '../molecules/Footer';
 import Highlight from '../molecules/Highlight';
 import ContactSection from '../molecules/sections/ContactSection';
@@ -23,23 +28,30 @@ import PageSectionContainer from '../molecules/sections/PageSectionContainer';
 import PartnersSection from '../molecules/sections/PartnersSection';
 import RichtextSection from '../molecules/sections/RichtextSection';
 import TicketsSection from '../molecules/sections/TicketsSection';
-import Submenu from '../molecules/Submenu';
 
 interface PageProps {
   page:
-    | AboutUsPageQuery['aboutPage']
+    | AboutUsPageQuery['aboutUsPage']
     | GetInvolvedPageQuery['getInvolvedPage']
     | VisitUsPageQuery['visitUsPage']
     | CollectionPageQuery['collectionsPage']
-    | HomePageQuery['homepage'];
+    | HomePageQuery['homePage'];
   title: string;
-  contactInfo?: ContactAndFooterFragment | null;
-  newsItems?: NewsItemFragment[] | null;
-  tickets?: Ticket[] | null;
+  contactInfo?: WithAttributes<ContactEntityFragment> | null;
+  newsItems?: WithAttributes<NewsItemEntityFragment>[] | null;
+  tickets?: WithAttributes<TicketEntityFragment>[] | null;
 }
 
-const Page = ({ page, title, contactInfo, newsItems, tickets }: PageProps) => {
+const Page = ({
+  page: pageResponse,
+  title,
+  contactInfo,
+  newsItems,
+  tickets,
+}: PageProps) => {
   const { t } = useTranslation();
+
+  const page = pageResponse?.data?.attributes;
 
   return (
     <>
@@ -62,19 +74,19 @@ const Page = ({ page, title, contactInfo, newsItems, tickets }: PageProps) => {
         )}
       </Head>
 
-      {page?.highlights?.contentPages?.filter(isDefined).map((item) => (
-        <Highlight key={item.id} highlight={item} />
-      ))}
+      {page?.highlights?.contentPages?.data
+        .filter(hasAttributes)
+        .map((item) => (
+          <Highlight key={item.attributes?.slug} highlight={item} />
+        ))}
 
-      {page?.sections && (
+      {/* {page?.sections && (
         <Submenu
-          items={page?.sections
-            .filter(isDefined)
-            .filter(isDefined)
-            .filter((section) => section.submenuTitle)
+          items={page.sections
+            .filter((section) => section?.submenuTitle)
             .map((section) => section.submenuTitle!)}
         />
-      )}
+      )} */}
 
       {page?.sections
         ?.filter(isDefined)
@@ -96,18 +108,18 @@ const Page = ({ page, title, contactInfo, newsItems, tickets }: PageProps) => {
 
           if (
             section.__typename === 'ComponentSectionsContactSection' &&
-            contactInfo
+            hasAttributes(contactInfo)
           ) {
             return (
               <ContactSection
-                contactInfo={contactInfo}
+                contactInfo={withAttributes(contactInfo)}
                 anchor={getAnchor(section.submenuTitle)}
                 key={index}
               />
             );
           }
 
-          if (section.__typename === 'ComponentSectionsNewsletter') {
+          if (section.__typename === 'ComponentSectionsNewsletterSection') {
             return (
               <NewsletterSection
                 anchor={getAnchor(section.submenuTitle)}
@@ -164,10 +176,13 @@ const Page = ({ page, title, contactInfo, newsItems, tickets }: PageProps) => {
           }
         })}
 
-      {page?.__typename === 'Homepage' && page?.partnersSection ? (
+      {pageResponse?.__typename === 'HomePageEntityResponse' &&
+      pageResponse.data?.attributes?.partnersSection ? (
         <PartnersSection
           title={t('common.partners')}
-          partners={page?.partnersSection?.partners?.filter(isDefined)}
+          partners={pageResponse.data?.attributes?.partnersSection?.partners?.data.filter(
+            hasAttributes
+          )}
         />
       ) : null}
 

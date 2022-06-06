@@ -1,12 +1,16 @@
-import {
-  ContactAndFooterFragment,
-  ExplorePageQuery,
-  TagFragment,
-} from '@bratislava/strapi-sdk-city-gallery';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { isDefined } from '../../utils/isDefined';
+import {
+  ContactEntityFragment,
+  ExplorePageQuery,
+  TagEntityFragment,
+} from '../../graphql';
+import {
+  hasAttributes,
+  isDefined,
+  WithAttributes,
+} from '../../utils/isDefined';
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags';
 import Button from '../atoms/Button';
 import Filters from '../molecules/Filters';
@@ -18,10 +22,10 @@ import Submenu from '../molecules/Submenu';
 
 interface ExplorePageProps {
   explorePage: ExplorePageQuery['explorePage'];
-  contactInfo?: ContactAndFooterFragment | null;
-  tagsTypes?: TagFragment[];
-  tagsProjects?: TagFragment[];
-  tagsOthers?: TagFragment[];
+  contactInfo?: WithAttributes<ContactEntityFragment> | null;
+  tagsTypes?: WithAttributes<TagEntityFragment>[];
+  tagsProjects?: WithAttributes<TagEntityFragment>[];
+  tagsOthers?: WithAttributes<TagEntityFragment>[];
 }
 
 const ExplorePage = ({
@@ -63,9 +67,11 @@ const ExplorePage = ({
 
   return (
     <>
-      {explorePage?.highlights?.contentPages?.filter(isDefined).map((item) => (
-        <Highlight key={item.id} highlight={item} />
-      ))}
+      {explorePage?.data?.attributes?.highlights?.contentPages?.data
+        .filter(hasAttributes)
+        .map((item) => (
+          <Highlight key={item.id} highlight={item} />
+        ))}
       <Submenu
         filters={
           <Filters

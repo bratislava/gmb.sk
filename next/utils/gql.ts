@@ -1,8 +1,8 @@
 import { GraphQLClient } from 'graphql-request';
-import { getSdk } from '@bratislava/strapi-sdk-city-gallery';
 import getConfig from 'next/config';
-const { serverRuntimeConfig } = getConfig();
+import { getSdk } from '../graphql';
 import isServer from './isServer';
+const { serverRuntimeConfig } = getConfig();
 
 // URL becomes full url to strapi on server, but just /graphql (for proxy) on client
 const protocol =
@@ -24,22 +24,3 @@ export const buildUrl = (path: string): string =>
 const gql = new GraphQLClient(buildUrl('/graphql'));
 
 export const client = getSdk(gql);
-
-export const getTestCollections = async () => {
-  console.log('client', client);
-  try {
-    return fetch(buildUrl('/test-collections')).then((res) => res.json());
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
-};
-
-export const getEntertainment = async () => {
-  try {
-    return fetch(buildUrl('/entertainments')).then((res) => res.json());
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
-};

@@ -1,14 +1,14 @@
 import cx from 'classnames';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { ReactComponent as FBLogo } from '../../assets/icons/FB.svg';
+import FBLogo from '../../assets/icons/FB.svg';
 import Link from './Link';
 
 interface ShareButtonProps {
   slug: string;
-  /**If platform is `'email'`, `title` attribute should be set */
+  /* If platform is `'email'`, `title` attribute should be set */
   platform: Platform;
-  /**Title is used only for e-mail links (as e-mail subject) */
+  /* Title is used only for e-mail links (as e-mail subject) */
   title?: string;
   className?: string;
 }
@@ -43,7 +43,7 @@ const ShareButton = ({
     email: 'EM',
     twitter: 'TW',
     whatsapp: 'WA',
-    linkedin: `LI`,
+    linkedin: 'LI',
   }[platform];
 
   return (

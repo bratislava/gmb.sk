@@ -1,7 +1,7 @@
-import { DatetimeFragment } from '@bratislava/strapi-sdk-city-gallery';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { ReactComponent as TimeIcon } from '../../assets/icons/time.svg';
+import TimeIcon from '../../assets/icons/time.svg';
+import { DatetimeFragment } from '../../graphql';
 import { formatDateString } from '../../utils/formatDateString';
 import { formatTimeString } from '../../utils/formatTimeString';
 
@@ -20,16 +20,9 @@ export const SidePanelTime = ({
 
   const { dateFrom, dateTo, timeFrom, timeTo } = datetime;
 
-  const isTimeDefined = (time: string) => time && time.slice(0, 5) !== '00:00';
-
   const locale = i18n.language;
 
-  if (
-    !dateFrom &&
-    !dateTo &&
-    !isTimeDefined(timeFrom) &&
-    !isTimeDefined(timeTo)
-  ) {
+  if (!dateFrom && !dateTo && !timeFrom && !timeTo) {
     return null;
   }
 
@@ -44,9 +37,9 @@ export const SidePanelTime = ({
             {dateTo && formatDateString(dateTo, locale)}
           </span>
           <span>
-            {isTimeDefined(timeFrom) && formatTimeString(timeFrom)}
-            {isTimeDefined(timeTo) && ' - '}
-            {isTimeDefined(timeTo) && formatTimeString(timeTo)}
+            {timeFrom && formatTimeString(timeFrom)}
+            {timeTo && ' - '}
+            {timeTo && formatTimeString(timeTo)}
           </span>
         </time>
       </div>
@@ -68,11 +61,9 @@ export const SidePanelTime = ({
           )}
           {dateTo && <span>{formatDateString(dateTo, locale)}</span>}
           <div>
-            {isTimeDefined(timeFrom) && (
-              <span>{formatTimeString(timeFrom)}</span>
-            )}
-            {isTimeDefined(timeTo) && ' - '}
-            {isTimeDefined(timeTo) && <span>{formatTimeString(timeTo)}</span>}
+            {timeFrom && <span>{formatTimeString(timeFrom)}</span>}
+            {timeTo && ' - '}
+            {timeTo && <span>{formatTimeString(timeTo)}</span>}
           </div>
         </time>
       </div>

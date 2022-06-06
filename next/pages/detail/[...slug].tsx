@@ -1,21 +1,29 @@
-// @ts-strict-ignore
-import {
-  ContactAndFooterFragment,
-  ContentPageFragment,
-} from '@bratislava/strapi-sdk-city-gallery';
 import { GetServerSideProps } from 'next';
 import React from 'react';
 import DetailPage from '../../components/pages/DetailPage';
+import { ContentPageBySlugQuery } from '../../graphql';
 import { client } from '../../utils/gql';
+import { withAttributes } from '../../utils/isDefined';
 import { ssrTranslations } from '../../utils/translations';
 
 interface DetailProps {
-  contentPage: NonNullable<ContentPageFragment>;
-  contact: ContactAndFooterFragment;
+  contentPage: ContentPageBySlugQuery['contentPageBySlug'];
+  contact: ContentPageBySlugQuery['contact'];
 }
 
 const Detail = ({ contentPage, contact }: DetailProps) => {
-  return <DetailPage contentPage={contentPage} contactInfo={contact} />;
+  const contentPageWithAttributes = withAttributes(contentPage?.data);
+
+  if (!contentPage || !contentPageWithAttributes) {
+    return null;
+  }
+
+  return (
+    <DetailPage
+      contentPage={contentPageWithAttributes}
+      contactInfo={withAttributes(contact?.data)}
+    />
+  );
 };
 
 export const getServerSideProps: GetServerSideProps<DetailProps> = async ({
@@ -23,7 +31,7 @@ export const getServerSideProps: GetServerSideProps<DetailProps> = async ({
   locale,
 }) => {
   const slug =
-    typeof query.slug === 'string' ? query.slug : query.slug?.join('/');
+    (typeof query.slug === 'string' ? query.slug : query.slug?.join('/')) ?? '';
 
   const [{ contentPageBySlug: contentPage, contact }, translations] =
     await Promise.all([

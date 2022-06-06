@@ -1,8 +1,8 @@
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import Head from 'next/head';
-import { ssrTranslations } from '../utils/translations';
 import { GetServerSideProps } from 'next';
+import { useTranslation } from 'next-i18next';
+import Head from 'next/head';
+import React from 'react';
+import { ssrTranslations } from '../utils/translations';
 
 export function DisclosureOfInformation() {
   const { t } = useTranslation();
@@ -12,7 +12,7 @@ export function DisclosureOfInformation() {
       <Head>
         <title>{t('footer.disclosureOfInformation')}</title>
       </Head>
-      <h1 className="text-xxl m-6 lg:m-9 3xl:m-12">
+      <h1 className="m-6 text-xxl lg:m-9 3xl:m-12">
         {t('footer.disclosureOfInformation')}
       </h1>
       <div className="m-6 lg:m-9 3xl:m-12">
@@ -30,6 +30,8 @@ export const getServerSideProps: GetServerSideProps = async ({
   locale = 'sk',
 }) => {
   const translations = await ssrTranslations({ locale }, ['common']);
+
+  console.log(translations);
 
   return {
     props: {

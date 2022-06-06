@@ -1,0 +1,399 @@
+fragment ImageEntity on UploadFileEntity {
+  attributes {
+    url
+    alternativeText
+    width
+    height
+  }
+}
+
+fragment TicketEntity on TicketEntity {
+  attributes {
+    title
+    price
+    link
+    description
+  }
+}
+
+fragment PartnerEntity on PartnerEntity {
+  attributes {
+    title
+    logo {
+      data {
+        ...ImageEntity
+      }
+    }
+    link
+  }
+}
+
+fragment TagEntity on TagEntity {
+  attributes {
+    title
+    slug
+  }
+}
+
+fragment PlaceEntity on PlaceEntity {
+  attributes {
+    title
+    address
+    slug
+  }
+}
+
+fragment Position on ComponentBlocksPositionItem {
+  title
+  names
+}
+
+fragment Datetime on ContentPage {
+  dateFrom
+  dateTo
+  timeFrom
+  timeTo
+  showRemainingTime
+}
+
+fragment ContentPagePlace on ContentPage {
+  place {
+    data {
+      ...PlaceEntity
+    }
+  }
+  placeTitle
+  placeAddress
+}
+
+fragment Positions on ContentPage {
+  positions {
+    ...Position
+  }
+}
+
+fragment Partners on ContentPage {
+  partners {
+    data {
+      ...PartnerEntity
+    }
+  }
+}
+
+fragment SliderSection on ComponentSectionsSliderSection {
+  id
+  submenuTitle
+  medias {
+    data {
+      ...ImageEntity
+    }
+  }
+}
+
+fragment Seo on ComponentBlocksSeo {
+  metaTitle
+  metaDescription
+  keywords
+  metaRobots
+  metaViewport
+  canonicalUrl
+}
+
+fragment ContentPageEntity on ContentPageEntity {
+  id
+  attributes {
+    title
+    subtitle
+    slug
+    coverMedia {
+      data {
+        attributes {
+          url
+          alternativeText
+        }
+      }
+    }
+    perex
+    color
+    inheritColorFromParent
+    ...Datetime
+    ...ContentPagePlace
+    ...Positions
+    ...Partners
+    purchaseId
+    mainContent {
+      ...MainContent
+    }
+    slider {
+      ...SliderSection
+    }
+    relatedContentTitle
+    relatedContentSubmenuTitle
+    downloadSection {
+      ...DownloadSection
+    }
+    parentPage {
+      data {
+        attributes {
+          color
+        }
+      }
+    }
+    childPages {
+      data {
+        attributes {
+          ...SectionItem
+        }
+      }
+    }
+    tags {
+      data {
+        ...TagEntity
+      }
+    }
+    seo {
+      ...Seo
+    }
+    localizations {
+      data {
+        attributes {
+          slug
+          locale
+        }
+      }
+    }
+  }
+}
+
+fragment NewsItem on ContentPage {
+  title
+  subtitle
+  slug
+  color
+  inheritColorFromParent
+  parentPage {
+    data {
+      attributes {
+        color
+      }
+    }
+  }
+}
+
+fragment NewsItemEntity on ContentPageEntity {
+  id
+  attributes {
+    ...NewsItem
+  }
+}
+
+fragment SectionItem on ContentPage {
+  ...NewsItem
+  perex
+  coverMedia {
+    data {
+      attributes {
+        alternativeText
+        url
+      }
+    }
+  }
+  dateFrom
+  dateTo
+  tags {
+    data {
+      ...TagEntity
+    }
+  }
+}
+
+fragment SectionItemEntity on ContentPageEntity {
+  id
+  attributes {
+    ...SectionItem
+  }
+}
+
+fragment HighlightsItem on ContentPage {
+  ...SectionItem
+  ...Datetime
+  ...ContentPagePlace
+  ...Positions
+  purchaseId
+  override {
+    highlightContent
+  }
+}
+
+fragment HighlightsItemEntity on ContentPageEntity {
+  id
+  attributes {
+    ...HighlightsItem
+  }
+}
+
+fragment Highlights on ComponentSectionsHighlightsSection {
+  contentPages {
+    data {
+      ...HighlightsItemEntity
+    }
+  }
+}
+
+fragment DownloadItem on ComponentBlocksFileItem {
+  id
+  title
+  file {
+    data {
+      attributes {
+        name
+        caption
+        alternativeText
+        ext
+        size
+        url
+      }
+    }
+  }
+}
+
+fragment PalaceDetails on ComponentBlocksPalace {
+  title
+  address
+  zip
+  city
+  phone
+}
+
+fragment ContactEntity on ContactEntity {
+  attributes {
+    name
+    email
+    openingHours
+    mirbach {
+      ...PalaceDetails
+    }
+    palffy {
+      ...PalaceDetails
+    }
+    quickLinks {
+      title
+      url
+    }
+  }
+}
+
+fragment ContactSection on ComponentSectionsContactSection {
+  id
+  submenuTitle
+}
+
+fragment PageSection on ComponentSectionsPageSection {
+  id
+  title
+  submenuTitle
+  layout
+  contentPages {
+    data {
+      attributes {
+        ...SectionItem
+      }
+    }
+  }
+}
+
+fragment NewsSection on ComponentSectionsNewsSection {
+  id
+  title
+  submenuTitle
+}
+
+fragment NewsletterSection on ComponentSectionsNewsletterSection {
+  id
+  submenuTitle
+}
+
+fragment RichtextSection on ComponentSectionsRichtextSection {
+  id
+  submenuTitle
+  content
+}
+
+fragment VideoSection on ComponentSectionsVideoSection {
+  id
+  title
+  submenuTitle
+  url
+}
+
+fragment TicketsSection on ComponentSectionsTicketsSection {
+  id
+  title
+  submenuTitle
+  text
+}
+
+fragment MapSection on ComponentSectionsMapSection {
+  id
+  title
+  submenuTitle
+}
+
+fragment DownloadSection on ComponentSectionsDownloadSection {
+  id
+  title
+  submenuTitle
+  files {
+    ...DownloadItem
+  }
+}
+
+fragment Sections on VisitUsPageSectionsDynamicZone {
+  ... on Error {
+    code
+    message
+  }
+  ... on ComponentSectionsPageSection {
+    __typename
+    ...PageSection
+  }
+  ... on ComponentSectionsNewsSection {
+    __typename
+    ...NewsSection
+  }
+  ... on ComponentSectionsContactSection {
+    __typename
+    ...ContactSection
+  }
+  ... on ComponentSectionsNewsletterSection {
+    __typename
+    ...NewsletterSection
+  }
+  ... on ComponentSectionsTicketsSection {
+    __typename
+    ...TicketsSection
+  }
+  ... on ComponentSectionsMapSection {
+    __typename
+    ...MapSection
+  }
+  ... on ComponentSectionsRichtextSection {
+    __typename
+    ...RichtextSection
+  }
+}
+
+fragment MainContent on ContentPageMainContentDynamicZone {
+  ... on Error {
+    code
+    message
+  }
+  ... on ComponentSectionsRichtextSection {
+    __typename
+    ...RichtextSection
+  }
+  ... on ComponentSectionsVideoSection {
+    __typename
+    ...VideoSection
+  }
+}
