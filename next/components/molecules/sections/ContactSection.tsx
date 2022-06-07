@@ -9,7 +9,7 @@ import Link from '../../atoms/Link'
 import Section from './Section'
 
 interface ContactSectionProps {
-  contactInfo: WithAttributes<ContactEntityFragment>
+  contactInfo: WithAttributes<ContactEntityFragment> | null | undefined
   anchor?: string
 }
 
@@ -34,6 +34,10 @@ const ContactSection = ({ contactInfo, anchor }: ContactSectionProps) => {
       title: 'SoundCloud',
     },
   ]
+
+  if (!contactInfo) {
+    return null
+  }
 
   return (
     <Section anchor={anchor} color="dark" className="grid grid-cols-2 px-xStandard lg:grid-cols-4 gap-9 py-yHigh">

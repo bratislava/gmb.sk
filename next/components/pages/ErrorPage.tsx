@@ -4,7 +4,7 @@ import { ContactEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'
 
 interface ErrorPageProps {
-  contactInfo?: WithAttributes<ContactEntityFragment> | null
+  contactInfo: WithAttributes<ContactEntityFragment> | null | undefined
   statusCode: number
 }
 

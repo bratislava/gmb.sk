@@ -28,18 +28,18 @@ export function hasAttributes<T extends ObjWithAttributes>(value: T | null | und
   return isDefined(value) && 'attributes' in value && isDefined(value.attributes)
 }
 
-// TODO handle object with no attributes
-// export function withAttributes<T extends ObjWithAttributes>(value: T | null | undefined): WithAttributes<T> | null | undefined {
-export function withAttributes<T extends ObjWithAttributes>(value: T | null | undefined): WithAttributes<T> {
-  // if (isDefined(value)) {
-  //   if (hasAttributes(value)) {
-  return value as WithAttributes<T>
-  //   } else {
-  //     return null
-  //   }
-  // } else {
-  //   return value
-  // }
+export function withAttributes<T extends ObjWithAttributes>(
+  value: T | null | undefined
+): WithAttributes<T> | null | undefined {
+  if (isDefined(value)) {
+    if (hasAttributes(value)) {
+      return value as WithAttributes<T>
+    } else {
+      return null
+    }
+  } else {
+    return value
+  }
 }
 
 export function isError<T extends ObjWithTypename>(
