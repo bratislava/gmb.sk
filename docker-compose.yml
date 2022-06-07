@@ -1,5 +1,28 @@
-version: "3.8"
+version: '3.8'
 services:
+  strapi:
+    depends_on:
+      - postgres
+    build:
+      context: ./strapi/
+      target: dev
+    init: true
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: postgres
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: postgres
+      DATABASE_PORT: 54320
+      DATABASE_PASSWORD: postgres
+      NODE_ENV: development
+      APP_KEYS: Vyrg2JxnOrZvJN27fqhdFg==,LTszPxDV1RuEu2ypNbkJTg==,uWV5HfK6rX5+i59RHtXNQA==,g+san15Vano4ZEY8TGB7ZQ==
+      API_TOKEN_SALT: 8bgR64I586hkaoD4dj+lJw==
+      ADMIN_JWT_SECRET: GB5XbvEvLLaxbg9Ce0qrsw==
+      JWT_SECRET: Q83kKZ+i5qdlI5f1lHr7Hw==
+    command: yarn develop
+    ports:
+      - "1337:1337"
+
   postgres:
     image: postgres:latest
     environment:
@@ -8,9 +31,9 @@ services:
       POSTGRES_DB: strapi
       PGPORT: 54320
     expose:
-      - "54320"
+      - '54320'
     ports:
-      - "127.0.0.1:54320:54320"
+      - '127.0.0.1:54320:54320'
 
 volumes:
   postgres:
