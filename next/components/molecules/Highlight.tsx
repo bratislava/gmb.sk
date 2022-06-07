@@ -21,6 +21,8 @@ const Highlight = ({ highlight }: HighlightProps) => {
   const router = useRouter()
 
   const {
+    title,
+    subtitle,
     dateFrom,
     dateTo,
     timeFrom,
@@ -33,61 +35,56 @@ const Highlight = ({ highlight }: HighlightProps) => {
     override,
     perex,
     purchaseId,
+    coverMedia,
   } = highlight.attributes
 
   gsap.registerPlugin(ScrollTrigger)
 
   React.useEffect(() => {
-    gsap.to(`#header${highlight.attributes?.slug}`, {
-      bottom: '100vh',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: `#paralaxAnchor${highlight.attributes?.slug}`,
-        start: 'bottom bottom',
-        end: 'bottom top',
-        scrub: 0,
-      },
+    ScrollTrigger.create({
+      trigger: `#sidepanel${highlight.id}`,
+      start: 'top bottom',
+      end: 'bottom bottom',
+      pin: `#articleDiv${highlight.id}`,
+      pinSpacing: false,
+      scrub: 0,
     })
-  }, [highlight.attributes?.slug])
+  }, [highlight.id])
 
-  const renderSidePanel =
+  const renderOverride = !!override?.highlightContent
+
+  const renderEventDetailsSidepanel = !!(
     placeAddress ||
-    place ||
+    isDefined(place?.data?.attributes) ||
     placeTitle ||
-    dateFrom ||
+    isDefined(dateFrom) ||
     (positions && positions?.length > 0) ||
     perex ||
-    override?.highlightContent ||
     purchaseId
-
-  const renderOverride = override?.highlightContent
+  )
 
   return (
-    <>
-      <article
-        className="sticky top-0 w-full h-screen max-h-screen mb-0 overflow-hidden cursor-pointer lg:max-h-full bottom-full lg:mb-auto group"
-        onClick={() => router.push(`/detail/${highlight.attributes.slug}`)}
-      >
-        <div className="relative flex items-center justify-center w-full h-screen bg-gmbLightGray lg:h-full">
-          {highlight?.attributes.coverMedia?.data?.attributes?.url && (
+    <article className="relative w-full cursor-pointer h-fit group" onClick={() => router.push(`/detail/${slug}`)}>
+      <div id={`articleDiv${highlight.id}`}>
+        <div className="flex items-center justify-center w-full h-[calc(100vh_-_var(--height-nav))] bg-gmbLightGray">
+          {coverMedia?.data?.attributes?.url && (
             <img
-              src={highlight.attributes.coverMedia.data.attributes.url}
-              alt={highlight.attributes.coverMedia.data.attributes.alternativeText ?? ''}
+              src={coverMedia.data.attributes.url}
+              alt={coverMedia.data.attributes.alternativeText ?? ''}
               className="object-cover w-full h-full"
             />
           )}
         </div>
         <div
           className={cx(
-            'w-full bottom-0 py-yStandard flex min-h-[320px] flex-col items-start lg:justify-between absolute z-2 pr-5 lg:pr-sidepanel h-fit lg:h-auto px-xStandard gap-y-yStandard',
-            { 'justify-between': renderOverride }
+            'absolute bottom-0 z-20 w-full py-yStandard px-xStandard flex flex-col items-start gap-y-yStandard lg:pr-sidepanel min-h-[320px] h-fit lg:h-auto'
           )}
-          id={`header${highlight.id}`}
+          id={`hgroup${highlight.id}`}
           style={{ background: getContentPageColor(highlight) }}
         >
           <hgroup>
-            <h1 className="text-xxl">{highlight.attributes.title}</h1>
-            <p className="font-regular text-xxl">{highlight.attributes.subtitle}</p>
+            <h1 className="text-xxl">{title}</h1>
+            <p className="font-regular text-xxl">{subtitle}</p>
           </hgroup>
 
           <div
@@ -117,42 +114,30 @@ const Highlight = ({ highlight }: HighlightProps) => {
             </div>
           </div>
 
-          <Button
-            href={`/detail/${highlight.attributes.slug}`}
-            className="hidden group-hover:text-white group-hover:bg-gmbDark lg:flex"
-          >
+          <Button href={`/detail/${slug}`} className="hidden group-hover:text-white group-hover:bg-gmbDark lg:flex">
             {t('common.detail')}
           </Button>
         </div>
-      </article>
-
-      {renderSidePanel && (
-        <div
-          className="relative z-10 hidden p-10 ml-auto bg-white min-h-fit w-sidepanel lg:flex"
-          id={`sidepanel${highlight.id}`}
-        >
-          <SidePanel
-            datetime={{ dateFrom, dateTo, timeFrom, timeTo }}
-            place={{ place, placeTitle, placeAddress }}
-            slug={slug}
-            positions={positions?.filter(isDefined).slice(0, 3)}
-            purchaseId={purchaseId}
-            overrideText={override?.highlightContent ?? undefined}
-            perex={perex ?? undefined}
-          />
-        </div>
-      )}
-      {/*Only for small screens (smaller than lg)*/}
-      {renderOverride && (
-        <div
-          className="relative z-10 flex w-full p-10 ml-auto bg-white min-h-fit lg:hidden"
-          id={`sidepanel${highlight.id}`}
-        >
-          <SidePanel overrideText={override?.highlightContent ?? undefined} />
-        </div>
-      )}
-      <div id={`paralaxAnchor${highlight.id}`} />
-    </>
+      </div>
+      <div className={cx('relative z-30 bg-white w-sidepanel ml-auto', {})} id={`sidepanel${highlight.id}`}>
+        {renderOverride && override?.highlightContent ? (
+          <div className="p-10 min-h-fit">
+            <SidePanel overrideText={override?.highlightContent} />
+          </div>
+        ) : renderEventDetailsSidepanel ? (
+          <div className="hidden p-10 ml-auto min-h-fit lg:block">
+            <SidePanel
+              datetime={{ dateFrom, dateTo, timeFrom, timeTo }}
+              place={{ place, placeTitle, placeAddress }}
+              slug={slug}
+              positions={positions?.filter(isDefined).slice(0, 3)}
+              purchaseId={purchaseId}
+              perex={perex ?? undefined}
+            />
+          </div>
+        ) : null}
+      </div>
+    </article>
   )
 }
 
