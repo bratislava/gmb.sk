@@ -20,54 +20,52 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
   const { slug, coverMedia, title, subtitle, tags, perex, dateFrom, dateTo } = sectionItem.attributes
 
   return (
-    <Link href={`/detail/${slug}`} preserveStyle noUnderline>
-      <article className="flex flex-col min-h-full space-y-yStandard group">
-        <div className="overflow-hidden bg-gmbLightGray">
-          {coverMedia?.data?.attributes ? (
-            <Image
-              src={coverMedia.data.attributes.url}
-              alt={coverMedia.data.attributes.alternativeText ?? undefined}
-              height="458px"
-              width="580px"
-              objectFit="cover"
-              layout="responsive"
-              unoptimized
-            />
-          ) : null}
-        </div>
-
-        {showTags && tags ? (
-          <div className="flex flex-wrap gap-6">
-            {isToday({
-              dateFrom: dateFrom as string,
-              dateTo: dateTo as string,
-            }) && <span className="pr-3 text-red-600 uppercase text-nav">{t('common.today')}!</span>}
-            {tags?.data.filter(hasAttributes).map((tag) => (
-              <Link href={`${router.pathname}/?tags=${tag.attributes.slug}`} key={tag.attributes.slug}>
-                {tag.attributes.title}
-              </Link>
-            ))}
-          </div>
+    <article
+      className="flex flex-col min-h-full cursor-pointer space-y-yStandard group"
+      onClick={() => router.push(`/detail/${slug}`)}
+    >
+      <div className="overflow-hidden bg-gmbLightGray">
+        {coverMedia?.data?.attributes ? (
+          <Image
+            src={coverMedia.data.attributes.url}
+            alt={coverMedia.data.attributes.alternativeText ?? undefined}
+            height="458px"
+            width="580px"
+            objectFit="cover"
+            layout="responsive"
+            unoptimized
+          />
         ) : null}
+      </div>
 
-        <hgroup>
-          <h3 className="text-xl">{title}</h3>
-          <p className="text-xl font-regular">{subtitle}</p>
-        </hgroup>
+      {showTags && tags ? (
+        <div className="flex flex-wrap gap-6">
+          {isToday({
+            dateFrom: dateFrom as string,
+            dateTo: dateTo as string,
+          }) && <span className="pr-3 text-red-600 uppercase text-nav">{t('common.today')}!</span>}
+          {tags?.data.filter(hasAttributes).map((tag) => (
+            <Link href={`${router.pathname}/?tags=${tag.attributes.slug}`} key={tag.attributes.slug}>
+              {tag.attributes.title}
+            </Link>
+          ))}
+        </div>
+      ) : null}
 
-        {perex && <div className="text-md">{perex?.substring(0, 200)}…</div>}
+      <hgroup>
+        <h3 className="text-xl">{title}</h3>
+        <p className="text-xl font-regular">{subtitle}</p>
+      </hgroup>
 
-        {/* empty div to push button to the bottom of the card */}
-        <div className="flex-grow hidden p-0 m-0 lg:block" />
+      {perex && <div className="text-md">{perex?.substring(0, 200)}…</div>}
 
-        <Button
-          // href={`/detail/${data.slug}`}
-          className="py-2 max-w-fit group-hover:text-white group-hover:bg-gmbDark"
-        >
-          {t('common.detail')}
-        </Button>
-      </article>{' '}
-    </Link>
+      {/* empty div to push button to the bottom of the card */}
+      <div className="flex-grow hidden p-0 m-0 lg:block" />
+
+      <Button href={`/detail/${slug}`} className="py-2 max-w-fit group-hover:text-white group-hover:bg-gmbDark">
+        {t('common.detail')}
+      </Button>
+    </article>
   )
 }
 
