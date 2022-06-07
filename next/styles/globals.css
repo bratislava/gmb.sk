@@ -45,7 +45,7 @@
   scroll-behavior: smooth;
   width: 100%;
 
-  --sidepanel-width: min(40vw, 670px);
+  --sidepanel-width: 100%;
 
   --font-size-xxl: 1.875rem;
   --font-size-xl: 1.5rem;
@@ -73,6 +73,8 @@
 
 @media (min-width: 1024px) {
   :root {
+    --sidepanel-width: min(40vw, 670px);
+
     --font-size-xxl: 2.5rem;
     --font-size-xl: 2rem;
     --font-size-lg: 1.5625rem;

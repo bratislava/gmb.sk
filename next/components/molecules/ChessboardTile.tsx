@@ -21,56 +21,52 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
   const { slug, coverMedia, title, subtitle, tags, perex } = sectionItem.attributes
 
   return (
-    <Link href={`/detail/${slug}`} preserveStyle noUnderline>
-      <article
-        className={cx('lg:flex min-h-[400px] group', {
-          'flex-row-reverse': isLeft,
-        })}
+    <article
+      className={cx('lg:flex min-h-[400px] group cursor-pointer', {
+        'flex-row-reverse': isLeft,
+      })}
+      onClick={() => router.push(`/detail/${slug}`)}
+    >
+      <div className="w-full h-[300px] lg:w-1/2 lg:h-auto bg-gmbLightGray relative">
+        {coverMedia?.data?.attributes ? (
+          <Image
+            src={coverMedia.data.attributes.url}
+            alt={coverMedia.data.attributes.alternativeText ?? ''}
+            layout="fill"
+            objectFit="cover"
+            unoptimized
+          />
+        ) : null}
+      </div>
+      <div
+        className="flex flex-col items-start flex-1 w-full px-xStandard py-yStandard space-y-yStandard lg:w-1/2"
+        style={{ background: getContentPageColor(sectionItem) }}
       >
-        <div className="w-full h-[300px] lg:w-1/2 lg:h-auto bg-gmbLightGray relative">
-          {coverMedia?.data?.attributes ? (
-            <Image
-              src={coverMedia.data.attributes.url}
-              alt={coverMedia.data.attributes.alternativeText ?? ''}
-              layout="fill"
-              objectFit="cover"
-              unoptimized
-            />
-          ) : null}
-        </div>
-        <div
-          className="flex flex-col items-start flex-1 w-full px-xStandard py-yStandard space-y-yStandard lg:w-1/2"
-          style={{ background: getContentPageColor(sectionItem) }}
-        >
-          <hgroup>
-            <h3 className="text-xl text-h">{title}</h3>
-            <p className="text-xl font-regular">{subtitle}</p>
-          </hgroup>
+        <hgroup>
+          <h3 className="text-xl text-h">{title}</h3>
+          <p className="text-xl font-regular">{subtitle}</p>
+        </hgroup>
 
-          {showTags && tags && (
-            <div className="flex space-x-3">
-              {tags.data.filter(hasAttributes).map((tag) => (
-                <Link href={`${router.pathname}/?tags=${tag.attributes.slug}`} key={tag.attributes.slug}>
-                  {tag.attributes.title}
-                </Link>
-              ))}
-            </div>
-          )}
+        {showTags && tags && (
+          <div className="flex space-x-3">
+            {tags.data.filter(hasAttributes).map((tag) => (
+              <Link href={`${router.pathname}/?tags=${tag.attributes.slug}`} key={tag.attributes.slug}>
+                {tag.attributes.title}
+              </Link>
+            ))}
+          </div>
+        )}
 
-          {/* empty div to push button to the bottom of the tile */}
-          <div className="flex-grow hidden p-0 m-0 lg:block" />
+        {/* empty div to push button to the bottom of the tile */}
+        <div className="flex-grow hidden p-0 m-0 lg:block" />
 
-          {perex ? <div className="text-md">{perex?.substring(0, 200)}…</div> : null}
+        {perex ? <div className="text-md">{perex?.substring(0, 200)}…</div> : null}
 
-          <Button
-            // href={`/detail/${data.slug}`}
-            className="group-hover:text-white group-hover:bg-gmbDark"
-          >
-            {t('common.detail')}
-          </Button>
-        </div>
-      </article>
-    </Link>
+        <Button href={`/detail/${slug}`} className="group-hover:text-white group-hover:bg-gmbDark">
+          {t('common.detail')}
+        </Button>
+      </div>
+    </article>
   )
 }
 

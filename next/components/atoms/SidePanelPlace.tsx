@@ -11,8 +11,6 @@ export interface SidePanelPlaceProps {
 export const SidePanelPlace = ({ placeFragment, isOneLine = false }: SidePanelPlaceProps) => {
   const { place, placeTitle, placeAddress } = placeFragment
 
-  console.log(place, placeTitle, placeAddress)
-
   if (!place?.data && !placeTitle && !placeAddress) {
     return null
   }

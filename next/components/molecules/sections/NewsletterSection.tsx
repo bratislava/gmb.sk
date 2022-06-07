@@ -60,8 +60,11 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
     >
       <div className="lg:w-4/6 xl:w-3/6">
         <hgroup>
-          <h3 className="text-xxl">{t('newsletter.beInThePicture')}</h3>
-          <h4 className="font-regular text-xxl">{t('newsletter.newsletter')}</h4>
+          <h2 className="text-xxl">
+            {t('newsletter.beInThePicture')}
+            <br />
+            <span className="font-regular">{t('newsletter.newsletter')}</span>
+          </h2>
         </hgroup>
 
         <MailchimpSubscribe
