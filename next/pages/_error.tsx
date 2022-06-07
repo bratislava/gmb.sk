@@ -11,11 +11,7 @@ interface ErrorProps {
 }
 
 const Error: NextPage<ErrorProps> = ({ contact, statusCode }: ErrorProps) => {
-  if (!contact) {
-    return null
-  }
-
-  return <ErrorPage contactInfo={withAttributes(contact.data)} statusCode={statusCode} />
+  return <ErrorPage contactInfo={withAttributes(contact?.data)} statusCode={statusCode} />
 }
 
 export const getServerSideProps: GetServerSideProps<ErrorProps> = async ({ locale = 'sk', res }) => {

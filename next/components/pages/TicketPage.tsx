@@ -12,7 +12,7 @@ import CardSection from '../molecules/sections/CardSection'
 
 interface ITicketPageProps {
   contentPage: WithAttributes<ContentPageEntityFragment>
-  contactInfo?: WithAttributes<ContactEntityFragment> | null
+  contactInfo: WithAttributes<ContactEntityFragment> | null | undefined
   currentEvents?: WithAttributes<SectionItemEntityFragment>[]
 }
 
@@ -53,7 +53,7 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
       {/* TODO change 400px to const */}
       <div className="w-full lg:w-[calc(100%-400px)]">
         <div className="py-yStandard px-xStandard">
-          <Link href={`/detail/${slug}`} preserveStyle>
+          <Link href={`/detail/${slug}`} preserveStyle noUnderline>
             <hgroup>
               <h1 className="text-xxl">{title}</h1>
               <p className="font-regular text-xxl">{subtitle}</p>

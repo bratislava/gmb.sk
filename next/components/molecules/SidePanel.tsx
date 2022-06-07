@@ -70,17 +70,10 @@ const SidePanel = ({
     <aside className={cx(className, 'flex flex-col justify-between w-full space-y-10 bg-white lg:space-y-20')}>
       {perex && <p className="text-md">{perex}</p>}
 
-      <div className="flex justify-between gap-3">
-        {place && (
-          <div className="flex-1">
-            <SidePanelPlace placeFragment={place} />
-          </div>
-        )}
-        {datetime && (
-          <div className="flex-1">
-            <SidePanelTime datetime={datetime} />
-          </div>
-        )}
+      {/* TODO hide this div is there is no datetime and place, otherwise, it causes margin-top to next element */}
+      <div className="grid grid-cols-2">
+        {place && <SidePanelPlace placeFragment={place} />}
+        {datetime && <SidePanelTime datetime={datetime} />}
       </div>
 
       {datetime?.showRemainingTime && daysLeft > 0 && (
