@@ -1,7 +1,7 @@
 # build
 FROM node:16.10.0 AS build
 
-RUN apt-get update && apt-get install git
+RUN apt-get update && apt-get -y install git libvips-dev
 
 WORKDIR /root/app
 COPY package*.json ./
@@ -48,7 +48,7 @@ COPY --chown=node:node --from=build /root/app/package*.json ./
 COPY --chown=node:node --from=build /root/app/yarn.lock ./
 COPY --chown=node:node --from=build /root/app/node_modules ./node_modules
 # doing RUN npm prune --production, but in yarn
-RUN yarn install --production --ignore-scripts --prefer-offline
+RUN yarn install --production --ignore-scripts --prefer-offline --frozen-lockfile
 
 COPY --chown=node:node --from=build /root/app/dist ./dist
 
