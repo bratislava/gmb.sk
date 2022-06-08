@@ -64,8 +64,12 @@ const Highlight = ({ highlight }: HighlightProps) => {
   )
 
   return (
-    <article className="relative w-full cursor-pointer h-fit group" onClick={() => router.push(`/detail/${slug}`)}>
-      <div id={`articleDiv${highlight.id}`}>
+    <article className="relative w-full h-fit">
+      <div
+        className="cursor-pointer group"
+        id={`articleDiv${highlight.id}`}
+        onClick={() => router.push(`/detail/${slug}`)}
+      >
         <div className="flex items-center justify-center w-full h-[calc(100vh_-_var(--height-nav))] bg-gmbLightGray">
           {coverMedia?.data?.attributes?.url && (
             <img

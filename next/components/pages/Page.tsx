@@ -32,7 +32,7 @@ interface PageProps {
     | CollectionPageQuery['collectionsPage']
     | HomePageQuery['homePage']
   title: string
-  contactInfo?: WithAttributes<ContactEntityFragment> | null
+  contactInfo: WithAttributes<ContactEntityFragment> | null | undefined
   newsItems?: WithAttributes<NewsItemEntityFragment>[] | null
   tickets?: WithAttributes<TicketEntityFragment>[] | null
 }

@@ -17,7 +17,7 @@ import Submenu from '../molecules/Submenu'
 
 interface DetailPageProps {
   contentPage: WithAttributes<ContentPageEntityFragment>
-  contactInfo?: WithAttributes<ContactEntityFragment> | null
+  contactInfo: WithAttributes<ContactEntityFragment> | null | undefined
 }
 
 const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
