@@ -1,7 +1,7 @@
 # build
 FROM node:16.10.0 AS build
 
-RUN apt-get update && apt-get install git && apt-get install libvips-dev
+RUN apt-get update && apt-get install git
 
 WORKDIR /root/app
 COPY package*.json ./

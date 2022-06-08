@@ -5,7 +5,7 @@ services:
       - postgres
     build:
       context: ./strapi/
-      target: dev
+      target: prod
     init: true
     environment:
       DATABASE_CLIENT: postgres
@@ -14,12 +14,12 @@ services:
       DATABASE_USERNAME: postgres
       DATABASE_PORT: 54320
       DATABASE_PASSWORD: postgres
-      NODE_ENV: development
+      NODE_ENV: production
       APP_KEYS: Vyrg2JxnOrZvJN27fqhdFg==,LTszPxDV1RuEu2ypNbkJTg==,uWV5HfK6rX5+i59RHtXNQA==,g+san15Vano4ZEY8TGB7ZQ==
       API_TOKEN_SALT: 8bgR64I586hkaoD4dj+lJw==
       ADMIN_JWT_SECRET: GB5XbvEvLLaxbg9Ce0qrsw==
       JWT_SECRET: Q83kKZ+i5qdlI5f1lHr7Hw==
-    command: yarn develop
+    command: yarn start
     ports:
       - "1337:1337"
 
