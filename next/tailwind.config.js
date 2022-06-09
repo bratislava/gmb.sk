@@ -1,4 +1,19 @@
+const plugin = require('tailwindcss/plugin')
 const { join } = require('path')
+
+const scrollBarHide = plugin(function ({ addUtilities }) {
+  addUtilities({
+    '.scrollbar-hide': {
+      /* Firefox */
+      'scrollbar-width': 'none',
+
+      /* Safari and Chrome */
+      '&::-webkit-scrollbar': {
+        display: 'none',
+      },
+    },
+  })
+})
 
 module.exports = {
   content: [join(__dirname, 'pages/**/*.{js,jsx,ts,tsx}'), join(__dirname, 'components/**/*.{js,jsx,ts,tsx}')],
@@ -52,4 +67,5 @@ module.exports = {
     container: false,
   },
   mode: 'jit',
+  plugins: [scrollBarHide],
 }

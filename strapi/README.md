@@ -3,6 +3,7 @@
 # Quick run
 
 If you want to run an application without installing it locally quickly, you can run it through `docker-compose`:
+
 ```bash
 docker-compose up --build
 ```
@@ -16,25 +17,25 @@ docker-compose up --build
   ```
 
 - ### `develop`
-  
+
   Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-develop)
-  
+
   ```
   yarn develop
   ```
-  
+
 - ### `start`
-  
+
   Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-start)
-  
+
   ```
   yarn start
   ```
-  
-  ### `build`
-  
+
+- ### `build`
+
   Build your admin panel. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-build)
-  
+
   ```
   yarn build
   ```
