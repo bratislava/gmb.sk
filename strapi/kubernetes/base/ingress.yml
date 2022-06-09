@@ -22,6 +22,6 @@ spec:
             pathType: ImplementationSpecific
             backend:
               service:
-                name: app
+                name: ${BUILD_REPOSITORY_NAME}-app
                 port:
                   number: 80

@@ -27,18 +27,19 @@ spec:
               cpu: 100m
               memory: 128Mi
           volumeMounts:
-            - name: postgresql
+            - name: ${BUILD_REPOSITORY_NAME}-database-storage
               mountPath: /var/lib/postgresql/data
               subPath: postgresql
           envFrom:
+            - configMapRef:
+                name: ${BUILD_REPOSITORY_NAME}-database
             - secretRef:
                 name: ${BUILD_REPOSITORY_NAME}-database-secret
   # Volume Claim
   volumeClaimTemplates:
     - metadata:
-        name: ${BUILD_REPOSITORY_NAME}-postgresql
+        name: ${BUILD_REPOSITORY_NAME}-database-storage
         labels:
-          app: ${BUILD_REPOSITORY_NAME}
           service: database
       spec:
         accessModes: ['ReadWriteOnce']
