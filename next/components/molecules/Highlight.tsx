@@ -13,12 +13,16 @@ import { SidePanelTime } from '../atoms/SidePanelTime'
 import SidePanel from './SidePanel'
 
 interface HighlightProps {
-  highlight: WithAttributes<HighlightsItemEntityFragment>
+  highlight?: WithAttributes<HighlightsItemEntityFragment> | null
 }
 
 const Highlight = ({ highlight }: HighlightProps) => {
   const { t, i18n } = useTranslation()
   const router = useRouter()
+
+  if (!highlight) {
+    return null
+  }
 
   const {
     title,

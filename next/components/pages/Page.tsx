@@ -58,8 +58,8 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
         )}
       </Head>
 
-      {page?.highlights?.contentPages?.data.filter(hasAttributes).map((item) => (
-        <Highlight key={item.attributes?.slug} highlight={item} />
+      {page?.highlights?.filter(isDefined).map((item) => (
+        <Highlight key={item.contentPage?.data?.attributes?.slug} highlight={withAttributes(item.contentPage?.data)} />
       ))}
 
       {/* {page?.sections && (

@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { ContactEntityFragment, ExplorePageQuery, TagEntityFragment } from '../../graphql'
-import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
+import { hasAttributes, isDefined, withAttributes, WithAttributes } from '../../utils/isDefined'
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
 import Button from '../atoms/Button'
 import Filters from '../molecules/Filters'
@@ -46,8 +46,8 @@ const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOt
 
   return (
     <>
-      {explorePage?.data?.attributes?.highlights?.contentPages?.data.filter(hasAttributes).map((item) => (
-        <Highlight key={item.id} highlight={item} />
+      {explorePage?.data?.attributes?.highlights?.filter(isDefined).map((item) => (
+        <Highlight key={item.contentPage?.data?.attributes?.slug} highlight={withAttributes(item.contentPage?.data)} />
       ))}
       <Submenu
         filters={

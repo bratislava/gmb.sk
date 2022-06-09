@@ -9,7 +9,7 @@ import {
   TagEntityFragment,
 } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
-import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
+import { isDefined, withAttributes, WithAttributes } from '../../utils/isDefined'
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
 import Button from '../atoms/Button'
 import Filters from '../molecules/Filters'
@@ -76,8 +76,8 @@ const ExhibitionsPage = ({
 
   return (
     <>
-      {exhibitionsPage?.data?.attributes?.highlights?.contentPages?.data?.filter(hasAttributes).map((item) => (
-        <Highlight key={item.id} highlight={item} />
+      {exhibitionsPage?.data?.attributes?.highlights?.filter(isDefined).map((item) => (
+        <Highlight key={item.contentPage?.data?.attributes?.slug} highlight={withAttributes(item.contentPage?.data)} />
       ))}
 
       <Submenu

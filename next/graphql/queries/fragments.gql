@@ -232,8 +232,8 @@ fragment HighlightsItemEntity on ContentPageEntity {
   }
 }
 
-fragment Highlights on ComponentSectionsHighlightsSection {
-  contentPages {
+fragment Highlight on ComponentBlocksContentPageItem {
+  contentPage {
     data {
       ...HighlightsItemEntity
     }

@@ -109,7 +109,7 @@ query AboutUsPage($locale: I18NLocaleCode!) {
       attributes {
         __typename
         highlights {
-          ...Highlights
+          ...Highlight
         }
         sections {
           ...Sections
@@ -133,7 +133,7 @@ query HomePage($locale: I18NLocaleCode!) {
       attributes {
         __typename
         highlights {
-          ...Highlights
+          ...Highlight
         }
         sections {
           ...Sections
@@ -164,7 +164,7 @@ query CollectionPage($locale: I18NLocaleCode!) {
       attributes {
         __typename
         highlights {
-          ...Highlights
+          ...Highlight
         }
         sections {
           ...Sections
@@ -188,7 +188,7 @@ query GetInvolvedPage($locale: I18NLocaleCode!) {
       attributes {
         __typename
         highlights {
-          ...Highlights
+          ...Highlight
         }
         sections {
           ...Sections
@@ -212,7 +212,7 @@ query VisitUsPage($locale: I18NLocaleCode!) {
       attributes {
         __typename
         highlights {
-          ...Highlights
+          ...Highlight
         }
         sections {
           ...Sections
@@ -241,7 +241,7 @@ query ExplorePage($locale: I18NLocaleCode!) {
       attributes {
         __typename
         highlights {
-          ...Highlights
+          ...Highlight
         }
         seo {
           ...Seo
@@ -268,7 +268,7 @@ query ExhibitionsPage(
       attributes {
         __typename
         highlights {
-          ...Highlights
+          ...Highlight
         }
         seo {
           ...Seo
