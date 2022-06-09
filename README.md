@@ -1,2 +1,5 @@
 # city-gallery
-New city gallery repo with strapi v4
+
+Bratislava City Gallery repo with strapi v4.
+
+Follow README files in both subdirectories.
