@@ -1,0 +1,86 @@
+[
+  [
+    {
+      "title": "Program: typy",
+      "slug": "program-typy",
+      "locale": "sk"
+    },
+    {
+      "title": "Programme: types",
+      "slug": "programme-types",
+      "locale": "en"
+    }
+  ],
+  [
+    {
+      "title": "Program: cieľové skupiny",
+      "slug": "program-cielove-skupiny",
+      "locale": "sk"
+    },
+    {
+      "title": "Programme: target groups",
+      "slug": "programme-target-groups",
+      "locale": "en"
+    }
+  ],
+  [
+    {
+      "title": "Program: jazyky",
+      "slug": "program-jazyky",
+      "locale": "sk"
+    },
+    {
+      "title": "Programme: languages",
+      "slug": "programme-languages",
+      "locale": "en"
+    }
+  ],
+  [
+    {
+      "title": "Program: projekty",
+      "slug": "program-projekty",
+      "locale": "sk"
+    },
+    {
+      "title": "Programme: projects",
+      "slug": "programme-projects",
+      "locale": "en"
+    }
+  ],
+  [
+    {
+      "title": "Program: ostatné",
+      "slug": "program-ostatne",
+      "locale": "sk"
+    },
+    {
+      "title": "Programme: others",
+      "slug": "programme-others",
+      "locale": "en"
+    }
+  ],
+  [
+    {
+      "title": "Objavujte: typy",
+      "slug": "objavujte-typy",
+      "locale": "sk"
+    },
+    {
+      "title": "Explore: types",
+      "slug": "explore-types",
+      "locale": "en"
+    }
+  ],
+  [
+    {
+      "title": "Objavujte: projekty",
+      "slug": "objavujte-projekty",
+      "locale": "sk"
+    },
+    {
+      "title": "Explore: projects",
+      "slug": "explore-projects",
+      "locale": "en"
+    }
+  ]
+]

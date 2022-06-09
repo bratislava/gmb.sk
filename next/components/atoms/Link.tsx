@@ -1,6 +1,8 @@
 import cx from 'classnames'
+import { useTranslation } from 'next-i18next'
 import NextLink from 'next/link'
 import { isDefined } from '../../utils/isDefined'
+import { getRouteForLocale, isOfTypeRoute } from '../../utils/localeRoutes'
 
 type LinkProps = React.ComponentPropsWithoutRef<'a'> & {
   locale?: string
@@ -26,7 +28,22 @@ export const Link = ({
   noUnderline,
   onClick,
 }: LinkProps) => {
+  const { i18n } = useTranslation()
+
   if (!isDefined(href)) return null
+
+  if (!href.startsWith('http')) {
+    let isFromRoot = false
+    if (href[0] === '/') {
+      isFromRoot = true
+    }
+    const [route, ...rest] = href.split(/(?=\/)/g)
+    let translatedRoute = route
+    if (isFromRoot && isOfTypeRoute(route)) {
+      translatedRoute = getRouteForLocale(route, locale || i18n.language || 'sk')
+    }
+    href = `${[translatedRoute, ...rest].join('')}`
+  }
 
   return (
     <NextLink href={href} locale={locale} replace={replace}>

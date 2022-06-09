@@ -33,6 +33,10 @@ const routesSkToEn = {
 
 type Route = keyof typeof routesSkToEn
 
+export function isOfTypeRoute(keyInput: string): keyInput is Route {
+  return Object.keys(routesSkToEn).includes(keyInput)
+}
+
 /** For a given slovak route, will return equivalent route in the current locale. */
 export function getRouteForLocale(route: Route, locale: string) {
   if (locale === 'en') {
