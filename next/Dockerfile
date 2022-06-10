@@ -8,17 +8,17 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app
 COPY yarn.lock /usr/src/app
 
-RUN yarn install --production
+RUN yarn install
 
 COPY . /usr/src/app
 
 RUN yarn build
 
 EXPOSE 3000
-CMD [ "yarn", "start" ]
+CMD [ "yarn", "develop" ]
 
 
-FROM node:alpine as prod
+FROM node:16-alpine as prod
 
 USER node
 ENV PORT 3000
