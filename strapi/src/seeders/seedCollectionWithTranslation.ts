@@ -1,4 +1,5 @@
 "use strict";
+
 /**
  * Seed some collection data function
  *
@@ -11,14 +12,13 @@
 
 export const seedCollectionWithTranslation = async (
   strapi,
-  model, //e.g. 'application::tag.tag'
-  sourceItems,
-  config,
-  identifier
+  model: string, //e.g. 'application::tag.tag'
+  sourceItems: Object[][],
+  config: { [key: string]: (sourceItem: any) => string },
+  identifier: string
 ) => {
   const [appName, rest] = model.split("::");
   const [collectionName] = rest.split(".");
-  //console.log({ collectionName });
   for (const sourceItemsArray of sourceItems) {
     const createdItems = [];
     const parsedItems = [];
@@ -33,12 +33,16 @@ export const seedCollectionWithTranslation = async (
       parsedItems.push(parsedItem);
       const searchItem = {};
       searchItem[identifier] = parsedItem[identifier];
-      const foundItem = await strapi.query(model, "i18n").findOne(searchItem);
+      const foundItem = await strapi.db
+        .query(model, "i18n")
+        .findOne({ where: searchItem, populate: { localizations: true } });
       if (!foundItem) {
-        //console.log(parsedItem);
-        await strapi.services[collectionName].create(parsedItem);
+        await strapi.db.query(model).create({ data: parsedItem });
+        console.log(`Created (${model}): ${JSON.stringify(parsedItem)}`);
         createdItems.push(
-          await strapi.query(model, "i18n").findOne(searchItem)
+          await strapi.db
+            .query(model, "i18n")
+            .findOne({ where: searchItem, populate: { localizations: true } })
         );
       } else {
         createdItems.push(foundItem);
@@ -47,13 +51,18 @@ export const seedCollectionWithTranslation = async (
     const itemsCount = createdItems.length;
     for (let i = 0; i < itemsCount; i++) {
       const localizations = createdItems
-        .filter((item) => item.slug !== createdItems[i].sluh)
+        .filter((item) => item.slug !== createdItems[i].slug)
         .map((item) => {
           return { id: item.id, locale: parsedItems[i].locale };
         });
-      await strapi
+      await strapi.db
         .query(model, "i18n")
-        .update({ id: createdItems[i].id }, { localizations });
+        .update({ where: { id: createdItems[i].id }, data: { localizations } });
+      console.log(
+        `Updated ${model} where id:${
+          createdItems[i].id
+        } with localizations: ${JSON.stringify(localizations)}`
+      );
     }
   }
   return Promise.resolve();

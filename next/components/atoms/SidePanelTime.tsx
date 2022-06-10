@@ -45,7 +45,7 @@ export const SidePanelTime = ({ datetime, isOneLine, noIcon }: SidePanelTimeProp
       <div className="whitespace-nowrap text-nav">
         {!noIcon && (
           <div className="mb-3">
-            <TimeIcon height="48" />
+            <TimeIcon height={48} width={48} />
           </div>
         )}
         <time className="flex flex-col">

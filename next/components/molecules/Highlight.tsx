@@ -76,6 +76,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
               src={coverMedia.data.attributes.url}
               alt={coverMedia.data.attributes.alternativeText ?? ''}
               className="object-cover w-full h-full"
+              id={`coverImage${highlight.id}`}
             />
           )}
         </div>

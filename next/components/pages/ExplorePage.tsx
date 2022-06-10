@@ -5,6 +5,7 @@ import { ContactEntityFragment, ExplorePageQuery, TagEntityFragment } from '../.
 import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
 import Button from '../atoms/Button'
+import Seo from '../atoms/Seo'
 import Filters from '../molecules/Filters'
 import Footer from '../molecules/Footer'
 import Highlight from '../molecules/Highlight'
@@ -44,8 +45,11 @@ const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOt
     }
   }, [query])
 
+  const seo = explorePage?.data?.attributes?.seo
+
   return (
     <>
+      {seo && <Seo seo={seo} />}
       {explorePage?.data?.attributes?.highlights?.contentPages?.data.filter(hasAttributes).map((item) => (
         <Highlight key={item.id} highlight={item} />
       ))}

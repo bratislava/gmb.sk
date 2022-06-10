@@ -1,11 +1,11 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import React from 'react'
-import { ReactComponent as EmailIcon } from '../../assets/icons/social-platforms/E-mail.svg'
-import { ReactComponent as FacebookIcon } from '../../assets/icons/social-platforms/Facebook.svg'
-import { ReactComponent as LinkedInIcon } from '../../assets/icons/social-platforms/LinkedIn.svg'
-import { ReactComponent as TwitterIcon } from '../../assets/icons/social-platforms/Twitter.svg'
-import { ReactComponent as WhatsAppIcon } from '../../assets/icons/social-platforms/WhatsApp.svg'
+import EmailIcon from '../../assets/icons/social-platforms/E-mail.svg'
+import FacebookIcon from '../../assets/icons/social-platforms/Facebook.svg'
+import LinkedInIcon from '../../assets/icons/social-platforms/LinkedIn.svg'
+import TwitterIcon from '../../assets/icons/social-platforms/Twitter.svg'
+import WhatsAppIcon from '../../assets/icons/social-platforms/WhatsApp.svg'
 import Link from './Link'
 
 interface ShareButtonProps {
@@ -37,8 +37,8 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
 
   const encodedHref = encodeURI(href)
 
-  const logoSize = 32
-  const size = { height: logoSize, width: logoSize }
+  const iconSize = 32
+  const size = { height: iconSize, width: iconSize }
 
   const content = {
     facebook: <FacebookIcon {...size} />,

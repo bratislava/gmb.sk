@@ -12,6 +12,7 @@ import { getAnchor } from '../../utils/getAnchor'
 import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
 import Button from '../atoms/Button'
+import Seo from '../atoms/Seo'
 import Filters from '../molecules/Filters'
 import Footer from '../molecules/Footer'
 import Highlight from '../molecules/Highlight'
@@ -74,8 +75,11 @@ const ExhibitionsPage = ({
     }
   }, [query])
 
+  const seo = exhibitionsPage?.data?.attributes?.seo
+
   return (
     <>
+      {seo && <Seo seo={seo} />}
       {exhibitionsPage?.data?.attributes?.highlights?.contentPages?.data?.filter(hasAttributes).map((item) => (
         <Highlight key={item.id} highlight={item} />
       ))}

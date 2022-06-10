@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { ContentPagePlaceFragment, DatetimeFragment, PartnerEntityFragment, PositionFragment } from '../../graphql'
 import getDaysLeft from '../../utils/getDaysLeft'
 import { isDefined, WithAttributes } from '../../utils/isDefined'
+import mobileAndTabletRegexCheck from '../../utils/mobileAndTabletRegexCheck'
 import Button from '../atoms/Button'
 import CityGalleryMarkdown from '../atoms/CityGalleryMarkdown'
 import Link from '../atoms/Link'
@@ -42,9 +43,32 @@ const SidePanel = ({
   const { t } = useTranslation()
   const [isMobile, setIsMobile] = useState(false)
   useEffect(() => {
-    let isMobileAgent = /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(navigator.userAgent)
-    setIsMobile(isMobileAgent)
+    // Solution for mobile detection from: https://stackoverflow.com/a/58171659
+    let hasTouchScreen = false
+    if ('maxTouchPoints' in navigator) {
+      hasTouchScreen = navigator.maxTouchPoints > 0
+    } else if ('msMaxTouchPoints' in navigator) {
+      hasTouchScreen = navigator['msMaxTouchPoints'] > 0
+    } else {
+      let mQ = window.matchMedia && matchMedia('(pointer:coarse)')
+      if (mQ && mQ.media === '(pointer:coarse)') {
+        hasTouchScreen = !!mQ.matches
+      } else if ('orientation' in window) {
+        hasTouchScreen = true // deprecated, but good fallback
+      }
+    }
+
+    let isMobileDetected = false
+    const browserData = [navigator.userAgent, navigator.vendor]
+    if ('opera' in window) {
+      browserData.push(window.opera)
+    }
+    for (const data in browserData) {
+      if (mobileAndTabletRegexCheck(data)) isMobileDetected = true
+    }
+    setIsMobile(hasTouchScreen || isMobileDetected)
   }, [])
+
   const daysLeft = getDaysLeft(datetime?.dateFrom)
 
   if (

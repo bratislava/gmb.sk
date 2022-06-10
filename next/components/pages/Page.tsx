@@ -13,6 +13,7 @@ import {
 } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
 import { hasAttributes, isDefined, WithAttributes, withAttributes } from '../../utils/isDefined'
+import Seo from '../atoms/Seo'
 import Footer from '../molecules/Footer'
 import Highlight from '../molecules/Highlight'
 import ContactSection from '../molecules/sections/ContactSection'
@@ -44,18 +45,9 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
 
   return (
     <>
+      {page?.seo && <Seo seo={page.seo} />}
       <Head>
         <title>{title}</title>
-        {page?.seo && (
-          <>
-            <meta name="title" content={page.seo.metaTitle ?? title} />
-            <meta name="description" content={page.seo.metaDescription ?? ''} />
-            <meta name="keywords" content={page.seo.keywords ?? ''} />
-            <meta name="viewport" content={page.seo.metaViewport ?? 'width=device-width, initial-scale=1'} />
-            <meta name="robots" content={page.seo.metaRobots ?? ''} />
-            <meta name="canonical" content={page.seo.canonicalUrl ?? ''} />
-          </>
-        )}
       </Head>
 
       {page?.highlights?.contentPages?.data.filter(hasAttributes).map((item) => (

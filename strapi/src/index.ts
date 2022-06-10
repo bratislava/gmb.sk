@@ -1,5 +1,6 @@
 "use strict";
 
+import places from "./seeders/data/places.json";
 import tagCategoriesData from "./seeders/data/tag-categories.json";
 import tagsData from "./seeders/data/tags.json";
 import { seedCollectionWithTranslation } from "./seeders/seedCollectionWithTranslation";
@@ -136,6 +137,21 @@ export default {
       {
         title: (sourceItem) => sourceItem.title,
         slug: (sourceItem) => sourceItem.slug,
+        locale: (sourceItem) => sourceItem.locale,
+      },
+      "slug"
+    );
+    //------------------------------------
+    // ADDING PLACES
+    //------------------------------------
+    await seedCollectionWithTranslation(
+      strapi,
+      "api::place.place",
+      places,
+      {
+        title: (sourceItem) => sourceItem.title,
+        slug: (sourceItem) => sourceItem.slug,
+        address: (sourceItem) => sourceItem.address,
         locale: (sourceItem) => sourceItem.locale,
       },
       "slug"
