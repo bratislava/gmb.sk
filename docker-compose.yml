@@ -3,6 +3,7 @@ services:
   next:
     depends_on:
       - strapi
+      - postgres
     build:
       context: ./next/
       target: dev
