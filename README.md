@@ -1,18 +1,18 @@
 # city-gallery
-## simple Strapi v4 + Next.js template
+### simple Strapi v4 + Next.js template
 
-# Quick run
+## Quick run
 
 If you want to run an application strapi and next without installing it locally quickly, you can run it through `docker-compose`:
 ```bash
 docker-compose up
 ```
 
-# Local installation
+## Local installation
 Follow user guide in folders `/strapi` and `/next`.
 
-# Deployment
-## Manual
+## Deployment
+### Manual
 You can use our `bratiska-cli`, which takes care of deploying the app.
 
 First, install the utility:
@@ -25,7 +25,7 @@ then go to folder of `/strapi` or `/next` and run just this command:
 bartiska-cli deploy
 ```
 That`s all, everything should run automatically and if not you will be notified. You can also check [user guide of bratiska-cli](https://github.com/bratislava/bratiska-cli/blob/master/README.md).
-## Pipelines
+### Pipelines
 TODO
 
 ## Stay in touch
