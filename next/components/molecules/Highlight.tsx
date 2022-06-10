@@ -7,7 +7,6 @@ import React from 'react'
 import { HighlightsItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { isDefined, WithAttributes } from '../../utils/isDefined'
-import { getRouteForLocale } from '../../utils/localeRoutes'
 import Button from '../atoms/Button'
 import { SidePanelTime } from '../atoms/SidePanelTime'
 import SidePanel from './SidePanel'
@@ -103,11 +102,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
 
             <div className="flex flex-row items-stretch w-full mt-auto space-x-4 justify-evenly">
               {purchaseId && (
-                <Button
-                  size="small"
-                  className="flex-none w-fit"
-                  href={`${getRouteForLocale('/vstupenky', i18n.language)}/${slug}`}
-                >
+                <Button size="small" className="flex-none w-fit" href={`/vstupenky/${slug}`}>
                   {t('common.buyTickets')}
                 </Button>
               )}
