@@ -85,8 +85,6 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
       <Head>
         <title>{title}</title>
         <>
-          <meta property="og:image" content={coverMedia?.data?.attributes?.url} />
-
           {/* TODO: Query times from strapi, but do we want these? */}
           <meta property="og:article:published_time" content="datetime" />
           <meta property="og:article:modified_time" content="datetime" />

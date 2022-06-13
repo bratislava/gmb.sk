@@ -12,6 +12,14 @@ interface SeoProps {
 
 const Seo = ({ seo, ogType = 'website', title, description, image }: SeoProps) => {
   const { t } = useTranslation()
+
+  //TODO: Get Strapi url
+  const strapiUrl = 'http://localhost:1337' //process.env.STRAPI_URL
+
+  if (image && image.url?.startsWith('/')) {
+    image.url = `${strapiUrl}${image.url}`
+  }
+
   return (
     <Head>
       {seo && (
