@@ -20,13 +20,12 @@ export const usePreviewsByTags = ({
       if (index !== 0 && previousList.length === 0) {
         return null
       }
-
       const variables = {
         locale: locale,
         limit: PAGE_SIZE,
         offset: index * PAGE_SIZE,
-        tagSlugs: activeTags,
-        placesSlugs: activePlaces,
+        ...(activeTags.length && { tagSlugs: activeTags }),
+        ...(activePlaces.length && { placesSlugs: activePlaces }),
       }
 
       return ['PreviewsByTags', variables]
