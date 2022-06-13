@@ -9,14 +9,14 @@ import {
   TagEntityFragment,
 } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
-import { isDefined, withAttributes, WithAttributes } from '../../utils/isDefined'
+import { hasAttributes, WithAttributes } from '../../utils/isDefined'
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
 import Button from '../atoms/Button'
 import Filters from '../molecules/Filters'
 import Footer from '../molecules/Footer'
-import Highlight from '../molecules/Highlight'
 import CardSection from '../molecules/sections/CardSection'
 import ChessboardSection from '../molecules/sections/ChessboardSection'
+import HighlightsSection from '../molecules/sections/HighlightsSection'
 import NewsletterSection from '../molecules/sections/NewsletterSection'
 import Submenu from '../molecules/Submenu'
 
@@ -33,8 +33,6 @@ interface ExhibitionsPageProps {
   tagsOthers?: WithAttributes<TagEntityFragment>[]
   places?: WithAttributes<PlaceEntityFragment>[]
 }
-
-const PAGES_COUNT_PER_LOAD = 6
 
 const ExhibitionsPage = ({
   exhibitionsPage,
@@ -76,9 +74,11 @@ const ExhibitionsPage = ({
 
   return (
     <>
-      {exhibitionsPage?.data?.attributes?.highlights?.filter(isDefined).map((item) => (
-        <Highlight key={item.contentPage?.data?.attributes?.slug} highlight={withAttributes(item.contentPage?.data)} />
-      ))}
+      <HighlightsSection
+        highlights={exhibitionsPage?.data?.attributes?.highlights
+          ?.map((highlight) => highlight?.contentPage?.data)
+          .filter(hasAttributes)}
+      />
 
       <Submenu
         items={[t('common.exhibitions'), t('common.permanentExhibitions'), t('common.additionalProgram')]}
@@ -103,7 +103,7 @@ const ExhibitionsPage = ({
       {activeTags.length || activePlaces.length ? (
         <div className="min-h-screen">
           <CardSection
-            sectionItems={filteredPages?.filter(isDefined)}
+            sectionItems={filteredPages}
             isLoading={isLoadingInitialData}
             loadmoreButton={
               !isReachingEnd && (

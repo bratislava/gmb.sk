@@ -13,16 +13,12 @@ import { SidePanelTime } from '../atoms/SidePanelTime'
 import SidePanel from './SidePanel'
 
 interface HighlightProps {
-  highlight?: WithAttributes<HighlightsItemEntityFragment> | null
+  highlight: WithAttributes<HighlightsItemEntityFragment>
 }
 
 const Highlight = ({ highlight }: HighlightProps) => {
   const { t, i18n } = useTranslation()
   const router = useRouter()
-
-  if (!highlight) {
-    return null
-  }
 
   const {
     title,
@@ -74,7 +70,10 @@ const Highlight = ({ highlight }: HighlightProps) => {
         id={`articleDiv${highlight.id}`}
         onClick={() => router.push(`/detail/${slug}`)}
       >
-        <div className="flex items-center justify-center w-full h-[calc(100vh_-_var(--height-nav))] bg-gmbLightGray">
+        <div
+          className="flex items-center justify-center w-full h-[calc(100vh_-_var(--height-nav))] bg-gmbLightGray"
+          id={`articleImg${highlight.id}`}
+        >
           {coverMedia?.data?.attributes?.url && (
             <img
               src={coverMedia.data.attributes.url}
