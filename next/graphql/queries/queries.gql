@@ -37,13 +37,7 @@ query News($locale: I18NLocaleCode!, $tag: String!, $limit: Int = 5, $sort: [Str
   }
 }
 
-query PreviewsByTags(
-  $locale: I18NLocaleCode!
-  $limit: Int
-  $offset: Int
-  $tagSlugs: [String]!
-  $placesSlugs: [String]!
-) {
+query PreviewsByTags($locale: I18NLocaleCode!, $limit: Int, $offset: Int, $tagSlugs: [String], $placesSlugs: [String]) {
   contentPages(
     locale: $locale
     pagination: { start: $offset, limit: $limit }

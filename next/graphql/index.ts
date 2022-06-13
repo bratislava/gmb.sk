@@ -2507,8 +2507,8 @@ export type PreviewsByTagsQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode'];
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
-  tagSlugs: Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>;
-  placesSlugs: Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>;
+  tagSlugs?: InputMaybe<Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>>;
+  placesSlugs?: InputMaybe<Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>>;
 }>;
 
 
@@ -3099,7 +3099,7 @@ export const NewsDocument = gql`
 }
     ${NewsItemEntityFragmentDoc}`;
 export const PreviewsByTagsDocument = gql`
-    query PreviewsByTags($locale: I18NLocaleCode!, $limit: Int, $offset: Int, $tagSlugs: [String]!, $placesSlugs: [String]!) {
+    query PreviewsByTags($locale: I18NLocaleCode!, $limit: Int, $offset: Int, $tagSlugs: [String], $placesSlugs: [String]) {
   contentPages(
     locale: $locale
     pagination: {start: $offset, limit: $limit}
