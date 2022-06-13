@@ -17,8 +17,6 @@ export const seedCollectionWithTranslation = async (
   config: { [key: string]: (sourceItem: any) => string },
   identifier: string
 ) => {
-  const [appName, rest] = model.split("::");
-  const [collectionName] = rest.split(".");
   for (const sourceItemsArray of sourceItems) {
     const createdItems = [];
     const parsedItems = [];

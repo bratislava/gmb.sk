@@ -1,6 +1,5 @@
 import { isError } from 'lodash'
 import Head from 'next/head'
-import React from 'react'
 import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
 import { getContentPageColor } from '../../utils/getContentPageColor'
@@ -74,7 +73,15 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
 
   return (
     <div>
-      {seo && <Seo seo={seo} ogType="article" title={title} description={perex ?? undefined} />}
+      {seo && (
+        <Seo
+          seo={seo}
+          ogType="article"
+          title={title}
+          description={perex ?? undefined}
+          image={{ ...coverMedia?.data?.attributes }}
+        />
+      )}
       <Head>
         <title>{title}</title>
         <>

@@ -1,6 +1,5 @@
 import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
-import React from 'react'
 import { SeoFragment } from '../../graphql'
 
 interface SeoProps {
@@ -8,9 +7,10 @@ interface SeoProps {
   ogType?: string
   title?: string
   description?: string
+  image?: { url?: string; alternativeText?: string | null }
 }
 
-const Seo = ({ seo, ogType = 'website', title, description }: SeoProps) => {
+const Seo = ({ seo, ogType = 'website', title, description, image }: SeoProps) => {
   const { t } = useTranslation()
   return (
     <Head>
@@ -28,14 +28,14 @@ const Seo = ({ seo, ogType = 'website', title, description }: SeoProps) => {
           <meta property="og:type" content={ogType} />
           <meta property="og:url" content={seo?.canonicalUrl ?? ''} />
           {/* TODO: Twitter's image size limit is only 1MB */}
-          <meta property="og:image" content="seo?.metaImage.url" />
+          <meta property="og:image" content={image?.url || 'seo?.metaImage.url'} />
           <meta name="twitter:card" content="summary_large_image" />
 
           {/* Comments from: https://css-tricks.com/essential-meta-tags-social-media/ */}
           {/* Non-Essential, But Recommended */}
           <meta property="og:description" content={seo.metaDescription ?? description ?? ''} />
           <meta property="og:site_name" content={t('common.bratislavaCityGallery')} />
-          <meta name="twitter:image:alt" content="seo?.metaImage.alternativeText" />
+          <meta name="twitter:image:alt" content={image?.alternativeText || 'seo?.metaImage.alternativeText'} />
 
           {/* Non-Essential, But Required for Analytics */}
           <meta property="fb:app_id" content="your_app_id" />
