@@ -73,22 +73,11 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
 
   return (
     <div>
-      {seo && (
-        <Seo
-          seo={seo}
-          ogType="article"
-          title={title}
-          description={perex ?? undefined}
-          image={{ ...coverMedia?.data?.attributes }}
-        />
-      )}
+      {seo && <Seo seo={seo} ogType="article" title={title} description={perex} image={coverMedia?.data} />}
       <Head>
         <title>{title}</title>
         <>
-          {/* TODO: Query times from strapi, but do we want these? */}
-          <meta property="og:article:published_time" content="datetime" />
-          <meta property="og:article:modified_time" content="datetime" />
-          <meta property="og:article:expiration_time" content="datetime" />
+          {/* TODO: Query author from strapi */}
           <meta property="og:article:author" content="author" />
           {/* "A high-level section name. E.g. Technology" */}
           <meta property="og:article:section" content="Art and culture" />

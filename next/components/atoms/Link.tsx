@@ -1,7 +1,6 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import NextLink from 'next/link'
-import { isDefined } from '../../utils/isDefined'
 import { getRouteForLocale, isOfTypeRoute } from '../../utils/localeRoutes'
 
 type LinkProps = React.ComponentPropsWithoutRef<'a'> & {
@@ -30,7 +29,7 @@ export const Link = ({
 }: LinkProps) => {
   const { i18n } = useTranslation()
 
-  if (!isDefined(href)) return null
+  if (!href) return null
 
   if (!href.startsWith('http')) {
     let isFromRoot = false

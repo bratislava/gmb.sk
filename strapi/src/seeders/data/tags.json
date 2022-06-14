@@ -25,13 +25,13 @@
   ],
   [
     {
-      "title": "Expozície",
-      "slug": "expozicie",
+      "title": "Stále expozície",
+      "slug": "stale-expozicie",
       "locale": "sk"
     },
     {
-      "title": "Expositions",
-      "slug": "expositions",
+      "title": "Permanent exhibitions",
+      "slug": "permanent-exhibitions",
       "locale": "en"
     }
   ]

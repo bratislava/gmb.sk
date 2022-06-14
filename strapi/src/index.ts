@@ -1,6 +1,6 @@
 "use strict";
 
-import places from "./seeders/data/places.json";
+import placesData from "./seeders/data/places.json";
 import tagCategoriesData from "./seeders/data/tag-categories.json";
 import tagsData from "./seeders/data/tags.json";
 import { seedCollectionWithTranslation } from "./seeders/seedCollectionWithTranslation";
@@ -147,7 +147,7 @@ export default {
     await seedCollectionWithTranslation(
       strapi,
       "api::place.place",
-      places,
+      placesData,
       {
         title: (sourceItem) => sourceItem.title,
         slug: (sourceItem) => sourceItem.slug,
