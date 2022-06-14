@@ -1,10 +1,10 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
-import React from 'react'
+import { useEffect, useState } from 'react'
 import { ContentPagePlaceFragment, DatetimeFragment, PartnerEntityFragment, PositionFragment } from '../../graphql'
 import getDaysLeft from '../../utils/getDaysLeft'
 import { isDefined, WithAttributes } from '../../utils/isDefined'
-import { getRouteForLocale } from '../../utils/localeRoutes'
+import mobileAndTabletRegexCheck from '../../utils/mobileAndTabletRegexCheck'
 import Button from '../atoms/Button'
 import CityGalleryMarkdown from '../atoms/CityGalleryMarkdown'
 import Link from '../atoms/Link'
@@ -40,7 +40,38 @@ const SidePanel = ({
   showShare,
   className,
 }: SidePanelProps) => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    // Solution for mobile detection from: https://stackoverflow.com/a/58171659
+    let hasTouchScreen = false
+    if ('maxTouchPoints' in navigator) {
+      hasTouchScreen = navigator.maxTouchPoints > 0
+    } else if ('msMaxTouchPoints' in navigator) {
+      // @ts-ignore
+      hasTouchScreen = navigator['msMaxTouchPoints'] > 0
+    } else {
+      // @ts-ignore
+      let mQ = window.matchMedia && matchMedia('(pointer:coarse)')
+      if (mQ && mQ.media === '(pointer:coarse)') {
+        hasTouchScreen = !!mQ.matches
+      } else if ('orientation' in window) {
+        hasTouchScreen = true // deprecated, but good fallback
+      }
+    }
+
+    let isMobileDetected = false
+    const browserData = [navigator.userAgent, navigator.vendor]
+    if ('opera' in window) {
+      // @ts-ignore
+      browserData.push(window.opera)
+    }
+    for (const data in browserData) {
+      if (mobileAndTabletRegexCheck(data)) isMobileDetected = true
+    }
+    setIsMobile(hasTouchScreen || isMobileDetected)
+  }, [])
+
   const daysLeft = getDaysLeft(datetime?.dateFrom)
 
   if (
@@ -85,7 +116,7 @@ const SidePanel = ({
       )}
 
       {purchaseId && slug ? (
-        <Button size="small" className="w-fit" href={`${getRouteForLocale('/vstupenky', i18n.language)}/${slug}`}>
+        <Button size="small" className="w-fit" href={`/vstupenky/${slug}`}>
           {t('common.buyTickets')}
         </Button>
       ) : null}
@@ -93,16 +124,19 @@ const SidePanel = ({
       {showShare && slug && (
         <div>
           <h4 className="mb-5 text-lg lg:mb-8">{t('common.share')}</h4>
-          <div className="md:hidden">
-            <MobileShareButton slug={slug} title={title || t('common.share')} />
-          </div>
-          <div className="hidden gap-5 md:flex">
-            <ShareButton slug={slug} platform="email" title={title} />
-            <ShareButton slug={slug} platform="facebook" />
-            <ShareButton slug={slug} platform="twitter" />
-            <ShareButton slug={slug} platform="whatsapp" />
-            <ShareButton slug={slug} platform="linkedin" />
-          </div>
+          {isMobile ? (
+            <div>
+              <MobileShareButton slug={slug} title={title || t('common.share')} />
+            </div>
+          ) : (
+            <div className="flex gap-5">
+              <ShareButton slug={slug} platform="email" title={title} />
+              <ShareButton slug={slug} platform="facebook" />
+              <ShareButton slug={slug} platform="twitter" />
+              <ShareButton slug={slug} platform="whatsapp" />
+              <ShareButton slug={slug} platform="linkedin" />
+            </div>
+          )}
         </div>
       )}
 

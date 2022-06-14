@@ -7,7 +7,6 @@ import React from 'react'
 import { HighlightsItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { isDefined, WithAttributes } from '../../utils/isDefined'
-import { getRouteForLocale } from '../../utils/localeRoutes'
 import Button from '../atoms/Button'
 import { SidePanelTime } from '../atoms/SidePanelTime'
 import SidePanel from './SidePanel'
@@ -70,12 +69,16 @@ const Highlight = ({ highlight }: HighlightProps) => {
         id={`articleDiv${highlight.id}`}
         onClick={() => router.push(`/detail/${slug}`)}
       >
-        <div className="flex items-center justify-center w-full h-[calc(100vh_-_var(--height-nav))] bg-gmbLightGray">
+        <div
+          className="flex items-center justify-center w-full h-[calc(100vh_-_var(--height-nav))] bg-gmbLightGray"
+          id={`articleImg${highlight.id}`}
+        >
           {coverMedia?.data?.attributes?.url && (
             <img
               src={coverMedia.data.attributes.url}
               alt={coverMedia.data.attributes.alternativeText ?? ''}
               className="object-cover w-full h-full"
+              id={`coverImage${highlight.id}`}
             />
           )}
         </div>
@@ -102,11 +105,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
 
             <div className="flex flex-row items-stretch w-full mt-auto space-x-4 justify-evenly">
               {purchaseId && (
-                <Button
-                  size="small"
-                  className="flex-none w-fit"
-                  href={`${getRouteForLocale('/vstupenky', i18n.language)}/${slug}`}
-                >
+                <Button size="small" className="flex-none w-fit" href={`/vstupenky/${slug}`}>
                   {t('common.buyTickets')}
                 </Button>
               )}

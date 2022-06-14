@@ -37,13 +37,7 @@ query News($locale: I18NLocaleCode!, $tag: String!, $limit: Int = 5, $sort: [Str
   }
 }
 
-query PreviewsByTags(
-  $locale: I18NLocaleCode!
-  $limit: Int
-  $offset: Int
-  $tagSlugs: [String]!
-  $placesSlugs: [String]!
-) {
+query PreviewsByTags($locale: I18NLocaleCode!, $limit: Int, $offset: Int, $tagSlugs: [String], $placesSlugs: [String]) {
   contentPages(
     locale: $locale
     pagination: { start: $offset, limit: $limit }
@@ -115,7 +109,7 @@ query AboutUsPage($locale: I18NLocaleCode!) {
       attributes {
         __typename
         highlights {
-          ...Highlights
+          ...Highlight
         }
         sections {
           ...Sections
@@ -139,7 +133,7 @@ query HomePage($locale: I18NLocaleCode!) {
       attributes {
         __typename
         highlights {
-          ...Highlights
+          ...Highlight
         }
         sections {
           ...Sections
@@ -170,7 +164,7 @@ query CollectionPage($locale: I18NLocaleCode!) {
       attributes {
         __typename
         highlights {
-          ...Highlights
+          ...Highlight
         }
         sections {
           ...Sections
@@ -194,7 +188,7 @@ query GetInvolvedPage($locale: I18NLocaleCode!) {
       attributes {
         __typename
         highlights {
-          ...Highlights
+          ...Highlight
         }
         sections {
           ...Sections
@@ -218,7 +212,7 @@ query VisitUsPage($locale: I18NLocaleCode!) {
       attributes {
         __typename
         highlights {
-          ...Highlights
+          ...Highlight
         }
         sections {
           ...Sections
@@ -247,7 +241,7 @@ query ExplorePage($locale: I18NLocaleCode!) {
       attributes {
         __typename
         highlights {
-          ...Highlights
+          ...Highlight
         }
         seo {
           ...Seo
@@ -274,7 +268,7 @@ query ExhibitionsPage(
       attributes {
         __typename
         highlights {
-          ...Highlights
+          ...Highlight
         }
         seo {
           ...Seo

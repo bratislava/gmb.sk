@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   ContactEntityFragment,
   ExhibitionsPageQuery,
@@ -9,14 +9,15 @@ import {
   TagEntityFragment,
 } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
-import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
+import { hasAttributes, WithAttributes } from '../../utils/isDefined'
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
 import Button from '../atoms/Button'
+import Seo from '../atoms/Seo'
 import Filters from '../molecules/Filters'
 import Footer from '../molecules/Footer'
-import Highlight from '../molecules/Highlight'
 import CardSection from '../molecules/sections/CardSection'
 import ChessboardSection from '../molecules/sections/ChessboardSection'
+import HighlightsSection from '../molecules/sections/HighlightsSection'
 import NewsletterSection from '../molecules/sections/NewsletterSection'
 import Submenu from '../molecules/Submenu'
 
@@ -33,8 +34,6 @@ interface ExhibitionsPageProps {
   tagsOthers?: WithAttributes<TagEntityFragment>[]
   places?: WithAttributes<PlaceEntityFragment>[]
 }
-
-const PAGES_COUNT_PER_LOAD = 6
 
 const ExhibitionsPage = ({
   exhibitionsPage,
@@ -74,11 +73,16 @@ const ExhibitionsPage = ({
     }
   }, [query])
 
+  const seo = exhibitionsPage?.data?.attributes?.seo
+
   return (
     <>
-      {exhibitionsPage?.data?.attributes?.highlights?.contentPages?.data?.filter(hasAttributes).map((item) => (
-        <Highlight key={item.id} highlight={item} />
-      ))}
+      {seo && <Seo seo={seo} />}
+      <HighlightsSection
+        highlights={exhibitionsPage?.data?.attributes?.highlights
+          ?.map((highlight) => highlight?.contentPage?.data)
+          .filter(hasAttributes)}
+      />
 
       <Submenu
         items={[t('common.exhibitions'), t('common.permanentExhibitions'), t('common.additionalProgram')]}
@@ -103,7 +107,7 @@ const ExhibitionsPage = ({
       {activeTags.length || activePlaces.length ? (
         <div className="min-h-screen">
           <CardSection
-            sectionItems={filteredPages?.filter(isDefined)}
+            sectionItems={filteredPages}
             isLoading={isLoadingInitialData}
             loadmoreButton={
               !isReachingEnd && (

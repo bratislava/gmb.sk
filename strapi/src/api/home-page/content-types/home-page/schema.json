@@ -18,13 +18,13 @@
   "attributes": {
     "highlights": {
       "type": "component",
-      "repeatable": false,
+      "repeatable": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "component": "sections.highlights-section"
+      "component": "blocks.content-page-item"
     },
     "sections": {
       "pluginOptions": {

@@ -11,7 +11,6 @@ import SearchIcon from '../../assets/icons/search.svg'
 import Logo from '../../assets/images/gmb-logo-header.png'
 import { ContentPageEntityFragment } from '../../graphql'
 import { withAttributes } from '../../utils/isDefined'
-import { getRouteForLocale } from '../../utils/localeRoutes'
 import AppLangSwitchers from '../atoms/AppLangSwitchers'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
@@ -121,13 +120,13 @@ const Navigation = ({ contentPage }: NavigationProps) => {
               hidden: !isMobileMenuOpen,
             })}
           >
-            <NavLink url={getRouteForLocale('/vystavy', i18n.language)}>{t('navigation.exhibitionsEvents')}</NavLink>
-            <NavLink url={getRouteForLocale('/objavujte', i18n.language)}>{t('navigation.explore')}</NavLink>
-            <NavLink url={getRouteForLocale('/o-galerii', i18n.language)}>{t('navigation.aboutGallery')}</NavLink>
-            <NavLink url={getRouteForLocale('/zapoj-sa', i18n.language)}>{t('navigation.getInvolved')}</NavLink>
-            <NavLink url={getRouteForLocale('/zbierky', i18n.language)}>{t('navigation.collections')}</NavLink>
+            <NavLink url="/vystavy">{t('navigation.exhibitionsEvents')}</NavLink>
+            <NavLink url="/objavujte">{t('navigation.explore')}</NavLink>
+            <NavLink url="/o-galerii">{t('navigation.aboutGallery')}</NavLink>
+            <NavLink url="/zapoj-sa">{t('navigation.getInvolved')}</NavLink>
+            <NavLink url="/zbierky">{t('navigation.collections')}</NavLink>
 
-            <Button size="small" href={getRouteForLocale('/navstivte', i18n.language)}>
+            <Button size="small" href="/navstivte">
               {t('navigation.visitUs')}
             </Button>
 

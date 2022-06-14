@@ -1,7 +1,11 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import React from 'react'
-import FBLogo from '../../assets/icons/FB.svg'
+import EmailIcon from '../../assets/icons/social-platforms/E-mail.svg'
+import FacebookIcon from '../../assets/icons/social-platforms/Facebook.svg'
+import LinkedInIcon from '../../assets/icons/social-platforms/LinkedIn.svg'
+import TwitterIcon from '../../assets/icons/social-platforms/Twitter.svg'
+import WhatsAppIcon from '../../assets/icons/social-platforms/WhatsApp.svg'
 import Link from './Link'
 
 interface ShareButtonProps {
@@ -33,12 +37,15 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
 
   const encodedHref = encodeURI(href)
 
+  const iconSize = 32
+  const size = { height: iconSize, width: iconSize }
+
   const content = {
-    facebook: <FBLogo height={24} width={24} />,
-    email: 'EM',
-    twitter: 'TW',
-    whatsapp: 'WA',
-    linkedin: 'LI',
+    facebook: <FacebookIcon {...size} />,
+    email: <EmailIcon {...size} />,
+    twitter: <TwitterIcon {...size} />,
+    whatsapp: <WhatsAppIcon {...size} />,
+    linkedin: <LinkedInIcon {...size} />,
   }[platform]
 
   return (
@@ -53,7 +60,7 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
         event.preventDefault()
       }}
     >
-      <span className={cx(className, 'w-10 h-10 border rounded-full')}>{content}</span>
+      <span className={cx(className, 'w-8 h-8')}>{content}</span>
     </Link>
   )
 }

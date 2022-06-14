@@ -107,10 +107,7 @@ fragment ContentPageEntity on ContentPageEntity {
     slug
     coverMedia {
       data {
-        attributes {
-          url
-          alternativeText
-        }
+        ...ImageEntity
       }
     }
     perex
@@ -192,10 +189,7 @@ fragment SectionItem on ContentPage {
   perex
   coverMedia {
     data {
-      attributes {
-        alternativeText
-        url
-      }
+      ...ImageEntity
     }
   }
   dateFrom
@@ -232,8 +226,8 @@ fragment HighlightsItemEntity on ContentPageEntity {
   }
 }
 
-fragment Highlights on ComponentSectionsHighlightsSection {
-  contentPages {
+fragment Highlight on ComponentBlocksContentPageItem {
+  contentPage {
     data {
       ...HighlightsItemEntity
     }

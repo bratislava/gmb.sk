@@ -2,12 +2,11 @@ import { useTranslation } from 'next-i18next'
 import React from 'react'
 import BABrand from '../../assets/icons/BABrand.svg'
 import EULogo from '../../assets/icons/EULogo.svg'
-import FBLogo from '../../assets/icons/FB.svg'
-import IGLogo from '../../assets/icons/IG.svg'
-import YTLogo from '../../assets/icons/YT.svg'
+import FBLogo from '../../assets/icons/social-platforms/FB.svg'
+import IGLogo from '../../assets/icons/social-platforms/IG.svg'
+import YTLogo from '../../assets/icons/social-platforms/YT.svg'
 import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
 import { isDefined, WithAttributes } from '../../utils/isDefined'
-import { getRouteForLocale } from '../../utils/localeRoutes'
 import AppLangSwitchers from '../atoms/AppLangSwitchers'
 import { Link } from '../atoms/Link'
 
@@ -95,7 +94,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           <div>
             <p>{t('footer.quickLinks')}</p>
             <div>
-              <Link href={getRouteForLocale('/zverejnovanie-informacii', i18n.language)} preserveStyle>
+              <Link href="/zverejnovanie-informacii" preserveStyle>
                 {t('footer.disclosureOfInformation')}
               </Link>
               {contactInfo.attributes.quickLinks?.filter(isDefined).map((link) => (
