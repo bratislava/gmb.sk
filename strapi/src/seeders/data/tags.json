@@ -1,0 +1,38 @@
+[
+  [
+    {
+      "title": "Aktuality",
+      "slug": "aktuality",
+      "locale": "sk"
+    },
+    {
+      "title": "News",
+      "slug": "news",
+      "locale": "en"
+    }
+  ],
+  [
+    {
+      "title": "Výstavy",
+      "slug": "vystavy",
+      "locale": "sk"
+    },
+    {
+      "title": "Exhibitions",
+      "slug": "exhibitions",
+      "locale": "en"
+    }
+  ],
+  [
+    {
+      "title": "Stále expozície",
+      "slug": "stale-expozicie",
+      "locale": "sk"
+    },
+    {
+      "title": "Permanent exhibitions",
+      "slug": "permanent-exhibitions",
+      "locale": "en"
+    }
+  ]
+]

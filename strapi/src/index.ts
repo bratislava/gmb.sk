@@ -1,5 +1,10 @@
 "use strict";
 
+import placesData from "./seeders/data/places.json";
+import tagCategoriesData from "./seeders/data/tag-categories.json";
+import tagsData from "./seeders/data/tags.json";
+import { seedCollectionWithTranslation } from "./seeders/seedCollectionWithTranslation";
+
 export default {
   /**
    * An asynchronous register function that runs before
@@ -93,5 +98,49 @@ export default {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/*{ strapi }*/) {},
+  async bootstrap({ strapi }) {
+    //------------------------------------
+    // ADDING TAGS
+    //------------------------------------
+    await seedCollectionWithTranslation(
+      strapi,
+      "api::tag.tag",
+      tagsData,
+      {
+        title: (sourceItem) => sourceItem.title,
+        slug: (sourceItem) => sourceItem.slug,
+        locale: (sourceItem) => sourceItem.locale,
+      },
+      "slug"
+    );
+    //------------------------------------
+    // ADDING TAG-CATEGORIES
+    //------------------------------------
+    await seedCollectionWithTranslation(
+      strapi,
+      "api::tag-category.tag-category",
+      tagCategoriesData,
+      {
+        title: (sourceItem) => sourceItem.title,
+        slug: (sourceItem) => sourceItem.slug,
+        locale: (sourceItem) => sourceItem.locale,
+      },
+      "slug"
+    );
+    //------------------------------------
+    // ADDING PLACES
+    //------------------------------------
+    await seedCollectionWithTranslation(
+      strapi,
+      "api::place.place",
+      placesData,
+      {
+        title: (sourceItem) => sourceItem.title,
+        slug: (sourceItem) => sourceItem.slug,
+        address: (sourceItem) => sourceItem.address,
+        locale: (sourceItem) => sourceItem.locale,
+      },
+      "slug"
+    );
+  },
 };

@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   ContactEntityFragment,
   ExhibitionsPageQuery,
@@ -12,6 +12,7 @@ import { getAnchor } from '../../utils/getAnchor'
 import { hasAttributes, WithAttributes } from '../../utils/isDefined'
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
 import Button from '../atoms/Button'
+import Seo from '../atoms/Seo'
 import Filters from '../molecules/Filters'
 import Footer from '../molecules/Footer'
 import CardSection from '../molecules/sections/CardSection'
@@ -72,8 +73,11 @@ const ExhibitionsPage = ({
     }
   }, [query])
 
+  const seo = exhibitionsPage?.data?.attributes?.seo
+
   return (
     <>
+      {seo && <Seo seo={seo} />}
       <HighlightsSection
         highlights={exhibitionsPage?.data?.attributes?.highlights
           ?.map((highlight) => highlight?.contentPage?.data)

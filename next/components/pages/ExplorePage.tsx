@@ -1,10 +1,11 @@
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ContactEntityFragment, ExplorePageQuery, TagEntityFragment } from '../../graphql'
 import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
 import Button from '../atoms/Button'
+import Seo from '../atoms/Seo'
 import Filters from '../molecules/Filters'
 import Footer from '../molecules/Footer'
 import CardSection from '../molecules/sections/CardSection'
@@ -44,8 +45,11 @@ const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOt
     }
   }, [query])
 
+  const seo = explorePage?.data?.attributes?.seo
+
   return (
     <>
+      {seo && <Seo seo={seo} />}
       <HighlightsSection
         highlights={explorePage?.data?.attributes?.highlights
           ?.map((highlight) => highlight?.contentPage?.data)

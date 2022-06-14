@@ -1,0 +1,31 @@
+[
+    [
+      {
+        "title": "Mirbachov palác",
+        "slug": "mirbachov-palac",
+        "address": "Františkánske nám. 11",
+        "locale": "sk"
+      },
+      {
+        "title": "Mirbach's palace",
+        "slug": "mirbach-s-palace",
+        "address": "Františkánske nám. 11",
+        "locale": "en"
+      }
+    ],
+    [
+      {
+        "title": "Pálffyho palác",
+        "slug": "palffyho-palac",
+        "address": "Panská 19",
+        "locale": "sk"
+      },
+      {
+        "title": "Palffy's palace",
+        "slug": "palffy-s-palace",
+        "address": "Panská 19",
+        "locale": "en"
+      }
+    ]
+  ]
+  

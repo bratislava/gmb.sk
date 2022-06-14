@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import React from 'react'
 import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
+import Seo from '../atoms/Seo'
 import Video from '../atoms/Video'
 import Footer from '../molecules/Footer'
 import ImgSwiper from '../molecules/ImgSwiper'
@@ -43,6 +43,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
     slider,
     downloadSection,
     seo,
+    coverMedia,
   } = contentPage.attributes
 
   let submenu: string[] = []
@@ -61,15 +62,17 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
 
   return (
     <div>
+      {seo && <Seo seo={seo} ogType="article" title={title} description={perex} image={coverMedia?.data} />}
       <Head>
         <title>{title}</title>
         <>
-          <meta name="title" content={seo?.metaTitle ?? title} />
-          <meta name="description" content={seo?.metaDescription ?? perex ?? ''} />
-          <meta name="keywords" content={seo?.keywords ?? ''} />
-          <meta name="viewport" content={seo?.metaViewport ?? 'width=device-width, initial-scale=1'} />
-          <meta name="robots" content={seo?.metaRobots ?? ''} />
-          <meta name="canonical" content={seo?.canonicalUrl ?? ''} />
+          {/* TODO: Query author from strapi */}
+          <meta property="og:article:author" content="author" />
+          {/* "A high-level section name. E.g. Technology" */}
+          <meta property="og:article:section" content="Art and culture" />
+          {/* article:tag are an 'array' which means more of the same meta tags are allowed */}
+          <meta property="og:article:tag" content="tag1" />
+          <meta property="og:article:tag" content="tag2" />
         </>
       </Head>
 

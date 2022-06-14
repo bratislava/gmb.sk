@@ -6,6 +6,7 @@ import Footer from '../../components/molecules/Footer'
 import { ContactEntityFragment, ContentPageEntityFragment, SectionItemEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'
 import { Link } from '../atoms/Link'
+import Seo from '../atoms/Seo'
 import { SidePanelPlace } from '../atoms/SidePanelPlace'
 import { SidePanelTime } from '../atoms/SidePanelTime'
 import CardSection from '../molecules/sections/CardSection'
@@ -33,7 +34,7 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
     })
   }, [])
 
-  const { title, subtitle, place, placeTitle, dateFrom, dateTo, timeFrom, timeTo, slug } = contentPage.attributes
+  const { title, subtitle, place, placeTitle, dateFrom, dateTo, timeFrom, timeTo, slug, seo } = contentPage.attributes
 
   const ticketIncludesText = t('common.ticketIncludesPalace', {
     place: place?.data?.attributes?.title,
@@ -41,6 +42,7 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
 
   return (
     <div className="relative">
+      {seo && <Seo seo={seo} />}
       <aside
         id="sidebar"
         className="bg-gmbDark p-9 text-white max-w-[400px] fixed right-0 h-[calc(100vh-var(--height-nav))] hidden lg:block"

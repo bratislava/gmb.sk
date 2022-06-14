@@ -1,6 +1,6 @@
 import cx from 'classnames'
-import Link from 'next/link'
 import React from 'react'
+import Link from './Link'
 
 type ButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
   size?: 'small' | 'medium' | 'link'
@@ -24,10 +24,8 @@ const Button = ({ className, children, size = 'medium', onClick, href, color = '
 
   if (href && href.length) {
     return (
-      <Link href={href} passHref>
-        <a href={href} role="button" {...styles}>
-          {children}
-        </a>
+      <Link href={href} {...styles} preserveStyle noUnderline>
+        {children}
       </Link>
     )
   }

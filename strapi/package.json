@@ -17,6 +17,7 @@
     "@strapi/plugin-upload": "^4.1.12",
     "@strapi/plugin-users-permissions": "4.2.0-beta.3",
     "@strapi/strapi": "4.2.0-beta.3",
+    "@types/node": "^17.0.41",
     "pg": "8.6.0",
     "strapi-provider-upload-ts-minio": "^3.1.0"
   },
