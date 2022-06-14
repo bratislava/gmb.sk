@@ -7,8 +7,8 @@ import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
 import Button from '../atoms/Button'
 import Filters from '../molecules/Filters'
 import Footer from '../molecules/Footer'
-import Highlight from '../molecules/Highlight'
 import CardSection from '../molecules/sections/CardSection'
+import HighlightsSection from '../molecules/sections/HighlightsSection'
 import NewsletterSection from '../molecules/sections/NewsletterSection'
 import Submenu from '../molecules/Submenu'
 
@@ -46,9 +46,11 @@ const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOt
 
   return (
     <>
-      {explorePage?.data?.attributes?.highlights?.contentPages?.data.filter(hasAttributes).map((item) => (
-        <Highlight key={item.id} highlight={item} />
-      ))}
+      <HighlightsSection
+        highlights={explorePage?.data?.attributes?.highlights
+          ?.map((highlight) => highlight?.contentPage?.data)
+          .filter(hasAttributes)}
+      />
       <Submenu
         filters={
           <Filters

@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_blocks_content_page_items",
+  "info": {
+    "displayName": "content page item",
+    "icon": "file-invoice"
+  },
+  "options": {},
+  "attributes": {
+    "contentPage": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::content-page.content-page"
+    }
+  }
+}

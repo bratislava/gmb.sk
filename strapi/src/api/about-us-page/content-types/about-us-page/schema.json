@@ -4,7 +4,8 @@
   "info": {
     "singularName": "about-us-page",
     "pluralName": "about-us-pages",
-    "displayName": "about us page"
+    "displayName": "about us page",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -17,13 +18,13 @@
   "attributes": {
     "highlights": {
       "type": "component",
-      "repeatable": false,
+      "repeatable": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "component": "sections.highlights-section"
+      "component": "blocks.content-page-item"
     },
     "sections": {
       "pluginOptions": {
@@ -33,10 +34,10 @@
       },
       "type": "dynamiczone",
       "components": [
-        "sections.page-section",
-        "sections.news-section",
         "sections.contact-section",
-        "sections.newsletter-section"
+        "sections.news-section",
+        "sections.newsletter-section",
+        "sections.page-section"
       ]
     },
     "seo": {
