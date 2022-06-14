@@ -163,7 +163,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           anchor={getAnchor(downloadSection.submenuTitle)}
         />
       )}
-      {contactInfo && <Footer contactInfo={contactInfo} />}
+      {contactInfo && <Footer contactInfo={contactInfo} contentPage={contentPage} />}
     </div>
   )
 }
