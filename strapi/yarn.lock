@@ -1782,6 +1782,33 @@
     plop "2.7.6"
     pluralize "8.0.0"
 
+"@strapi/helper-plugin@4.1.12":
+  version "4.1.12"
+  resolved "https://registry.yarnpkg.com/@strapi/helper-plugin/-/helper-plugin-4.1.12.tgz#889b8f39ddbd66b9c08b1578b05f38bbc7a27ae5"
+  integrity sha512-R3QKpjhvwB4ZuJlYzkmvDAuZ+agmrc4Yy/eguHamCTdLpyls/DFNwkRomfjkrm9+jKM0tkwEkflmXARHw2c0Cg==
+  dependencies:
+    "@fortawesome/fontawesome-free" "^5.15.2"
+    "@fortawesome/fontawesome-svg-core" "^1.2.35"
+    "@fortawesome/free-brands-svg-icons" "^5.15.2"
+    "@fortawesome/free-solid-svg-icons" "^5.15.3"
+    "@fortawesome/react-fontawesome" "^0.1.14"
+    axios "0.25.0"
+    babel-plugin-styled-components "2.0.2"
+    formik "2.2.9"
+    invariant "^2.2.1"
+    lodash "4.17.21"
+    match-sorter "^4.0.2"
+    mini-css-extract-plugin "2.4.4"
+    moment "^2.29.1"
+    react "^17.0.2"
+    react-dom "^17.0.2"
+    react-helmet "^6.1.0"
+    react-intl "5.20.2"
+    react-router "^5.2.0"
+    react-router-dom "5.2.0"
+    styled-components "5.3.3"
+    whatwg-fetch "^3.6.2"
+
 "@strapi/helper-plugin@4.2.0-beta.3":
   version "4.2.0-beta.3"
   resolved "https://registry.yarnpkg.com/@strapi/helper-plugin/-/helper-plugin-4.2.0-beta.3.tgz#4be2080d8a545c77b84adf661e3c93470c219717"
@@ -1922,6 +1949,31 @@
     react-router-dom "5.2.0"
     sharp "0.30.4"
 
+"@strapi/plugin-upload@^4.1.12":
+  version "4.1.12"
+  resolved "https://registry.yarnpkg.com/@strapi/plugin-upload/-/plugin-upload-4.1.12.tgz#d98e5938a815c082bc20fc7d9a07124c1958e4d9"
+  integrity sha512-flUqhqKo0Jzz99PTSlNIE+hALA2+zv6WWIn7xdHLh41Bn6N8odBIZXiJseA/CNNYi22YRb9+Gp5k7QSPjchRyg==
+  dependencies:
+    "@strapi/helper-plugin" "4.1.12"
+    "@strapi/provider-upload-local" "4.1.12"
+    "@strapi/utils" "4.1.12"
+    byte-size "7.0.1"
+    cropperjs "1.5.11"
+    fs-extra "10.0.0"
+    immer "9.0.6"
+    koa-range "0.3.0"
+    koa-static "5.0.0"
+    lodash "4.17.21"
+    mime-types "2.1.35"
+    react "^17.0.2"
+    react-copy-to-clipboard "^5.0.3"
+    react-dom "^17.0.2"
+    react-intl "5.20.2"
+    react-redux "7.2.3"
+    react-router "^5.2.0"
+    react-router-dom "5.2.0"
+    sharp "0.30.4"
+
 "@strapi/plugin-users-permissions@4.2.0-beta.3":
   version "4.2.0-beta.3"
   resolved "https://registry.yarnpkg.com/@strapi/plugin-users-permissions/-/plugin-users-permissions-4.2.0-beta.3.tgz#4e0fc35160c8fc5d4a91c123b2c97cb5fa05ba49"
@@ -1952,6 +2004,14 @@
   dependencies:
     "@strapi/utils" "4.2.0-beta.3"
     sendmail "^1.6.1"
+
+"@strapi/provider-upload-local@4.1.12":
+  version "4.1.12"
+  resolved "https://registry.yarnpkg.com/@strapi/provider-upload-local/-/provider-upload-local-4.1.12.tgz#c88f55a1125ca02927bd09810c57a6482713f151"
+  integrity sha512-G4/UcCBPI68UZjtmItUs8m0tMRx9DGqm8sPG0bB4ClRI60nmu5fGoIxzh2TOBwJPo5oHBSMC1L35EO9K3pbTng==
+  dependencies:
+    "@strapi/utils" "4.1.12"
+    fs-extra "10.0.0"
 
 "@strapi/provider-upload-local@4.2.0-beta.3":
   version "4.2.0-beta.3"
@@ -2027,6 +2087,17 @@
     fs-extra "10.0.1"
     lodash "4.17.21"
     typescript "4.6.2"
+
+"@strapi/utils@4.1.12":
+  version "4.1.12"
+  resolved "https://registry.yarnpkg.com/@strapi/utils/-/utils-4.1.12.tgz#25f11e1080a13b04cdae76f74543a4e898d7063e"
+  integrity sha512-s5qI3+5KOfaksl4DvY28F68KyfmJz9oeIIMEbGX03CtnXerejws1gDKVIuyxHNXsQL1MkgG0Ejsyl4l4Pb04eA==
+  dependencies:
+    "@sindresorhus/slugify" "1.1.0"
+    date-fns "2.24.0"
+    http-errors "1.8.0"
+    lodash "4.17.21"
+    yup "0.32.9"
 
 "@strapi/utils@4.2.0-beta.3":
   version "4.2.0-beta.3"
