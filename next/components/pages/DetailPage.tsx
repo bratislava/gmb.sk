@@ -87,7 +87,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           datetime={{ dateFrom, dateTo, timeFrom, timeTo, showRemainingTime }}
           place={{ place, placeTitle, placeAddress }}
           positions={positions?.filter(isDefined)}
-          partners={partners?.data.filter(hasAttributes)}
+          partners={partners?.map((item) => item?.partner?.data).filter(hasAttributes)}
           purchaseId={purchaseId}
           slug={slug}
           showShare
@@ -132,7 +132,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           {/* Mobile sidepanel info part 2 */}
           <SidePanel
             positions={positions?.filter(isDefined)}
-            partners={partners?.data.filter(hasAttributes)}
+            partners={partners?.map((item) => item?.partner?.data).filter(hasAttributes)}
             slug={slug}
             showShare
             title={title}

@@ -74,8 +74,10 @@ fragment Positions on ContentPage {
 
 fragment Partners on ContentPage {
   partners {
-    data {
-      ...PartnerEntity
+    partner {
+      data {
+        ...PartnerEntity
+      }
     }
   }
 }
@@ -288,9 +290,11 @@ fragment PageSection on ComponentSectionsPageSection {
   submenuTitle
   layout
   contentPages {
-    data {
-      attributes {
-        ...SectionItem
+    contentPage {
+      data {
+        attributes {
+          ...SectionItem
+        }
       }
     }
   }

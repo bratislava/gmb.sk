@@ -55,9 +55,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -88,10 +86,7 @@
         }
       },
       "type": "dynamiczone",
-      "components": [
-        "sections.richtext-section",
-        "sections.video-section"
-      ]
+      "components": ["sections.richtext-section", "sections.video-section"]
     },
     "slider": {
       "type": "component",
@@ -204,6 +199,16 @@
       },
       "component": "blocks.position-item"
     },
+    "partners": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "blocks.partner-item"
+    },
     "override": {
       "type": "component",
       "repeatable": false,
@@ -247,12 +252,6 @@
       "relation": "oneToMany",
       "target": "api::content-page.content-page",
       "mappedBy": "parentPage"
-    },
-    "partners": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::partner.partner",
-      "inversedBy": "contentPages"
     }
   }
 }
