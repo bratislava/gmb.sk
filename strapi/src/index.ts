@@ -25,7 +25,7 @@ export default {
         responseType: string,
         apiName: string
       ) => {
-        return {
+        return nexus.extendType({
           type: "Query",
           definition(t) {
             t.field(queryName, {
@@ -43,45 +43,31 @@ export default {
 
                 if (results.length > 0) {
                   return { value: results[0] };
-                } else {
-                  throw new Error(ctx.koaContext.response.message);
                 }
               },
             });
           },
-        };
+        });
       };
 
       return {
         // Nexus
         types: [
-          nexus.extendType(
-            generateBySlugQuery(
-              "tagCategoryBySlug",
-              "TagCategoryEntityResponse",
-              "api::tag-category.tag-category"
-            )
+          generateBySlugQuery(
+            "tagCategoryBySlug",
+            "TagCategoryEntityResponse",
+            "api::tag-category.tag-category"
           ),
-          nexus.extendType(
-            generateBySlugQuery(
-              "tagBySlug",
-              "TagEntityResponse",
-              "api::tag.tag"
-            )
+          generateBySlugQuery("tagBySlug", "TagEntityResponse", "api::tag.tag"),
+          generateBySlugQuery(
+            "placeBySlug",
+            "PlaceEntityResponse",
+            "api::place.place"
           ),
-          nexus.extendType(
-            generateBySlugQuery(
-              "placeBySlug",
-              "PlaceEntityResponse",
-              "api::place.place"
-            )
-          ),
-          nexus.extendType(
-            generateBySlugQuery(
-              "contentPageBySlug",
-              "ContentPageEntityResponse",
-              "api::content-page.content-page"
-            )
+          generateBySlugQuery(
+            "contentPageBySlug",
+            "ContentPageEntityResponse",
+            "api::content-page.content-page"
           ),
         ],
 

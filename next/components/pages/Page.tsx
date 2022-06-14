@@ -15,8 +15,8 @@ import { getAnchor } from '../../utils/getAnchor'
 import { hasAttributes, isDefined, WithAttributes, withAttributes } from '../../utils/isDefined'
 import Seo from '../atoms/Seo'
 import Footer from '../molecules/Footer'
-import Highlight from '../molecules/Highlight'
 import ContactSection from '../molecules/sections/ContactSection'
+import HighlightsSection from '../molecules/sections/HighlightsSection'
 import MapSection from '../molecules/sections/MapSection'
 import NewsletterSection from '../molecules/sections/NewsletterSection'
 import NewsSection from '../molecules/sections/NewsSection'
@@ -24,6 +24,7 @@ import PageSectionContainer from '../molecules/sections/PageSectionContainer'
 import PartnersSection from '../molecules/sections/PartnersSection'
 import RichtextSection from '../molecules/sections/RichtextSection'
 import TicketsSection from '../molecules/sections/TicketsSection'
+import Submenu from '../molecules/Submenu'
 
 interface PageProps {
   page:
@@ -43,6 +44,17 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
 
   const page = pageResponse?.data?.attributes
 
+  let submenu: string[] = []
+
+  page?.sections
+    ?.filter(isDefined)
+    .filter(isDefined)
+    .forEach((section) => {
+      if ('submenuTitle' in section && section.submenuTitle) {
+        submenu.push(section.submenuTitle)
+      }
+    })
+
   return (
     <>
       {page?.seo && <Seo seo={page.seo} />}
@@ -50,17 +62,11 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
         <title>{title}</title>
       </Head>
 
-      {page?.highlights?.contentPages?.data.filter(hasAttributes).map((item) => (
-        <Highlight key={item.attributes?.slug} highlight={item} />
-      ))}
+      <HighlightsSection
+        highlights={page?.highlights?.map((highlight) => highlight?.contentPage?.data).filter(hasAttributes)}
+      />
 
-      {/* {page?.sections && (
-        <Submenu
-          items={page.sections
-            .filter((section) => section?.submenuTitle)
-            .map((section) => section.submenuTitle!)}
-        />
-      )} */}
+      {page?.sections && <Submenu items={submenu} />}
 
       {page?.sections
         ?.filter(isDefined)

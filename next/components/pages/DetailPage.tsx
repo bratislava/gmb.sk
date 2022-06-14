@@ -1,4 +1,3 @@
-import { isError } from 'lodash'
 import Head from 'next/head'
 import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
@@ -49,21 +48,11 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
 
   let submenu: string[] = []
 
-  const definedSections = mainContent?.filter(isDefined)
-
-  const definedWithoutError = definedSections?.filter((section) => isError(section))
-  const sectionsWithSubtitle = definedWithoutError?.filter((section) => {
-    section
+  mainContent?.filter(isDefined).forEach((section) => {
+    if ('submenuTitle' in section && section.submenuTitle) {
+      submenu.push(section.submenuTitle)
+    }
   })
-
-  // mainContent
-  //   ?.filter(isDefined)
-  //   .filter((section) => section.submenuTitle)
-  //   .forEach((section) => {
-  //     if (section.submenuTitle) {
-  //       submenu.push(section.submenuTitle);
-  //     }
-  //   });
   if (relatedContentSubmenuTitle && childPages?.data?.filter(hasAttributes).length) {
     submenu.push(relatedContentSubmenuTitle)
   }
@@ -103,7 +92,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           slug={slug}
           showShare
           title={title}
-          className="hidden float-right ml-[5vw] lg:block w-[var(--sidepanel-width)]"
+          className="hidden float-right ml-[5vw] lg:block w-sidepanel"
         />
         {/* Mobile sidepanel info part 1 */}
         <SidePanel

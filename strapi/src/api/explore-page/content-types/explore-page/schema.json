@@ -4,7 +4,8 @@
   "info": {
     "singularName": "explore-page",
     "pluralName": "explore-pages",
-    "displayName": "explore page"
+    "displayName": "explore page",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -17,13 +18,13 @@
   "attributes": {
     "highlights": {
       "type": "component",
-      "repeatable": false,
+      "repeatable": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "component": "sections.highlights-section"
+      "component": "blocks.content-page-item"
     },
     "seo": {
       "type": "component",

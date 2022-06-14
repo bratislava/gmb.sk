@@ -4,7 +4,8 @@
   "info": {
     "singularName": "visit-us-page",
     "pluralName": "visit-us-pages",
-    "displayName": "visit us page"
+    "displayName": "visit us page",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -17,13 +18,13 @@
   "attributes": {
     "highlights": {
       "type": "component",
-      "repeatable": false,
+      "repeatable": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "component": "sections.highlights-section"
+      "component": "blocks.content-page-item"
     },
     "sections": {
       "pluginOptions": {

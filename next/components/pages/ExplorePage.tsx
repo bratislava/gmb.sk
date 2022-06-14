@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ContactEntityFragment, ExplorePageQuery, TagEntityFragment } from '../../graphql'
 import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
@@ -8,8 +8,8 @@ import Button from '../atoms/Button'
 import Seo from '../atoms/Seo'
 import Filters from '../molecules/Filters'
 import Footer from '../molecules/Footer'
-import Highlight from '../molecules/Highlight'
 import CardSection from '../molecules/sections/CardSection'
+import HighlightsSection from '../molecules/sections/HighlightsSection'
 import NewsletterSection from '../molecules/sections/NewsletterSection'
 import Submenu from '../molecules/Submenu'
 
@@ -50,9 +50,11 @@ const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOt
   return (
     <>
       {seo && <Seo seo={seo} />}
-      {explorePage?.data?.attributes?.highlights?.contentPages?.data.filter(hasAttributes).map((item) => (
-        <Highlight key={item.id} highlight={item} />
-      ))}
+      <HighlightsSection
+        highlights={explorePage?.data?.attributes?.highlights
+          ?.map((highlight) => highlight?.contentPage?.data)
+          .filter(hasAttributes)}
+      />
       <Submenu
         filters={
           <Filters

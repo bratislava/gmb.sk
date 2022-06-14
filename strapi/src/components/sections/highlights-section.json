@@ -2,14 +2,15 @@
   "collectionName": "components_sections_highlights_sections",
   "info": {
     "displayName": "highlights section",
-    "icon": "bullhorn"
+    "icon": "bullhorn",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "contentPages": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::content-page.content-page"
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.content-page-item"
     }
   }
 }

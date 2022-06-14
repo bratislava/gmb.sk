@@ -69,7 +69,10 @@ const Highlight = ({ highlight }: HighlightProps) => {
         id={`articleDiv${highlight.id}`}
         onClick={() => router.push(`/detail/${slug}`)}
       >
-        <div className="flex items-center justify-center w-full h-[calc(100vh_-_var(--height-nav))] bg-gmbLightGray">
+        <div
+          className="flex items-center justify-center w-full h-[calc(100vh_-_var(--height-nav))] bg-gmbLightGray"
+          id={`articleImg${highlight.id}`}
+        >
           {coverMedia?.data?.attributes?.url && (
             <img
               src={coverMedia.data.attributes.url}
