@@ -4,7 +4,7 @@
   "info": {
     "singularName": "contact",
     "pluralName": "contacts",
-    "displayName": "Kontakty a pätička",
+    "displayName": "Kontakty, linky, súbory",
     "description": ""
   },
   "options": {
@@ -60,6 +60,14 @@
       },
       "type": "richtext"
     },
+    "quickLinksTitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
     "quickLinks": {
       "type": "component",
       "repeatable": true,
@@ -69,6 +77,34 @@
         }
       },
       "component": "blocks.link-item"
+    },
+    "quickLinksTitle2": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "quickLinks2": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "blocks.link-item"
+    },
+    "disclosureMoreFiles": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "sections.download-section"
     }
   }
 }

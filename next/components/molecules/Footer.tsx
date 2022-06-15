@@ -82,7 +82,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
               <Link href="/o-galerii" preserveStyle>
                 {t('navigation.aboutGallery')}
               </Link>
-              <Link href="/zapoj-sa" preserveStyle>
+              <Link href="/zapojte-sa" preserveStyle>
                 {t('navigation.getInvolved')}
               </Link>
               <Link href="/zbierky" preserveStyle>

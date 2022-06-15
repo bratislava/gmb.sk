@@ -4,7 +4,7 @@
   "info": {
     "singularName": "content-page",
     "pluralName": "content-pages",
-    "displayName": "Content Pages",
+    "displayName": "1. Obsahové stránky",
     "description": ""
   },
   "options": {
@@ -55,7 +55,9 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -86,7 +88,10 @@
         }
       },
       "type": "dynamiczone",
-      "components": ["sections.richtext-section", "sections.video-section"]
+      "components": [
+        "sections.richtext-section",
+        "sections.video-section"
+      ]
     },
     "slider": {
       "type": "component",

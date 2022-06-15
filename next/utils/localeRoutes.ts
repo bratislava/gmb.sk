@@ -8,7 +8,7 @@ const routesSkToEn = {
   '/vystavy': '/exhibitions',
   '/o-galerii': '/about-gallery',
   '/objavujte': '/explore',
-  '/zapoj-sa': '/get-involved',
+  '/zapojte-sa': '/get-involved',
   '/zbierky': '/collections',
   '/detail': '/detail',
   '/vstupenky': '/tickets',

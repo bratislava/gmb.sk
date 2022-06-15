@@ -52,7 +52,7 @@ const nextConfig = {
         },
         {
           source: '/get-involved',
-          destination: '/zapoj-sa',
+          destination: '/zapojte-sa',
         },
         {
           source: '/collections',

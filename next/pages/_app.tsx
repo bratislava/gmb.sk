@@ -1,8 +1,8 @@
 import { appWithTranslation, useTranslation } from 'next-i18next'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
+import Script from 'next/script'
 import React from 'react'
-import { ParallaxProvider } from 'react-scroll-parallax'
 import Navigation from '../components/molecules/Navigation'
 import '../styles/globals.css'
 
@@ -20,16 +20,16 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <ParallaxProvider>
-        <div className="app">
-          <header className="flex">
-            <Navigation contentPage={pageProps?.contentPage} />
-          </header>
-          <main>
-            <Component {...pageProps} />
-          </main>
-        </div>
-      </ParallaxProvider>
+      <div className="app">
+        <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
+
+        <header className="flex">
+          <Navigation contentPage={pageProps?.contentPage} />
+        </header>
+        <main>
+          <Component {...pageProps} />
+        </main>
+      </div>
     </>
   )
 }
