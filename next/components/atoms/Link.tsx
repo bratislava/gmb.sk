@@ -26,6 +26,7 @@ export const Link = ({
   preserveStyle,
   noUnderline,
   onClick,
+  ...rest
 }: LinkProps) => {
   const { i18n } = useTranslation()
 
@@ -51,6 +52,7 @@ export const Link = ({
         rel={rel}
         href={href}
         onClick={onClick}
+        {...rest}
         className={cx(
           {
             'flex items-center uppercase cursor-pointer text-nav group': !preserveStyle,

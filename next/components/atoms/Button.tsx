@@ -7,9 +7,10 @@ type ButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButton
   href?: string
   className?: string
   color?: 'dark' | 'light'
+  id?: string
 }
 
-const Button = ({ className, children, size = 'medium', onClick, href, color = 'dark', ...rest }: ButtonProps) => {
+const Button = ({ className, children, size = 'medium', onClick, href, color = 'dark', id, ...rest }: ButtonProps) => {
   const styles = {
     className: cx(className, 'flex text-center justify-center border-solid border-2 uppercase text-btn font-medium', {
       'px-[24px] py-[10px] lg:px-[28px] lg:py-[11px] 3xl:px-[32px] 3xl:py-[12px]': size === 'small',
@@ -24,14 +25,14 @@ const Button = ({ className, children, size = 'medium', onClick, href, color = '
 
   if (href && href.length) {
     return (
-      <Link href={href} {...styles} preserveStyle noUnderline>
+      <Link href={href} id={id} role="button" {...styles} preserveStyle noUnderline>
         {children}
       </Link>
     )
   }
 
   return (
-    <button onClick={onClick} {...rest} {...styles}>
+    <button onClick={onClick} id={id} {...rest} {...styles}>
       {children}
     </button>
   )

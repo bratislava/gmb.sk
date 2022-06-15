@@ -123,7 +123,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             <NavLink url="/vystavy">{t('navigation.exhibitionsEvents')}</NavLink>
             <NavLink url="/objavujte">{t('navigation.explore')}</NavLink>
             <NavLink url="/o-galerii">{t('navigation.aboutGallery')}</NavLink>
-            <NavLink url="/zapoj-sa">{t('navigation.getInvolved')}</NavLink>
+            <NavLink url="/zapojte-sa">{t('navigation.getInvolved')}</NavLink>
             <NavLink url="/zbierky">{t('navigation.collections')}</NavLink>
 
             <Button size="small" href="/navstivte">

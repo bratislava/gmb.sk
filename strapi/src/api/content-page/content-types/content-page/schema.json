@@ -4,7 +4,7 @@
   "info": {
     "singularName": "content-page",
     "pluralName": "content-pages",
-    "displayName": "Content Pages",
+    "displayName": "1. Obsahové stránky",
     "description": ""
   },
   "options": {
@@ -204,6 +204,16 @@
       },
       "component": "blocks.position-item"
     },
+    "partners": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "blocks.partner-item"
+    },
     "override": {
       "type": "component",
       "repeatable": false,
@@ -247,12 +257,6 @@
       "relation": "oneToMany",
       "target": "api::content-page.content-page",
       "mappedBy": "parentPage"
-    },
-    "partners": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::partner.partner",
-      "inversedBy": "contentPages"
     }
   }
 }
