@@ -4,6 +4,7 @@ import { hasAttributes, isDefined, WithAttributes } from './isDefined'
 
 const routesSkToEn = {
   // Routes
+  '/': '/',
   '/navstivte': '/visit-us',
   '/vystavy': '/exhibitions',
   '/o-galerii': '/about-gallery',
@@ -67,6 +68,10 @@ function getContentPageDetailRouteForTargetLocale(
     ?.filter(hasAttributes)
     .find((localization) => localization.attributes.locale === targetLocale)
 
+  if (!contentPageInTargetLocale) {
+    return undefined
+  }
+
   return `/detail/${contentPageInTargetLocale?.attributes.slug}`
 }
 
@@ -77,6 +82,10 @@ function getContentPageTicketsRouteForTargetLocale(
   const contentPageInTargetLocale = contentPageLocalizations?.data
     ?.filter(hasAttributes)
     .find((localization) => localization.attributes.locale === targetLocale)
+
+    if (!contentPageInTargetLocale) {
+      return undefined
+    }
 
   const ticketsRoute = getRouteForLocale('/vstupenky', targetLocale)
 
