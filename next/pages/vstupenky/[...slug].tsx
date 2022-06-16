@@ -84,32 +84,7 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async ({ locales = [] }) => {
-  /** Get all content pages for each locale. It would be better to fetch all content pages in one query, but I didn't find a way */
-  const contentPageSlugsPromises = locales.map((locale) => client.AllContentPageSlugs({ locale }))
-  const contentPageSlugsResponses = await Promise.all(contentPageSlugsPromises)
-
-  /** We have a quite complicated and nested structure here, so we need to flatten the response and filter out nullables */
-  const allContentPages = contentPageSlugsResponses
-    .flat()
-    .map((contentPageSlugsResponse) => contentPageSlugsResponse.contentPages?.data.filter(hasAttributes))
-    .filter(isDefined)
-    .flat()
-
-  const paths = allContentPages.map((contentPage) => {
-    return {
-      params: {
-        slug: [contentPage.attributes.slug],
-      },
-      locale: contentPage.attributes.locale ?? undefined,
-    }
-  })
-
-  return {
-    paths,
-    /** This means that in case that we didn't generate the detail page in build time, the page will be generated on requests (same as SSG). */
-    fallback: 'blocking',
-  }
-}
+/** This is a kind of a hack, but getStaticPaths is exactly the same as for the detail, so here we just reexport it from that page */
+export { getStaticPaths } from '../detail/[...slug]'
 
 export default Tickets
