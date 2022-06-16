@@ -68,8 +68,8 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
             <SidePanelTime datetime={{ dateFrom, dateTo, timeFrom, timeTo }} isOneLine={true} />
           </div>
         </div>
-        <div className="px-xStandard py-yStandard h-[800px] bg-gmbLightGray">
-          <h2 className="text-xxl">{t('common.buyTicketsGoOut')}</h2>
+        <div id="goout-form" className="px-xStandard py-yStandard h-[800px] bg-gmbLightGray">
+          Nákupný formulár
         </div>
       </div>
 

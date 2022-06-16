@@ -1,6 +1,5 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
-import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import Button from '../../atoms/Button'
@@ -10,13 +9,15 @@ interface ITicketProps {
   title: string | null | undefined
   price: number | null | undefined
   description: string | null | undefined
+  id: string | null | undefined
   link: string | null | undefined
 }
 
-export const Ticket = ({ title, price, description, link }: ITicketProps) => {
+export const Ticket = ({ title, price, description, id, link }: ITicketProps) => {
   const { t } = useTranslation()
   return (
     <div
+      id={`ticket-${id}`}
       className={cx(
         styles.ticket,
         'flex flex-col mb-yStandard justify-between last:mb-0 lg:mb-0 w-full min-h-[360px] lg:min-h-[500px] 3xl:min-h-[700px] bg-gmbLightGray relative p-8 hover:bg-[#6cc7ed] last-of-type:after:hidden first-of-type:before:hidden'
@@ -41,12 +42,12 @@ export const Ticket = ({ title, price, description, link }: ITicketProps) => {
           </ReactMarkdown>
         ) : null}
         {link ? (
-          <Button href={link} size="small" className="px-xStandard w-fit">
+          <Button id={`btn-buy-ticket-${id}`} size="small" className="px-xStandard w-fit">
             {t('common.buyForYourself')}
           </Button>
         ) : null}
         {link ? (
-          <Button href={link} size="small" className="mt-4 px-xStandard w-fit">
+          <Button id={`btn-buy-as-gift-${id}`} size="small" className="mt-4 px-xStandard w-fit">
             {t('common.buyAsGift')}
           </Button>
         ) : null}
