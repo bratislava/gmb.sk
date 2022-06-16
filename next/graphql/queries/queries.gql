@@ -62,6 +62,17 @@ query ContentPageBySlug($locale: I18NLocaleCode!, $slug: String!) {
   }
 }
 
+query AllContentPageSlugs($locale: I18NLocaleCode!) {
+  contentPages(locale: $locale) {
+    data {
+      attributes {
+        slug
+        locale
+      }
+    }
+  }
+}
+
 query TicketPageBySlug($locale: I18NLocaleCode!, $slug: String!) {
   contentPageBySlug(slug: $slug, locale: $locale) {
     data {
