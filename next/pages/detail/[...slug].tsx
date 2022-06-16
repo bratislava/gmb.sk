@@ -51,40 +51,32 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, loca
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  // // Call an external API endpoint to get posts
-  // const res = await fetch('https://.../posts')
-  // const posts = await res.json()
+export const getStaticPaths: GetStaticPaths = async ({ locales = [] }) => {
+  /** Get all content pages for each locale. It would be better to fetch all content pages in one query, but I didn't find a way */
+  const contentPageSlugsPromises = locales.map((locale) => client.AllContentPageSlugs({ locale }))
+  const contentPageSlugsResponses = await Promise.all(contentPageSlugsPromises)
 
-  // // Get the paths we want to pre-render based on posts
-  // const paths = posts.map((post) => ({
-  //   params: { id: post.id },
-  // }))
+  /** We have a quite complicated and nested structure here, so we need to flatten the response and filter out nullables */
+  const allContentPages = contentPageSlugsResponses
+    .flat()
+    .map((contentPageSlugsResponse) => contentPageSlugsResponse.contentPages?.data.filter(hasAttributes))
+    .filter(isDefined)
+    .flat()
 
-  const promises = locales?.map((locale) => client.AllContentPageSlugs({ locale })) ?? []
+  const paths = allContentPages.map((contentPage) => {
+    return {
+      params: {
+        slug: [contentPage.attributes.slug],
+      },
+      locale: contentPage.attributes.locale ?? undefined,
+    }
+  })
 
-  const responses = await Promise.all(promises)
-
-  const paths = responses.reduce((acc, currentValue) => {
-    const { contentPages } = currentValue
-    const paths = contentPages!.data.filter(hasAttributes).map((contentPage) => {
-      console.log('🚀 ~ file: [...slug].tsx ~ line 71 ~ paths ~ contentPage', contentPage)
-      return {
-        params: {
-          slug: [contentPage.attributes.slug],
-        },
-        locale: contentPage.attributes.locale ?? undefined,
-      }
-    })
-
-    return acc.concat(paths)
-  }, [] as GetStaticPathsResult['paths'])
-
-  // if (!contentPages) {
-  //   return { paths: [], fallback: 'blocking' }
-  // }
-
-  return { paths, fallback: true }
+  return {
+    paths,
+    /** This means that in case that we didn't generate the detail page in build time, the page will be generated on requests (same as SSG). */
+    fallback: 'blocking',
+  }
 }
 
 export default Detail
