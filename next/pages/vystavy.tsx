@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import React from 'react'
 import ExhibitionsPage from '../components/pages/ExhibitionsPage'
 import { ExhibitionsPageQuery, PlacesQuery, TagsByCategorySlugQuery } from '../graphql'
@@ -56,7 +56,7 @@ const Exhibitions = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps<ExhibitionsProps> = async ({ locale = 'sk' }) => {
+export const getStaticProps: GetStaticProps<ExhibitionsProps> = async ({ locale = 'sk' }) => {
   const today = getTodaysDate()
 
   const [
@@ -124,6 +124,7 @@ export const getServerSideProps: GetServerSideProps<ExhibitionsProps> = async ({
       places,
       ...translations,
     },
+    revalidate: 60,
   }
 }
 

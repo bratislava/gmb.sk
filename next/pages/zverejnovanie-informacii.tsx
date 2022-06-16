@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
 import React from 'react'
@@ -24,15 +24,14 @@ export function DisclosureOfInformation() {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale = 'sk' }) => {
+export const getStaticProps: GetStaticProps = async ({ locale = 'sk' }) => {
   const translations = await ssrTranslations({ locale }, ['common'])
-
-  console.log(translations)
 
   return {
     props: {
       ...translations,
     },
+    revalidate: 60 * 5,
   }
 }
 export default DisclosureOfInformation

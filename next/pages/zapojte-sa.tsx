@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import React from 'react'
 import Page from '../components/pages/Page'
@@ -30,7 +30,7 @@ const GetInvolved = ({ getInvolvedPage, contact, news }: GetInvolvedProps) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<GetInvolvedProps> = async ({ locale = 'sk' }) => {
+export const getStaticProps: GetStaticProps<GetInvolvedProps> = async ({ locale = 'sk' }) => {
   const [{ getInvolvedPage, contact }, { news }, translations] = await Promise.all([
     client.GetInvolvedPage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
@@ -44,6 +44,7 @@ export const getServerSideProps: GetServerSideProps<GetInvolvedProps> = async ({
       news,
       ...translations,
     },
+    revalidate: 60,
   }
 }
 
