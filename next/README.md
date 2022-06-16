@@ -52,3 +52,7 @@ async rewrites() {
 3. Add an entry to the Slovak to English map of routes in `localeRoutes.ts`
 
 4. Use `getRouteForLocale` when using the `<Link>` component, like this: `<NavLink url={getRouteForLocale('/navstivte', i18n.language)}>`. You need to pass the route in Slovak and the current locale. This will correctly resolve the route for the given locale.
+
+## Static Site Generation
+
+If you want to test static site generation locally, you need to run `yarn build` and `yarn start`. This commands run by default with the prod env variable, so in order to have the local env variable for strapi, you need to create `.env.local` with `STRAPI_URL=localhost:1337` to override the prod values. This file is ignored by git, because it often contains sensitive secrets
