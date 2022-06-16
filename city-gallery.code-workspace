@@ -1,8 +1,13 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "peacock.color": "#1089FB",
+    "workbench.colorCustomizations": {
+      "sideBar.border": "#42a2fc"
+    }
+  }
 }
