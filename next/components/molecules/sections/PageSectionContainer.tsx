@@ -13,7 +13,7 @@ const PageSectionContainer = ({ section, anchor }: SectionProps) => {
   if (section.layout === 'chessboard') {
     return (
       <ChessboardSection
-        sectionItems={section.contentPages?.data.filter(hasAttributes)}
+        sectionItems={section.contentPages?.map((item) => item?.contentPage?.data).filter(hasAttributes)}
         title={section.title ?? undefined}
         anchor={anchor}
       />
@@ -23,7 +23,7 @@ const PageSectionContainer = ({ section, anchor }: SectionProps) => {
   if (section.layout === 'cards') {
     return (
       <CardSection
-        sectionItems={section.contentPages?.data.filter(hasAttributes)}
+        sectionItems={section.contentPages?.map((item) => item?.contentPage?.data).filter(hasAttributes)}
         title={section.title ?? undefined}
         anchor={anchor}
       />
@@ -33,7 +33,7 @@ const PageSectionContainer = ({ section, anchor }: SectionProps) => {
   if (section.layout === 'fullwidth') {
     return (
       <FullWidthSection
-        sectionItems={section.contentPages?.data.filter(hasAttributes)}
+        sectionItems={section.contentPages?.map((item) => item?.contentPage?.data).filter(hasAttributes)}
         title={section.title ?? undefined}
         anchor={anchor}
       />
@@ -42,7 +42,7 @@ const PageSectionContainer = ({ section, anchor }: SectionProps) => {
 
   return (
     <ChessboardSection
-      sectionItems={section.contentPages?.data.filter(hasAttributes)}
+      sectionItems={section.contentPages?.map((item) => item?.contentPage?.data).filter(hasAttributes)}
       title={section.title ?? undefined}
       anchor={anchor}
     />

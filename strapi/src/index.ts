@@ -32,14 +32,16 @@ export default {
               type: responseType,
               args: { slug: nexus.stringArg() },
               async resolve(parent, args, ctx) {
-                const transformedArgs = transformArgs(args, {
+                const { slug, locale } = transformArgs(args, {
                   contentType: strapi.contentTypes[apiName],
                   usePagination: false,
                 });
 
                 const results = await strapi.entityService.findMany(apiName, {
-                  filters: transformedArgs,
+                  filters: { slug },
+                  locale,
                 });
+
 
                 if (results.length > 0) {
                   return { value: results[0] };

@@ -136,10 +136,10 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
           }
         })}
 
-      {pageResponse?.__typename === 'HomePageEntityResponse' && pageResponse.data?.attributes?.partnersSection ? (
+      {pageResponse?.data?.attributes?.__typename === 'HomePage' && pageResponse.data?.attributes?.partners?.length ? (
         <PartnersSection
           title={t('common.partners')}
-          partners={pageResponse.data?.attributes?.partnersSection?.partners?.data.filter(hasAttributes)}
+          partners={pageResponse.data?.attributes?.partners?.map((item) => item?.partner?.data)?.filter(hasAttributes)}
         />
       ) : null}
 

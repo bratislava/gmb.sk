@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_blocks_partner_items",
+  "info": {
+    "displayName": "partner item",
+    "icon": "hands-helping"
+  },
+  "options": {},
+  "attributes": {
+    "partner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::partner.partner"
+    }
+  }
+}

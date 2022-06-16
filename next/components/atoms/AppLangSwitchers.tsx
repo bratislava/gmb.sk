@@ -22,36 +22,28 @@ const AppLangSwitchers = ({ contentPage }: AppLangSwitchersProps) => {
     (locale: string) => {
       const equivalentRouteInTargetLocale = getEquivalentRouteInTargetLocale(router.pathname, locale, contentPage)
 
-      switch (locale) {
-        case 'sk':
-          setCookies(LocalStorageEnum.LANG, locale, {
-            path: '/',
-            sameSite: true,
-          })
-          router.replace(
-            {
-              pathname: equivalentRouteInTargetLocale,
-            },
-            undefined,
-            { locale: 'sk' }
-          )
-          break
-        case 'en':
-          setCookies(LocalStorageEnum.LANG, locale, {
-            path: '/',
-            sameSite: true,
-          })
-          router.replace(
-            {
-              pathname: equivalentRouteInTargetLocale,
-            },
-            undefined,
-            { locale: 'en' }
-          )
-          break
-        default:
-          return
+      if (!equivalentRouteInTargetLocale) {
+        router.push(
+          {
+            pathname: `/404`,
+          },
+          undefined,
+          { locale }
+        )
+        return
       }
+
+      setCookies(LocalStorageEnum.LANG, locale, {
+        path: '/',
+        sameSite: true,
+      })
+      router.replace(
+        {
+          pathname: equivalentRouteInTargetLocale,
+        },
+        undefined,
+        { locale }
+      )
     },
     [router, setCookies, contentPage]
   )

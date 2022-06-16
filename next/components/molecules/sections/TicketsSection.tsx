@@ -1,5 +1,4 @@
 import cx from 'classnames'
-import React from 'react'
 import { TicketEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
 import CityGalleryMarkdown from '../../atoms/CityGalleryMarkdown'
@@ -27,7 +26,8 @@ const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) =
         <div className="flex flex-wrap justify-between mt-24 lg:justify-stretch lg:flex-nowrap">
           {tickets?.map((ticket) => (
             <Ticket
-              key={ticket.attributes.price}
+              key={ticket.id}
+              id={ticket.id}
               title={ticket.attributes.title}
               price={ticket.attributes.price}
               description={ticket.attributes.description}
@@ -35,6 +35,10 @@ const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) =
             />
           ))}
         </div>
+      </div>
+
+      <div id="goout-form" className="px-xStandard py-yStandard min-h-[400px] bg-gmbLightGray">
+        Nákupný formulár
       </div>
     </Section>
   )

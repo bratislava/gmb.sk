@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { GetServerSideProps } from 'next'
 import ErrorPage from '../components/pages/ErrorPage'
 import { ErrorPageQuery } from '../graphql'
 import { client } from '../utils/gql'
@@ -10,7 +10,7 @@ interface ErrorProps {
   statusCode: number
 }
 
-const Error: NextPage<ErrorProps> = ({ contact, statusCode }: ErrorProps) => {
+const Error = ({ contact, statusCode }: ErrorProps) => {
   return <ErrorPage contactInfo={withAttributes(contact?.data)} statusCode={statusCode} />
 }
 

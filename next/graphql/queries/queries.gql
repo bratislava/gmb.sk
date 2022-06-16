@@ -138,8 +138,8 @@ query HomePage($locale: I18NLocaleCode!) {
         sections {
           ...Sections
         }
-        partnersSection {
-          partners {
+        partners {
+          partner {
             data {
               ...PartnerEntity
             }

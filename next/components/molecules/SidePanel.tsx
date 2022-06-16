@@ -116,7 +116,7 @@ const SidePanel = ({
       )}
 
       {purchaseId && slug ? (
-        <Button size="small" className="w-fit" href={`/vstupenky/${slug}`}>
+        <Button id="buy-tickets-btn" size="small" className="w-fit" href={`/vstupenky/${slug}`}>
           {t('common.buyTickets')}
         </Button>
       ) : null}
