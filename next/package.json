@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "gen": "graphql-codegen"
+    "gen": "graphql-codegen",
+    "build:dev": "env-cmd -f .env.development yarn build && yarn start"
   },
   "dependencies": {
     "classnames": "^2.3.1",
@@ -48,6 +49,7 @@
     "@types/react-mailchimp-subscribe": "^2.1.1",
     "@types/react-modal": "^3.13.1",
     "autoprefixer": "^10.4.7",
+    "env-cmd": "^10.1.0",
     "eslint": "^8.16.0",
     "eslint-config-next": "12.1.6",
     "eslint-config-prettier": "^8.5.0",
