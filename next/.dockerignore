@@ -3,8 +3,8 @@
 Dockerfile
 dist
 .env
+.env.local
 .env.development
-.env.production
 node_modules
 misc
 .idea
