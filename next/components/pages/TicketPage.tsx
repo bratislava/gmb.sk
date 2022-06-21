@@ -36,25 +36,20 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
 
   const { title, subtitle, place, placeTitle, dateFrom, dateTo, timeFrom, timeTo, slug, seo } = contentPage.attributes
 
-  const ticketIncludesText = t('common.ticketIncludesPalace', {
-    place: place?.data?.attributes?.title,
-  })
+  const ticketIncludesText = `${t('common.ticketIncludesPalace')} ${
+    place?.data?.attributes?.title === t('common.places.palffysPalace')
+      ? t('common.places.palffysPalaceLocative')
+      : t('common.places.mirbachsPalaceLocative')
+  }`
 
   return (
-    <div className="relative">
+    <>
       {seo && <Seo seo={seo} />}
-      <aside
-        id="sidebar"
-        className="bg-gmbDark p-9 text-white max-w-[400px] fixed right-0 h-[calc(100vh-var(--height-nav))] hidden lg:block"
+      <section
+        data-goOutId="event-id-here"
+        className="goOutEventWrapper relative flex flex-col min-h-[calc(100vh_-_var(--height-nav))]"
       >
-        <p className="text-xl mt-9">{ticketIncludesText}</p>
-        <Link href="#relatedContent" className="absolute bottom-14">
-          {t('common.showIncludedEvents')}
-        </Link>
-      </aside>
-      {/* TODO change 400px to const */}
-      <div className="w-full lg:w-[calc(100%-400px)]">
-        <div className="py-yStandard px-xStandard">
+        <header className="py-yStandard px-xStandard">
           <Link href={`/detail/${slug}`} preserveStyle noUnderline>
             <hgroup>
               <h1 className="text-xxl">{title}</h1>
@@ -62,30 +57,37 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
             </hgroup>
           </Link>
 
-          <p className="my-10 lg:hidden">{ticketIncludesText}</p>
+          <p className="my-yStandard text-md">{ticketIncludesText}</p>
+
           <div className="flex flex-wrap justify-start w-full mt-6 gap-x-xStandard gap-y-yStandard">
             <SidePanelPlace placeFragment={{ place, placeTitle }} isOneLine={true} />
             <SidePanelTime datetime={{ dateFrom, dateTo, timeFrom, timeTo }} isOneLine={true} />
           </div>
-        </div>
-        <div id="goout-form" className="px-xStandard py-yStandard h-[800px] bg-gmbLightGray">
-          Nákupný formulár
-        </div>
-      </div>
+        </header>
 
-      <div id="paralaxAnchor">
-        <CardSection
-          anchor="relatedContent"
-          title={t('common.ticketValidAlsoFor')}
-          sectionItems={currentEvents}
-          noItemsMessage={t('common.noCurrentEvents', {
-            place: place?.data?.attributes?.title,
-          })}
-        />
-      </div>
+        {/* <aside
+            id="sidebar"
+            className="flex-col hidden text-white w-ticketSidebar lg:flex bg-gmbDark px-xStandard py-yStandard"
+          >
+            <p className="text-lg">{ticketIncludesText}</p>
+            <div className="grow" />
+            <Link href="#relatedContent">{t('common.showIncludedEvents')}</Link>
+          </aside> */}
+
+        <div id="goOutForm" className="grow px-xStandard py-yStandard bg-gmbLightGray" />
+      </section>
+
+      <CardSection
+        anchor="relatedContent"
+        title={t('common.ticketValidAlsoFor')}
+        sectionItems={currentEvents}
+        noItemsMessage={t('common.noCurrentEvents', {
+          place: place?.data?.attributes?.title,
+        })}
+      />
 
       {contactInfo && <Footer contactInfo={contactInfo} />}
-    </div>
+    </>
   )
 }
 

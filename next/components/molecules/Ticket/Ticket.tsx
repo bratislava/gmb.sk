@@ -1,5 +1,6 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import Button from '../../atoms/Button'
@@ -15,12 +16,14 @@ interface ITicketProps {
 
 export const Ticket = ({ title, price, description, id, link }: ITicketProps) => {
   const { t } = useTranslation()
+  const router = useRouter()
+
   return (
     <div
       id={`ticket-${id}`}
       className={cx(
         styles.ticket,
-        'flex flex-col mb-yStandard justify-between last:mb-0 lg:mb-0 w-full min-h-[360px] lg:min-h-[500px] 3xl:min-h-[700px] bg-gmbLightGray relative p-8 hover:bg-[#6cc7ed] last-of-type:after:hidden first-of-type:before:hidden'
+        'goOutTicket flex flex-col mb-yStandard justify-between last:mb-0 lg:mb-0 w-full min-h-[360px] lg:min-h-[440px] 3xl:min-h-[660px] bg-gmbLightGray relative p-8 hover:bg-[#6cc7ed] last-of-type:after:hidden first-of-type:before:hidden'
       )}
     >
       <div className="pb-yStandard">
@@ -42,12 +45,22 @@ export const Ticket = ({ title, price, description, id, link }: ITicketProps) =>
           </ReactMarkdown>
         ) : null}
         {link ? (
-          <Button id={`btn-buy-ticket-${id}`} size="small" className="px-xStandard w-fit">
+          <Button
+            size="small"
+            className="goOutBtnBuySelf px-xStandard w-fit"
+            data-goOutId="id-here"
+            onClick={() => router.replace(`#goOutForm`)}
+          >
             {t('common.buyForYourself')}
           </Button>
         ) : null}
         {link ? (
-          <Button id={`btn-buy-as-gift-${id}`} size="small" className="mt-4 px-xStandard w-fit">
+          <Button
+            size="small"
+            className="mt-4 goOutBtnBuyGift px-xStandard w-fit"
+            data-goOutId="id-here"
+            onClick={() => router.replace(`#goOutForm`)}
+          >
             {t('common.buyAsGift')}
           </Button>
         ) : null}
