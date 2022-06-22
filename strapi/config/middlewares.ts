@@ -9,11 +9,10 @@ export default [
     name: "strapi::security",
     config: {
       contentSecurityPolicy: {
-        useDefaults: true,
         directives: {
           "connect-src": ["'self'", "https:"],
-          "img-src": ["'self'", "data:", "blob:", "cdn.bratislava.sk"],
-          "media-src": ["'self'", "data:", "blob:", "cdn.bratislava.sk"],
+          "img-src": ["'self'", "data:", "blob:", "cdn-api.bratislava.sk"],
+          "media-src": ["'self'", "data:", "blob:", "cdn-api.bratislava.sk"],
           upgradeInsecureRequests: null,
         },
       },
