@@ -4,7 +4,7 @@ import Head from 'next/head'
 import React from 'react'
 import { ssrTranslations } from '../utils/translations'
 
-export function DisclosureOfInformation() {
+export const DisclosureOfInformation = () => {
   const { t } = useTranslation()
 
   return (
