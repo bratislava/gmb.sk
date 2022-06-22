@@ -2,6 +2,7 @@ module.exports = {
   extends: ['auto', 'plugin:tailwindcss/recommended', 'plugin:@next/next/recommended'],
   plugins: ['only-warn'],
   rules: {
+    'react/react-in-jsx-scope': 'off',
     /** We use this a lot with isDefined and hasAttributes */
     'unicorn/no-array-callback-reference': 'off',
     // Named export is easier to refactor automatically
