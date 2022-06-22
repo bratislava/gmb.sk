@@ -42,10 +42,12 @@
     "download": "Download",
     "relatedContent": "Related content",
     "showIncludedEvents": "Show included events",
-    "noCurrentEvents": "Currently, there are no ongoing exhibitions and expositions at {{place}}.",
+    "noCurrentEvents": "There is no other ongoing exhibition currently.",
     "places": {
       "mirbachsPalace": "Mirbach's palace",
-      "palffysPalace": "Pálffy's palace"
+      "mirbachsPalaceLocative": "Mirbach's palace",
+      "palffysPalace": "Pálffy's palace",
+      "palffysPalacLocative": "Pálffy's palace"
     },
     "exhibitions": "Exhibitions",
     "moreExhibitions": "More exhibitons and events",

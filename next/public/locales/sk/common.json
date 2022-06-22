@@ -30,7 +30,7 @@
     "ticket": "Vstupenka",
     "tickets": "Vstupenky",
     "seasonTickets": "Permanentky",
-    "ticketIncludesPalace": "V rámci vstupenky môžete navštíviť všetky výstavy v: {{place}}",
+    "ticketIncludesPalace": "V rámci vstupenky môžete navštíviť všetky výstavy v",
     "ticketValidAlsoFor": "Vstupenka platí aj pre tieto výstavy",
     "aboutOrigin": "Galéria mesta Bratislavy vznikla v roku 1961 ako samostatná kultúrna organizácia v zriaďovateľskej pôsobnosti hlavného mesta Slovenskej republiky.",
     "name": "Názov",
@@ -43,10 +43,12 @@
     "download": "Stiahnuť",
     "relatedContent": "Súvisiaci obsah",
     "showIncludedEvents": "Ukáž, čo tam ešte je",
-    "noCurrentEvents": "Aktuálne neprebiehajú žiadne výstavy a expozície na mieste: {{place}}.",
+    "noCurrentEvents": "Aktuálne tu neprebiehajú žiadne ďalšie výstavy a expozície.",
     "places": {
       "mirbachsPalace": "Mirbachov palác",
-      "palffysPalace": "Pálffyho palác"
+      "mirbachsPalaceLocative": "Mirbachovom paláci",
+      "palffysPalace": "Pálffyho palác",
+      "palffysPalaceLocative": "Pálffyho paláci"
     },
     "exhibitions": "Výstavy",
     "moreExhibitions": "Ďaľšie výstavy a akcie",

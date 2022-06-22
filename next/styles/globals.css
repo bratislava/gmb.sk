@@ -46,6 +46,7 @@
   width: 100%;
 
   --sidepanel-width: 100%;
+  --ticket-sidebar-width: 100%;
 
   --font-size-xxl: 1.875rem;
   --font-size-xl: 1.5rem;
@@ -74,6 +75,7 @@
 @media (min-width: 1024px) {
   :root {
     --sidepanel-width: min(40vw, 670px);
+    --ticket-sidebar-width: min(400px);
 
     --font-size-xxl: 2.5rem;
     --font-size-xl: 2rem;

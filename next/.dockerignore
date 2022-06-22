@@ -2,10 +2,10 @@
 .dockerignore
 Dockerfile
 dist
-node_modules
 .env
-.env.example
-.env.test
+.env.local
+.env.development
+node_modules
 misc
 .idea
 .nvmrc
@@ -14,3 +14,4 @@ misc
 .git/
 build/
 data/
+.next
