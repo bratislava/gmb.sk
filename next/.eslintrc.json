@@ -1,5 +1,8 @@
 {
   "extends": [
     "auto"
-  ]
+  ],
+  "rules": {
+    "jsx-a11y/anchor-is-valid": "off"
+  }
 }
