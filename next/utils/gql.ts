@@ -2,9 +2,12 @@ import { GraphQLClient } from 'graphql-request'
 import getConfig from 'next/config'
 
 import { getSdk } from '../graphql'
-import isServer from './isServer'
 
 const { serverRuntimeConfig } = getConfig()
+
+export function isServer() {
+  return typeof window === 'undefined'
+}
 
 // URL becomes full url to strapi on server, but just /graphql (for proxy) on client
 const protocol =
