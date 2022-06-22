@@ -1,14 +1,14 @@
-import React from 'react'
 import LocationIcon from '../../assets/icons/location.svg'
 import { ContentPagePlaceFragment } from '../../graphql'
 
 export interface SidePanelPlaceProps {
   placeFragment: ContentPagePlaceFragment
   isOneLine?: boolean
+  showTitle?: boolean
   className?: string
 }
 
-export const SidePanelPlace = ({ placeFragment, isOneLine = false }: SidePanelPlaceProps) => {
+export const SidePanelPlace = ({ placeFragment, isOneLine = false, showTitle = true }: SidePanelPlaceProps) => {
   const { place, placeTitle, placeAddress } = placeFragment
 
   if (!place?.data && !placeTitle && !placeAddress) {
@@ -29,8 +29,8 @@ export const SidePanelPlace = ({ placeFragment, isOneLine = false }: SidePanelPl
       <address className="flex items-center gap-3 not-italic">
         {isOneLine && <LocationIcon height="24" width="24" />}
         <span>
-          {placeTitle || place?.data?.attributes?.title}
-          {!isOneLine && <br />}
+          {(showTitle && placeTitle) || place?.data?.attributes?.title}
+          {!isOneLine && showTitle && <br />}
           {!isOneLine && (placeAddress || place?.data?.attributes?.address)}
         </span>
       </address>

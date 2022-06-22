@@ -1,14 +1,8 @@
 import { useTranslation } from 'next-i18next'
-import React from 'react'
-import BABrand from '../../assets/icons/BABrand.svg'
-import EULogo from '../../assets/icons/EULogo.svg'
-import FBLogo from '../../assets/icons/social-platforms/FB.svg'
-import IGLogo from '../../assets/icons/social-platforms/IG.svg'
-import YTLogo from '../../assets/icons/social-platforms/YT.svg'
 import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
-import { isDefined, WithAttributes } from '../../utils/isDefined'
-import AppLangSwitchers from '../atoms/AppLangSwitchers'
-import { Link } from '../atoms/Link'
+import { WithAttributes } from '../../utils/isDefined'
+import CityGalleryMarkdown from '../atoms/CityGalleryMarkdown'
+import { SidePanelPlace } from '../atoms/SidePanelPlace'
 
 interface FooterProps {
   contactInfo: WithAttributes<ContactEntityFragment>
@@ -17,102 +11,51 @@ interface FooterProps {
 
 const Footer = ({ contactInfo, contentPage }: FooterProps) => {
   const { t, i18n } = useTranslation()
+
+  const {
+    name,
+    email,
+    openingHours,
+    mirbach,
+    palffy,
+    quickLinks,
+    quickLinksTitle,
+    quickLinksTitle2,
+    quickLinks2,
+    disclosureMoreFiles,
+  } = contactInfo.attributes
+
   return (
-    <footer className="relative bg-gray-100 px-xStandard pt-14">
-      <div className="border-t border-gray-300">
-        <div className="flex flex-col items-center justify-between gap-10 pt-20 mb-20 md:flex-row">
-          <div>
-            <BABrand />
-          </div>
-          <div className="flex items-center">
-            <div className="flex gap-6 mr-14">
-              <Link href="/">
-                <FBLogo />
-              </Link>
-              <Link href="/">
-                <YTLogo />
-              </Link>
-              <Link href="/">
-                <IGLogo />
-              </Link>
-            </div>
-            <div>
-              <EULogo />
-            </div>
-          </div>
+    <footer className="relative text-white bg-gmbDark px-xStandard py-yStandard">
+      <div className="grid grid-flow-col grid-cols-4 grid-rows-4 h-[800px] gap-5">
+        <div className="bg-blue-800">Otvorene</div>
+        <div className="bg-green-800">
+          <CityGalleryMarkdown content={openingHours} />
         </div>
-        {/* content */}
-        <div className="flex flex-col justify-between gap-20 pb-20 text-left lg:gap-0 lg:flex-row">
-          <div>
-            <div className="flex flex-col gap-y-3 mb-18">
-              <p>{contactInfo.attributes.mirbach?.title}</p>
-              <p>{contactInfo.attributes.mirbach?.address}</p>
-              <p>{contactInfo.attributes.mirbach?.zip}</p>
-              <p>{contactInfo.attributes.mirbach?.city}</p>
-            </div>
-            <div className="flex flex-col gap-y-3 mb-18">
-              <p>{contactInfo.attributes.palffy?.title}</p>
-              <p>{contactInfo.attributes.palffy?.address}</p>
-              <p>{contactInfo.attributes.palffy?.zip}</p>
-              <p>{contactInfo.attributes.palffy?.city}</p>
-            </div>
-            <div className="flex flex-col gap-y-3">
-              {contactInfo.attributes.email && (
-                <Link href={`mailto:${contactInfo.attributes.email}`} className="underline normal-case">
-                  {contactInfo.attributes.email}
-                </Link>
-              )}
-              <p>{contactInfo.attributes.mirbach?.phone}</p>
-              <p>{contactInfo.attributes.palffy?.phone}</p>
-            </div>
-          </div>
-
-          <div>
-            <p>{t('footer.siteMap')}</p>
-            <div className="flex flex-col gap-4 mt-11">
-              <Link href="/navstivte" preserveStyle>
-                {t('navigation.visitUs')}
-              </Link>
-              <Link href="/vystavy" preserveStyle>
-                {t('navigation.exhibitionsEvents')}
-              </Link>
-              <Link href="/objavujte" preserveStyle>
-                {t('navigation.explore')}
-              </Link>
-              <Link href="/o-galerii" preserveStyle>
-                {t('navigation.aboutGallery')}
-              </Link>
-              <Link href="/zapojte-sa" preserveStyle>
-                {t('navigation.getInvolved')}
-              </Link>
-              <Link href="/zbierky" preserveStyle>
-                {t('navigation.collections')}
-              </Link>
-            </div>
-          </div>
-
-          <div>
-            <p>{t('footer.quickLinks')}</p>
-            <div>
-              <Link href="/zverejnovanie-informacii" preserveStyle>
-                {t('footer.disclosureOfInformation')}
-              </Link>
-              {contactInfo.attributes.quickLinks?.filter(isDefined).map((link) => (
-                <Link href={link.url ?? '#'} key={link.url}>
-                  {link.title}
-                </Link>
-              ))}
-            </div>
-          </div>
+        <div className="bg-yellow-800"></div>
+        <div className="bg-purple-800 "></div>
+        <div className="bg-blue-600">
+          <span>Pokladňa {mirbach?.title}</span>
         </div>
-        {/* content end */}
-        <div className="py-20 border-t">
-          <div className="flex flex-col justify-between gap-2 md:flex-row">
-            <p>{t('footer.declarationOfAccessibility')}</p>
-            <p>&copy; 2020 {t('common.capitalCityOfBratislava')}</p>
-            <AppLangSwitchers contentPage={contentPage} />
-          </div>
+        <div className="bg-green-600">
+          <span>
+            <SidePanelPlace
+              placeFragment={{ placeTitle: '', placeAddress: '', place: { data: { attributes: mirbach } } }}
+            />
+          </span>
         </div>
+        <div className="bg-yellow-600"></div>
+        <div className="bg-purple-600"></div>
+        <div className="bg-blue-400">
+          <span>Pokladňa {palffy?.title}</span>
+        </div>
+        <div className="bg-green-400">
+          <span>{palffy?.address}</span>
+        </div>
+        <div className="bg-yellow-400"></div>
+        <div className="bg-purple-400"></div>
+        <div className="row-span-3 bg-red-600"></div>
+        <div className="bg-red-400"></div>
       </div>
     </footer>
   )
