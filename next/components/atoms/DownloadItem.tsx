@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import FileIcon from '../../assets/icons/file.svg'
 import { DownloadItemFragment } from '../../graphql'
@@ -7,9 +7,10 @@ import Button from './Button'
 
 interface DownloadProps {
   downloadItem: DownloadItemFragment
+  oneLine?: boolean
 }
 
-export const DownloadItem = ({ downloadItem }: DownloadProps) => {
+export const DownloadItem = ({ downloadItem, oneLine = false }: DownloadProps) => {
   const [fetching, setFetching] = useState(false)
   const [_error, setError] = useState(false)
   const { t } = useTranslation()
@@ -34,6 +35,21 @@ export const DownloadItem = ({ downloadItem }: DownloadProps) => {
         a.click()
       })
       .catch(() => setError(true))
+  }
+
+  if (oneLine) {
+    return (
+      <Button
+        disabled={fetching}
+        size="link"
+        color="light"
+        onClick={() => download(file?.url, file?.name)}
+        aria-label="download file"
+        className="!justify-start whitespace-nowrap"
+      >
+        {downloadItem.title}
+      </Button>
+    )
   }
 
   return (
