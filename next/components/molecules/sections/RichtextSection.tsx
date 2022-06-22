@@ -1,4 +1,5 @@
 import React from 'react'
+
 import CityGalleryMarkdown from '../../atoms/CityGalleryMarkdown'
 import Section from './Section'
 

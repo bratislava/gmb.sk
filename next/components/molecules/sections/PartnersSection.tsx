@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { PartnerEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
 import Link from '../../atoms/Link'
@@ -19,7 +20,7 @@ const PartnersSection = ({ partners, title, anchor }: PartnersSectionProps) => {
           <Link
             href={partner.attributes.link ?? '#'}
             key={index}
-            className="flex justify-center items-center h-[115px] cursor-pointer overflow-hidden"
+            className="flex h-[115px] cursor-pointer items-center justify-center overflow-hidden"
           >
             <img
               src={partner?.attributes.logo.data?.attributes?.url}

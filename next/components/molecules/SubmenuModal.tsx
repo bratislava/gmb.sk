@@ -1,5 +1,6 @@
 import React from 'react'
 import Modal from 'react-modal'
+
 import CloseIcon from '../../assets/icons/close-x.svg'
 import { getAnchor } from '../../utils/getAnchor'
 import Link from '../atoms/Link'
@@ -19,12 +20,12 @@ const SubmenuModal = ({ isOpen, onClose, items, filters }: ISubmenuModalProps) =
         content: { inset: '0' },
         overlay: { zIndex: 60 },
       }}
-      className="absolute min-h-screen p-6 text-white border-0 rounded-none bg-gmbDark lg:hidden"
+      className="absolute min-h-screen rounded-none border-0 bg-gmbDark p-6 text-white lg:hidden"
     >
       <button className="absolute right-6 top-6" onClick={onClose}>
         <CloseIcon fill="#fff" />
       </button>
-      <div className="flex flex-col items-center w-full gap-16 mt-20 text-white">
+      <div className="mt-20 flex w-full flex-col items-center gap-16 text-white">
         {items?.map((item, index) => (
           <Link key={index} href={`#${getAnchor(item)}`} onClick={onClose} replace>
             {item}

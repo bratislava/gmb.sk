@@ -2,6 +2,7 @@
 
 import { SSRConfig } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
 import cfg from '../next.config'
 
 const cachedSsrTranslations = {
@@ -42,12 +43,12 @@ export const ssrTranslations = async (
   for (const locale in cachedSsrTranslations) {
     await Promise.all(
       preCachedNamespaces.map((arr) => {
-        console.log('Caching translations: ', arr)
+        console.log('Caching translations:', arr)
         return ssrTranslations({ locale }, arr)
       })
     )
   }
-})().catch((e) => {
+})().catch((error) => {
   console.log('Error caching translations - will fall back')
-  console.log(e)
+  console.log(error)
 })

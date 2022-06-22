@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { HighlightsItemEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
 import Highlight from '../Highlight'

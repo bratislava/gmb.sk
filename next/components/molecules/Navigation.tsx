@@ -1,10 +1,11 @@
 import cx from 'classnames'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import Hamburger from '../../assets/icons/ba-hamburger.svg'
 import CloseIcon from '../../assets/icons/close-x.svg'
 import SearchIcon from '../../assets/icons/search.svg'
@@ -59,11 +60,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
   }, [router.events])
 
   React.useEffect(() => {
-    if (isSearchBarOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'auto'
-    }
+    document.body.style.overflow = isSearchBarOpen ? 'hidden' : 'auto';
     return () => {
       document.body.style.overflow = 'auto'
     }
@@ -90,17 +87,17 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 flex w-full bg-white h-nav drop-shadow-md">
-        <div className="flex items-center justify-between w-full mx-6 lg:mx-9 3xl:mx-12">
-          <Link href="/" preserveStyle noUnderline className="min-w-fit group">
+      <nav className="fixed inset-x-0 top-0 z-50 flex h-nav w-full bg-white drop-shadow-md">
+        <div className="mx-6 flex w-full items-center justify-between lg:mx-9 3xl:mx-12">
+          <Link href="/" preserveStyle noUnderline className="group min-w-fit">
             <div className="flex">
               <div className="h-logoHeight w-logoWidth">
                 <Image src={Logo} alt="Logo GMB" objectFit="scale-down" unoptimized />
               </div>
 
               <span
-                id={'navLogoText'}
-                className="absolute ml-4 text-sm leading-4 pl-logoWidth whitespace-nowrap group-hover:underline"
+                id="navLogoText"
+                className="absolute ml-4 whitespace-nowrap pl-logoWidth text-sm leading-4 group-hover:underline"
               >
                 {i18n.language === 'sk' ? t('common.cityGallery') : t('common.bratislavaGenitiv')}
                 <br />

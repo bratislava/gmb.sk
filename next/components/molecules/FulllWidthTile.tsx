@@ -1,6 +1,7 @@
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import { SectionItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { WithAttributes } from '../../utils/isDefined'
@@ -16,26 +17,26 @@ export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
 
   return (
     <article
-      className="w-full cursor-pointer group"
+      className="group w-full cursor-pointer"
       onClick={() => router.push(`/detail/${sectionItem.attributes.slug}`)}
     >
-      <div className="flex items-center justify-center w-full h-screen overflow-hidden lg:h-full">
+      <div className="flex h-screen w-full items-center justify-center overflow-hidden lg:h-full">
         {sectionItem.attributes.coverMedia?.data?.attributes?.url && (
           <img
             src={sectionItem.attributes.coverMedia.data.attributes.url}
             alt={sectionItem.attributes.coverMedia.data.attributes.alternativeText ?? ''}
-            className="object-cover min-w-full min-h-full"
+            className="min-h-full min-w-full object-cover"
           />
         )}
       </div>
 
       <div
-        className="flex flex-col items-start justify-between w-full px-xStandard py-yStandard"
+        className="flex w-full flex-col items-start justify-between px-xStandard py-yStandard"
         style={{ background: getContentPageColor(sectionItem) }}
       >
         <hgroup>
           <h3 className="text-xl">{sectionItem.attributes.title}</h3>
-          <p className="text-xl font-regular pb-yStandard">{sectionItem.attributes.subtitle}</p>
+          <p className="pb-yStandard text-xl font-regular">{sectionItem.attributes.subtitle}</p>
         </hgroup>
 
         <Button

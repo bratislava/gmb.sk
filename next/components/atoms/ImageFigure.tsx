@@ -6,9 +6,9 @@ interface IImageProps extends React.HTMLProps<HTMLImageElement> {
 
 const ImageFigure = ({ src, alt, noCaption, width, height, sizes }: IImageProps) => {
   return (
-    <figure className="relative max-w-[400px] max-h-[400px]">
+    <figure className="relative max-h-[400px] max-w-[400px]">
       <img src={src} alt={alt} width={width} height={height} sizes={sizes} />
-      {!noCaption && alt && <figcaption className="block mt-12 text-sm text-gmbGray mb-25">{alt}</figcaption>}
+      {!noCaption && alt && <figcaption className="mb-25 mt-12 block text-sm text-gmbGray">{alt}</figcaption>}
     </figure>
   )
 }

@@ -1,6 +1,7 @@
-import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import {
   AboutUsPageQuery,
   CollectionPageQuery,
@@ -44,7 +45,7 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
 
   const page = pageResponse?.data?.attributes
 
-  let submenu: string[] = []
+  const submenu: string[] = []
 
   page?.sections
     ?.filter(isDefined)

@@ -2,13 +2,14 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useTranslation } from 'next-i18next'
 import React from 'react'
-import Footer from '../../components/molecules/Footer'
+
 import { ContactEntityFragment, ContentPageEntityFragment, SectionItemEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'
 import { Link } from '../atoms/Link'
 import Seo from '../atoms/Seo'
 import { SidePanelPlace } from '../atoms/SidePanelPlace'
 import { SidePanelTime } from '../atoms/SidePanelTime'
+import Footer from "../molecules/Footer"
 import CardSection from '../molecules/sections/CardSection'
 
 interface ITicketPageProps {
@@ -47,21 +48,21 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
       {seo && <Seo seo={seo} />}
       <section
         data-goOutId="event-id-here"
-        className="goOutEventWrapper relative flex flex-col min-h-[calc(100vh_-_var(--height-nav))]"
+        className="goOutEventWrapper relative flex min-h-[calc(100vh_-_var(--height-nav))] flex-col"
       >
         <header className="py-yStandard px-xStandard">
           <Link href={`/detail/${slug}`} preserveStyle noUnderline>
             <hgroup>
               <h1 className="text-xxl">{title}</h1>
-              <p className="font-regular text-xxl">{subtitle}</p>
+              <p className="text-xxl font-regular">{subtitle}</p>
             </hgroup>
           </Link>
 
           <p className="my-yStandard text-md">{ticketIncludesText}</p>
 
-          <div className="flex flex-wrap justify-start w-full mt-6 gap-x-xStandard gap-y-yStandard">
-            <SidePanelPlace placeFragment={{ place, placeTitle }} isOneLine={true} />
-            <SidePanelTime datetime={{ dateFrom, dateTo, timeFrom, timeTo }} isOneLine={true} />
+          <div className="mt-6 flex w-full flex-wrap justify-start gap-x-xStandard gap-y-yStandard">
+            <SidePanelPlace placeFragment={{ place, placeTitle }} isOneLine />
+            <SidePanelTime datetime={{ dateFrom, dateTo, timeFrom, timeTo }} isOneLine />
           </div>
         </header>
 
@@ -74,7 +75,7 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
             <Link href="#relatedContent">{t('common.showIncludedEvents')}</Link>
           </aside> */}
 
-        <div id="goOutForm" className="grow px-xStandard py-yStandard bg-gmbLightGray" />
+        <div id="goOutForm" className="grow bg-gmbLightGray px-xStandard py-yStandard" />
       </section>
 
       <CardSection

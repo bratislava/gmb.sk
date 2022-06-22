@@ -1,6 +1,7 @@
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import { NewsItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { WithAttributes } from '../../utils/isDefined'
@@ -16,17 +17,17 @@ export const NewsBar = ({ newsItem }: NewsBarProps) => {
 
   return (
     <article
-      className={'px-xStandard py-yStandard flex justify-between items-center group cursor-pointer'}
+      className="group flex cursor-pointer items-center justify-between px-xStandard py-yStandard"
       style={{ background: getContentPageColor(newsItem) }}
       onClick={() => router.push(`/detail/${newsItem.attributes.slug}`)}
     >
       <hgroup>
-        <h3 className="text-xl whitespace-pre-wrap">{newsItem.attributes.title}</h3>
-        <p className="text-xl whitespace-pre-wrap font-regular">{newsItem.attributes.subtitle}</p>
+        <h3 className="whitespace-pre-wrap text-xl">{newsItem.attributes.title}</h3>
+        <p className="whitespace-pre-wrap text-xl font-regular">{newsItem.attributes.subtitle}</p>
       </hgroup>
 
       <div className="hidden lg:block">
-        <Button href={`/detail/${newsItem.attributes.slug}`} className="group-hover:text-white group-hover:bg-gmbDark">
+        <Button href={`/detail/${newsItem.attributes.slug}`} className="group-hover:bg-gmbDark group-hover:text-white">
           {t('common.detail')}
         </Button>
       </div>

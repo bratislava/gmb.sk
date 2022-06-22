@@ -1,5 +1,6 @@
 import cx from 'classnames'
 import React, { useEffect, useState } from 'react'
+
 import ShareIcon from '../../assets/icons/share-nodes.svg'
 
 interface MobileShareButtonProps {
@@ -12,7 +13,7 @@ const MobileShareButton = ({ className, slug, title }: MobileShareButtonProps) =
   const [hasNavigatorShare, setHasNavigatorShare] = useState<boolean>(true)
   const url = `${process.env.NEXT_URL}/detail/${slug}`
 
-  //else throwing errors because of some server side rendering, navigator is not defined
+  // else throwing errors because of some server side rendering, navigator is not defined
   useEffect(() => {
     setHasNavigatorShare(!!navigator.share)
   }, [])
@@ -26,7 +27,7 @@ const MobileShareButton = ({ className, slug, title }: MobileShareButtonProps) =
         })
         .catch((error) => console.error(error))
     }
-    //right now, this component will NOT be generated when navigator.share is not supported
+    // right now, this component will NOT be generated when navigator.share is not supported
   }
 
   return (

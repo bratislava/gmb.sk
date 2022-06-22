@@ -69,7 +69,7 @@ function getContentPageDetailRouteForTargetLocale(
     .find((localization) => localization.attributes.locale === targetLocale)
 
   if (!contentPageInTargetLocale) {
-    return undefined
+    return
   }
 
   return `/detail/${contentPageInTargetLocale?.attributes.slug}`
@@ -84,7 +84,7 @@ function getContentPageTicketsRouteForTargetLocale(
     .find((localization) => localization.attributes.locale === targetLocale)
 
     if (!contentPageInTargetLocale) {
-      return undefined
+      return
     }
 
   const ticketsRoute = getRouteForLocale('/vstupenky', targetLocale)

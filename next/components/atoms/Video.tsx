@@ -31,7 +31,7 @@ const Video = ({ className, url, size = 'default' }: IVideo) => {
     }
     if (isVimeoVideo) {
       const parseVimeoUrl = async () => {
-        const regExp = /^.*(vimeo\.com\/)((channels\/[A-z]+\/)|(groups\/[A-z]+\/videos\/))?([0-9]+)/
+        const regExp = /^.*(vimeo\.com\/)((channels\/[A-z]+\/)|(groups\/[A-z]+\/videos\/))?(\d+)/
         const match = url?.match(regExp)
         const videoId = match && match[5]
         const embedUrl = `https://player.vimeo.com/video/${videoId}`
