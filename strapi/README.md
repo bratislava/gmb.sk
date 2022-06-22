@@ -10,9 +10,9 @@ docker-compose up --build
 
 # Local installation
 
-- `install`
+- ### `install`
 
-  Run npm installation for dependencies
+  Run installation for dependencies
 
   ```
   yarn install
@@ -26,20 +26,20 @@ docker-compose up --build
   yarn develop
   ```
 
-- ### `start`
-
-  Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-start)
-
-  ```
-  yarn start
-  ```
-
 - ### `build`
 
   Build your admin panel. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-build)
 
   ```
   yarn build
+  ```
+
+- ### `start`
+
+  Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-start)
+
+  ```
+  yarn start
   ```
 
 ## ⚙️ Deployment
