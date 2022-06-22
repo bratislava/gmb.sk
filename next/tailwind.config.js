@@ -58,6 +58,7 @@ module.exports = {
         yHigh: 'var(--padding-y-high)',
         nav: 'var(--height-nav)',
         sidepanel: 'var(--sidepanel-width)',
+        ticketSidebar: 'var(--ticket-sidebar-width)',
         logoHeight: 'var(--logo-height)',
         logoWidth: 'var(--logo-width)',
       },
