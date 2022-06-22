@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['auto'],
+  extends: ['auto', 'plugin:@next/next/recommended'],
   rules: {
     'jsx-a11y/anchor-is-valid': 'off',
     /** Next.js handles */
