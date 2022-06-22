@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { PlaceEntityFragment, TagEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'
 import Tag from '../atoms/Tag'

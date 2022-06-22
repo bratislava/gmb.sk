@@ -1,4 +1,5 @@
 import Head from 'next/head'
+
 import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
 import { getContentPageColor } from '../../utils/getContentPageColor'
@@ -46,7 +47,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
     coverMedia,
   } = contentPage.attributes
 
-  let submenu: string[] = []
+  const submenu: string[] = []
 
   mainContent?.filter(isDefined).forEach((section) => {
     if ('submenuTitle' in section && section.submenuTitle) {
@@ -78,7 +79,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
 
       <hgroup className="py-yStandard px-xStandard" style={{ background: getContentPageColor(contentPage) }}>
         <h1 className="text-xxl">{title}</h1>
-        <p className="font-regular text-xxl">{subtitle}</p>
+        <p className="text-xxl font-regular">{subtitle}</p>
       </hgroup>
       <Submenu items={submenu} />
       <div className="h-auto gap-10 overflow-hidden px-xStandard py-yHigh">
@@ -92,7 +93,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           slug={slug}
           showShare
           title={title}
-          className="hidden float-right ml-[5vw] lg:block w-sidepanel"
+          className="float-right ml-[5vw] hidden w-sidepanel lg:block"
         />
         {/* Mobile sidepanel info part 1 */}
         <SidePanel
@@ -103,9 +104,9 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           className="pb-24 lg:hidden"
         />
         <div className="float-none w-auto overflow-hidden">
-          {perex && <div className="text-lg mb-14 lg:mb-21 3xl:mb-28">{perex}</div>}
+          {perex && <div className="lg:mb-21 mb-14 text-lg 3xl:mb-28">{perex}</div>}
 
-          <div className="lg:ml-[5vw] 3xl:ml-25">
+          <div className="3xl:ml-25 lg:ml-[5vw]">
             {mainContent?.filter(isDefined).map((section, index) => {
               if (section.__typename === 'ComponentSectionsRichtextSection') {
                 return (
@@ -120,7 +121,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
               if (section.__typename === 'ComponentSectionsVideoSection') {
                 return (
                   <Section anchor={getAnchor(section.submenuTitle)} key={index}>
-                    <h3 className="pb-8 mt-10 text-lg">{section.title}</h3>
+                    <h3 className="mt-10 pb-8 text-lg">{section.title}</h3>
                     {section.url ? <Video url={section.url} className="mb-10" /> : null}
                   </Section>
                 )
@@ -140,7 +141,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
         </div>
       </div>
       {slider && <ImgSwiper slides={slider?.medias?.data.filter(hasAttributes)} />}
-      {/*TODO Add parent page as related content*/}
+      {/* TODO Add parent page as related content */}
       {childPages && childPages.data.length > 0 && (
         <ChessboardSection
           anchor={getAnchor(relatedContentSubmenuTitle)}

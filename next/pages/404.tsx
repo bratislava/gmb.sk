@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+
 import ErrorPage from '../components/pages/ErrorPage'
 import { ssrTranslations } from '../utils/translations'
 

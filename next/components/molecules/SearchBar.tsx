@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import CloseIcon from '../../assets/icons/close-x.svg'
 import { ContentPage } from '../../graphql'
 import { isNonEmptyArray } from '../../utils/isNonEmptyArray'
@@ -44,14 +45,14 @@ export const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
 
   const { t } = useTranslation()
   return (
-    <div className="bg-gmbDark fixed z-20 top-[var(--height-nav)] left-0 right-0 h-[calc(100vh-var(--height-nav))] flex flex-col justify-between p-12">
+    <div className="fixed inset-x-0 top-[var(--height-nav)] z-20 flex h-[calc(100vh-var(--height-nav))] flex-col justify-between bg-gmbDark p-12">
       <button className="absolute right-xStandard top-yStandard" onClick={closeSearchBar}>
         <CloseIcon fill="white" />
       </button>
       <div className="flex flex-1">
         {/* TODO: Removing outline with `outline-none` is a bad accessibility practice */}
         <input
-          className="max-w-full text-xl text-white bg-transparent border-b border-b-white border-b-solid h-fit active:outline-none focus:outline-none active:border-b focus:border-b active:border-b-white focus:border-b-white active-border-b-solid focus:border-b-solid"
+          className="border-b-solid active-border-b-solid focus:border-b-solid h-fit max-w-full border-b border-b-white bg-transparent text-xl text-white focus:border-b focus:border-b-white focus:outline-none active:border-b active:border-b-white active:outline-none"
           placeholder={t('common.searchText')}
           onChange={(e) => {
             setSearchTerm(e.target.value)
@@ -60,7 +61,7 @@ export const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
         />
       </div>
       {isNonEmptyArray(contentPages) ? (
-        <div className="flex justify-start flex-1 gap-25">
+        <div className="gap-25 flex flex-1 justify-start">
           <Results results={contentPages} header={t('common.found')} />
         </div>
       ) : null}

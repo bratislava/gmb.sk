@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import { SectionItemEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
 import Button from '../../atoms/Button'
@@ -32,7 +33,7 @@ const ChessboardSection = ({ title, sectionItems, anchor, flipped, showTags, loa
           ))}
 
           {loadmore && (
-            <div className="flex justify-center mt-28">
+            <div className="mt-28 flex justify-center">
               <Button size="medium">{t('common.moreExhibitions')}</Button>
             </div>
           )}

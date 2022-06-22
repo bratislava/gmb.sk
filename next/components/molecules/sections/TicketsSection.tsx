@@ -1,5 +1,6 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
+
 import { TicketEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
 import CityGalleryMarkdown from '../../atoms/CityGalleryMarkdown'
@@ -26,7 +27,7 @@ const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) =
       >
         <CityGalleryMarkdown content={text} />
 
-        <div className="flex flex-wrap justify-between mt-yStandard lg:justify-stretch lg:flex-nowrap">
+        <div className="lg:justify-stretch mt-yStandard flex flex-wrap justify-between lg:flex-nowrap">
           {tickets?.map((ticket) => (
             <Ticket
               key={ticket.id}
@@ -40,7 +41,7 @@ const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) =
         </div>
       </div>
 
-      <div id="goOutForm" className="px-xStandard py-yStandard scroll-mt-nav bg-gmbLightGray empty:hidden" />
+      <div id="goOutForm" className="scroll-mt-nav bg-gmbLightGray px-xStandard py-yStandard empty:hidden" />
     </Section>
   )
 }

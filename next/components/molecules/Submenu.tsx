@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import React, { useState } from 'react'
+
 import ArrowDown from '../../assets/icons/chevron-down.svg'
 import { getAnchor } from '../../utils/getAnchor'
 import Button from '../atoms/Button'
@@ -26,8 +27,8 @@ export const Submenu = ({ items, filters }: SubmenuProps) => {
   return (
     <>
       {/* Desktop submenu */}
-      <div className="relative flex-col hidden w-full py-12 text-white 3xl:py-16 px-xStandard lg:flex bg-gmbDark">
-        <div className="flex justify-between w-full">
+      <div className="relative hidden w-full flex-col bg-gmbDark py-12 px-xStandard text-white lg:flex 3xl:py-16">
+        <div className="flex w-full justify-between">
           <div className="hidden gap-10 lg:flex">
             {items?.map((item, index) => (
               <Link key={index} href={`#${getAnchor(item)}`} replace>
@@ -66,7 +67,7 @@ export const Submenu = ({ items, filters }: SubmenuProps) => {
         onClick={() => {
           setModalOpen((prev) => !prev)
         }}
-        className="relative flex items-center justify-between w-full text-white uppercase py-yStandard px-xStandard text-md bg-gmbDark lg:hidden"
+        className="relative flex w-full items-center justify-between bg-gmbDark py-yStandard px-xStandard text-md uppercase text-white lg:hidden"
       >
         {t('common.quickNavigation')}
         <ArrowDown />

@@ -1,11 +1,13 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import { SectionItemEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
 import Card from '../Card'
 import CardSkeleton from '../CardSkeleton'
 import Section from './Section'
+
 interface CardsSectionProps {
   title?: string
   sectionItems?: WithAttributes<SectionItemEntityFragment>[]

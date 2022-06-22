@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import BABrand from '../../assets/icons/BABrand.svg'
 import EULogo from '../../assets/icons/EULogo.svg'
 import FBLogo from '../../assets/icons/social-platforms/FB.svg'
@@ -20,12 +21,12 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
   return (
     <footer className="relative bg-gray-100 px-xStandard pt-14">
       <div className="border-t border-gray-300">
-        <div className="flex flex-col items-center justify-between gap-10 pt-20 mb-20 md:flex-row">
+        <div className="mb-20 flex flex-col items-center justify-between gap-10 pt-20 md:flex-row">
           <div>
             <BABrand />
           </div>
           <div className="flex items-center">
-            <div className="flex gap-6 mr-14">
+            <div className="mr-14 flex gap-6">
               <Link href="/">
                 <FBLogo />
               </Link>
@@ -42,15 +43,15 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           </div>
         </div>
         {/* content */}
-        <div className="flex flex-col justify-between gap-20 pb-20 text-left lg:gap-0 lg:flex-row">
+        <div className="flex flex-col justify-between gap-20 pb-20 text-left lg:flex-row lg:gap-0">
           <div>
-            <div className="flex flex-col gap-y-3 mb-18">
+            <div className="mb-18 flex flex-col gap-y-3">
               <p>{contactInfo.attributes.mirbach?.title}</p>
               <p>{contactInfo.attributes.mirbach?.address}</p>
               <p>{contactInfo.attributes.mirbach?.zip}</p>
               <p>{contactInfo.attributes.mirbach?.city}</p>
             </div>
-            <div className="flex flex-col gap-y-3 mb-18">
+            <div className="mb-18 flex flex-col gap-y-3">
               <p>{contactInfo.attributes.palffy?.title}</p>
               <p>{contactInfo.attributes.palffy?.address}</p>
               <p>{contactInfo.attributes.palffy?.zip}</p>
@@ -58,7 +59,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
             </div>
             <div className="flex flex-col gap-y-3">
               {contactInfo.attributes.email && (
-                <Link href={`mailto:${contactInfo.attributes.email}`} className="underline normal-case">
+                <Link href={`mailto:${contactInfo.attributes.email}`} className="normal-case underline">
                   {contactInfo.attributes.email}
                 </Link>
               )}
@@ -69,7 +70,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
 
           <div>
             <p>{t('footer.siteMap')}</p>
-            <div className="flex flex-col gap-4 mt-11">
+            <div className="mt-11 flex flex-col gap-4">
               <Link href="/navstivte" preserveStyle>
                 {t('navigation.visitUs')}
               </Link>
@@ -106,7 +107,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           </div>
         </div>
         {/* content end */}
-        <div className="py-20 border-t">
+        <div className="border-t py-20">
           <div className="flex flex-col justify-between gap-2 md:flex-row">
             <p>{t('footer.declarationOfAccessibility')}</p>
             <p>&copy; 2020 {t('common.capitalCityOfBratislava')}</p>

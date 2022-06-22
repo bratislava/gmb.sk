@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import EmailIcon from '../../assets/icons/social-platforms/E-mail.svg'
 import FacebookIcon from '../../assets/icons/social-platforms/Facebook.svg'
 import LinkedInIcon from '../../assets/icons/social-platforms/LinkedIn.svg'

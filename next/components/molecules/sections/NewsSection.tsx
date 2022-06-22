@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import { NewsItemEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
 import NewsBar from '../NewsBar'
@@ -16,7 +17,7 @@ const NewsSection = ({ items, title, anchor }: NewsProps) => {
 
   return (
     <Section anchor={anchor} title={title}>
-      {items.length ? (
+      {items.length > 0 ? (
         <>
           {items.map((item) => (
             <NewsBar key={item.attributes?.slug} newsItem={item} />

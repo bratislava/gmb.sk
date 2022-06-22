@@ -1,8 +1,9 @@
 import cx from 'classnames'
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+
 import Button from '../../atoms/Button'
 import styles from './Ticket.module.css'
 
@@ -37,8 +38,8 @@ export const Ticket = ({ title, price, description, id, link }: ITicketProps) =>
             className="relative"
             components={{
               p: ({ children }) => <p className="pb-yStandard text-btn">{children}</p>,
-              ul: ({ children }) => <ul className="pl-5 list-disc pb-yStandard text-btn">{children}</ul>,
-              ol: ({ children }) => <ol className="pl-5 list-decimal pb-yStandard text-btn">{children}</ol>,
+              ul: ({ children }) => <ul className="list-disc pl-5 pb-yStandard text-btn">{children}</ul>,
+              ol: ({ children }) => <ol className="list-decimal pl-5 pb-yStandard text-btn">{children}</ol>,
             }}
           >
             {description ?? ''}
@@ -47,7 +48,7 @@ export const Ticket = ({ title, price, description, id, link }: ITicketProps) =>
         {link ? (
           <Button
             size="small"
-            className="goOutBtnBuySelf px-xStandard w-fit"
+            className="goOutBtnBuySelf w-fit px-xStandard"
             data-goOutId="id-here"
             onClick={() => router.replace(`#goOutForm`)}
           >
@@ -57,7 +58,7 @@ export const Ticket = ({ title, price, description, id, link }: ITicketProps) =>
         {link ? (
           <Button
             size="small"
-            className="mt-4 goOutBtnBuyGift px-xStandard w-fit"
+            className="goOutBtnBuyGift mt-4 w-fit px-xStandard"
             data-goOutId="id-here"
             onClick={() => router.replace(`#goOutForm`)}
           >

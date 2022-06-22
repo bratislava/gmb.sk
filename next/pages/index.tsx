@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next'
 import { useTranslation } from 'next-i18next'
+
 import Page from '../components/pages/Page'
 import { HomePageQuery, NewsQuery } from '../graphql'
 import { client } from '../utils/gql'
@@ -11,7 +12,7 @@ interface IndexProps {
   contact: HomePageQuery['contact']
   news: NewsQuery['news']
 }
-export function Index({ homePage, contact, news }: IndexProps) {
+export const Index = ({ homePage, contact, news }: IndexProps) => {
   const { t, i18n } = useTranslation()
 
   return (

@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next'
 import React from 'react'
+
 import TicketPage from '../../components/pages/TicketPage'
 import { ExhibitionsByPlaceQuery, TicketPageBySlugQuery } from '../../graphql'
 import { getTodaysDate } from '../../utils/getTodaysDate'
@@ -37,8 +38,8 @@ export const getServerSideProps: GetServerSideProps<TicketProps> = async ({ quer
 
   const [{ contentPageBySlug: contentPage, contact }, translations] = await Promise.all([
     client.TicketPageBySlug({
-      slug: slug,
-      locale: locale,
+      slug,
+      locale,
     }),
     ssrTranslations({ locale }, ['common']),
   ])
@@ -60,8 +61,8 @@ export const getServerSideProps: GetServerSideProps<TicketProps> = async ({ quer
   }
 
   const { currentEvents } = await client.ExhibitionsByPlace({
-    locale: locale,
-    slug: slug,
+    locale,
+    slug,
     today,
     tagExhibitions: getRouteForLocale('vystavy', locale),
     tagPermanentExhibitions: getRouteForLocale('stale-expozicie', locale),

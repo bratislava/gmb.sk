@@ -1,12 +1,14 @@
-import { appWithTranslation, useTranslation } from 'next-i18next'
+import '../styles/globals.css'
+
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
+import { appWithTranslation, useTranslation } from 'next-i18next'
 import React from 'react'
-import Navigation from '../components/molecules/Navigation'
-import '../styles/globals.css'
 
-function CustomApp({ Component, pageProps }: AppProps) {
+import Navigation from '../components/molecules/Navigation'
+
+const CustomApp = ({ Component, pageProps }: AppProps) => {
   const { t } = useTranslation()
   return (
     <>

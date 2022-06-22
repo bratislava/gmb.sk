@@ -1,7 +1,8 @@
 import { GetServerSideProps } from 'next'
-import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import { ssrTranslations } from '../utils/translations'
 
 export const DisclosureOfInformation = () => {
@@ -18,7 +19,7 @@ export const DisclosureOfInformation = () => {
           src="https://zmluvy.egov.sk/egov/contracts/place:259/iframe/showZmluvy/showFaktury/showObjednavky/orderBy:datum/direction:desc"
           width="100%"
           height="1060px"
-        ></iframe>
+         />
       </div>
     </>
   )

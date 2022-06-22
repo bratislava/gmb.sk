@@ -1,6 +1,7 @@
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
+
 import { ContactEntityFragment, ExplorePageQuery, TagEntityFragment } from '../../graphql'
 import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags'

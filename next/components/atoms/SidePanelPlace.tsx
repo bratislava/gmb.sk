@@ -1,4 +1,5 @@
 import React from 'react'
+
 import LocationIcon from '../../assets/icons/location.svg'
 import { ContentPagePlaceFragment } from '../../graphql'
 
