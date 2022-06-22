@@ -1,9 +1,7 @@
 module.exports = {
-  extends: ['auto', 'plugin:@next/next/recommended'],
+  extends: ['auto', 'plugin:tailwindcss/recommended', 'plugin:@next/next/recommended'],
   rules: {
     'jsx-a11y/anchor-is-valid': 'off',
-    /** Next.js handles */
-    'react/react-in-jsx-scope': 'off',
     /** We use this a lot with isDefined and hasAttributes */
     'unicorn/no-array-callback-reference': 'off',
     // Named export is easier to refactor automatically
@@ -14,6 +12,12 @@ module.exports = {
     'arrow-body-style': 'off',
     'no-underscore-dangle': [2, { allow: ['__NEXT_DATA__', '__NEXT_LOADED_PAGES__', '__typename'] }],
     'no-secrets/no-secrets': ['error', { ignoreContent: '^http' }],
+    'tailwindcss/classnames-order': [
+      'warn',
+      {
+        officialSorting: true,
+      },
+    ],
   },
   ignorePatterns: ['*.config.*', 'graphql'],
 }
