@@ -1,9 +1,10 @@
 import cx from 'classnames'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import { HighlightsItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { isDefined, WithAttributes } from '../../utils/isDefined'
@@ -63,21 +64,21 @@ const Highlight = ({ highlight }: HighlightProps) => {
   )
 
   return (
-    <article className="relative w-full h-fit">
+    <article className="relative h-fit w-full">
       <div
-        className="cursor-pointer group"
+        className="group cursor-pointer"
         id={`articleDiv${highlight.id}`}
         onClick={() => router.push(`/detail/${slug}`)}
       >
         <div
-          className="flex items-center justify-center w-full h-[calc(100vh_-_var(--height-nav))] bg-gmbLightGray"
+          className="flex h-[calc(100vh_-_var(--height-nav))] w-full items-center justify-center bg-gmbLightGray"
           id={`articleImg${highlight.id}`}
         >
           {coverMedia?.data?.attributes?.url && (
             <img
               src={coverMedia.data.attributes.url}
               alt={coverMedia.data.attributes.alternativeText ?? ''}
-              className="object-cover w-full h-full"
+              className="h-full w-full object-cover"
               id={`coverImage${highlight.id}`}
             />
           )}
@@ -91,7 +92,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
         >
           <hgroup>
             <h1 className="text-xxl">{title}</h1>
-            <p className="font-regular text-xxl">{subtitle}</p>
+            <p className="text-xxl font-regular">{subtitle}</p>
           </hgroup>
 
           <div
@@ -103,32 +104,32 @@ const Highlight = ({ highlight }: HighlightProps) => {
               <SidePanelTime datetime={{ dateFrom, dateTo, timeTo, timeFrom }} isOneLine noIcon />
             </div>
 
-            <div className="flex flex-row items-stretch w-full mt-auto space-x-4 justify-evenly">
+            <div className="mt-auto flex w-full flex-row items-stretch justify-evenly space-x-4">
               {purchaseId && (
-                <Button size="small" className="flex-none w-fit" href={`/vstupenky/${slug}`}>
+                <Button size="small" className="w-fit flex-none" href={`/vstupenky/${slug}`}>
                   {t('common.buyTickets')}
                 </Button>
               )}
               {(placeTitle || place?.data?.attributes?.title) && (
-                <div className="flex items-center justify-center flex-1">
+                <div className="flex flex-1 items-center justify-center">
                   <span className="uppercase">{placeTitle || place?.data?.attributes?.title}</span>
                 </div>
               )}
             </div>
           </div>
 
-          <Button href={`/detail/${slug}`} className="hidden group-hover:text-white group-hover:bg-gmbDark lg:flex">
+          <Button href={`/detail/${slug}`} className="hidden group-hover:bg-gmbDark group-hover:text-white lg:flex">
             {t('common.detail')}
           </Button>
         </div>
       </div>
       <div className={cx('relative z-30 bg-white w-sidepanel ml-auto', {})} id={`sidepanel${highlight.id}`}>
         {renderOverride && override?.highlightContent ? (
-          <div className="p-10 min-h-fit">
+          <div className="min-h-fit p-10">
             <SidePanel overrideText={override?.highlightContent} />
           </div>
         ) : renderEventDetailsSidepanel ? (
-          <div className="hidden p-10 ml-auto min-h-fit lg:block">
+          <div className="ml-auto hidden min-h-fit p-10 lg:block">
             <SidePanel
               datetime={{ dateFrom, dateTo, timeFrom, timeTo }}
               place={{ place, placeTitle, placeAddress }}

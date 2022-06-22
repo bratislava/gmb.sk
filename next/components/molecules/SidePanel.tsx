@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
+
 import { ContentPagePlaceFragment, DatetimeFragment, PartnerEntityFragment, PositionFragment } from '../../graphql'
 import getDaysLeft from '../../utils/getDaysLeft'
 import { isDefined, WithAttributes } from '../../utils/isDefined'
@@ -49,10 +50,10 @@ const SidePanel = ({
       hasTouchScreen = navigator.maxTouchPoints > 0
     } else if ('msMaxTouchPoints' in navigator) {
       // @ts-ignore
-      hasTouchScreen = navigator['msMaxTouchPoints'] > 0
+      hasTouchScreen = navigator.msMaxTouchPoints > 0
     } else {
       // @ts-ignore
-      let mQ = window.matchMedia && matchMedia('(pointer:coarse)')
+      const mQ = window.matchMedia && matchMedia('(pointer:coarse)')
       if (mQ && mQ.media === '(pointer:coarse)') {
         hasTouchScreen = !!mQ.matches
       } else if ('orientation' in window) {

@@ -1,12 +1,14 @@
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
 import cx from 'classnames'
 import Image from 'next/image'
 import React from 'react'
 import { Autoplay, Navigation, Pagination } from 'swiper'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { NavigationOptions } from 'swiper/types'
+
 import { ImageEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'
 
@@ -23,7 +25,7 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
 
   return slides ? (
     <Swiper
-      loop={true}
+      loop
       speed={2000}
       autoplay={{ delay: 2500, disableOnInteraction: true }}
       navigation={{
@@ -44,7 +46,7 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
         bulletActiveClass: 'bg-gmbDark',
       }}
       modules={[Navigation, Autoplay, Pagination]}
-      className="w-full h-[300px] md:h-[450px] lg:h-[600px]"
+      className="h-[300px] w-full md:h-[450px] lg:h-[600px]"
       id={anchor}
     >
       {slides?.map((item, index) => (

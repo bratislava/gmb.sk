@@ -1,5 +1,6 @@
 import { last } from 'lodash'
 import useSWRInfinite from 'swr/infinite'
+
 import { SectionItemEntityFragment } from '../graphql'
 import { client } from './gql'
 import { hasAttributes, isDefined } from './isDefined'
@@ -21,7 +22,7 @@ export const usePreviewsByTags = ({
         return null
       }
       const variables = {
-        locale: locale,
+        locale,
         limit: PAGE_SIZE,
         offset: index * PAGE_SIZE,
         ...(activeTags.length && { tagSlugs: activeTags }),

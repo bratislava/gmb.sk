@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import TimeIcon from '../../assets/icons/time.svg'
 import { DatetimeFragment } from '../../graphql'
 import { formatDateString } from '../../utils/formatDateString'
@@ -40,7 +41,7 @@ export const SidePanelTime = ({ datetime, isOneLine, noIcon }: SidePanelTimeProp
         </time>
       </div>
     )
-  } else {
+  } 
     return (
       <div className="whitespace-nowrap text-nav">
         {!noIcon && (
@@ -64,5 +65,5 @@ export const SidePanelTime = ({ datetime, isOneLine, noIcon }: SidePanelTimeProp
         </time>
       </div>
     )
-  }
+  
 }

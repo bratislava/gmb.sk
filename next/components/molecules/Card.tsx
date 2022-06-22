@@ -1,7 +1,8 @@
-import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import { SectionItemEntityFragment } from '../../graphql'
 import { hasAttributes, WithAttributes } from '../../utils/isDefined'
 import { isToday } from '../../utils/isToday'
@@ -21,7 +22,7 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
 
   return (
     <article
-      className="flex flex-col min-h-full cursor-pointer space-y-yStandard group"
+      className="group flex min-h-full cursor-pointer flex-col space-y-yStandard"
       onClick={() => router.push(`/detail/${slug}`)}
     >
       <div className="overflow-hidden bg-gmbLightGray">
@@ -43,7 +44,7 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
           {isToday({
             dateFrom: dateFrom as string,
             dateTo: dateTo as string,
-          }) && <span className="pr-3 text-red-600 uppercase text-nav">{t('common.today')}!</span>}
+          }) && <span className="pr-3 text-nav uppercase text-red-600">{t('common.today')}!</span>}
           {tags?.data.filter(hasAttributes).map((tag) => (
             <Link href={`${router.pathname}/?tags=${tag.attributes.slug}`} key={tag.attributes.slug}>
               {tag.attributes.title}
@@ -57,12 +58,12 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
         <p className="text-xl font-regular">{subtitle}</p>
       </hgroup>
 
-      {perex && <div className="text-md">{perex?.substring(0, 200)}…</div>}
+      {perex && <div className="text-md">{perex?.slice(0, 200)}…</div>}
 
       {/* empty div to push button to the bottom of the card */}
-      <div className="flex-grow hidden p-0 m-0 lg:block" />
+      <div className="m-0 hidden grow p-0 lg:block" />
 
-      <Button href={`/detail/${slug}`} className="py-2 max-w-fit group-hover:text-white group-hover:bg-gmbDark">
+      <Button href={`/detail/${slug}`} className="max-w-fit py-2 group-hover:bg-gmbDark group-hover:text-white">
         {t('common.detail')}
       </Button>
     </article>

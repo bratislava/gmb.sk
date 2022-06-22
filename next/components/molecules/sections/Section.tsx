@@ -1,5 +1,6 @@
 import cx from 'classnames'
 import React from 'react'
+
 import SectionHeading from '../../atoms/SectionHeading'
 
 interface ISectionProps {

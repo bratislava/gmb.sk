@@ -1,7 +1,8 @@
-import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
 import MailchimpSubscribe from 'react-mailchimp-subscribe'
+
 import NewsletterImg from '../../../assets/images/newsletterimg.png'
 import Button from '../../atoms/Button'
 import Section from './Section'
@@ -31,7 +32,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
     if (email.length <= 0) {
       emailError = t('errors.emailMandatory')
     } else if (
-      !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+      !/^(([^\s"(),.:;<>@[\\\]]+(\.[^\s"(),.:;<>@[\\\]]+)*)|(".+"))@((\[(?:\d{1,3}\.){3}\d{1,3}])|(([\dA-Za-z\-]+\.)+[A-Za-z]{2,}))$/.test(
         String(email).toLowerCase()
       )
     ) {
@@ -40,11 +41,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
       emailError = null
     }
 
-    if (!agree) {
-      agreeError = t('errors.fieldMandatory')
-    } else {
-      agreeError = null
-    }
+    agreeError = !agree ? t('errors.fieldMandatory') : null;
 
     setEmailError(emailError)
     setAgreeError(agreeError)
@@ -56,7 +53,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
     <Section
       anchor={anchor}
       color="dark"
-      className="flex flex-col-reverse justify-between w-full px-xStandard py-yHigh lg:flex-row"
+      className="flex w-full flex-col-reverse justify-between px-xStandard py-yHigh lg:flex-row"
     >
       <div className="lg:w-4/6 xl:w-3/6">
         <hgroup>
@@ -84,7 +81,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                 <p className="pt-10 text-[18px] lg:text-[27px]">{t('newsletter.beInformedEvents')}</p>
                 <div className="flex pt-10 pb-2">
                   <input
-                    className="w-full p-2 bg-transparent border-2 border-white lg:mr-10 text-md"
+                    className="w-full border-2 border-white bg-transparent p-2 text-md lg:mr-10"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                   />
@@ -98,11 +95,11 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                   </Button>
                 </div>
                 {emailError ? <p className="text-red-500 ">{emailError}</p> : null}
-                <div className="flex items-center w-full mt-3 mb-6">
+                <div className="mt-3 mb-6 flex w-full items-center">
                   <input
                     id="gdprCheckbox"
                     type="checkbox"
-                    className="flex-none box-border appearance-none mr-[10px] bg-transparent border-2 border-white w-4 h-4 inline-block checked:bg-white checked:after:content-['✔'] after:content-[''] after:-top-[5px] after:inline-block after:relative after:text-[#000] after:font-heavy -mt-[1px] cursor-pointer"
+                    className="mr-[10px] -mt-[1px] box-border inline-block h-4 w-4 flex-none cursor-pointer appearance-none border-2 border-white bg-transparent after:relative after:-top-[5px] after:inline-block after:font-heavy after:text-[#000] after:content-[''] checked:bg-white checked:after:content-['✔']"
                     checked={agree}
                     onChange={() => setAgree((prev) => !prev)}
                   />
@@ -110,7 +107,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                     {t('common.gdprAccept')}
                   </label>
                 </div>
-                {agreeError ? <p className="pb-5 -mt-3 text-red-500">{agreeError}</p> : null}
+                {agreeError ? <p className="-mt-3 pb-5 text-red-500">{agreeError}</p> : null}
                 <Button size="medium" color="light" onClick={handleSubmit} className="block w-full lg:hidden">
                   {t('common.login')}
                 </Button>
@@ -119,8 +116,8 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
           }}
         />
       </div>
-      <div className="flex justify-center mb-10 lg:mb-0 lg:w-2/6 ">
-        <div className="flex justify-center w-full lg:block">
+      <div className="mb-10 flex justify-center lg:mb-0 lg:w-2/6 ">
+        <div className="flex w-full justify-center lg:block">
           <Image src={NewsletterImg} alt="newsletter" unoptimized />
         </div>
       </div>

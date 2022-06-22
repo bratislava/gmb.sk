@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import { PlaceEntityFragment, TagEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'
 import Button from '../atoms/Button'
@@ -31,7 +32,7 @@ const Filters = ({ tagGroups, places, activeTags, setActiveTags, activePlaces, s
           <TagGroup tags={places} activeTags={activePlaces} setActiveTags={setActivePlaces} />
         )}
       </div>
-      <div className="flex justify-center lg:hidden mt-11">
+      <div className="mt-11 flex justify-center lg:hidden">
         <Button>{t('common.showResults')}</Button>
       </div>
     </div>

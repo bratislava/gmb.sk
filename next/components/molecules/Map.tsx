@@ -1,9 +1,11 @@
-import cx from 'classnames'
 import 'mapbox-gl/dist/mapbox-gl.css'
+
+import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Mapbox, { MapRef, Marker } from 'react-map-gl'
 import { usePreviousImmediate } from 'rooks'
+
 import GmbLogoIcon from '../../assets/icons/map-icons/gmb-logo.svg'
 import MirbachovPalacIcon from '../../assets/icons/map-icons/mirbachov-palac.svg'
 import PalffyhoPalacIcon from '../../assets/icons/map-icons/palffyho-palac.svg'
@@ -31,13 +33,13 @@ interface DescriptionSection {
 const customLayers = ['on-street-parking', 'parking', 'city-transport', 'bike-stands', 'slovnaftbajk']
 
 const ZOOMED_IN_BOUNDS: mapboxgl.LngLatBoundsLike = [
-  [17.102652962668316, 48.1409767752354],
-  [17.111321800438162, 48.14679294590562],
+  [17.102_652_962_668_316, 48.140_976_775_235_4],
+  [17.111_321_800_438_162, 48.146_792_945_905_62],
 ]
 
 const ZOOMED_OUT_BOUNDS: mapboxgl.LngLatBoundsLike = [
-  [17.10194304499541, 48.139388456891595],
-  [17.117128583907345, 48.14890491740911],
+  [17.101_943_044_995_41, 48.139_388_456_891_595],
+  [17.117_128_583_907_345, 48.148_904_917_409_11],
 ]
 
 export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
@@ -72,7 +74,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
     {
       icon: GmbLogoIcon,
       hoverIcon: MirbachovPalacIcon,
-      coordinates: [17.107771, 48.144776],
+      coordinates: [17.107_771, 48.144_776],
       navigationLink:
         'https://www.google.com/maps/place/Gal%C3%A9ria+mesta+Bratislavy/@48.1448145,17.1078506,21z/data=!4m5!3m4!1s0x476c895ccb7fc10d:0xb128b708bec5bdcf!8m2!3d48.1447836!4d17.1078744',
       descriptionSections: [
@@ -99,7 +101,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
     {
       icon: GmbLogoIcon,
       hoverIcon: PalffyhoPalacIcon,
-      coordinates: [17.107084, 48.142137],
+      coordinates: [17.107_084, 48.142_137],
       navigationLink:
         'https://www.google.com/maps/place/Gal%C3%A9ria+mesta+Bratislavy/@48.1422218,17.1069777,20.77z/data=!3m1!5s0x476c8942afadda65:0x4baacd9ceb6cb32e!4m5!3m4!1s0x476c8942b13a89cf:0xc49fbc0f1319519e!8m2!3d48.1422134!4d17.1071462',
       descriptionSections: [
@@ -180,7 +182,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
     [mapRef, setDescriptionSections]
   )
 
-  //on layers change
+  // on layers change
   useEffect(() => {
     const MAP = mapRef.current
     if (!MAP) return
@@ -205,15 +207,15 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
       })
     }
 
-    //reset description
+    // reset description
     setDescriptionSections([])
     setSelectedFeaturePoint(null)
     setSelectedPlaceUrl(null)
   }, [mapRef, previousSelectedTab, selectedTab, setDescriptionSections])
 
   return (
-    <div className="grid items-stretch text-white bg-gmbDark text-nav lg:grid-cols-3">
-      <div className="flex w-full p-8 lg:pb-0 h-fit">
+    <div className="grid items-stretch bg-gmbDark text-nav text-white lg:grid-cols-3">
+      <div className="flex h-fit w-full p-8 lg:pb-0">
         {tabs.map((tab) => {
           return (
             <button
@@ -228,14 +230,14 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
           )
         })}
       </div>
-      <div className="relative w-full overflow-hidden pt-96 bg-gmbDark lg:col-start-1 lg:row-start-1 lg:row-span-3 lg:col-span-2">
-        <div className="absolute top-0 w-full h-full">
+      <div className="relative w-full overflow-hidden bg-gmbDark pt-96 lg:col-span-2 lg:col-start-1 lg:row-span-3 lg:row-start-1">
+        <div className="absolute top-0 h-full w-full">
           <Mapbox
             ref={mapRef}
             mapboxAccessToken={mapboxAccessToken}
             initialViewState={{
-              latitude: 48.14388494294977,
-              longitude: 17.106987381553267,
+              latitude: 48.143_884_942_949_77,
+              longitude: 17.106_987_381_553_267,
               zoom: 14,
             }}
             onLoad={onMapLoad}
@@ -259,9 +261,9 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
                     setSelectedPlaceUrl(gallery.navigationLink)
                   }}
                 >
-                  <gallery.icon className="transform group-hover:scale-0" width="64" height="64" />
+                  <gallery.icon className="group-hover:scale-0" width="64" height="64" />
                   <gallery.hoverIcon
-                    className="absolute top-0 transform scale-0 group-hover:scale-100"
+                    className="absolute top-0 scale-0 group-hover:scale-100"
                     width="64"
                     height="64"
                   />
@@ -269,12 +271,12 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
               </Marker>
             ))}
           </Mapbox>
-          <div className="absolute top-0 right-0 hidden w-1/6 h-full pointer-events-none bg-gradient-to-r from-transparent to-gmbDark lg:block" />
+          <div className="pointer-events-none absolute top-0 right-0 hidden h-full w-1/6 bg-gradient-to-r from-transparent to-gmbDark lg:block" />
         </div>
       </div>
       <div className="flex items-center p-8 lg:col-start-3 lg:h-[600px]">
-        <div className="flex lg:px-4 flex-col space-y-4 text-[20px]">
-          {descriptionSections.length ? (
+        <div className="flex flex-col space-y-4 text-[20px] lg:px-4">
+          {descriptionSections.length > 0 ? (
             descriptionSections.map(({ title, text }, key) => (
               <div key={key}>
                 {text?.startsWith && text.startsWith('http') ? (
@@ -318,7 +320,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
           )}
         </div>
       </div>
-      <div className="px-8 pb-8 lg:col-start-3 h-fit">
+      <div className="h-fit px-8 pb-8 lg:col-start-3">
         <Link
           target="_blank"
           noUnderline

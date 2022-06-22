@@ -1,7 +1,8 @@
 import React from 'react'
-import Footer from '../../components/molecules/Footer'
+
 import { ContactEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'
+import Footer from "../molecules/Footer"
 
 interface ErrorPageProps {
   contactInfo?: WithAttributes<ContactEntityFragment> | null | undefined
@@ -11,7 +12,7 @@ interface ErrorPageProps {
 const ErrorPage = ({ statusCode, contactInfo }: ErrorPageProps) => {
   return (
     <>
-      <div className="flex flex-col items-center w-full justify-center text-center h-[calc(100vh-119px)]">
+      <div className="flex h-[calc(100vh-119px)] w-full flex-col items-center justify-center text-center">
         <h1 className="text-xxl">----- {statusCode} -----</h1>
         <h2 className="text-xl">
           {

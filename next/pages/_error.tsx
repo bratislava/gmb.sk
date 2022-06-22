@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next'
+
 import ErrorPage from '../components/pages/ErrorPage'
 import { ErrorPageQuery } from '../graphql'
 import { client } from '../utils/gql'

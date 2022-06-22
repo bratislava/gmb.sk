@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import { SectionItemEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
 import Button from '../../atoms/Button'

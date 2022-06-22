@@ -2,29 +2,29 @@ import React from 'react'
 
 export const CardSkeleton = () => {
   return (
-    <div className="flex flex-col min-h-full space-y-yStandard animate-pulse">
-      <div className="overflow-hidden bg-gmbLightGray h-[458px] w-full" />
+    <div className="flex min-h-full animate-pulse flex-col space-y-yStandard">
+      <div className="h-[458px] w-full overflow-hidden bg-gmbLightGray" />
 
       <div className="flex flex-wrap gap-6">
         {[1, 2, 3].map((_, index) => (
           <div
             key={index}
-            className="w-20 h-[var(--font-size-nav)] bg-gmbLightGray mb-[calc(var(--line-height-nav)_-_var(--font-size-nav))]"
+            className="mb-[calc(var(--line-height-nav)_-_var(--font-size-nav))] h-[var(--font-size-nav)] w-20 bg-gmbLightGray"
           />
         ))}
       </div>
 
       <hgroup>
-        <div className="text-xl bg-gmbLightGray w-3/4 h-[var(--font-size-xl)] mb-3" />
-        <div className="text-xl bg-gmbLightGray w-1/2 h-[var(--font-size-xl)]" />
+        <div className="mb-3 h-[var(--font-size-xl)] w-3/4 bg-gmbLightGray text-xl" />
+        <div className="h-[var(--font-size-xl)] w-1/2 bg-gmbLightGray text-xl" />
       </hgroup>
 
-      <div className="text-md bg-gmbLightGray h-[calc(var(--line-height-md)_*_5)]" />
+      <div className="h-[calc(var(--line-height-md)_*_5)] bg-gmbLightGray text-md" />
 
       {/* empty div to push button to the bottom of the card */}
-      <div className="flex-grow hidden p-0 m-0 lg:block" />
+      <div className="m-0 hidden grow p-0 lg:block" />
 
-      <div className="w-40 h-12 py-2 lg:h-14 bg-gmbLightGray" />
+      <div className="h-12 w-40 bg-gmbLightGray py-2 lg:h-14" />
     </div>
   )
 }

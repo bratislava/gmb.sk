@@ -1,13 +1,15 @@
 import cx from 'classnames'
-import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import { SectionItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { hasAttributes, WithAttributes } from '../../utils/isDefined'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
+
 export interface ChessboardTileProps {
   sectionItem: WithAttributes<SectionItemEntityFragment>
   isLeft?: boolean
@@ -27,7 +29,7 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
       })}
       onClick={() => router.push(`/detail/${slug}`)}
     >
-      <div className="w-full h-[300px] lg:w-1/2 lg:h-auto bg-gmbLightGray relative">
+      <div className="relative h-[300px] w-full bg-gmbLightGray lg:h-auto lg:w-1/2">
         {coverMedia?.data?.attributes ? (
           <Image
             src={coverMedia.data.attributes.url}
@@ -39,11 +41,11 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
         ) : null}
       </div>
       <div
-        className="flex flex-col items-start flex-1 w-full px-xStandard py-yStandard space-y-yStandard lg:w-1/2"
+        className="flex w-full flex-1 flex-col items-start space-y-yStandard px-xStandard py-yStandard lg:w-1/2"
         style={{ background: getContentPageColor(sectionItem) }}
       >
         <hgroup>
-          <h3 className="text-xl text-h">{title}</h3>
+          <h3 className="text-h text-xl">{title}</h3>
           <p className="text-xl font-regular">{subtitle}</p>
         </hgroup>
 
@@ -58,11 +60,11 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
         )}
 
         {/* empty div to push button to the bottom of the tile */}
-        <div className="flex-grow hidden p-0 m-0 lg:block" />
+        <div className="m-0 hidden grow p-0 lg:block" />
 
-        {perex ? <div className="text-md">{perex?.substring(0, 200)}…</div> : null}
+        {perex ? <div className="text-md">{perex?.slice(0, 200)}…</div> : null}
 
-        <Button href={`/detail/${slug}`} className="group-hover:text-white group-hover:bg-gmbDark">
+        <Button href={`/detail/${slug}`} className="group-hover:bg-gmbDark group-hover:text-white">
           {t('common.detail')}
         </Button>
       </div>
