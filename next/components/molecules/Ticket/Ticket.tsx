@@ -1,6 +1,6 @@
 import cx from 'classnames'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
@@ -50,6 +50,7 @@ export const Ticket = ({ title, price, description, id, link }: ITicketProps) =>
             size="small"
             className="goOutBtnBuySelf w-fit px-xStandard"
             data-goOutId="id-here"
+            data-goOutTicketCategory="rocny"
             onClick={() => router.replace(`#goOutForm`)}
           >
             {t('common.buyForYourself')}
@@ -60,6 +61,7 @@ export const Ticket = ({ title, price, description, id, link }: ITicketProps) =>
             size="small"
             className="goOutBtnBuyGift mt-4 w-fit px-xStandard"
             data-goOutId="id-here"
+            data-goOutTicketCategory="rocny"
             onClick={() => router.replace(`#goOutForm`)}
           >
             {t('common.buyAsGift')}
