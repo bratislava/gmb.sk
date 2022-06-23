@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 
 import ArrowDown from '../../assets/icons/chevron-down.svg'
 import { getAnchor } from '../../utils/getAnchor'
+import { onEnterOrSpaceKeyDown } from '../../utils/onEnterKeyDown'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
 import SubmenuModal from './SubmenuModal'
@@ -30,8 +31,8 @@ export const Submenu = ({ items, filters }: SubmenuProps) => {
       <div className="relative hidden w-full flex-col bg-gmbDark py-12 px-xStandard text-white lg:flex 3xl:py-16">
         <div className="flex w-full justify-between">
           <div className="hidden gap-10 lg:flex">
-            {items?.map((item, index) => (
-              <Link key={index} href={`#${getAnchor(item)}`} replace>
+            {items?.map((item) => (
+              <Link key={item} href={`#${getAnchor(item)}`} replace>
                 {item}
               </Link>
             ))}
@@ -67,6 +68,8 @@ export const Submenu = ({ items, filters }: SubmenuProps) => {
         onClick={() => {
           setModalOpen((prev) => !prev)
         }}
+        onKeyDown={onEnterOrSpaceKeyDown(() => setModalOpen((prev) => !prev))}
+        tabIndex={0}
         className="relative flex w-full items-center justify-between bg-gmbDark py-yStandard px-xStandard text-md uppercase text-white lg:hidden"
       >
         {t('common.quickNavigation')}

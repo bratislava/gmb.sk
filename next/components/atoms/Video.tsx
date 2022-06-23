@@ -50,7 +50,7 @@ const Video = ({ className, url, size = 'default' }: IVideo) => {
           'w-72 h-[162px] lg:w-[780px] lg:h-[439px]': size === 'default',
         })}
       >
-        <iframe className={cx('w-full h-full')} src={embedUrl} allowFullScreen />
+        <iframe title="Youtube video" className={cx('w-full h-full')} src={embedUrl} allowFullScreen />
       </figure>
     )
   }
@@ -62,7 +62,7 @@ const Video = ({ className, url, size = 'default' }: IVideo) => {
           'w-72 h-[162px] lg:w-[780px] lg:h-[439px]': size === 'default',
         })}
       >
-        <iframe className={cx('w-full h-full')} src={embedUrl} allowFullScreen />
+        <iframe title="Vimeo video" className={cx('w-full h-full')} src={embedUrl} allowFullScreen />
       </figure>
     )
   }

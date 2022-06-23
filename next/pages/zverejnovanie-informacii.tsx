@@ -8,18 +8,20 @@ import { ssrTranslations } from '../utils/translations'
 export const DisclosureOfInformation = () => {
   const { t } = useTranslation()
 
+  const title = t('footer.disclosureOfInformation')
   return (
     <>
       <Head>
-        <title>{t('footer.disclosureOfInformation')}</title>
+        <title>{title}</title>
       </Head>
-      <h1 className="m-6 text-xxl lg:m-9 3xl:m-12">{t('footer.disclosureOfInformation')}</h1>
+      <h1 className="m-6 text-xxl lg:m-9 3xl:m-12">{title}</h1>
       <div className="m-6 lg:m-9 3xl:m-12">
         <iframe
+          title={title}
           src="https://zmluvy.egov.sk/egov/contracts/place:259/iframe/showZmluvy/showFaktury/showObjednavky/orderBy:datum/direction:desc"
           width="100%"
           height="1060px"
-         />
+        />
       </div>
     </>
   )
