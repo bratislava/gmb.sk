@@ -319,7 +319,15 @@ query ExhibitionsPage(
 query DisclosureOfInformationPage($locale: I18NLocaleCode!) {
   contact(locale: $locale) {
     data {
-      ...ContactEntity
+      attributes {
+        disclosureMoreFiles {
+          title
+          submenuTitle
+          files {
+            ...DownloadItem
+          }
+        }
+      }
     }
   }
 }
