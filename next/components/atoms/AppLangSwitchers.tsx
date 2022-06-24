@@ -11,9 +11,10 @@ import { getEquivalentRouteInTargetLocale } from '../../utils/localeRoutes'
 
 interface AppLangSwitchersProps {
   contentPage?: WithAttributes<ContentPageEntityFragment>
+  desktop?: boolean
 }
 
-const AppLangSwitchers = ({ contentPage }: AppLangSwitchersProps) => {
+const AppLangSwitchers = ({ contentPage, desktop }: AppLangSwitchersProps) => {
   const [, setCookies] = useCookies([LocalStorageEnum.LANG])
   const router = useRouter()
   const { i18n } = useTranslation()
@@ -50,23 +51,27 @@ const AppLangSwitchers = ({ contentPage }: AppLangSwitchersProps) => {
   )
 
   return (
-    <div className="flex">
+    <div className={cx('flex', { 'space-x-xStandard': !desktop })}>
       <button
         className={cx('cursor-pointer', {
           'font-semibold': currentLanguage === 'sk',
+          'text-black': currentLanguage === 'sk' && !desktop,
         })}
         onClick={() => onLocaleChange('sk')}
+        type="button"
       >
-        Slovenčina
+        SK
       </button>
-      <p className="px-2">/</p>
+      {desktop && <p className="px-2">/</p>}
       <button
         className={cx('cursor-pointer', {
           'font-semibold': currentLanguage === 'en',
+          'text-black': currentLanguage === 'en' && !desktop,
         })}
         onClick={() => onLocaleChange('en')}
+        type="button"
       >
-        English
+        ENG
       </button>
     </div>
   )

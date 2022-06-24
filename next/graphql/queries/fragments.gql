@@ -277,6 +277,19 @@ fragment ContactEntity on ContactEntity {
       title
       url
     }
+    quickLinksTitle
+    quickLinksTitle2
+    quickLinks2 {
+      title
+      url
+    }
+    disclosureMoreFiles {
+      title
+      submenuTitle
+      files {
+        ...DownloadItem
+      }
+    }
   }
 }
 

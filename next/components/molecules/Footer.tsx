@@ -1,15 +1,13 @@
 import { useTranslation } from 'next-i18next'
-import React from 'react'
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
+import remarkGfm from 'remark-gfm'
 
-import BABrand from '../../assets/icons/BABrand.svg'
-import EULogo from '../../assets/icons/EULogo.svg'
-import FBLogo from '../../assets/icons/social-platforms/FB.svg'
-import IGLogo from '../../assets/icons/social-platforms/IG.svg'
-import YTLogo from '../../assets/icons/social-platforms/YT.svg'
+import LocationIcon from '../../assets/icons/location.svg'
 import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
 import { isDefined, WithAttributes } from '../../utils/isDefined'
 import AppLangSwitchers from '../atoms/AppLangSwitchers'
-import { Link } from '../atoms/Link'
+import DownloadItem from '../atoms/DownloadItem'
+import Link from '../atoms/Link'
 
 interface FooterProps {
   contactInfo: WithAttributes<ContactEntityFragment>
@@ -18,101 +16,81 @@ interface FooterProps {
 
 const Footer = ({ contactInfo, contentPage }: FooterProps) => {
   const { t, i18n } = useTranslation()
+
+  const {
+    name,
+    openingHours,
+    mirbach,
+    palffy,
+    quickLinks,
+    quickLinksTitle,
+    quickLinksTitle2,
+    quickLinks2,
+    disclosureMoreFiles,
+  } = contactInfo.attributes
+
   return (
-    <footer className="relative bg-gray-100 px-xStandard pt-14">
-      <div className="border-t border-gray-300">
-        <div className="mb-20 flex flex-col items-center justify-between gap-10 pt-20 md:flex-row">
-          <div>
-            <BABrand />
-          </div>
-          <div className="flex items-center">
-            <div className="mr-14 flex gap-6">
-              <Link href="/">
-                <FBLogo />
-              </Link>
-              <Link href="/">
-                <YTLogo />
-              </Link>
-              <Link href="/">
-                <IGLogo />
-              </Link>
-            </div>
-            <div>
-              <EULogo />
-            </div>
+    <footer className="relative mt-yStandard bg-gmbDark px-xStandard pb-12 pt-20 text-white">
+      <div className="grid grid-cols-2 gap-x-9 gap-y-16 lg:grid-cols-4 lg:gap-y-32">
+        <div className="col-span-2 flex h-full flex-col justify-between lg:col-span-1">
+          <h3 className="pb-yHigh text-xl">Otvorene</h3>
+          <div className="">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                p: ({ children }) => <p className="text-md">{children}</p>,
+                ul: ({ children }) => <ul className="list list-disc pl-5 pb-[55px]">{children}</ul>,
+              }}
+            >
+              {openingHours ?? ''}
+            </ReactMarkdown>
           </div>
         </div>
-        {/* content */}
-        <div className="flex flex-col justify-between gap-20 pb-20 text-left lg:flex-row lg:gap-0">
-          <div>
-            <div className="mb-18 flex flex-col gap-y-3">
-              <p>{contactInfo.attributes.mirbach?.title}</p>
-              <p>{contactInfo.attributes.mirbach?.address}</p>
-              <p>{contactInfo.attributes.mirbach?.zip}</p>
-              <p>{contactInfo.attributes.mirbach?.city}</p>
-            </div>
-            <div className="mb-18 flex flex-col gap-y-3">
-              <p>{contactInfo.attributes.palffy?.title}</p>
-              <p>{contactInfo.attributes.palffy?.address}</p>
-              <p>{contactInfo.attributes.palffy?.zip}</p>
-              <p>{contactInfo.attributes.palffy?.city}</p>
-            </div>
-            <div className="flex flex-col gap-y-3">
-              {contactInfo.attributes.email && (
-                <Link href={`mailto:${contactInfo.attributes.email}`} className="normal-case underline">
-                  {contactInfo.attributes.email}
-                </Link>
-              )}
-              <p>{contactInfo.attributes.mirbach?.phone}</p>
-              <p>{contactInfo.attributes.palffy?.phone}</p>
-            </div>
-          </div>
-
-          <div>
-            <p>{t('footer.siteMap')}</p>
-            <div className="mt-11 flex flex-col gap-4">
-              <Link href="/navstivte" preserveStyle>
-                {t('navigation.visitUs')}
-              </Link>
-              <Link href="/vystavy" preserveStyle>
-                {t('navigation.exhibitionsEvents')}
-              </Link>
-              <Link href="/objavujte" preserveStyle>
-                {t('navigation.explore')}
-              </Link>
-              <Link href="/o-galerii" preserveStyle>
-                {t('navigation.aboutGallery')}
-              </Link>
-              <Link href="/zapojte-sa" preserveStyle>
-                {t('navigation.getInvolved')}
-              </Link>
-              <Link href="/zbierky" preserveStyle>
-                {t('navigation.collections')}
-              </Link>
-            </div>
-          </div>
-
-          <div>
-            <p>{t('footer.quickLinks')}</p>
-            <div>
-              <Link href="/zverejnovanie-informacii" preserveStyle>
-                {t('footer.disclosureOfInformation')}
-              </Link>
-              {contactInfo.attributes.quickLinks?.filter(isDefined).map((link) => (
-                <Link href={link.url ?? '#'} key={link.url}>
-                  {link.title}
-                </Link>
-              ))}
-            </div>
+        <div className="flex h-full flex-col justify-between">
+          <h3 className="pb-yHigh text-xl">{mirbach?.title}</h3>
+          <div className="text-md">
+            <LocationIcon stroke="white" height="48" className="mb-2" />
+            <p>{mirbach?.address}</p>
           </div>
         </div>
-        {/* content end */}
-        <div className="border-t py-20">
-          <div className="flex flex-col justify-between gap-2 md:flex-row">
-            <p>{t('footer.declarationOfAccessibility')}</p>
-            <p>&copy; 2020 {t('common.capitalCityOfBratislava')}</p>
-            <AppLangSwitchers contentPage={contentPage} />
+        <div className="col-span-1 flex h-full flex-col justify-between lg:col-span-2">
+          <h3 className="pb-yHigh text-xl">{palffy?.title}</h3>
+          <div className="text-md">
+            <LocationIcon stroke="white" height="48" className="mb-2" />
+            <p>{palffy?.address}</p>
           </div>
+        </div>
+        <div className="flex h-full flex-col justify-between">
+          <h3 className="pb-yHigh text-xl">{quickLinksTitle}</h3>
+          <div className="flex flex-col">
+            {quickLinks?.map((link, index) => (
+              <Link href={link?.url || '#'} target="_blank" key={index} className="text-md uppercase" preserveStyle>
+                {link?.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div className="hidden h-full flex-col justify-between lg:flex">
+          <h3 className="pb-yHigh text-xl">{quickLinksTitle2}</h3>
+          <div className="flex flex-col">
+            {quickLinks2?.map((link, index) => (
+              <Link href={link?.url || '#'} target="_blank" key={index} className="text-md uppercase" preserveStyle>
+                {link?.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div className="hidden h-full flex-col justify-between lg:flex">
+          <h3 className="pb-yHigh text-xl">{disclosureMoreFiles?.title}</h3>
+          {disclosureMoreFiles?.files?.filter(isDefined).map((file, index) => (
+            <DownloadItem key={index} downloadItem={file} oneLine />
+          ))}
+        </div>
+        <div className="hidden flex-col justify-end text-right text-sm lg:flex">
+          <div className="flex justify-end">
+            <AppLangSwitchers contentPage={contentPage} desktop />
+          </div>
+          <p>&copy; 2022 {name || t('common.bratislavaCityGallery')}</p>
         </div>
       </div>
     </footer>
