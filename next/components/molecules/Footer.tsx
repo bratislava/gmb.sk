@@ -30,7 +30,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
   } = contactInfo.attributes
 
   return (
-    <footer className="relative mt-yStandard bg-gmbDark px-xStandard pb-12 pt-20 text-white">
+    <footer className="relative bg-gmbDark px-xStandard pb-12 pt-20 text-white">
       <div className="grid grid-cols-2 gap-x-9 gap-y-16 lg:grid-cols-4 lg:gap-y-32">
         <div className="col-span-2 flex h-full flex-col justify-between lg:col-span-1">
           <h3 className="pb-yHigh text-xl">Otvorene</h3>
@@ -64,7 +64,13 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           <h3 className="pb-yHigh text-xl">{quickLinksTitle}</h3>
           <div className="flex flex-col">
             {quickLinks?.map((link, index) => (
-              <Link href={link?.url || '#'} target="_blank" key={index} className="text-md uppercase" preserveStyle>
+              <Link
+                href={link?.url || '#'}
+                target="_blank"
+                key={index}
+                className="overflow-hidden text-ellipsis whitespace-nowrap text-md uppercase"
+                preserveStyle
+              >
                 {link?.title}
               </Link>
             ))}
@@ -74,7 +80,13 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           <h3 className="pb-yHigh text-xl">{quickLinksTitle2}</h3>
           <div className="flex flex-col">
             {quickLinks2?.map((link, index) => (
-              <Link href={link?.url || '#'} target="_blank" key={index} className="text-md uppercase" preserveStyle>
+              <Link
+                href={link?.url || '#'}
+                target="_blank"
+                key={index}
+                className="overflow-hidden text-ellipsis whitespace-nowrap text-md uppercase"
+                preserveStyle
+              >
                 {link?.title}
               </Link>
             ))}
@@ -82,9 +94,16 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
         </div>
         <div className="hidden h-full flex-col justify-between lg:flex">
           <h3 className="pb-yHigh text-xl">{disclosureMoreFiles?.title}</h3>
-          {disclosureMoreFiles?.files?.filter(isDefined).map((file, index) => (
-            <DownloadItem key={index} downloadItem={file} oneLine />
-          ))}
+          <div className="flex flex-col">
+            {disclosureMoreFiles?.files?.filter(isDefined).map((file, index) => (
+              <DownloadItem
+                key={index}
+                downloadItem={file}
+                className="!inline-block !overflow-hidden text-ellipsis whitespace-nowrap !text-left text-md"
+                oneLine
+              />
+            ))}
+          </div>
         </div>
         <div className="hidden flex-col justify-end text-right text-sm lg:flex">
           <div className="flex justify-end">
