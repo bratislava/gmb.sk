@@ -8,9 +8,10 @@ import Button from './Button'
 interface DownloadProps {
   downloadItem: DownloadItemFragment
   oneLine?: boolean
+  className?: string
 }
 
-export const DownloadItem = ({ downloadItem, oneLine = false }: DownloadProps) => {
+export const DownloadItem = ({ downloadItem, oneLine = false, className = '' }: DownloadProps) => {
   const [fetching, setFetching] = useState(false)
   const [_error, setError] = useState(false)
   const { t } = useTranslation()
@@ -40,12 +41,12 @@ export const DownloadItem = ({ downloadItem, oneLine = false }: DownloadProps) =
   if (oneLine) {
     return (
       <Button
-        disabled={fetching}
         size="link"
+        disabled={fetching}
         color="light"
         onClick={() => download(file?.url, file?.name)}
         aria-label="download file"
-        className="!justify-start whitespace-nowrap"
+        className={className}
       >
         {downloadItem.title}
       </Button>
