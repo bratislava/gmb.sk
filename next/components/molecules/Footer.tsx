@@ -4,9 +4,8 @@ import remarkGfm from 'remark-gfm'
 
 import LocationIcon from '../../assets/icons/location.svg'
 import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
-import { isDefined, WithAttributes } from '../../utils/isDefined'
+import { WithAttributes } from '../../utils/isDefined'
 import AppLangSwitchers from '../atoms/AppLangSwitchers'
-import DownloadItem from '../atoms/DownloadItem'
 import Link from '../atoms/Link'
 
 interface FooterProps {
@@ -15,19 +14,9 @@ interface FooterProps {
 }
 
 const Footer = ({ contactInfo, contentPage }: FooterProps) => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
-  const {
-    name,
-    openingHours,
-    mirbach,
-    palffy,
-    quickLinks,
-    quickLinksTitle,
-    quickLinksTitle2,
-    quickLinks2,
-    disclosureMoreFiles,
-  } = contactInfo.attributes
+  const { name, openingHours, mirbach, palffy, socialLinks, quickLinks1, quickLinks2 } = contactInfo.attributes
 
   return (
     <footer className="relative bg-gmbDark px-xStandard pb-12 pt-20 text-white">
@@ -61,9 +50,9 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           </div>
         </div>
         <div className="flex h-full flex-col justify-between">
-          <h3 className="pb-yHigh text-xl">{quickLinksTitle}</h3>
+          <h3 className="pb-yHigh text-xl">{socialLinks?.title}</h3>
           <div className="flex flex-col">
-            {quickLinks?.map((link, index) => (
+            {socialLinks?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
                 target="_blank"
@@ -77,9 +66,9 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           </div>
         </div>
         <div className="hidden h-full flex-col justify-between lg:flex">
-          <h3 className="pb-yHigh text-xl">{quickLinksTitle2}</h3>
+          <h3 className="pb-yHigh text-xl">{quickLinks1?.title}</h3>
           <div className="flex flex-col">
-            {quickLinks2?.map((link, index) => (
+            {quickLinks1?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
                 target="_blank"
@@ -93,15 +82,18 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           </div>
         </div>
         <div className="hidden h-full flex-col justify-between lg:flex">
-          <h3 className="pb-yHigh text-xl">{disclosureMoreFiles?.title}</h3>
+          <h3 className="pb-yHigh text-xl">{quickLinks2?.title}</h3>
           <div className="flex flex-col">
-            {disclosureMoreFiles?.files?.filter(isDefined).map((file, index) => (
-              <DownloadItem
+            {quickLinks2?.links?.map((link, index) => (
+              <Link
+                href={link?.url || '#'}
+                target="_blank"
                 key={index}
-                downloadItem={file}
-                className="!inline-block !overflow-hidden text-ellipsis whitespace-nowrap !text-left text-md"
-                oneLine
-              />
+                className="overflow-hidden text-ellipsis whitespace-nowrap text-md uppercase"
+                preserveStyle
+              >
+                {link?.title}
+              </Link>
             ))}
           </div>
         </div>

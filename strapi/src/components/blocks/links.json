@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_blocks_links",
+  "info": {
+    "displayName": "links",
+    "icon": "list-ul"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.link-item"
+    }
+  }
+}
