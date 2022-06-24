@@ -54,24 +54,26 @@ export const DownloadItem = ({ downloadItem, oneLine = false, className = '' }: 
   }
 
   return (
-    <div>
+    <div className="flex h-full flex-col justify-between">
       <h4 className="pb-8 text-lg lg:pb-10 3xl:pb-12">{downloadItem.title ?? file?.name ?? ''}</h4>
-      <div className="relative left-[-10px] h-fit w-fit">
-        <FileIcon width={100} fill="#fff" className="relative" />
-        <span className="absolute top-1/2 left-1/2 block -translate-x-1/2 -translate-y-1/2 uppercase">
-          {file?.ext?.slice(1, 5)}
-        </span>
+      <div>
+        <div className="relative left-[-10px] h-fit w-fit">
+          <FileIcon fill="#fff" className="relative w-24" />
+          <span className="absolute top-1/2 left-1/2 block -translate-x-1/2 -translate-y-1/2 uppercase">
+            {file?.ext?.slice(1, 5)}
+          </span>
+        </div>
+        <Button
+          disabled={fetching}
+          size="link"
+          color="light"
+          onClick={() => download(file?.url, file?.name)}
+          aria-label="download file"
+          className="pt-8 lg:pt-12"
+        >
+          {t('common.download')}
+        </Button>
       </div>
-      <Button
-        disabled={fetching}
-        size="link"
-        color="light"
-        onClick={() => download(file?.url, file?.name)}
-        aria-label="download file"
-        className="pt-8 lg:pt-12"
-      >
-        {t('common.download')}
-      </Button>
     </div>
   )
 }
