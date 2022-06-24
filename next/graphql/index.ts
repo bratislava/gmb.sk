@@ -2663,7 +2663,7 @@ export type DisclosureOfInformationPageQueryVariables = Exact<{
 }>;
 
 
-export type DisclosureOfInformationPageQuery = { __typename?: 'Query', contact?: { __typename?: 'ContactEntityResponse', data?: { __typename?: 'ContactEntity', attributes?: { __typename?: 'Contact', disclosureMoreFiles?: { __typename?: 'ComponentSectionsDownloadSection', title?: string | null, submenuTitle?: string | null, files?: Array<{ __typename?: 'ComponentBlocksFileItem', id: string, title?: string | null, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, caption?: string | null, alternativeText?: string | null, ext?: string | null, size: number, url: string } | null } | null } } | null> | null } | null } | null } | null } | null };
+export type DisclosureOfInformationPageQuery = { __typename?: 'Query', contact?: { __typename?: 'ContactEntityResponse', data?: { __typename?: 'ContactEntity', attributes?: { __typename?: 'Contact', name?: string | null, email?: string | null, openingHours?: string | null, disclosureMoreFiles?: { __typename?: 'ComponentSectionsDownloadSection', title?: string | null, submenuTitle?: string | null, files?: Array<{ __typename?: 'ComponentBlocksFileItem', id: string, title?: string | null, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, caption?: string | null, alternativeText?: string | null, ext?: string | null, size: number, url: string } | null } | null } } | null> | null } | null, mirbach?: { __typename?: 'ComponentBlocksPalace', title?: string | null, address?: string | null, zip?: string | null, city?: string | null, phone?: string | null } | null, palffy?: { __typename?: 'ComponentBlocksPalace', title?: string | null, address?: string | null, zip?: string | null, city?: string | null, phone?: string | null } | null, socialLinks?: { __typename?: 'ComponentBlocksLinks', title?: string | null, links?: Array<{ __typename?: 'ComponentBlocksLinkItem', title: string, url?: string | null } | null> | null } | null, quickLinks1?: { __typename?: 'ComponentBlocksLinks', title?: string | null, links?: Array<{ __typename?: 'ComponentBlocksLinkItem', title: string, url?: string | null } | null> | null } | null, quickLinks2?: { __typename?: 'ComponentBlocksLinks', title?: string | null, links?: Array<{ __typename?: 'ComponentBlocksLinkItem', title: string, url?: string | null } | null> | null } | null } | null } | null } | null };
 
 export type ErrorPageQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode'];
@@ -3470,6 +3470,7 @@ export const DisclosureOfInformationPageDocument = gql`
     query DisclosureOfInformationPage($locale: I18NLocaleCode!) {
   contact(locale: $locale) {
     data {
+      ...ContactEntity
       attributes {
         disclosureMoreFiles {
           title
@@ -3482,7 +3483,8 @@ export const DisclosureOfInformationPageDocument = gql`
     }
   }
 }
-    ${DownloadItemFragmentDoc}`;
+    ${ContactEntityFragmentDoc}
+${DownloadItemFragmentDoc}`;
 export const ErrorPageDocument = gql`
     query ErrorPage($locale: I18NLocaleCode!) {
   contact(locale: $locale) {
