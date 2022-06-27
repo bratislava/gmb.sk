@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 
@@ -42,16 +42,18 @@ export const DisclosureOfInformation = ({ contact }: DisclosureOfInformationProp
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale = 'sk' }) => {
+export const getStaticProps: GetStaticProps = async ({ locale = 'sk' }) => {
   const [{ contact }, translations] = await Promise.all([
     client.DisclosureOfInformationPage({ locale }),
     ssrTranslations({ locale }, ['common']),
   ])
+
   return {
     props: {
       contact,
       ...translations,
     },
+    revalidate: 60 * 5,
   }
 }
 export default DisclosureOfInformation

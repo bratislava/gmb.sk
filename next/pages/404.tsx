@@ -1,18 +1,31 @@
-import { GetStaticProps } from 'next'
+import { GetStaticProps, NextPage  } from 'next'
 
 import ErrorPage from '../components/pages/ErrorPage'
+import { HomePageQuery } from '../graphql'
+import { client } from '../utils/gql'
+import { withAttributes } from '../utils/isDefined'
 import { ssrTranslations } from '../utils/translations'
 
-interface ErrorProps {}
+interface ErrorProps {
+  contact: HomePageQuery['contact']
+}
 
-const Custom404 = ({}: ErrorProps) => {
-  return <ErrorPage statusCode={404} />
+const Custom404: NextPage<ErrorProps> = ({ contact }: ErrorProps) => {
+  if (!contact) {
+    return null
+  }
+
+  return <ErrorPage contactInfo={withAttributes(contact?.data)} statusCode={404} />
 }
 
 export const getStaticProps: GetStaticProps<ErrorProps> = async ({ locale = 'sk' }) => {
-  const [translations] = await Promise.all([ssrTranslations({ locale }, ['common'])])
+  const [{ contact }, translations] = await Promise.all([
+    client.VisitUsPage({ locale }),
+    ssrTranslations({ locale }, ['common']),
+  ])
   return {
     props: {
+      contact,
       ...translations,
     },
     revalidate: 60,

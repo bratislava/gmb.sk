@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import React from 'react'
 
@@ -31,7 +31,7 @@ export const Collection = ({ collectionsPage, contact, news }: CollectionProps) 
   )
 }
 
-export const getServerSideProps: GetServerSideProps<CollectionProps> = async ({ locale = 'sk' }) => {
+export const getStaticProps: GetStaticProps<CollectionProps> = async ({ locale = 'sk' }) => {
   const [{ collectionsPage, contact }, { news }, translations] = await Promise.all([
     client.CollectionPage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
@@ -45,6 +45,7 @@ export const getServerSideProps: GetServerSideProps<CollectionProps> = async ({ 
       news,
       ...translations,
     },
+    revalidate: 60,
   }
 }
 
