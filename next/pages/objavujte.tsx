@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import React from 'react'
 
 import ExplorePage from '../components/pages/ExplorePage'
@@ -32,7 +32,7 @@ const Explore = ({ explorePage, contact, tagsTypes, tagsProjects, tagsOthers }: 
   )
 }
 
-export const getServerSideProps: GetServerSideProps<ExploreProps> = async ({ locale = 'sk' }) => {
+export const getStaticProps: GetStaticProps<ExploreProps> = async ({ locale = 'sk' }) => {
   const [
     { explorePage, contact },
     { tagCategoryBySlug: tagsTypes },
