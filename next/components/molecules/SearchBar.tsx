@@ -56,7 +56,6 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
         <CloseIcon fill="white" />
       </button>
       <div className="flex flex-1">
-        {/* TODO: Removing outline with `outline-none` is a bad accessibility practice */}
         <input
           className="border-b-solid active-border-b-solid focus:border-b-solid h-fit max-w-full border-b border-b-white bg-transparent text-xl text-white focus:border-b focus:border-b-white focus:outline-none active:border-b active:border-b-white"
           placeholder={t('common.searchText')}
