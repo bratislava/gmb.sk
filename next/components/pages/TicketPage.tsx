@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next'
 
 import { ContactEntityFragment, ContentPageEntityFragment, SectionItemEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'
-import { Link } from '../atoms/Link'
+import Link from '../atoms/Link'
 import Seo from '../atoms/Seo'
 import { SidePanelPlace } from '../atoms/SidePanelPlace'
 import { SidePanelTime } from '../atoms/SidePanelTime'
@@ -44,7 +44,7 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
 
           <p className="my-yStandard text-md">{ticketIncludesText}</p>
 
-          <div className="flex flex-wrap justify-start w-full mt-6 gap-x-xStandard gap-y-yStandard">
+          <div className="mt-6 flex w-full flex-wrap justify-start gap-x-xStandard gap-y-yStandard">
             <SidePanelPlace placeFragment={{ place, placeTitle }} isOneLine />
             <SidePanelTime datetime={{ dateFrom, dateTo, timeFrom, timeTo }} isOneLine />
           </div>

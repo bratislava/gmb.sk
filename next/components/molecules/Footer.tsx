@@ -9,7 +9,7 @@ import YTLogo from '../../assets/icons/social-platforms/YT.svg'
 import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
 import { isDefined, WithAttributes } from '../../utils/isDefined'
 import AppLangSwitchers from '../atoms/AppLangSwitchers'
-import { Link } from '../atoms/Link'
+import  Link  from '../atoms/Link'
 
 interface FooterProps {
   contactInfo: WithAttributes<ContactEntityFragment>
