@@ -107,6 +107,7 @@ fragment Links on ComponentBlocksLinks {
   links {
     title
     url
+    newWindow
   }
 }
 

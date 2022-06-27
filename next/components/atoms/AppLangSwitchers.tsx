@@ -1,8 +1,8 @@
 import cx from 'classnames'
+import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { useCookies } from 'react-cookie'
-import { useTranslation } from 'react-i18next'
 
 import { ContentPageEntityFragment } from '../../graphql'
 import { LocalStorageEnum } from '../../types/localStorage.d'

@@ -112,7 +112,5 @@ export function getEquivalentRouteInTargetLocale(
     return getContentPageTicketsRouteForTargetLocale(contentPage.attributes.localizations, targetLocale)
   }
 
-  console.log({ pathname })
-
   return getRouteForTargetLocale(pathname, targetLocale)
 }

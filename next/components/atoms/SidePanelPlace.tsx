@@ -4,11 +4,9 @@ import { ContentPagePlaceFragment } from '../../graphql'
 export interface SidePanelPlaceProps {
   placeFragment: ContentPagePlaceFragment
   isOneLine?: boolean
-  showTitle?: boolean
-  className?: string
 }
 
-export const SidePanelPlace = ({ placeFragment, isOneLine = false, showTitle = true }: SidePanelPlaceProps) => {
+export const SidePanelPlace = ({ placeFragment, isOneLine = false }: SidePanelPlaceProps) => {
   const { place, placeTitle, placeAddress } = placeFragment
 
   if (!place?.data && !placeTitle && !placeAddress) {
@@ -29,8 +27,8 @@ export const SidePanelPlace = ({ placeFragment, isOneLine = false, showTitle = t
       <address className="flex items-center gap-3 not-italic">
         {isOneLine && <LocationIcon height="24" width="24" />}
         <span>
-          {(showTitle && placeTitle) || place?.data?.attributes?.title}
-          {!isOneLine && showTitle && <br />}
+          {placeTitle || place?.data?.attributes?.title}
+          {!isOneLine && <br />}
           {!isOneLine && (placeAddress || place?.data?.attributes?.address)}
         </span>
       </address>

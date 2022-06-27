@@ -7,13 +7,11 @@ import Button from './Button'
 
 interface DownloadProps {
   downloadItem: DownloadItemFragment
-  oneLine?: boolean
-  className?: string
 }
 
-export const DownloadItem = ({ downloadItem, oneLine = false, className = '' }: DownloadProps) => {
+export const DownloadItem = ({ downloadItem }: DownloadProps) => {
   const [fetching, setFetching] = useState(false)
-  const [_error, setError] = useState(false)
+  const [error, setError] = useState(false)
   const { t } = useTranslation()
 
   const file = downloadItem?.file.data?.attributes
@@ -36,21 +34,6 @@ export const DownloadItem = ({ downloadItem, oneLine = false, className = '' }: 
         a.click()
       })
       .catch(() => setError(true))
-  }
-
-  if (oneLine) {
-    return (
-      <Button
-        size="link"
-        disabled={fetching}
-        color="light"
-        onClick={() => download(file?.url, file?.name)}
-        aria-label="download file"
-        className={className}
-      >
-        {downloadItem.title}
-      </Button>
-    )
   }
 
   return (

@@ -55,7 +55,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
             {socialLinks?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
-                target="_blank"
+                target={link?.newWindow ?? true ? '_blank' : '_self'}
                 key={index}
                 className="overflow-hidden text-ellipsis whitespace-nowrap text-md uppercase"
                 preserveStyle
@@ -71,7 +71,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
             {footerLinks1?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
-                target="_blank"
+                target={link?.newWindow ?? true ? '_blank' : '_self'}
                 key={index}
                 className="overflow-hidden text-ellipsis whitespace-nowrap text-md uppercase"
                 preserveStyle
@@ -87,7 +87,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
             {footerLinks2?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
-                target="_blank"
+                target={link?.newWindow ?? true ? '_blank' : '_self'}
                 key={index}
                 className="overflow-hidden text-ellipsis whitespace-nowrap text-md uppercase"
                 preserveStyle
