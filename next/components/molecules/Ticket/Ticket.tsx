@@ -1,7 +1,9 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+
 import Button from '../../atoms/Button'
 import styles from './Ticket.module.css'
 
@@ -15,12 +17,14 @@ interface ITicketProps {
 
 export const Ticket = ({ title, price, description, id, link }: ITicketProps) => {
   const { t } = useTranslation()
+  const router = useRouter()
+
   return (
     <div
       id={`ticket-${id}`}
       className={cx(
         styles.ticket,
-        'flex flex-col mb-yStandard justify-between last:mb-0 lg:mb-0 w-full min-h-[360px] lg:min-h-[500px] 3xl:min-h-[700px] bg-gmbLightGray relative p-8 hover:bg-[#6cc7ed] last-of-type:after:hidden first-of-type:before:hidden'
+        'goout-ticket flex flex-col mb-yStandard justify-between last:mb-0 lg:mb-0 w-full min-h-[360px] lg:min-h-[440px] 3xl:min-h-[660px] bg-gmbLightGray relative p-8 hover:bg-[#6cc7ed] last-of-type:after:hidden first-of-type:before:hidden'
       )}
     >
       <div className="pb-yStandard">
@@ -34,20 +38,32 @@ export const Ticket = ({ title, price, description, id, link }: ITicketProps) =>
             className="relative"
             components={{
               p: ({ children }) => <p className="pb-yStandard text-btn">{children}</p>,
-              ul: ({ children }) => <ul className="pl-5 list-disc pb-yStandard text-btn">{children}</ul>,
-              ol: ({ children }) => <ol className="pl-5 list-decimal pb-yStandard text-btn">{children}</ol>,
+              ul: ({ children }) => <ul className="list-disc pl-5 pb-yStandard text-btn">{children}</ul>,
+              ol: ({ children }) => <ol className="list-decimal pl-5 pb-yStandard text-btn">{children}</ol>,
             }}
           >
             {description ?? ''}
           </ReactMarkdown>
         ) : null}
         {link ? (
-          <Button id={`btn-buy-ticket-${id}`} size="small" className="px-xStandard w-fit">
+          <Button
+            size="small"
+            className="goout-btn-buy-self w-fit px-xStandard"
+            data-goout-id="id-here"
+            data-goout-ticket-category="{category goes here}"
+            onClick={() => router.replace(`#goout-form`)}
+          >
             {t('common.buyForYourself')}
           </Button>
         ) : null}
         {link ? (
-          <Button id={`btn-buy-as-gift-${id}`} size="small" className="mt-4 px-xStandard w-fit">
+          <Button
+            size="small"
+            className="goout-btn-buy-gift mt-4 w-fit px-xStandard"
+            data-goout-id="id-here"
+            data-goout-ticket-category="{category goes here}"
+            onClick={() => router.replace(`#goout-form`)}
+          >
             {t('common.buyAsGift')}
           </Button>
         ) : null}

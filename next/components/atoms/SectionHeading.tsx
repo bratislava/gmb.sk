@@ -6,7 +6,7 @@ export interface ISectionHeadingProps {
 
 const SectionHeading = ({ title }: ISectionHeadingProps) => {
   return (
-    <header className="relative py-10 bg-white px-xStandard md:py-16 3xl:py-20">
+    <header className="relative bg-white py-10 px-xStandard md:py-16 3xl:py-20">
       <h2 className="text-xxl">{title}</h2>
     </header>
   )

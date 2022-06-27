@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import Page from '../components/pages/Page'
 import { NewsQuery, VisitUsPageQuery } from '../graphql'
 import { client } from '../utils/gql'

@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticPathsResult, GetStaticProps } from 'next'
 import React from 'react'
+
 import DetailPage from '../../components/pages/DetailPage'
 import { ContentPageBySlugQuery } from '../../graphql'
 import { client } from '../../utils/gql'

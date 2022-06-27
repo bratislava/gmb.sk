@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next'
 import React from 'react'
+
 import ExhibitionsPage from '../components/pages/ExhibitionsPage'
 import { ExhibitionsPageQuery, PlacesQuery, TagsByCategorySlugQuery } from '../graphql'
 import { getTodaysDate } from '../utils/getTodaysDate'

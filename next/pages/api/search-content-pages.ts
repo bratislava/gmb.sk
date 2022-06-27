@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+
 import { buildUrl } from '../../utils/gql'
 import { isDefined } from '../../utils/isDefined'
 

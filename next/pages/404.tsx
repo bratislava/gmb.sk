@@ -1,4 +1,5 @@
-import { GetStaticProps, NextPage } from 'next'
+import { GetStaticProps, NextPage  } from 'next'
+
 import ErrorPage from '../components/pages/ErrorPage'
 import { HomePageQuery } from '../graphql'
 import { client } from '../utils/gql'

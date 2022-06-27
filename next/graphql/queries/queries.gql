@@ -234,7 +234,7 @@ query VisitUsPage($locale: I18NLocaleCode!) {
       }
     }
   }
-  tickets {
+  tickets(locale: $locale) {
     data {
       ...TicketEntity
     }
@@ -323,6 +323,23 @@ query ExhibitionsPage(
   contact(locale: $locale) {
     data {
       ...ContactEntity
+    }
+  }
+}
+
+query DisclosureOfInformationPage($locale: I18NLocaleCode!) {
+  contact(locale: $locale) {
+    data {
+      ...ContactEntity
+      attributes {
+        disclosureMoreFiles {
+          title
+          submenuTitle
+          files {
+            ...DownloadItem
+          }
+        }
+      }
     }
   }
 }

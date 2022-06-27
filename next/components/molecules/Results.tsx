@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { ContentPage } from '../../graphql'
 import { hasAttributes } from '../../utils/isDefined'
 import Link from '../atoms/Link'
@@ -11,8 +12,8 @@ interface ResultsProps {
 const Results = ({ header, results }: ResultsProps) => {
   return (
     <div className="flex-col">
-      <h3 className="text-white text-xxl ">{header}</h3>
-      <div className="flex flex-col h-full gap-5 mt-10">
+      <h3 className="text-xxl text-white ">{header}</h3>
+      <div className="mt-10 flex h-full flex-col gap-5">
         {results?.slice(0, 3).map((result) => {
           return (
             <Link key={result.slug} className="text-white" preserveStyle href={`/detail/${result.slug}`}>

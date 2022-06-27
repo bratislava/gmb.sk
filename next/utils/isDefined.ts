@@ -21,11 +21,11 @@ export function withAttributes<T extends ObjWithAttributes>(
 ): WithAttributes<T> | null | undefined {
   if (isDefined(value)) {
     if (hasAttributes(value)) {
-      return value as WithAttributes<T>
-    } else {
+      return value 
+    } 
       return null
-    }
-  } else {
+    
+  } 
     return value
-  }
+  
 }

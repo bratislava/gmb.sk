@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import React from 'react'
+
 import TicketPage from '../../components/pages/TicketPage'
 import { ExhibitionsByPlaceQuery, TicketPageBySlugQuery } from '../../graphql'
 import { getTodaysDate } from '../../utils/getTodaysDate'
@@ -42,8 +43,8 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
 
   const [{ contentPageBySlug: contentPage, contact }, translations] = await Promise.all([
     client.TicketPageBySlug({
-      slug: slug,
-      locale: locale,
+      slug,
+      locale,
     }),
     ssrTranslations({ locale }, ['common']),
   ])
@@ -65,8 +66,8 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
   }
 
   const { currentEvents } = await client.ExhibitionsByPlace({
-    locale: locale,
-    slug: slug,
+    locale,
+    slug,
     today,
     tagExhibitions: getRouteForLocale('vystavy', locale),
     tagPermanentExhibitions: getRouteForLocale('stale-expozicie', locale),

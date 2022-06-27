@@ -1,5 +1,6 @@
-import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
+import { useTranslation } from 'next-i18next'
+
 import { ImageEntityFragment, SeoFragment } from '../../graphql'
 
 interface SeoProps {
@@ -40,7 +41,7 @@ const Seo = ({ seo, ogType = 'website', title, description, image }: SeoProps) =
 
       {/* Non-Essential, But Required for Analytics */}
       <meta property="fb:app_id" content="your_app_id" />
-      <meta name="twitter:site" content="@website-username"></meta>
+      <meta name="twitter:site" content="@website-username" />
     </Head>
   )
 }

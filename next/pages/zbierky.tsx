@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import React from 'react'
+
 import Page from '../components/pages/Page'
 import { CollectionPageQuery, HomePageQuery, NewsQuery } from '../graphql'
 import { client } from '../utils/gql'
@@ -13,7 +14,7 @@ interface CollectionProps {
   news: NewsQuery['news']
 }
 
-export function Collection({ collectionsPage, contact, news }: CollectionProps) {
+export const Collection = ({ collectionsPage, contact, news }: CollectionProps) => {
   const { t } = useTranslation()
 
   if (!collectionsPage) {

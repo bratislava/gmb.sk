@@ -1,4 +1,6 @@
 import cx from 'classnames'
+import { useTranslation } from 'next-i18next'
+
 import { TicketEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
 import CityGalleryMarkdown from '../../atoms/CityGalleryMarkdown'
@@ -13,6 +15,8 @@ interface TicketsSectionProps {
 }
 
 const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) => {
+  const { t } = useTranslation()
+
   return (
     <Section anchor={anchor} title={title}>
       <div
@@ -23,7 +27,7 @@ const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) =
       >
         <CityGalleryMarkdown content={text} />
 
-        <div className="flex flex-wrap justify-between mt-24 lg:justify-stretch lg:flex-nowrap">
+        <div className="lg:justify-stretch mt-yStandard flex flex-wrap justify-between lg:flex-nowrap">
           {tickets?.map((ticket) => (
             <Ticket
               key={ticket.id}
@@ -37,9 +41,7 @@ const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) =
         </div>
       </div>
 
-      <div id="goout-form" className="px-xStandard py-yStandard min-h-[400px] bg-gmbLightGray">
-        Nákupný formulár
-      </div>
+      <div id="goout-form" className="scroll-mt-nav bg-gmbLightGray px-xStandard py-yStandard empty:hidden" />
     </Section>
   )
 }

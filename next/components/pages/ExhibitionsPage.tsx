@@ -1,6 +1,7 @@
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
+
 import {
   ContactEntityFragment,
   ExhibitionsPageQuery,
@@ -104,7 +105,7 @@ const ExhibitionsPage = ({
         }
       />
 
-      {activeTags.length || activePlaces.length ? (
+      {activeTags.length > 0 || activePlaces.length > 0 ? (
         <div className="min-h-screen">
           <CardSection
             sectionItems={filteredPages}

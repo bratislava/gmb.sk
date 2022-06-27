@@ -46,18 +46,20 @@ export function getRouteForLocale(route: Route, locale: string) {
 
   return route
 }
-/** For a given route (slovak or english), will return equivalent route in the target locale */
-export function getRouteForTargetLocale(route: string, targetLocale: string) {
-  if (targetLocale === 'en' && isRoute(route)) {
-    return routesSkToEn[route]
-  }
-
-  /** Retrieves slovak route based on english route */
-  return getKeyByValue(routesSkToEn, route)
-}
 
 function isRoute(maybeRoute: string): maybeRoute is Route {
   return maybeRoute in routesSkToEn
+}
+
+/** For a given route (slovak or english), will return equivalent route in the target locale */
+export function getRouteForTargetLocale(route: string, targetLocale: string) {
+  if (!isRoute(route)) {
+    return getKeyByValue(routesSkToEn, route)
+  }
+  if (targetLocale === 'en') {
+    return routesSkToEn[route]
+  }
+  return route
 }
 
 function getContentPageDetailRouteForTargetLocale(
@@ -69,7 +71,7 @@ function getContentPageDetailRouteForTargetLocale(
     .find((localization) => localization.attributes.locale === targetLocale)
 
   if (!contentPageInTargetLocale) {
-    return undefined
+    return
   }
 
   return `/detail/${contentPageInTargetLocale?.attributes.slug}`
@@ -83,9 +85,9 @@ function getContentPageTicketsRouteForTargetLocale(
     ?.filter(hasAttributes)
     .find((localization) => localization.attributes.locale === targetLocale)
 
-    if (!contentPageInTargetLocale) {
-      return undefined
-    }
+  if (!contentPageInTargetLocale) {
+    return
+  }
 
   const ticketsRoute = getRouteForLocale('/vstupenky', targetLocale)
 

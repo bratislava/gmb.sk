@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next'
 import React from 'react'
+
 import ExplorePage from '../components/pages/ExplorePage'
 import { ExplorePageQuery, TagsByCategorySlugQuery } from '../graphql'
 import { client } from '../utils/gql'

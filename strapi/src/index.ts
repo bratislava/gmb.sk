@@ -32,14 +32,16 @@ export default {
               type: responseType,
               args: { slug: nexus.stringArg() },
               async resolve(parent, args, ctx) {
-                const transformedArgs = transformArgs(args, {
+                const { slug, locale } = transformArgs(args, {
                   contentType: strapi.contentTypes[apiName],
                   usePagination: false,
                 });
 
                 const results = await strapi.entityService.findMany(apiName, {
-                  filters: transformedArgs,
+                  filters: { slug },
+                  locale,
                 });
+
 
                 if (results.length > 0) {
                   return { value: results[0] };
@@ -99,6 +101,29 @@ export default {
    * run jobs, or perform some special logic.
    */
   async bootstrap({ strapi }) {
+    //------------------------------------
+    // ADDING ENGLISH LOCALE
+    //------------------------------------
+    const existingEnglish = await strapi.db
+      .query("plugin::i18n.locale")
+      .findOne({ where: { code: "en" } });
+    if (!existingEnglish) {
+      const english = { name: "English (en)", code: "en" };
+      try {
+        await strapi.db.query("plugin::i18n.locale").create({ data: english });
+      } catch (error: any) {
+        console.log(
+          "Caught error while creating locale, checking if locale created successfully."
+        );
+        const createdEnglish = await strapi.db
+          .query("plugin::i18n.locale")
+          .findOne({ where: english });
+        if (createdEnglish) console.log("Created English locale.");
+      }
+    }
+    console.log({
+      locales: await strapi.db.query("plugin::i18n.locale").findMany(),
+    });
     //------------------------------------
     // ADDING TAGS
     //------------------------------------

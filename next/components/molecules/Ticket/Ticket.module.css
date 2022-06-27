@@ -3,51 +3,21 @@
     content: '';
     position: absolute;
     height: 100%;
-    width: 20px;
+    width: 10px;
     right: 0;
     top: 0;
-    background-image: linear-gradient(
-        to right,
-        #efefef -10px,
-        transparent 0,
-        transparent
-      ),
-      radial-gradient(132px circle at 20px 9px, white 7px, #efefef 0px);
-    background-size: 46px 19px;
+    background-image: radial-gradient(circle at 10px 10px, white 7px, transparent 0px);
+    background-size: 10px 19px;
   }
 
   .ticket::before {
     content: '';
     position: absolute;
     height: 100%;
-    width: 20px;
+    width: 10px;
     left: 0;
     top: 0;
-    background-image: linear-gradient(
-        to right,
-        #efefef -10px,
-        transparent 0,
-        transparent
-      ),
-      radial-gradient(132px circle at 0px 9px, white 7px, #efefef 0px);
-    background-size: 46px 19px;
+    background-image: radial-gradient(circle at 0px 10px, white 7px, transparent 0px);
+    background-size: 10px 19px;
   }
-}
-.ticket:hover::after {
-  background-image: linear-gradient(
-      to right,
-      #6cc7ed -10px,
-      transparent 0,
-      transparent
-    ),
-    radial-gradient(132px circle at 20px 9px, white 7px, #6cc7ed 0px);
-}
-.ticket:hover::before {
-  background-image: linear-gradient(
-      to right,
-      #6cc7ed -10px,
-      transparent 0,
-      transparent
-    ),
-    radial-gradient(132px circle at 0px 9px, white 7px, #6cc7ed 0px);
 }

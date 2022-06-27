@@ -2,14 +2,15 @@
 
 Install dependencies:
 
-```
-yarn install
+```bash
+yarn
 ```
 
 To start the frontend app, simply run:
 
-```
-yarn develop
+```bash
+yarn dev
+# the same as yarn develop
 ```
 
 ## Strapi SDK for city-gallery
