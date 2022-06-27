@@ -57,7 +57,8 @@
     "additionalProgram": "Sprievodný program",
     "description": "Popis",
     "bratislavaGenitiv": "Bratislavy",
-    "cityGallery": "Galéria mesta"
+    "cityGallery": "Galéria mesta",
+    "documents": "Dokumenty"
   },
   "navigation": {
     "visitUs": "Navštívte",
@@ -69,7 +70,6 @@
   },
   "footer": {
     "siteMap": "Mapa stránky",
-    "quickLinks": "Rýchle odkazy",
     "disclosureOfInformation": "Zverejňovanie informácií",
     "declarationOfAccessibility": "Vyhlásenie o prístupnosti"
   },
