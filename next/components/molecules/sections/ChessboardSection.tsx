@@ -1,5 +1,4 @@
 import { useTranslation } from 'next-i18next'
-import React from 'react'
 
 import { SectionItemEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
@@ -39,7 +38,7 @@ const ChessboardSection = ({ title, sectionItems, anchor, flipped, showTags, loa
           )}
         </>
       ) : (
-        <div className="relative py-yStandard px-xStandard">
+        <div className="relative py-yMd px-xMd">
           <p className="text-md">{t('common.nothingToShow')}</p>
         </div>
       )}

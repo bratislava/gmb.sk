@@ -19,10 +19,10 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
   const { name, openingHours, mirbach, palffy, socialLinks, footerLinks1, footerLinks2 } = contactInfo.attributes
 
   return (
-    <footer className="relative bg-gmbDark px-xStandard pb-12 pt-20 text-white">
-      <div className="grid grid-cols-2 gap-x-9 gap-y-16 lg:grid-cols-4 lg:gap-y-32">
+    <footer className="relative bg-gmbDark px-xMd py-yLg text-white">
+      <div className="grid grid-cols-2 gap-x-xMd gap-y-yXl lg:grid-cols-4">
         <div className="col-span-2 flex h-full flex-col justify-between lg:col-span-1">
-          <h3 className="pb-yHigh text-xl">Otvorene</h3>
+          <h3 className="pb-yLg text-xl">{t('common.openingHours')}</h3>
           <div className="">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
@@ -36,21 +36,21 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           </div>
         </div>
         <div className="flex h-full flex-col justify-between">
-          <h3 className="pb-yHigh text-xl">{mirbach?.title}</h3>
+          <h3 className="pb-yLg text-xl">{mirbach?.title}</h3>
           <div className="text-md">
-            <LocationIcon stroke="white" height="48" className="mb-2" />
+            <LocationIcon stroke="white" className="mb-2 w-[calc(48px*var(--icon-size-factor))]" />
             <p>{mirbach?.address}</p>
           </div>
         </div>
         <div className="col-span-1 flex h-full flex-col justify-between lg:col-span-2">
-          <h3 className="pb-yHigh text-xl">{palffy?.title}</h3>
+          <h3 className="pb-yLg text-xl">{palffy?.title}</h3>
           <div className="text-md">
-            <LocationIcon stroke="white" height="48" className="mb-2" />
+            <LocationIcon stroke="white" className="mb-2 w-[calc(48px*var(--icon-size-factor))]" />
             <p>{palffy?.address}</p>
           </div>
         </div>
         <div className="flex h-full flex-col justify-between">
-          <h3 className="pb-yHigh text-xl">{socialLinks?.title}</h3>
+          <h3 className="pb-yLg text-xl">{socialLinks?.title}</h3>
           <div className="flex flex-col">
             {socialLinks?.links?.map((link, index) => (
               <Link
@@ -66,7 +66,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           </div>
         </div>
         <div className="hidden h-full flex-col justify-between lg:flex">
-          <h3 className="pb-yHigh text-xl">{footerLinks1?.title}</h3>
+          <h3 className="pb-yLg text-xl">{footerLinks1?.title}</h3>
           <div className="flex flex-col">
             {footerLinks1?.links?.map((link, index) => (
               <Link
@@ -82,7 +82,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           </div>
         </div>
         <div className="hidden h-full flex-col justify-between lg:flex">
-          <h3 className="pb-yHigh text-xl">{footerLinks2?.title}</h3>
+          <h3 className="pb-yLg text-xl">{footerLinks2?.title}</h3>
           <div className="flex flex-col">
             {footerLinks2?.links?.map((link, index) => (
               <Link

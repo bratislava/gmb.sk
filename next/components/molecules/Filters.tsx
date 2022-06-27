@@ -20,7 +20,7 @@ const Filters = ({ tagGroups, places, activeTags, setActiveTags, activePlaces, s
 
   return (
     <div className="relative pt-6 lg:pt-12">
-      <div className="flex justify-between pb-yStandard lg:hidden">
+      <div className="flex justify-between pb-yMd lg:hidden">
         <p className="block text-lg">{t('common.filter')}</p>
         {/* TODO reset icon */}
       </div>

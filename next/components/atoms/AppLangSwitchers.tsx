@@ -51,7 +51,7 @@ const AppLangSwitchers = ({ contentPage, desktop }: AppLangSwitchersProps) => {
   )
 
   return (
-    <div className={cx('flex', { 'space-x-xStandard': !desktop })}>
+    <div className={cx('flex', { 'space-x-xMd': !desktop })}>
       <button
         className={cx('cursor-pointer', {
           'font-semibold': currentLanguage === 'sk',

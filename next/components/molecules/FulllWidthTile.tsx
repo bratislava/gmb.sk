@@ -1,6 +1,5 @@
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import React from 'react'
+import { useRouter } from 'next/router'
 
 import { SectionItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
@@ -31,12 +30,12 @@ export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
       </div>
 
       <div
-        className="flex w-full flex-col items-start justify-between px-xStandard py-yStandard"
+        className="flex w-full flex-col items-start justify-between px-xMd py-yMd"
         style={{ background: getContentPageColor(sectionItem) }}
       >
         <hgroup>
           <h3 className="text-xl">{sectionItem.attributes.title}</h3>
-          <p className="pb-yStandard text-xl font-regular">{sectionItem.attributes.subtitle}</p>
+          <p className="pb-yMd text-xl font-regular">{sectionItem.attributes.subtitle}</p>
         </hgroup>
 
         <Button

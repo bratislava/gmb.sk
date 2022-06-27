@@ -33,9 +33,9 @@ const CardSection = ({
     <Section anchor={anchor} title={title}>
       {isLoading ? (
         <div
-          className={cx('grid px-xStandard grid-cols-1 gap-x-6 lg:gap-x-10 gap-y-14 md:grid-cols-2 lg:grid-cols-3', {
-            'py-yHigh': !title,
-            'pb-yHigh': title,
+          className={cx('grid px-xMd grid-cols-1 gap-x-6 lg:gap-x-10 gap-y-14 md:grid-cols-2 lg:grid-cols-3', {
+            'py-yLg': !title,
+            'pb-yLg': title,
           })}
         >
           {[1, 2, 3].map((_, index) => (
@@ -45,9 +45,9 @@ const CardSection = ({
       ) : sectionItems?.length ? (
         <>
           <div
-            className={cx('grid px-xStandard grid-cols-1 gap-x-6 lg:gap-x-10 gap-y-14 md:grid-cols-2 lg:grid-cols-3', {
-              'py-yHigh': !title,
-              'pb-yHigh': title,
+            className={cx('grid px-xMd grid-cols-1 gap-x-6 lg:gap-x-10 gap-y-14 md:grid-cols-2 lg:grid-cols-3', {
+              'py-yLg': !title,
+              'pb-yLg': title,
             })}
           >
             {sectionItems.map((item) => (
@@ -58,7 +58,7 @@ const CardSection = ({
           {loadmoreButton && <div className="flex justify-center py-12">{loadmoreButton}</div>}
         </>
       ) : (
-        <div className="relative px-xStandard pt-yStandard pb-[calc(var(--padding-y)+40px)]">
+        <div className="relative px-xMd pt-yMd pb-[calc(var(--padding-y)+40px)]">
           <p className="text-md">{noItemsMessage ?? t('common.nothingToShow')}</p>
         </div>
       )}

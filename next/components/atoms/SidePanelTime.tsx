@@ -1,5 +1,4 @@
 import { useTranslation } from 'next-i18next'
-import React from 'react'
 
 import TimeIcon from '../../assets/icons/time.svg'
 import { DatetimeFragment } from '../../graphql'
@@ -27,7 +26,7 @@ export const SidePanelTime = ({ datetime, isOneLine, noIcon }: SidePanelTimeProp
     return (
       <div className="whitespace-nowrap text-nav">
         <time className="flex items-center gap-3">
-          {!noIcon && <TimeIcon height="24" width="24" />}
+          {!noIcon && <TimeIcon className="w-[calc(24px*var(--icon-size-factor))]" />}
           <span>
             {dateFrom && formatDateString(dateFrom, locale)}
             {dateTo && ' - '}
@@ -41,29 +40,28 @@ export const SidePanelTime = ({ datetime, isOneLine, noIcon }: SidePanelTimeProp
         </time>
       </div>
     )
-  } 
-    return (
-      <div className="whitespace-nowrap text-nav">
-        {!noIcon && (
-          <div className="mb-3">
-            <TimeIcon height={48} width={48} />
-          </div>
+  }
+  return (
+    <div className="whitespace-nowrap text-nav">
+      {!noIcon && (
+        <div className="mb-3">
+          <TimeIcon className="w-[calc(48px*var(--icon-size-factor))]" />
+        </div>
+      )}
+      <time className="flex flex-col">
+        {dateFrom && (
+          <span>
+            {formatDateString(dateFrom, locale)}
+            {dateTo && ' -'}
+          </span>
         )}
-        <time className="flex flex-col">
-          {dateFrom && (
-            <span>
-              {formatDateString(dateFrom, locale)}
-              {dateTo && ' -'}
-            </span>
-          )}
-          {dateTo && <span>{formatDateString(dateTo, locale)}</span>}
-          <div>
-            {timeFrom && <span>{formatTimeString(timeFrom)}</span>}
-            {timeTo && ' - '}
-            {timeTo && <span>{formatTimeString(timeTo)}</span>}
-          </div>
-        </time>
-      </div>
-    )
-  
+        {dateTo && <span>{formatDateString(dateTo, locale)}</span>}
+        <div>
+          {timeFrom && <span>{formatTimeString(timeFrom)}</span>}
+          {timeTo && ' - '}
+          {timeTo && <span>{formatTimeString(timeTo)}</span>}
+        </div>
+      </time>
+    </div>
+  )
 }

@@ -38,7 +38,7 @@ export const DownloadItem = ({ downloadItem }: DownloadProps) => {
 
   return (
     <div className="flex h-full flex-col justify-between">
-      <h4 className="pb-8 text-lg lg:pb-10 3xl:pb-12">{downloadItem.title ?? file?.name ?? ''}</h4>
+      <h4 className="pb-yMd text-lg">{downloadItem.title ?? file?.name ?? ''}</h4>
       <div>
         <div className="relative left-[-10px] h-fit w-fit">
           <FileIcon fill="#fff" className="relative w-24" />
@@ -52,7 +52,7 @@ export const DownloadItem = ({ downloadItem }: DownloadProps) => {
           color="light"
           onClick={() => download(file?.url, file?.name)}
           aria-label="download file"
-          className="pt-8 lg:pt-12"
+          className="pt-yMd"
         >
           {t('common.download')}
         </Button>

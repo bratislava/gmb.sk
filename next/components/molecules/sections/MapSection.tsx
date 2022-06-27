@@ -1,5 +1,4 @@
 import { useTranslation } from 'next-i18next'
-import React from 'react'
 
 import { ContactEntityFragment } from '../../../graphql'
 import Map from '../Map'
@@ -19,7 +18,7 @@ const MapSection = ({ contactInfo, title, anchor }: IMapSectionProps) => {
       {process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN ? (
         <Map mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN} contactInfo={contactInfo} />
       ) : (
-        <div className="relative bg-gmbDark py-yStandard px-xStandard text-white">
+        <div className="relative bg-gmbDark py-yMd px-xMd text-white">
           <p className="text-md">{t('visitUs.mapNotWorking')}</p>
         </div>
       )}

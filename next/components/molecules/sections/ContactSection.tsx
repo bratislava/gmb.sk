@@ -1,5 +1,4 @@
 import { useTranslation } from 'next-i18next'
-import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
@@ -41,9 +40,9 @@ const ContactSection = ({ contactInfo, anchor }: ContactSectionProps) => {
   }
 
   return (
-    <Section anchor={anchor} color="dark" className="grid grid-cols-2 gap-9 px-xStandard py-yHigh lg:grid-cols-4">
+    <Section anchor={anchor} color="dark" className="grid grid-cols-2 gap-9 px-xMd py-yLg lg:grid-cols-4">
       <div className="col-span-2 flex h-full flex-col justify-between lg:col-span-1">
-        <h4 className="pb-yHigh text-xl">{t('common.openingHours')}</h4>
+        <h4 className="pb-yLg text-xl">{t('common.openingHours')}</h4>
         {contactInfo.attributes.openingHours && (
           <div className="justify-self-end">
             <ReactMarkdown
@@ -59,21 +58,21 @@ const ContactSection = ({ contactInfo, anchor }: ContactSectionProps) => {
         )}
       </div>
       <div className="col-span-1 flex h-full flex-col justify-between">
-        <h3 className="pb-yHigh text-xl">{contactInfo.attributes.mirbach?.title}</h3>
+        <h3 className="pb-yLg text-xl">{contactInfo.attributes.mirbach?.title}</h3>
         <div className="justify-self-end text-md">
-          <LocationIcon stroke="white" height="48" className="mb-2" />
+          <LocationIcon stroke="white" className="mb-2 w-[calc(48px*var(--icon-size-factor))]" />
           <p>{contactInfo.attributes.mirbach?.address}</p>
         </div>
       </div>
       <div className="col-span-1 flex h-full flex-col justify-between">
-        <h3 className="pb-yHigh text-xl">{contactInfo.attributes.palffy?.title}</h3>
+        <h3 className="pb-yLg text-xl">{contactInfo.attributes.palffy?.title}</h3>
         <div className="justify-self-end text-md">
-          <LocationIcon stroke="white" height="48" className="mb-2" />
+          <LocationIcon stroke="white" className="mb-2 w-[calc(48px*var(--icon-size-factor))]" />
           <p>{contactInfo.attributes.palffy?.address}</p>
         </div>
       </div>
       <div className="col-span-2 flex h-full flex-col justify-between lg:col-span-1">
-        <h3 className="pb-yHigh text-xl">{t('common.follow')}</h3>
+        <h3 className="pb-yLg text-xl">{t('common.follow')}</h3>
         <div className="flex flex-col justify-between justify-self-end">
           {followPlatformData.map((platform, index) => (
             <Link href={platform.href} target="_blank" key={index} className="text-md uppercase" preserveStyle>

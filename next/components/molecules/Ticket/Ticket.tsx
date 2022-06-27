@@ -24,10 +24,10 @@ export const Ticket = ({ title, price, description, id, link }: ITicketProps) =>
       id={`ticket-${id}`}
       className={cx(
         styles.ticket,
-        'goout-ticket flex flex-col mb-yStandard justify-between last:mb-0 lg:mb-0 w-full min-h-[360px] lg:min-h-[440px] 3xl:min-h-[660px] bg-gmbLightGray relative p-8 hover:bg-[#6cc7ed] last-of-type:after:hidden first-of-type:before:hidden'
+        'goout-ticket flex flex-col mb-yMd justify-between last:mb-0 lg:mb-0 w-full min-h-ticket bg-gmbLightGray relative p-8 hover:bg-[#6cc7ed] last-of-type:after:hidden first-of-type:before:hidden'
       )}
     >
-      <div className="pb-yStandard">
+      <div className="pb-yMd">
         <h3 className="text-xl">{title}</h3>
         {price && <p className="text-xl font-regular">{price}€</p>}
       </div>
@@ -37,9 +37,9 @@ export const Ticket = ({ title, price, description, id, link }: ITicketProps) =>
             remarkPlugins={[remarkGfm]}
             className="relative"
             components={{
-              p: ({ children }) => <p className="pb-yStandard text-btn">{children}</p>,
-              ul: ({ children }) => <ul className="list-disc pl-5 pb-yStandard text-btn">{children}</ul>,
-              ol: ({ children }) => <ol className="list-decimal pl-5 pb-yStandard text-btn">{children}</ol>,
+              p: ({ children }) => <p className="pb-yMd text-btn">{children}</p>,
+              ul: ({ children }) => <ul className="list-disc pl-5 pb-yMd text-btn">{children}</ul>,
+              ol: ({ children }) => <ol className="list-decimal pl-5 pb-yMd text-btn">{children}</ol>,
             }}
           >
             {description ?? ''}
@@ -48,7 +48,7 @@ export const Ticket = ({ title, price, description, id, link }: ITicketProps) =>
         {link ? (
           <Button
             size="small"
-            className="goout-btn-buy-self w-fit px-xStandard"
+            className="goout-btn-buy-self w-fit px-xMd"
             data-goout-id="id-here"
             data-goout-ticket-category="{category goes here}"
             onClick={() => router.replace(`#goout-form`)}
@@ -59,7 +59,7 @@ export const Ticket = ({ title, price, description, id, link }: ITicketProps) =>
         {link ? (
           <Button
             size="small"
-            className="goout-btn-buy-gift mt-4 w-fit px-xStandard"
+            className="goout-btn-buy-gift mt-4 w-fit px-xMd"
             data-goout-id="id-here"
             data-goout-ticket-category="{category goes here}"
             onClick={() => router.replace(`#goout-form`)}

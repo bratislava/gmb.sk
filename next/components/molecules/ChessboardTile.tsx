@@ -1,8 +1,7 @@
 import cx from 'classnames'
+import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
-import React from 'react'
 
 import { SectionItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
@@ -41,7 +40,7 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
         ) : null}
       </div>
       <div
-        className="flex w-full flex-1 flex-col items-start space-y-yStandard px-xStandard py-yStandard lg:w-1/2"
+        className="flex w-full flex-1 flex-col items-start space-y-yMd px-xMd py-yMd lg:w-1/2"
         style={{ background: getContentPageColor(sectionItem) }}
       >
         <hgroup>

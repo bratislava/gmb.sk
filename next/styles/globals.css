@@ -64,46 +64,184 @@
   --line-height-nav: 1.25rem;
   --line-height-btn: 1.25rem;
 
-  --padding-x: 24px;
-  --padding-y: 20px;
-  --padding-y-high: 56px;
+  --padding-x-sm: 24px;
+  --padding-x-md: 24px;
+  --padding-x-lg: 24px;
+
+  --padding-y-sm: 20px;
+  --padding-y-md: 20px;
+  --padding-y-lg: 56px;
+  --padding-y-xl: 90px;
+
   --height-nav: 70px;
   --logo-height: 32px;
   --logo-width: 96px;
+  --height-ticket: 220px;
+
+  --icon-size-factor: 1;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --sidepanel-width: 100%;
+    --ticket-sidebar-width: 100%;
+
+    --font-size-xxl: 1.875rem;
+    --font-size-xl: 1.5rem;
+    --font-size-lg: 1.25rem;
+    --font-size-md: 1rem;
+    --font-size-sm: 0.875rem;
+    --font-size-nav: 1rem;
+    --font-size-btn: 1rem;
+
+    --line-height-xxl: 2rem;
+    --line-height-xl: 1.75rem;
+    --line-height-lg: 1.5rem;
+    --line-height-md: 1.25rem;
+    --line-height-sm: 1.1rem;
+    --line-height-nav: 1.25rem;
+    --line-height-btn: 1.25rem;
+
+    --padding-x-sm: 24px;
+    --padding-x-md: 24px;
+    --padding-x-lg: 24px;
+
+    --padding-y-sm: 20px;
+    --padding-y-md: 20px;
+    --padding-y-lg: 56px;
+    --padding-y-xl: 90px;
+
+    --height-nav: 70px;
+    --logo-height: 32px;
+    --logo-width: 96px;
+    --height-ticket: 220px;
+
+    --icon-size-factor: 1;
+  }
 }
 
 @media (min-width: 1024px) {
   :root {
-    --sidepanel-width: min(40vw, 670px);
+    --sidepanel-width: min(40vw, 360px);
     --ticket-sidebar-width: min(400px);
 
-    --font-size-xxl: 2.5rem;
-    --font-size-xl: 2rem;
-    --font-size-lg: 1.5625rem;
-    --font-size-md: 1.25rem;
-    --font-size-sm: 1.0625rem;
-    --font-size-nav: 1.1875rem;
-    --font-size-btn: 1.1875rem;
+    --font-size-xxl: 1.625rem;
+    --font-size-xl: 1.3125rem;
+    --font-size-lg: 1rem;
+    --font-size-md: 0.75rem;
+    --font-size-sm: 0.625rem;
+    --font-size-nav: 0.6875rem;
+    --font-size-btn: 0.6875rem;
 
-    --line-height-xxl: 2.6875rem;
-    --line-height-xl: 2.25rem;
+    --line-height-xxl: 1.75rem;
+    --line-height-xl: 1.4375rem;
+    --line-height-lg: 1.125rem;
+    --line-height-md: 0.875rem;
+    --line-height-sm: 0.75rem;
+    --line-height-nav: 0.75rem;
+    --line-height-btn: 0.75rem;
+
+    --padding-x-sm: 10px;
+    --padding-x-md: 24px;
+    --padding-x-lg: 50px;
+
+    --padding-y-sm: 20px;
+    --padding-y-md: 20px;
+    --padding-y-lg: 48px;
+    --padding-y-xl: 86px;
+
+    --height-nav: 64px;
+    --logo-height: 36px;
+    --logo-width: 108px;
+    --height-ticket: 360px;
+
+    --icon-size-factor: 0.5;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --sidepanel-width: min(40vw, 448px);
+    --ticket-sidebar-width: min(400px);
+
+    --font-size-xxl: 1.9375rem;
+    --font-size-xl: 1.625rem;
+    --font-size-lg: 1.3125rem;
+    --font-size-md: 0.875rem;
+    --font-size-sm: 0.75rem;
+    --font-size-nav: 0.8125rem;
+    --font-size-btn: 0.8125rem;
+
+    --line-height-xxl: 2.25rem;
+    --line-height-xl: 1.75rem;
+    --line-height-lg: 1.4375rem;
+    --line-height-md: 1.125rem;
+    --line-height-sm: 1.125rem;
+    --line-height-nav: 0.9375rem;
+    --line-height-btn: 0.9375rem;
+
+    --padding-x-sm: 14px;
+    --padding-x-md: 30px;
+    --padding-x-lg: 62px;
+
+    --padding-y-sm: 26px;
+    --padding-y-md: 26px;
+    --padding-y-lg: 60px;
+    --padding-y-xl: 108px;
+
+    --height-nav: 80px;
+    --logo-height: 45px;
+    --logo-width: 134px;
+    --height-ticket: 400px;
+
+    --icon-size-factor: 0.6;
+  }
+}
+
+@media (min-width: 1536px) {
+  :root {
+    --sidepanel-width: min(40vw, 536px);
+    --ticket-sidebar-width: min(400px);
+
+    --font-size-xxl: 2.375rem;
+    --font-size-xl: 1.9375rem;
+    --font-size-lg: 1.625rem;
+    --font-size-md: 1.0625rem;
+    --font-size-sm: 0.875rem;
+    --font-size-nav: 1rem;
+    --font-size-btn: 1rem;
+
+    --line-height-xxl: 2.75rem;
+    --line-height-xl: 2.125rem;
     --line-height-lg: 1.8125rem;
-    --line-height-md: 1.5rem;
-    --line-height-sm: 1.3rem;
-    --line-height-nav: 1.5625rem;
-    --line-height-btn: 1.5625rem;
+    --line-height-md: 1.3125rem;
+    --line-height-sm: 1.3125rem;
+    --line-height-nav: 1.0625rem;
+    --line-height-btn: 1.0625rem;
 
-    --padding-x: 36px;
-    --padding-y: 30px;
-    --padding-y-high: 84px;
-    --height-nav: 95px;
-    --logo-height: 50px;
-    --logo-width: 150px;
+    --padding-x-sm: 15px;
+    --padding-x-md: 36px;
+    --padding-x-lg: 75px;
+
+    --padding-y-sm: 30px;
+    --padding-y-md: 30px;
+    --padding-y-lg: 72px;
+    --padding-y-xl: 130px;
+
+    --height-nav: 96px;
+    --logo-height: 54px;
+    --logo-width: 161px;
+    --height-ticket: 440px;
+
+    --icon-size-factor: 0.75;
   }
 }
 
 @media (min-width: 1920px) {
   :root {
+    --sidepanel-width: min(40vw, 670px);
+    --ticket-sidebar-width: min(400px);
+
     --font-size-xxl: 3.125rem;
     --font-size-xl: 2.5rem;
     --font-size-lg: 1.875rem;
@@ -120,12 +258,21 @@
     --line-height-nav: 1.875rem;
     --line-height-btn: 1.875rem;
 
-    --padding-x: 48px;
-    --padding-y: 40px;
-    --padding-y-high: 112px;
+    --padding-x-sm: 18px;
+    --padding-x-md: 40px;
+    --padding-x-lg: 94px;
+
+    --padding-y-sm: 38px;
+    --padding-y-md: 38px;
+    --padding-y-lg: 90px;
+    --padding-y-xl: 160px;
+
     --height-nav: 120px;
     --logo-height: 68px;
     --logo-width: 204px;
+    --height-ticket: 500px;
+
+    --icon-size-factor: 1;
   }
 }
 

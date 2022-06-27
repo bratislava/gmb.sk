@@ -34,7 +34,7 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
         data-goout-place-ticket="eg-palffyho-palac"
         className="goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--height-nav))] flex-col"
       >
-        <header className="py-yStandard px-xStandard">
+        <header className="py-yMd px-xMd">
           <Link href={`/detail/${slug}`} preserveStyle noUnderline>
             <hgroup>
               <h1 className="goout-event text-xxl">{title}</h1>
@@ -42,9 +42,9 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
             </hgroup>
           </Link>
 
-          <p className="my-yStandard text-md">{ticketIncludesText}</p>
+          <p className="my-yMd text-md">{ticketIncludesText}</p>
 
-          <div className="mt-6 flex w-full flex-wrap justify-start gap-x-xStandard gap-y-yStandard">
+          <div className="mt-6 flex w-full flex-wrap justify-start gap-x-xMd gap-y-yMd">
             <SidePanelPlace placeFragment={{ place, placeTitle }} isOneLine />
             <SidePanelTime datetime={{ dateFrom, dateTo, timeFrom, timeTo }} isOneLine />
           </div>
@@ -52,14 +52,14 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
 
         {/* <aside
             id="sidebar"
-            className="flex-col hidden text-white w-ticketSidebar lg:flex bg-gmbDark px-xStandard py-yStandard"
+            className="flex-col hidden text-white w-ticketSidebar lg:flex bg-gmbDark px-xMd py-yMd"
           >
             <p className="text-lg">{ticketIncludesText}</p>
             <div className="grow" />
             <Link href="#relatedContent">{t('common.showIncludedEvents')}</Link>
           </aside> */}
 
-        <div id="goout-form" className="grow bg-gmbLightGray px-xStandard py-yStandard" />
+        <div id="goout-form" className="grow bg-gmbLightGray px-xMd py-yMd" />
       </section>
 
       <CardSection

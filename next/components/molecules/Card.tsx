@@ -1,7 +1,6 @@
+import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
-import React from 'react'
 
 import { SectionItemEntityFragment } from '../../graphql'
 import { hasAttributes, WithAttributes } from '../../utils/isDefined'
@@ -22,7 +21,7 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
 
   return (
     <article
-      className="group flex min-h-full cursor-pointer flex-col space-y-yStandard"
+      className="group flex min-h-full cursor-pointer flex-col space-y-yMd"
       onClick={() => router.push(`/detail/${slug}`)}
     >
       <div className="overflow-hidden bg-gmbLightGray">

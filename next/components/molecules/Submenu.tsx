@@ -27,7 +27,7 @@ export const Submenu = ({ items, filters }: SubmenuProps) => {
   return (
     <>
       {/* Desktop submenu */}
-      <div className="relative hidden w-full flex-col bg-gmbDark py-12 px-xStandard text-white lg:flex 3xl:py-16">
+      <div className="relative hidden w-full flex-col bg-gmbDark py-yMd px-xMd text-white lg:flex 3xl:py-16">
         <div className="flex w-full justify-between">
           <div className="hidden gap-10 lg:flex">
             {items?.map((item, index) => (
@@ -67,7 +67,7 @@ export const Submenu = ({ items, filters }: SubmenuProps) => {
         onClick={() => {
           setModalOpen((prev) => !prev)
         }}
-        className="relative flex w-full items-center justify-between bg-gmbDark py-yStandard px-xStandard text-md uppercase text-white lg:hidden"
+        className="relative flex w-full items-center justify-between bg-gmbDark py-yMd px-xMd text-md uppercase text-white lg:hidden"
       >
         {t('common.quickNavigation')}
         <ArrowDown />

@@ -15,9 +15,9 @@ const DownloadSection = ({ files, title, anchor }: DownloadSectionProps) => {
   }
 
   return (
-    <Section anchor={anchor} color="dark" className="px-xStandard py-yHigh">
-      <h2 className="pb-12 text-xxl lg:pb-44">{title}</h2>
-      <div className="grid grid-flow-row grid-cols-1 gap-x-xStandard gap-y-yStandard md:grid-cols-3 lg:grid-cols-5">
+    <Section anchor={anchor} color="dark" className="px-xMd py-yLg">
+      <h2 className="pb-yXl text-xxl">{title}</h2>
+      <div className="grid grid-flow-row grid-cols-1 gap-x-xMd gap-y-yMd md:grid-cols-3 lg:grid-cols-5">
         {files?.filter(isDefined).map((item) => (
           <DownloadItem downloadItem={item} key={item.id} />
         ))}

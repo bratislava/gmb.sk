@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
+import Image from 'next/image'
 import React from 'react'
 import MailchimpSubscribe from 'react-mailchimp-subscribe'
 
@@ -41,7 +41,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
       emailError = null
     }
 
-    agreeError = !agree ? t('errors.fieldMandatory') : null;
+    agreeError = !agree ? t('errors.fieldMandatory') : null
 
     setEmailError(emailError)
     setAgreeError(agreeError)
@@ -53,7 +53,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
     <Section
       anchor={anchor}
       color="dark"
-      className="flex w-full flex-col-reverse justify-between px-xStandard py-yHigh lg:flex-row"
+      className="flex w-full flex-col-reverse justify-between px-xMd py-yLg lg:flex-row"
     >
       <div className="lg:w-4/6 xl:w-3/6">
         <hgroup>
@@ -76,12 +76,11 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
               }
             }
             return (
-              // <div className="mt-[43px] lg:mt-[68px]">
               <div>
-                <p className="pt-10 text-[18px] lg:text-[27px]">{t('newsletter.beInformedEvents')}</p>
+                <p className="pt-yLg text-xl">{t('newsletter.beInformedEvents')}</p>
                 <div className="flex pt-10 pb-2">
                   <input
-                    className="w-full border-2 border-white bg-transparent p-2 text-md lg:mr-10"
+                    className="w-full border-2 border-white bg-transparent p-2 text-md lg:mr-yMd"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                   />
@@ -116,7 +115,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
           }}
         />
       </div>
-      <div className="mb-10 flex justify-center lg:mb-0 lg:w-2/6 ">
+      <div className="mb-yMd flex justify-center lg:mb-0 lg:w-2/6 ">
         <div className="flex w-full justify-center lg:block">
           <Image src={NewsletterImg} alt="newsletter" unoptimized />
         </div>

@@ -46,7 +46,7 @@ export const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
   const { t } = useTranslation()
   return (
     <div className="fixed inset-x-0 top-[var(--height-nav)] z-20 flex h-[calc(100vh-var(--height-nav))] flex-col justify-between bg-gmbDark p-12">
-      <button className="absolute right-xStandard top-yStandard" onClick={closeSearchBar}>
+      <button className="absolute right-xMd top-yMd" onClick={closeSearchBar}>
         <CloseIcon fill="white" />
       </button>
       <div className="flex flex-1">

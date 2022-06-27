@@ -1,8 +1,8 @@
 import cx from 'classnames'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 import React from 'react'
 
 import { HighlightsItemEntityFragment } from '../../graphql'
@@ -85,7 +85,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
         </div>
         <div
           className={cx(
-            'absolute bottom-0 z-20 w-full py-yStandard px-xStandard flex flex-col items-start gap-y-yStandard lg:pr-sidepanel min-h-[320px] h-fit lg:h-auto'
+            'absolute bottom-0 z-20 w-full py-yMd px-xMd flex flex-col items-start justify-between gap-y-yMd lg:pr-sidepanel h-fit lg:h-auto'
           )}
           id={`hgroup${highlight.id}`}
           style={{ background: getContentPageColor(highlight) }}
@@ -118,7 +118,10 @@ const Highlight = ({ highlight }: HighlightProps) => {
             </div>
           </div>
 
-          <Button href={`/detail/${slug}`} className="hidden group-hover:bg-gmbDark group-hover:text-white lg:flex">
+          <Button
+            href={`/detail/${slug}`}
+            className="mt-yLg hidden group-hover:bg-gmbDark group-hover:text-white lg:flex"
+          >
             {t('common.detail')}
           </Button>
         </div>
