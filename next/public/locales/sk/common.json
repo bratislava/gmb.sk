@@ -64,7 +64,8 @@
     "bratislavaGenitiv": "Bratislavy",
     "cityGallery": "Galéria mesta",
     "search": "Hľadať",
-    "closeSearch": "Zatvoriť hľadanie"
+    "closeSearch": "Zatvoriť hľadanie",
+    "documents": "Dokumenty"
   },
   "navigation": {
     "visitUs": "Navštívte",
@@ -76,7 +77,6 @@
   },
   "footer": {
     "siteMap": "Mapa stránky",
-    "quickLinks": "Rýchle odkazy",
     "disclosureOfInformation": "Zverejňovanie informácií",
     "declarationOfAccessibility": "Vyhlásenie o prístupnosti"
   },

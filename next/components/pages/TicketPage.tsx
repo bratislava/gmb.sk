@@ -30,14 +30,14 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
     <>
       {seo && <Seo seo={seo} />}
       <section
-        data-goOutId="id-here"
-        data-goOutPlaceTicket="eg-palffyho-palac"
-        className="goOutEventWrapper relative flex min-h-[calc(100vh_-_var(--height-nav))] flex-col"
+        data-goout-id="id-here"
+        data-goout-place-ticket="eg-palffyho-palac"
+        className="goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--height-nav))] flex-col"
       >
         <header className="py-yStandard px-xStandard">
           <Link href={`/detail/${slug}`} preserveStyle noUnderline>
             <hgroup>
-              <h1 className="goOutEvent text-xxl">{title}</h1>
+              <h1 className="goout-event text-xxl">{title}</h1>
               <p className="text-xxl font-regular">{subtitle}</p>
             </hgroup>
           </Link>
@@ -59,7 +59,7 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
             <Link href="#relatedContent">{t('common.showIncludedEvents')}</Link>
           </aside> */}
 
-        <div id="goOutForm" className="grow bg-gmbLightGray px-xStandard py-yStandard" />
+        <div id="goout-form" className="grow bg-gmbLightGray px-xStandard py-yStandard" />
       </section>
 
       <CardSection

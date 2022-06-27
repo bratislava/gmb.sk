@@ -102,6 +102,15 @@ fragment Seo on ComponentBlocksSeo {
   canonicalUrl
 }
 
+fragment Links on ComponentBlocksLinks {
+  title
+  links {
+    title
+    url
+    newWindow
+  }
+}
+
 fragment ContentPageEntity on ContentPageEntity {
   id
   attributes {
@@ -273,9 +282,14 @@ fragment ContactEntity on ContactEntity {
     palffy {
       ...PalaceDetails
     }
-    quickLinks {
-      title
-      url
+    socialLinks {
+      ...Links
+    }
+    footerLinks1 {
+      ...Links
+    }
+    footerLinks2 {
+      ...Links
     }
   }
 }
