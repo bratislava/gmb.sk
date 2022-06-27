@@ -34,3 +34,8 @@ configMapGenerator:
     namespace: ${NAMESPACE}
     envs:
       - .database.env
+  - name: ${BUILD_REPOSITORY_NAME}-meilisearch
+    namespace: ${NAMESPACE}
+    envs:
+      - .meilisearch.env
+
