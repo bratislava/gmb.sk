@@ -40,6 +40,11 @@
     "closed": "zatvorené",
     "follow": "Sleduj",
     "share": "Zdielať",
+    "shareOnFacebook": "Zdielať na Facebooku",
+    "shareOnEmail": "Zdielať emailom",
+    "shareOnTwitter": "Zdielať na Twitteri",
+    "shareOnWhatsapp": "Zdielať na Whatsapp",
+    "shareOnLinkedIn": "Zdielať na LinkedIn",
     "download": "Stiahnuť",
     "relatedContent": "Súvisiaci obsah",
     "showIncludedEvents": "Ukáž, čo tam ešte je",
@@ -57,7 +62,8 @@
     "additionalProgram": "Sprievodný program",
     "description": "Popis",
     "bratislavaGenitiv": "Bratislavy",
-    "cityGallery": "Galéria mesta"
+    "cityGallery": "Galéria mesta",
+    "search": "Hľadať"
   },
   "navigation": {
     "visitUs": "Navštívte",

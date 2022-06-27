@@ -24,12 +24,6 @@ module.exports = {
         officialSorting: true,
       },
     ],
-    '@typescript-eslint/no-misused-promises': [
-      'error',
-      {
-        checksVoidReturn: false,
-      },
-    ],
   },
   ignorePatterns: ['*.config.*', 'graphql', '.eslintrc.js'],
 }

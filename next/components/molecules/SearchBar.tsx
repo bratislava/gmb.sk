@@ -11,7 +11,7 @@ interface SearchBarProps {
   closeSearchBar: () => void
 }
 
-export const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
+const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
   const [searchTerm, setSearchTerm] = React.useState('')
   const [contentPages, setContentPages] = React.useState<ContentPage[]>()
   const debouncedSearchTerm = useDebounce(searchTerm, 750)

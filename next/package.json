@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "gen": "graphql-codegen",
-    "eslint": "esw -w --color --ext .html,.js,.json,.jsx,.md,.ts,.tsx .",
+    "eslint": "eslint --color --ext .html,.js,.json,.jsx,.md,.ts,.tsx .",
     "eslint:fix": "npm run eslint -- --fix"
   },
   "dependencies": {
