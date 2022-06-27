@@ -62,7 +62,8 @@
     "description": "Description",
     "bratislavaGenitiv": "Bratislava",
     "cityGallery": "City Gallery",
-    "search": "Search"
+    "search": "Search",
+    "closeSearch": "Close search"
   },
   "navigation": {
     "visitUs": "Visit us",

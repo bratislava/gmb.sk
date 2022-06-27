@@ -63,7 +63,8 @@
     "description": "Popis",
     "bratislavaGenitiv": "Bratislavy",
     "cityGallery": "Galéria mesta",
-    "search": "Hľadať"
+    "search": "Hľadať",
+    "closeSearch": "Zatvoriť hľadanie"
   },
   "navigation": {
     "visitUs": "Navštívte",
