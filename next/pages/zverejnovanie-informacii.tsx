@@ -16,14 +16,15 @@ interface DisclosureOfInformationProps {
 export const DisclosureOfInformation = ({ contact }: DisclosureOfInformationProps) => {
   const { t } = useTranslation()
 
+  const title = t('footer.disclosureOfInformation')
   const contactInfo = withAttributes(contact?.data)
 
   return (
     <>
       <Head>
-        <title>{t('footer.disclosureOfInformation')}</title>
+        <title>{title}</title>
       </Head>
-      <h1 className="m-6 text-xxl lg:m-9 3xl:m-12">{t('footer.disclosureOfInformation')}</h1>
+      <h1 className="m-6 text-xxl lg:m-9 3xl:m-12">{title}</h1>
       <div className="m-6 lg:m-9 3xl:m-12">
         <iframe
           title={t('footer.disclosureOfInformation')}

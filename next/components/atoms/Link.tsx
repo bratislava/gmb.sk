@@ -16,7 +16,7 @@ type LinkProps = React.ComponentPropsWithoutRef<'a'> & {
   noUnderline?: boolean
 }
 
-export const Link = ({
+const Link = ({
   href,
   className,
   children,

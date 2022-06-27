@@ -40,6 +40,11 @@
     "closed": "zatvorené",
     "follow": "Sleduj",
     "share": "Zdielať",
+    "shareOnFacebook": "Zdielať na Facebooku",
+    "shareOnEmail": "Zdielať emailom",
+    "shareOnTwitter": "Zdielať na Twitteri",
+    "shareOnWhatsapp": "Zdielať na Whatsapp",
+    "shareOnLinkedIn": "Zdielať na LinkedIn",
     "download": "Stiahnuť",
     "relatedContent": "Súvisiaci obsah",
     "showIncludedEvents": "Ukáž, čo tam ešte je",
@@ -58,6 +63,8 @@
     "description": "Popis",
     "bratislavaGenitiv": "Bratislavy",
     "cityGallery": "Galéria mesta",
+    "search": "Hľadať",
+    "closeSearch": "Zatvoriť hľadanie",
     "documents": "Dokumenty"
   },
   "navigation": {

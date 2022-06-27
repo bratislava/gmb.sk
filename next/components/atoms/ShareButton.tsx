@@ -7,6 +7,7 @@ import FacebookIcon from '../../assets/icons/social-platforms/Facebook.svg'
 import LinkedInIcon from '../../assets/icons/social-platforms/LinkedIn.svg'
 import TwitterIcon from '../../assets/icons/social-platforms/Twitter.svg'
 import WhatsAppIcon from '../../assets/icons/social-platforms/WhatsApp.svg'
+import { capitalizeFirstLetter } from '../../utils/capitalize'
 import Link from './Link'
 
 interface ShareButtonProps {
@@ -57,9 +58,11 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
         if (!openInNewWindow.includes(platform)) {
           return
         }
+        // eslint-disable-next-line security/detect-non-literal-fs-filename
         window.open(href, t('common.share'), 'width=600,height=600')
         event.preventDefault()
       }}
+      aria-label={t(`common.shareOn${capitalizeFirstLetter(platform)}`)}
     >
       <span className={cx(className, 'w-8 h-8')}>{content}</span>
     </Link>

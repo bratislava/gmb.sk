@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import React from 'react'
 
@@ -13,13 +12,9 @@ export interface IFullWidthTileProps {
 
 export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
   const { t } = useTranslation()
-  const router = useRouter()
 
   return (
-    <article
-      className="group w-full cursor-pointer"
-      onClick={() => router.push(`/detail/${sectionItem.attributes.slug}`)}
-    >
+    <article className="group w-full cursor-pointer">
       <div className="flex h-screen w-full items-center justify-center overflow-hidden lg:h-full">
         {sectionItem.attributes.coverMedia?.data?.attributes?.url && (
           <img
@@ -41,7 +36,7 @@ export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
 
         <Button
           href={`/detail/${sectionItem.attributes.slug}`}
-          className="group-hover:bg-gmbDark group-hover:text-white"
+          className="group-hover:bg-gmbDark group-hover:text-white "
         >
           {t('common.detail')}
         </Button>
