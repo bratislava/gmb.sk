@@ -13,13 +13,11 @@ interface NewsBarProps {
 
 export const NewsBar = ({ newsItem }: NewsBarProps) => {
   const { t } = useTranslation()
-  const router = useRouter()
 
   return (
     <article
-      className="group flex cursor-pointer items-center justify-between px-xStandard py-yStandard"
+      className="group relative flex cursor-pointer items-center justify-between px-xStandard py-yStandard"
       style={{ background: getContentPageColor(newsItem) }}
-      onClick={() => router.push(`/detail/${newsItem.attributes.slug}`)}
     >
       <hgroup>
         <h3 className="whitespace-pre-wrap text-xl">{newsItem.attributes.title}</h3>
@@ -27,7 +25,10 @@ export const NewsBar = ({ newsItem }: NewsBarProps) => {
       </hgroup>
 
       <div className="hidden lg:block">
-        <Button href={`/detail/${newsItem.attributes.slug}`} className="group-hover:bg-gmbDark group-hover:text-white">
+        <Button
+          href={`/detail/${newsItem.attributes.slug}`}
+          className="after:absolute after:inset-0 group-hover:bg-gmbDark group-hover:text-white"
+        >
           {t('common.detail')}
         </Button>
       </div>
