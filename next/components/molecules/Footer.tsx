@@ -16,7 +16,7 @@ interface FooterProps {
 const Footer = ({ contactInfo, contentPage }: FooterProps) => {
   const { t } = useTranslation()
 
-  const { name, openingHours, mirbach, palffy, socialLinks, quickLinks1, quickLinks2 } = contactInfo.attributes
+  const { name, openingHours, mirbach, palffy, socialLinks, footerLinks1, footerLinks2 } = contactInfo.attributes
 
   return (
     <footer className="relative bg-gmbDark px-xStandard pb-12 pt-20 text-white">
@@ -66,9 +66,9 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           </div>
         </div>
         <div className="hidden h-full flex-col justify-between lg:flex">
-          <h3 className="pb-yHigh text-xl">{quickLinks1?.title}</h3>
+          <h3 className="pb-yHigh text-xl">{footerLinks1?.title}</h3>
           <div className="flex flex-col">
-            {quickLinks1?.links?.map((link, index) => (
+            {footerLinks1?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
                 target="_blank"
@@ -82,9 +82,9 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           </div>
         </div>
         <div className="hidden h-full flex-col justify-between lg:flex">
-          <h3 className="pb-yHigh text-xl">{quickLinks2?.title}</h3>
+          <h3 className="pb-yHigh text-xl">{footerLinks2?.title}</h3>
           <div className="flex flex-col">
-            {quickLinks2?.links?.map((link, index) => (
+            {footerLinks2?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
                 target="_blank"

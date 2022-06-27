@@ -80,7 +80,7 @@
       },
       "component": "blocks.links"
     },
-    "quickLinks1": {
+    "footerLinks1": {
       "type": "component",
       "repeatable": false,
       "pluginOptions": {
@@ -90,7 +90,7 @@
       },
       "component": "blocks.links"
     },
-    "quickLinks2": {
+    "footerLinks2": {
       "type": "component",
       "repeatable": false,
       "pluginOptions": {

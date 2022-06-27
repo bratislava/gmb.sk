@@ -284,10 +284,10 @@ fragment ContactEntity on ContactEntity {
     socialLinks {
       ...Links
     }
-    quickLinks1 {
+    footerLinks1 {
       ...Links
     }
-    quickLinks2 {
+    footerLinks2 {
       ...Links
     }
   }
