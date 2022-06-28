@@ -53,7 +53,7 @@ export const getStaticProps: GetStaticProps = async ({ locale = 'sk' }) => {
       contact,
       ...translations,
     },
-    revalidate: 60 * 5,
+    revalidate: 3 * 5,
   }
 }
 export default DisclosureOfInformation

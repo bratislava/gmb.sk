@@ -28,7 +28,7 @@ export const getStaticProps: GetStaticProps<ErrorProps> = async ({ locale = 'sk'
       contact,
       ...translations,
     },
-    revalidate: 60,
+    revalidate: 3,
   }
 }
 
