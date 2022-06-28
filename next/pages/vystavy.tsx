@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
 import ExhibitionsPage from '../components/pages/ExhibitionsPage'
@@ -7,7 +8,6 @@ import { getTodaysDate } from '../utils/getTodaysDate'
 import { client } from '../utils/gql'
 import { hasAttributes, withAttributes } from '../utils/isDefined'
 import { getRouteForLocale } from '../utils/localeRoutes'
-import { ssrTranslations } from '../utils/translations'
 
 interface ExhibitionsProps {
   exhibitionsPage: ExhibitionsPageQuery['exhibitionsPage']
@@ -90,7 +90,7 @@ export const getStaticProps: GetStaticProps<ExhibitionsProps> = async ({ locale 
       tag: getRouteForLocale('program-ostatne', locale),
     }),
     client.Places({ locale }),
-    ssrTranslations({ locale }, ['common']),
+    serverSideTranslations(locale, ['common']),
   ])
 
   const tagExhibitions = getRouteForLocale('vystavy', locale)
