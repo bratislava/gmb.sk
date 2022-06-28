@@ -62,6 +62,17 @@ query ContentPageBySlug($locale: I18NLocaleCode!, $slug: String!) {
   }
 }
 
+query AllContentPageSlugs($locale: I18NLocaleCode!) {
+  contentPages(locale: $locale) {
+    data {
+      attributes {
+        slug
+        locale
+      }
+    }
+  }
+}
+
 query TicketPageBySlug($locale: I18NLocaleCode!, $slug: String!) {
   contentPageBySlug(slug: $slug, locale: $locale) {
     data {
@@ -223,7 +234,7 @@ query VisitUsPage($locale: I18NLocaleCode!) {
       }
     }
   }
-  tickets {
+  tickets(locale: $locale) {
     data {
       ...TicketEntity
     }
@@ -312,6 +323,23 @@ query ExhibitionsPage(
   contact(locale: $locale) {
     data {
       ...ContactEntity
+    }
+  }
+}
+
+query DisclosureOfInformationPage($locale: I18NLocaleCode!) {
+  contact(locale: $locale) {
+    data {
+      ...ContactEntity
+      attributes {
+        disclosureMoreFiles {
+          title
+          submenuTitle
+          files {
+            ...DownloadItem
+          }
+        }
+      }
     }
   }
 }

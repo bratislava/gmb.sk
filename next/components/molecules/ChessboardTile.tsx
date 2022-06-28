@@ -24,10 +24,9 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
 
   return (
     <article
-      className={cx('lg:flex min-h-[400px] group cursor-pointer', {
+      className={cx('lg:flex min-h-[400px] relative', {
         'flex-row-reverse': isLeft,
       })}
-      onClick={() => router.push(`/detail/${slug}`)}
     >
       <div className="relative h-[300px] w-full bg-gmbLightGray lg:h-auto lg:w-1/2">
         {coverMedia?.data?.attributes ? (
@@ -64,7 +63,10 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
 
         {perex ? <div className="text-md">{perex?.slice(0, 200)}…</div> : null}
 
-        <Button href={`/detail/${slug}`} className="group-hover:bg-gmbDark group-hover:text-white">
+        <Button
+          href={`/detail/${slug}`}
+          className="after:absolute after:inset-0 group-hover:bg-gmbDark group-hover:text-white"
+        >
           {t('common.detail')}
         </Button>
       </div>

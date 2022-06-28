@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next'
 
 import { ContactEntityFragment, ContentPageEntityFragment, SectionItemEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'
-import { Link } from '../atoms/Link'
+import Link from '../atoms/Link'
 import Seo from '../atoms/Seo'
 import { SidePanelPlace } from '../atoms/SidePanelPlace'
 import { SidePanelTime } from '../atoms/SidePanelTime'
@@ -30,21 +30,21 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
     <>
       {seo && <Seo seo={seo} />}
       <section
-        data-goOutId="id-here"
-        data-goOutPlaceTicket="eg-palffyho-palac"
-        className="goOutEventWrapper relative flex min-h-[calc(100vh_-_var(--height-nav))] flex-col"
+        data-goout-id="id-here"
+        data-goout-place-ticket="eg-palffyho-palac"
+        className="goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--height-nav))] flex-col"
       >
         <header className="py-yStandard px-xStandard">
           <Link href={`/detail/${slug}`} preserveStyle noUnderline>
             <hgroup>
-              <h1 className="goOutEvent text-xxl">{title}</h1>
+              <h1 className="goout-event text-xxl">{title}</h1>
               <p className="text-xxl font-regular">{subtitle}</p>
             </hgroup>
           </Link>
 
           <p className="my-yStandard text-md">{ticketIncludesText}</p>
 
-          <div className="flex flex-wrap justify-start w-full mt-6 gap-x-xStandard gap-y-yStandard">
+          <div className="mt-6 flex w-full flex-wrap justify-start gap-x-xStandard gap-y-yStandard">
             <SidePanelPlace placeFragment={{ place, placeTitle }} isOneLine />
             <SidePanelTime datetime={{ dateFrom, dateTo, timeFrom, timeTo }} isOneLine />
           </div>
@@ -59,7 +59,7 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
             <Link href="#relatedContent">{t('common.showIncludedEvents')}</Link>
           </aside> */}
 
-        <div id="goOutForm" className="grow bg-gmbLightGray px-xStandard py-yStandard" />
+        <div id="goout-form" className="grow bg-gmbLightGray px-xStandard py-yStandard" />
       </section>
 
       <CardSection

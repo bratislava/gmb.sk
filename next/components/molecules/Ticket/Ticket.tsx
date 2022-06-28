@@ -24,7 +24,7 @@ export const Ticket = ({ title, price, description, id, link }: ITicketProps) =>
       id={`ticket-${id}`}
       className={cx(
         styles.ticket,
-        'goOutTicket flex flex-col mb-yStandard justify-between last:mb-0 lg:mb-0 w-full min-h-[360px] lg:min-h-[440px] 3xl:min-h-[660px] bg-gmbLightGray relative p-8 hover:bg-[#6cc7ed] last-of-type:after:hidden first-of-type:before:hidden'
+        'goout-ticket flex flex-col mb-yStandard justify-between last:mb-0 lg:mb-0 w-full min-h-[360px] lg:min-h-[440px] 3xl:min-h-[660px] bg-gmbLightGray relative p-8 hover:bg-[#6cc7ed] last-of-type:after:hidden first-of-type:before:hidden'
       )}
     >
       <div className="pb-yStandard">
@@ -48,10 +48,10 @@ export const Ticket = ({ title, price, description, id, link }: ITicketProps) =>
         {link ? (
           <Button
             size="small"
-            className="goOutBtnBuySelf w-fit px-xStandard"
-            data-goOutId="id-here"
-            data-goOutTicketCategory="rocny"
-            onClick={() => router.replace(`#goOutForm`)}
+            className="goout-btn-buy-self w-fit px-xStandard"
+            data-goout-id="id-here"
+            data-goout-ticket-category="{category goes here}"
+            onClick={() => router.replace(`#goout-form`)}
           >
             {t('common.buyForYourself')}
           </Button>
@@ -59,10 +59,10 @@ export const Ticket = ({ title, price, description, id, link }: ITicketProps) =>
         {link ? (
           <Button
             size="small"
-            className="goOutBtnBuyGift mt-4 w-fit px-xStandard"
-            data-goOutId="id-here"
-            data-goOutTicketCategory="rocny"
-            onClick={() => router.replace(`#goOutForm`)}
+            className="goout-btn-buy-gift mt-4 w-fit px-xStandard"
+            data-goout-id="id-here"
+            data-goout-ticket-category="{category goes here}"
+            onClick={() => router.replace(`#goout-form`)}
           >
             {t('common.buyAsGift')}
           </Button>

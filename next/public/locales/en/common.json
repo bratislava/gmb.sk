@@ -39,6 +39,11 @@
     "closed": "closed",
     "follow": "Follow",
     "share": "Share",
+    "shareOnFacebook": "Share on Facebook",
+    "shareOnEmail": "Share on email",
+    "shareOnTwitter": "Share on Twitter",
+    "shareOnWhatsapp": "Share on Whatsapp",
+    "shareOnLinkedIn": "Share on LinkedIn",
     "download": "Download",
     "relatedContent": "Related content",
     "showIncludedEvents": "Show included events",
@@ -56,7 +61,10 @@
     "additionalProgram": "Additional program",
     "description": "Description",
     "bratislavaGenitiv": "Bratislava",
-    "cityGallery": "City Gallery"
+    "cityGallery": "City Gallery",
+    "search": "Search",
+    "closeSearch": "Close search",
+    "documents": "Documents"
   },
   "navigation": {
     "visitUs": "Visit us",
@@ -68,7 +76,6 @@
   },
   "footer": {
     "siteMap": "Site map",
-    "quickLinks": "Quick links",
     "disclosureOfInformation": "Disclosure of information",
     "declarationOfAccessibility": "Declaration of accessibility"
   },

@@ -41,7 +41,7 @@ const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) =
         </div>
       </div>
 
-      <div id="goOutForm" className="scroll-mt-nav bg-gmbLightGray px-xStandard py-yStandard empty:hidden" />
+      <div id="goout-form" className="scroll-mt-nav bg-gmbLightGray px-xStandard py-yStandard empty:hidden" />
     </Section>
   )
 }

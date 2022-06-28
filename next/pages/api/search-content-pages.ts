@@ -5,7 +5,7 @@ import { isDefined } from '../../utils/isDefined'
 
 const contentPageEndpoint = buildUrl('/content-pages')
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const searchContentPages = async (req: NextApiRequest, res: NextApiResponse) => {
   const searchTerm = req.query.searchTerm as string
   const locale = (req.query?.locale ?? 'sk') as string
 
@@ -22,3 +22,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   res.status(200).json(searchResults)
 }
+
+export default searchContentPages

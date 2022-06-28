@@ -1,11 +1,11 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import React from 'react'
 
 import TicketPage from '../../components/pages/TicketPage'
 import { ExhibitionsByPlaceQuery, TicketPageBySlugQuery } from '../../graphql'
 import { getTodaysDate } from '../../utils/getTodaysDate'
 import { client } from '../../utils/gql'
-import { hasAttributes, withAttributes } from '../../utils/isDefined'
+import { hasAttributes, isDefined, withAttributes } from '../../utils/isDefined'
 import { getRouteForLocale } from '../../utils/localeRoutes'
 import { ssrTranslations } from '../../utils/translations'
 
@@ -31,8 +31,13 @@ const Tickets = ({ contentPage, contact, currentEvents }: TicketProps) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<TicketProps> = async ({ query, locale = 'sk' }) => {
-  const slug = (typeof query.slug === 'string' ? query.slug : query.slug?.join('/')) ?? ''
+export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, locale = 'sk' }) => {
+  if (!params) {
+    return {
+      notFound: true,
+    }
+  }
+  const slug = (typeof params.slug === 'string' ? params.slug : params.slug?.join('/')) ?? ''
 
   const today = getTodaysDate()
 
@@ -76,7 +81,11 @@ export const getServerSideProps: GetServerSideProps<TicketProps> = async ({ quer
       currentEvents,
       ...translations,
     },
+    revalidate: 60,
   }
 }
+
+/** This is a kind of a hack, but getStaticPaths is exactly the same as for the detail, so here we just reexport it from that page */
+export { getStaticPaths } from '../detail/[...slug]'
 
 export default Tickets
