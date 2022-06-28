@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 
 import ArrowDownIcon from '../../assets/icons/chevron-down.svg'
 import { getAnchor } from '../../utils/getAnchor'
+import { onEnterOrSpaceKeyDown } from '../../utils/onEnterKeyDown'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
 import SubmenuModal from './SubmenuModal'

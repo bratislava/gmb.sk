@@ -1,8 +1,10 @@
+import { useTranslation } from 'next-i18next'
 import React from 'react'
 import Modal from 'react-modal'
 
 import CloseIcon from '../../assets/icons/close-x.svg'
 import { getAnchor } from '../../utils/getAnchor'
+import Button from '../atoms/Button'
 import Link from '../atoms/Link'
 
 interface ISubmenuModalProps {
@@ -13,6 +15,8 @@ interface ISubmenuModalProps {
 }
 
 const SubmenuModal = ({ isOpen, onClose, items, filters }: ISubmenuModalProps) => {
+  const { t } = useTranslation()
+
   return (
     <Modal
       isOpen={isOpen}
@@ -22,10 +26,10 @@ const SubmenuModal = ({ isOpen, onClose, items, filters }: ISubmenuModalProps) =
       }}
       className="absolute min-h-screen rounded-none border-0 bg-gmbDark p-6 text-white lg:hidden"
     >
-      <button className="absolute right-6 top-6" onClick={onClose}>
+      <button className="absolute right-xSm top-ySm" onClick={onClose}>
         <CloseIcon fill="#fff" />
       </button>
-      <div className="mt-20 flex w-full flex-col items-center gap-16 text-white">
+      <div className="mt-20 flex w-full flex-col items-center gap-yMd text-white">
         {items?.map((item, index) => (
           <Link key={index} href={`#${getAnchor(item)}`} onClick={onClose} replace>
             {item}
@@ -33,6 +37,11 @@ const SubmenuModal = ({ isOpen, onClose, items, filters }: ISubmenuModalProps) =
         ))}
       </div>
       {filters}
+      <div className="mt-yMd flex justify-center lg:hidden">
+        <Button onClick={onClose} color="light">
+          {t('common.showResults')}
+        </Button>
+      </div>
     </Modal>
   )
 }

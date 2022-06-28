@@ -100,7 +100,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
           </hgroup>
 
           <div
-            className={cx('lg:hidden w-full flex-1 justify-self-stretch justify-between flex flex-col', {
+            className={cx('lg:hidden w-full flex-1 justify-self-stretch gap-y-yMd justify-between flex flex-col', {
               hidden: renderOverride,
             })}
           >

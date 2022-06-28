@@ -115,7 +115,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
           </button>
 
           <div
-            className={cx('lg:flex lg:space-x-xMd ', {
+            className={cx('lg:flex lg:space-x-xMd', {
               'absolute w-full left-0 top-nav bg-white flex flex-col items-center justify-center gap-7 pb-12':
                 isMobileMenuOpen,
               hidden: !isMobileMenuOpen,
