@@ -97,7 +97,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
               <span
                 id="navLogoText"
-                className="absolute ml-4 whitespace-nowrap pl-logoWidth text-sm group-hover:underline"
+                className="absolute ml-4 whitespace-nowrap pl-logoWidth text-sm leading-[var(--font-size-sm)] group-hover:underline"
               >
                 {i18n.language === 'sk' ? t('common.cityGallery') : t('common.bratislavaGenitiv')}
                 <br />
@@ -128,7 +128,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             </Button>
 
             <button onClick={toggleSearchBar}>
-              <SearchIcon className="w-[calc(36px*var(--icon-size-factor))]" />
+              <SearchIcon className="dw-[36px]" />
             </button>
 
             <div className="text-gray-500 lg:hidden">

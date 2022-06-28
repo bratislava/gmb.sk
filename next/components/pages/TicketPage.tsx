@@ -50,14 +50,11 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
           </div>
         </header>
 
-        {/* <aside
-            id="sidebar"
-            className="flex-col hidden text-white w-ticketSidebar lg:flex bg-gmbDark px-xMd py-yMd"
-          >
-            <p className="text-lg">{ticketIncludesText}</p>
-            <div className="grow" />
-            <Link href="#relatedContent">{t('common.showIncludedEvents')}</Link>
-          </aside> */}
+        {/* <aside id="sidebar" className="hidden w-ticketSidebar flex-col bg-gmbDark px-xMd py-yMd text-white lg:flex">
+          <p className="text-lg">{ticketIncludesText}</p>
+          <div className="grow" />
+          <Link href="#relatedContent">{t('common.showIncludedEvents')}</Link>
+  </aside> */}
 
         <div id="goout-form" className="grow bg-gmbLightGray px-xMd py-yMd" />
       </section>

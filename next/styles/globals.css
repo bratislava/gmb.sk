@@ -155,7 +155,8 @@
     --logo-width: 108px;
     --height-ticket: 360px;
 
-    --icon-size-factor: 0.5;
+    /** Based on the --font-size-xxl compared to the 1920px breakpoint --font-size-xxl */
+    --icon-size-factor: 0.52;
   }
 }
 
@@ -194,7 +195,7 @@
     --logo-width: 134px;
     --height-ticket: 400px;
 
-    --icon-size-factor: 0.6;
+    --icon-size-factor: 0.62;
   }
 }
 
@@ -233,7 +234,7 @@
     --logo-width: 161px;
     --height-ticket: 440px;
 
-    --icon-size-factor: 0.75;
+    --icon-size-factor: 0.76;
   }
 }
 

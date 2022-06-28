@@ -21,11 +21,11 @@ export const SidePanelPlace = ({ placeFragment, isOneLine = false }: SidePanelPl
     <div className="text-nav">
       {!isOneLine && (
         <div className="mb-3">
-          <LocationIcon className="w-[calc(48px*var(--icon-size-factor))]" />
+          <LocationIcon className="dw-[48px]" />
         </div>
       )}
       <address className="flex items-center gap-3 not-italic">
-        {isOneLine && <LocationIcon className="w-[calc(24px*var(--icon-size-factor))]" />}
+        {isOneLine && <LocationIcon className="dw-[24px]" />}
         <span>
           {placeTitle || place?.data?.attributes?.title}
           {!isOneLine && <br />}

@@ -38,14 +38,14 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
         <div className="flex h-full flex-col justify-between">
           <h3 className="pb-yLg text-xl">{mirbach?.title}</h3>
           <div className="text-md">
-            <LocationIcon stroke="white" className="mb-2 w-[calc(48px*var(--icon-size-factor))]" />
+            <LocationIcon stroke="white" className="mb-2 dw-[48px]" />
             <p>{mirbach?.address}</p>
           </div>
         </div>
         <div className="col-span-1 flex h-full flex-col justify-between lg:col-span-2">
           <h3 className="pb-yLg text-xl">{palffy?.title}</h3>
           <div className="text-md">
-            <LocationIcon stroke="white" className="mb-2 w-[calc(48px*var(--icon-size-factor))]" />
+            <LocationIcon stroke="white" className="mb-2 dw-[48px]" />
             <p>{palffy?.address}</p>
           </div>
         </div>

@@ -34,7 +34,7 @@ const MobileShareButton = ({ className, slug, title }: MobileShareButtonProps) =
     <>
       {hasNavigatorShare && (
         <button className={cx(className)} onClick={openShareDialog}>
-          <ShareIcon className="w-[calc(32px*var(--icon-size-factor))]" />
+          <ShareIcon className="dw-[32px]" />
         </button>
       )}
     </>

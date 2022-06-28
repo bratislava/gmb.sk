@@ -60,14 +60,14 @@ const ContactSection = ({ contactInfo, anchor }: ContactSectionProps) => {
       <div className="col-span-1 flex h-full flex-col justify-between">
         <h3 className="pb-yLg text-xl">{contactInfo.attributes.mirbach?.title}</h3>
         <div className="justify-self-end text-md">
-          <LocationIcon stroke="white" className="mb-2 w-[calc(48px*var(--icon-size-factor))]" />
+          <LocationIcon stroke="white" className="mb-2 dw-[48px]" />
           <p>{contactInfo.attributes.mirbach?.address}</p>
         </div>
       </div>
       <div className="col-span-1 flex h-full flex-col justify-between">
         <h3 className="pb-yLg text-xl">{contactInfo.attributes.palffy?.title}</h3>
         <div className="justify-self-end text-md">
-          <LocationIcon stroke="white" className="mb-2 w-[calc(48px*var(--icon-size-factor))]" />
+          <LocationIcon stroke="white" className="mb-2 dw-[48px]" />
           <p>{contactInfo.attributes.palffy?.address}</p>
         </div>
       </div>

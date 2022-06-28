@@ -61,7 +61,7 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
       }}
     >
       <span className={cx(className)}>
-        <ShareIcon {...size} className="w-[calc(32px*var(--icon-size-factor))]" />
+        <ShareIcon {...size} className="dw-[32px]" />
       </span>
     </Link>
   )

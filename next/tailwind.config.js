@@ -67,7 +67,7 @@ module.exports = {
         logoWidth: 'var(--logo-width)',
       },
       minHeight: {
-        ticket: 'var(--height-ticket)',
+        ticket: 'calc(200px + 400px * var(--icon-size-factor))', // 'var(--height-ticket)'
       },
     },
   },
@@ -75,5 +75,5 @@ module.exports = {
     container: false,
   },
   mode: 'jit',
-  plugins: [scrollBarHide],
+  plugins: [scrollBarHide, require('./styles/dynamicSizeTWPlugin')],
 }

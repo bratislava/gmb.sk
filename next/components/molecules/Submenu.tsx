@@ -2,7 +2,7 @@ import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import React, { useState } from 'react'
 
-import ArrowDown from '../../assets/icons/chevron-down.svg'
+import ArrowDownIcon from '../../assets/icons/chevron-down.svg'
 import { getAnchor } from '../../utils/getAnchor'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
@@ -46,7 +46,7 @@ export const Submenu = ({ items, filters }: SubmenuProps) => {
                   setFilterOpen((prev) => !prev)
                 }}
               >
-                {t('common.filter')} <ArrowDown />
+                {t('common.filter')} <ArrowDownIcon className="dh-[12px] dw-[20px]" />
               </Button>
             )}
           </div>
@@ -70,7 +70,7 @@ export const Submenu = ({ items, filters }: SubmenuProps) => {
         className="relative flex w-full items-center justify-between bg-gmbDark py-yMd px-xMd text-md uppercase text-white lg:hidden"
       >
         {t('common.quickNavigation')}
-        <ArrowDown />
+        <ArrowDownIcon className="dh-[12px] dw-[20px]" />
       </div>
 
       <SubmenuModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} items={items} filters={filters} />

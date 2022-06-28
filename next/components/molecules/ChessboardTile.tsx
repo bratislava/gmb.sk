@@ -23,7 +23,7 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
 
   return (
     <article
-      className={cx('lg:flex min-h-[400px] group cursor-pointer', {
+      className={cx('lg:flex min-dh-[400px] group cursor-pointer', {
         'flex-row-reverse': isLeft,
       })}
       onClick={() => router.push(`/detail/${slug}`)}
