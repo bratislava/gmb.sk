@@ -3200,7 +3200,7 @@ export const PreviewsByTagsDocument = gql`
   contentPages(
     locale: $locale
     pagination: {start: $offset, limit: $limit}
-    filters: {tags: {slug: {in: $tagSlugs}}, place: {slug: {in: $placesSlugs}}}
+    filters: {or: [{tags: {slug: {in: $tagSlugs}}}, {place: {slug: {in: $placesSlugs}}}]}
   ) {
     data {
       ...SectionItemEntity

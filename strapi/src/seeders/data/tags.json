@@ -3,11 +3,13 @@
     {
       "title": "Aktuality",
       "slug": "aktuality",
+      "tagCategory": "program-typy",
       "locale": "sk"
     },
     {
       "title": "News",
       "slug": "news",
+      "tagCategory": "programme-types",
       "locale": "en"
     }
   ],
@@ -15,11 +17,13 @@
     {
       "title": "Výstavy",
       "slug": "vystavy",
+      "tagCategory": "program-typy",
       "locale": "sk"
     },
     {
       "title": "Exhibitions",
       "slug": "exhibitions",
+      "tagCategory": "programme-types",
       "locale": "en"
     }
   ],
@@ -27,11 +31,13 @@
     {
       "title": "Stále expozície",
       "slug": "stale-expozicie",
+      "tagCategory": "program-typy",
       "locale": "sk"
     },
     {
       "title": "Permanent exhibitions",
       "slug": "permanent-exhibitions",
+      "tagCategory": "programme-types",
       "locale": "en"
     }
   ]
