@@ -83,6 +83,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                     className="w-full border-2 border-white bg-transparent p-2 text-md lg:mr-yMd"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
+                    aria-label="Email"
                   />
                   <Button
                     size="medium"

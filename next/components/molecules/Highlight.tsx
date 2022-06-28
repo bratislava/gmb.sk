@@ -8,6 +8,7 @@ import React from 'react'
 import { HighlightsItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { isDefined, WithAttributes } from '../../utils/isDefined'
+import { onEnterOrSpaceKeyDown } from '../../utils/onEnterKeyDown'
 import Button from '../atoms/Button'
 import { SidePanelTime } from '../atoms/SidePanelTime'
 import SidePanel from './SidePanel'
@@ -66,13 +67,16 @@ const Highlight = ({ highlight }: HighlightProps) => {
   return (
     <article className="relative h-fit w-full">
       <div
+        role="button"
         className="group cursor-pointer"
-        id={`articleDiv${highlight.id}`}
+        id={`articleDiv${highlight.id ?? ''}`}
         onClick={() => router.push(`/detail/${slug}`)}
+        onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
+        tabIndex={0}
       >
         <div
           className="flex h-[calc(100vh_-_var(--height-nav))] w-full items-center justify-center bg-gmbLightGray"
-          id={`articleImg${highlight.id}`}
+          id={`articleImg${highlight.id ?? ''}`}
         >
           {coverMedia?.data?.attributes?.url && (
             <img
@@ -87,7 +91,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
           className={cx(
             'absolute bottom-0 z-20 w-full py-yMd px-xMd flex flex-col items-start justify-between gap-y-yMd lg:pr-sidepanel h-fit lg:h-auto'
           )}
-          id={`hgroup${highlight.id}`}
+          id={`hgroup${highlight.id ?? ''}`}
           style={{ background: getContentPageColor(highlight) }}
         >
           <hgroup>
@@ -120,7 +124,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
 
           <Button
             href={`/detail/${slug}`}
-            className="mt-yLg hidden group-hover:bg-gmbDark group-hover:text-white lg:flex"
+            className="mt-yLg hidden after:absolute after:inset-0 after:top-[calc(-100vh_-_var(--height-nav))] group-hover:bg-gmbDark group-hover:text-white lg:flex"
           >
             {t('common.detail')}
           </Button>

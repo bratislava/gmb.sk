@@ -30,8 +30,8 @@ export const Submenu = ({ items, filters }: SubmenuProps) => {
       <div className="relative hidden w-full flex-col bg-gmbDark py-yMd px-xMd text-white lg:flex">
         <div className="flex w-full justify-between">
           <div className="hidden gap-xMd lg:flex">
-            {items?.map((item, index) => (
-              <Link key={index} href={`#${getAnchor(item)}`} replace>
+            {items?.map((item) => (
+              <Link key={item} href={`#${getAnchor(item)}`} replace>
                 {item}
               </Link>
             ))}
@@ -67,6 +67,8 @@ export const Submenu = ({ items, filters }: SubmenuProps) => {
         onClick={() => {
           setModalOpen((prev) => !prev)
         }}
+        onKeyDown={onEnterOrSpaceKeyDown(() => setModalOpen((prev) => !prev))}
+        tabIndex={0}
         className="relative flex w-full items-center justify-between bg-gmbDark py-yMd px-xMd text-md uppercase text-white lg:hidden"
       >
         {t('common.quickNavigation')}

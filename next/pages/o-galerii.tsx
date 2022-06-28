@@ -1,12 +1,12 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
 import Page from '../components/pages/Page'
 import { AboutUsPageQuery, NewsQuery } from '../graphql'
 import { client } from '../utils/gql'
 import { hasAttributes, withAttributes } from '../utils/isDefined'
-import { ssrTranslations } from '../utils/translations'
 
 interface AboutProps {
   aboutUsPage: AboutUsPageQuery['aboutUsPage']
@@ -31,11 +31,11 @@ const About = ({ aboutUsPage, contact, news }: AboutProps) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<AboutProps> = async ({ locale = 'sk' }) => {
+export const getStaticProps: GetStaticProps<AboutProps> = async ({ locale = 'sk' }) => {
   const [{ aboutUsPage, contact }, { news }, translations] = await Promise.all([
     client.AboutUsPage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
-    ssrTranslations({ locale }, ['common']),
+    serverSideTranslations(locale, ['common']),
   ])
 
   return {
@@ -45,6 +45,7 @@ export const getServerSideProps: GetServerSideProps<AboutProps> = async ({ local
       news,
       ...translations,
     },
+    revalidate: 3,
   }
 }
 

@@ -1,5 +1,6 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
 import Page from '../components/pages/Page'
@@ -7,7 +8,6 @@ import { NewsQuery, VisitUsPageQuery } from '../graphql'
 import { client } from '../utils/gql'
 import { hasAttributes, withAttributes } from '../utils/isDefined'
 import { getRouteForLocale } from '../utils/localeRoutes'
-import { ssrTranslations } from '../utils/translations'
 
 interface VisitUsProps {
   visitUsPage: VisitUsPageQuery['visitUsPage']
@@ -34,11 +34,11 @@ const VisitUs = ({ visitUsPage, contact, news, tickets }: VisitUsProps) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<VisitUsProps> = async ({ locale = 'sk' }) => {
+export const getStaticProps: GetStaticProps<VisitUsProps> = async ({ locale = 'sk' }) => {
   const [{ visitUsPage, contact, tickets }, { news }, translations] = await Promise.all([
     client.VisitUsPage({ locale }),
     client.News({ locale, tag: getRouteForLocale('aktuality', locale) }),
-    ssrTranslations({ locale }, ['common']),
+    serverSideTranslations(locale, ['common']),
   ])
 
   return {
@@ -49,6 +49,7 @@ export const getServerSideProps: GetServerSideProps<VisitUsProps> = async ({ loc
       tickets,
       ...translations,
     },
+    revalidate: 3,
   }
 }
 

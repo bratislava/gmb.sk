@@ -1,12 +1,12 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
 import Page from '../components/pages/Page'
 import { CollectionPageQuery, HomePageQuery, NewsQuery } from '../graphql'
 import { client } from '../utils/gql'
 import { hasAttributes, withAttributes } from '../utils/isDefined'
-import { ssrTranslations } from '../utils/translations'
 
 interface CollectionProps {
   collectionsPage: CollectionPageQuery['collectionsPage']
@@ -31,11 +31,11 @@ export const Collection = ({ collectionsPage, contact, news }: CollectionProps) 
   )
 }
 
-export const getServerSideProps: GetServerSideProps<CollectionProps> = async ({ locale = 'sk' }) => {
+export const getStaticProps: GetStaticProps<CollectionProps> = async ({ locale = 'sk' }) => {
   const [{ collectionsPage, contact }, { news }, translations] = await Promise.all([
     client.CollectionPage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
-    ssrTranslations({ locale }, ['common']),
+    serverSideTranslations(locale, ['common']),
   ])
 
   return {
@@ -45,6 +45,7 @@ export const getServerSideProps: GetServerSideProps<CollectionProps> = async ({ 
       news,
       ...translations,
     },
+    revalidate: 3,
   }
 }
 

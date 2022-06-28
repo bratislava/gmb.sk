@@ -39,6 +39,11 @@
     "closed": "closed",
     "follow": "Follow",
     "share": "Share",
+    "shareOnFacebook": "Share on Facebook",
+    "shareOnEmail": "Share on email",
+    "shareOnTwitter": "Share on Twitter",
+    "shareOnWhatsapp": "Share on Whatsapp",
+    "shareOnLinkedIn": "Share on LinkedIn",
     "download": "Download",
     "relatedContent": "Related content",
     "showIncludedEvents": "Show included events",
@@ -57,6 +62,8 @@
     "description": "Description",
     "bratislavaGenitiv": "Bratislava",
     "cityGallery": "City Gallery",
+    "search": "Search",
+    "closeSearch": "Close search",
     "documents": "Documents"
   },
   "navigation": {

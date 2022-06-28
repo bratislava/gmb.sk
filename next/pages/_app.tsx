@@ -7,6 +7,7 @@ import { appWithTranslation, useTranslation } from 'next-i18next'
 import React from 'react'
 
 import Navigation from '../components/molecules/Navigation'
+import nextI18NextConfig from '../next-i18next.config'
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
   const { t } = useTranslation()
@@ -36,14 +37,4 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
   )
 }
 
-export default appWithTranslation(CustomApp, {
-  i18n: {
-    defaultLocale: 'sk',
-    locales: ['en', 'sk'],
-  },
-  reloadOnPrerender: process.env.NODE_ENV === 'development',
-  localePath:
-    process.env.NODE_ENV === 'development'
-      ? require('path').resolve('./public/locales')
-      : require('path').resolve('./public/locales'),
-})
+export default appWithTranslation(CustomApp, nextI18NextConfig)

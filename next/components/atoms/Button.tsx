@@ -33,7 +33,7 @@ const Button = ({ className, children, size = 'medium', onClick, href, color = '
   }
 
   return (
-    <button onClick={onClick} id={id} {...rest} {...styles}>
+    <button type="button" onClick={onClick} id={id} {...rest} {...styles}>
       {children}
     </button>
   )

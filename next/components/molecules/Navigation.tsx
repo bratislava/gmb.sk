@@ -106,7 +106,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             </div>
           </Link>
 
-          <button className="flex lg:hidden" onClick={toggleMobileMenu}>
+          <button type="button" className="flex xl:hidden" onClick={toggleMobileMenu} aria-label="Menu">
             {isMobileMenuOpen ? (
               <CloseIcon className="dw-[30px] dh-[30px]" />
             ) : (
@@ -131,7 +131,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
               {t('navigation.visitUs')}
             </Button>
 
-            <button onClick={toggleSearchBar}>
+            <button type="button" className="xl:ml-5" onClick={toggleSearchBar} aria-label={t('search')}>
               <SearchIcon className="dw-[36px]" />
             </button>
 

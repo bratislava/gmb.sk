@@ -14,7 +14,7 @@ export const seedCollectionWithTranslation = async (
   strapi,
   model: string, //e.g. 'application::tag.tag'
   sourceItems: Object[][],
-  config: { [key: string]: (sourceItem: any) => string },
+  config: { [key: string]: (sourceItem: any) => string | Promise<string> },
   identifier: string
 ) => {
   for (const sourceItemsArray of sourceItems) {

@@ -41,7 +41,9 @@
   }
 }
 
-:root {
+:root,
+::after,
+::before {
   scroll-behavior: smooth;
   width: 100%;
 
@@ -160,7 +162,9 @@
 }
 
 @media (min-width: 1024px) {
-  :root {
+  :root,
+  ::after,
+  ::before {
     --sidepanel-width: min(40vw, 360px);
     --ticket-sidebar-width: min(400px);
 

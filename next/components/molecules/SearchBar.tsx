@@ -11,7 +11,7 @@ interface SearchBarProps {
   closeSearchBar: () => void
 }
 
-export const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
+const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
   const [searchTerm, setSearchTerm] = React.useState('')
   const [contentPages, setContentPages] = React.useState<ContentPage[]>()
   const debouncedSearchTerm = useDebounce(searchTerm, 750)
@@ -46,14 +46,19 @@ export const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
   const { t } = useTranslation()
   return (
     <div className="fixed inset-x-0 top-[var(--height-nav)] z-50 flex h-[calc(100vh-var(--height-nav))] flex-col justify-between bg-gmbDark p-12">
-      <button className="absolute right-xMd top-yMd" onClick={closeSearchBar}>
+      <button
+        type="button"
+        className="absolute right-xMd top-yMd"
+        onClick={closeSearchBar}
+        aria-label={t('common.closeSearch')}
+      >
         <CloseIcon fill="white" />
       </button>
       <div className="flex flex-1">
-        {/* TODO: Removing outline with `outline-none` is a bad accessibility practice */}
         <input
-          className="border-b-solid active-border-b-solid focus:border-b-solid h-fit max-w-full border-b border-b-white bg-transparent text-xl text-white focus:border-b focus:border-b-white focus:outline-none active:border-b active:border-b-white active:outline-none"
+          className="border-b-solid active-border-b-solid focus:border-b-solid h-fit max-w-full border-b border-b-white bg-transparent text-xl text-white focus:border-b focus:border-b-white focus:outline-none active:border-b active:border-b-white"
           placeholder={t('common.searchText')}
+          aria-label={t('common.searchText')}
           onChange={(e) => {
             setSearchTerm(e.target.value)
           }}

@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next'
 
 import { ContactEntityFragment, ContentPageEntityFragment, SectionItemEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'
-import { Link } from '../atoms/Link'
+import Link from '../atoms/Link'
 import Seo from '../atoms/Seo'
 import { SidePanelPlace } from '../atoms/SidePanelPlace'
 import { SidePanelTime } from '../atoms/SidePanelTime'
