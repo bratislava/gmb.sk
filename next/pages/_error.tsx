@@ -1,10 +1,10 @@
 import { GetServerSideProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ErrorPage from '../components/pages/ErrorPage'
 import { ErrorPageQuery } from '../graphql'
 import { client } from '../utils/gql'
 import { withAttributes } from '../utils/isDefined'
-import { ssrTranslations } from '../utils/translations'
 
 interface ErrorProps {
   contact: ErrorPageQuery['contact']
@@ -18,7 +18,7 @@ const Error = ({ contact, statusCode }: ErrorProps) => {
 export const getServerSideProps: GetServerSideProps<ErrorProps> = async ({ locale = 'sk', res }) => {
   const [{ contact }, translations] = await Promise.all([
     client.VisitUsPage({ locale }),
-    ssrTranslations({ locale }, ['common']),
+    serverSideTranslations(locale, ['common']),
   ])
   return {
     props: {
