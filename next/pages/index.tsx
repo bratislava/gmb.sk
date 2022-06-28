@@ -43,7 +43,7 @@ export const getStaticProps: GetStaticProps<IndexProps> = async ({ locale = 'sk'
       news,
       ...translations,
     },
-    revalidate: 60,
+    revalidate: 3,
   }
 }
 

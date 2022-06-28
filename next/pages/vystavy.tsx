@@ -125,7 +125,7 @@ export const getStaticProps: GetStaticProps<ExhibitionsProps> = async ({ locale 
       places,
       ...translations,
     },
-    revalidate: 60,
+    revalidate: 3,
   }
 }
 

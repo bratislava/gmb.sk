@@ -81,7 +81,7 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
       currentEvents,
       ...translations,
     },
-    revalidate: 60,
+    revalidate: 3,
   }
 }
 
