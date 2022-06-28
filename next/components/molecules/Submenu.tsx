@@ -27,9 +27,9 @@ export const Submenu = ({ items, filters }: SubmenuProps) => {
   return (
     <>
       {/* Desktop submenu */}
-      <div className="relative hidden w-full flex-col bg-gmbDark py-yMd px-xMd text-white lg:flex 3xl:py-16">
+      <div className="relative hidden w-full flex-col bg-gmbDark py-yMd px-xMd text-white lg:flex">
         <div className="flex w-full justify-between">
-          <div className="hidden gap-10 lg:flex">
+          <div className="hidden gap-xMd lg:flex">
             {items?.map((item, index) => (
               <Link key={index} href={`#${getAnchor(item)}`} replace>
                 {item}
@@ -41,7 +41,7 @@ export const Submenu = ({ items, filters }: SubmenuProps) => {
               <Button
                 size="link"
                 color="light"
-                className="flex items-center gap-2 text-nav"
+                className="flex items-center gap-xSm text-nav"
                 onClick={() => {
                   setFilterOpen((prev) => !prev)
                 }}
