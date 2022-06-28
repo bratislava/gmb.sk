@@ -1,11 +1,11 @@
-import { GetStaticPaths, GetStaticPathsResult, GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
 import DetailPage from '../../components/pages/DetailPage'
 import { ContentPageBySlugQuery } from '../../graphql'
 import { client } from '../../utils/gql'
 import { hasAttributes, isDefined, withAttributes } from '../../utils/isDefined'
-import { ssrTranslations } from '../../utils/translations'
 
 interface DetailProps {
   contentPage: ContentPageBySlugQuery['contentPageBySlug']
@@ -22,7 +22,7 @@ const Detail = ({ contentPage, contact }: DetailProps) => {
   return <DetailPage contentPage={contentPageWithAttributes} contactInfo={withAttributes(contact?.data)} />
 }
 
-export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, locale }) => {
+export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, locale = 'sk' }) => {
   if (!params) {
     return {
       notFound: true,
@@ -33,7 +33,7 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, loca
 
   const [{ contentPageBySlug: contentPage, contact }, translations] = await Promise.all([
     client.ContentPageBySlug({ slug, locale }),
-    ssrTranslations({ locale }, ['common']),
+    serverSideTranslations(locale, ['common']),
   ])
 
   if (!contentPage) {

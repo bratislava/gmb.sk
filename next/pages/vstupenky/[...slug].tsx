@@ -1,13 +1,13 @@
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { GetStaticProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
 import TicketPage from '../../components/pages/TicketPage'
 import { ExhibitionsByPlaceQuery, TicketPageBySlugQuery } from '../../graphql'
 import { getTodaysDate } from '../../utils/getTodaysDate'
 import { client } from '../../utils/gql'
-import { hasAttributes, isDefined, withAttributes } from '../../utils/isDefined'
+import { hasAttributes, withAttributes } from '../../utils/isDefined'
 import { getRouteForLocale } from '../../utils/localeRoutes'
-import { ssrTranslations } from '../../utils/translations'
 
 interface TicketProps {
   contentPage: TicketPageBySlugQuery['contentPageBySlug']
@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
       slug,
       locale,
     }),
-    ssrTranslations({ locale }, ['common']),
+    serverSideTranslations(locale, ['common']),
   ])
 
   if (!contentPage) {

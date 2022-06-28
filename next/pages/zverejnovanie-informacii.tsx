@@ -1,13 +1,13 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import Footer from '../components/molecules/Footer'
 import DownloadSection from '../components/molecules/sections/DownloadSection'
 import { DisclosureOfInformationPageQuery } from '../graphql'
 import { client } from '../utils/gql'
 import { isDefined, withAttributes } from '../utils/isDefined'
-import { ssrTranslations } from '../utils/translations'
 
 interface DisclosureOfInformationProps {
   contact: DisclosureOfInformationPageQuery['contact']
@@ -45,7 +45,7 @@ export const DisclosureOfInformation = ({ contact }: DisclosureOfInformationProp
 export const getStaticProps: GetStaticProps = async ({ locale = 'sk' }) => {
   const [{ contact }, translations] = await Promise.all([
     client.DisclosureOfInformationPage({ locale }),
-    ssrTranslations({ locale }, ['common']),
+    serverSideTranslations(locale, ['common']),
   ])
 
   return {

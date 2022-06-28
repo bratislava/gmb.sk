@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
 import ExplorePage from '../components/pages/ExplorePage'
@@ -6,7 +7,6 @@ import { ExplorePageQuery, TagsByCategorySlugQuery } from '../graphql'
 import { client } from '../utils/gql'
 import { hasAttributes, withAttributes } from '../utils/isDefined'
 import { getRouteForLocale } from '../utils/localeRoutes'
-import { ssrTranslations } from '../utils/translations'
 
 interface ExploreProps {
   explorePage: ExplorePageQuery['explorePage']
@@ -53,7 +53,7 @@ export const getStaticProps: GetStaticProps<ExploreProps> = async ({ locale = 's
       locale,
       tag: getRouteForLocale('objavujte-ostatne', locale),
     }),
-    ssrTranslations({ locale }, ['common']),
+    serverSideTranslations(locale, ['common']),
   ])
 
   return {

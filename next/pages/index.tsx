@@ -6,7 +6,6 @@ import Page from '../components/pages/Page'
 import { HomePageQuery, NewsQuery } from '../graphql'
 import { client } from '../utils/gql'
 import { hasAttributes, withAttributes } from '../utils/isDefined'
-import { ssrTranslations } from '../utils/translations'
 
 interface IndexProps {
   homePage: HomePageQuery['homePage']

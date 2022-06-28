@@ -1,10 +1,10 @@
 import { GetStaticProps, NextPage  } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ErrorPage from '../components/pages/ErrorPage'
 import { HomePageQuery } from '../graphql'
 import { client } from '../utils/gql'
 import { withAttributes } from '../utils/isDefined'
-import { ssrTranslations } from '../utils/translations'
 
 interface ErrorProps {
   contact: HomePageQuery['contact']
@@ -21,7 +21,7 @@ const Custom404: NextPage<ErrorProps> = ({ contact }: ErrorProps) => {
 export const getStaticProps: GetStaticProps<ErrorProps> = async ({ locale = 'sk' }) => {
   const [{ contact }, translations] = await Promise.all([
     client.VisitUsPage({ locale }),
-    ssrTranslations({ locale }, ['common']),
+    serverSideTranslations(locale, ['common']),
   ])
   return {
     props: {
