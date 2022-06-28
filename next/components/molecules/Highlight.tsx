@@ -112,7 +112,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
               )}
               {(placeTitle || place?.data?.attributes?.title) && (
                 <div className="flex flex-1 items-center justify-center">
-                  <span className="uppercase">{placeTitle || place?.data?.attributes?.title}</span>
+                  <span className="text-btn uppercase">{placeTitle || place?.data?.attributes?.title}</span>
                 </div>
               )}
             </div>

@@ -81,26 +81,26 @@
   --icon-size-factor: 1;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   :root {
     --sidepanel-width: 100%;
     --ticket-sidebar-width: 100%;
 
-    --font-size-xxl: 1.875rem;
-    --font-size-xl: 1.5rem;
-    --font-size-lg: 1.25rem;
-    --font-size-md: 1rem;
-    --font-size-sm: 0.875rem;
-    --font-size-nav: 1rem;
-    --font-size-btn: 1rem;
+    --font-size-xxl: 2.75rem;
+    --font-size-xl: 2.1875rem;
+    --font-size-lg: 1.875rem;
+    --font-size-md: 1.625rem;
+    --font-size-sm: 1.25rem;
+    --font-size-nav: 1.375rem;
+    --font-size-btn: 1.375rem;
 
-    --line-height-xxl: 2rem;
-    --line-height-xl: 1.75rem;
-    --line-height-lg: 1.5rem;
-    --line-height-md: 1.25rem;
-    --line-height-sm: 1.1rem;
-    --line-height-nav: 1.25rem;
-    --line-height-btn: 1.25rem;
+    --line-height-xxl: 2.9375rem;
+    --line-height-xl: 2.375rem;
+    --line-height-lg: 2rem;
+    --line-height-md: 2.0625rem;
+    --line-height-sm: 1.5625rem;
+    --line-height-nav: 1.5rem;
+    --line-height-btn: 1.5rem;
 
     --padding-x-sm: 24px;
     --padding-x-md: 24px;
@@ -111,12 +111,51 @@
     --padding-y-lg: 56px;
     --padding-y-xl: 90px;
 
-    --height-nav: 70px;
-    --logo-height: 32px;
-    --logo-width: 96px;
+    --height-nav: 120px;
+    --logo-height: 54px;
+    --logo-width: 163px;
     --height-ticket: 220px;
 
-    --icon-size-factor: 1;
+    --icon-size-factor: 1.25;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --sidepanel-width: 100%;
+    --ticket-sidebar-width: 100%;
+
+    --font-size-xxl: 3.1875rem;
+    --font-size-xl: 2.625rem;
+    --font-size-lg: 2rem;
+    --font-size-md: 1.875rem;
+    --font-size-sm: 1.5rem;
+    --font-size-nav: 1.75rem;
+    --font-size-btn: 1.75rem;
+
+    --line-height-xxl: 3.4375rem;
+    --line-height-xl: 2.875rem;
+    --line-height-lg: 2.25rem;
+    --line-height-md: 2.625rem;
+    --line-height-sm: 1.875rem;
+    --line-height-nav: 2.25rem;
+    --line-height-btn: 2.25rem;
+
+    --padding-x-sm: 20px;
+    --padding-x-md: 37px;
+    --padding-x-lg: 70px;
+
+    --padding-y-sm: 20px;
+    --padding-y-md: 50px;
+    --padding-y-lg: 75px;
+    --padding-y-xl: 120px;
+
+    --height-nav: 143px;
+    --logo-height: 65px;
+    --logo-width: 195px;
+    --height-ticket: 220px;
+
+    --icon-size-factor: 1.5;
   }
 }
 

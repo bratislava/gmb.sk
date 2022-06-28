@@ -107,7 +107,11 @@ const Navigation = ({ contentPage }: NavigationProps) => {
           </Link>
 
           <button className="flex lg:hidden" onClick={toggleMobileMenu}>
-            {isMobileMenuOpen ? <CloseIcon /> : <Hamburger />}
+            {isMobileMenuOpen ? (
+              <CloseIcon className="dw-[30px] dh-[30px]" />
+            ) : (
+              <Hamburger className="dw-[30px] dh-[30px]" />
+            )}
           </button>
 
           <div

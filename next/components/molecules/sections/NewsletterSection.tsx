@@ -98,7 +98,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                   <input
                     id="gdprCheckbox"
                     type="checkbox"
-                    className="mr-[10px] -mt-[1px] box-border inline-block h-4 w-4 flex-none cursor-pointer appearance-none border-2 border-white bg-transparent after:relative after:-top-[5px] after:inline-block after:font-heavy after:text-[#000] after:content-[''] checked:bg-white checked:after:content-['✔']"
+                    className="relative mr-xSm mt-[-1px] box-border inline-block h-[var(--font-size-btn)] w-[var(--font-size-btn)] flex-none cursor-pointer appearance-none border-2 border-white bg-transparent after:absolute after:top-[-1px] after:left-0 after:inline-block after:text-btn after:font-heavy after:leading-[var(--font-size-btn)] after:text-[#000] after:content-[''] checked:bg-white checked:after:content-['✔']"
                     checked={agree}
                     onChange={() => setAgree((prev) => !prev)}
                   />
