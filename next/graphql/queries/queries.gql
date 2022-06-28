@@ -41,7 +41,7 @@ query PreviewsByTags($locale: I18NLocaleCode!, $limit: Int, $offset: Int, $tagSl
   contentPages(
     locale: $locale
     pagination: { start: $offset, limit: $limit }
-    filters: { or: [{ tags: { slug: { in: $tagSlugs } } }, { place: { slug: { in: $placesSlugs } } }] }
+    filters: { tags: { slug: { in: $tagSlugs } }, place: { slug: { in: $placesSlugs } } }
   ) {
     data {
       ...SectionItemEntity
