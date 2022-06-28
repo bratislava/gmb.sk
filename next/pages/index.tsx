@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import Page from '../components/pages/Page'
 import { HomePageQuery, NewsQuery } from '../graphql'
@@ -33,7 +34,7 @@ export const getStaticProps: GetStaticProps<IndexProps> = async ({ locale = 'sk'
   const [{ homePage, contact }, { news }, translations] = await Promise.all([
     client.HomePage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
-    ssrTranslations({ locale }, ['common']),
+    serverSideTranslations(locale, ['common']),
   ])
 
   return {
