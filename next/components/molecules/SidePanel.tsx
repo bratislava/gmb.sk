@@ -99,7 +99,7 @@ const SidePanel = ({
   }
 
   return (
-    <aside className={cx(className, 'flex flex-col justify-between w-full space-y-10 bg-white lg:space-y-20')}>
+    <aside className={cx(className, 'flex flex-col justify-between w-full space-y-yLg bg-white')}>
       {perex && <p className="text-md">{perex}</p>}
 
       {/* TODO hide this div is there is no datetime and place, otherwise, it causes margin-top to next element */}
@@ -124,13 +124,13 @@ const SidePanel = ({
 
       {showShare && slug && (
         <div>
-          <h4 className="mb-5 text-lg lg:mb-8">{t('common.share')}</h4>
+          <h4 className="mb-yMd text-lg">{t('common.share')}</h4>
           {isMobile ? (
             <div>
               <MobileShareButton slug={slug} title={title || t('common.share')} />
             </div>
           ) : (
-            <div className="flex gap-5">
+            <div className="flex gap-xMd">
               <ShareButton slug={slug} platform="email" title={title} />
               <ShareButton slug={slug} platform="facebook" />
               <ShareButton slug={slug} platform="twitter" />
@@ -143,14 +143,14 @@ const SidePanel = ({
 
       {positions?.filter(isDefined).map((position) => (
         <div key={position.title}>
-          <h4 className="mb-5 text-lg lg:mb-8">{position.title}</h4>
+          <h4 className="mb-yMd text-lg">{position.title}</h4>
           <p className="text-md">{position.names}</p>
         </div>
       ))}
 
       {partners?.filter(isDefined).length ? (
         <div>
-          <h4 className="mb-5 text-lg lg:mb-8">{t('common.partners')}</h4>
+          <h4 className="mb-yMd text-lg">{t('common.partners')}</h4>
           <div className="flex flex-wrap gap-5">
             {partners?.map((partner, index) => (
               <Link key={index} href={partner.attributes.link ?? '#'} className="overflow-hidden">

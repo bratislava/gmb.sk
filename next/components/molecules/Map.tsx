@@ -215,7 +215,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
 
   return (
     <div className="grid items-stretch bg-gmbDark text-nav text-white lg:grid-cols-3">
-      <div className="flex h-fit w-full p-8 lg:pb-0">
+      <div className="flex h-fit w-full p-yMd lg:pb-0">
         {tabs.map((tab) => {
           return (
             <button
@@ -262,11 +262,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
                   }}
                 >
                   <gallery.icon className="group-hover:scale-0" width="64" height="64" />
-                  <gallery.hoverIcon
-                    className="absolute top-0 scale-0 group-hover:scale-100"
-                    width="64"
-                    height="64"
-                  />
+                  <gallery.hoverIcon className="absolute top-0 scale-0 group-hover:scale-100" width="64" height="64" />
                 </button>
               </Marker>
             ))}
@@ -275,7 +271,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
         </div>
       </div>
       <div className="flex items-center p-8 lg:col-start-3 lg:h-[600px]">
-        <div className="flex flex-col space-y-4 text-[20px] lg:px-4">
+        <div className="flex flex-col space-y-4 text-[20px] lg:px-xMd">
           {descriptionSections.length > 0 ? (
             descriptionSections.map(({ title, text }, key) => (
               <div key={key}>

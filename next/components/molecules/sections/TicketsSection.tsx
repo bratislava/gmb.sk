@@ -20,14 +20,14 @@ const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) =
   return (
     <Section anchor={anchor} title={title}>
       <div
-        className={cx('px-xStandard pb-yStandard', {
-          'py-yStandard': !title,
-          'pb-yStandard': title,
+        className={cx('px-xMd pb-yMd', {
+          'py-yMd': !title,
+          'pb-yMd': title,
         })}
       >
         <CityGalleryMarkdown content={text} />
 
-        <div className="lg:justify-stretch mt-yStandard flex flex-wrap justify-between lg:flex-nowrap">
+        <div className="lg:justify-stretch mt-yMd flex flex-wrap justify-between lg:flex-nowrap">
           {tickets?.map((ticket) => (
             <Ticket
               key={ticket.id}
@@ -41,7 +41,7 @@ const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) =
         </div>
       </div>
 
-      <div id="goout-form" className="scroll-mt-nav bg-gmbLightGray px-xStandard py-yStandard empty:hidden" />
+      <div id="goout-form" className="scroll-mt-nav bg-gmbLightGray px-xMd py-yMd empty:hidden" />
     </Section>
   )
 }

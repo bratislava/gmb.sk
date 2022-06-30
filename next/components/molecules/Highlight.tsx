@@ -1,8 +1,8 @@
 import cx from 'classnames'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 import React from 'react'
 
 import { HighlightsItemEntityFragment } from '../../graphql'
@@ -68,7 +68,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
     <article className="relative h-fit w-full">
       <div
         role="button"
-        className="group cursor-pointer"
+        className="cursor-pointer"
         id={`articleDiv${highlight.id ?? ''}`}
         onClick={() => router.push(`/detail/${slug}`)}
         onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
@@ -89,7 +89,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
         </div>
         <div
           className={cx(
-            'absolute bottom-0 z-20 w-full py-yStandard px-xStandard flex flex-col items-start gap-y-yStandard lg:pr-sidepanel min-h-[320px] h-fit lg:h-auto'
+            'absolute bottom-0 z-20 w-full py-yMd px-xMd flex flex-col items-start justify-between gap-y-yMd lg:pr-sidepanel h-fit lg:h-auto'
           )}
           id={`hgroup${highlight.id ?? ''}`}
           style={{ background: getContentPageColor(highlight) }}
@@ -100,7 +100,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
           </hgroup>
 
           <div
-            className={cx('lg:hidden w-full flex-1 justify-self-stretch justify-between flex flex-col', {
+            className={cx('lg:hidden w-full flex-1 justify-self-stretch gap-y-yMd justify-between flex flex-col', {
               hidden: renderOverride,
             })}
           >
@@ -116,7 +116,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
               )}
               {(placeTitle || place?.data?.attributes?.title) && (
                 <div className="flex flex-1 items-center justify-center">
-                  <span className="uppercase">{placeTitle || place?.data?.attributes?.title}</span>
+                  <span className="text-btn uppercase">{placeTitle || place?.data?.attributes?.title}</span>
                 </div>
               )}
             </div>
@@ -124,13 +124,13 @@ const Highlight = ({ highlight }: HighlightProps) => {
 
           <Button
             href={`/detail/${slug}`}
-            className="hidden after:absolute after:inset-0 after:top-[calc(-100vh_-_var(--height-nav))] group-hover:bg-gmbDark group-hover:text-white lg:flex"
+            className="mt-yLg hidden after:absolute after:inset-0 after:top-[calc(-100vh_-_var(--height-nav))] lg:flex"
           >
             {t('common.detail')}
           </Button>
         </div>
       </div>
-      <div className={cx('relative z-30 bg-white w-sidepanel ml-auto', {})} id={`sidepanel${highlight.id}`}>
+      <div className={cx('relative z-15 bg-white w-sidepanel ml-auto', {})} id={`sidepanel${highlight.id}`}>
         {renderOverride && override?.highlightContent ? (
           <div className="min-h-fit p-10">
             <SidePanel overrideText={override?.highlightContent} />
