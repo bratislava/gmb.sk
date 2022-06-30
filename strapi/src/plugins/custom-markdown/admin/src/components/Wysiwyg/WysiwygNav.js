@@ -5,7 +5,6 @@ import { FocusTrap } from "@strapi/design-system/FocusTrap";
 import { IconButtonGroup } from "@strapi/design-system/IconButton";
 import { Popover } from "@strapi/design-system/Popover";
 import { Option, Select } from "@strapi/design-system/Select";
-import { Typography } from "@strapi/design-system/Typography";
 import Bold from "@strapi/icons/Bold";
 import BulletList from "@strapi/icons/BulletList";
 import Code from "@strapi/icons/Code";
@@ -163,8 +162,6 @@ const WysiwygNav = ({
             label="More"
             icon={<More />}
           />
-
-          <Typography id="customLabel">Custom Richtext Editor</Typography>
 
           {visiblePopover && (
             <Popover centered source={buttonMoreRef} spacing={4} id="popover">
