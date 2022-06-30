@@ -111,3 +111,14 @@ If you want to check if your secret is there, you can run this command:
 ```bash
 kubectl get secret --namespace=standalone nest-prisma-template-database-secret
 ```
+
+# Customisation
+
+We have added some unique improvements to our version of Strapi.
+
+## Plugins
+
+- **Custom Richtext Editor** - Replaces the default WYSIWYG Strapi Richtext Editor with a custom version that: 
+  - changes **Image** markdown generation to: `![alt||caption](url)` so that caption can be accessed by our frontend
+  - removes **Underline** button
+  - removes **Preview mode** button
