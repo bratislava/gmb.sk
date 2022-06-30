@@ -38,7 +38,7 @@ const revalidate = async (req: NextApiRequest, res: NextApiResponse<Response>) =
     if (payload?.model === 'get-involved-page') {
       await res.revalidate('/zapojte-sa')
     }
-    g
+
     /** Always revalidate index */
     await res.revalidate('/')
 
