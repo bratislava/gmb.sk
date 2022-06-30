@@ -68,7 +68,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
     <article className="relative h-fit w-full">
       <div
         role="button"
-        className="group cursor-pointer"
+        className="cursor-pointer"
         id={`articleDiv${highlight.id ?? ''}`}
         onClick={() => router.push(`/detail/${slug}`)}
         onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
@@ -124,13 +124,13 @@ const Highlight = ({ highlight }: HighlightProps) => {
 
           <Button
             href={`/detail/${slug}`}
-            className="mt-yLg hidden after:absolute after:inset-0 after:top-[calc(-100vh_-_var(--height-nav))] group-hover:bg-gmbDark group-hover:text-white lg:flex"
+            className="mt-yLg hidden after:absolute after:inset-0 after:top-[calc(-100vh_-_var(--height-nav))] lg:flex"
           >
             {t('common.detail')}
           </Button>
         </div>
       </div>
-      <div className={cx('relative z-30 bg-white w-sidepanel ml-auto', {})} id={`sidepanel${highlight.id}`}>
+      <div className={cx('relative z-15 bg-white w-sidepanel ml-auto', {})} id={`sidepanel${highlight.id}`}>
         {renderOverride && override?.highlightContent ? (
           <div className="min-h-fit p-10">
             <SidePanel overrideText={override?.highlightContent} />

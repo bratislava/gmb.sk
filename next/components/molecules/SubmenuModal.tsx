@@ -27,7 +27,7 @@ const SubmenuModal = ({ isOpen, onClose, items, filters }: ISubmenuModalProps) =
       className="absolute min-h-screen rounded-none border-0 bg-gmbDark p-6 text-white lg:hidden"
     >
       <button className="absolute right-xSm top-ySm" onClick={onClose}>
-        <CloseIcon fill="#fff" />
+        <CloseIcon fill="#fff" className="dw-[30px] dh-[30px]" />
       </button>
       <div className="mt-20 flex w-full flex-col items-center gap-yMd text-white">
         {items?.map((item, index) => (

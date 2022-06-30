@@ -15,6 +15,17 @@ const scrollBarHide = plugin(function ({ addUtilities }) {
   })
 })
 
+const dynamicSizing = plugin(({ matchUtilities }) => {
+  matchUtilities({
+    dw: (value) => ({
+      width: `calc(${value}*var(--icon-size-factor))`,
+    }),
+    dh: (value) => ({
+      height: `calc(${value}*var(--icon-size-factor))`,
+    }),
+  })
+})
+
 module.exports = {
   content: [join(__dirname, 'pages/**/*.{js,jsx,ts,tsx}'), join(__dirname, 'components/**/*.{js,jsx,ts,tsx}')],
   darkMode: 'media', // or 'class'
@@ -75,5 +86,5 @@ module.exports = {
     container: false,
   },
   mode: 'jit',
-  plugins: [scrollBarHide, require('./styles/dynamicSizeTWPlugin')],
+  plugins: [scrollBarHide, dynamicSizing],
 }

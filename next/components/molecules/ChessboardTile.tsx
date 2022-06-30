@@ -62,10 +62,7 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
 
         {perex ? <div className="text-md">{perex?.slice(0, 200)}…</div> : null}
 
-        <Button
-          href={`/detail/${slug}`}
-          className="after:absolute after:inset-0 group-hover:bg-gmbDark group-hover:text-white"
-        >
+        <Button href={`/detail/${slug}`} className="after:absolute after:inset-0">
           {t('common.detail')}
         </Button>
       </div>

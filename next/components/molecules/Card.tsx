@@ -59,10 +59,7 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
       {/* empty div to push button to the bottom of the card */}
       <div className="m-0 hidden grow p-0 lg:block" />
 
-      <Button
-        href={`/detail/${slug}`}
-        className="max-w-fit py-2 after:absolute after:inset-0 group-hover:bg-gmbDark group-hover:text-white"
-      >
+      <Button href={`/detail/${slug}`} className="max-w-fit py-2 after:absolute after:inset-0">
         {t('common.detail')}
       </Button>
     </article>
