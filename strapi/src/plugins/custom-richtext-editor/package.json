@@ -1,10 +1,10 @@
 {
-  "name": "custom-markdown",
+  "name": "custom-richtext-editor",
   "version": "0.0.0",
   "description": "This is the description of the plugin.",
   "strapi": {
-    "name": "custom-markdown",
-    "description": "Description of custom-markdown plugin",
+    "name": "Custom Richtext Editor",
+    "description": "Customised default WYSIWYG Strapi Richtext Editor.",
     "kind": "plugin"
   },
   "dependencies": {

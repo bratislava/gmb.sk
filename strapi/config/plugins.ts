@@ -1,6 +1,6 @@
 export default {
-  "custom-markdown": {
+  "custom-richtext-editor": {
     enabled: true,
-    resolve: "./src/plugins/custom-markdown",
+    resolve: "./src/plugins/custom-richtext-editor",
   },
 };
