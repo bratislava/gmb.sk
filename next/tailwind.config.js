@@ -15,6 +15,17 @@ const scrollBarHide = plugin(function ({ addUtilities }) {
   })
 })
 
+const dynamicSizing = plugin(({ matchUtilities }) => {
+  matchUtilities({
+    dw: (value) => ({
+      width: `calc(${value}*var(--icon-size-factor))`,
+    }),
+    dh: (value) => ({
+      height: `calc(${value}*var(--icon-size-factor))`,
+    }),
+  })
+})
+
 module.exports = {
   content: [join(__dirname, 'pages/**/*.{js,jsx,ts,tsx}'), join(__dirname, 'components/**/*.{js,jsx,ts,tsx}')],
   darkMode: 'media', // or 'class'
@@ -53,14 +64,21 @@ module.exports = {
         white: '#ffffff',
       },
       spacing: {
-        xStandard: 'var(--padding-x)',
-        yStandard: 'var(--padding-y)',
-        yHigh: 'var(--padding-y-high)',
+        xSm: 'var(--padding-x-sm)',
+        xMd: 'var(--padding-x-md)',
+        xLg: 'var(--padding-x-lg)',
+        ySm: 'var(--padding-y-sm)',
+        yMd: 'var(--padding-y-md)',
+        yLg: 'var(--padding-y-lg)',
+        yXl: 'var(--padding-y-xl)',
         nav: 'var(--height-nav)',
         sidepanel: 'var(--sidepanel-width)',
         ticketSidebar: 'var(--ticket-sidebar-width)',
         logoHeight: 'var(--logo-height)',
         logoWidth: 'var(--logo-width)',
+      },
+      minHeight: {
+        ticket: 'calc(200px + 400px * var(--icon-size-factor))', // 'var(--height-ticket)'
       },
     },
   },
@@ -68,5 +86,5 @@ module.exports = {
     container: false,
   },
   mode: 'jit',
-  plugins: [scrollBarHide],
+  plugins: [scrollBarHide, dynamicSizing],
 }

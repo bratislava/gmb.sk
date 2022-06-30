@@ -1,5 +1,4 @@
 import { useTranslation } from 'next-i18next'
-import React from 'react'
 
 import { NewsItemEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
@@ -24,8 +23,8 @@ const NewsSection = ({ items, title, anchor }: NewsProps) => {
           ))}
         </>
       ) : (
-        <div className="relative py-yStandard px-xStandard">
-          <p className="text-md">{t('common.nothingToShow')}</p>
+        <div className="relative py-yMd px-xMd">
+          <p className="pb-yMd text-md">{t('common.nothingToShow')}</p>
         </div>
       )}
     </Section>

@@ -10,7 +10,7 @@ interface IVideo {
 const Video = ({ className, url, size = 'default' }: IVideo) => {
   const [embedUrl, setEmbedUrl] = React.useState('')
 
-  const isYoutubeVideo = url?.startsWith('https://youtu.be')
+  const isYoutubeVideo = url?.startsWith('https://youtu.be') || url?.startsWith('https://www.youtube.com')
   const isVimeoVideo = url?.startsWith('https://vimeo.com')
 
   React.useEffect(() => {
@@ -47,7 +47,7 @@ const Video = ({ className, url, size = 'default' }: IVideo) => {
     return (
       <figure
         className={cx(className, {
-          'w-72 h-[162px] lg:w-[780px] lg:h-[439px]': size === 'default',
+          'w-full aspect-video': size === 'default',
         })}
       >
         <iframe title="Youtube video" className={cx('w-full h-full')} src={embedUrl} allowFullScreen />
@@ -59,7 +59,7 @@ const Video = ({ className, url, size = 'default' }: IVideo) => {
     return (
       <figure
         className={cx(className, {
-          'w-72 h-[162px] lg:w-[780px] lg:h-[439px]': size === 'default',
+          'w-full aspect-video': size === 'default',
         })}
       >
         <iframe title="Vimeo video" className={cx('w-full h-full')} src={embedUrl} allowFullScreen />

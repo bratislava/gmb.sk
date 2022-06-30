@@ -1,8 +1,6 @@
-import React from 'react'
-
 export const CardSkeleton = () => {
   return (
-    <div className="flex min-h-full animate-pulse flex-col space-y-yStandard">
+    <div className="flex min-h-full animate-pulse flex-col space-y-yMd">
       <div className="h-[458px] w-full overflow-hidden bg-gmbLightGray" />
 
       <div className="flex flex-wrap gap-6">

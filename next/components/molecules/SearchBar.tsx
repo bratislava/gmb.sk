@@ -11,7 +11,6 @@ interface SearchBarProps {
   closeSearchBar: () => void
 }
 
-
 const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
   const [searchTerm, setSearchTerm] = React.useState('')
   const [contentPages, setContentPages] = React.useState<ContentPage[]>()
@@ -49,11 +48,11 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
     <div className="fixed inset-x-0 top-[var(--height-nav)] z-20 flex h-[calc(100vh-var(--height-nav))] flex-col justify-between bg-gmbDark p-12">
       <button
         type="button"
-        className="absolute right-xStandard top-yStandard"
+        className="absolute right-xMd top-yMd"
         onClick={closeSearchBar}
         aria-label={t('common.closeSearch')}
       >
-        <CloseIcon fill="white" />
+        <CloseIcon fill="white" className="dw-[32px] dh-[32px]" />
       </button>
       <div className="flex flex-1">
         <input

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { PartnerEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
 import Link from '../../atoms/Link'
@@ -13,7 +11,7 @@ interface PartnersSectionProps {
 
 const PartnersSection = ({ partners, title, anchor }: PartnersSectionProps) => {
   return (
-    <Section anchor={anchor} color="gray" className="px-xStandard py-yHigh">
+    <Section anchor={anchor} color="gray" className="px-xMd py-yLg">
       {title && <h2 className="mb-24 text-xxl">{title}</h2>}
       <div className="flex flex-wrap gap-10">
         {partners?.map((partner, index) => (

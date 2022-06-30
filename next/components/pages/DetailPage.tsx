@@ -77,12 +77,12 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
         </>
       </Head>
 
-      <hgroup className="py-yStandard px-xStandard" style={{ background: getContentPageColor(contentPage) }}>
+      <hgroup className="py-yMd px-xMd" style={{ background: getContentPageColor(contentPage) }}>
         <h1 className="text-xxl">{title}</h1>
         <p className="text-xxl font-regular">{subtitle}</p>
       </hgroup>
       <Submenu items={submenu} />
-      <div className="h-auto gap-10 overflow-hidden px-xStandard py-yHigh">
+      <div className="h-auto overflow-hidden px-xMd py-yLg">
         {/* Desktop sidepanel */}
         <SidePanel
           datetime={{ dateFrom, dateTo, timeFrom, timeTo, showRemainingTime }}
@@ -104,9 +104,9 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           className="pb-24 lg:hidden"
         />
         <div className="float-none w-auto overflow-hidden">
-          {perex && <div className="lg:mb-21 mb-14 text-lg 3xl:mb-28">{perex}</div>}
+          {perex && <div className="mb-yLg text-lg">{perex}</div>}
 
-          <div className="3xl:ml-25 lg:ml-[5vw]">
+          <div className="ml-xLg">
             {mainContent?.filter(isDefined).map((section, index) => {
               if (section.__typename === 'ComponentSectionsRichtextSection') {
                 return (

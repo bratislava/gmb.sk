@@ -1,5 +1,4 @@
 import { useTranslation } from 'next-i18next'
-import React from 'react'
 
 import { SectionItemEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
@@ -24,7 +23,7 @@ const FullWidthSection = ({ title, sectionItems, anchor, loadmore }: FullWidthSe
       ))}
 
       {loadmore && (
-        <div className="flex justify-center py-yStandard">
+        <div className="flex justify-center py-yMd">
           <Button size="medium">{t('common.exploreMoreContent')}</Button>
         </div>
       )}

@@ -1,6 +1,4 @@
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import React from 'react'
 
 import { NewsItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
@@ -16,7 +14,7 @@ export const NewsBar = ({ newsItem }: NewsBarProps) => {
 
   return (
     <article
-      className="group relative flex cursor-pointer items-center justify-between px-xStandard py-yStandard"
+      className="group relative flex cursor-pointer items-center justify-between px-xMd py-yMd"
       style={{ background: getContentPageColor(newsItem) }}
     >
       <hgroup>
