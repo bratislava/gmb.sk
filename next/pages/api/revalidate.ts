@@ -19,10 +19,6 @@ const revalidate = async (req: NextApiRequest, res: NextApiResponse<Response>) =
       await Promise.all([res.revalidate(contentPageUrl), res.revalidate(ticketsPageUrl)])
     }
 
-    if (payload?.model === 'home-page') {
-      await res.revalidate('/')
-    }
-
     if (payload?.model === 'about-us-page') {
       await res.revalidate('/o-galerii')
     }
@@ -46,6 +42,9 @@ const revalidate = async (req: NextApiRequest, res: NextApiResponse<Response>) =
     if (payload?.model === 'get-involved-page') {
       await res.revalidate('/zapojte-sa')
     }
+
+    /** Always revalidate index */
+    await res.revalidate('/')
 
     return res.json({ revalidated: true })
   } catch (error) {
