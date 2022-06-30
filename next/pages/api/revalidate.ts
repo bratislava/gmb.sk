@@ -39,6 +39,10 @@ const revalidate = async (req: NextApiRequest, res: NextApiResponse<Response>) =
       await res.revalidate('/zapojte-sa')
     }
 
+    if (payload?.model === 'visit-us-page') {
+      await res.revalidate('/navstivte')
+    }
+
     /** Always revalidate index */
     await res.revalidate('/')
 
