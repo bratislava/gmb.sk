@@ -7,43 +7,51 @@ interface AudioProps {
   url: string
 }
 
-interface SoundCloudResponse {
+interface OEmbedResponse {
   /** The response has more fields, but we are interested only in this one */
   html: string
 }
 
+type ParsedEmbedHtml = string | JSX.Element | JSX.Element[]
+
+const fetchOEmbedHtml = async (embedUrl: string) => {
+  /** Fetch embed HTML from the oembed api for given url */
+  const oembedDataPromise = fetch(embedUrl).then((res) => {
+    if (res.ok) {
+      return res.json() as Promise<OEmbedResponse>
+    }
+    throw new Error('Failed to fetch Audio embed data')
+  })
+
+  /** Lazy load library to parse the html response in embed api */
+  const htmlParserPromise = import('html-react-parser')
+
+  const [oembedResponse, htmlParser] = await Promise.all([oembedDataPromise, htmlParserPromise])
+
+  return htmlParser.default(oembedResponse.html)
+}
+
 const Audio = ({ url }: AudioProps) => {
   const { t } = useTranslation()
+  const isSoundCloud = url.includes('soundcloud')
 
-  const { data: embedSoundCloudHtml, error } = useSWR<string | JSX.Element | JSX.Element[], Error>(
-    `soundcloudEmbed ${url}`,
-    async () => {
-      /** Fetch embed HTML from the Soundcloud api for given url */
-      const soundCloudEmbedDataPromise = fetch(`https://soundcloud.com/oembed?url=${url}&format=json`).then((res) => {
-        if (res.ok) {
-          return res.json() as Promise<SoundCloudResponse>
-        }
-        throw new Error('Failed to fetch SoundCloud embed data')
-      })
+  const embedUrl = isSoundCloud
+    ? `https://soundcloud.com/oembed?url=${url}&format=json`
+    : `https://open.spotify.com/oembed?url=${url}&format=json`
 
-      /** Lazy load library to parse the html response from soundcloud api */
-      const htmlParserPromise = import('html-react-parser')
-
-      const [soundCloudData, htmlParser] = await Promise.all([soundCloudEmbedDataPromise, htmlParserPromise])
-
-      return htmlParser.default(soundCloudData.html)
-    }
-  )
+  const { data: oembedHtml, error } = useSWR<ParsedEmbedHtml, Error>(embedUrl, fetchOEmbedHtml)
 
   if (error) {
     return <div>{t('common.error')}</div>
   }
 
-  if (!embedSoundCloudHtml) {
+  if (!oembedHtml) {
     return <div>{t('common.loading')}</div>
   }
 
-  return <figure>{embedSoundCloudHtml}</figure>
+  return <figure>{oembedHtml}</figure>
 }
 
 export default Audio
+
+
