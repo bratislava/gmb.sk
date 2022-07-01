@@ -1,6 +1,5 @@
-import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
-import React from 'react'
+import Head from 'next/head'
 
 import {
   AboutUsPageQuery,
@@ -130,7 +129,7 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
               <RichtextSection
                 content={section.content}
                 anchor={getAnchor(section.submenuTitle)}
-                className="py-yStandard px-xStandard"
+                className="py-yMd px-xMd"
                 key={index}
               />
             )

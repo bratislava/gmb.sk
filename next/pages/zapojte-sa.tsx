@@ -1,12 +1,12 @@
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
 import Page from '../components/pages/Page'
 import { GetInvolvedPageQuery, HomePageQuery, NewsQuery } from '../graphql'
 import { client } from '../utils/gql'
 import { hasAttributes, withAttributes } from '../utils/isDefined'
-import { ssrTranslations } from '../utils/translations'
 
 interface GetInvolvedProps {
   getInvolvedPage: GetInvolvedPageQuery['getInvolvedPage']
@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps<GetInvolvedProps> = async ({ locale 
   const [{ getInvolvedPage, contact }, { news }, translations] = await Promise.all([
     client.GetInvolvedPage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
-    ssrTranslations({ locale }, ['common']),
+    serverSideTranslations(locale, ['common']),
   ])
 
   return {
@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps<GetInvolvedProps> = async ({ locale 
       news,
       ...translations,
     },
-    revalidate: 60,
+    revalidate: 3,
   }
 }
 

@@ -1,7 +1,6 @@
+import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
-import React from 'react'
 
 import { SectionItemEntityFragment } from '../../graphql'
 import { hasAttributes, WithAttributes } from '../../utils/isDefined'
@@ -21,7 +20,7 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
   const { slug, coverMedia, title, subtitle, tags, perex, dateFrom, dateTo } = sectionItem.attributes
 
   return (
-    <article className="group relative flex min-h-full cursor-pointer flex-col space-y-yStandard">
+    <article className="group relative flex min-h-full cursor-pointer flex-col space-y-yMd">
       <div className="overflow-hidden bg-gmbLightGray">
         {coverMedia?.data?.attributes ? (
           <Image
@@ -60,10 +59,7 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
       {/* empty div to push button to the bottom of the card */}
       <div className="m-0 hidden grow p-0 lg:block" />
 
-      <Button
-        href={`/detail/${slug}`}
-        className="max-w-fit py-2 after:absolute after:inset-0 group-hover:bg-gmbDark group-hover:text-white"
-      >
+      <Button href={`/detail/${slug}`} className="max-w-fit py-2 after:absolute after:inset-0">
         {t('common.detail')}
       </Button>
     </article>

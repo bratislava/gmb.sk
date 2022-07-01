@@ -42,7 +42,6 @@ export default {
                   locale,
                 });
 
-
                 if (results.length > 0) {
                   return { value: results[0] };
                 }
@@ -125,20 +124,6 @@ export default {
       locales: await strapi.db.query("plugin::i18n.locale").findMany(),
     });
     //------------------------------------
-    // ADDING TAGS
-    //------------------------------------
-    await seedCollectionWithTranslation(
-      strapi,
-      "api::tag.tag",
-      tagsData,
-      {
-        title: (sourceItem) => sourceItem.title,
-        slug: (sourceItem) => sourceItem.slug,
-        locale: (sourceItem) => sourceItem.locale,
-      },
-      "slug"
-    );
-    //------------------------------------
     // ADDING TAG-CATEGORIES
     //------------------------------------
     await seedCollectionWithTranslation(
@@ -148,6 +133,27 @@ export default {
       {
         title: (sourceItem) => sourceItem.title,
         slug: (sourceItem) => sourceItem.slug,
+        locale: (sourceItem) => sourceItem.locale,
+      },
+      "slug"
+    );
+    //------------------------------------
+    // ADDING TAGS
+    //------------------------------------
+    await seedCollectionWithTranslation(
+      strapi,
+      "api::tag.tag",
+      tagsData,
+      {
+        title: (sourceItem) => sourceItem.title,
+        slug: (sourceItem) => sourceItem.slug,
+        tagCategory: async (sourceItem) => {
+          const tagCategory = await strapi.db
+            .query("api::tag-category.tag-category", "i18n")
+            .findOne({ where: { slug: sourceItem.tagCategory } });
+          console.log({ tagCategory });
+          return tagCategory.id;
+        },
         locale: (sourceItem) => sourceItem.locale,
       },
       "slug"

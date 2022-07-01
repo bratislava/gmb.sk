@@ -5,10 +5,13 @@ interface IImageProps extends React.HTMLProps<HTMLImageElement> {
 }
 
 const ImageFigure = ({ src, alt, noCaption, width, height, sizes }: IImageProps) => {
+  const [altText, caption] = alt?.includes('||') ? alt?.split('||') || ['', ''] : [alt, alt]
   return (
-    <figure className="relative max-h-[400px] max-w-[400px]">
-      <img src={src} alt={alt} width={width} height={height} sizes={sizes} />
-      {!noCaption && alt && <figcaption className="mb-25 mt-12 block text-sm text-gmbGray">{alt}</figcaption>}
+    <figure className="relative aspect-auto max-w-[full]">
+      <img src={src} alt={altText} width={width} height={height} sizes={sizes} />
+      {!noCaption && alt && (
+        <figcaption className="mb-yMd mt-ySm block text-sm text-gmbGray">{caption || alt}</figcaption>
+      )}
     </figure>
   )
 }

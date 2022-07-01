@@ -1,9 +1,9 @@
 import cx from 'classnames'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
 import React from 'react'
 
 import Hamburger from '../../assets/icons/ba-hamburger.svg'
@@ -60,7 +60,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
   }, [router.events])
 
   React.useEffect(() => {
-    document.body.style.overflow = isSearchBarOpen ? 'hidden' : 'auto';
+    document.body.style.overflow = isSearchBarOpen ? 'hidden' : 'auto'
     return () => {
       document.body.style.overflow = 'auto'
     }
@@ -88,7 +88,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
   return (
     <>
       <nav className="fixed inset-x-0 top-0 z-50 flex h-nav w-full bg-white drop-shadow-md">
-        <div className="mx-6 flex w-full items-center justify-between lg:mx-9 3xl:mx-12">
+        <div className="mx-xMd flex w-full items-center justify-between">
           <Link href="/" preserveStyle noUnderline className="group min-w-fit">
             <div className="flex">
               <div className="h-logoHeight w-logoWidth">
@@ -97,7 +97,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
               <span
                 id="navLogoText"
-                className="absolute ml-4 whitespace-nowrap pl-logoWidth text-sm leading-4 group-hover:underline"
+                className="absolute ml-4 whitespace-nowrap pl-logoWidth text-sm leading-[var(--font-size-sm)] group-hover:underline"
               >
                 {i18n.language === 'sk' ? t('common.cityGallery') : t('common.bratislavaGenitiv')}
                 <br />
@@ -106,12 +106,16 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             </div>
           </Link>
 
-          <button type="button" className="flex xl:hidden" onClick={toggleMobileMenu} aria-label="Menu">
-            {isMobileMenuOpen ? <CloseIcon /> : <Hamburger />}
+          <button type="button" className="flex lg:hidden" onClick={toggleMobileMenu} aria-label="Menu">
+            {isMobileMenuOpen ? (
+              <CloseIcon className="dw-[30px] dh-[30px]" />
+            ) : (
+              <Hamburger className="dw-[30px] dh-[30px]" />
+            )}
           </button>
 
           <div
-            className={cx('xl:flex xl:space-x-8 ', {
+            className={cx('lg:flex lg:space-x-xMd', {
               'absolute w-full left-0 top-nav bg-white flex flex-col items-center justify-center gap-7 pb-12':
                 isMobileMenuOpen,
               hidden: !isMobileMenuOpen,
@@ -128,10 +132,10 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             </Button>
 
             <button type="button" className="xl:ml-5" onClick={toggleSearchBar} aria-label={t('search')}>
-              <SearchIcon />
+              <SearchIcon className="dw-[36px]" />
             </button>
 
-            <div className="text-gray-500 xl:hidden">
+            <div className="text-gray-500 lg:hidden">
               <AppLangSwitchers contentPage={withAttributes(contentPage) ?? undefined} />
             </div>
           </div>

@@ -1,6 +1,5 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
-import React from 'react'
 
 import EmailIcon from '../../assets/icons/social-platforms/E-mail.svg'
 import FacebookIcon from '../../assets/icons/social-platforms/Facebook.svg'
@@ -25,7 +24,7 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
   const { t } = useTranslation()
 
   const defaultEmailSubject = 'Galéria mesta Bratislavy'
-  const url = `${process.env.NEXT_URL}/detail/${slug}`
+  const url = `${process.env.NEXT_PUBLIC_NEXT_URL}/detail/${slug}`
 
   const openInNewWindow: Platform[] = ['facebook']
 
@@ -42,12 +41,12 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
   const iconSize = 32
   const size = { height: iconSize, width: iconSize }
 
-  const content = {
-    facebook: <FacebookIcon {...size} />,
-    email: <EmailIcon {...size} />,
-    twitter: <TwitterIcon {...size} />,
-    whatsapp: <WhatsAppIcon {...size} />,
-    linkedin: <LinkedInIcon {...size} />,
+  const ShareIcon = {
+    facebook: FacebookIcon,
+    email: EmailIcon,
+    twitter: TwitterIcon,
+    whatsapp: WhatsAppIcon,
+    linkedin: LinkedInIcon,
   }[platform]
 
   return (
@@ -59,12 +58,14 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
           return
         }
         // eslint-disable-next-line security/detect-non-literal-fs-filename
-        window.open(href, t('common.share'), 'width=600,height=600')
+        window.open(encodedHref, t('common.share'), 'width=600,height=600')
         event.preventDefault()
       }}
       aria-label={t(`common.shareOn${capitalizeFirstLetter(platform)}`)}
     >
-      <span className={cx(className, 'w-8 h-8')}>{content}</span>
+      <span className={cx(className)}>
+        <ShareIcon {...size} className="dw-[32px]" />
+      </span>
     </Link>
   )
 }

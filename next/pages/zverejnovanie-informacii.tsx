@@ -1,13 +1,13 @@
 import { GetStaticProps } from 'next'
-import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Head from 'next/head'
 
 import Footer from '../components/molecules/Footer'
 import DownloadSection from '../components/molecules/sections/DownloadSection'
 import { DisclosureOfInformationPageQuery } from '../graphql'
 import { client } from '../utils/gql'
 import { isDefined, withAttributes } from '../utils/isDefined'
-import { ssrTranslations } from '../utils/translations'
 
 interface DisclosureOfInformationProps {
   contact: DisclosureOfInformationPageQuery['contact']
@@ -24,8 +24,8 @@ export const DisclosureOfInformation = ({ contact }: DisclosureOfInformationProp
       <Head>
         <title>{title}</title>
       </Head>
-      <h1 className="m-6 text-xxl lg:m-9 3xl:m-12">{title}</h1>
-      <div className="m-6 lg:m-9 3xl:m-12">
+      <h1 className="m-yLg text-xxl 3xl:m-12">{title}</h1>
+      <div className="m-yLg">
         <iframe
           title={t('footer.disclosureOfInformation')}
           src="https://zmluvy.egov.sk/egov/contracts/place:259/iframe/showZmluvy/showFaktury/showObjednavky/orderBy:datum/direction:desc"
@@ -45,7 +45,7 @@ export const DisclosureOfInformation = ({ contact }: DisclosureOfInformationProp
 export const getStaticProps: GetStaticProps = async ({ locale = 'sk' }) => {
   const [{ contact }, translations] = await Promise.all([
     client.DisclosureOfInformationPage({ locale }),
-    ssrTranslations({ locale }, ['common']),
+    serverSideTranslations(locale, ['common']),
   ])
 
   return {
@@ -53,7 +53,7 @@ export const getStaticProps: GetStaticProps = async ({ locale = 'sk' }) => {
       contact,
       ...translations,
     },
-    revalidate: 60 * 5,
+    revalidate: 3,
   }
 }
 export default DisclosureOfInformation
