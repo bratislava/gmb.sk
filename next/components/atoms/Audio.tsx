@@ -8,7 +8,7 @@ interface AudioProps {
 }
 
 interface SoundCloudResponse {
-  /** The response has more fields, but we are interested only in this one one */
+  /** The response has more fields, but we are interested only in this one */
   html: string
 }
 
@@ -16,7 +16,7 @@ const Audio = ({ url }: AudioProps) => {
   const { t } = useTranslation()
 
   const { data: embedSoundCloudHtml, error } = useSWR<string | JSX.Element | JSX.Element[], Error>(
-    'soundcloudEmbed',
+    `soundcloudEmbed ${url}`,
     async () => {
       /** Fetch embed HTML from the Soundcloud api for given url */
       const soundCloudEmbedDataPromise = fetch(`https://soundcloud.com/oembed?url=${url}&format=json`).then((res) => {
