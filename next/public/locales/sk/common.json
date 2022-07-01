@@ -65,6 +65,8 @@
     "cityGallery": "Galéria mesta",
     "search": "Hľadať",
     "closeSearch": "Zatvoriť hľadanie",
+    "loading": "Načítava sa...",
+    "error": "Nastala chyba. Skúste to znova neskôr.",
     "documents": "Dokumenty"
   },
   "navigation": {

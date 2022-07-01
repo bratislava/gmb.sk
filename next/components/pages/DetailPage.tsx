@@ -108,13 +108,12 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           {perex && <div className="mb-yLg text-lg">{perex}</div>}
 
           <div className="ml-xLg">
-            {mainContent?.filter(isDefined).map((section, index) => {
-              console.log('🚀 ~ file: DetailPage.tsx ~ line 111 ~ {mainContent?.filter ~ section', section)
+            {mainContent?.filter(isDefined).map((section) => {
               if (section.__typename === 'ComponentSectionsRichtextSection') {
                 return (
                   <RichtextSection
                     anchor={getAnchor(section.submenuTitle)}
-                    key={index}
+                    key={section.id}
                     content={section.content}
                     accentColor={getContentPageColor(contentPage)}
                   />
@@ -122,7 +121,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
               }
               if (section.__typename === 'ComponentSectionsVideoSection') {
                 return (
-                  <Section anchor={getAnchor(section.submenuTitle)} key={index}>
+                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id}>
                     <h3 className="mt-10 pb-8 text-lg">{section.title}</h3>
                     {section.url ? <Video url={section.url} className="mb-10" /> : null}
                   </Section>
@@ -130,9 +129,9 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
               }
               if (section.__typename === 'ComponentSectionsAudioSection') {
                 return (
-                  <Section anchor={getAnchor(section.submenuTitle)} key={index}>
+                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id}>
                     <h3 className="mt-10 pb-8 text-lg">{section.title}</h3>
-                    {section.url ? <Audio url={section.url} className="mb-10" /> : null}
+                    {section.url ? <Audio url={section.url} /> : null}
                   </Section>
                 )
               }
