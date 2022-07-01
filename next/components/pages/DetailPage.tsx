@@ -4,6 +4,7 @@ import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
+import Audio from '../atoms/Audio'
 import Seo from '../atoms/Seo'
 import Video from '../atoms/Video'
 import Footer from '../molecules/Footer'
@@ -108,6 +109,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
 
           <div className="ml-xLg">
             {mainContent?.filter(isDefined).map((section, index) => {
+              console.log('🚀 ~ file: DetailPage.tsx ~ line 111 ~ {mainContent?.filter ~ section', section)
               if (section.__typename === 'ComponentSectionsRichtextSection') {
                 return (
                   <RichtextSection
@@ -123,6 +125,14 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
                   <Section anchor={getAnchor(section.submenuTitle)} key={index}>
                     <h3 className="mt-10 pb-8 text-lg">{section.title}</h3>
                     {section.url ? <Video url={section.url} className="mb-10" /> : null}
+                  </Section>
+                )
+              }
+              if (section.__typename === 'ComponentSectionsAudioSection') {
+                return (
+                  <Section anchor={getAnchor(section.submenuTitle)} key={index}>
+                    <h3 className="mt-10 pb-8 text-lg">{section.title}</h3>
+                    {section.url ? <Audio url={section.url} className="mb-10" /> : null}
                   </Section>
                 )
               }

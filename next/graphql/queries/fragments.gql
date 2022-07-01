@@ -339,6 +339,13 @@ fragment VideoSection on ComponentSectionsVideoSection {
   url
 }
 
+fragment AudioSection on ComponentSectionsAudioSection {
+  id
+  title
+  submenuTitle
+  url
+}
+
 fragment TicketsSection on ComponentSectionsTicketsSection {
   id
   title
@@ -408,5 +415,9 @@ fragment MainContent on ContentPageMainContentDynamicZone {
   ... on ComponentSectionsVideoSection {
     __typename
     ...VideoSection
+  }
+  ... on ComponentSectionsAudioSection {
+    __typename
+    ...AudioSection
   }
 }
