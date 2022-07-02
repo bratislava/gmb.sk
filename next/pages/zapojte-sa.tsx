@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps<GetInvolvedProps> = async ({ locale 
       news,
       ...translations,
     },
-    revalidate: 3,
+    revalidate: 10,
   }
 }
 
