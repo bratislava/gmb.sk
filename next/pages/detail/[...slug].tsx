@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, loca
       contact,
       ...translations,
     },
-    revalidate: 3,
+    revalidate: 10,
   }
 }
 
