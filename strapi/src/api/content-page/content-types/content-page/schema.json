@@ -90,7 +90,8 @@
       "type": "dynamiczone",
       "components": [
         "sections.richtext-section",
-        "sections.video-section"
+        "sections.video-section",
+        "sections.audio-section"
       ]
     },
     "slider": {
