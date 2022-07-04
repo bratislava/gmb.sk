@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { buildUrl } from '../../utils/gql'
 import { isDefined } from '../../utils/isDefined'
 
-const contentPageEndpoint = buildUrl('/content-pages')
+const contentPageEndpoint = buildUrl('/api/content-pages')
 
 const searchContentPages = async (req: NextApiRequest, res: NextApiResponse) => {
   const searchTerm = req.query.searchTerm as string
