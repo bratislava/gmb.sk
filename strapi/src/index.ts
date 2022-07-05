@@ -42,7 +42,7 @@ export default {
 
                 let filters: any = { slug };
                 if (isPublished) {
-                  filters = { slug, publishedAt: { $notNull: isPublished } };
+                  filters = { slug, publishedAt: { $notNull: true } };
                 }
                 const results = await strapi.entityService.findMany(apiName, {
                   filters,
