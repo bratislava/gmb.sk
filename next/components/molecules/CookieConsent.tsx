@@ -7,6 +7,8 @@ import Modal from 'react-modal'
 
 import ChevronDown from '../../assets/icons/chevron-down.svg'
 import CloseButton from '../../assets/icons/close-x.svg'
+import Button from '../atoms/Button'
+import Link from '../atoms/Link'
 
 const CUSTOM_STYLES = {
   content: {
@@ -85,30 +87,31 @@ const CookieConsent = () => {
       <Modal
         isOpen={showModal}
         onRequestClose={closeModal}
-        style={CUSTOM_STYLES}
         ariaHideApp={false}
-        className="fixed mx-auto mt-nav min-h-fit w-10/12 md:w-7/12 lg:mt-0"
+        className="fixed top-[calc(50%+var(--height-nav))] left-1/2 z-50 mx-auto mt-yMd h-fit w-10/12 translate-y-[calc(-50%-var(--height-nav))] -translate-x-1/2 border-0 border-r-0 bg-white p-0 lg:top-1/2 lg:mt-0 lg:w-7/12 lg:-translate-y-1/2"
       >
-        <div>
-          <div className="mb-[10px] flex w-full items-center justify-between border-b px-5 md:p-5">
-            <div>{t('cookieConsent.modalTitle')}</div>
-            <div
-              className="m-3 cursor-pointer rounded-md border-2 border-gray-900 p-1 md:m-0 md:p-2"
-              onClick={closeModal}
-            >
-              <CloseButton className="dw-[15px]" />
-            </div>
+        <div className="flex h-[calc(100vh-var(--height-nav)-2*var(--padding-y-md))] flex-col items-center overflow-hidden lg:h-[500px]">
+          <div className="mb-[10px] flex w-full flex-[0_0_auto] items-center justify-between border-b py-ySm px-xSm">
+            <h1 className="text-lg">{t('cookieConsent.modalTitle')}</h1>
+            <button type="button" onClick={closeModal}>
+              <CloseButton className="dw-[25px]" />
+            </button>
           </div>
-          <div className="p-5">
-            <div className="h-full max-h-[400px] overflow-y-scroll">
+          <div className="flex min-h-0 flex-[1_1_auto] flex-col justify-between p-5">
+            <div className="shrink overflow-y-scroll">
               <div>
-                <div className="mb-2 font-medium">{t('cookieConsent.modalContentTitle')}</div>
-                <p
-                  className="text-sm"
-                  dangerouslySetInnerHTML={{
-                    __html: t('cookieConsent.modalContentBody'),
-                  }}
-                />
+                <div className="mb-2 text-md">{t('cookieConsent.modalContentTitle')}</div>
+                <p className="text-sm">
+                  {`${t('cookieConsent.modalContentBody')} `}
+                  <Link
+                    preserveStyle
+                    href="/"
+                    className="text-gmbGray underline underline-offset-2 hover:font-semibold"
+                  >
+                    {t('common.privacyPolicyGenitiv')}
+                  </Link>
+                  .
+                </p>
               </div>
               <Panel
                 title={t('cookieConsent.securityEssentialTitle')}
@@ -135,23 +138,17 @@ const CookieConsent = () => {
                 setPanel={setPanel}
               />
             </div>
-            <div className="mt-5 flex flex-col justify-between gap-1 md:flex-row">
-              <button className="rounded-sm bg-gray-900 px-3 py-1 text-sm text-white" onClick={saveSettings}>
+            <div className="mt-5 flex flex-col flex-nowrap justify-between gap-1 lg:flex-row">
+              <Button size="small" onClick={saveSettings}>
                 {t('cookieConsent.saveSettings')}
-              </button>
-              <div className="flex flex-col gap-1 md:flex-row">
-                <button
-                  className="min-w-[140px] rounded-sm bg-gray-900 py-1 text-sm text-white md:mr-1"
-                  onClick={declineCookies}
-                >
+              </Button>
+              <div className="flex flex-col gap-1 lg:flex-row">
+                <Button size="small" onClick={declineCookies}>
                   {t('cookieConsent.rejectAll')}
-                </button>
-                <button
-                  className="min-w-[140px] rounded-sm bg-gray-900 py-1 text-sm text-white"
-                  onClick={acceptAllCookies}
-                >
+                </Button>
+                <Button size="small" onClick={acceptAllCookies}>
                   {t('cookieConsent.acceptAll')}
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -164,33 +161,31 @@ const CookieConsent = () => {
         buttonText={t('cookieConsent.acceptAll')}
         enableDeclineButton
         declineButtonText={t('cookieConsent.rejectAll')}
-        declineButtonClasses="text-sm"
         flipButtons
-        declineButtonStyle={{
-          background: 'black',
-          minWidth: '120px',
-        }}
-        buttonClasses="bg-gray-200 text-sm"
-        buttonStyle={{
-          background: 'black',
-          color: 'white',
-          minWidth: '120px',
-        }}
-        containerClasses="bg-white"
-        style={{
-          zIndex: '1',
-          display: !showModal && !isConsentSubmitted ? 'flex' : 'none',
-          alignItems: 'center',
-          background: 'white',
-          color: 'black',
-          padding: '10px',
-        }}
+        ButtonComponent={Button}
+        customButtonProps={{ size: 'small' }}
+        customDeclineButtonProps={{ size: 'small' }}
+        buttonClasses="lg:whitespace-nowrap"
+        declineButtonClasses="lg:whitespace-nowrap"
+        disableButtonStyles
+        buttonWrapperClasses="flex flex-col gap-y-ySm"
+        containerClasses={cx(
+          'fixed left-0 bottom-0 bg-white z-1 items-center text-black px-xMd py-ySm justify-between flex-nowrap gap-x-xMd',
+          {
+            flex: !showModal && !isConsentSubmitted,
+            hidden: showModal || isConsentSubmitted,
+          }
+        )}
+        disableStyles
         expires={365}
         cookieName="city-library-gdpr"
       >
         <div className="text-sm">
           {t('cookieConsent.body')}{' '}
-          <span className="cursor-pointer text-red-600 underline" onClick={() => setShowModal(true)}>
+          <span
+            className="cursor-pointer text-gmbGray underline underline-offset-2 hover:font-semibold"
+            onClick={() => setShowModal(true)}
+          >
             {t('cookieConsent.setting')}
           </span>
         </div>
@@ -208,11 +203,12 @@ interface SwitchProps {
 const Switch = ({ value, onValueChange, disabled }: SwitchProps) => {
   return (
     <button
+      type="button"
       disabled={disabled}
-      className={cx('w-10 h-5 flex items-center border border-gray-900 rounded-full mx-3 px-0.5', {
-        'justify-end bg-red-600': value,
-        'bg-gray-400': !value,
-        'cursor-not-allowed border-gray-100 bg-gray-300': disabled,
+      className={cx('dw-[40px] dh-[20px] flex items-center border-2 rounded-full border-gmbDark mx-3 px-0.5', {
+        'justify-end bg-gmbDark': value,
+        'bg-gmbLightGray': !value,
+        'cursor-not-allowed !bg-gmbGray': disabled,
       })}
       onClick={(e) => {
         e.stopPropagation()
@@ -223,7 +219,7 @@ const Switch = ({ value, onValueChange, disabled }: SwitchProps) => {
         onClick={(e) => {
           if (disabled) e.stopPropagation()
         }}
-        className={cx('w-3.5 h-3.5 bg-white rounded-full shadow-md')}
+        className={cx('dw-[14px] dh-[14px] bg-white rounded-full shadow-md')}
       />
     </button>
   )
@@ -243,10 +239,12 @@ const Panel = ({ title, content, value, onValueChange, isOpen, setPanel }: Panel
     <>
       <div
         onClick={() => setPanel(isOpen ? '' : title)}
-        className="mt-2 flex cursor-pointer items-center justify-between bg-gray-200 px-2 py-3"
+        className="mt-ySm flex cursor-pointer items-center justify-between bg-gmbLightGray px-xSm py-ySm"
       >
-        <div className="flex items-center gap-2">
-          <span>{isOpen ? <ChevronDown transform="rotate(180deg)" /> : <ChevronDown />}</span>
+        <div className="flex items-center gap-xSm text-md text-black">
+          <span>
+            {isOpen ? <ChevronDown className="rotate-180 dw-[15px]" /> : <ChevronDown className="dw-[15px]" />}
+          </span>
           {title}
         </div>
         <Switch
@@ -256,9 +254,9 @@ const Panel = ({ title, content, value, onValueChange, isOpen, setPanel }: Panel
         />
       </div>
       <div
-        className={cx('text-base text-gray-universal-70 transform transition-all duration-200 ease-linear', {
+        className={cx('text-md text-gray-universal-70 transform transition-all duration-200 ease-linear', {
           'h-0 hidden': !isOpen,
-          'h-full mt-1 pb-8': isOpen,
+          'mt-1 pb-yMd': isOpen,
         })}
       >
         {content}

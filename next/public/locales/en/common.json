@@ -66,7 +66,9 @@
     "closeSearch": "Close search",
     "loading": "Loading...",
     "error": "There was an error. Please try again later.",
-    "documents": "Documents"
+    "documents": "Documents",
+    "privacyPolicy": "privacy policy",
+    "privacyPolicyGenitiv": "privacy policy"
   },
   "navigation": {
     "visitUs": "Visit us",
@@ -116,7 +118,7 @@
     "rejectAll": "Reject all",
     "modalTitle": "Detail Cookies settings",
     "modalContentTitle": "Use of cookies",
-    "modalContentBody": "We use cookies to provide the basic functionality of the website and to improve your online experience. For each category you can choose to opt in/out. For further details regarding cookies and other sensitive data, please see the full <a href='/en/about-us/privacy-terms-and-conditions' class='hover:underline'><b>privacy policy.</b></a>",
+    "modalContentBody": "We use cookies to provide the basic functionality of the website and to improve your online experience. For each category you can choose to opt in/out. For further details regarding cookies and other sensitive data, please see the full",
     "securityEssentialTitle": "Security essential cookies",
     "securityEssentialContent": "These cookies are essential for the proper functioning of the website. Without these cookies, the website would not function properly.",
     "performanceTitle": "Performance and analytics cookies",

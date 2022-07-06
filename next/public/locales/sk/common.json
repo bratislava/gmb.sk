@@ -67,7 +67,9 @@
     "closeSearch": "Zatvoriť hľadanie",
     "loading": "Načítava sa...",
     "error": "Nastala chyba. Skúste to znova neskôr.",
-    "documents": "Dokumenty"
+    "documents": "Dokumenty",
+    "privacyPolicy": "ochrana osobných údajov",
+    "privacyPolicyGenitiv": "ochrany osobných údajov"
   },
   "navigation": {
     "visitUs": "Navštívte",
@@ -117,7 +119,7 @@
     "rejectAll": "Odmietnuť všetky",
     "modalTitle": "Podrobné nastavenia cookies",
     "modalContentTitle": "Používanie cookies",
-    "modalContentBody": "Používame cookies na zabezpečenie základných funkcionalít webovej stránky a na zlepšenie vášho online zážitku. Pre každú kategóriu si môžete vybrať,či sa chcete prihlásiť/odhlásiť.Ďalšie podrobnosti týkajúce sa súborov cookies a iných citlivých údajov nájdete v úplnom znení v zásadách <a href='/o-nas/ochrana-osobnych-udajov' class='hover:underline'><b>ochrany osobných údajov.</b></a>",
+    "modalContentBody": "Používame cookies na zabezpečenie základných funkcionalít webovej stránky a na zlepšenie vášho online zážitku. Pre každú kategóriu si môžete vybrať,či sa chcete prihlásiť/odhlásiť. Ďalšie podrobnosti týkajúce sa súborov cookies a iných citlivých údajov nájdete v úplnom znení v zásadách",
     "securityEssentialTitle": "Bezpodmienečne nevyhnutné cookies",
     "securityEssentialContent": "Tieto cookies sú nevyhnutné pre správne fungovanie webovej stránky. Bez nich by webstránka nefungovala správne.",
     "performanceTitle": "Cookies pre výkonnosť a analýzu",
