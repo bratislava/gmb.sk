@@ -2,7 +2,8 @@
   "collectionName": "components_sections_audio_sections",
   "info": {
     "displayName": "audio section",
-    "icon": "play-circle"
+    "icon": "microphone",
+    "description": ""
   },
   "options": {},
   "attributes": {
