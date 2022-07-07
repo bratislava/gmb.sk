@@ -49,7 +49,7 @@ export const getStaticProps: GetStaticProps<VisitUsProps> = async ({ locale = 's
       tickets,
       ...translations,
     },
-    revalidate: 3,
+    revalidate: 10,
   }
 }
 

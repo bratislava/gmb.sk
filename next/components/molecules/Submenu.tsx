@@ -15,7 +15,7 @@ interface SubmenuProps {
   filters?: React.ReactNode
 }
 
-export const Submenu = ({ items, filters }: SubmenuProps) => {
+const Submenu = ({ items, filters }: SubmenuProps) => {
   const { t } = useTranslation()
 
   const [isFilterOpen, setFilterOpen] = useState(false)

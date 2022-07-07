@@ -64,6 +64,8 @@
     "cityGallery": "City Gallery",
     "search": "Search",
     "closeSearch": "Close search",
+    "loading": "Loading...",
+    "error": "There was an error. Please try again later.",
     "documents": "Documents"
   },
   "navigation": {
