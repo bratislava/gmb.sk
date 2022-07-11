@@ -24,7 +24,7 @@ const CookieConsent = () => {
   }
 
   const saveSettings = () => {
-    Cookies.set('city-library-gdpr', {
+    Cookies.set('city-gallery-gdpr', {
       security_cookies: securityCookies,
       performance_cookies: performanceCookies,
       advertising_and_targeting_cookies: advertisingCookies,
@@ -38,7 +38,7 @@ const CookieConsent = () => {
     setConsent(true)
   }
   const acceptAllCookies = () => {
-    Cookies.set('city-library-gdpr', {
+    Cookies.set('city-gallery-gdpr', {
       security_cookies: true,
       performance_cookies: true,
       advertising_and_targeting_cookies: true,
@@ -54,7 +54,7 @@ const CookieConsent = () => {
   const declineCookies = () => {
     setPerformanceCookies(false)
     setAdvertisingCookies(false)
-    Cookies.set('city-library-gdpr', {
+    Cookies.set('city-gallery-gdpr', {
       security_cookies: true,
       performance_cookies: false,
       advertising_and_targeting_cookies: false,
@@ -165,7 +165,7 @@ const CookieConsent = () => {
         )}
         disableStyles
         expires={365}
-        cookieName="city-library-gdpr"
+        cookieName="city-gallery-gdpr"
       >
         <div className="text-sm">
           {t('cookieConsent.body')}{' '}
@@ -192,11 +192,14 @@ const Switch = ({ value, onValueChange, disabled }: SwitchProps) => {
     <button
       type="button"
       disabled={disabled}
-      className={cx('dw-[60px] dh-[30px] flex items-center border-2 rounded-full border-gmbDark mx-3 px-0.5', {
-        'justify-end bg-gmbDark': value,
-        'bg-gmbLightGray': !value,
-        'cursor-not-allowed !bg-gmbGray': disabled,
-      })}
+      className={cx(
+        'dw-[60px] dh-[30px] shrink-0 grow-0 flex items-center border-2 rounded-full border-gmbDark mx-3 px-0.5',
+        {
+          'justify-end bg-gmbDark': value,
+          'bg-gmbGray': !value,
+          'cursor-not-allowed !bg-gmbGray': disabled,
+        }
+      )}
       onClick={(e) => {
         e.stopPropagation()
         onValueChange(!value)
