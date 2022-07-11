@@ -10,19 +10,6 @@ import CloseButton from '../../assets/icons/close-x.svg'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
 
-const CUSTOM_STYLES = {
-  content: {
-    zIndex: '100',
-    background: 'white',
-    border: 'none',
-    borderRadius: '0',
-    padding: '0',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%,-50%)',
-  },
-}
-
 const CookieConsent = () => {
   const { t } = useTranslation()
   const [showModal, setShowModal] = React.useState(false)
@@ -90,7 +77,7 @@ const CookieConsent = () => {
         ariaHideApp={false}
         className="fixed top-[calc(50%+var(--height-nav))] left-1/2 z-50 mx-auto mt-yMd h-fit w-10/12 translate-y-[calc(-50%-var(--height-nav))] -translate-x-1/2 border-0 border-r-0 bg-white p-0 lg:top-1/2 lg:mt-0 lg:w-7/12 lg:-translate-y-1/2"
       >
-        <div className="flex h-[calc(100vh-var(--height-nav)-2*var(--padding-y-md))] flex-col items-center overflow-hidden lg:h-[500px]">
+        <div className="flex h-[calc(100vh-var(--height-nav)-2*var(--padding-y-md))] flex-col items-center overflow-hidden lg:dh-[650px]">
           <div className="mb-[10px] flex w-full flex-[0_0_auto] items-center justify-between border-b py-ySm px-xSm">
             <h1 className="text-lg">{t('cookieConsent.modalTitle')}</h1>
             <button type="button" onClick={closeModal}>
@@ -205,7 +192,7 @@ const Switch = ({ value, onValueChange, disabled }: SwitchProps) => {
     <button
       type="button"
       disabled={disabled}
-      className={cx('dw-[40px] dh-[20px] flex items-center border-2 rounded-full border-gmbDark mx-3 px-0.5', {
+      className={cx('dw-[60px] dh-[30px] flex items-center border-2 rounded-full border-gmbDark mx-3 px-0.5', {
         'justify-end bg-gmbDark': value,
         'bg-gmbLightGray': !value,
         'cursor-not-allowed !bg-gmbGray': disabled,
@@ -219,7 +206,7 @@ const Switch = ({ value, onValueChange, disabled }: SwitchProps) => {
         onClick={(e) => {
           if (disabled) e.stopPropagation()
         }}
-        className={cx('dw-[14px] dh-[14px] bg-white rounded-full shadow-md')}
+        className={cx('dw-[21px] dh-[21px] bg-white rounded-full shadow-md')}
       />
     </button>
   )
