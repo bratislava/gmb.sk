@@ -25,6 +25,11 @@ export const buildUrl = (path: string): string =>
       : window.location.origin
   }${path}`
 
-const gql = new GraphQLClient(buildUrl('/graphql'))
+  const graphQLUrl = buildUrl('/graphql')
+
+  // eslint-disable-next-line no-console
+  console.log('GraphQL URL:', graphQLUrl)
+
+  const gql = new GraphQLClient(graphQLUrl)
 
 export const client = getSdk(gql)
