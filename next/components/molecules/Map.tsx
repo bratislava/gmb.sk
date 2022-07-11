@@ -2,7 +2,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { MouseEvent, useCallback, useEffect, useRef, useState } from 'react'
 import Mapbox, { MapRef, Marker } from 'react-map-gl'
 import { usePreviousImmediate } from 'rooks'
 
@@ -14,6 +14,7 @@ import Link from '../atoms/Link'
 
 interface MapProps {
   mapboxAccessToken: string
+  // eslint-disable-next-line react/require-default-props
   contactInfo?: ContactEntityFragment
 }
 
@@ -42,6 +43,7 @@ const ZOOMED_OUT_BOUNDS: mapboxgl.LngLatBoundsLike = [
   [17.117_128_583_907_345, 48.148_904_917_409_11],
 ]
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
   const [selectedTab, setSelectedTab] = useState<Tab | null>(null)
   const previousSelectedTab = usePreviousImmediate(selectedTab)
@@ -72,6 +74,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
 
   const galleries = [
     {
+      key: 'mirbach',
       icon: GmbLogoIcon,
       hoverIcon: MirbachovPalacIcon,
       coordinates: [17.107_771, 48.144_776],
@@ -82,15 +85,13 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
           text: contactInfo?.attributes?.mirbach?.title,
         },
         {
-          text: `${contactInfo?.attributes?.mirbach?.address} / ${contactInfo?.attributes?.mirbach?.zip} ${contactInfo?.attributes?.mirbach?.city}`,
+          text: `${contactInfo?.attributes?.mirbach?.address ?? 'no address'} / ${
+            contactInfo?.attributes?.mirbach?.zip ?? 'no zip'
+          } ${contactInfo?.attributes?.mirbach?.city ?? 'no city'}`,
         },
         {
           title: t('common.openingHours'),
           text: contactInfo?.attributes?.openingHours,
-        },
-        {
-          title: t('common.contact'),
-          text: contactInfo?.attributes?.mirbach?.phone,
         },
         {
           title: t('map.virtualTour'),
@@ -99,6 +100,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
       ],
     },
     {
+      key: 'palffy',
       icon: GmbLogoIcon,
       hoverIcon: PalffyhoPalacIcon,
       coordinates: [17.107_084, 48.142_137],
@@ -109,15 +111,13 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
           text: contactInfo?.attributes?.palffy?.title,
         },
         {
-          text: `${contactInfo?.attributes?.palffy?.address} / ${contactInfo?.attributes?.palffy?.zip} ${contactInfo?.attributes?.palffy?.city}`,
+          text: `${contactInfo?.attributes?.palffy?.address ?? 'no address'} / ${
+            contactInfo?.attributes?.palffy?.zip ?? 'no zip'
+          } ${contactInfo?.attributes?.palffy?.city ?? 'no city'}`,
         },
         {
           title: t('common.openingHours'),
           text: contactInfo?.attributes?.openingHours,
-        },
-        {
-          title: t('common.contact'),
-          text: contactInfo?.attributes?.palffy?.phone,
         },
         {
           title: t('map.virtualTour'),
@@ -129,12 +129,20 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
 
   const mapRef = useRef<MapRef>(null)
 
+  const onGalleryClick = useCallback((gallery: typeof galleries[number], e: MouseEvent) => {
+    e.stopPropagation()
+    setDescriptionSections(gallery.descriptionSections)
+    setSelectedFeaturePoint(null)
+    setSelectedPlaceUrl(gallery.navigationLink)
+  }, [])
+
   const onMapLoad = useCallback(() => {
     const MAP = mapRef.current
     if (!MAP) return
 
     MAP.fitBounds(ZOOMED_IN_BOUNDS, {
       padding: { right: 100, top: 0, left: 32, bottom: 0 },
+      duration: 0,
     })
 
     customLayers.forEach((customLayer) => {
@@ -157,7 +165,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
 
       if (!clickedFeature) return
 
-      if (!customLayers.find((customLayer) => customLayer === clickedFeature.layer.id)) {
+      if (!customLayers.includes(clickedFeature.layer.id)) {
         setDescriptionSections([])
         setSelectedFeaturePoint(null)
         setSelectedPlaceUrl(null)
@@ -166,20 +174,20 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
 
       const properties = Object.keys(clickedFeature.properties ?? {})
 
-      const descriptionSections: DescriptionSection[] = []
+      const newDescriptionSections: DescriptionSection[] = []
 
       properties.forEach((property) => {
         descriptionSections.push({
           title: property,
-          text: clickedFeature.properties && clickedFeature.properties[property],
+          text: clickedFeature.properties ? (clickedFeature.properties[property] as string) : '',
         })
       })
 
-      setDescriptionSections(descriptionSections)
+      setDescriptionSections(newDescriptionSections)
       setSelectedFeaturePoint([event.lngLat.lng, event.lngLat.lat])
       setSelectedPlaceUrl(null)
     },
-    [mapRef, setDescriptionSections]
+    [descriptionSections]
   )
 
   // on layers change
@@ -219,6 +227,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
         {tabs.map((tab) => {
           return (
             <button
+              type="button"
               key={tab.key}
               className={cx('flex space-x-2 uppercase px-4 py-2 items-center underline-offset-2 hover:underline', {
                 underline: selectedTab?.key === tab.key,
@@ -237,11 +246,12 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
             mapboxAccessToken={mapboxAccessToken}
             initialViewState={{
               latitude: 48.143_884_942_949_77,
-              longitude: 17.106_987_381_553_267,
-              zoom: 14,
+              longitude: 17.107_397_852_380_586,
+              zoom: 15.829_748_625_586_49,
             }}
             onLoad={onMapLoad}
             onClick={onMapClick}
+            // eslint-disable-next-line no-secrets/no-secrets
             mapStyle="mapbox://styles/bratislava01/cl10zhtsr007t15o8zon1rwsb"
             doubleClickZoom={false}
             dragRotate={false}
@@ -250,17 +260,9 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
             touchZoomRotate={false}
             interactive={false}
           >
-            {galleries.map((gallery, key) => (
-              <Marker longitude={gallery.coordinates[0]} latitude={gallery.coordinates[1]} key={key}>
-                <button
-                  className="group"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    setDescriptionSections(gallery.descriptionSections)
-                    setSelectedFeaturePoint(null)
-                    setSelectedPlaceUrl(gallery.navigationLink)
-                  }}
-                >
+            {galleries.map((gallery) => (
+              <Marker longitude={gallery.coordinates[0]} latitude={gallery.coordinates[1]} key={gallery.key}>
+                <button type="button" className="group" onClick={(e) => onGalleryClick(gallery, e)}>
                   <gallery.icon className="group-hover:scale-0" width="64" height="64" />
                   <gallery.hoverIcon className="absolute top-0 scale-0 group-hover:scale-100" width="64" height="64" />
                 </button>
@@ -273,8 +275,8 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
       <div className="flex items-center p-8 lg:col-start-3 lg:h-[600px]">
         <div className="flex flex-col space-y-4 text-[20px] lg:px-xMd">
           {descriptionSections.length > 0 ? (
-            descriptionSections.map(({ title, text }, key) => (
-              <div key={key}>
+            descriptionSections.map(({ title, text }) => (
+              <div key={text}>
                 {text?.startsWith && text.startsWith('http') ? (
                   <Link href={text} target="_blank" rel="noreferrer">
                     {title}
@@ -292,17 +294,12 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
               {!['mhd', 'bike', 'car'].includes(selectedTab?.key ?? '') && (
                 <>
                   <div className="text-lg">{t('map.ourPremises')}</div>
-                  {galleries.map((gallery, key) => (
+                  {galleries.map((gallery) => (
                     <button
-                      key={key}
+                      type="button"
+                      key={gallery.key}
                       className="flex items-center gap-2 hover:underline"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        setDescriptionSections(gallery.descriptionSections)
-                        setSelectedFeaturePoint(null)
-                        setSelectedPlaceUrl(gallery.navigationLink)
-                        console.log(gallery.navigationLink)
-                      }}
+                      onClick={(e) => onGalleryClick(gallery, e)}
                     >
                       <span>{gallery.descriptionSections[0].text}</span>
                     </button>
