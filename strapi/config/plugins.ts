@@ -31,6 +31,36 @@ export default {
             basePath: "navstivte",
           },
         },
+        {
+          uid: "api::about-us-page.about-us-page",
+          published: {
+            basePath: "o-galerii",
+          },
+        },
+        {
+          uid: "api::explore-page.explore-page",
+          published: {
+            basePath: "objavujte",
+          },
+        },
+        {
+          uid: "api::exhibitions-page.exhibitions-page",
+          published: {
+            basePath: "vystavy",
+          },
+        },
+        {
+          uid: "api::get-involved-page.get-involved-page",
+          published: {
+            basePath: "zapojte-sa",
+          },
+        },
+        {
+          uid: "api::collections-page.collections-page",
+          published: {
+            basePath: "zbierky",
+          },
+        },
       ],
     },
   },
