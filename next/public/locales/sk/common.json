@@ -105,6 +105,14 @@
     "navigate": "Navigovať",
     "carText": "Zaparkujte v najbližších parkovacích domoch alebo na uliciach v Starom Meste.",
     "publicTransportText": "Navštívte nás pohodlne a bez starostí vďaka mestskej hromadnej doprave.",
-    "bikeText": "Odložte si svoj bicykel v niektorom zo stojanov alebo využite zdielané bicykle."
+    "bikeText": "Odložte si svoj bicykel v niektorom zo stojanov alebo využite zdielané bicykle.",
+    "mirbachPalace": "Mirbachov palác",
+    "palffyPalace": "Pálffyho palác",
+    "name": "Názov",
+    "contact": "Kontakt",
+    "street": "Ulica",
+    "connections": "Spoje",
+    "price": "Cena",
+    "count": "Počet bicyklov"
   }
 }
