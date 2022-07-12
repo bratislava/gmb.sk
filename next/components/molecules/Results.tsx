@@ -1,11 +1,9 @@
-import React from 'react'
-
-import { ContentPage } from '../../graphql'
+import { ContentPageEntity } from '../../graphql'
 import { hasAttributes } from '../../utils/isDefined'
 import Link from '../atoms/Link'
 
 interface ResultsProps {
-  results: ContentPage[]
+  results: ContentPageEntity[]
   header: string
 }
 
@@ -14,20 +12,24 @@ const Results = ({ header, results }: ResultsProps) => {
     <div className="flex-col">
       <h3 className="text-xxl text-white ">{header}</h3>
       <div className="mt-10 flex h-full flex-col gap-5">
-        {results?.slice(0, 3).map((result) => {
-          return (
-            <Link key={result.slug} className="text-white" preserveStyle href={`/detail/${result.slug}`}>
-              <p className="text-md">{result.title}</p>
-              {result.tags ? (
-                <div className="flex gap-2">
-                  {result.tags.data.filter(hasAttributes).map((tag) => {
-                    return <p key={tag.id}>{tag.attributes.title}</p>
-                  })}
-                </div>
-              ) : null}
-            </Link>
-          )
-        })}
+        {results
+          ?.filter(hasAttributes)
+          .slice(0, 3)
+          .map((result) => {
+            const { slug, title, tags } = result.attributes
+            return (
+              <Link key={slug} className="text-white" preserveStyle href={`/detail/${slug}`}>
+                <p className="text-md">{title}</p>
+                {tags ? (
+                  <div className="flex gap-2">
+                    {tags.data.filter(hasAttributes).map((tag) => {
+                      return <p key={tag.attributes.slug}>{tag.attributes.title}</p>
+                    })}
+                  </div>
+                ) : null}
+              </Link>
+            )
+          })}
       </div>
     </div>
   )

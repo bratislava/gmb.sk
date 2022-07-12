@@ -25,7 +25,7 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
         h5: ({ children }) => <h5 className="pb-yMd text-sm font-semibold">{children}</h5>,
         h6: ({ children }) => <h6 className="pb-yMd text-sm font-semibold text-gmbGray">{children}</h6>,
         p: ({ children }) => {
-          if (typeof children[0] === 'string') return <p className="pb-yMd text-md">{children}</p>
+          if (children.some((child) => typeof child === 'string')) return <p className="pb-yMd text-md">{children}</p>
           return children as ReactElement
         },
         ul: ({ children }) => <ul className="list-disc py-yMd pl-xMd text-md">{children}</ul>,

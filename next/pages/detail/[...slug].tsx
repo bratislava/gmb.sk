@@ -1,6 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import React from 'react'
 
 import DetailPage from '../../components/pages/DetailPage'
 import { ContentPageBySlugQuery } from '../../graphql'
@@ -22,7 +21,7 @@ const Detail = ({ contentPage, contact }: DetailProps) => {
   return <DetailPage contentPage={contentPageWithAttributes} contactInfo={withAttributes(contact?.data)} />
 }
 
-export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, locale = 'sk' }) => {
+export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, locale = 'sk', preview }) => {
   if (!params) {
     return {
       notFound: true,
@@ -32,7 +31,7 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, loca
   const slug = (typeof params.slug === 'string' ? params.slug : params.slug?.join('/')) ?? ''
 
   const [{ contentPageBySlug: contentPage, contact }, translations] = await Promise.all([
-    client.ContentPageBySlug({ slug, locale }),
+    client.ContentPageBySlug({ slug, locale, isPublished: !preview }),
     serverSideTranslations(locale, ['common']),
   ])
 
