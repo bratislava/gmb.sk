@@ -3226,7 +3226,8 @@ export const PreviewsByTagsDocument = gql`
   contentPages(
     locale: $locale
     pagination: {start: $offset, limit: $limit}
-    filters: {tags: {slug: {in: $tagSlugs}}, place: {slug: {in: $placesSlugs}}, or: [{dateTo: {lte: $today}}, {and: [{dateFrom: {lte: $today}}, {dateTo: null}]}]}
+    filters: {tags: {slug: {in: $tagSlugs}}, place: {slug: {in: $placesSlugs}}, or: [{dateTo: {lt: $today}}, {and: [{dateFrom: {lt: $today}}, {dateTo: null}]}]}
+    sort: ["publishedAt:desc"]
   ) {
     data {
       ...SectionItemEntity
