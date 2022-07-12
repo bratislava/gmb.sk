@@ -5,10 +5,12 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     /** We use this a lot with isDefined and hasAttributes */
     'unicorn/no-array-callback-reference': 'off',
-    // Named export is easier to refactor automatically
+    /** Named export is easier to refactor automatically */
     'import/prefer-default-export': 'off',
     /** Too tedious to type every function return explicitly */
     '@typescript-eslint/explicit-function-return-type': 'off',
+    /** Not needed */
+    'react/require-default-props': 'off',
     /** We prefer arrow functions */
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
     /** It's annoying to refactor from one style to another */
@@ -18,12 +20,7 @@ module.exports = {
     /** Links get confused for secrets */
     'no-secrets/no-secrets': ['error', { ignoreContent: '^http' }],
     /** Use official sorting */
-    'tailwindcss/classnames-order': [
-      'warn',
-      {
-        officialSorting: true,
-      },
-    ],
+    'tailwindcss/classnames-order': ['warn', { officialSorting: true }],
   },
   ignorePatterns: ['*.config.*', 'graphql', '.eslintrc.js'],
 }

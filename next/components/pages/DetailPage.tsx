@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
 import { getContentPageColor } from '../../utils/getContentPageColor'
+import { getPurchaseId } from '../../utils/getPurchaseId'
 import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
 import Audio from '../atoms/Audio'
 import Seo from '../atoms/Seo'
@@ -36,7 +37,6 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
     place,
     placeTitle,
     placeAddress,
-    purchaseId,
     positions,
     partners,
     relatedContentTitle,
@@ -69,12 +69,12 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
         <title>{title}</title>
         <>
           {/* TODO: Query author from strapi */}
-          <meta property="og:article:author" content="author" />
+          {/* <meta property="og:article:author" content="author" /> */}
           {/* "A high-level section name. E.g. Technology" */}
-          <meta property="og:article:section" content="Art and culture" />
+          {/* <meta property="og:article:section" content="Art and culture" /> */}
           {/* article:tag are an 'array' which means more of the same meta tags are allowed */}
-          <meta property="og:article:tag" content="tag1" />
-          <meta property="og:article:tag" content="tag2" />
+          {/* <meta property="og:article:tag" content="tag1" /> */}
+          {/* <meta property="og:article:tag" content="tag2" /> */}
         </>
       </Head>
 
@@ -90,7 +90,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           place={{ place, placeTitle, placeAddress }}
           positions={positions?.filter(isDefined)}
           partners={partners?.map((item) => item?.partner?.data).filter(hasAttributes)}
-          purchaseId={purchaseId}
+          purchaseId={getPurchaseId(contentPage)}
           slug={slug}
           showShare
           title={title}
@@ -100,7 +100,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
         <SidePanel
           datetime={{ dateFrom, dateTo, timeFrom, timeTo, showRemainingTime }}
           place={{ place, placeTitle, placeAddress }}
-          purchaseId={purchaseId}
+          purchaseId={getPurchaseId(contentPage)}
           slug={slug}
           className="pb-24 lg:hidden"
         />

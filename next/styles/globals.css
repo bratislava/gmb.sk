@@ -66,7 +66,7 @@
   --line-height-nav: 1rem;
   --line-height-btn: 1rem;
 
-  --padding-x-sm: 18px;
+  --padding-x-sm: 14px;
   --padding-x-md: 18px;
   --padding-x-lg: 32px;
 
@@ -88,122 +88,41 @@
     --sidepanel-width: 100%;
     --ticket-sidebar-width: 100%;
 
-    --font-size-xxl: 2.75rem;
-    --font-size-xl: 2.1875rem;
-    --font-size-lg: 1.875rem;
-    --font-size-md: 1.625rem;
-    --font-size-sm: 1.25rem;
-    --font-size-nav: 1.375rem;
-    --font-size-btn: 1.375rem;
+    --font-size-xxl: 1.9375rem;
+    --font-size-xl: 1.625rem;
+    --font-size-lg: 1.3125rem;
+    --font-size-md: 0.875rem;
+    --font-size-sm: 0.75rem;
+    --font-size-nav: 0.8125rem;
+    --font-size-btn: 0.8125rem;
 
-    --line-height-xxl: 2.9375rem;
-    --line-height-xl: 2.375rem;
-    --line-height-lg: 2.125rem;
-    --line-height-md: 2.0625rem;
-    --line-height-sm: 1.5625rem;
-    --line-height-nav: 1.5rem;
-    --line-height-btn: 1.5rem;
+    --line-height-xxl: 2.25rem;
+    --line-height-xl: 1.75rem;
+    --line-height-lg: 1.4375rem;
+    --line-height-md: 1.125rem;
+    --line-height-sm: 1.125rem;
+    --line-height-nav: 0.9375rem;
+    --line-height-btn: 0.9375rem;
 
-    --padding-x-sm: 20px;
-    --padding-x-md: 34px;
+    --padding-x-sm: 14px;
+    --padding-x-md: 30px;
     --padding-x-lg: 62px;
 
-    --padding-y-sm: 26px;
-    --padding-y-md: 60px;
-    --padding-y-lg: 100px;
-    --padding-y-xl: 150px;
+    --padding-y-sm: 20px;
+    --padding-y-md: 32px;
+    --padding-y-lg: 56px;
+    --padding-y-xl: 90px;
 
-    --height-nav: 120px;
-    --logo-height: 54px;
-    --logo-width: 163px;
-    --height-ticket: 220px;
+    --height-nav: 80px;
+    --logo-height: 45px;
+    --logo-width: 134px;
+    --height-ticket: 260px;
 
-    --icon-size-factor: 1.25;
-  }
-}
-
-@media (min-width: 768px) {
-  :root {
-    --sidepanel-width: 100%;
-    --ticket-sidebar-width: 100%;
-
-    --font-size-xxl: 3.1875rem;
-    --font-size-xl: 2.625rem;
-    --font-size-lg: 2rem;
-    --font-size-md: 1.875rem;
-    --font-size-sm: 1.5rem;
-    --font-size-nav: 1.75rem;
-    --font-size-btn: 1.75rem;
-
-    --line-height-xxl: 3.4375rem;
-    --line-height-xl: 2.875rem;
-    --line-height-lg: 2.25rem;
-    --line-height-md: 2.625rem;
-    --line-height-sm: 1.875rem;
-    --line-height-nav: 2.25rem;
-    --line-height-btn: 2.25rem;
-
-    --padding-x-sm: 20px;
-    --padding-x-md: 40px;
-    --padding-x-lg: 70px;
-
-    --padding-y-sm: 30px;
-    --padding-y-md: 70px;
-    --padding-y-lg: 120px;
-    --padding-y-xl: 180px;
-
-    --height-nav: 143px;
-    --logo-height: 65px;
-    --logo-width: 195px;
-    --height-ticket: 220px;
-
-    --icon-size-factor: 1.5;
+    --icon-size-factor: 0.75;
   }
 }
 
 @media (min-width: 1024px) {
-  :root,
-  ::after,
-  ::before {
-    --sidepanel-width: min(40vw, 360px);
-    --ticket-sidebar-width: min(400px);
-
-    --font-size-xxl: 1.625rem;
-    --font-size-xl: 1.3125rem;
-    --font-size-lg: 1rem;
-    --font-size-md: 0.75rem;
-    --font-size-sm: 0.625rem;
-    --font-size-nav: 0.6875rem;
-    --font-size-btn: 0.6875rem;
-
-    --line-height-xxl: 1.75rem;
-    --line-height-xl: 1.4375rem;
-    --line-height-lg: 1.125rem;
-    --line-height-md: 0.875rem;
-    --line-height-sm: 0.75rem;
-    --line-height-nav: 0.75rem;
-    --line-height-btn: 0.75rem;
-
-    --padding-x-sm: 10px;
-    --padding-x-md: 24px;
-    --padding-x-lg: 50px;
-
-    --padding-y-sm: 10px;
-    --padding-y-md: 20px;
-    --padding-y-lg: 48px;
-    --padding-y-xl: 86px;
-
-    --height-nav: 64px;
-    --logo-height: 36px;
-    --logo-width: 108px;
-    --height-ticket: 360px;
-
-    /** Based on the --font-size-xxl compared to the 1920px breakpoint --font-size-xxl */
-    --icon-size-factor: 0.52;
-  }
-}
-
-@media (min-width: 1280px) {
   :root {
     --sidepanel-width: min(40vw, 448px);
     --ticket-sidebar-width: min(400px);
@@ -236,13 +155,13 @@
     --height-nav: 80px;
     --logo-height: 45px;
     --logo-width: 134px;
-    --height-ticket: 400px;
+    --height-ticket: 360px;
 
     --icon-size-factor: 0.62;
   }
 }
 
-@media (min-width: 1536px) {
+@media (min-width: 1280px) {
   :root {
     --sidepanel-width: min(40vw, 536px);
     --ticket-sidebar-width: min(400px);
@@ -268,20 +187,20 @@
     --padding-x-lg: 75px;
 
     --padding-y-sm: 15px;
-    --padding-y-md: 30px;
+    --padding-y-md: 31px;
     --padding-y-lg: 72px;
     --padding-y-xl: 130px;
 
     --height-nav: 96px;
     --logo-height: 54px;
     --logo-width: 161px;
-    --height-ticket: 440px;
+    --height-ticket: 400px;
 
     --icon-size-factor: 0.76;
   }
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1536px) {
   :root {
     --sidepanel-width: min(40vw, 670px);
     --ticket-sidebar-width: min(400px);
@@ -314,7 +233,7 @@
     --height-nav: 120px;
     --logo-height: 68px;
     --logo-width: 204px;
-    --height-ticket: 500px;
+    --height-ticket: 460px;
 
     --icon-size-factor: 1;
   }
