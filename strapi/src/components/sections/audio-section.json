@@ -2,8 +2,7 @@
   "collectionName": "components_sections_audio_sections",
   "info": {
     "displayName": "audio section",
-    "icon": "microphone",
-    "description": ""
+    "icon": "microphone"
   },
   "options": {},
   "attributes": {

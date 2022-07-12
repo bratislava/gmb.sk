@@ -78,7 +78,7 @@ module.exports = {
         logoWidth: 'var(--logo-width)',
       },
       minHeight: {
-        ticket: 'calc(200px + 400px * var(--icon-size-factor))', // 'var(--height-ticket)'
+        ticket: 'var(--height-ticket)',
       },
     },
   },

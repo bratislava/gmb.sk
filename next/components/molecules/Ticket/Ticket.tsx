@@ -1,6 +1,7 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import cx from 'classnames'
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
@@ -11,17 +12,16 @@ interface ITicketProps {
   title: string | null | undefined
   price: number | null | undefined
   description: string | null | undefined
-  id: string | null | undefined
-  link: string | null | undefined
+  purchaseIdSelf: string | null | undefined
+  purchaseIdGift: string | null | undefined
 }
 
-export const Ticket = ({ title, price, description, id, link }: ITicketProps) => {
+export const Ticket = ({ title, price, description, purchaseIdSelf, purchaseIdGift }: ITicketProps) => {
   const { t } = useTranslation()
   const router = useRouter()
 
   return (
     <div
-      id={`ticket-${id}`}
       className={cx(
         styles.ticket,
         'goout-ticket flex flex-col mb-yMd justify-between last:mb-0 lg:mb-0 w-full min-h-ticket bg-gmbLightGray relative p-8 hover:bg-[#6cc7ed] last-of-type:after:hidden first-of-type:before:hidden'
@@ -45,23 +45,23 @@ export const Ticket = ({ title, price, description, id, link }: ITicketProps) =>
             {description ?? ''}
           </ReactMarkdown>
         ) : null}
-        {link ? (
+        {purchaseIdSelf ? (
           <Button
             size="small"
             className="goout-btn-buy-self w-fit px-xMd"
-            data-goout-id="id-here"
-            data-goout-ticket-category="{category goes here}"
+            data-goout-id={purchaseIdSelf}
+            data-goout-ticket-category="{category may go here}"
             onClick={() => router.replace(`#goout-form`)}
           >
             {t('common.buyForYourself')}
           </Button>
         ) : null}
-        {link ? (
+        {purchaseIdGift ? (
           <Button
             size="small"
             className="goout-btn-buy-gift mt-4 w-fit px-xMd"
-            data-goout-id="id-here"
-            data-goout-ticket-category="{category goes here}"
+            data-goout-id={purchaseIdGift}
+            data-goout-ticket-category="{category may go here}"
             onClick={() => router.replace(`#goout-form`)}
           >
             {t('common.buyAsGift')}

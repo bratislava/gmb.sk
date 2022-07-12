@@ -49,6 +49,14 @@
       "relation": "oneToMany",
       "target": "api::content-page.content-page",
       "mappedBy": "place"
+    },
+    "purchaseId": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string"
     }
   }
 }

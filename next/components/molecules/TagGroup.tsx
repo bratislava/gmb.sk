@@ -11,8 +11,6 @@ interface ITagGroupProps {
 }
 
 const TagGroup = ({ tags, activeTags, setActiveTags }: ITagGroupProps) => {
-  const {} = tags
-
   return (
     <>
       {tags.map((tag) => (

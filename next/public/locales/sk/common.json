@@ -50,10 +50,10 @@
     "showIncludedEvents": "Ukáž, čo tam ešte je",
     "noCurrentEvents": "Aktuálne tu neprebiehajú žiadne ďalšie výstavy a expozície.",
     "places": {
-      "mirbachsPalace": "Mirbachov palác",
-      "mirbachsPalaceLocative": "Mirbachovom paláci",
-      "palffysPalace": "Pálffyho palác",
-      "palffysPalaceLocative": "Pálffyho paláci"
+      "mirbachPalace": "Mirbachov palác",
+      "mirbachPalaceLocative": "Mirbachovom paláci",
+      "palffyPalace": "Pálffyho palác",
+      "palffyPalaceLocative": "Pálffyho paláci"
     },
     "exhibitions": "Výstavy",
     "moreExhibitions": "Ďaľšie výstavy a akcie",
