@@ -18,7 +18,7 @@ const CookieConsent = () => {
   const [performanceCookies, setPerformanceCookies] = React.useState<boolean>(true)
   const [advertisingCookies, setAdvertisingCookies] = React.useState<boolean>(true)
   const [openPanel, setPanel] = React.useState<string>(t('cookieConsent.securityEssentialTitle'))
-  ReactGA.initialize(process.env.GOOGLE_ANALYTICS_ID ?? '')
+  process.env.GOOGLE_ANALYTICS_ID && ReactGA.initialize(process.env.GOOGLE_ANALYTICS_ID)
   const closeModal = () => {
     setShowModal(false)
   }
@@ -77,7 +77,7 @@ const CookieConsent = () => {
         ariaHideApp={false}
         className="fixed top-[calc(50%+var(--height-nav))] left-1/2 z-50 mx-auto mt-yMd h-fit w-10/12 translate-y-[calc(-50%-var(--height-nav))] -translate-x-1/2 border-0 border-r-0 bg-white p-0 lg:top-1/2 lg:mt-0 lg:w-7/12 lg:-translate-y-1/2"
       >
-        <div className="flex h-[calc(100vh-var(--height-nav)-2*var(--padding-y-md))] flex-col items-center overflow-hidden lg:dh-[650px]">
+        <div className="flex h-[calc(100vh-var(--height-nav)-2*var(--padding-y-md))] flex-col items-center overflow-hidden lg:max-h-[calc(100vh-2*var(--height-nav)-2*var(--padding-y-md))] lg:dh-[650px]">
           <div className="mb-[10px] flex w-full flex-[0_0_auto] items-center justify-between border-b py-ySm px-xSm">
             <h1 className="text-lg">{t('cookieConsent.modalTitle')}</h1>
             <button type="button" onClick={closeModal}>
@@ -90,6 +90,7 @@ const CookieConsent = () => {
                 <div className="mb-2 text-md">{t('cookieConsent.modalContentTitle')}</div>
                 <p className="text-sm">
                   {`${t('cookieConsent.modalContentBody')} `}
+                  {/* TODO: Add real link to privacy policy */}
                   <Link
                     preserveStyle
                     href="/"
