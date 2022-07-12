@@ -2587,6 +2587,7 @@ export type PreviewsByTagsQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']>;
   tagSlugs?: InputMaybe<Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>>;
   placesSlugs?: InputMaybe<Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>>;
+  today?: InputMaybe<Scalars['Date']>;
 }>;
 
 
@@ -3221,11 +3222,11 @@ export const NewsDocument = gql`
 }
     ${NewsItemEntityFragmentDoc}`;
 export const PreviewsByTagsDocument = gql`
-    query PreviewsByTags($locale: I18NLocaleCode!, $limit: Int, $offset: Int, $tagSlugs: [String], $placesSlugs: [String]) {
+    query PreviewsByTags($locale: I18NLocaleCode!, $limit: Int, $offset: Int, $tagSlugs: [String], $placesSlugs: [String], $today: Date) {
   contentPages(
     locale: $locale
     pagination: {start: $offset, limit: $limit}
-    filters: {tags: {slug: {in: $tagSlugs}}, place: {slug: {in: $placesSlugs}}}
+    filters: {tags: {slug: {in: $tagSlugs}}, place: {slug: {in: $placesSlugs}}, dateTo: {lte: $today}}
   ) {
     data {
       ...SectionItemEntity

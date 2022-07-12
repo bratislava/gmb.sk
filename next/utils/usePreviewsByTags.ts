@@ -1,9 +1,11 @@
-import { last } from 'lodash'
+import { filter, last } from 'lodash'
 import useSWRInfinite from 'swr/infinite'
 
 import { SectionItemEntityFragment } from '../graphql'
+import { getTodaysDate } from './getTodaysDate'
 import { client } from './gql'
 import { hasAttributes, isDefined } from './isDefined'
+import { getRouteForLocale } from './localeRoutes'
 
 export const PAGE_SIZE = 6
 
@@ -21,12 +23,27 @@ export const usePreviewsByTags = ({
       if (index !== 0 && previousList.length === 0) {
         return null
       }
+
+      const tagSlugsVariables = activeTags.length > 0 ? { tagSlugs: activeTags } : {}
+
+      const localizedArchive = getRouteForLocale('archiv', locale)
+      const archiveVariables = activeTags.includes(localizedArchive)
+        ? {
+            today: getTodaysDate(),
+            /** If there are other tags than 'archive', remove 'archive' and  use the remaining tags. If archive is the only one, pass undefiend */
+            tagSlugs: activeTags.length > 1 ? activeTags.filter((tag) => tag !== localizedArchive) : undefined,
+          }
+        : {}
+
+      const activePlacesVariables = activePlaces.length > 0 ? { placesSlugs: activePlaces } : {}
+
       const variables = {
         locale,
         limit: PAGE_SIZE,
         offset: index * PAGE_SIZE,
-        ...(activeTags.length && { tagSlugs: activeTags }),
-        ...(activePlaces.length && { placesSlugs: activePlaces }),
+        ...tagSlugsVariables,
+        ...archiveVariables,
+        ...activePlacesVariables,
       }
 
       return ['PreviewsByTags', variables]

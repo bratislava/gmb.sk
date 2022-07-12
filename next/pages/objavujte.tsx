@@ -56,6 +56,7 @@ export const getStaticProps: GetStaticProps<ExploreProps> = async ({ locale = 's
     serverSideTranslations(locale, ['common']),
   ])
 
+
   return {
     props: {
       explorePage,
@@ -67,5 +68,6 @@ export const getStaticProps: GetStaticProps<ExploreProps> = async ({ locale = 's
     },
   }
 }
+
 
 export default Explore
