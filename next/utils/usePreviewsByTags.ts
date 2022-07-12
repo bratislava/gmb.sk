@@ -1,7 +1,8 @@
-import { last } from 'lodash'
+import last from 'lodash/last'
 import useSWRInfinite from 'swr/infinite'
 
 import { SectionItemEntityFragment } from '../graphql'
+import { getTodaysDate } from './getTodaysDate'
 import { client } from './gql'
 import { hasAttributes, isDefined } from './isDefined'
 
@@ -21,12 +22,28 @@ export const usePreviewsByTags = ({
       if (index !== 0 && previousList.length === 0) {
         return null
       }
+
+      const tagSlugsVariables = activeTags.length > 0 ? { tagSlugs: activeTags } : {}
+
+      const archiveVariables = activeTags.includes('archive')
+        ? {
+            today: getTodaysDate(),
+            /** We don't send archive tag to the server
+             * If there are other tags than 'archive', remove 'archive' and  use the remaining tags.
+             * If archive is the only one, pass undefiend */
+            tagSlugs: activeTags.length > 1 ? activeTags.filter((tag) => tag !== 'archive') : undefined,
+          }
+        : {}
+
+      const activePlacesVariables = activePlaces.length > 0 ? { placesSlugs: activePlaces } : {}
+
       const variables = {
         locale,
         limit: PAGE_SIZE,
         offset: index * PAGE_SIZE,
-        ...(activeTags.length && { tagSlugs: activeTags }),
-        ...(activePlaces.length && { placesSlugs: activePlaces }),
+        ...tagSlugsVariables,
+        ...archiveVariables,
+        ...activePlacesVariables,
       }
 
       return ['PreviewsByTags', variables]

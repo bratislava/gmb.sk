@@ -37,11 +37,23 @@ query News($locale: I18NLocaleCode!, $tag: String!, $limit: Int = 5, $sort: [Str
   }
 }
 
-query PreviewsByTags($locale: I18NLocaleCode!, $limit: Int, $offset: Int, $tagSlugs: [String], $placesSlugs: [String]) {
+query PreviewsByTags(
+  $locale: I18NLocaleCode!
+  $limit: Int
+  $offset: Int
+  $tagSlugs: [String]
+  $placesSlugs: [String]
+  $today: Date
+) {
   contentPages(
     locale: $locale
     pagination: { start: $offset, limit: $limit }
-    filters: { tags: { slug: { in: $tagSlugs } }, place: { slug: { in: $placesSlugs } } }
+    filters: {
+      tags: { slug: { in: $tagSlugs } }
+      place: { slug: { in: $placesSlugs } }
+      or: [{ dateTo: { lt: $today } }, { and: [{ dateFrom: { lt: $today } }, { dateTo: null }] }]
+    }
+    sort: ["publishedAt:desc"]
   ) {
     data {
       ...SectionItemEntity
@@ -49,8 +61,18 @@ query PreviewsByTags($locale: I18NLocaleCode!, $limit: Int, $offset: Int, $tagSl
   }
 }
 
-query ContentPageBySlug($locale: I18NLocaleCode!, $slug: String!) {
-  contentPageBySlug(slug: $slug, locale: $locale) {
+query PreviewContentPageBySlug($slug: String!) {
+  contentPageBySlug(slug: $slug, locale: "all") {
+    data {
+      attributes {
+        slug
+      }
+    }
+  }
+}
+
+query ContentPageBySlug($locale: I18NLocaleCode!, $slug: String!, $isPublished: Boolean!) {
+  contentPageBySlug(slug: $slug, locale: $locale, isPublished: $isPublished) {
     data {
       ...ContentPageEntity
     }
@@ -69,19 +91,6 @@ query AllContentPageSlugs($locale: I18NLocaleCode!) {
         slug
         locale
       }
-    }
-  }
-}
-
-query TicketPageBySlug($locale: I18NLocaleCode!, $slug: String!) {
-  contentPageBySlug(slug: $slug, locale: $locale) {
-    data {
-      ...ContentPageEntity
-    }
-  }
-  contact(locale: $locale) {
-    data {
-      ...ContactEntity
     }
   }
 }

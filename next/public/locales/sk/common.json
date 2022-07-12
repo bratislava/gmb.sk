@@ -50,10 +50,10 @@
     "showIncludedEvents": "Ukáž, čo tam ešte je",
     "noCurrentEvents": "Aktuálne tu neprebiehajú žiadne ďalšie výstavy a expozície.",
     "places": {
-      "mirbachsPalace": "Mirbachov palác",
-      "mirbachsPalaceLocative": "Mirbachovom paláci",
-      "palffysPalace": "Pálffyho palác",
-      "palffysPalaceLocative": "Pálffyho paláci"
+      "mirbachPalace": "Mirbachov palác",
+      "mirbachPalaceLocative": "Mirbachovom paláci",
+      "palffyPalace": "Pálffyho palác",
+      "palffyPalaceLocative": "Pálffyho paláci"
     },
     "exhibitions": "Výstavy",
     "moreExhibitions": "Ďaľšie výstavy a akcie",
@@ -67,7 +67,9 @@
     "closeSearch": "Zatvoriť hľadanie",
     "loading": "Načítava sa...",
     "error": "Nastala chyba. Skúste to znova neskôr.",
-    "documents": "Dokumenty"
+    "documents": "Dokumenty",
+    "privacyPolicy": "ochrana osobných údajov",
+    "privacyPolicyGenitiv": "ochrany osobných údajov"
   },
   "navigation": {
     "visitUs": "Navštívte",
@@ -114,5 +116,23 @@
     "connections": "Spoje",
     "price": "Cena",
     "count": "Počet bicyklov"
+  },
+  "cookieConsent": {
+    "body": "Táto webstránka používa základné cookies na zabezpečenie správneho fungovania a sledovanie cookies, ktoré nám pomáha porozumieť, ako stránku využívate. Budú zaznamenávané len po tom, ako vyjadríte svoj súhlas.",
+    "setting": "Nastavenia cookies.",
+    "accept": "Prijať všetky",
+    "reject": "Odmietnuť všetky",
+    "saveSettings": "Uložiť nastavenia",
+    "acceptAll": "Prijať všetky",
+    "rejectAll": "Odmietnuť všetky",
+    "modalTitle": "Podrobné nastavenia cookies",
+    "modalContentTitle": "Používanie cookies",
+    "modalContentBody": "Používame cookies na zabezpečenie základných funkcionalít webovej stránky a na zlepšenie vášho online zážitku. Pre každú kategóriu si môžete vybrať,či sa chcete prihlásiť/odhlásiť. Ďalšie podrobnosti týkajúce sa súborov cookies a iných citlivých údajov nájdete v úplnom znení v zásadách",
+    "securityEssentialTitle": "Bezpodmienečne nevyhnutné cookies",
+    "securityEssentialContent": "Tieto cookies sú nevyhnutné pre správne fungovanie webovej stránky. Bez nich by webstránka nefungovala správne.",
+    "performanceTitle": "Cookies pre výkonnosť a analýzu",
+    "performanceContent": "Tieto cookies umožňujú webovej stránke zapamätať si voľby, ktoré ste v minulosti urobili.",
+    "advertisingTargetingTitle": "Cookies pre reklamu a cielenie",
+    "advertisingTargetingContent": "Tieto cookies zhromažďujú informácie o tom, ako webovú stránku používate, ktoré stránky ste navštívili a na ktoré odkazy ste klikli. Všetky údaje sú anonymizované a nie je možné ich použiť na vašu identifikáciu."
   }
 }

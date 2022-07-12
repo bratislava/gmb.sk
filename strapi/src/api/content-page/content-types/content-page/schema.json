@@ -55,9 +55,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -89,9 +87,9 @@
       },
       "type": "dynamiczone",
       "components": [
+        "sections.audio-section",
         "sections.richtext-section",
-        "sections.video-section",
-        "sections.audio-section"
+        "sections.video-section"
       ]
     },
     "slider": {
@@ -187,10 +185,19 @@
       },
       "type": "string"
     },
+    "sellTickets": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "boolean",
+      "default": false
+    },
     "purchaseId": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "string"

@@ -1,5 +1,4 @@
 import { useTranslation } from 'next-i18next'
-import { useRouter } from 'next/router'
 
 import { SectionItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'

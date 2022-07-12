@@ -28,8 +28,8 @@ const routesSkToEn = {
   'objavujte-projekty': 'explore-projects',
   'objavujte-ostatne': 'explore-others',
   // Places
-  'mirbachov-palac': 'mirbach-s-palace',
-  'palffyho-palac': 'palffy-s-palace',
+  'mirbachov-palac': 'mirbach-palace',
+  'palffyho-palac': 'palffy-palace',
 }
 
 type Route = keyof typeof routesSkToEn
