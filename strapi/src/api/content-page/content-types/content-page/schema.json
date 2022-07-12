@@ -91,7 +91,8 @@
       "components": [
         "sections.richtext-section",
         "sections.video-section",
-        "sections.audio-section"
+        "sections.audio-section",
+        "sections.gallery-section"
       ]
     },
     "slider": {

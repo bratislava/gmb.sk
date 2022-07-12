@@ -5,6 +5,7 @@ import { getAnchor } from '../../utils/getAnchor'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
 import Audio from '../atoms/Audio'
+import ImageGallery from '../atoms/ImageGallery'
 import Seo from '../atoms/Seo'
 import Video from '../atoms/Video'
 import Footer from '../molecules/Footer'
@@ -132,6 +133,14 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
                   <Section anchor={getAnchor(section.submenuTitle)} key={section.id}>
                     <h3 className="mt-10 pb-8 text-lg">{section.title}</h3>
                     {section.url ? <Audio url={section.url} /> : null}
+                  </Section>
+                )
+              }
+              if (section.__typename === 'ComponentSectionsGallerySection') {
+                return (
+                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id}>
+                    <h3 className="mt-10 pb-8 text-lg">{section.title}</h3>
+                    <ImageGallery className="" medias={section.medias?.data} />
                   </Section>
                 )
               }

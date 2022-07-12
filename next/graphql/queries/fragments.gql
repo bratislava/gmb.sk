@@ -7,6 +7,13 @@ fragment ImageEntity on UploadFileEntity {
   }
 }
 
+fragment ImageWithFormatsEntity on UploadFileEntity {
+  ...ImageEntity
+  attributes {
+    formats
+  }
+}
+
 fragment TicketEntity on TicketEntity {
   id
   attributes {
@@ -346,6 +353,17 @@ fragment AudioSection on ComponentSectionsAudioSection {
   url
 }
 
+fragment GallerySection on ComponentSectionsGallerySection {
+  id
+  title
+  submenuTitle
+  medias {
+    data {
+      ...ImageWithFormatsEntity
+    }
+  }
+}
+
 fragment TicketsSection on ComponentSectionsTicketsSection {
   id
   title
@@ -419,5 +437,9 @@ fragment MainContent on ContentPageMainContentDynamicZone {
   ... on ComponentSectionsAudioSection {
     __typename
     ...AudioSection
+  }
+  ... on ComponentSectionsGallerySection {
+    __typename
+    ...GallerySection
   }
 }
