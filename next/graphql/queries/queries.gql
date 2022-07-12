@@ -61,8 +61,18 @@ query PreviewsByTags(
   }
 }
 
-query ContentPageBySlug($locale: I18NLocaleCode!, $slug: String!) {
-  contentPageBySlug(slug: $slug, locale: $locale) {
+query PreviewContentPageBySlug($slug: String!) {
+  contentPageBySlug(slug: $slug, locale: "all") {
+    data {
+      attributes {
+        slug
+      }
+    }
+  }
+}
+
+query ContentPageBySlug($locale: I18NLocaleCode!, $slug: String!, $isPublished: Boolean!) {
+  contentPageBySlug(slug: $slug, locale: $locale, isPublished: $isPublished) {
     data {
       ...ContentPageEntity
     }
@@ -81,19 +91,6 @@ query AllContentPageSlugs($locale: I18NLocaleCode!) {
         slug
         locale
       }
-    }
-  }
-}
-
-query TicketPageBySlug($locale: I18NLocaleCode!, $slug: String!) {
-  contentPageBySlug(slug: $slug, locale: $locale) {
-    data {
-      ...ContentPageEntity
-    }
-  }
-  contact(locale: $locale) {
-    data {
-      ...ContactEntity
     }
   }
 }

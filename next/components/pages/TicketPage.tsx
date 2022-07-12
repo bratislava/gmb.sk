@@ -2,6 +2,7 @@ import { useTranslation } from 'next-i18next'
 
 import { ContactEntityFragment, ContentPageEntityFragment, SectionItemEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'
+import { getRouteForTargetLocale } from '../../utils/localeRoutes'
 import Link from '../atoms/Link'
 import Seo from '../atoms/Seo'
 import { SidePanelPlace } from '../atoms/SidePanelPlace'
@@ -31,9 +32,10 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
       {seo && <Seo seo={seo} />}
       <section
         data-goout-id="id-here"
-        data-goout-place-ticket="eg-palffyho-palac"
-        className="goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--height-nav))] flex-col"
+        data-goout-place-ticket={getRouteForTargetLocale(place?.data?.attributes?.slug ?? '', 'sk')}
+        className="no-goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--height-nav))] flex-col"
       >
+        <div className="data-goout-place-ticket" />
         <header className="py-yMd px-xMd">
           <Link href={`/detail/${slug}`} preserveStyle noUnderline>
             <hgroup>

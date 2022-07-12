@@ -122,6 +122,13 @@ const SidePanel = ({
         </Button>
       ) : null}
 
+      {positions?.filter(isDefined).map((position) => (
+        <div key={position.title}>
+          <h4 className="mb-yMd text-lg">{position.title}</h4>
+          <p className="text-md">{position.names}</p>
+        </div>
+      ))}
+
       {showShare && slug && (
         <div>
           <h4 className="mb-yMd text-lg">{t('common.share')}</h4>
@@ -141,19 +148,12 @@ const SidePanel = ({
         </div>
       )}
 
-      {positions?.filter(isDefined).map((position) => (
-        <div key={position.title}>
-          <h4 className="mb-yMd text-lg">{position.title}</h4>
-          <p className="text-md">{position.names}</p>
-        </div>
-      ))}
-
       {partners?.filter(isDefined).length ? (
         <div>
           <h4 className="mb-yMd text-lg">{t('common.partners')}</h4>
           <div className="flex flex-wrap gap-5">
             {partners?.map((partner, index) => (
-              <Link key={index} href={partner.attributes.link ?? '#'} className="overflow-hidden">
+              <Link key={index} target="_blank" href={partner.attributes.link ?? '#'} className="overflow-hidden">
                 <img
                   src={partner.attributes.logo.data?.attributes?.url}
                   alt={partner.attributes.logo.data?.attributes?.alternativeText ?? ''}
