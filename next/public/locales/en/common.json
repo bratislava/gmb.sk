@@ -66,7 +66,9 @@
     "closeSearch": "Close search",
     "loading": "Loading...",
     "error": "There was an error. Please try again later.",
-    "documents": "Documents"
+    "documents": "Documents",
+    "privacyPolicy": "privacy policy",
+    "privacyPolicyGenitiv": "privacy policy"
   },
   "navigation": {
     "visitUs": "Visit us",
@@ -105,5 +107,23 @@
     "carText": "Park in the closest parking garages or on the streets in the Old Town.",
     "publicTransportText": "Visit us comfortably and without worries thanks to the public transport.",
     "bikeText": "Leave your bicycle at any of the bike stands or use bike sharing."
+  },
+  "cookieConsent": {
+    "body": "This website uses essential cookies to ensure proper functioning and tracking cookies to help us understand how you interact with the site. They will only be set after your consent.",
+    "setting": "Cookies settings",
+    "accept": "Accept",
+    "reject": "Reject",
+    "saveSettings": "Save Settings",
+    "acceptAll": "Accept all",
+    "rejectAll": "Reject all",
+    "modalTitle": "Detail Cookies settings",
+    "modalContentTitle": "Use of cookies",
+    "modalContentBody": "We use cookies to provide the basic functionality of the website and to improve your online experience. For each category you can choose to opt in/out. For further details regarding cookies and other sensitive data, please see the full",
+    "securityEssentialTitle": "Security essential cookies",
+    "securityEssentialContent": "These cookies are essential for the proper functioning of the website. Without these cookies, the website would not function properly.",
+    "performanceTitle": "Performance and analytics cookies",
+    "performanceContent": "These cookies allow the website to remember choices you have made in the past.",
+    "advertisingTargetingTitle": "Cookies for advertising and targeting",
+    "advertisingTargetingContent": "These cookies collect information about how you use the website, which pages you have visited and which links you have clicked on. All data is anonymised and cannot be used to identify you."
   }
 }

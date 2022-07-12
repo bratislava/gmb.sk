@@ -1,11 +1,11 @@
 import '../styles/globals.css'
 
+import { appWithTranslation, useTranslation } from 'next-i18next'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
-import { appWithTranslation, useTranslation } from 'next-i18next'
-import React from 'react'
 
+import CookieConsent from '../components/molecules/CookieConsent'
 import Navigation from '../components/molecules/Navigation'
 import nextI18NextConfig from '../next-i18next.config'
 
@@ -33,6 +33,7 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
           <Component {...pageProps} />
         </main>
       </div>
+      <CookieConsent />
     </>
   )
 }

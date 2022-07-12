@@ -1,17 +1,16 @@
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import React from 'react'
 
 import TicketPage from '../../components/pages/TicketPage'
-import { ExhibitionsByPlaceQuery, TicketPageBySlugQuery } from '../../graphql'
+import { ContentPageBySlugQuery, ExhibitionsByPlaceQuery } from '../../graphql'
 import { getTodaysDate } from '../../utils/getTodaysDate'
 import { client } from '../../utils/gql'
 import { hasAttributes, withAttributes } from '../../utils/isDefined'
 import { getRouteForLocale } from '../../utils/localeRoutes'
 
 interface TicketProps {
-  contentPage: TicketPageBySlugQuery['contentPageBySlug']
-  contact: TicketPageBySlugQuery['contact']
+  contentPage: ContentPageBySlugQuery['contentPageBySlug']
+  contact: ContentPageBySlugQuery['contact']
   currentEvents?: ExhibitionsByPlaceQuery['currentEvents']
 }
 
@@ -31,7 +30,7 @@ const Tickets = ({ contentPage, contact, currentEvents }: TicketProps) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, locale = 'sk' }) => {
+export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, locale = 'sk', preview }) => {
   if (!params) {
     return {
       notFound: true,
@@ -42,9 +41,10 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
   const today = getTodaysDate()
 
   const [{ contentPageBySlug: contentPage, contact }, translations] = await Promise.all([
-    client.TicketPageBySlug({
+    client.ContentPageBySlug({
       slug,
       locale,
+      isPublished: !preview,
     }),
     serverSideTranslations(locale, ['common']),
   ])

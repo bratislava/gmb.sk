@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next'
 import React from 'react'
 
 import CloseIcon from '../../assets/icons/close-x.svg'
-import { ContentPage } from '../../graphql'
+import { ContentPageEntity, ContentPageEntityResponseCollection } from '../../graphql'
 import { isNonEmptyArray } from '../../utils/isNonEmptyArray'
 import { useDebounce } from '../../utils/useDebounce'
 import Results from './Results'
@@ -13,7 +13,7 @@ interface SearchBarProps {
 
 const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
   const [searchTerm, setSearchTerm] = React.useState('')
-  const [contentPages, setContentPages] = React.useState<ContentPage[]>()
+  const [contentPages, setContentPages] = React.useState<ContentPageEntity[]>()
   const debouncedSearchTerm = useDebounce(searchTerm, 750)
   const { i18n } = useTranslation()
   const locale = i18n.language
@@ -32,9 +32,8 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
           locale,
         })
         const response = await fetch(`/api/search-content-pages?${query}`)
-        const searchResults: ContentPage[] = await response.json()
-
-        setContentPages(searchResults)
+        const searchResults: ContentPageEntityResponseCollection = await response.json()
+        setContentPages(searchResults?.data)
       } catch (error) {
         console.error(error)
       }

@@ -30,15 +30,22 @@ export default {
           definition(t) {
             t.field(queryName, {
               type: responseType,
-              args: { slug: nexus.stringArg() },
+              args: {
+                slug: nexus.stringArg(),
+                isPublished: nexus.booleanArg(),
+              },
               async resolve(parent, args, ctx) {
-                const { slug, locale } = transformArgs(args, {
+                const { slug, isPublished, locale } = transformArgs(args, {
                   contentType: strapi.contentTypes[apiName],
                   usePagination: false,
                 });
 
+                let filters: any = { slug };
+                if (isPublished) {
+                  filters = { slug, publishedAt: { $notNull: true } };
+                }
                 const results = await strapi.entityService.findMany(apiName, {
-                  filters: { slug },
+                  filters,
                   locale,
                 });
 
