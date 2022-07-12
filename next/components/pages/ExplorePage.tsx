@@ -28,7 +28,7 @@ const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOt
 
   const [activeTags, setActiveTags] = useState<string[]>([])
 
-  const { setSize, filteredPages, isLoadingInitialData, isLoadingMore, isReachingEnd } = usePreviewsByTags({
+  const { size, setSize, filteredPages, isLoadingInitialData, isLoadingMore, isReachingEnd } = usePreviewsByTags({
     activeTags,
     activePlaces: [],
     locale: i18n.language,
@@ -72,7 +72,7 @@ const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOt
           loadmoreButton={
             !isReachingEnd && (
               <div className="flex justify-center py-12">
-                <Button onClick={() => setSize((previousSize) => previousSize + 1)} disabled={isLoadingMore}>
+                <Button onClick={() => setSize(size + 1)} disabled={isLoadingMore}>
                   {t('common.exploreMoreContent')}
                 </Button>
               </div>
