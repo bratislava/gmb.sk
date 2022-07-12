@@ -27,7 +27,6 @@ const Filters = ({ tagGroups, places, activeTags, setActiveTags, activePlaces, s
         {tagGroups.map((tagGroup, index) => (
           <TagGroup tags={tagGroup} activeTags={activeTags} setActiveTags={setActiveTags} key={index} />
         ))}
-
       </div>
       <div className="flex flex-wrap gap-xSm pt-yMd">
         {places && activePlaces && setActivePlaces && (

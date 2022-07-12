@@ -5,7 +5,6 @@ import { SectionItemEntityFragment } from '../graphql'
 import { getTodaysDate } from './getTodaysDate'
 import { client } from './gql'
 import { hasAttributes, isDefined } from './isDefined'
-import { getRouteForLocale } from './localeRoutes'
 
 export const PAGE_SIZE = 6
 

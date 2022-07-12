@@ -18,7 +18,6 @@ const routesSkToEn = {
   vystavy: 'exhibitions',
   'stale-expozicie': 'permanent-exhibitions',
   aktuality: 'news',
-  archiv: 'archive',
   // TagCategories
   'program-typy': 'programme-types',
   'program-cielove-skupiny': 'programme-target-groups',

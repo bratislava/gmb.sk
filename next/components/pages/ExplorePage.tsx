@@ -22,9 +22,6 @@ interface ExplorePageProps {
   tagsOthers?: WithAttributes<TagEntityFragment>[]
 }
 
-
-
-
 const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOthers }: ExplorePageProps) => {
   const { t, i18n } = useTranslation()
   const { query } = useRouter()
