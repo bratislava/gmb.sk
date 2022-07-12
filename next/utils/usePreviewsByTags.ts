@@ -1,4 +1,4 @@
-import { filter, last } from 'lodash'
+import last from 'lodash/last'
 import useSWRInfinite from 'swr/infinite'
 
 import { SectionItemEntityFragment } from '../graphql'
