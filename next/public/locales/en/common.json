@@ -49,10 +49,10 @@
     "showIncludedEvents": "Show included events",
     "noCurrentEvents": "There is no other ongoing exhibition currently.",
     "places": {
-      "mirbachsPalace": "Mirbach's palace",
-      "mirbachsPalaceLocative": "Mirbach's palace",
-      "palffysPalace": "Pálffy's palace",
-      "palffysPalacLocative": "Pálffy's palace"
+      "mirbachPalace": "Mirbach Palace",
+      "mirbachPalaceLocative": "Mirbach Palace",
+      "palffyPalace": "Pálffy Palace",
+      "palffyPalaceLocative": "Pálffy Palace"
     },
     "exhibitions": "Exhibitions",
     "moreExhibitions": "More exhibitons and events",
