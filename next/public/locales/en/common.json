@@ -102,11 +102,19 @@
     "byCar": "Car",
     "publicTransport": "Public Transport",
     "byBike": "Bicycle",
-    "virtualTour": "Virtal tour",
+    "virtualTour": "Virtual tour",
     "navigate": "Navigate",
     "carText": "Park in the closest parking garages or on the streets in the Old Town.",
     "publicTransportText": "Visit us comfortably and without worries thanks to the public transport.",
-    "bikeText": "Leave your bicycle at any of the bike stands or use bike sharing."
+    "bikeText": "Leave your bicycle at any of the bike stands or use bike sharing.",
+    "mirbachPalace": "Mirbach Palace",
+    "palffyPalace": "Pálffy Palace",
+    "name": "Name",
+    "contact": "Contact",
+    "street": "Street",
+    "connections": "Connections",
+    "price": "Price",
+    "count": "Available"
   },
   "cookieConsent": {
     "body": "This website uses essential cookies to ensure proper functioning and tracking cookies to help us understand how you interact with the site. They will only be set after your consent.",
