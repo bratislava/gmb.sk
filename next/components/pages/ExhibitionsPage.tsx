@@ -76,6 +76,19 @@ const ExhibitionsPage = ({
 
   const seo = exhibitionsPage?.data?.attributes?.seo
 
+  /** 'Archive' is not a real tag that has a relationship with the content page. Instead, if Archive is applied
+   *  as an active tag, it adds a variable 'today' that will be used to show only content that has either `dateTo` in the past (exhibition that has ended)
+   * or `dateFrom` in the past AND dateTo null, which means it was only a one day event. All other tags still apply while archive is active.
+   */
+  const archiveTagEntity: WithAttributes<TagEntityFragment> = {
+    __typename: 'TagEntity',
+    attributes: {
+      __typename: 'Tag',
+      title: i18n.language === 'sk' ? 'Archív' : 'Archive',
+      slug: 'archive',
+    },
+  }
+
   return (
     <>
       {seo && <Seo seo={seo} />}
@@ -95,6 +108,7 @@ const ExhibitionsPage = ({
               tagsLanguages ?? [],
               tagsProjects ?? [],
               tagsOthers ?? [],
+              [archiveTagEntity],
             ]}
             activeTags={activeTags}
             setActiveTags={setActiveTags}
