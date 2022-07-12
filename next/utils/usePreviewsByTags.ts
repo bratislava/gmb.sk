@@ -26,11 +26,17 @@ export const usePreviewsByTags = ({
 
       const tagSlugsVariables = activeTags.length > 0 ? { tagSlugs: activeTags } : {}
 
+      /** 'Archive' is not a real tag that has a relationship with the content page. Instead, if Archive is applied
+       *  as an active tag, it adds a variable 'today' that will be used to show only content that has either `dateTo` in the past (exhibition that has ended)
+       * or `dateFrom` in the past AND dateTo null, which means it was only a one day event. All other tags still apply while archive is active.
+       */
       const localizedArchive = getRouteForLocale('archiv', locale)
       const archiveVariables = activeTags.includes(localizedArchive)
         ? {
             today: getTodaysDate(),
-            /** If there are other tags than 'archive', remove 'archive' and  use the remaining tags. If archive is the only one, pass undefiend */
+            /** We don't send archive tag to the server
+             * If there are other tags than 'archive', remove 'archive' and  use the remaining tags.
+             * If archive is the only one, pass undefiend */
             tagSlugs: activeTags.length > 1 ? activeTags.filter((tag) => tag !== localizedArchive) : undefined,
           }
         : {}
