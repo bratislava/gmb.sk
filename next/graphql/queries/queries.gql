@@ -43,17 +43,13 @@ query PreviewsByTags(
   $offset: Int
   $tagSlugs: [String]
   $placesSlugs: [String]
-  $today: Date
+  $dateTo: Date
 ) {
   contentPages(
     locale: $locale
     pagination: { start: $offset, limit: $limit }
-    filters: {
-      tags: { slug: { in: $tagSlugs } }
-      place: { slug: { in: $placesSlugs } }
-      or: [{ dateTo: { lt: $today } }, { and: [{ dateFrom: { lt: $today } }, { dateTo: null }] }]
-    }
-    sort: ["publishedAt:desc"]
+    filters: { tags: { slug: { in: $tagSlugs } }, place: { slug: { in: $placesSlugs } }, dateTo: { lt: $dateTo } }
+    sort: ["dateTo:desc", "publishedAt:desc"]
   ) {
     data {
       ...SectionItemEntity
