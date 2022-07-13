@@ -121,16 +121,16 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
               }
               if (section.__typename === 'ComponentSectionsVideoSection') {
                 return (
-                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id}>
-                    <h3 className="mt-10 pb-8 text-lg">{section.title}</h3>
-                    {section.url ? <Video url={section.url} className="mb-10" /> : null}
+                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
+                    {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
+                    {section.url ? <Video url={section.url} /> : null}
                   </Section>
                 )
               }
               if (section.__typename === 'ComponentSectionsAudioSection') {
                 return (
-                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id}>
-                    <h3 className="mt-10 pb-8 text-lg">{section.title}</h3>
+                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
+                    {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
                     {section.url ? <Audio url={section.url} /> : null}
                   </Section>
                 )

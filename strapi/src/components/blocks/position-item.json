@@ -2,7 +2,8 @@
   "collectionName": "components_blocks_position_items",
   "info": {
     "displayName": "position item",
-    "icon": "user"
+    "icon": "user",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -10,7 +11,7 @@
       "type": "string"
     },
     "names": {
-      "type": "string"
+      "type": "text"
     }
   }
 }

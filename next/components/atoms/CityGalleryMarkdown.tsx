@@ -28,7 +28,7 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
           if (children.some((child) => typeof child === 'string')) return <p className="pb-yMd text-md">{children}</p>
           return children as ReactElement
         },
-        ul: ({ children }) => <ul className="list-disc py-yMd pl-xMd text-md">{children}</ul>,
+        ul: ({ children }) => <ul className="list-disc pb-yMd pl-xMd text-md">{children}</ul>,
         ol: ({ children }) => <ol className="list-decimal pb-yMd pl-xMd text-md">{children}</ol>,
         strong: ({ children }) => (
           <strong className="font-medium" style={{ color: accentColor }}>
