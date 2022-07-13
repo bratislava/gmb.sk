@@ -3243,7 +3243,7 @@ export const PreviewsByTagsDocument = gql`
     locale: $locale
     pagination: {start: $offset, limit: $limit}
     filters: {tags: {slug: {in: $tagSlugs}}, place: {slug: {in: $placesSlugs}}, dateTo: {lt: $dateTo}}
-    sort: ["dateTo:desc", "publishedAt:desc"]
+    sort: ["dateFrom:desc"]
   ) {
     data {
       ...SectionItemEntity
