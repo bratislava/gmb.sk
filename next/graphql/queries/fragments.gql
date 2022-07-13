@@ -11,6 +11,7 @@ fragment ImageWithFormatsEntity on UploadFileEntity {
   ...ImageEntity
   attributes {
     formats
+    caption
   }
 }
 

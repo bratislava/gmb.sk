@@ -1,9 +1,15 @@
-import 'react-image-gallery/styles/css/image-gallery.css'
-import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
+import 'pro-gallery/dist/statics/main.css'
 
+import _ from 'lodash'
 import { useTranslation } from 'next-i18next'
-import { ReactElement, useState } from 'react'
-import ReactImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
+import {
+  Container as ProGalleryContainer,
+  EventsListener as ProGalleryEventsListener,
+  GALLERY_CONSTS,
+  Item as ProGalleryItem,
+  ProGallery,
+} from 'pro-gallery'
+import { createRef, useEffect, useState } from 'react'
 import Modal from 'react-modal'
 
 import CloseButton from '../../assets/icons/close-x.svg'
@@ -28,8 +34,24 @@ type Format = {
 }
 
 const ImageGallery = ({ medias, className }: ImageGalleryProps) => {
-  const { t } = useTranslation()
+  // The scrollingElement is usually the window, if you are scrolling inside another element, suplly it here
+  const scrollingElement = createRef<HTMLDivElement>()
+  // The size of the gallery container. The images will fit themselves in it
+  const [container, setContainer] = useState<ProGalleryContainer>({
+    width: 0,
+    height: undefined,
+  })
   const [showModal, setShowModal] = useState(false)
+  useEffect(() => {
+    if (container.width !== scrollingElement.current?.offsetWidth && showModal) {
+      setContainer({
+        width: scrollingElement.current?.offsetWidth ?? -1,
+        height: scrollingElement.current?.offsetHeight,
+      })
+      console.log({ container })
+    }
+  })
+  const { t } = useTranslation()
   const closeModal = () => {
     setShowModal(false)
   }
@@ -38,25 +60,40 @@ const ImageGallery = ({ medias, className }: ImageGalleryProps) => {
     return null
   }
 
-  const images: ReactElement[] = []
-  const items: ReactImageGalleryItem[] = []
+  const items: ProGalleryItem[] = []
   medias?.filter(hasAttributes).forEach((media) => {
-    const { alternativeText, height, width, url, formats } = media.attributes
+    const { alternativeText, height, width, url, formats, caption } = media.attributes
     const { thumbnail }: { thumbnail: Format } = formats
-    const reactImageGalleryItem = {
-      original: url,
-      thumbnail: thumbnail.url,
-      originalClass: 'h-full',
+    const proGalleryItem: ProGalleryItem = {
+      itemId: _.uniqueId('gallery-image'),
+      mediaUrl: url,
+      metaData: {
+        type: 'image',
+        height,
+        width,
+        alternativeText,
+        title: caption,
+        description: caption,
+        focalPoint: [0, 0],
+      },
     }
-    const image = (
-      <div className="relative max-h-[500px]">
-        <img src={url} alt={alternativeText ?? ''} className="h-full object-contain" />
-        {/* <img src={thumbnail.url} alt={alternativeText ?? ''} /> */}
-      </div>
-    )
-    items.push(reactImageGalleryItem)
-    images.push(image)
+    items.push(proGalleryItem)
   })
+
+  // The options of the gallery (from the playground current state)
+  const options = {
+    galleryLayout: 3,
+    hoveringBehaviour: 'NEVER_SHOW',
+    titlePlacement: 'SHOW_BELOW',
+    cubeType: 'fit',
+    allowTitle: true,
+    galleryTextAlign: 'center',
+  }
+
+  GALLERY_CONSTS.placements.SHOW_BELOW
+
+  // The eventsListener will notify you anytime something has happened in the gallery.
+  const eventsListener: ProGalleryEventsListener = (eventName, eventData) => false
 
   return (
     <div className={className}>
@@ -65,20 +102,25 @@ const ImageGallery = ({ medias, className }: ImageGalleryProps) => {
         onRequestClose={closeModal}
         ariaHideApp={false}
         className="relative h-full w-full"
-        overlayClassName="bg-[rgba(0,0,0,0.9)] fixed inset-0"
+        overlayClassName="bg-[rgba(0,0,0,0.9)] fixed inset-0 z-[51]"
       >
-        <div className="relative top-[calc(var(--height-nav)+var(--padding-y-md))] flex h-[calc(100vh-var(--height-nav)-2*var(--padding-y-md))] flex-col text-white">
+        <div className="relative top-yMd flex h-[calc(100vh-2*var(--padding-y-md))] flex-col text-white">
           <div className="mb-[10px] flex w-full flex-[0_0_auto] items-center justify-between border-b py-ySm px-xSm">
             <h1 className="text-lg">{t('cookieConsent.modalTitle')}</h1>
             <button type="button" onClick={closeModal}>
               <CloseButton className="dw-[25px]" fill="white" />
             </button>
           </div>
-          <div className="min-h-0 flex-[1_1_auto]">
-            <ReactImageGallery items={items} />
-            {/* <Carousel className="h-full" dynamicHeight={false}>
-              {images}
-  </Carousel> */}
+          <div className="min-h-0 flex-[1_1_auto]" ref={scrollingElement}>
+            {container.height && (
+              <ProGallery
+                items={items}
+                options={options}
+                container={container}
+                eventsListener={eventsListener}
+                scrollingElement={scrollingElement.current}
+              />
+            )}
           </div>
         </div>
       </Modal>
