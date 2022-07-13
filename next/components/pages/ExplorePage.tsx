@@ -27,9 +27,10 @@ const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOt
   const { query } = useRouter()
 
   const [activeTags, setActiveTags] = useState<string[]>([])
+  const initialTags = tagsTypes?.map((tag) => tag.attributes.slug) ?? []
 
   const { size, setSize, filteredPages, isLoadingInitialData, isLoadingMore, isReachingEnd } = usePreviewsByTags({
-    activeTags,
+    activeTags: activeTags.length > 0 ? activeTags : initialTags,
     activePlaces: [],
     locale: i18n.language,
   })
