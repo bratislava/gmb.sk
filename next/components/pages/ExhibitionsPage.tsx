@@ -54,9 +54,10 @@ const ExhibitionsPage = ({
 
   const [activeTags, setActiveTags] = useState<string[]>([])
   const [activePlaces, setActivePlaces] = useState<string[]>([])
+  const initialTags = tagsProgram?.map((tag) => tag.attributes.slug) ?? []
 
   const { size, setSize, filteredPages, isLoadingInitialData, isReachingEnd, isLoadingMore } = usePreviewsByTags({
-    activeTags,
+    activeTags: activeTags.length > 0 ? activeTags : initialTags,
     activePlaces,
     locale: i18n.language,
   })
