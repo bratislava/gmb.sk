@@ -1,13 +1,15 @@
 import '../styles/globals.css'
 
-import { appWithTranslation, useTranslation } from 'next-i18next'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
+import { appWithTranslation, useTranslation } from 'next-i18next'
+import { SWRConfig } from 'swr'
 
 import CookieConsent from '../components/molecules/CookieConsent'
 import Navigation from '../components/molecules/Navigation'
 import nextI18NextConfig from '../next-i18next.config'
+import { logError } from '../utils/logger'
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
   const { t } = useTranslation()
@@ -23,17 +25,25 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <div className="app">
-        <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
+      <SWRConfig
+        value={{
+          onError: (error: unknown) => {
+            logError(error)
+          },
+        }}
+      >
+        <div className="app">
+          <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
 
-        <header className="flex">
-          <Navigation contentPage={pageProps?.contentPage} />
-        </header>
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </div>
-      <CookieConsent />
+          <header className="flex">
+            <Navigation contentPage={pageProps?.contentPage} />
+          </header>
+          <main>
+            <Component {...pageProps} />
+          </main>
+        </div>
+        <CookieConsent />
+      </SWRConfig>
     </>
   )
 }
