@@ -32,7 +32,7 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
           locale,
         })
         const response = await fetch(`/api/search-content-pages?${query}`)
-        const searchResults: ContentPageEntityResponseCollection = await response.json()
+        const searchResults = (await response.json()) as ContentPageEntityResponseCollection
         setContentPages(searchResults?.data)
       } catch (error) {
         console.error(error)
