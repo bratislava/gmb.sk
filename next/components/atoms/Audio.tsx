@@ -1,9 +1,6 @@
-import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import React from 'react'
 import useSWR from 'swr'
-
-import { logError } from '../../utils/logger'
 
 const getOEmbedUrl = (url: string) => {
   if (url.includes('soundcloud')) {
@@ -27,7 +24,7 @@ interface OEmbedResponse {
 const fetchOEmbedHtml = async (url: string) => {
   const oEmbedUrl = getOEmbedUrl(url)
   /** Fetch embed HTML from the oembed api for given url */
-  const oembedDataPromise = fetch(oEmbedUrl, { mode: 'cors' }).then((res) => {
+  const oembedDataPromise = fetch(oEmbedUrl).then((res) => {
     if (res.ok) {
       return res.json() as Promise<OEmbedResponse>
     }
@@ -66,5 +63,3 @@ const Audio = ({ url }: AudioProps) => {
 }
 
 export default Audio
-
-
