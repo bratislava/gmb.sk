@@ -3213,7 +3213,7 @@ export const TagsByCategorySlugDocument = gql`
   tagCategoryBySlug(locale: $locale, slug: $tag) {
     data {
       attributes {
-        tags {
+        tags(sort: "id:asc") {
           data {
             ...TagEntity
           }
