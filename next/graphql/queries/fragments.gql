@@ -76,7 +76,7 @@ fragment Positions on ContentPage {
 }
 
 fragment Partners on ContentPage {
-  partners {
+  partners(pagination: { limit: 100 }) {
     partner {
       data {
         ...PartnerEntity
