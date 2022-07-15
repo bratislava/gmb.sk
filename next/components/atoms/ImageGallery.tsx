@@ -5,7 +5,6 @@ import { useTranslation } from 'next-i18next'
 import {
   Container as ProGalleryContainer,
   EventsListener as ProGalleryEventsListener,
-  GALLERY_CONSTS,
   Item as ProGalleryItem,
   ProGallery,
 } from 'pro-gallery'
@@ -89,8 +88,6 @@ const ImageGallery = ({ medias, className }: ImageGalleryProps) => {
     allowTitle: true,
     galleryTextAlign: 'center',
   }
-
-  GALLERY_CONSTS.placements.SHOW_BELOW
 
   // The eventsListener will notify you anytime something has happened in the gallery.
   const eventsListener: ProGalleryEventsListener = (eventName, eventData) => false
