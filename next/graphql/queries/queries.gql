@@ -154,7 +154,7 @@ query HomePage($locale: I18NLocaleCode!) {
         sections {
           ...Sections
         }
-        partners {
+        partners(pagination: { limit: 100 }) {
           partner {
             data {
               ...PartnerEntity

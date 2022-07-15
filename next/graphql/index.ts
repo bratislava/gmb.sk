@@ -3341,7 +3341,7 @@ export const HomePageDocument = gql`
         sections {
           ...Sections
         }
-        partners {
+        partners(pagination: {limit: 100}) {
           partner {
             data {
               ...PartnerEntity
