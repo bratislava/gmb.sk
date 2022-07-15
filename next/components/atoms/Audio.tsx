@@ -7,7 +7,7 @@ const getOEmbedUrl = (url: string) => {
     return `https://soundcloud.com/oembed?url=${url}&format=json`
   }
   if (url.includes('podbean')) {
-    return `http://www.podbean.com/media/oembed?url=${url}&format=json`
+    return `https://www.podbean.com/media/oembed?url=${url}&format=json`
   }
   if (url.includes('spotify')) {
     return `https://open.spotify.com/oembed?url=${url}&format=json`
