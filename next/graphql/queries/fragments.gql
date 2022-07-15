@@ -99,9 +99,6 @@ fragment Seo on ComponentBlocksSeo {
   metaTitle
   metaDescription
   keywords
-  metaRobots
-  metaViewport
-  canonicalUrl
 }
 
 fragment Links on ComponentBlocksLinks {
