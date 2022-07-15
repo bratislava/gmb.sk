@@ -1,10 +1,19 @@
-import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import React from 'react'
 import useSWR from 'swr'
 
-interface AudioProps {
-  url: string
+const getOEmbedUrl = (url: string) => {
+  if (url.includes('soundcloud')) {
+    return `https://soundcloud.com/oembed?url=${url}&format=json`
+  }
+  if (url.includes('podbean')) {
+    return `http://www.podbean.com/media/oembed?url=${url}&format=json`
+  }
+  if (url.includes('spotify')) {
+    return `https://open.spotify.com/oembed?url=${url}&format=json`
+  }
+
+  throw new Error(`Unsupported audio url: ${url}`)
 }
 
 interface OEmbedResponse {
@@ -12,11 +21,10 @@ interface OEmbedResponse {
   html: string
 }
 
-type ParsedEmbedHtml = string | JSX.Element | JSX.Element[]
-
-const fetchOEmbedHtml = async (embedUrl: string) => {
+const fetchOEmbedHtml = async (url: string) => {
+  const oEmbedUrl = getOEmbedUrl(url)
   /** Fetch embed HTML from the oembed api for given url */
-  const oembedDataPromise = fetch(embedUrl).then((res) => {
+  const oembedDataPromise = fetch(oEmbedUrl).then((res) => {
     if (res.ok) {
       return res.json() as Promise<OEmbedResponse>
     }
@@ -31,15 +39,17 @@ const fetchOEmbedHtml = async (embedUrl: string) => {
   return htmlParser.default(oembedResponse.html)
 }
 
+interface AudioProps {
+  /** Must be Spotify, Soundcloud or Podbean URL */
+  url: string
+}
+
+type ParsedEmbedHtml = string | JSX.Element | JSX.Element[]
+
 const Audio = ({ url }: AudioProps) => {
   const { t } = useTranslation()
-  const isSoundCloud = url.includes('soundcloud')
 
-  const embedUrl = isSoundCloud
-    ? `https://soundcloud.com/oembed?url=${url}&format=json`
-    : `https://open.spotify.com/oembed?url=${url}&format=json`
-
-  const { data: oembedHtml, error } = useSWR<ParsedEmbedHtml, Error>(embedUrl, fetchOEmbedHtml)
+  const { data: oembedHtml, error } = useSWR<ParsedEmbedHtml, Error>(url, fetchOEmbedHtml)
 
   if (error) {
     return <div>{t('common.error')}</div>
@@ -53,5 +63,3 @@ const Audio = ({ url }: AudioProps) => {
 }
 
 export default Audio
-
-

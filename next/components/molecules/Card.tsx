@@ -1,6 +1,6 @@
-import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
 import { SectionItemEntityFragment } from '../../graphql'
 import { hasAttributes, WithAttributes } from '../../utils/isDefined'
@@ -36,7 +36,7 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
       </div>
 
       {showTags && tags ? (
-        <div className="flex flex-wrap gap-6">
+        <div className="z-10 flex flex-wrap gap-6">
           {isToday({
             dateFrom: dateFrom as string,
             dateTo: dateTo as string,
