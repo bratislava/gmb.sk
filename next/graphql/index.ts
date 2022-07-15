@@ -2788,7 +2788,7 @@ export const PartnerEntityFragmentDoc = gql`
     ${ImageEntityFragmentDoc}`;
 export const PartnersFragmentDoc = gql`
     fragment Partners on ContentPage {
-  partners {
+  partners(pagination: {limit: 100}) {
     partner {
       data {
         ...PartnerEntity
@@ -3213,7 +3213,7 @@ export const TagsByCategorySlugDocument = gql`
   tagCategoryBySlug(locale: $locale, slug: $tag) {
     data {
       attributes {
-        tags(sort: "id:asc") {
+        tags(sort: "id:asc", pagination: {limit: 100}) {
           data {
             ...TagEntity
           }
