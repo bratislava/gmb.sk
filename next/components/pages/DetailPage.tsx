@@ -62,9 +62,11 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
     submenu.push(downloadSection?.submenuTitle)
   }
 
+  const seoImage = seo?.metaImage?.data || coverMedia?.data
+
   return (
     <div>
-      {seo && <Seo seo={seo} ogType="article" title={title} description={perex} image={coverMedia?.data} />}
+      <Seo seo={seo} ogType="article" title={title} description={perex} image={seoImage} />
       <Head>
         <title>{title}</title>
         <>

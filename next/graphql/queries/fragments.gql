@@ -102,6 +102,11 @@ fragment Seo on ComponentBlocksSeo {
   metaRobots
   metaViewport
   canonicalUrl
+  metaImage {
+    data {
+      ...ImageEntity
+    }
+  }
 }
 
 fragment Links on ComponentBlocksLinks {
