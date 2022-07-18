@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
 import { ImageEntityFragment, SeoFragment } from '../../graphql'
-import { logError } from '../../utils/logger'
+import { getNextUrl } from '../../utils/getNextUrl'
 
 interface SeoProps {
   seo?: SeoFragment
@@ -17,7 +17,7 @@ const Seo = ({ seo, ogType = 'website', title, description, image }: SeoProps) =
   const { t } = useTranslation()
   const { asPath } = useRouter()
 
-  const fullUrl = `${process.env.NEXT_PUBLIC_NEXT_URL}${asPath}`
+  const fullUrl = `${getNextUrl()}${asPath}`
 
   return (
     <Head>
