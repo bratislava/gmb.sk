@@ -24,9 +24,7 @@ const Seo = ({ seo, ogType = 'website', title, description, image }: SeoProps) =
       <meta name="title" content={seo?.metaTitle || title || ''} />
       <meta name="description" content={seo?.metaDescription || description || ''} />
       <meta name="keywords" content={seo?.keywords ?? ''} />
-      <meta name="viewport" content={seo?.metaViewport || 'width=device-width, initial-scale=1'} />
-      <meta name="robots" content={seo?.metaRobots ?? ''} />
-      <meta name="canonical" content={seo?.canonicalUrl ?? ''} />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
 
       {/* Documentation: https://ogp.me/ */}
       <meta property="og:title" content={seo?.metaTitle || title || ''} />
