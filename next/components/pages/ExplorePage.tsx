@@ -51,7 +51,7 @@ const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOt
 
   return (
     <>
-      {seo && <Seo seo={seo} />}
+      <Seo seo={seo} />
       <HighlightsSection
         highlights={explorePage?.data?.attributes?.highlights
           ?.map((highlight) => highlight?.contentPage?.data)

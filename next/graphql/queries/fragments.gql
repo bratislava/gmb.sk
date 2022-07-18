@@ -99,6 +99,11 @@ fragment Seo on ComponentBlocksSeo {
   metaTitle
   metaDescription
   keywords
+  metaImage {
+    data {
+      ...ImageEntity
+    }
+  }
 }
 
 fragment Links on ComponentBlocksLinks {
