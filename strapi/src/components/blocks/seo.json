@@ -14,15 +14,6 @@
     },
     "keywords": {
       "type": "string"
-    },
-    "metaRobots": {
-      "type": "string"
-    },
-    "metaViewport": {
-      "type": "string"
-    },
-    "canonicalUrl": {
-      "type": "string"
     }
   }
 }
