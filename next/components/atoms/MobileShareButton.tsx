@@ -2,6 +2,7 @@ import cx from 'classnames'
 import { useEffect, useState } from 'react'
 
 import ShareIcon from '../../assets/icons/share-nodes.svg'
+import { getNextUrl } from '../../utils/getNextUrl'
 
 interface MobileShareButtonProps {
   className?: string
@@ -11,7 +12,7 @@ interface MobileShareButtonProps {
 
 const MobileShareButton = ({ className, slug, title }: MobileShareButtonProps) => {
   const [hasNavigatorShare, setHasNavigatorShare] = useState<boolean>(true)
-  const url = `${process.env.NEXT_PUBLIC_NEXT_URL}/detail/${slug}`
+  const url = `${getNextUrl()}/detail/${slug}`
 
   // else throwing errors because of some server side rendering, navigator is not defined
   useEffect(() => {

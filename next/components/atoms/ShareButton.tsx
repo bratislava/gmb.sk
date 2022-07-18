@@ -7,6 +7,7 @@ import LinkedInIcon from '../../assets/icons/social-platforms/LinkedIn.svg'
 import TwitterIcon from '../../assets/icons/social-platforms/Twitter.svg'
 import WhatsAppIcon from '../../assets/icons/social-platforms/WhatsApp.svg'
 import { capitalizeFirstLetter } from '../../utils/capitalize'
+import { getNextUrl } from '../../utils/getNextUrl'
 import Link from './Link'
 
 interface ShareButtonProps {
@@ -24,9 +25,9 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
   const { t } = useTranslation()
 
   const defaultEmailSubject = 'Galéria mesta Bratislavy'
-  const url = `${process.env.NEXT_PUBLIC_NEXT_URL}/detail/${slug}`
+  const url = `${getNextUrl()}/detail/${slug}`
 
-  const openInNewWindow: Platform[] = ['facebook']
+  const openInNewWindow = new Set<Platform>(['facebook'])
 
   const href = {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
@@ -54,7 +55,7 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
       href={encodedHref}
       target="_blank"
       onClick={(event) => {
-        if (!openInNewWindow.includes(platform)) {
+        if (!openInNewWindow.has(platform)) {
           return
         }
         // eslint-disable-next-line security/detect-non-literal-fs-filename
