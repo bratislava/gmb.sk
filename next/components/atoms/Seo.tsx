@@ -6,7 +6,7 @@ import { ImageEntityFragment, SeoFragment } from '../../graphql'
 import { getNextUrl } from '../../utils/getNextUrl'
 
 interface SeoProps {
-  seo?: SeoFragment
+  seo?: SeoFragment | null
   ogType?: string
   title?: string
   description?: string | null

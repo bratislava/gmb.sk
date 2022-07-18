@@ -92,7 +92,7 @@ const ExhibitionsPage = ({
 
   return (
     <>
-      {seo && <Seo seo={seo} />}
+      <Seo seo={seo} />
       <HighlightsSection
         highlights={exhibitionsPage?.data?.attributes?.highlights
           ?.map((highlight) => highlight?.contentPage?.data)

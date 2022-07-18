@@ -24,7 +24,7 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
 
   return (
     <>
-      {seo && <Seo seo={seo} />}
+      <Seo seo={seo} title={title} description={subtitle} />
       <section
         data-goout-id={getPurchaseId(contentPage)}
         className="goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--height-nav))] flex-col"
@@ -68,3 +68,4 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
 }
 
 export default TicketPage
+/* eslint-enable tailwindcss/no-custom-classname */
