@@ -26,7 +26,7 @@ const Seo = ({ seo, ogType = 'website', title, description, image }: SeoProps) =
       {/* Documentation: https://ogp.me/ */}
       <meta property="og:title" content={seo?.metaTitle || title || ''} />
       <meta property="og:type" content={ogType} />
-      <meta property="og:url" content={seo?.canonicalUrl || actualUrl} />
+      <meta property="og:url" content={actualUrl} />
       {/* TODO: Twitter's image size limit is only 1MB */}
       <meta property="og:image" content={image?.attributes?.url ?? ''} />
       <meta name="twitter:card" content="summary_large_image" />
