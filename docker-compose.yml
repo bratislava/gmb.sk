@@ -25,9 +25,9 @@ services:
       DATABASE_CLIENT: postgres
       DATABASE_HOST: postgres
       DATABASE_NAME: strapi
-      DATABASE_USERNAME: postgres
+      DATABASE_USERNAME: strapi
       DATABASE_PORT: 54320
-      DATABASE_PASSWORD: postgres
+      DATABASE_PASSWORD: strapi
       NODE_ENV: development
     command: yarn develop
     ports:
@@ -36,8 +36,8 @@ services:
   postgres:
     image: postgres:latest
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
       POSTGRES_DB: strapi
       PGPORT: 54320
     expose:
