@@ -9,11 +9,10 @@ services:
       target: dev
     environment:
       STRAPI_URL: strapi:1337
-      TAILWIND_MODE: watch
       NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: pk.eyJ1IjoiYnJhdGlzbGF2YTAxIiwiYSI6ImNreWp4d3RmbDJxdHcyb24wcTRzODV1Z2oifQ.ted1x1pbp8w3jZG0MygBUw
     command: yarn develop
     ports:
-      - "3000:3000"
+      - '3000:3000'
 
   strapi:
     depends_on:
@@ -31,7 +30,7 @@ services:
       NODE_ENV: development
     command: yarn develop
     ports:
-      - "1337:1337"
+      - '1337:1337'
 
   postgres:
     image: postgres:latest
