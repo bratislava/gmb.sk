@@ -33,12 +33,6 @@ const CookieConsent = () => {
   const [performanceCookies, setPerformanceCookies] = React.useState(true)
   const [advertisingCookies, setAdvertisingCookies] = React.useState(true)
 
-  useEffect(() => {
-    if (process.env.GOOGLE_ANALYTICS_ID) {
-      ReactGA.initialize(process.env.GOOGLE_ANALYTICS_ID)
-    }
-  }, [])
-
   const closeModal = () => {
     setShowModal(false)
   }
