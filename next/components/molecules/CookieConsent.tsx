@@ -19,6 +19,7 @@ interface GDPRCookies {
 
 const setGDPRCookies = (cookies: GDPRCookies) => {
   Cookies.set('city-gallery-gdpr', JSON.stringify(cookies), { expires: 365 })
+  ReactGA.set(cookies)
 }
 
 const CookieConsent = () => {
@@ -48,22 +49,12 @@ const CookieConsent = () => {
       performance_cookies: performanceCookies,
       advertising_and_targeting_cookies: advertisingCookies,
     })
-    ReactGA.set({
-      security_cookies: securityCookies,
-      performance_cookies: performanceCookies,
-      advertising_and_targeting_cookies: advertisingCookies,
-    })
     setShowModal(false)
     setConsent(true)
   }
 
   const acceptAllCookies = () => {
     setGDPRCookies({
-      security_cookies: true,
-      performance_cookies: true,
-      advertising_and_targeting_cookies: true,
-    })
-    ReactGA.set({
       security_cookies: true,
       performance_cookies: true,
       advertising_and_targeting_cookies: true,
@@ -76,11 +67,6 @@ const CookieConsent = () => {
     setPerformanceCookies(false)
     setAdvertisingCookies(false)
     setGDPRCookies({
-      security_cookies: true,
-      performance_cookies: false,
-      advertising_and_targeting_cookies: false,
-    })
-    ReactGA.set({
       security_cookies: true,
       performance_cookies: false,
       advertising_and_targeting_cookies: false,
