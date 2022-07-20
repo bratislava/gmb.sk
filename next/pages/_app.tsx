@@ -32,16 +32,14 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
           },
         }}
       >
-        <div className="app">
-          <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
+        <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
 
-          <header className="flex">
-            <Navigation contentPage={pageProps?.contentPage} />
-          </header>
-          <main>
-            <Component {...pageProps} />
-          </main>
-        </div>
+        <header className="flex">
+          <Navigation contentPage={pageProps?.contentPage} />
+        </header>
+        <main>
+          <Component {...pageProps} />
+        </main>
         <CookieConsent />
       </SWRConfig>
     </>

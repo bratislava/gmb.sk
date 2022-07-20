@@ -1,30 +1,49 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Consent, { Cookies } from 'react-cookie-consent'
 import * as ReactGA from 'react-ga'
 import Modal from 'react-modal'
 
 import ChevronDown from '../../assets/icons/chevron-down.svg'
 import CloseButton from '../../assets/icons/close-x.svg'
+import { onEnterOrSpaceKeyDown } from '../../utils/onEnterKeyDown'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
 
+interface GDPRCookies {
+  security_cookies: boolean
+  performance_cookies: boolean
+  advertising_and_targeting_cookies: boolean
+}
+
+const setGDPRCookies = (cookies: GDPRCookies) => {
+  Cookies.set('city-gallery-gdpr', JSON.stringify(cookies), { expires: 365 })
+}
+
 const CookieConsent = () => {
   const { t } = useTranslation()
+
   const [showModal, setShowModal] = React.useState(false)
   const [isConsentSubmitted, setConsent] = React.useState(false)
-  const [securityCookies] = React.useState<boolean>(true)
-  const [performanceCookies, setPerformanceCookies] = React.useState<boolean>(true)
-  const [advertisingCookies, setAdvertisingCookies] = React.useState<boolean>(true)
   const [openPanel, setPanel] = React.useState<string>(t('cookieConsent.securityEssentialTitle'))
-  process.env.GOOGLE_ANALYTICS_ID && ReactGA.initialize(process.env.GOOGLE_ANALYTICS_ID)
+
+  const [securityCookies] = React.useState(true)
+  const [performanceCookies, setPerformanceCookies] = React.useState(true)
+  const [advertisingCookies, setAdvertisingCookies] = React.useState(true)
+
+  useEffect(() => {
+    if (process.env.GOOGLE_ANALYTICS_ID) {
+      ReactGA.initialize(process.env.GOOGLE_ANALYTICS_ID)
+    }
+  }, [])
+
   const closeModal = () => {
     setShowModal(false)
   }
 
   const saveSettings = () => {
-    Cookies.set('city-gallery-gdpr', {
+    setGDPRCookies({
       security_cookies: securityCookies,
       performance_cookies: performanceCookies,
       advertising_and_targeting_cookies: advertisingCookies,
@@ -37,8 +56,9 @@ const CookieConsent = () => {
     setShowModal(false)
     setConsent(true)
   }
+
   const acceptAllCookies = () => {
-    Cookies.set('city-gallery-gdpr', {
+    setGDPRCookies({
       security_cookies: true,
       performance_cookies: true,
       advertising_and_targeting_cookies: true,
@@ -51,10 +71,11 @@ const CookieConsent = () => {
     setShowModal(false)
     setConsent(true)
   }
+
   const declineCookies = () => {
     setPerformanceCookies(false)
     setAdvertisingCookies(false)
-    Cookies.set('city-gallery-gdpr', {
+    setGDPRCookies({
       security_cookies: true,
       performance_cookies: false,
       advertising_and_targeting_cookies: false,
@@ -70,7 +91,7 @@ const CookieConsent = () => {
     }, 300)
   }
   return (
-    <div>
+    <>
       <Modal
         isOpen={showModal}
         onRequestClose={closeModal}
@@ -170,15 +191,16 @@ const CookieConsent = () => {
       >
         <div className="text-sm">
           {t('cookieConsent.body')}{' '}
-          <span
+          <button
+            type="button"
             className="cursor-pointer text-gmbGray underline underline-offset-2 hover:font-semibold"
             onClick={() => setShowModal(true)}
           >
             {t('cookieConsent.setting')}
-          </span>
+          </button>
         </div>
       </Consent>
-    </div>
+    </>
   )
 }
 
@@ -207,6 +229,7 @@ const Switch = ({ value, onValueChange, disabled }: SwitchProps) => {
       }}
     >
       <div
+        role="presentation"
         onClick={(e) => {
           if (disabled) e.stopPropagation()
         }}
@@ -229,7 +252,10 @@ const Panel = ({ title, content, value, onValueChange, isOpen, setPanel }: Panel
   return (
     <>
       <div
+        role="button"
+        tabIndex={0}
         onClick={() => setPanel(isOpen ? '' : title)}
+        onKeyDown={onEnterOrSpaceKeyDown(() => setPanel(isOpen ? '' : title))}
         className="mt-ySm flex cursor-pointer items-center justify-between bg-gmbLightGray px-xSm py-ySm"
       >
         <div className="flex items-center gap-xSm text-md text-black">
