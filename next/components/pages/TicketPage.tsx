@@ -1,8 +1,9 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import { useTranslation } from 'next-i18next'
 
 import { ContactEntityFragment, ContentPageEntityFragment, SectionItemEntityFragment } from '../../graphql'
+import { getPurchaseId } from '../../utils/getPurchaseId'
 import { WithAttributes } from '../../utils/isDefined'
-import { getRouteForTargetLocale } from '../../utils/localeRoutes'
 import Link from '../atoms/Link'
 import Seo from '../atoms/Seo'
 import { SidePanelPlace } from '../atoms/SidePanelPlace'
@@ -21,30 +22,20 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
 
   const { title, subtitle, place, placeTitle, dateFrom, dateTo, timeFrom, timeTo, slug, seo } = contentPage.attributes
 
-  const ticketIncludesText = `${t('common.ticketIncludesPalace')} ${
-    place?.data?.attributes?.title === t('common.places.palffysPalace')
-      ? t('common.places.palffysPalaceLocative')
-      : t('common.places.mirbachsPalaceLocative')
-  }`
-
   return (
     <>
-      {seo && <Seo seo={seo} />}
+      <Seo seo={seo} title={title} description={subtitle} />
       <section
-        data-goout-id="id-here"
-        data-goout-place-ticket={getRouteForTargetLocale(place?.data?.attributes?.slug ?? '', 'sk')}
-        className="no-goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--height-nav))] flex-col"
+        data-goout-id={getPurchaseId(contentPage)}
+        className="goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--height-nav))] flex-col"
       >
-        <div className="data-goout-place-ticket" />
         <header className="py-yMd px-xMd">
           <Link href={`/detail/${slug}`} preserveStyle noUnderline>
             <hgroup>
-              <h1 className="goout-event text-xxl">{title}</h1>
+              <h1 className="goout-event-title text-xxl">{title}</h1>
               <p className="text-xxl font-regular">{subtitle}</p>
             </hgroup>
           </Link>
-
-          <p className="my-yMd text-md">{ticketIncludesText}</p>
 
           <div className="mt-6 flex w-full flex-wrap justify-start gap-x-xMd gap-y-yMd">
             <SidePanelPlace placeFragment={{ place, placeTitle }} isOneLine />
@@ -52,13 +43,14 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
           </div>
         </header>
 
+        {/* TODO */}
         {/* <aside id="sidebar" className="hidden w-ticketSidebar flex-col bg-gmbDark px-xMd py-yMd text-white lg:flex">
           <p className="text-lg">{ticketIncludesText}</p>
           <div className="grow" />
           <Link href="#relatedContent">{t('common.showIncludedEvents')}</Link>
   </aside> */}
 
-        <div id="goout-form" className="grow bg-gmbLightGray px-xMd py-yMd" />
+        <div id="goout-form" className="grow bg-gmbLightGray px-xMd py-yLg" />
       </section>
 
       <CardSection
@@ -76,3 +68,4 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
 }
 
 export default TicketPage
+/* eslint-enable tailwindcss/no-custom-classname */

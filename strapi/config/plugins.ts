@@ -1,4 +1,9 @@
 export default {
+  graphql: {
+    config: {
+      defaultLimit: 100,
+    },
+  },
   "custom-richtext-editor": {
     enabled: true,
     resolve: "./src/plugins/custom-richtext-editor",

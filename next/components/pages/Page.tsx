@@ -1,5 +1,5 @@
-import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
+import { useTranslation } from 'next-i18next'
 
 import {
   AboutUsPageQuery,
@@ -57,7 +57,7 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
 
   return (
     <>
-      {page?.seo && <Seo seo={page.seo} />}
+      <Seo seo={page?.seo} />
       <Head>
         <title>{title}</title>
       </Head>

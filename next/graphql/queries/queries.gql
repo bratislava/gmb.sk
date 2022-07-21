@@ -14,7 +14,7 @@ query TagsByCategorySlug($locale: I18NLocaleCode!, $tag: String!) {
   tagCategoryBySlug(locale: $locale, slug: $tag) {
     data {
       attributes {
-        tags {
+        tags(sort: "id:asc", pagination: { limit: 100 }) {
           data {
             ...TagEntity
           }
@@ -37,11 +37,19 @@ query News($locale: I18NLocaleCode!, $tag: String!, $limit: Int = 5, $sort: [Str
   }
 }
 
-query PreviewsByTags($locale: I18NLocaleCode!, $limit: Int, $offset: Int, $tagSlugs: [String], $placesSlugs: [String]) {
+query PreviewsByTags(
+  $locale: I18NLocaleCode!
+  $limit: Int
+  $offset: Int
+  $tagSlugs: [String]
+  $placesSlugs: [String]
+  $dateTo: Date
+) {
   contentPages(
     locale: $locale
     pagination: { start: $offset, limit: $limit }
-    filters: { tags: { slug: { in: $tagSlugs } }, place: { slug: { in: $placesSlugs } } }
+    filters: { tags: { slug: { in: $tagSlugs } }, place: { slug: { in: $placesSlugs } }, dateTo: { lt: $dateTo } }
+    sort: ["dateFrom:desc"]
   ) {
     data {
       ...SectionItemEntity

@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
 import { getContentPageColor } from '../../utils/getContentPageColor'
+import { getPurchaseId } from '../../utils/getPurchaseId'
 import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
 import Audio from '../atoms/Audio'
 import ImageGallery from '../atoms/ImageGallery'
@@ -37,7 +38,6 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
     place,
     placeTitle,
     placeAddress,
-    purchaseId,
     positions,
     partners,
     relatedContentTitle,
@@ -63,19 +63,21 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
     submenu.push(downloadSection?.submenuTitle)
   }
 
+  const seoImage = seo?.metaImage?.data || coverMedia?.data
+
   return (
     <div>
-      {seo && <Seo seo={seo} ogType="article" title={title} description={perex} image={coverMedia?.data} />}
+      <Seo seo={seo} ogType="article" title={title} description={perex} image={seoImage} />
       <Head>
         <title>{title}</title>
         <>
           {/* TODO: Query author from strapi */}
-          <meta property="og:article:author" content="author" />
+          {/* <meta property="og:article:author" content="author" /> */}
           {/* "A high-level section name. E.g. Technology" */}
-          <meta property="og:article:section" content="Art and culture" />
+          {/* <meta property="og:article:section" content="Art and culture" /> */}
           {/* article:tag are an 'array' which means more of the same meta tags are allowed */}
-          <meta property="og:article:tag" content="tag1" />
-          <meta property="og:article:tag" content="tag2" />
+          {/* <meta property="og:article:tag" content="tag1" /> */}
+          {/* <meta property="og:article:tag" content="tag2" /> */}
         </>
       </Head>
 
@@ -91,7 +93,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           place={{ place, placeTitle, placeAddress }}
           positions={positions?.filter(isDefined)}
           partners={partners?.map((item) => item?.partner?.data).filter(hasAttributes)}
-          purchaseId={purchaseId}
+          purchaseId={getPurchaseId(contentPage)}
           slug={slug}
           showShare
           title={title}
@@ -101,7 +103,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
         <SidePanel
           datetime={{ dateFrom, dateTo, timeFrom, timeTo, showRemainingTime }}
           place={{ place, placeTitle, placeAddress }}
-          purchaseId={purchaseId}
+          purchaseId={getPurchaseId(contentPage)}
           slug={slug}
           className="pb-24 lg:hidden"
         />
@@ -122,16 +124,16 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
               }
               if (section.__typename === 'ComponentSectionsVideoSection') {
                 return (
-                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id}>
-                    <h3 className="mt-10 pb-8 text-lg">{section.title}</h3>
-                    {section.url ? <Video url={section.url} className="mb-10" /> : null}
+                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
+                    {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
+                    {section.url ? <Video url={section.url} /> : null}
                   </Section>
                 )
               }
               if (section.__typename === 'ComponentSectionsAudioSection') {
                 return (
-                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id}>
-                    <h3 className="mt-10 pb-8 text-lg">{section.title}</h3>
+                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
+                    {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
                     {section.url ? <Audio url={section.url} /> : null}
                   </Section>
                 )

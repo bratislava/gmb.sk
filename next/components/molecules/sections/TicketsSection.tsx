@@ -27,21 +27,21 @@ const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) =
       >
         <CityGalleryMarkdown content={text} />
 
-        <div className="lg:justify-stretch mt-yMd flex flex-wrap justify-between lg:flex-nowrap">
+        <div className="mt-yMd flex flex-wrap justify-between lg:flex-nowrap lg:justify-items-stretch">
           {tickets?.map((ticket) => (
             <Ticket
               key={ticket.id}
-              id={ticket.id}
               title={ticket.attributes.title}
               price={ticket.attributes.price}
               description={ticket.attributes.description}
-              link={ticket.attributes.link}
+              purchaseIdSelf={ticket.attributes.purchaseIdSelf}
+              purchaseIdGift={ticket.attributes.purchaseIdGift}
             />
           ))}
         </div>
       </div>
 
-      <div id="goout-form" className="scroll-mt-nav bg-gmbLightGray px-xMd py-yMd empty:hidden" />
+      <div id="goout-form" className="scroll-mt-nav bg-gmbLightGray px-xMd py-yLg empty:hidden" />
     </Section>
   )
 }

@@ -4,6 +4,7 @@ import React from 'react'
 import CloseIcon from '../../assets/icons/close-x.svg'
 import { ContentPageEntity, ContentPageEntityResponseCollection } from '../../graphql'
 import { isNonEmptyArray } from '../../utils/isNonEmptyArray'
+import { logError } from '../../utils/logger'
 import { useDebounce } from '../../utils/useDebounce'
 import Results from './Results'
 
@@ -26,20 +27,17 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
         return
       }
 
-      try {
-        const query = new URLSearchParams({
-          searchTerm: debouncedSearchTerm,
-          locale,
-        })
-        const response = await fetch(`/api/search-content-pages?${query}`)
-        const searchResults: ContentPageEntityResponseCollection = await response.json()
-        setContentPages(searchResults?.data)
-      } catch (error) {
-        console.error(error)
-      }
+      const query = new URLSearchParams({
+        searchTerm: debouncedSearchTerm,
+        locale,
+      }).toString()
+
+      const response = await fetch(`/api/search-content-pages?${query}`)
+      const searchResults = (await response.json()) as ContentPageEntityResponseCollection
+      setContentPages(searchResults?.data)
     }
 
-    searchContentPages()
+    searchContentPages().catch(logError)
   }, [debouncedSearchTerm, locale])
 
   const { t } = useTranslation()

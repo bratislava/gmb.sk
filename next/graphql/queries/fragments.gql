@@ -20,8 +20,9 @@ fragment TicketEntity on TicketEntity {
   attributes {
     title
     price
-    link
     description
+    purchaseIdSelf
+    purchaseIdGift
   }
 }
 
@@ -49,6 +50,7 @@ fragment PlaceEntity on PlaceEntity {
     title
     address
     slug
+    purchaseId
   }
 }
 
@@ -82,7 +84,7 @@ fragment Positions on ContentPage {
 }
 
 fragment Partners on ContentPage {
-  partners {
+  partners(pagination: { limit: 100 }) {
     partner {
       data {
         ...PartnerEntity
@@ -105,9 +107,11 @@ fragment Seo on ComponentBlocksSeo {
   metaTitle
   metaDescription
   keywords
-  metaRobots
-  metaViewport
-  canonicalUrl
+  metaImage {
+    data {
+      ...ImageEntity
+    }
+  }
 }
 
 fragment Links on ComponentBlocksLinks {
@@ -137,6 +141,7 @@ fragment ContentPageEntity on ContentPageEntity {
     ...ContentPagePlace
     ...Positions
     ...Partners
+    sellTickets
     purchaseId
     mainContent {
       ...MainContent

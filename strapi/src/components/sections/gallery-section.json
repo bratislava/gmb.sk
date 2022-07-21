@@ -2,24 +2,22 @@
   "collectionName": "components_sections_gallery_sections",
   "info": {
     "displayName": "gallery section",
-    "icon": "images",
-    "description": ""
+    "icon": "images"
   },
   "options": {},
   "attributes": {
+    "title": {
+      "type": "string"
+    },
     "submenuTitle": {
       "type": "string"
     },
     "medias": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
       "allowedTypes": [
         "images"
-      ]
-    },
-    "title": {
-      "type": "string"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
