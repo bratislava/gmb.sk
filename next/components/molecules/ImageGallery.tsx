@@ -1,5 +1,6 @@
 import 'react-image-gallery/styles/css/image-gallery.css'
 
+import { uniqueId } from 'lodash'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 import ReactImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
@@ -56,6 +57,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
         originalTitle={item.originalTitle}
         sizes={item.sizes}
         srcSet={item.srcSet}
+        key={uniqueId()}
       />
     )
   }
@@ -120,6 +122,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
                 setShowModal(true)
                 setImageIndex(id)
               }}
+              key={index}
             />
           ))}
           <button
