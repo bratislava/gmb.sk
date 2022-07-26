@@ -2628,7 +2628,7 @@ export type PreviewContentPageBySlugQueryVariables = Exact<{
 }>;
 
 
-export type PreviewContentPageBySlugQuery = { __typename?: 'Query', contentPageBySlug?: { __typename?: 'ContentPageEntityResponse', data?: { __typename?: 'ContentPageEntity', attributes?: { __typename?: 'ContentPage', slug: string } | null } | null } | null };
+export type PreviewContentPageBySlugQuery = { __typename?: 'Query', contentPageBySlug?: { __typename?: 'ContentPageEntityResponse', data?: { __typename?: 'ContentPageEntity', attributes?: { __typename?: 'ContentPage', slug: string, locale?: string | null } | null } | null } | null };
 
 export type ContentPageBySlugQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode'];
@@ -3302,6 +3302,7 @@ export const PreviewContentPageBySlugDocument = gql`
     data {
       attributes {
         slug
+        locale
       }
     }
   }
