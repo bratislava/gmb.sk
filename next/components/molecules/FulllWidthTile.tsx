@@ -13,7 +13,7 @@ export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
   const { t } = useTranslation()
 
   return (
-    <article className="group w-full cursor-pointer">
+    <article className="w-full cursor-pointer">
       <div className="flex h-screen w-full items-center justify-center overflow-hidden lg:h-full">
         {sectionItem.attributes.coverMedia?.data?.attributes?.url && (
           <img
@@ -33,10 +33,7 @@ export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
           <p className="pb-yMd text-xl font-regular">{sectionItem.attributes.subtitle}</p>
         </hgroup>
 
-        <Button
-          href={`/detail/${sectionItem.attributes.slug}`}
-          className="group-hover:bg-gmbDark group-hover:text-white "
-        >
+        <Button href={`/detail/${sectionItem.attributes.slug}`} className="after:absolute after:inset-0">
           {t('common.detail')}
         </Button>
       </div>

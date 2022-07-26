@@ -9,6 +9,7 @@ import Audio from '../atoms/Audio'
 import Seo from '../atoms/Seo'
 import Video from '../atoms/Video'
 import Footer from '../molecules/Footer'
+import ImageGallery from '../molecules/ImageGallery'
 import ImgSwiper from '../molecules/ImgSwiper'
 import ChessboardSection from '../molecules/sections/ChessboardSection'
 import DownloadSection from '../molecules/sections/DownloadSection'
@@ -62,9 +63,11 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
     submenu.push(downloadSection?.submenuTitle)
   }
 
+  const seoImage = seo?.metaImage?.data || coverMedia?.data
+
   return (
     <div>
-      {seo && <Seo seo={seo} ogType="article" title={title} description={perex} image={coverMedia?.data} />}
+      <Seo seo={seo} ogType="article" title={title} description={perex} image={seoImage} />
       <Head>
         <title>{title}</title>
         <>
@@ -121,17 +124,25 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
               }
               if (section.__typename === 'ComponentSectionsVideoSection') {
                 return (
-                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id}>
-                    <h3 className="mt-10 pb-8 text-lg">{section.title}</h3>
-                    {section.url ? <Video url={section.url} className="mb-10" /> : null}
+                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
+                    {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
+                    {section.url ? <Video url={section.url} /> : null}
                   </Section>
                 )
               }
               if (section.__typename === 'ComponentSectionsAudioSection') {
                 return (
-                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id}>
-                    <h3 className="mt-10 pb-8 text-lg">{section.title}</h3>
+                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
+                    {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
                     {section.url ? <Audio url={section.url} /> : null}
+                  </Section>
+                )
+              }
+              if (section.__typename === 'ComponentSectionsGallerySection') {
+                return (
+                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
+                    {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
+                    <ImageGallery medias={section.medias?.data} />
                   </Section>
                 )
               }

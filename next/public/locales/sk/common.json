@@ -69,7 +69,8 @@
     "error": "Nastala chyba. Skúste to znova neskôr.",
     "documents": "Dokumenty",
     "privacyPolicy": "ochrana osobných údajov",
-    "privacyPolicyGenitiv": "ochrany osobných údajov"
+    "privacyPolicyGenitiv": "ochrany osobných údajov",
+    "morePhotos": "Viac fotografií"
   },
   "navigation": {
     "visitUs": "Navštívte",
@@ -107,7 +108,15 @@
     "navigate": "Navigovať",
     "carText": "Zaparkujte v najbližších parkovacích domoch alebo na uliciach v Starom Meste.",
     "publicTransportText": "Navštívte nás pohodlne a bez starostí vďaka mestskej hromadnej doprave.",
-    "bikeText": "Odložte si svoj bicykel v niektorom zo stojanov alebo využite zdielané bicykle."
+    "bikeText": "Odložte si svoj bicykel v niektorom zo stojanov alebo využite zdielané bicykle.",
+    "mirbachPalace": "Mirbachov palác",
+    "palffyPalace": "Pálffyho palác",
+    "name": "Názov",
+    "contact": "Kontakt",
+    "street": "Ulica",
+    "connections": "Spoje",
+    "price": "Cena",
+    "count": "Počet bicyklov"
   },
   "cookieConsent": {
     "body": "Táto webstránka používa základné cookies na zabezpečenie správneho fungovania a sledovanie cookies, ktoré nám pomáha porozumieť, ako stránku využívate. Budú zaznamenávané len po tom, ako vyjadríte svoj súhlas.",

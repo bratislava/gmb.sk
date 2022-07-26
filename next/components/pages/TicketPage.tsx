@@ -22,30 +22,20 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
 
   const { title, subtitle, place, placeTitle, dateFrom, dateTo, timeFrom, timeTo, slug, seo } = contentPage.attributes
 
-  // TODO
-  // const ticketIncludesText = `${t('common.ticketIncludesPalace')} ${
-  //   place?.data?.attributes?.title === t('common.places.palffyPalace')
-  //     ? t('common.places.palffyPalaceLocative')
-  //     : t('common.places.mirbachPalaceLocative')
-  // }`
-
   return (
     <>
-      {seo && <Seo seo={seo} />}
+      <Seo seo={seo} title={title} description={subtitle} />
       <section
         data-goout-id={getPurchaseId(contentPage)}
         className="goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--height-nav))] flex-col"
       >
-        <div className="data-goout-place-ticket" />
         <header className="py-yMd px-xMd">
           <Link href={`/detail/${slug}`} preserveStyle noUnderline>
             <hgroup>
-              <h1 className="goout-event text-xxl">{title}</h1>
+              <h1 className="goout-event-title text-xxl">{title}</h1>
               <p className="text-xxl font-regular">{subtitle}</p>
             </hgroup>
           </Link>
-
-          {/* <p className="my-yMd text-md">{ticketIncludesText}</p> */}
 
           <div className="mt-6 flex w-full flex-wrap justify-start gap-x-xMd gap-y-yMd">
             <SidePanelPlace placeFragment={{ place, placeTitle }} isOneLine />
@@ -60,7 +50,7 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
           <Link href="#relatedContent">{t('common.showIncludedEvents')}</Link>
   </aside> */}
 
-        <div id="goout-form" className="grow bg-gmbLightGray px-xMd py-yMd" />
+        <div id="goout-form" className="grow bg-gmbLightGray px-xMd py-yLg" />
       </section>
 
       <CardSection
@@ -78,3 +68,4 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
 }
 
 export default TicketPage
+/* eslint-enable tailwindcss/no-custom-classname */

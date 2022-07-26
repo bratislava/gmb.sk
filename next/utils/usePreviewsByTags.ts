@@ -27,7 +27,7 @@ export const usePreviewsByTags = ({
 
       const archiveVariables = activeTags.includes('archive')
         ? {
-            today: getTodaysDate(),
+            dateTo: getTodaysDate(),
             /** We don't send archive tag to the server
              * If there are other tags than 'archive', remove 'archive' and  use the remaining tags.
              * If archive is the only one, pass undefiend */

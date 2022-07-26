@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sections_gallery_sections",
+  "info": {
+    "displayName": "gallery section",
+    "icon": "images"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "submenuTitle": {
+      "type": "string"
+    },
+    "medias": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

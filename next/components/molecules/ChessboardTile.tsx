@@ -1,7 +1,7 @@
 import cx from 'classnames'
-import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
 import { SectionItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
@@ -48,7 +48,7 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
         </hgroup>
 
         {showTags && tags && (
-          <div className="flex space-x-3">
+          <div className="z-10 flex space-x-3">
             {tags.data.filter(hasAttributes).map((tag) => (
               <Link href={`${router.pathname}/?tags=${tag.attributes.slug}`} key={tag.attributes.slug}>
                 {tag.attributes.title}

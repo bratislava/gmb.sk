@@ -7,6 +7,14 @@ fragment ImageEntity on UploadFileEntity {
   }
 }
 
+fragment ImageWithFormatsEntity on UploadFileEntity {
+  ...ImageEntity
+  attributes {
+    formats
+    caption
+  }
+}
+
 fragment TicketEntity on TicketEntity {
   id
   attributes {
@@ -76,7 +84,7 @@ fragment Positions on ContentPage {
 }
 
 fragment Partners on ContentPage {
-  partners {
+  partners(pagination: { limit: 100 }) {
     partner {
       data {
         ...PartnerEntity
@@ -99,9 +107,11 @@ fragment Seo on ComponentBlocksSeo {
   metaTitle
   metaDescription
   keywords
-  metaRobots
-  metaViewport
-  canonicalUrl
+  metaImage {
+    data {
+      ...ImageEntity
+    }
+  }
 }
 
 fragment Links on ComponentBlocksLinks {
@@ -349,6 +359,17 @@ fragment AudioSection on ComponentSectionsAudioSection {
   url
 }
 
+fragment GallerySection on ComponentSectionsGallerySection {
+  id
+  title
+  submenuTitle
+  medias {
+    data {
+      ...ImageWithFormatsEntity
+    }
+  }
+}
+
 fragment TicketsSection on ComponentSectionsTicketsSection {
   id
   title
@@ -422,5 +443,9 @@ fragment MainContent on ContentPageMainContentDynamicZone {
   ... on ComponentSectionsAudioSection {
     __typename
     ...AudioSection
+  }
+  ... on ComponentSectionsGallerySection {
+    __typename
+    ...GallerySection
   }
 }

@@ -57,7 +57,7 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
 
   return (
     <>
-      {page?.seo && <Seo seo={page.seo} />}
+      <Seo seo={page?.seo} />
       <Head>
         <title>{title}</title>
       </Head>

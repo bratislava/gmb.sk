@@ -19,6 +19,7 @@ const PartnersSection = ({ partners, title, anchor }: PartnersSectionProps) => {
             href={partner.attributes.link ?? '#'}
             key={index}
             className="flex h-[115px] cursor-pointer items-center justify-center overflow-hidden"
+            target="_blank"
           >
             <img
               src={partner?.attributes.logo.data?.attributes?.url}
