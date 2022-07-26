@@ -15,8 +15,7 @@ const ImageGalleryTile = ({ image, className, onChoose, index }: ImageGalleryTil
   if (!image) return null
 
   const { url, formats, alternativeText } = image.attributes
-  const src =
-    index === 0 ? url : Object.hasOwn(formats, 'thumbnail') ? (formats as StrapiImageFormats).thumbnail.url : url
+  const src = index === 0 ? url : (formats as StrapiImageFormats).thumbnail.url ?? url
   return (
     <button type="button" className={cx(className, 'h-full w-full')} onClick={() => onChoose(index)}>
       <img src={src} alt={alternativeText ?? ''} className="h-full w-full object-cover" />
