@@ -62,6 +62,7 @@ query PreviewContentPageBySlug($slug: String!) {
     data {
       attributes {
         slug
+        locale
       }
     }
   }
