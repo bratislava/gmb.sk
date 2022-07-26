@@ -1,7 +1,7 @@
 import cx from 'classnames'
 
 import { ImageWithFormatsEntityFragment } from '../../graphql'
-import StrapiImageFormat from '../../types/strapiImageFormat'
+import { StrapiImageFormats } from '../../types/strapiImageFormats'
 import { WithAttributes } from '../../utils/isDefined'
 
 interface ImageGalleryTileProps {
@@ -16,7 +16,7 @@ const ImageGalleryTile = ({ image, className, onChoose, index }: ImageGalleryTil
 
   const { url, formats, alternativeText } = image.attributes
   const src =
-    index === 0 ? url : Object.hasOwn(formats, 'thumbnail') ? (formats.thumbnail as StrapiImageFormat).url : url
+    index === 0 ? url : Object.hasOwn(formats, 'thumbnail') ? (formats as StrapiImageFormats).thumbnail.url : url
   return (
     <button type="button" className={cx(className, 'h-full w-full')} onClick={() => onChoose(index)}>
       <img src={src} alt={alternativeText ?? ''} className="h-full w-full object-cover" />

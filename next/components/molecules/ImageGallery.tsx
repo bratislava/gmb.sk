@@ -8,7 +8,7 @@ import Modal from 'react-modal'
 
 import CloseButton from '../../assets/icons/close-x.svg'
 import { ImageWithFormatsEntityFragment } from '../../graphql'
-import StrapiImageFormat from '../../types/strapiImageFormat'
+import { StrapiImageFormats } from '../../types/strapiImageFormats'
 import { hasAttributes, withAttributes } from '../../utils/isDefined'
 import ImageGalleryItem from '../atoms/ImageGalleryItem'
 import ImageGalleryTile from '../atoms/ImageGalleryTile'
@@ -35,7 +35,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
 
   const items = filteredMedias.map((media) => {
     const { alternativeText, height, width, url, formats, caption } = media.attributes
-    const { thumbnail }: { thumbnail: StrapiImageFormat } = formats
+    const { thumbnail } = formats as StrapiImageFormats
     const item: ReactImageGalleryItem = {
       original: url,
       thumbnail: thumbnail.url,
