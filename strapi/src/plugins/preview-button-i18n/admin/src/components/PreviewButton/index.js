@@ -20,11 +20,18 @@ const PreviewButton = ({
   const currentLocale = get(query, "plugins.i18n.locale", "sk");
 
   const handleClick = (event) => {
-    const destination = isDraft
-      ? draftUrl
-      : publishedUrl ??
-        localizedPublishedUrls[currentLocale] ??
-        localizedPublishedUrls["sk"];
+    let destination;
+    if (isDraft) {
+      destination = draftUrl;
+    } else {
+      if (publishedUrl) {
+        destination = publishedUrl;
+      } else if (localizedPublishedUrls[currentLocale]) {
+        destination = localizedPublishedUrls[currentLocale];
+      } else if (localizedPublishedUrls.sk) {
+        destination = localizedPublishedUrls.sk;
+      }
+    }
 
     if (!destination) {
       event.preventDefault();
