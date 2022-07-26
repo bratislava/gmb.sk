@@ -9,6 +9,7 @@ import Audio from '../atoms/Audio'
 import Seo from '../atoms/Seo'
 import Video from '../atoms/Video'
 import Footer from '../molecules/Footer'
+import ImageGallery from '../molecules/ImageGallery'
 import ImgSwiper from '../molecules/ImgSwiper'
 import ChessboardSection from '../molecules/sections/ChessboardSection'
 import DownloadSection from '../molecules/sections/DownloadSection'
@@ -134,6 +135,14 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
                   <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
                     {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
                     {section.url ? <Audio url={section.url} /> : null}
+                  </Section>
+                )
+              }
+              if (section.__typename === 'ComponentSectionsGallerySection') {
+                return (
+                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
+                    {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
+                    <ImageGallery medias={section.medias?.data} />
                   </Section>
                 )
               }
