@@ -103,6 +103,36 @@ module.exports = {
 };
 ```
 
+An example with i18n compatiblity for paths, `basePath` in `published` becomes an object:
+
+```js
+module.exports = {
+  'preview-button': {
+    enabled: true,
+    config: {
+      contentTypes: [
+        {
+          uid: 'api::page.page',
+          targetField: 'slug',
+        },
+        {
+          uid: 'api::post.post',
+          targetField: 'slug',
+          draft: {
+            query: {
+              type: 'post',
+            },
+          },
+          published: {
+            basePath: { sk: 'blog', en: 'en/blog' },
+          },
+        },
+      ],
+    },
+  },
+};
+```
+
 This configuration will result in the following preview URLs for `Page` and `Post`. Notice in the URLs below how env vars and config settings work together to build the final URLs.
 
 ##### Draft URL paths
