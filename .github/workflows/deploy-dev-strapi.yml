@@ -22,10 +22,13 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./strapi
+        working-directory: strapi/
     steps:
     - name: Checking out
       uses: actions/checkout@v3
+      
+    - name: Switch to strapi
+      run: cd strapi/
       
     - name: Install Prerequisites -  Node.js
       uses: actions/setup-node@v3
