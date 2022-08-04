@@ -1,10 +1,12 @@
 name: Deploy code to kubernetes
 on:
   push:
+    branches:
+      - '!master'
     paths:
       - 'strapi/**'
     tags:        
-      - '**'
+      - 'dev*'
 env:
   DOCKER_REGISTRY: harbor.bratislava.sk
   DOCKER_USERNAME: robot$github_actions
@@ -18,7 +20,9 @@ jobs:
   deploy:
     name: Build and deploy
     runs-on: ubuntu-latest
-    
+    defaults:
+      run:
+        working-directory: ./strapi
     steps:
     - name: Checking out
       uses: actions/checkout@v3
