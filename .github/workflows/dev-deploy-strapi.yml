@@ -1,0 +1,64 @@
+name: Deploy code to kubernetes
+on:
+  push:
+    paths:
+      - 'strapi/**'
+    tags:        
+      - '**'
+env:
+  DOCKER_REGISTRY: harbor.bratislava.sk
+  DOCKER_USERNAME: robot$github_actions
+  DOCKER_PASSWORD: ${{ secrets.HARBOR_GITHUB_ACTIONS }}
+  KUBERNETES_NAMESPACE: standalone
+  # kubectl get secret <service account secret> -n=standalone -o jsonpath='{.data.token}' | base64 --decode  > token.tmp
+  KUBERNETES_SERVICE_ACCOUNT_TOKEN: ${{ secrets.DEV_STANDALONE_TOKEN }}
+  KUBERNETES_SERVER_URL: https://tkg.dev.bratislava.sk
+  KUBERNETES_CLUSTER: tkg-innov-dev
+jobs:
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checking out
+      uses: actions/checkout@v3
+      
+    - name: Install Prerequisites -  Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+        
+    - name: Installing Bratiska-cli       
+      run: yarn global add bratislava/bratiska-cli
+      
+    - name: Running git fetch for Bratiska-cli 
+      run: git fetch
+      
+    - name: Kubectl tool installer
+      uses: Azure/setup-kubectl@v2.1
+        
+    - name: Kubernetes set service account token
+      run: kubectl config set-credentials default --token=${{ env.KUBERNETES_SERVICE_ACCOUNT_TOKEN }}
+        
+    - name: Kubernetes set server with certificate account token
+      run: kubectl config set-cluster ${{ env.KUBERNETES_CLUSTER }}  --insecure-skip-tls-verify --server=${{ env.KUBERNETES_SERVER_URL }}
+      
+    - name: Kubernetes set context cluster
+      run: kubectl config set-context ${{ env.KUBERNETES_CLUSTER }} --cluster=${{ env.KUBERNETES_CLUSTER }} --user=default
+    
+    - name: Kubernetes use context
+      run: kubectl config use-context ${{ env.KUBERNETES_CLUSTER }}
+    
+    - name: Login to Harbor
+      uses: docker/login-action@v2
+      with:
+        registry: ${{ env.DOCKER_REGISTRY }}
+        username: ${{ env.DOCKER_USERNAME }}
+        password: ${{ env.DOCKER_PASSWORD }}
+        
+    - name: Print Bratiska-cli version 
+      run: bratiska-cli deploy --version
+   
+    - name: Running build and deploy with Bratiska-cli 
+      run: bratiska-cli deploy
+      continue-on-error: false
