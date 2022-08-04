@@ -1,5 +1,10 @@
 name: Test yarn build
-on: [push]
+on:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - 'next/**'
 jobs:
   build:
     name: Test yarn build
