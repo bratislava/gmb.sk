@@ -1,8 +1,6 @@
 name: Deploy code to kubernetes
 on:
   push:
-    branches:
-      - '!master'
     paths:
       - 'strapi/**'
     tags:        
