@@ -16,6 +16,7 @@ env:
   KUBERNETES_CLUSTER: tkg-innov-dev
 jobs:
   deploy:
+    if: startsWith(github.ref, 'refs/tags/dev')
     name: Build and deploy
     runs-on: ubuntu-latest
     defaults:
