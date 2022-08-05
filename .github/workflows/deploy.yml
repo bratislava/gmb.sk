@@ -28,14 +28,12 @@ jobs:
               - 'next/**'
   deploy-dev-strapi:
     if: startsWith(github.ref, 'refs/tags/dev') && steps.filter.outputs.strapi == 'true'
-    name: Strapi to Dev deploy
-    runs-on: ubuntu-latest
-    steps:
-      - uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
-        with:
-          directory: strapi/
-          cluster: ${{ env.KUBERNETES_DEV_CLUSTER }}
-          url: ${{ env.KUBERNETES_DEV_CLUSTER_URL }}
-          registry-pass: ${{ env.DOCKER_PASSWORD }}
-          service-account: ${{ secrets.DEV_STANDALONE_TOKEN }}
+    name: Deploy Strapi to Dev cluster
+    uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
+    with:
+      directory: strapi/
+      cluster: ${{ env.KUBERNETES_DEV_CLUSTER }}
+      url: ${{ env.KUBERNETES_DEV_CLUSTER_URL }}
+      registry-pass: ${{ env.DOCKER_PASSWORD }}
+      service-account: ${{ secrets.DEV_STANDALONE_TOKEN }}
           
