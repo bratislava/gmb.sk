@@ -34,6 +34,6 @@ jobs:
       directory: strapi/
       cluster: ${{ env.KUBERNETES_DEV_CLUSTER }}
       url: ${{ env.KUBERNETES_DEV_CLUSTER_URL }}
-      registry-pass: ${{ env.DOCKER_PASSWORD }}
-      service-account: ${{ secrets.DEV_STANDALONE_TOKEN }}
+      service-account: ${{ env.KUBERNETES_DEV_SERVICE_ACCOUNT_TOKEN }}
+      registry-pass: ${{ secrets.DOCKER_PASSWORD }}
           
