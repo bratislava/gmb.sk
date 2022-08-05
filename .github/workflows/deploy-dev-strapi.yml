@@ -4,6 +4,7 @@ on:
     paths:
       - 'strapi/**'
 env:
+  ACTION_SUBFOLDER: strapi/
   DOCKER_REGISTRY: harbor.bratislava.sk
   DOCKER_USERNAME: robot$github_actions
   DOCKER_PASSWORD: ${{ secrets.HARBOR_GITHUB_ACTIONS }}
@@ -13,8 +14,37 @@ env:
   KUBERNETES_SERVER_URL: https://tkg.dev.bratislava.sk
   KUBERNETES_CLUSTER: tkg-innov-dev
 jobs:
+  check:
+    name: Check changed files
+    outputs:
+      run_job: ${{ steps.check_files.outputs.run_job }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: check files
+        id: check_files
+        run: |
+          echo "=============== list changed files ==============="
+          git diff --name-only HEAD^ HEAD
+
+          echo "========== check paths of changed files =========="
+          git diff --name-only HEAD^ HEAD &gt; files.txt
+          while IFS= read -r file
+          do
+            echo $file
+            if [[ $file != "${{ secrets.ACTION_SUBFOLDER }}"* ]]; then
+              echo "This file is not under the directory '${{ secrets.ACTION_SUBFOLDER }}'."
+              echo "::set-output name=run_job::false"
+              break
+            else
+              echo "::set-output name=run_job::true"
+            fi
+          done &lt; files.txt
   deploy:
-    if: startsWith(github.ref, 'refs/tags/dev')
+    if: startsWith(github.ref, 'refs/tags/dev') && needs.check.outputs.run_job == 'true'
     name: Build and deploy
     runs-on: ubuntu-latest
     defaults:
