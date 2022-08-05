@@ -1,0 +1,41 @@
+name: Maybe deploy
+on:
+  push:
+    tags:
+      - 'dev**'
+env:
+  KUBERNETES_DEV_CLUSTER: tkg-innov-dev
+  KUBERNETES_DEV_CLUSTER_URL: https://tkg.dev.bratislava.sk
+  KUBERNETES_DEV_SERVICE_ACCOUNT_TOKEN: ${{ secrets.DEV_STANDALONE_TOKEN }}
+jobs:
+  check:
+    name: Check changed files
+    outputs:
+      run_job: ${{ steps.check_files.outputs.run_job }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            strapi:
+              - 'strapi/**'
+            next:
+              - 'next/**'
+  deploy-dev-strapi:
+    if: startsWith(github.ref, 'refs/tags/dev') && steps.filter.outputs.strapi == 'true'
+    name: Strapi to Dev deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
+        with:
+          directory: strapi/
+          cluster: ${{ env.KUBERNETES_DEV_CLUSTER }}
+          url: ${{ env.KUBERNETES_DEV_CLUSTER_URL }}
+          registry-pass: ${{ env.DOCKER_PASSWORD }}
+          service-account: ${{ secrets.DEV_STANDALONE_TOKEN }}
+          
