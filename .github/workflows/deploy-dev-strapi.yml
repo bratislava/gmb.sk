@@ -3,8 +3,6 @@ on:
   push:
     paths:
       - 'strapi/**'
-    tags:        
-      - 'dev*'
 env:
   DOCKER_REGISTRY: harbor.bratislava.sk
   DOCKER_USERNAME: robot$github_actions
