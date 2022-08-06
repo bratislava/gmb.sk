@@ -31,7 +31,7 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/dev') && steps.filter.outputs.strapi == 'true'
     uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
-      directory: strapi/
+      directory: 'strapi/'
       cluster: ${{ env.KUBERNETES_DEV_CLUSTER }}
       url: ${{ env.KUBERNETES_DEV_CLUSTER_URL }}
     secrets:
