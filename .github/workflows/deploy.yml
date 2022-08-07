@@ -33,7 +33,7 @@ jobs:
             next:
               - 'next/**'
   conditions:
-    name: Checking different conditions for determining which env should be running
+    name: Checking deployment conditions
     needs: changes
     runs-on: ubuntu-latest
     outputs:
@@ -76,7 +76,7 @@ jobs:
 
       - id: conditions-count-check
         name: Checking if there is only one condition true
-        if: steps.dev-strapi.outputs.condition + steps.dev-next.outputs.condition + steps.staging-strapi.outputs.condition + steps.staging-next.outputs.condition + steps.prod-strapi.outputs.condition + steps.prod-next.outputs.condition > 1
+        if: (steps.dev-strapi.outputs.condition + steps.dev-next.outputs.condition + steps.staging-strapi.outputs.condition + steps.staging-next.outputs.condition + steps.prod-strapi.outputs.condition + steps.prod-next.outputs.condition) > 1
         uses: actions/github-script@v3
         with:
           script: |
