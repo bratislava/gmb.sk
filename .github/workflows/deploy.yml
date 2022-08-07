@@ -8,16 +8,13 @@ env:
   KUBERNETES_DEV_CLUSTER_URL: https://tkg.dev.bratislava.sk
   KUBERNETES_DEV_SERVICE_ACCOUNT_TOKEN: ${{ secrets.DEV_STANDALONE_TOKEN }}
 jobs:
-  check:
-    name: Check changed files
-    outputs:
-      run_job: ${{ check.check_files.outputs.run_job }}
+  changes:
     runs-on: ubuntu-latest
+    outputs:
+      strapi: ${{ steps.filter.outputs.strapi }}
+      next: ${{ steps.filter.outputs.next }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
+      # For pull requests it's not necessary to checkout the code
       - uses: dorny/paths-filter@v2
         id: filter
         with:
@@ -28,7 +25,8 @@ jobs:
               - 'next/**'
   deploy-dev-strapi:
     name: Deploy Strapi to Dev cluster
-    if: startsWith(github.ref, 'refs/tags/dev') && check.filter.outputs.strapi == 'true'
+    needs: changes
+    if: startsWith(github.ref, 'refs/tags/dev') && needs.changes.outputs.strapi == 'true'
     uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
       directory: strapi/
