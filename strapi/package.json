@@ -1,7 +1,7 @@
 {
   "name": "city-gallery-strapi",
   "private": true,
-  "version": "1.0.3",
+  "version": "1.0.31",
   "description": "A Strapi application",
   "scripts": {
     "dev": "strapi develop",
