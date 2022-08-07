@@ -35,6 +35,6 @@ jobs:
       cluster: tkg-innov-dev
       url: https://tkg.dev.bratislava.sk
     secrets:
-      service-account: ${{ env.KUBERNETES_DEV_SERVICE_ACCOUNT_TOKEN }}
+      service-account: ${{ secrets.DEV_STANDALONE_TOKEN }}
       registry-pass: ${{ secrets.DOCKER_PASSWORD }}
           
