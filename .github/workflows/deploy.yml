@@ -86,7 +86,7 @@ jobs:
   deploy-prod-strapi:
     name: Deploy PROD Strapi
     needs: changes
-    if: startsWith(github.ref, 'refs/tags/prod-strapi'))
+    if: startsWith(github.ref, 'refs/tags/prod-strapi')
     uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
       directory: strapi/
@@ -99,7 +99,7 @@ jobs:
   deploy-prod-next:
     name: Deploy PROD Next
     needs: changes
-    if: startsWith(github.ref, 'refs/tags/prod-next'))
+    if: startsWith(github.ref, 'refs/tags/prod-next')
     uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
       directory: next/
