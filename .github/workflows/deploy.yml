@@ -14,6 +14,7 @@ env:
   KUBERNETES_DEV_SERVICE_ACCOUNT_TOKEN: ${{ secrets.DEV_STANDALONE_TOKEN }}
 jobs:
   changes:
+    name: Checking for directory changes
     runs-on: ubuntu-latest
     outputs:
       strapi: ${{ steps.filter.outputs.strapi }}
@@ -31,10 +32,60 @@ jobs:
               - 'strapi/**'
             next:
               - 'next/**'
+  conditions:
+    name: Checking different conditions for determining which env should be running
+    needs: changes
+    runs-on: ubuntu-latest
+    outputs:
+      dev-strapi: ${{ steps.dev-strapi.outputs.condition }}
+      dev-next: ${{ steps.dev-next.outputs.condition }}
+      staging-strapi: ${{ steps.staging-strapi.outputs.condition }}
+      staging-next: ${{ steps.staging-next.outputs.condition }}
+      prod-strapi: ${{ steps.prod-strapi.outputs.condition }}
+      prod-next: ${{ steps.prod-next.outputs.condition }}
+    steps:
+      - id: dev-strapi
+        name: Check for dev strapi
+        if: (startsWith(github.ref, 'refs/tags/dev') && needs.changes.outputs.strapi == 'true') || startsWith(github.ref, 'refs/tags/dev-strapi')
+        run: echo "::set-output name=condition::1"
+
+      - id: dev-next
+        name: Check for dev next
+        if: (startsWith(github.ref, 'refs/tags/dev') && needs.changes.outputs.next == 'true') || startsWith(github.ref, 'refs/tags/dev-next')
+        run: echo "::set-output name=condition::1"
+
+      - id: staging-strapi
+        name: Check for staging strapi
+        if: (needs.changes.outputs.strapi == 'true' && ( github.event.pull_request.merged == true || startsWith(github.ref, 'refs/tags/staging'))) || startsWith(github.ref, 'refs/tags/staging-strapi')
+        run: echo "::set-output name=condition::1"
+
+      - id: staging-next
+        name: Check for staging next
+        if: (needs.changes.outputs.next == 'true' && ( github.event.pull_request.merged == true || startsWith(github.ref, 'refs/tags/staging'))) || startsWith(github.ref, 'refs/tags/staging-next')
+        run: echo "::set-output name=condition::1"
+        
+      - id: prod-strapi
+        name: Check for prod strapi
+        if: startsWith(github.ref, 'refs/tags/prod-strapi')
+        run: echo "::set-output name=condition::1"
+
+      - id: prod-next
+        name: Check for prod next
+        if: startsWith(github.ref, 'refs/tags/prod-next')
+        run: echo "::set-output name=condition::1"
+
+      - id: conditions-count-check
+        name: Checking if there is only one condition true
+        if: ${{ steps.dev-strapi.outputs.condition + steps.dev-next.outputs.condition + steps.staging-strapi.outputs.condition + steps.staging-next.outputs.condition + steps.prod-strapi.outputs.condition + steps.prod-next.outputs.condition > 1 }}
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('There can be only one deployment, please check affected files or tags!')
+
   deploy-dev-strapi:
     name: Deploy DEV Strapi
-    needs: changes
-    if: (startsWith(github.ref, 'refs/tags/dev') && needs.changes.outputs.strapi == 'true') || startsWith(github.ref, 'refs/tags/dev-strapi')
+    needs: conditions
+    if: needs.conditions.outputs.dev-strapi == '1'
     uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
       directory: strapi/
@@ -46,8 +97,8 @@ jobs:
 
   deploy-dev-next:
     name: Deploy DEV Next
-    needs: changes
-    if: (startsWith(github.ref, 'refs/tags/dev') && needs.changes.outputs.next == 'true') || startsWith(github.ref, 'refs/tags/dev-next')
+    needs: conditions
+    if: needs.conditions.outputs.dev-next == '1'
     uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
       directory: next/
@@ -59,8 +110,8 @@ jobs:
 
   deploy-staging-strapi:
     name: Deploy STAGING Strapi
-    needs: changes
-    if: (needs.changes.outputs.strapi == 'true' && ( github.event.pull_request.merged == true || startsWith(github.ref, 'refs/tags/staging'))) || startsWith(github.ref, 'refs/tags/staging-strapi')
+    needs: conditions
+    if: needs.conditions.outputs.staging-strapi == '1'
     uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
       directory: strapi/
@@ -72,8 +123,8 @@ jobs:
 
   deploy-staging-next:
     name: Deploy STAGING Next
-    needs: changes
-    if: (needs.changes.outputs.next == 'true' && ( github.event.pull_request.merged == true || startsWith(github.ref, 'refs/tags/staging'))) || startsWith(github.ref, 'refs/tags/staging-next')
+    needs: conditions
+    if: needs.conditions.outputs.staging-next == '1'
     uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
       directory: next/
@@ -85,8 +136,8 @@ jobs:
 
   deploy-prod-strapi:
     name: Deploy PROD Strapi
-    needs: changes
-    if: startsWith(github.ref, 'refs/tags/prod-strapi')
+    needs: conditions
+    if: needs.conditions.outputs.prod-strapi == '1'
     uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
       directory: strapi/
@@ -98,8 +149,8 @@ jobs:
 
   deploy-prod-next:
     name: Deploy PROD Next
-    needs: changes
-    if: startsWith(github.ref, 'refs/tags/prod-next')
+    needs: conditions
+    if: needs.conditions.outputs.prod-next == '1'
     uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
       directory: next/
