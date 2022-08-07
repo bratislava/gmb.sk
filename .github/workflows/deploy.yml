@@ -50,31 +50,31 @@ jobs:
         name: Check for dev strapi
         if: (startsWith(github.ref, 'refs/tags/dev') && needs.changes.outputs.strapi == 'true') || startsWith(github.ref, 'refs/tags/dev-strapi')
         run: |
-          echo $COUNT
-          echo $COUNT + 1 >> $COUNT
+          echo COUNT: $COUNT
+          echo ($COUNT + 1) >> $COUNT
           echo "::set-output name=condition::1"
 
       - id: dev-next
         name: Check for dev next
         if: (startsWith(github.ref, 'refs/tags/dev') && needs.changes.outputs.next == 'true') || startsWith(github.ref, 'refs/tags/dev-next')
         run: |
-          echo $COUNT
-          echo $COUNT + 1 >> $COUNT
+          echo COUNT: $COUNT
+          echo ($COUNT + 1) >> $COUNT
           echo "::set-output name=condition::1"
 
       - id: staging-strapi
         name: Check for staging strapi
         if: (needs.changes.outputs.strapi == 'true' && ( github.event.pull_request.merged == true || startsWith(github.ref, 'refs/tags/staging'))) || startsWith(github.ref, 'refs/tags/staging-strapi')
         run: |
-          echo $COUNT
-          echo $COUNT + 1 >> $COUNT
+          echo COUNT: $COUNT
+          echo ($COUNT + 1) >> $COUNT
           echo "::set-output name=condition::1"
 
       - id: staging-next
         name: Check for staging next
         if: (needs.changes.outputs.next == 'true' && ( github.event.pull_request.merged == true || startsWith(github.ref, 'refs/tags/staging'))) || startsWith(github.ref, 'refs/tags/staging-next')
         run: |
-          echo $COUNT
+          echo COUNT: $COUNT
           echo $COUNT + 1 >> $COUNT
           echo "::set-output name=condition::1"
         
@@ -82,7 +82,7 @@ jobs:
         name: Check for prod strapi
         if: startsWith(github.ref, 'refs/tags/prod-strapi')
         run: |
-          echo $COUNT
+          echo COUNT: $COUNT
           echo $COUNT + 1 >> $COUNT
           echo "::set-output name=condition::1"
 
@@ -90,7 +90,7 @@ jobs:
         name: Check for prod next
         if: startsWith(github.ref, 'refs/tags/prod-next')
         run: |
-          echo $COUNT
+          echo COUNT: $COUNT
           echo $COUNT + 1 >> $COUNT
           echo "::set-output name=condition::1"
 
