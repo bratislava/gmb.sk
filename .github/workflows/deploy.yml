@@ -35,7 +35,7 @@ jobs:
     name: Deploy DEV Strapi
     needs: changes
     if: (startsWith(github.ref, 'refs/tags/dev') && needs.changes.outputs.strapi == 'true') || startsWith(github.ref, 'refs/tags/dev-strapi')
-    uses: bratislava/github-actions/.github/workflows/deploy.yml@1.0
+    uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
       directory: strapi/
       cluster: tkg-innov-dev
@@ -48,7 +48,7 @@ jobs:
     name: Deploy DEV Next
     needs: changes
     if: (startsWith(github.ref, 'refs/tags/dev') && needs.changes.outputs.next == 'true') || startsWith(github.ref, 'refs/tags/dev-next')
-    uses: bratislava/github-actions/.github/workflows/deploy.yml@1.0
+    uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
       directory: next/
       cluster: tkg-innov-dev
@@ -61,7 +61,7 @@ jobs:
     name: Deploy STAGING Strapi
     needs: changes
     if: (needs.changes.outputs.strapi == 'true' && ( github.event.pull_request.merged == true || startsWith(github.ref, 'refs/tags/staging'))) || startsWith(github.ref, 'refs/tags/staging-strapi')
-    uses: bratislava/github-actions/.github/workflows/deploy.yml@1.0
+    uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
       directory: strapi/
       cluster: tkg-innov-staging
@@ -74,7 +74,7 @@ jobs:
     name: Deploy STAGING Next
     needs: changes
     if: (needs.changes.outputs.next == 'true' && ( github.event.pull_request.merged == true || startsWith(github.ref, 'refs/tags/staging'))) || startsWith(github.ref, 'refs/tags/staging-next')
-    uses: bratislava/github-actions/.github/workflows/deploy.yml@1.0
+    uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
       directory: next/
       cluster: tkg-innov-staging
@@ -87,7 +87,7 @@ jobs:
     name: Deploy PROD Strapi
     needs: changes
     if: startsWith(github.ref, 'refs/tags/prod-strapi'))
-    uses: bratislava/github-actions/.github/workflows/deploy.yml@1.0
+    uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
       directory: strapi/
       cluster: tkg-innov-prod
@@ -100,7 +100,7 @@ jobs:
     name: Deploy PROD Next
     needs: changes
     if: startsWith(github.ref, 'refs/tags/prod-next'))
-    uses: bratislava/github-actions/.github/workflows/deploy.yml@1.0
+    uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
       directory: next/
       cluster: tkg-innov-prod
