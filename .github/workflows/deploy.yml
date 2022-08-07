@@ -13,16 +13,29 @@ env:
   KUBERNETES_DEV_CLUSTER_URL: https://tkg.dev.bratislava.sk
   KUBERNETES_DEV_SERVICE_ACCOUNT_TOKEN: ${{ secrets.DEV_STANDALONE_TOKEN }}
 jobs:
-  conditions:
-    name: Check for cluster conditions
-    needs: conditions
-    uses: bratislava/github-actions/.github/workflows/cluster-deploy-conditions.yml@v1.0
-
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      strapi: ${{ steps.filter.outputs.strapi }}
+      next: ${{ steps.filter.outputs.next }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            strapi:
+              - 'strapi/**'
+            next:
+              - 'next/**'
   deploy-dev-strapi:
     name: Deploy DEV Strapi
-    needs: conditions
-    if: needs.conditions.outputs.dev-strapi == 'true'
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.0
+    needs: changes
+    if: startsWith(github.ref, 'refs/tags/dev') && needs.changes.outputs.strapi == 'true'
+    uses: bratislava/github-actions/.github/workflows/deploy.yml
     with:
       directory: strapi/
       cluster: tkg-innov-dev
@@ -33,9 +46,9 @@ jobs:
 
   deploy-dev-next:
     name: Deploy DEV Next
-    needs: conditions
-    if: needs.conditions.outputs.dev-next == 'true'
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.0
+    needs: changes
+    if: startsWith(github.ref, 'refs/tags/dev') && needs.changes.outputs.next == 'true'
+    uses: bratislava/github-actions/.github/workflows/deploy.yml
     with:
       directory: next/
       cluster: tkg-innov-dev
@@ -46,9 +59,9 @@ jobs:
 
   deploy-staging-strapi:
     name: Deploy STAGING Strapi
-    needs: conditions
-    if: needs.conditions.outputs.staging-strapi == 'true'
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.0
+    needs: changes
+    if: needs.changes.outputs.strapi == 'true' && ( github.event.pull_request.merged == true || startsWith(github.ref, 'refs/tags/staging'))
+    uses: bratislava/github-actions/.github/workflows/deploy.yml
     with:
       directory: strapi/
       cluster: tkg-innov-staging
@@ -59,9 +72,9 @@ jobs:
 
   deploy-staging-next:
     name: Deploy STAGING Next
-    needs: conditions
-    if: needs.conditions.outputs.staging-next == 'true'
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.0
+    needs: changes
+    if: needs.changes.outputs.next == 'true' && ( github.event.pull_request.merged == true || startsWith(github.ref, 'refs/tags/staging'))
+    uses: bratislava/github-actions/.github/workflows/deploy.yml
     with:
       directory: next/
       cluster: tkg-innov-staging
@@ -72,9 +85,9 @@ jobs:
 
   deploy-prod-strapi:
     name: Deploy PROD Strapi
-    needs: conditions
-    if: needs.conditions.outputs.prod-strapi == 'true'
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.0
+    needs: changes
+    if: startsWith(github.ref, 'refs/tags/prod-strapi'))
+    uses: bratislava/github-actions/.github/workflows/deploy.yml
     with:
       directory: strapi/
       cluster: tkg-innov-prod
@@ -85,9 +98,9 @@ jobs:
 
   deploy-prod-next:
     name: Deploy PROD Next
-    needs: conditions
-    if: needs.conditions.outputs.prod-next == 'true'
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.0
+    needs: changes
+    if: startsWith(github.ref, 'refs/tags/prod-next'))
+    uses: bratislava/github-actions/.github/workflows/deploy.yml
     with:
       directory: next/
       cluster: tkg-innov-prod
