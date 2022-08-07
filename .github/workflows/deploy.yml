@@ -11,7 +11,7 @@ jobs:
   check:
     name: Check changed files
     outputs:
-      run_job: ${{ steps.check_files.outputs.run_job }}
+      run_job: ${{ check.check_files.outputs.run_job }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -28,10 +28,10 @@ jobs:
               - 'next/**'
   deploy-dev-strapi:
     name: Deploy Strapi to Dev cluster
-    if: startsWith(github.ref, 'refs/tags/dev') && steps.filter.outputs.strapi == 'true'
+    if: startsWith(github.ref, 'refs/tags/dev') && check.filter.outputs.strapi == 'true'
     uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
     with:
-      directory: 'strapi/'
+      directory: strapi/
       cluster: tkg-innov-dev
       url: https://tkg.dev.bratislava.sk
     secrets:
