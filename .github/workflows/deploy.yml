@@ -59,7 +59,7 @@ jobs:
         if: (startsWith(github.ref, 'refs/tags/dev') && needs.changes.outputs.next == 'true') || startsWith(github.ref, 'refs/tags/dev-next')
         run: |
           echo COUNT: $COUNT
-          echo $COUNT + 1 >> $COUNT
+          echo $(($COUNT+1)) >> $COUNT
           echo "::set-output name=condition::1"
 
       - id: staging-strapi
