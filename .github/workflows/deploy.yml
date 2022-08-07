@@ -94,7 +94,7 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
-            core.setFailed('There can be only one deployment. You have probably different affected files and different tag.')
+            core.setFailed('There can be only one deployment to cluster. Now we have more then one. You have probably different affected files and different tag.')
 
   deploy-dev-strapi:
     name: Deploy DEV Strapi
