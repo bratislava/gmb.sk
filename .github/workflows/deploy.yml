@@ -20,9 +20,9 @@ jobs:
         with:
           filters: |
             strapi:
-              - 'strapi/**'
+              - './strapi/**'
             next:
-              - 'next/**'
+              - './next/**'
   deploy-dev-strapi:
     name: Deploy Strapi to Dev cluster
     needs: changes
