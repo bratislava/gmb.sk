@@ -50,50 +50,42 @@ jobs:
         name: Check for dev strapi
         if: (startsWith(github.ref, 'refs/tags/dev') && needs.changes.outputs.strapi == 'true') || startsWith(github.ref, 'refs/tags/dev-strapi')
         run: |
-          echo COUNT: $COUNT
           echo "COUNT=$(($COUNT+1))" >> $GITHUB_ENV
-          echo COUNT after: $COUNT
           echo "::set-output name=condition::1"
 
       - id: dev-next
         name: Check for dev next
         if: (startsWith(github.ref, 'refs/tags/dev') && needs.changes.outputs.next == 'true') || startsWith(github.ref, 'refs/tags/dev-next')
         run: |
-          echo COUNT: $COUNT
           echo "COUNT=$(($COUNT+1))" >> $GITHUB_ENV
-          echo COUNT after: $COUNT
           echo "::set-output name=condition::1"
 
       - id: staging-strapi
         name: Check for staging strapi
         if: (needs.changes.outputs.strapi == 'true' && ( github.event.pull_request.merged == true || startsWith(github.ref, 'refs/tags/staging'))) || startsWith(github.ref, 'refs/tags/staging-strapi')
         run: |
-          echo COUNT: $COUNT
-          echo $COUNT + 1 >> $COUNT
+          echo "COUNT=$(($COUNT+1))" >> $GITHUB_ENV
           echo "::set-output name=condition::1"
 
       - id: staging-next
         name: Check for staging next
         if: (needs.changes.outputs.next == 'true' && ( github.event.pull_request.merged == true || startsWith(github.ref, 'refs/tags/staging'))) || startsWith(github.ref, 'refs/tags/staging-next')
         run: |
-          echo COUNT: $COUNT
-          echo $COUNT + 1 >> $COUNT
+          echo "COUNT=$(($COUNT+1))" >> $GITHUB_ENV
           echo "::set-output name=condition::1"
         
       - id: prod-strapi
         name: Check for prod strapi
         if: startsWith(github.ref, 'refs/tags/prod-strapi')
         run: |
-          echo COUNT: $COUNT
-          echo $COUNT + 1 >> $COUNT
+          echo "COUNT=$(($COUNT+1))" >> $GITHUB_ENV
           echo "::set-output name=condition::1"
 
       - id: prod-next
         name: Check for prod next
         if: startsWith(github.ref, 'refs/tags/prod-next')
         run: |
-          echo COUNT: $COUNT
-          echo $COUNT + 1 >> $COUNT
+          echo "COUNT=$(($COUNT+1))" >> $GITHUB_ENV
           echo "::set-output name=condition::1"
 
       - id: conditions-count-check
@@ -102,7 +94,7 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
-            core.setFailed('There can be only one deployment, please check affected files or tags!')
+            core.setFailed('There can be only one deployment. You have probably different affected files and different tag.')
 
   deploy-dev-strapi:
     name: Deploy DEV Strapi
