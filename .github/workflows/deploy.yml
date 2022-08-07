@@ -100,7 +100,7 @@ jobs:
     name: Deploy DEV Strapi
     needs: conditions
     if: needs.conditions.outputs.dev-strapi == '1'
-    uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.0
     with:
       directory: strapi/
       cluster: tkg-innov-dev
@@ -113,7 +113,7 @@ jobs:
     name: Deploy DEV Next
     needs: conditions
     if: needs.conditions.outputs.dev-next == '1'
-    uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.0
     with:
       directory: next/
       cluster: tkg-innov-dev
@@ -126,7 +126,7 @@ jobs:
     name: Deploy STAGING Strapi
     needs: conditions
     if: needs.conditions.outputs.staging-strapi == '1'
-    uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.0
     with:
       directory: strapi/
       cluster: tkg-innov-staging
@@ -139,7 +139,7 @@ jobs:
     name: Deploy STAGING Next
     needs: conditions
     if: needs.conditions.outputs.staging-next == '1'
-    uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.0
     with:
       directory: next/
       cluster: tkg-innov-staging
@@ -152,7 +152,7 @@ jobs:
     name: Deploy PROD Strapi
     needs: conditions
     if: needs.conditions.outputs.prod-strapi == '1'
-    uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.0
     with:
       directory: strapi/
       cluster: tkg-innov-prod
@@ -165,7 +165,7 @@ jobs:
     name: Deploy PROD Next
     needs: conditions
     if: needs.conditions.outputs.prod-next == '1'
-    uses: bratislava/github-actions/.github/workflows/deploy.yml@v1.0
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.0
     with:
       directory: next/
       cluster: tkg-innov-prod
