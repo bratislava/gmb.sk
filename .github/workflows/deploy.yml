@@ -37,5 +37,5 @@ jobs:
       url: https://tkg.dev.bratislava.sk
     secrets:
       service-account: ${{ secrets.DEV_STANDALONE_TOKEN }}
-      registry-pass: ${{ secrets.DOCKER_PASSWORD }}
+      registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
           
