@@ -152,8 +152,8 @@ const CookieConsent = () => {
         declineButtonText={t('cookieConsent.rejectAll')}
         flipButtons
         ButtonComponent={Button}
-        customButtonProps={{ size: 'small', tabIndex: 1 }}
-        customDeclineButtonProps={{ size: 'small', tabIndex: 1 }}
+        customButtonProps={{ size: 'small', tabIndex: 1, 'aria-label': t('cookieConsent.acceptAll') }}
+        customDeclineButtonProps={{ size: 'small', tabIndex: 1, 'aria-label': t('cookieConsent.rejectAll') }}
         buttonClasses="lg:whitespace-nowrap"
         declineButtonClasses="lg:whitespace-nowrap"
         disableButtonStyles
