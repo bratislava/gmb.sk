@@ -16,7 +16,7 @@ jobs:
   conditions:
     name: Check for cluster conditions
     needs: conditions
-    uses: bratislava/github-actions/.github/workflows/cluster-deploy-conditions.yml@v1.0
+    uses: bratislava/github-actions/.github/workflows/cluster-deploy-conditions.yml@v1
 
   deploy-dev-strapi:
     name: Deploy DEV Strapi
