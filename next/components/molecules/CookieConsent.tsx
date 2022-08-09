@@ -26,7 +26,7 @@ const setGDPRCookies = (cookies: GDPRCookies) => {
 const CookieConsent = () => {
   const { t, i18n } = useTranslation()
 
-  const [showModal, setShowModal] = React.useState(false)
+  const [isCookiesSettingsOpen, setIsCookiesSettingsOpen] = React.useState(false)
   const [isConsentSubmitted, setConsent] = React.useState(false)
   const [openPanel, setPanel] = React.useState<string>(t('cookieConsent.securityEssentialTitle'))
 
@@ -34,8 +34,8 @@ const CookieConsent = () => {
   const [performanceCookies, setPerformanceCookies] = React.useState(true)
   const [advertisingCookies, setAdvertisingCookies] = React.useState(true)
 
-  const closeModal = () => {
-    setShowModal(false)
+  const closeCookiesSettings = () => {
+    setIsCookiesSettingsOpen(false)
   }
 
   const saveSettings = () => {
@@ -44,7 +44,7 @@ const CookieConsent = () => {
       performance_cookies: performanceCookies,
       advertising_and_targeting_cookies: advertisingCookies,
     })
-    setShowModal(false)
+    closeCookiesSettings()
     setConsent(true)
   }
 
@@ -54,7 +54,7 @@ const CookieConsent = () => {
       performance_cookies: true,
       advertising_and_targeting_cookies: true,
     })
-    setShowModal(false)
+    closeCookiesSettings()
     setConsent(true)
   }
 
@@ -67,22 +67,22 @@ const CookieConsent = () => {
       advertising_and_targeting_cookies: false,
     })
     setTimeout(() => {
-      setShowModal(false)
+      closeCookiesSettings()
       setConsent(true)
     }, 300)
   }
   return (
     <>
       <Modal
-        isOpen={showModal}
-        onRequestClose={closeModal}
+        isOpen={isCookiesSettingsOpen}
+        onRequestClose={closeCookiesSettings}
         ariaHideApp={false}
         className="fixed top-[calc(50%+var(--height-nav))] left-1/2 z-50 mx-auto mt-yMd h-fit w-10/12 translate-y-[calc(-50%-var(--height-nav))] -translate-x-1/2 border-0 border-r-0 bg-white p-0 lg:top-1/2 lg:mt-0 lg:w-7/12 lg:-translate-y-1/2"
       >
         <div className="flex h-[calc(100vh-var(--height-nav)-2*var(--padding-y-md))] flex-col items-center overflow-hidden lg:max-h-[calc(100vh-2*var(--height-nav)-2*var(--padding-y-md))] lg:dh-[650px]">
           <div className="mb-[10px] flex w-full flex-[0_0_auto] items-center justify-between border-b py-ySm px-xSm">
             <h1 className="text-lg">{t('cookieConsent.modalTitle')}</h1>
-            <button type="button" onClick={closeModal} aria-label={t('cookieConsent.closeCookies')}>
+            <button type="button" onClick={closeCookiesSettings} aria-label={t('cookieConsent.closeCookies')}>
               <CloseButton className="dw-[25px]" />
             </button>
           </div>
@@ -96,7 +96,7 @@ const CookieConsent = () => {
                     preserveStyle
                     href={getRouteForLocale('/detail/ochrana-osobnych-udajov', i18n.language)}
                     className="text-gmbGray underline underline-offset-2 hover:font-semibold"
-                    onClick={closeModal}
+                    onClick={closeCookiesSettings}
                   >
                     {t('common.privacyPolicyGenitiv')}
                   </Link>
@@ -162,8 +162,8 @@ const CookieConsent = () => {
         containerClasses={cx(
           'fixed left-0 bottom-0 bg-white z-1 items-center text-black px-xMd py-ySm justify-between flex-nowrap gap-x-xMd',
           {
-            flex: !showModal && !isConsentSubmitted,
-            hidden: showModal || isConsentSubmitted,
+            flex: !isCookiesSettingsOpen && !isConsentSubmitted,
+            hidden: isCookiesSettingsOpen || isConsentSubmitted,
           }
         )}
         disableStyles
@@ -177,7 +177,7 @@ const CookieConsent = () => {
             // eslint-disable-next-line jsx-a11y/tabindex-no-positive
             tabIndex={2}
             className="cursor-pointer text-gmbGray underline underline-offset-2 hover:font-semibold"
-            onClick={() => setShowModal(true)}
+            onClick={() => setIsCookiesSettingsOpen(true)}
           >
             {t('cookieConsent.setting')}
           </button>
