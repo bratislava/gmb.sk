@@ -5,8 +5,8 @@ import Consent, { Cookies } from 'react-cookie-consent'
 import * as ReactGA from 'react-ga'
 import Modal from 'react-modal'
 
-import ChevronDown from '../../assets/icons/chevron-down.svg'
-import CloseButton from '../../assets/icons/close-x.svg'
+import ChevronDownIcon from '../../assets/icons/chevron-down.svg'
+import CloseIcon from '../../assets/icons/close-x.svg'
 import { getRouteForLocale } from '../../utils/localeRoutes'
 import { onEnterOrSpaceKeyDown } from '../../utils/onEnterKeyDown'
 import Button from '../atoms/Button'
@@ -83,7 +83,7 @@ const CookieConsent = () => {
           <div className="mb-[10px] flex w-full flex-[0_0_auto] items-center justify-between border-b py-ySm px-xSm">
             <h1 className="text-lg">{t('cookieConsent.modalTitle')}</h1>
             <button type="button" onClick={closeCookiesSettings} aria-label={t('cookieConsent.closeCookies')}>
-              <CloseButton className="dw-[25px]" />
+              <CloseIcon className="dw-[25px]" />
             </button>
           </div>
           <div className="flex min-h-0 flex-[1_1_auto] flex-col justify-between p-5">
@@ -250,7 +250,7 @@ const Panel = ({ title, content, value, onValueChange, isOpen, setPanel }: Panel
       >
         <div className="flex items-center gap-xSm text-md text-black">
           <span>
-            {isOpen ? <ChevronDown className="rotate-180 dw-[15px]" /> : <ChevronDown className="dw-[15px]" />}
+            {isOpen ? <ChevronDownIcon className="rotate-180 dw-[15px]" /> : <ChevronDownIcon className="dw-[15px]" />}
           </span>
           <label htmlFor={`switch-${title}`}>{title}</label>
         </div>

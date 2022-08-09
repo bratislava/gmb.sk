@@ -5,7 +5,7 @@ import { useState } from 'react'
 import ReactImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
 import Modal from 'react-modal'
 
-import CloseButton from '../../assets/icons/close-x.svg'
+import CloseIcon from '../../assets/icons/close-x.svg'
 import { ImageWithFormatsEntityFragment } from '../../graphql'
 import { StrapiImageFormats } from '../../types/strapiImageFormats'
 import { hasAttributes, withAttributes } from '../../utils/isDefined'
@@ -88,7 +88,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
       >
         <div className="relative flex h-full flex-col content-center justify-center text-white">
           <button type="button" className="absolute top-ySm right-xSm z-10" onClick={closeModal}>
-            <CloseButton className="dw-[25px]" fill="white" />
+            <CloseIcon className="dw-[25px]" fill="white" />
           </button>
           <div className="">
             <ReactImageGallery
