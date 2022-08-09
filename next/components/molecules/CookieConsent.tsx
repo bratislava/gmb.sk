@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
-import React, { useEffect } from 'react'
+import React from 'react'
 import Consent, { Cookies } from 'react-cookie-consent'
 import * as ReactGA from 'react-ga'
 import Modal from 'react-modal'
