@@ -8,8 +8,9 @@ export default {
     enabled: true,
     resolve: "./src/plugins/custom-richtext-editor",
   },
-  "preview-button": {
+  "preview-button-i18n": {
     enabled: true,
+    resolve: "./src/plugins/preview-button-i18n",
     config: {
       contentTypes: [
         {
@@ -21,49 +22,49 @@ export default {
             },
           },
           published: {
-            basePath: "detail",
+            basePath: { sk: "detail", en: "en/detail" },
           },
         },
         {
           uid: "api::home-page.home-page",
           published: {
-            basePath: "",
+            basePath: { sk: "", en: "en" },
           },
         },
         {
           uid: "api::visit-us-page.visit-us-page",
           published: {
-            basePath: "navstivte",
+            basePath: { sk: "navstivte", en: "en/visit-us" },
           },
         },
         {
           uid: "api::about-us-page.about-us-page",
           published: {
-            basePath: "o-galerii",
+            basePath: { sk: "o-galerii", en: "en/about-gallery" },
           },
         },
         {
           uid: "api::explore-page.explore-page",
           published: {
-            basePath: "objavujte",
+            basePath: { sk: "objavujte", en: "en/explore" },
           },
         },
         {
           uid: "api::exhibitions-page.exhibitions-page",
           published: {
-            basePath: "vystavy",
+            basePath: { sk: "vystavy", en: "en/exhibitions" },
           },
         },
         {
           uid: "api::get-involved-page.get-involved-page",
           published: {
-            basePath: "zapojte-sa",
+            basePath: { sk: "zapojte-sa", en: "en/get-involved" },
           },
         },
         {
           uid: "api::collections-page.collections-page",
           published: {
-            basePath: "zbierky",
+            basePath: { sk: "zbierky", en: "en/collections" },
           },
         },
       ],

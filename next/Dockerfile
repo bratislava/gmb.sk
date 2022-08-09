@@ -7,6 +7,7 @@ WORKDIR /root/app
 COPY package*.json /root/app
 COPY yarn.lock /root/app
 
+RUN yarn config set network-timeout 600000 -g
 RUN yarn install
 
 COPY . ./
@@ -27,6 +28,7 @@ ENV NODE_ENV=${NODE_ENV}
 COPY package*.json /root/app
 COPY yarn.lock /root/app
 
+RUN yarn config set network-timeout 600000 -g
 RUN yarn install
 
 COPY . ./
@@ -51,6 +53,7 @@ ENV NODE_ENV=${NODE_ENV}
 COPY --chown=node:node package*.json ./
 COPY --chown=node:node yarn.lock ./
 
+RUN yarn config set network-timeout 600000 -g
 RUN yarn install --production
 
 COPY . ./
