@@ -14,6 +14,7 @@ const routesSkToEn = {
   '/detail': '/detail',
   '/vstupenky': '/tickets',
   '/zverejnovanie-informacii': '/disclosure-of-information',
+  '/detail/ochrana-osobnych-udajov': '/detail/privacy-policy',
   // Tags
   vystavy: 'exhibitions',
   'stale-expozicie': 'permanent-exhibitions',

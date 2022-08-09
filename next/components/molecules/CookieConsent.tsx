@@ -7,6 +7,7 @@ import Modal from 'react-modal'
 
 import ChevronDown from '../../assets/icons/chevron-down.svg'
 import CloseButton from '../../assets/icons/close-x.svg'
+import { getRouteForLocale } from '../../utils/localeRoutes'
 import { onEnterOrSpaceKeyDown } from '../../utils/onEnterKeyDown'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
@@ -23,7 +24,7 @@ const setGDPRCookies = (cookies: GDPRCookies) => {
 }
 
 const CookieConsent = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const [showModal, setShowModal] = React.useState(false)
   const [isConsentSubmitted, setConsent] = React.useState(false)
@@ -91,11 +92,11 @@ const CookieConsent = () => {
                 <div className="mb-2 text-md">{t('cookieConsent.modalContentTitle')}</div>
                 <p className="text-sm">
                   {`${t('cookieConsent.modalContentBody')} `}
-                  {/* TODO: Add real link to privacy policy */}
                   <Link
                     preserveStyle
-                    href="/"
+                    href={getRouteForLocale('/detail/ochrana-osobnych-udajov', i18n.language)}
                     className="text-gmbGray underline underline-offset-2 hover:font-semibold"
+                    onClick={closeModal}
                   >
                     {t('common.privacyPolicyGenitiv')}
                   </Link>
