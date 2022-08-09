@@ -21,6 +21,12 @@ module.exports = {
     'no-secrets/no-secrets': ['error', { ignoreContent: '^http' }],
     /** Use official sorting */
     'tailwindcss/classnames-order': ['warn', { officialSorting: true }],
+    /** White list custom classes */
+    'tailwindcss/no-custom-classname': ['warn', { whitelist: ['.*dw.*', '.*dh.*'] }],
+    /** Hoisting of functions is useful */
+    '@typescript-eslint/no-use-before-define': 'off',
+    /** Doesn't play well with translations */
+    'sonarjs/no-duplicate-string': 'off',
   },
   ignorePatterns: ['*.config.*', 'graphql', '.eslintrc.js'],
 }

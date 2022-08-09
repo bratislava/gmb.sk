@@ -2,7 +2,7 @@ import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import React, { useState } from 'react'
 
-import ArrowDownIcon from '../../assets/icons/chevron-down.svg'
+import ChevronDownIcon from '../../assets/icons/chevron-down.svg'
 import { getAnchor } from '../../utils/getAnchor'
 import { onEnterOrSpaceKeyDown } from '../../utils/onEnterKeyDown'
 import Button from '../atoms/Button'
@@ -11,7 +11,6 @@ import SubmenuModal from './SubmenuModal'
 
 interface SubmenuProps {
   items?: string[]
-  button?: React.ReactNode
   filters?: React.ReactNode
 }
 
@@ -32,7 +31,7 @@ const Submenu = ({ items, filters }: SubmenuProps) => {
         <div className="flex w-full justify-between">
           <div className="hidden gap-xMd lg:flex">
             {items?.map((item) => (
-              <Link key={item} href={`#${getAnchor(item)}`} replace>
+              <Link key={item} href={`#${getAnchor(item) ?? ''}`} replace>
                 {item}
               </Link>
             ))}
@@ -47,7 +46,7 @@ const Submenu = ({ items, filters }: SubmenuProps) => {
                   setFilterOpen((prev) => !prev)
                 }}
               >
-                {t('common.filter')} <ArrowDownIcon className="dh-[12px] dw-[20px]" />
+                {t('common.filter')} <ChevronDownIcon className="dh-[12px] dw-[20px]" />
               </Button>
             )}
           </div>
@@ -73,7 +72,7 @@ const Submenu = ({ items, filters }: SubmenuProps) => {
         className="relative flex w-full items-center justify-between bg-gmbDark py-yMd px-xMd text-md uppercase text-white lg:hidden"
       >
         {t('common.quickNavigation')}
-        <ArrowDownIcon className="dh-[12px] dw-[20px]" />
+        <ChevronDownIcon className="dh-[12px] dw-[20px]" />
       </div>
 
       <SubmenuModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} items={items} filters={filters} />

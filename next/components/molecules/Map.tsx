@@ -4,6 +4,8 @@ import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import { FC, MouseEvent, ReactNode, SVGProps, useCallback, useEffect, useRef, useState } from 'react'
 import Mapbox, { MapRef, Marker } from 'react-map-gl'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { usePreviousImmediate } from 'rooks'
 
 import GmbLogoIcon from '../../assets/icons/map-icons/gmb-logo.svg'
@@ -11,9 +13,6 @@ import MirbachovPalacIcon from '../../assets/icons/map-icons/mirbachov-palac.svg
 import PalffyhoPalacIcon from '../../assets/icons/map-icons/palffyho-palac.svg'
 import { ContactEntityFragment } from '../../graphql'
 import Link from '../atoms/Link'
-import CityGalleryMarkdown from '../atoms/CityGalleryMarkdown'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 
 interface MapProps {
   mapboxAccessToken: string
