@@ -152,8 +152,8 @@ const CookieConsent = () => {
         declineButtonText={t('cookieConsent.rejectAll')}
         flipButtons
         ButtonComponent={Button}
-        customButtonProps={{ size: 'small' }}
-        customDeclineButtonProps={{ size: 'small' }}
+        customButtonProps={{ size: 'small', tabIndex: 1 }}
+        customDeclineButtonProps={{ size: 'small', tabIndex: 1 }}
         buttonClasses="lg:whitespace-nowrap"
         declineButtonClasses="lg:whitespace-nowrap"
         disableButtonStyles
@@ -173,6 +173,8 @@ const CookieConsent = () => {
           {t('cookieConsent.body')}{' '}
           <button
             type="button"
+            // eslint-disable-next-line jsx-a11y/tabindex-no-positive
+            tabIndex={2}
             className="cursor-pointer text-gmbGray underline underline-offset-2 hover:font-semibold"
             onClick={() => setShowModal(true)}
           >
