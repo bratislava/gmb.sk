@@ -81,7 +81,7 @@ const CookieConsent = () => {
         <div className="flex h-[calc(100vh-var(--height-nav)-2*var(--padding-y-md))] flex-col items-center overflow-hidden lg:max-h-[calc(100vh-2*var(--height-nav)-2*var(--padding-y-md))] lg:dh-[650px]">
           <div className="mb-[10px] flex w-full flex-[0_0_auto] items-center justify-between border-b py-ySm px-xSm">
             <h1 className="text-lg">{t('cookieConsent.modalTitle')}</h1>
-            <button type="button" onClick={closeModal}>
+            <button type="button" onClick={closeModal} aria-label={t('cookieConsent.closeCookies')}>
               <CloseButton className="dw-[25px]" />
             </button>
           </div>
@@ -187,16 +187,25 @@ const CookieConsent = () => {
 }
 
 interface SwitchProps {
+  title: string
   value: boolean
   onValueChange: (value: boolean) => void
   disabled?: boolean
 }
 
-const Switch = ({ value, onValueChange, disabled }: SwitchProps) => {
+const Switch = ({ title, value, onValueChange, disabled }: SwitchProps) => {
+  const onInteraction = (e: React.MouseEvent | React.KeyboardEvent) => {
+    e.stopPropagation()
+    onValueChange(!value)
+  }
+
   return (
-    <button
-      type="button"
-      disabled={disabled}
+    <div
+      id={`switch-${title}`}
+      role="checkbox"
+      aria-checked={value}
+      aria-disabled={disabled}
+      tabIndex={0}
       className={cx(
         'dw-[60px] dh-[30px] shrink-0 grow-0 flex items-center border-2 rounded-full border-gmbDark mx-3 px-0.5',
         {
@@ -205,10 +214,8 @@ const Switch = ({ value, onValueChange, disabled }: SwitchProps) => {
           'cursor-not-allowed !bg-gmbGray': disabled,
         }
       )}
-      onClick={(e) => {
-        e.stopPropagation()
-        onValueChange(!value)
-      }}
+      onClick={onInteraction}
+      onKeyDown={onEnterOrSpaceKeyDown(onInteraction)}
     >
       <div
         role="presentation"
@@ -217,7 +224,7 @@ const Switch = ({ value, onValueChange, disabled }: SwitchProps) => {
         }}
         className={cx('dw-[21px] dh-[21px] bg-white rounded-full shadow-md')}
       />
-    </button>
+    </div>
   )
 }
 interface PanelProps {
@@ -244,12 +251,13 @@ const Panel = ({ title, content, value, onValueChange, isOpen, setPanel }: Panel
           <span>
             {isOpen ? <ChevronDown className="rotate-180 dw-[15px]" /> : <ChevronDown className="dw-[15px]" />}
           </span>
-          {title}
+          <label htmlFor={`switch-${title}`}>{title}</label>
         </div>
         <Switch
           disabled={title === t('cookieConsent.securityEssentialTitle')}
           value={value}
           onValueChange={(val) => onValueChange(val)}
+          title={title}
         />
       </div>
       <div

@@ -1,7 +1,7 @@
-export const onEnterOrSpaceKeyDown = (callback: () => void) => {
+export const onEnterOrSpaceKeyDown = (callback: (event: React.KeyboardEvent) => void) => {
   return (event: React.KeyboardEvent) => {
     if (event.key === 'Enter' || event.key === ' ') {
-      callback()
+      callback(event)
     }
   }
 }

@@ -133,6 +133,7 @@
     "performanceTitle": "Performance and analytics cookies",
     "performanceContent": "These cookies allow the website to remember choices you have made in the past.",
     "advertisingTargetingTitle": "Cookies for advertising and targeting",
-    "advertisingTargetingContent": "These cookies collect information about how you use the website, which pages you have visited and which links you have clicked on. All data is anonymised and cannot be used to identify you."
+    "advertisingTargetingContent": "These cookies collect information about how you use the website, which pages you have visited and which links you have clicked on. All data is anonymised and cannot be used to identify you.",
+    "closeCookies": "Close detail Cookies settings"
   }
 }
