@@ -62,6 +62,7 @@ jobs:
       directory: next/
       cluster: tkg-innov-staging
       url: https://tkg.staging.bratislava.sk
+      flag: --staging
     secrets:
       service-account: ${{ secrets.STAGING_STANDALONE_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
@@ -75,6 +76,7 @@ jobs:
       directory: strapi/
       cluster: tkg-innov-staging
       url: https://tkg.staging.bratislava.sk
+      flag: --staging
     secrets:
       service-account: ${{ secrets.STAGING_STANDALONE_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
@@ -88,6 +90,7 @@ jobs:
       directory: next/
       cluster: tkg-innov-staging
       url: https://tkg.staging.bratislava.sk
+      flag: --staging
     secrets:
       service-account: ${{ secrets.STAGING_STANDALONE_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
@@ -101,6 +104,7 @@ jobs:
       directory: next/
       cluster: tkg-innov-prod
       url: https://tkg.prod.bratislava.sk
+      flag: --prod
     secrets:
       service-account: ${{ secrets.STAGING_STANDALONE_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
@@ -114,6 +118,7 @@ jobs:
       directory: strapi/
       cluster: tkg-innov-prod
       url: https://tkg.prod.bratislava.sk
+      flag: --prod
     secrets:
       service-account: ${{ secrets.PROD_STANDALONE_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
@@ -127,6 +132,7 @@ jobs:
       directory: next/
       cluster: tkg-innov-prod
       url: https://tkg.prod.bratislava.sk
+      flag: --prod
     secrets:
       service-account: ${{ secrets.PROD_STANDALONE_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
