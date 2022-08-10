@@ -1,4 +1,6 @@
+import { uniqueId } from 'lodash'
 import { useTranslation } from 'next-i18next'
+import { useState } from 'react'
 
 import { SectionItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
@@ -11,6 +13,8 @@ export interface IFullWidthTileProps {
 
 export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
   const { t } = useTranslation()
+
+  const [ariaLabelId] = useState(uniqueId(sectionItem.attributes.title))
 
   return (
     <article className="w-full cursor-pointer">
@@ -29,11 +33,17 @@ export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
         style={{ background: getContentPageColor(sectionItem) }}
       >
         <hgroup>
-          <h3 className="text-xl">{sectionItem.attributes.title}</h3>
+          <h3 className="text-xl" id={ariaLabelId}>
+            {sectionItem.attributes.title}
+          </h3>
           <p className="pb-yMd text-xl font-regular">{sectionItem.attributes.subtitle}</p>
         </hgroup>
 
-        <Button href={`/detail/${sectionItem.attributes.slug}`} className="after:absolute after:inset-0">
+        <Button
+          href={`/detail/${sectionItem.attributes.slug}`}
+          aria-labelledby={ariaLabelId}
+          className="after:absolute after:inset-0"
+        >
           {t('common.detail')}
         </Button>
       </div>

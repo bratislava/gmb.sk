@@ -1,9 +1,10 @@
 import cx from 'classnames'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { uniqueId } from 'lodash'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useState } from 'react'
 
 import { HighlightsItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
@@ -38,6 +39,8 @@ const Highlight = ({ highlight }: HighlightProps) => {
     purchaseId,
     coverMedia,
   } = highlight.attributes
+
+  const [ariaLabelId] = useState(uniqueId(slug))
 
   gsap.registerPlugin(ScrollTrigger)
 
@@ -95,7 +98,9 @@ const Highlight = ({ highlight }: HighlightProps) => {
           style={{ background: getContentPageColor(highlight) }}
         >
           <hgroup>
-            <h1 className="text-xxl">{title}</h1>
+            <h1 className="text-xxl" id={ariaLabelId}>
+              {title}
+            </h1>
             <p className="text-xxl font-regular">{subtitle}</p>
           </hgroup>
 
@@ -124,6 +129,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
 
           <Button
             href={`/detail/${slug}`}
+            aria-labelledby={ariaLabelId}
             className="mt-yLg hidden after:absolute after:inset-0 after:top-[calc(-100vh_-_var(--height-nav))] lg:flex"
           >
             {t('common.detail')}

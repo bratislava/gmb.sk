@@ -1,10 +1,11 @@
 import cx from 'classnames'
-import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
+import NextLink from 'next/link'
 
 import { getRouteForLocale, isOfTypeRoute } from '../../utils/localeRoutes'
 
-type LinkProps = React.ComponentPropsWithoutRef<'a'> & {
+// type LinkProps = React.ComponentPropsWithoutRef<'a'> & {
+type LinkProps = React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> & {
   locale?: string
   className?: string
   href: string

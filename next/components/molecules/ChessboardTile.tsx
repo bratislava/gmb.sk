@@ -1,7 +1,9 @@
 import cx from 'classnames'
+import { uniqueId } from 'lodash'
+import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
+import { useState } from 'react'
 
 import { SectionItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
@@ -20,6 +22,8 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
   const router = useRouter()
 
   const { slug, coverMedia, title, subtitle, tags, perex } = sectionItem.attributes
+
+  const [ariaLabelId] = useState(uniqueId(slug))
 
   return (
     <article
@@ -43,7 +47,9 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
         style={{ background: getContentPageColor(sectionItem) }}
       >
         <hgroup>
-          <h3 className="text-h text-xl">{title}</h3>
+          <h3 className="text-h text-xl" id={ariaLabelId}>
+            {title}
+          </h3>
           <p className="text-xl font-regular">{subtitle}</p>
         </hgroup>
 
@@ -62,7 +68,7 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
 
         {perex ? <div className="text-md">{perex?.slice(0, 200)}…</div> : null}
 
-        <Button href={`/detail/${slug}`} className="after:absolute after:inset-0">
+        <Button href={`/detail/${slug}`} aria-labelledby={ariaLabelId} className="after:absolute after:inset-0">
           {t('common.detail')}
         </Button>
       </div>
