@@ -26,7 +26,7 @@ export const SidePanelTime = ({ datetime, isOneLine, noIcon }: SidePanelTimeProp
     return (
       <div className="whitespace-nowrap text-nav">
         <time className="flex items-center gap-3">
-          {!noIcon && <TimeIcon className="dw-[24px]" />}
+          {!noIcon && <TimeIcon className="dh-[24px]" />}
           <span>
             {dateFrom && formatDateString(dateFrom, locale)}
             {dateTo && ' - '}
@@ -45,7 +45,7 @@ export const SidePanelTime = ({ datetime, isOneLine, noIcon }: SidePanelTimeProp
     <div className="whitespace-nowrap text-nav">
       {!noIcon && (
         <div className="mb-3">
-          <TimeIcon className="dw-[48px]" />
+          <TimeIcon className="dh-[48px]" />
         </div>
       )}
       <time className="flex flex-col">
