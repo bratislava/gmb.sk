@@ -106,7 +106,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             </div>
           </Link>
 
-          <button type="button" className="-mr-xMd flex p-5 lg:hidden" onClick={toggleMobileMenu} aria-label="Menu">
+          <button type="button" className="-mr-5 flex p-5 lg:hidden" onClick={toggleMobileMenu} aria-label="Menu">
             {isMobileMenuOpen ? (
               <CloseIcon className="dw-[30px] dh-[30px]" />
             ) : (
