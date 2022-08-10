@@ -78,7 +78,7 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
           const theadTyped = thead as TableSection
           const tbodyTyped = tbody as TableSection
           return (
-            <table className="border-2 py-ySm px-xSm">
+            <table className="mb-yMd ml-xMd border-2 py-ySm px-xSm">
               <thead className="border-b-4">
                 {theadTyped.props.children?.map((tr) => (
                   <tr className="border-2">
