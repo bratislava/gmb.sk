@@ -12,10 +12,10 @@ export const CardSkeleton = () => {
         ))}
       </div>
 
-      <hgroup>
+      <div>
         <div className="mb-3 h-[var(--font-size-xl)] w-3/4 bg-gmbLightGray text-xl" />
         <div className="h-[var(--font-size-xl)] w-1/2 bg-gmbLightGray text-xl" />
-      </hgroup>
+      </div>
 
       <div className="h-[calc(var(--line-height-md)_*_5)] bg-gmbLightGray text-md" />
 

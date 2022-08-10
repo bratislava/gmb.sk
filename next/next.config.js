@@ -1,8 +1,4 @@
-// TODO use @ts-check
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const path = require('path')
-const fs = require('fs')
 const { i18n } = require('./next-i18next.config')
 
 /**
@@ -11,7 +7,7 @@ const { i18n } = require('./next-i18next.config')
 const nextConfig = {
   i18n,
   images: {
-    domains: ['localhost'], // TODO will need fixing before deployment
+    domains: ['localhost', 'cdn-api.bratislava.sk'],
   },
   reactStrictMode: true,
   async rewrites() {

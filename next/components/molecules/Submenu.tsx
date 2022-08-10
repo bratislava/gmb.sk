@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 
 import ChevronDownIcon from '../../assets/icons/chevron-down.svg'
 import { getAnchor } from '../../utils/getAnchor'
-import { onEnterOrSpaceKeyDown } from '../../utils/onEnterKeyDown'
+import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
 import SubmenuModal from './SubmenuModal'
@@ -42,6 +42,7 @@ const Submenu = ({ items, filters }: SubmenuProps) => {
                 size="link"
                 color="light"
                 className="flex items-center gap-xSm text-nav"
+                aria-expanded={isFilterOpen}
                 onClick={() => {
                   setFilterOpen((prev) => !prev)
                 }}
@@ -69,6 +70,7 @@ const Submenu = ({ items, filters }: SubmenuProps) => {
         }}
         onKeyDown={onEnterOrSpaceKeyDown(() => setModalOpen((prev) => !prev))}
         tabIndex={0}
+        aria-expanded={isModalOpen}
         className="relative flex w-full items-center justify-between bg-gmbDark py-yMd px-xMd text-md uppercase text-white lg:hidden"
       >
         {t('common.quickNavigation')}

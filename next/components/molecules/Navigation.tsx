@@ -127,11 +127,11 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             <NavLink url="/zapojte-sa">{t('navigation.getInvolved')}</NavLink>
             <NavLink url="/zbierky">{t('navigation.collections')}</NavLink>
 
-            <Button size="small" href="/navstivte">
+            <Button size="small" href="/navstivte" role="link">
               {t('navigation.visitUs')}
             </Button>
 
-            <button type="button" className="xl:ml-5" onClick={toggleSearchBar} aria-label={t('search')}>
+            <button type="button" className="xl:ml-5" onClick={toggleSearchBar} aria-label={t('common.search')}>
               <SearchIcon className="dw-[36px]" />
             </button>
 

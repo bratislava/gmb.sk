@@ -1,5 +1,5 @@
-import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
 import MailchimpSubscribe from 'react-mailchimp-subscribe'
 
@@ -56,13 +56,11 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
       className="flex w-full flex-col-reverse justify-between px-xMd py-yLg lg:flex-row"
     >
       <div className="lg:w-4/6 xl:w-3/6">
-        <hgroup>
-          <h2 className="text-xxl">
-            {t('newsletter.beInThePicture')}
-            <br />
-            <span className="font-regular">{t('newsletter.newsletter')}</span>
-          </h2>
-        </hgroup>
+        <h2 className="text-xxl">
+          {t('newsletter.beInThePicture')}
+          <br />
+          <span className="font-regular">{t('newsletter.newsletter')}</span>
+        </h2>
 
         <MailchimpSubscribe
           url="https://gmb.us3.list-manage.com/subscribe/post?u=26c2efb55660fd966cd447999&id=e18d8cb372"
