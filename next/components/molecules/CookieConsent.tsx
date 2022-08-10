@@ -8,7 +8,7 @@ import Modal from 'react-modal'
 import ChevronDownIcon from '../../assets/icons/chevron-down.svg'
 import CloseIcon from '../../assets/icons/close-x.svg'
 import { getRouteForLocale } from '../../utils/localeRoutes'
-import { onEnterOrSpaceKeyDown } from '../../utils/onEnterKeyDown'
+import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
 

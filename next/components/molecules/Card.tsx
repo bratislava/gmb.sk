@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next'
 import { SectionItemEntityFragment } from '../../graphql'
 import { hasAttributes, WithAttributes } from '../../utils/isDefined'
 import { isToday } from '../../utils/isToday'
+import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
 
@@ -20,7 +21,13 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
   const { slug, coverMedia, title, subtitle, tags, perex, dateFrom, dateTo } = sectionItem.attributes
 
   return (
-    <article className="group relative flex min-h-full cursor-pointer flex-col space-y-yMd">
+    <article
+      role="button"
+      tabIndex={-1}
+      onClick={() => router.push(`/detail/${slug}`)}
+      onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
+      className="group relative flex min-h-full cursor-pointer flex-col space-y-yMd"
+    >
       <div className="overflow-hidden bg-gmbLightGray">
         {coverMedia?.data?.attributes ? (
           <Image
@@ -36,30 +43,30 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
       </div>
 
       {showTags && tags ? (
-        <div className="z-10 flex flex-wrap gap-6">
+        <div className="flex flex-wrap gap-6">
           {isToday({
             dateFrom: dateFrom as string,
             dateTo: dateTo as string,
           }) && <span className="pr-3 text-nav uppercase text-red-600">{t('common.today')}!</span>}
           {tags?.data.filter(hasAttributes).map((tag) => (
-            <Link href={`${router.pathname}/?tags=${tag.attributes.slug}`} key={tag.attributes.slug}>
+            <Link role="button" href={`${router.pathname}/?tags=${tag.attributes.slug}`} key={tag.attributes.slug}>
               {tag.attributes.title}
             </Link>
           ))}
         </div>
       ) : null}
 
-      <hgroup>
+      <div>
         <h3 className="text-xl">{title}</h3>
         <p className="text-xl font-regular">{subtitle}</p>
-      </hgroup>
+      </div>
 
       {perex && <div className="text-md">{perex?.slice(0, 200)}…</div>}
 
       {/* empty div to push button to the bottom of the card */}
       <div className="m-0 hidden grow p-0 lg:block" />
 
-      <Button href={`/detail/${slug}`} className="max-w-fit py-2 after:absolute after:inset-0">
+      <Button href={`/detail/${slug}`} aria-label={title} className="max-w-fit">
         {t('common.detail')}
       </Button>
     </article>
