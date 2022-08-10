@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import classnames from 'classnames'
 import React from 'react'
 
 import Link from './Link'
@@ -12,15 +12,21 @@ type ButtonProps = React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchor
 
 const Button = ({ className, children, size = 'medium', onClick, href, color = 'dark', id, ...rest }: ButtonProps) => {
   const styles = {
-    className: cx(className, 'flex text-center justify-center border-solid border-2 uppercase text-btn font-medium', {
-      'px-[calc(40px*var(--icon-size-factor))] py-[calc(14px*var(--icon-size-factor))]': size === 'small',
-      'px-[calc(100px*var(--icon-size-factor))] py-[calc(18px*var(--icon-size-factor))]': size === 'medium',
-      'text-nav uppercase hover:underline underline-offset-2': size === 'link',
-      'text-gmbDark border-gmbDark hover:bg-gmbDark hover:text-white': color === 'dark' && size !== 'link',
-      'text-white border-white hover:bg-white hover:text-gmbDark': color === 'light' && size !== 'link',
-      'text-gmbDark border-none': color === 'dark' && size === 'link',
-      'text-white border-none': color === 'light' && size === 'link',
-    }),
+    className: classnames(
+      className,
+      'flex justify-center border-2 border-solid text-center text-btn font-medium uppercase',
+      {
+        'px-[calc(40px*var(--icon-size-factor))] py-[calc(14px*var(--icon-size-factor))]': size === 'small',
+        'px-[calc(100px*var(--icon-size-factor))] py-[calc(18px*var(--icon-size-factor))]': size === 'medium',
+        'text-nav uppercase underline-offset-2 hover:underline focus:underline': size === 'link',
+        'border-gmbDark text-gmbDark hover:bg-gmbDark hover:text-white focus:bg-gmbDark focus:text-white':
+          color === 'dark' && size !== 'link',
+        'border-white text-white hover:bg-white hover:text-gmbDark focus:bg-white focus:text-gmbDark':
+          color === 'light' && size !== 'link',
+        'border-none text-gmbDark': color === 'dark' && size === 'link',
+        'border-none text-white': color === 'light' && size === 'link',
+      }
+    ),
   }
 
   if (href && href.length > 0) {
