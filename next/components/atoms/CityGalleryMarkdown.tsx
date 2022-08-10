@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import { ReactHTMLElement } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { ReactElement } from 'react-markdown/lib/react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -56,6 +57,47 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
             >
               {children}
             </Link>
+          )
+        },
+        table: ({ children: [thead, tbody] }) => {
+          type TableSection = ReactHTMLElement<HTMLTableSectionElement> & {
+            props: {
+              children?: Array<
+                ReactHTMLElement<HTMLTableRowElement> & {
+                  props: {
+                    children?: Array<
+                      ReactHTMLElement<HTMLTableCellElement> & {
+                        props: { children?: Array<ReactElement> }
+                      }
+                    >
+                  }
+                }
+              >
+            }
+          }
+          const theadTyped = thead as TableSection
+          const tbodyTyped = tbody as TableSection
+          return (
+            <table className="mb-yMd ml-xMd border-2 py-ySm px-xSm">
+              <thead className="border-b-4">
+                {theadTyped.props.children?.map((tr) => (
+                  <tr className="border-2">
+                    {tr.props.children?.map((th) => (
+                      <th className="border-2 px-xSm py-ySm text-center text-md font-bold">{th.props.children}</th>
+                    ))}
+                  </tr>
+                ))}
+              </thead>
+              <tbody>
+                {tbodyTyped.props.children?.map((tr) => (
+                  <tr className="border-2">
+                    {tr.props.children?.map((td) => (
+                      <td className="border-2 px-xSm py-ySm text-center text-md">{td.props.children}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           )
         },
       }}

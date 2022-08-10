@@ -26,21 +26,25 @@ const SubmenuModal = ({ isOpen, onClose, items, filters }: ISubmenuModalProps) =
       }}
       className="absolute min-h-screen rounded-none border-0 bg-gmbDark p-6 text-white lg:hidden"
     >
-      <button className="absolute right-xSm top-ySm" onClick={onClose}>
-        <CloseIcon fill="#fff" className="dw-[30px] dh-[30px]" />
-      </button>
-      <div className="mt-20 flex w-full flex-col items-center gap-yMd text-white">
-        {items?.map((item, index) => (
-          <Link key={index} href={`#${getAnchor(item)}`} onClick={onClose} replace>
-            {item}
-          </Link>
-        ))}
-      </div>
-      {filters}
-      <div className="mt-yMd flex justify-center lg:hidden">
-        <Button onClick={onClose} color="light">
-          {t('common.showResults')}
-        </Button>
+      <div className="flex max-h-full flex-col">
+        <button className="absolute right-xSm top-ySm" onClick={onClose}>
+          <CloseIcon fill="#fff" className="dw-[30px] dh-[30px]" />
+        </button>
+        <div className="mt-20 flex w-full shrink-0 grow-0 flex-col items-center gap-yMd text-white">
+          {items?.map((item, index) => (
+            <Link key={index} href={`#${getAnchor(item)}`} onClick={onClose} replace>
+              {item}
+            </Link>
+          ))}
+        </div>
+        {filters}
+        {filters && (
+          <div className="mt-yMd flex justify-center lg:hidden">
+            <Button onClick={onClose} color="light">
+              {t('common.showResults')}
+            </Button>
+          </div>
+        )}
       </div>
     </Modal>
   )
