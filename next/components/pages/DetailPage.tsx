@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
 
 import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
@@ -49,6 +50,8 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
     coverMedia,
   } = contentPage.attributes
 
+  const { t } = useTranslation()
+
   const submenu: string[] = []
 
   mainContent?.filter(isDefined).forEach((section) => {
@@ -69,7 +72,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
     <div>
       <Seo seo={seo} ogType="article" title={title} description={perex} image={seoImage} />
       <Head>
-        <title>{title}</title>
+        <title>{`${title} - ${t('common.bratislavaCityGallery')}`}</title>
         <>
           {/* TODO: Query author from strapi */}
           {/* <meta property="og:article:author" content="author" /> */}
