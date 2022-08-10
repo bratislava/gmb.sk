@@ -81,7 +81,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
     )
   }
 
-  const mediasToShow = windowWidth >= 1024 ? 5 : windowWidth >= 768 ? 4 : 3
+  const mediasToShow = windowWidth >= 1024 ? 5 : windowWidth >= 640 ? 4 : 3
 
   return (
     <div className={className}>
@@ -119,7 +119,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
               }}
             />
           </div>
-          <div className="grid h-[15vh] grid-cols-3 grid-rows-1 gap-2 md:grid-cols-4 lg:grid-cols-5">
+          <div className="grid h-[15vh] grid-cols-3 grid-rows-1 gap-2 sm:grid-cols-4 lg:grid-cols-5">
             {filteredMedias
               .slice(1, mediasToShow === filteredMedias.length - 1 ? mediasToShow + 1 : mediasToShow)
               .map((media, index) => (
