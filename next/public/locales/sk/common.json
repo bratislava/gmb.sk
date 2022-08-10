@@ -71,7 +71,9 @@
     "documents": "Dokumenty",
     "privacyPolicy": "ochrana osobných údajov",
     "privacyPolicyGenitiv": "ochrany osobných údajov",
-    "morePhotos": "Viac fotografií"
+    "morePhotos_one": "+{{count}} fotka",
+    "morePhotos_few": "+{{count}} fotky",
+    "morePhotos_other": "+{{count}} fotiek"
   },
   "navigation": {
     "visitUs": "Navštívte",

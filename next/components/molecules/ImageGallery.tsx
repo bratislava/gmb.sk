@@ -1,7 +1,7 @@
 import 'react-image-gallery/styles/css/image-gallery.css'
 
 import { useTranslation } from 'next-i18next'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ReactImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
 import Modal from 'react-modal'
 
@@ -9,6 +9,7 @@ import CloseIcon from '../../assets/icons/close-x.svg'
 import { ImageWithFormatsEntityFragment } from '../../graphql'
 import { StrapiImageFormats } from '../../types/strapiImageFormats'
 import { hasAttributes, withAttributes } from '../../utils/isDefined'
+import useWindowDimensions from '../../utils/useWindowDimensions'
 import ImageGalleryItem from '../atoms/ImageGalleryItem'
 import ImageGalleryTile from '../atoms/ImageGalleryTile'
 
@@ -22,6 +23,9 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
   const [imageIndex, setImageIndex] = useState(0)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const { t } = useTranslation()
+  const { width: windowWidth } = useWindowDimensions()
+  const [renderGallery, setRenderGallery] = useState(false)
+  useEffect(() => setRenderGallery(true), [])
   const closeModal = () => {
     setShowModal(false)
   }
@@ -33,7 +37,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
   const filteredMedias = medias?.filter(hasAttributes)
 
   const items = filteredMedias.map((media) => {
-    const { alternativeText, height, width, url, formats, caption } = media.attributes
+    const { url, formats, caption } = media.attributes
     const { thumbnail } = formats as StrapiImageFormats
     const item: ReactImageGalleryItem = {
       original: url,
@@ -77,6 +81,8 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
     )
   }
 
+  const mediasToShow = windowWidth >= 1024 ? 5 : windowWidth >= 768 ? 4 : 3
+
   return (
     <div className={className}>
       <Modal
@@ -101,41 +107,49 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
           </div>
         </div>
       </Modal>
-      <div className="grid grid-cols-2 gap-2">
-        <div>
-          <ImageGalleryTile
-            image={withAttributes(medias[0])}
-            index={0}
-            onChoose={(id) => {
-              setShowModal(true)
-              setImageIndex(id)
-            }}
-          />
-        </div>
-        <div className="grid grid-cols-2 grid-rows-2 gap-2">
-          {filteredMedias.slice(1, 4).map((media, index) => (
+      {renderGallery && (
+        <div className="grid grid-rows-2 gap-2">
+          <div className="h-[50vh]">
             <ImageGalleryTile
-              image={media}
-              index={index + 1}
+              image={withAttributes(medias[0])}
+              index={0}
               onChoose={(id) => {
                 setShowModal(true)
                 setImageIndex(id)
               }}
-              key={media.attributes.url}
             />
-          ))}
-          <button
-            type="button"
-            className="flex h-full w-full items-center justify-center border-2 border-gmbDark text-center"
-            onClick={() => {
-              setShowModal(true)
-              setImageIndex(filteredMedias.length > 4 ? 4 : 0)
-            }}
-          >
-            <span className="inline-block text-btn">{t('common.morePhotos')}</span>
-          </button>
+          </div>
+          <div className="grid h-[15vh] grid-cols-3 grid-rows-1 gap-2 md:grid-cols-4 lg:grid-cols-5">
+            {filteredMedias
+              .slice(1, mediasToShow === filteredMedias.length - 1 ? mediasToShow + 1 : mediasToShow)
+              .map((media, index) => (
+                <ImageGalleryTile
+                  image={media}
+                  index={index + 1}
+                  onChoose={(id) => {
+                    setShowModal(true)
+                    setImageIndex(id)
+                  }}
+                  key={media.attributes.url}
+                />
+              ))}
+            {filteredMedias.length > mediasToShow + 1 && (
+              <button
+                type="button"
+                className="flex h-full w-full items-center justify-center border-2 border-gmbDark text-center"
+                onClick={() => {
+                  setShowModal(true)
+                  setImageIndex(filteredMedias.length > mediasToShow ? mediasToShow : 0)
+                }}
+              >
+                <span className="inline-block text-btn">
+                  {t('common.morePhotos', { count: filteredMedias.length - mediasToShow })}
+                </span>
+              </button>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }
