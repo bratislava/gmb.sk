@@ -1,12 +1,12 @@
 import cx from 'classnames'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
 
-import Hamburger from '../../assets/icons/ba-hamburger.svg'
+import HamburgerIcon from '../../assets/icons/ba-hamburger.svg'
 import CloseIcon from '../../assets/icons/close-x.svg'
 import SearchIcon from '../../assets/icons/search.svg'
 import Logo from '../../assets/images/gmb-logo-header.png'
@@ -110,7 +110,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             {isMobileMenuOpen ? (
               <CloseIcon className="dw-[30px] dh-[30px]" />
             ) : (
-              <Hamburger className="dw-[30px] dh-[30px]" />
+              <HamburgerIcon className="dw-[30px] dh-[30px]" />
             )}
           </button>
 
@@ -127,11 +127,11 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             <NavLink url="/zapojte-sa">{t('navigation.getInvolved')}</NavLink>
             <NavLink url="/zbierky">{t('navigation.collections')}</NavLink>
 
-            <Button size="small" href="/navstivte">
+            <Button size="small" href="/navstivte" role="link">
               {t('navigation.visitUs')}
             </Button>
 
-            <button type="button" className="xl:ml-5" onClick={toggleSearchBar} aria-label={t('search')}>
+            <button type="button" className="xl:ml-5" onClick={toggleSearchBar} aria-label={t('common.search')}>
               <SearchIcon className="dw-[36px]" />
             </button>
 

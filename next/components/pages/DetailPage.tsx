@@ -84,10 +84,10 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
         </>
       </Head>
 
-      <hgroup className="py-yMd px-xMd" style={{ background: getContentPageColor(contentPage) }}>
+      <div className="py-yMd px-xMd" style={{ background: getContentPageColor(contentPage) }}>
         <h1 className="text-xxl">{title}</h1>
         <p className="text-xxl font-regular">{subtitle}</p>
-      </hgroup>
+      </div>
       <Submenu items={submenu} />
       <div className="h-auto overflow-hidden px-xMd py-yLg">
         {/* Desktop sidepanel */}

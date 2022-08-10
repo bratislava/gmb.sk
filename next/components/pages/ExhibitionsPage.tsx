@@ -62,6 +62,7 @@ const ExhibitionsPage = ({
     locale: i18n.language,
   })
 
+  // This useEffect sets filters by the query that appears when someone clicks on a tag in Card or ChessboardTile.
   useEffect(() => {
     const { tags } = query
     if (!tags) {
@@ -122,6 +123,13 @@ const ExhibitionsPage = ({
 
       {activeTags.length > 0 || activePlaces.length > 0 ? (
         <div className="min-h-screen">
+          {/* List all selected tags for screen readers */}
+          <div className="sr-only">
+            {`${t('common.filteredBy')}: `}
+            {[...activeTags, ...activePlaces].map(
+              (tag, index) => `${tag}${index === [...activeTags, ...activePlaces].length - 1 ? '' : ', '} `
+            )}
+          </div>
           <CardSection
             sectionItems={filteredPages}
             isLoading={isLoadingInitialData}
