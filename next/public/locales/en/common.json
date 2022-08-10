@@ -92,13 +92,14 @@
   },
   "errors": {
     "emailMandatory": "Email is mandatory",
-    "emailIncorrectFormat": "Incorrect email format",
-    "fieldMandatory": "This field is mandatory"
+    "emailIncorrectFormat": "Insert email in correct format, e.g. name.surname@domain.com",
+    "fieldMandatory": "The consent is mandatory"
   },
   "newsletter": {
     "beInThePicture": "Be „in the picture“",
     "newsletter": "Newsletter",
-    "beInformedEvents": "Would you like to be informed about the events of the Bratislava City Gallery?"
+    "beInformedEvents": "Would you like to be informed about the events of the Bratislava City Gallery?",
+    "insertEmail": "Insert your email"
   },
   "map": {
     "ourPremises": "Our premises",
