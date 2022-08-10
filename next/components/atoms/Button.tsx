@@ -26,15 +26,7 @@ const Button = ({ className, children, size = 'medium', onClick, href, color = '
 
   if (href && href.length > 0) {
     return (
-      <Link
-        href={href}
-        id={id}
-        role="button"
-        {...styles}
-        preserveStyle
-        noUnderline
-        {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
-      >
+      <Link href={href} id={id} role="button" {...styles} preserveStyle noUnderline>
         {children}
       </Link>
     )

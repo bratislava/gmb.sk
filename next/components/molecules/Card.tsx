@@ -1,8 +1,6 @@
-import { uniqueId } from 'lodash'
-import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 
 import { SectionItemEntityFragment } from '../../graphql'
 import { hasAttributes, WithAttributes } from '../../utils/isDefined'
@@ -20,8 +18,6 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
   const router = useRouter()
 
   const { slug, coverMedia, title, subtitle, tags, perex, dateFrom, dateTo } = sectionItem.attributes
-
-  const [ariaLabelId] = useState(uniqueId(slug))
 
   return (
     <article className="group relative flex min-h-full cursor-pointer flex-col space-y-yMd">
@@ -54,9 +50,7 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
       ) : null}
 
       <hgroup>
-        <h3 className="text-xl" id={ariaLabelId}>
-          {title}
-        </h3>
+        <h3 className="text-xl">{title}</h3>
         <p className="text-xl font-regular">{subtitle}</p>
       </hgroup>
 
@@ -65,11 +59,7 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
       {/* empty div to push button to the bottom of the card */}
       <div className="m-0 hidden grow p-0 lg:block" />
 
-      <Button
-        href={`/detail/${slug}`}
-        aria-labelledby={ariaLabelId}
-        className="max-w-fit py-2 after:absolute after:inset-0"
-      >
+      <Button href={`/detail/${slug}`} className="max-w-fit py-2 after:absolute after:inset-0">
         {t('common.detail')}
       </Button>
     </article>

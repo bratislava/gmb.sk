@@ -1,6 +1,4 @@
-import { uniqueId } from 'lodash'
 import { useTranslation } from 'next-i18next'
-import { useState } from 'react'
 
 import { NewsItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
@@ -14,24 +12,19 @@ interface NewsBarProps {
 export const NewsBar = ({ newsItem }: NewsBarProps) => {
   const { t } = useTranslation()
 
-  const [ariaLabelId] = useState(uniqueId(newsItem.attributes.slug))
-
   return (
     <article
       className="group relative flex cursor-pointer items-center justify-between px-xMd py-yMd"
       style={{ background: getContentPageColor(newsItem) }}
     >
       <hgroup>
-        <h3 className="whitespace-pre-wrap text-xl" id={ariaLabelId}>
-          {newsItem.attributes.title}
-        </h3>
+        <h3 className="whitespace-pre-wrap text-xl">{newsItem.attributes.title}</h3>
         <p className="whitespace-pre-wrap text-xl font-regular">{newsItem.attributes.subtitle}</p>
       </hgroup>
 
       <div className="hidden lg:block">
         <Button
           href={`/detail/${newsItem.attributes.slug}`}
-          aria-labelledby={ariaLabelId}
           className="after:absolute after:inset-0 group-hover:bg-gmbDark group-hover:text-white"
         >
           {t('common.detail')}
