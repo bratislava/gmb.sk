@@ -14,8 +14,21 @@ jobs:
     name: Check for cluster conditions
     uses: bratislava/github-actions/.github/workflows/cluster-deploy-conditions.yml@v1.1
 
+  deploy-dev:
+    name: after dev Strapi deploy Next
+    if: needs.conditions.outputs.dev == 'true'
+    needs: [conditions, deploy-dev-strapi]
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.1
+    with:
+      directory: next/
+      cluster: tkg-innov-dev
+      url: https://tkg.dev.bratislava.sk
+    secrets:
+      service-account: ${{ secrets.DEV_STANDALONE_TOKEN }}
+      registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
+
   deploy-dev-strapi:
-    name: Strapi DEV
+    name: dev Strapi
     needs: conditions
     if: needs.conditions.outputs.dev-strapi == 'true'
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.1
@@ -27,21 +40,8 @@ jobs:
       service-account: ${{ secrets.DEV_STANDALONE_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
-  deploy-dev:
-    name: Deploy DEV - Next and Strapi
-    if: needs.conditions.outputs.dev == 'true'
-    needs: [deploy-dev-strapi]
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.1
-    with:
-      directory: next/
-      cluster: tkg-innov-dev
-      url: https://tkg.dev.bratislava.sk
-    secrets:
-      service-account: ${{ secrets.DEV_STANDALONE_TOKEN }}
-      registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
-
   deploy-dev-next:
-    name: Next DEV
+    name: dev Next
     needs: conditions
     if: needs.conditions.outputs.dev-next == 'true'
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.1
@@ -54,9 +54,9 @@ jobs:
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   deploy-staging:
-    name: Next and Strapi STAGING
+    name: after staging Strapi deploy Next
     if: needs.conditions.outputs.staging == 'true'
-    needs: [deploy-staging-strapi]
+    needs: [conditions, deploy-staging-strapi]
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.1
     with:
       directory: next/
@@ -68,7 +68,7 @@ jobs:
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   deploy-staging-strapi:
-    name: Strapi STAGING
+    name: staging Strapi
     needs: conditions
     if: needs.conditions.outputs.staging-strapi == 'true'
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.1
@@ -82,7 +82,7 @@ jobs:
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   deploy-staging-next:
-    name: Next STAGING
+    name: staging Next
     needs: conditions
     if: needs.conditions.outputs.staging-next == 'true'
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.1
@@ -96,9 +96,9 @@ jobs:
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   deploy-prod:
-    name: Next and Strapi PROD
+    name: after prod Strapi deploy Next
     if: needs.conditions.outputs.prod == 'true'
-    needs: [deploy-prod-strapi]
+    needs: [conditions, deploy-prod-strapi]
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.1
     with:
       directory: next/
@@ -110,7 +110,7 @@ jobs:
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   deploy-prod-strapi:
-    name: Strapi PROD
+    name: prod Strapi
     needs: conditions
     if: needs.conditions.outputs.prod-strapi == 'true'
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.1
@@ -124,7 +124,7 @@ jobs:
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   deploy-prod-next:
-    name: Next PROD
+    name: prod Next
     needs: conditions
     if: needs.conditions.outputs.prod-next == 'true'
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@v1.1
