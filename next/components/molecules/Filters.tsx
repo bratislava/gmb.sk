@@ -18,20 +18,22 @@ const Filters = ({ tagGroups, places, activeTags, setActiveTags, activePlaces, s
   const { t } = useTranslation()
 
   return (
-    <div className="relative pt-yMd">
+    <div className="relative flex max-h-full min-h-0 flex-col pt-yMd">
       <div className="flex justify-between pb-yMd lg:hidden">
         <p className="block text-lg">{t('common.filter')}</p>
         {/* TODO reset icon */}
       </div>
-      <div className="flex flex-wrap gap-xSm">
-        {tagGroups.map((tagGroup, index) => (
-          <TagGroup tags={tagGroup} activeTags={activeTags} setActiveTags={setActiveTags} key={index} />
-        ))}
-      </div>
-      <div className="flex flex-wrap gap-xSm pt-yMd">
-        {places && activePlaces && setActivePlaces && (
-          <TagGroup tags={places} activeTags={activePlaces} setActiveTags={setActivePlaces} />
-        )}
+      <div className="overflow-auto">
+        <div className="flex flex-wrap gap-xSm">
+          {tagGroups.map((tagGroup, index) => (
+            <TagGroup tags={tagGroup} activeTags={activeTags} setActiveTags={setActiveTags} key={index} />
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-xSm pt-yMd">
+          {places && activePlaces && setActivePlaces && (
+            <TagGroup tags={places} activeTags={activePlaces} setActiveTags={setActivePlaces} />
+          )}
+        </div>
       </div>
     </div>
   )
