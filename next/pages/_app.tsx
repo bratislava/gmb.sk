@@ -44,7 +44,7 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
         <header className="flex">
           <Navigation contentPage={pageProps?.contentPage} />
         </header>
-        <main>
+        <main className="scroll-mt-nav">
           <Component {...pageProps} />
         </main>
         <CookieConsent />

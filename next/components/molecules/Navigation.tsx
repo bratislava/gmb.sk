@@ -16,6 +16,7 @@ import AppLangSwitchers from '../atoms/AppLangSwitchers'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
 import NavLink from '../atoms/NavLink'
+import SkipNavigation from '../atoms/SkipNavigation'
 import SearchBar from './SearchBar'
 
 interface NavigationProps {
@@ -88,6 +89,8 @@ const Navigation = ({ contentPage }: NavigationProps) => {
   return (
     <>
       <nav className="fixed inset-x-0 top-0 z-50 flex h-nav w-full bg-white drop-shadow-md">
+        <SkipNavigation />
+
         <div className="mx-xMd flex w-full items-center justify-between">
           <Link href="/" preserveStyle noUnderline className="group min-w-fit">
             <div className="flex">
@@ -115,7 +118,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
           </button>
 
           <div
-            className={cx('lg:flex lg:space-x-xMd', {
+            className={cx('lg:flex lg:gap-x-xMd', {
               'absolute w-full left-0 top-nav bg-white flex flex-col items-center justify-center gap-7 pb-12':
                 isMobileMenuOpen,
               hidden: !isMobileMenuOpen,
@@ -131,7 +134,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
               {t('navigation.visitUs')}
             </Button>
 
-            <button type="button" className="xl:ml-5" onClick={toggleSearchBar} aria-label={t('common.search')}>
+            <button type="button" className="-ml-4 px-2" onClick={toggleSearchBar} aria-label={t('common.search')}>
               <SearchIcon className="dw-[36px]" />
             </button>
 
