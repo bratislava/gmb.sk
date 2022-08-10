@@ -1,4 +1,4 @@
-name: Maybe deploy
+name: Strapi/next deploy pipeline
 on:
   push:
     tags:
