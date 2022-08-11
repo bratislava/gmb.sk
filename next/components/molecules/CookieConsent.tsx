@@ -7,7 +7,7 @@ import Modal from 'react-modal'
 import ChevronDownIcon from '../../assets/icons/chevron-down.svg'
 import CloseIcon from '../../assets/icons/close-x.svg'
 import { getGDPRCookies, setGDPRCookies } from '../../utils/GDPRCookies'
-import { initializeGoogleAnalytics, useGoogleAnalyticsPageView } from '../../utils/googleAnalytics'
+import { initializeGoogleAnalytics } from '../../utils/googleAnalytics'
 import { getRouteForLocale } from '../../utils/localeRoutes'
 import { onEnterOrSpaceKeyDown } from '../../utils/onEnterKeyDown'
 import Button from '../atoms/Button'
@@ -27,8 +27,6 @@ const CookieConsent = () => {
   const [advertisingAndTargetingCookies, setAdvertisingAndTargetingCookies] = React.useState(
     persistedCookies.advertisingAndTargetingCookies
   )
-
-  useGoogleAnalyticsPageView()
 
   const closeCookiesSettings = () => {
     setIsCookiesSettingsOpen(false)

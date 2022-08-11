@@ -20,15 +20,16 @@ export const initializeGoogleAnalytics = () => {
 }
 
 export const useGoogleAnalyticsPageView = () => {
-  const { securityCookies } = getGDPRCookies()
   const router = useRouter()
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
-      if (!securityCookies) {
+      const { performanceCookies } = getGDPRCookies()
+
+
+      if (!performanceCookies) {
         return
       }
-      console.log('url', url)
 
       ReactGA.pageview(url)
     }
@@ -39,5 +40,5 @@ export const useGoogleAnalyticsPageView = () => {
       router.events.off('routeChangeComplete', handleRouteChange)
       router.events.off('hashChangeComplete', handleRouteChange)
     }
-  }, [router.events, securityCookies])
+  }, [router.events])
 }
