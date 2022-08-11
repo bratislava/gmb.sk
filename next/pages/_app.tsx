@@ -9,13 +9,14 @@ import { SWRConfig } from 'swr'
 import CookieConsent from '../components/molecules/CookieConsent'
 import Navigation from '../components/molecules/Navigation'
 import nextI18NextConfig from '../next-i18next.config'
+import { initializeGoogleAnalytics, useGoogleAnalyticsPageView } from '../utils/googleAnalytics'
 import { logError } from '../utils/logger'
-import { initializeGoogleAnalytics } from '../utils/googleAnalytics'
 
 initializeGoogleAnalytics()
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
   const { t } = useTranslation()
+  useGoogleAnalyticsPageView()
 
   return (
     <>

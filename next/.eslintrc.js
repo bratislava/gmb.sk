@@ -26,9 +26,9 @@ module.exports = {
     /** Hoisting of functions is useful */
     '@typescript-eslint/no-use-before-define': 'off',
     /** Doesn't play well with translations */
-    'sonarjs/no-duplicate-string': 'off',,
+    'sonarjs/no-duplicate-string': 'off',
     /** A lot of false postives */
-    "no-secrets/no-secrets": "off",
+    'no-secrets/no-secrets': 'off',
   },
   ignorePatterns: ['*.config.*', 'graphql', '.eslintrc.js'],
 }

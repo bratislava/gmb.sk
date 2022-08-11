@@ -14,10 +14,12 @@ export const setGDPRCookies = (cookies: GDPRCookies) => {
 
 export const getGDPRCookies = (): GDPRCookies => {
   const cookies = Cookies.get(GDPR_COOKIE_KEY)
+
   if (cookies) {
-    return JSON.parse(cookies)
+    return JSON.parse(cookies) as GDPRCookies
   }
 
+  /** Default values */
   return {
     securityCookies: true,
     performanceCookies: false,
