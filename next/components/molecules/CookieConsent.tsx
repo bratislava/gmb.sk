@@ -1,27 +1,17 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
-import React from 'react'
-import Consent, { Cookies } from 'react-cookie-consent'
-import * as ReactGA from 'react-ga'
+import React, { useEffect } from 'react'
+import Consent from 'react-cookie-consent'
 import Modal from 'react-modal'
 
 import ChevronDownIcon from '../../assets/icons/chevron-down.svg'
 import CloseIcon from '../../assets/icons/close-x.svg'
+import { getGDPRCookies, setGDPRCookies } from '../../utils/GDPRCookies'
+import { initializeGoogleAnalytics } from '../../utils/googleAnalytics'
 import { getRouteForLocale } from '../../utils/localeRoutes'
 import { onEnterOrSpaceKeyDown } from '../../utils/onEnterKeyDown'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
-
-interface GDPRCookies {
-  security_cookies: boolean
-  performance_cookies: boolean
-  advertising_and_targeting_cookies: boolean
-}
-
-const setGDPRCookies = (cookies: GDPRCookies) => {
-  Cookies.set('city-gallery-gdpr', JSON.stringify(cookies), { expires: 365 })
-  ReactGA.set(cookies)
-}
 
 const CookieConsent = () => {
   const { t, i18n } = useTranslation()
@@ -30,9 +20,13 @@ const CookieConsent = () => {
   const [isConsentSubmitted, setConsent] = React.useState(false)
   const [openPanel, setPanel] = React.useState<string>(t('cookieConsent.securityEssentialTitle'))
 
-  const [securityCookies] = React.useState(true)
-  const [performanceCookies, setPerformanceCookies] = React.useState(true)
-  const [advertisingCookies, setAdvertisingCookies] = React.useState(true)
+  const persistedCookies = getGDPRCookies()
+
+  const [securityCookies] = React.useState(persistedCookies.securityCookies)
+  const [performanceCookies, setPerformanceCookies] = React.useState(persistedCookies.performanceCookies)
+  const [advertisingAndTargetingCookies, setAdvertisingAndTargetingCookies] = React.useState(
+    persistedCookies.advertisingAndTargetingCookies
+  )
 
   const closeCookiesSettings = () => {
     setIsCookiesSettingsOpen(false)
@@ -40,9 +34,9 @@ const CookieConsent = () => {
 
   const saveSettings = () => {
     setGDPRCookies({
-      security_cookies: securityCookies,
-      performance_cookies: performanceCookies,
-      advertising_and_targeting_cookies: advertisingCookies,
+      securityCookies,
+      performanceCookies,
+      advertisingAndTargetingCookies,
     })
     closeCookiesSettings()
     setConsent(true)
@@ -50,27 +44,28 @@ const CookieConsent = () => {
 
   const acceptAllCookies = () => {
     setGDPRCookies({
-      security_cookies: true,
-      performance_cookies: true,
-      advertising_and_targeting_cookies: true,
+      securityCookies: true,
+      performanceCookies: true,
+      advertisingAndTargetingCookies: true,
     })
     closeCookiesSettings()
     setConsent(true)
   }
 
-  const declineCookies = () => {
-    setPerformanceCookies(false)
-    setAdvertisingCookies(false)
+  const declineAllCookies = () => {
     setGDPRCookies({
-      security_cookies: true,
-      performance_cookies: false,
-      advertising_and_targeting_cookies: false,
+      securityCookies: true,
+      performanceCookies: false,
+      advertisingAndTargetingCookies: false,
     })
-    setTimeout(() => {
-      closeCookiesSettings()
-      setConsent(true)
-    }, 300)
+    closeCookiesSettings()
+    setConsent(true)
   }
+
+  useEffect(() => {
+    initializeGoogleAnalytics()
+  }, [persistedCookies.performanceCookies])
+
   return (
     <>
       <Modal
@@ -122,8 +117,8 @@ const CookieConsent = () => {
               <Panel
                 title={t('cookieConsent.advertisingTargetingTitle')}
                 content={<>{t('cookieConsent.advertisingTargetingContent')}</>}
-                value={advertisingCookies}
-                onValueChange={(val) => setAdvertisingCookies(val)}
+                value={advertisingAndTargetingCookies}
+                onValueChange={(val) => setAdvertisingAndTargetingCookies(val)}
                 isOpen={openPanel === t('cookieConsent.advertisingTargetingTitle')}
                 setPanel={setPanel}
               />
@@ -133,7 +128,7 @@ const CookieConsent = () => {
                 {t('cookieConsent.saveSettings')}
               </Button>
               <div className="flex flex-col gap-1 lg:flex-row">
-                <Button size="small" onClick={declineCookies}>
+                <Button size="small" onClick={declineAllCookies}>
                   {t('cookieConsent.rejectAll')}
                 </Button>
                 <Button size="small" onClick={acceptAllCookies}>
@@ -145,9 +140,8 @@ const CookieConsent = () => {
         </div>
       </Modal>
       <Consent
-        onAccept={() => {
-          acceptAllCookies()
-        }}
+        onAccept={acceptAllCookies}
+        onDecline={declineAllCookies}
         buttonText={t('cookieConsent.acceptAll')}
         enableDeclineButton
         declineButtonText={t('cookieConsent.rejectAll')}

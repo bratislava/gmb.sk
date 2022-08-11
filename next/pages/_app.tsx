@@ -4,18 +4,15 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
 import { appWithTranslation, useTranslation } from 'next-i18next'
-import * as ReactGA from 'react-ga'
 import { SWRConfig } from 'swr'
 
 import CookieConsent from '../components/molecules/CookieConsent'
 import Navigation from '../components/molecules/Navigation'
 import nextI18NextConfig from '../next-i18next.config'
-import { isBrowser } from '../utils/envDetection'
 import { logError } from '../utils/logger'
+import { initializeGoogleAnalytics } from '../utils/googleAnalytics'
 
-if (isBrowser() && process.env.GOOGLE_ANALYTICS_ID) {
-  ReactGA.initialize(process.env.GOOGLE_ANALYTICS_ID)
-}
+initializeGoogleAnalytics()
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
   const { t } = useTranslation()
