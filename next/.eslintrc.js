@@ -30,7 +30,7 @@ module.exports = {
     /** A lot of false postives */
     'no-secrets/no-secrets': 'off',
     /** We use img on purpose */
-    '@next/next/no-img-element': 'off'
+    '@next/next/no-img-element': 'off',
   },
   ignorePatterns: ['*.config.*', 'graphql', '.eslintrc.js'],
 }
