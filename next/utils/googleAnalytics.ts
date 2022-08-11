@@ -25,8 +25,6 @@ export const useGoogleAnalyticsPageView = () => {
   useEffect(() => {
     const handleRouteChange = (url: string) => {
       const { performanceCookies } = getGDPRCookies()
-
-
       if (!performanceCookies) {
         return
       }
