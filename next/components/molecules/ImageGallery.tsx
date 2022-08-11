@@ -1,15 +1,18 @@
 import 'react-image-gallery/styles/css/image-gallery.css'
 
 import { useTranslation } from 'next-i18next'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ReactImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
 import Modal from 'react-modal'
+import { useWindowSize } from 'rooks'
+import resolveConfig from 'tailwindcss/resolveConfig'
+import { KeyValuePair } from 'tailwindcss/types/config'
 
 import CloseIcon from '../../assets/icons/close-x.svg'
 import { ImageWithFormatsEntityFragment } from '../../graphql'
+import tailwindConfig from '../../tailwind.config'
 import { StrapiImageFormats } from '../../types/strapiImageFormats'
 import { hasAttributes, withAttributes } from '../../utils/isDefined'
-import useWindowDimensions from '../../utils/useWindowDimensions'
 import ImageGalleryItem from '../atoms/ImageGalleryItem'
 import ImageGalleryTile from '../atoms/ImageGalleryTile'
 
@@ -23,9 +26,16 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
   const [imageIndex, setImageIndex] = useState(0)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const { t } = useTranslation()
-  const { width: windowWidth } = useWindowDimensions()
+  const { innerWidth: windowWidth } = useWindowSize()
   const [renderGallery, setRenderGallery] = useState(false)
-  useEffect(() => setRenderGallery(true), [])
+  const [subImageWidth, setSubImageWidth] = useState<number | undefined>()
+  const subImageRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    setRenderGallery(true)
+  }, [])
+  useEffect(() => {
+    setSubImageWidth(subImageRef.current?.clientWidth)
+  }, [windowWidth, renderGallery])
   const closeModal = () => {
     setShowModal(false)
   }
@@ -34,7 +44,11 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
     return null
   }
 
-  const filteredMedias = medias?.filter(hasAttributes)
+  const filteredMedias = [
+    ...medias?.filter(hasAttributes),
+    ...medias?.filter(hasAttributes),
+    ...medias?.filter(hasAttributes),
+  ]
 
   const items = filteredMedias.map((media) => {
     const { url, formats, caption } = media.attributes
@@ -81,7 +95,23 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
     )
   }
 
-  const mediasToShow = windowWidth >= 1024 ? 5 : windowWidth >= 640 ? 4 : 3
+  const fullConfig = resolveConfig(tailwindConfig as any)
+
+  const getBreakpointValue = (value: string): number => {
+    const screens = fullConfig.theme?.screens as KeyValuePair<string, string>
+    if (screens && screens[value]) {
+      return +screens[value].slice(0, screens[value].indexOf('px'))
+    }
+    return 0
+  }
+
+  const mediasToShow = windowWidth
+    ? windowWidth >= getBreakpointValue('md')
+      ? 5
+      : windowWidth >= getBreakpointValue('sm')
+      ? 4
+      : 3
+    : 0
 
   return (
     <div className={className}>
@@ -108,7 +138,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
         </div>
       </Modal>
       {renderGallery && (
-        <div className="grid grid-rows-2 gap-2">
+        <div className="flex flex-col gap-[calc(8px*var(--icon-size-factor))]">
           <div className="h-[50vh]">
             <ImageGalleryTile
               image={withAttributes(medias[0])}
@@ -119,19 +149,21 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
               }}
             />
           </div>
-          <div className="grid h-[15vh] grid-cols-3 grid-rows-1 gap-2 sm:grid-cols-4 lg:grid-cols-5">
+          <div className="grid h-fit grid-cols-3 grid-rows-1 gap-[calc(8px*var(--icon-size-factor))] sm:grid-cols-4 md:grid-cols-5">
             {filteredMedias
               .slice(1, mediasToShow === filteredMedias.length - 1 ? mediasToShow + 1 : mediasToShow)
               .map((media, index) => (
-                <ImageGalleryTile
-                  image={media}
-                  index={index + 1}
-                  onChoose={(id) => {
-                    setShowModal(true)
-                    setImageIndex(id)
-                  }}
-                  key={media.attributes.url}
-                />
+                <div ref={index === 0 ? subImageRef : null} style={{ height: subImageWidth }}>
+                  <ImageGalleryTile
+                    image={media}
+                    index={index + 1}
+                    onChoose={(id) => {
+                      setShowModal(true)
+                      setImageIndex(id)
+                    }}
+                    key={media.attributes.url}
+                  />
+                </div>
               ))}
             {filteredMedias.length > mediasToShow + 1 && (
               <button
