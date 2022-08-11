@@ -44,11 +44,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
     return null
   }
 
-  const filteredMedias = [
-    ...medias?.filter(hasAttributes),
-    ...medias?.filter(hasAttributes),
-    ...medias?.filter(hasAttributes),
-  ]
+  const filteredMedias = medias?.filter(hasAttributes)
 
   const items = filteredMedias.map((media) => {
     const { url, formats, caption } = media.attributes
