@@ -1,14 +1,14 @@
 import cx from 'classnames'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
 
 import { HighlightsItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { isDefined, WithAttributes } from '../../utils/isDefined'
-import { onEnterOrSpaceKeyDown } from '../../utils/onEnterKeyDown'
+import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
 import Button from '../atoms/Button'
 import { SidePanelTime } from '../atoms/SidePanelTime'
 import SidePanel from './SidePanel'
@@ -18,7 +18,7 @@ interface HighlightProps {
 }
 
 const Highlight = ({ highlight }: HighlightProps) => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const router = useRouter()
 
   const {
@@ -72,7 +72,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
         id={`articleDiv${highlight.id ?? ''}`}
         onClick={() => router.push(`/detail/${slug}`)}
         onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
-        tabIndex={0}
+        tabIndex={-1}
       >
         <div
           className="flex h-[calc(100vh_-_var(--height-nav))] w-full items-center justify-center bg-gmbLightGray"
@@ -91,13 +91,12 @@ const Highlight = ({ highlight }: HighlightProps) => {
           className={cx(
             'absolute bottom-0 z-20 w-full py-yMd px-xMd flex flex-col items-start justify-between gap-y-yMd lg:pr-sidepanel h-fit lg:h-auto'
           )}
-          id={`hgroup${highlight.id ?? ''}`}
           style={{ background: getContentPageColor(highlight) }}
         >
-          <hgroup>
-            <h1 className="text-xxl">{title}</h1>
+          <div>
+            <h2 className="text-xxl">{title}</h2>
             <p className="text-xxl font-regular">{subtitle}</p>
-          </hgroup>
+          </div>
 
           <div
             className={cx('lg:hidden w-full flex-1 justify-self-stretch gap-y-yMd justify-between flex flex-col', {
@@ -125,6 +124,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
           <Button
             href={`/detail/${slug}`}
             className="mt-yLg hidden after:absolute after:inset-0 after:top-[calc(-100vh_-_var(--height-nav))] lg:flex"
+            aria-label={title}
           >
             {t('common.detail')}
           </Button>

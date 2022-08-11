@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage  } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ErrorPage from '../components/pages/ErrorPage'
@@ -11,10 +11,6 @@ interface ErrorProps {
 }
 
 const Custom404: NextPage<ErrorProps> = ({ contact }: ErrorProps) => {
-  if (!contact) {
-    return null
-  }
-
   return <ErrorPage contactInfo={withAttributes(contact?.data)} statusCode={404} />
 }
 

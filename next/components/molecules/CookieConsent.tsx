@@ -9,7 +9,7 @@ import CloseIcon from '../../assets/icons/close-x.svg'
 import { getGDPRCookies, setGDPRCookies } from '../../utils/GDPRCookies'
 import { initializeGoogleAnalytics } from '../../utils/googleAnalytics'
 import { getRouteForLocale } from '../../utils/localeRoutes'
-import { onEnterOrSpaceKeyDown } from '../../utils/onEnterKeyDown'
+import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
 

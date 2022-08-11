@@ -31,10 +31,10 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
       >
         <header className="py-yMd px-xMd">
           <Link href={`/detail/${slug}`} preserveStyle noUnderline>
-            <hgroup>
+            <div>
               <h1 className="goout-event-title text-xxl">{title}</h1>
               <p className="text-xxl font-regular">{subtitle}</p>
-            </hgroup>
+            </div>
           </Link>
 
           <div className="mt-6 flex w-full flex-wrap justify-start gap-x-xMd gap-y-yMd">

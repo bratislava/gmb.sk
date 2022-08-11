@@ -1,5 +1,5 @@
-import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
 import MailchimpSubscribe from 'react-mailchimp-subscribe'
 
@@ -15,38 +15,34 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
   const { t } = useTranslation()
   const [email, setEmail] = React.useState('')
   const [agree, setAgree] = React.useState(false)
-  const [emailError, setEmailError] = React.useState<string | null>(null)
-  const [agreeError, setAgreeError] = React.useState<string | null>(null)
+  const [emailError, setEmailError] = React.useState<string>('')
+  const [agreeError, setAgreeError] = React.useState<string>('')
 
   const clear = () => {
     setEmail('')
     setAgree(false)
-    setEmailError(null)
-    setAgreeError(null)
+    setEmailError('')
+    setAgreeError('')
   }
 
   const isFormValid = (): boolean => {
-    let emailError: string | null
-    let agreeError: string | null
+    const newAgreeError = !agree ? t('errors.fieldMandatory') : ''
 
-    if (email.length <= 0) {
-      emailError = t('errors.emailMandatory')
+    let newEmailError = ''
+    if (email.length === 0) {
+      newEmailError = t('errors.emailMandatory')
     } else if (
       !/^(([^\s"(),.:;<>@[\\\]]+(\.[^\s"(),.:;<>@[\\\]]+)*)|(".+"))@((\[(?:\d{1,3}\.){3}\d{1,3}])|(([\dA-Za-z\-]+\.)+[A-Za-z]{2,}))$/.test(
         String(email).toLowerCase()
       )
     ) {
-      emailError = t('errors.emailIncorrectFormat')
-    } else {
-      emailError = null
+      newEmailError = t('errors.emailIncorrectFormat')
     }
 
-    agreeError = !agree ? t('errors.fieldMandatory') : null
+    setEmailError(newEmailError)
+    setAgreeError(newAgreeError)
 
-    setEmailError(emailError)
-    setAgreeError(agreeError)
-
-    return !emailError && !agreeError
+    return !newEmailError && !newAgreeError
   }
 
   return (
@@ -56,13 +52,11 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
       className="flex w-full flex-col-reverse justify-between px-xMd py-yLg lg:flex-row"
     >
       <div className="lg:w-4/6 xl:w-3/6">
-        <hgroup>
-          <h2 className="text-xxl">
-            {t('newsletter.beInThePicture')}
-            <br />
-            <span className="font-regular">{t('newsletter.newsletter')}</span>
-          </h2>
-        </hgroup>
+        <h2 className="text-xxl">
+          {t('newsletter.beInThePicture')}
+          <br />
+          <span className="font-regular">{t('newsletter.newsletter')}</span>
+        </h2>
 
         <MailchimpSubscribe
           url="https://gmb.us3.list-manage.com/subscribe/post?u=26c2efb55660fd966cd447999&id=e18d8cb372"
@@ -78,39 +72,54 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
             return (
               <div>
                 <p className="pt-yLg text-xl">{t('newsletter.beInformedEvents')}</p>
-                <div className="flex pt-10 pb-2">
-                  <input
-                    className="w-full border-2 border-white bg-transparent p-2 text-md lg:mr-yMd"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                    aria-label="Email"
-                  />
-                  <Button
-                    size="medium"
-                    color="light"
-                    onClick={handleSubmit}
-                    className="hidden whitespace-nowrap lg:block"
-                  >
-                    {t('common.login')}
-                  </Button>
+                <div className="flex flex-col gap-xMd pt-10 pb-2 md:flex-row">
+                  <div className="grow">
+                    <input
+                      className="w-full border-2 border-white bg-transparent p-2 py-[calc(18px*var(--icon-size-factor))] text-btn"
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
+                      type="email"
+                      required
+                      placeholder={t('newsletter.insertEmail')}
+                      aria-invalid={emailError !== ''}
+                      aria-labelledby="email-error"
+                    />
+                    {emailError ? (
+                      <p id="email-error" className="text-red-500 ">
+                        {emailError}
+                      </p>
+                    ) : null}
+                    <div className="my-6 flex w-full items-center">
+                      <input
+                        id="gdprCheckbox"
+                        type="checkbox"
+                        className="relative mr-xSm mt-[-1px] box-border inline-block h-[var(--font-size-btn)] w-[var(--font-size-btn)] flex-none cursor-pointer appearance-none border-2 border-white bg-transparent after:absolute after:top-[-1px] after:left-0 after:inline-block after:text-btn after:font-heavy after:leading-[var(--font-size-btn)] after:text-[#000] after:content-[''] checked:bg-white checked:after:content-['✔']"
+                        checked={agree}
+                        required
+                        onChange={() => setAgree((prev) => !prev)}
+                        aria-labelledby="agree-error"
+                        aria-invalid={agreeError !== ''}
+                      />
+                      <label
+                        htmlFor="gdprCheckbox"
+                        className="cursor-pointer select-none overflow-x-hidden whitespace-nowrap text-btn"
+                      >
+                        {t('common.gdprAccept')}
+                        <span className="pl-[6px] text-red-500">*</span>
+                      </label>
+                    </div>
+                    {agreeError ? (
+                      <p id="agree-error" className="-mt-3 pb-5 text-red-500">
+                        {agreeError}
+                      </p>
+                    ) : null}
+                  </div>
+                  <div>
+                    <Button color="light" onClick={handleSubmit} className="whitespace-nowrap" type="submit">
+                      {t('common.login')}
+                    </Button>
+                  </div>
                 </div>
-                {emailError ? <p className="text-red-500 ">{emailError}</p> : null}
-                <div className="mt-3 mb-6 flex w-full items-center">
-                  <input
-                    id="gdprCheckbox"
-                    type="checkbox"
-                    className="relative mr-xSm mt-[-1px] box-border inline-block h-[var(--font-size-btn)] w-[var(--font-size-btn)] flex-none cursor-pointer appearance-none border-2 border-white bg-transparent after:absolute after:top-[-1px] after:left-0 after:inline-block after:text-btn after:font-heavy after:leading-[var(--font-size-btn)] after:text-[#000] after:content-[''] checked:bg-white checked:after:content-['✔']"
-                    checked={agree}
-                    onChange={() => setAgree((prev) => !prev)}
-                  />
-                  <label htmlFor="gdprCheckbox" className="cursor-pointer select-none text-btn">
-                    {t('common.gdprAccept')}
-                  </label>
-                </div>
-                {agreeError ? <p className="-mt-3 pb-5 text-red-500">{agreeError}</p> : null}
-                <Button size="medium" color="light" onClick={handleSubmit} className="block w-full lg:hidden">
-                  {t('common.login')}
-                </Button>
               </div>
             )
           }}

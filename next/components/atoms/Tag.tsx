@@ -14,6 +14,7 @@ const Tag = ({ title, isActive = false, onClick }: ITagPRops) => {
       onKeyPress={onClick}
       role="button"
       tabIndex={0}
+      aria-pressed={isActive}
       className={cx(
         'flex justify-center text-center border-2 border-white px-[calc(30px*var(--icon-size-factor))] py-[calc(12px*var(--icon-size-factor))] uppercase text-nav',
         {

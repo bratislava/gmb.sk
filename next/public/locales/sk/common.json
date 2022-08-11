@@ -20,6 +20,7 @@
     "quickNavigation": "Rýchla navigácia",
     "topics": "Témy",
     "filter": "Filtrovať",
+    "filteredBy": "Filtrované podľa",
     "showResults": "Zobraziť výsledky",
     "nothingToShow": "Nie je čo zobraziť.",
     "buy": "Kúpiť",
@@ -78,7 +79,8 @@
     "explore": "Objavujte",
     "aboutGallery": "O galérii",
     "getInvolved": "Zapojte sa",
-    "collections": "Zbierky"
+    "collections": "Zbierky",
+    "skipNavigation": "Prejsť na obsah"
   },
   "footer": {
     "siteMap": "Mapa stránky",
@@ -91,13 +93,14 @@
   },
   "errors": {
     "emailMandatory": "Email je povinný",
-    "emailIncorrectFormat": "Nesprávny formát emailovej adresy",
-    "fieldMandatory": "Toto pole je povinné"
+    "emailIncorrectFormat": "Zadajte email v správnom formáte. Napríklad meno.priezvisko@domena.sk",
+    "fieldMandatory": "Súhlas je povinný"
   },
   "newsletter": {
     "beInThePicture": "Buďte „v obraze“",
     "newsletter": "Newsletter",
-    "beInformedEvents": "Chcete byť informovaní o podujatiach Galérie mesta Bratislavy?"
+    "beInformedEvents": "Chcete byť informovaní o podujatiach Galérie mesta Bratislavy?",
+    "insertEmail": "Zadajte svoj email"
   },
   "map": {
     "ourPremises": "Naše priestory",

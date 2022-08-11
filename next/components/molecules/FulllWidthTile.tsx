@@ -1,8 +1,10 @@
+import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
 import { SectionItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { WithAttributes } from '../../utils/isDefined'
+import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
 import Button from '../atoms/Button'
 
 export interface IFullWidthTileProps {
@@ -11,9 +13,16 @@ export interface IFullWidthTileProps {
 
 export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
   const { t } = useTranslation()
+  const router = useRouter()
 
   return (
-    <article className="w-full cursor-pointer">
+    <article
+      role="button"
+      tabIndex={0}
+      onClick={() => router.push(`/detail/${sectionItem.attributes.slug}`)}
+      onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${sectionItem.attributes.slug}`))}
+      className="w-full cursor-pointer"
+    >
       <div className="flex h-screen w-full items-center justify-center overflow-hidden lg:h-full">
         {sectionItem.attributes.coverMedia?.data?.attributes?.url && (
           <img
@@ -28,12 +37,12 @@ export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
         className="flex w-full flex-col items-start justify-between px-xMd py-yMd"
         style={{ background: getContentPageColor(sectionItem) }}
       >
-        <hgroup>
+        <div>
           <h3 className="text-xl">{sectionItem.attributes.title}</h3>
           <p className="pb-yMd text-xl font-regular">{sectionItem.attributes.subtitle}</p>
-        </hgroup>
+        </div>
 
-        <Button href={`/detail/${sectionItem.attributes.slug}`} className="after:absolute after:inset-0">
+        <Button href={`/detail/${sectionItem.attributes.slug}`} aria-label={sectionItem.attributes.title}>
           {t('common.detail')}
         </Button>
       </div>
