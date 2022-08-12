@@ -27,6 +27,8 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 'off',
     /** Doesn't play well with translations */
     'sonarjs/no-duplicate-string': 'off',
+    /** A lot of false postives */
+    'no-secrets/no-secrets': 'off',
     /** We use img on purpose */
     '@next/next/no-img-element': 'off',
   },
