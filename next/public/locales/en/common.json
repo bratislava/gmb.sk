@@ -70,7 +70,8 @@
     "documents": "Documents",
     "privacyPolicy": "privacy policy",
     "privacyPolicyGenitiv": "privacy policy",
-    "morePhotos": "More photos"
+    "morePhotos_one": "+{{count}} photo",
+    "morePhotos_other": "+{{count}} photos"
   },
   "navigation": {
     "visitUs": "Visit us",
