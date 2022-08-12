@@ -16,9 +16,9 @@ export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
   const router = useRouter()
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article
-      role="button"
-      tabIndex={0}
+      tabIndex={-1}
       onClick={() => router.push(`/detail/${sectionItem.attributes.slug}`)}
       onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${sectionItem.attributes.slug}`))}
       className="w-full cursor-pointer"
