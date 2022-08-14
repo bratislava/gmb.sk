@@ -16,11 +16,12 @@ export const NewsBar = ({ newsItem }: NewsBarProps) => {
   const router = useRouter()
 
   return (
-    <article
+    <div
       className="relative flex cursor-pointer items-center justify-between px-xMd py-yMd"
       style={{ background: getContentPageColor(newsItem) }}
-      role="button"
-      tabIndex={-1}
+      role="link"
+      tabIndex={0}
+      aria-label={newsItem.attributes.title}
       onClick={() => router.push(`/detail/${newsItem.attributes.slug}`)}
       onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${newsItem.attributes.slug}`))}
     >
@@ -30,11 +31,11 @@ export const NewsBar = ({ newsItem }: NewsBarProps) => {
       </div>
 
       <div className="hidden lg:block">
-        <Button href={`/detail/${newsItem.attributes.slug}`} aria-label={newsItem.attributes.title}>
+        <Button href={`/detail/${newsItem.attributes.slug}`} tabIndex={-1} aria-label={newsItem.attributes.title}>
           {t('common.detail')}
         </Button>
       </div>
-    </article>
+    </div>
   )
 }
 

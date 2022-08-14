@@ -82,6 +82,7 @@ export type BooleanFilterInput = {
   containsi?: InputMaybe<Scalars['Boolean']>;
   endsWith?: InputMaybe<Scalars['Boolean']>;
   eq?: InputMaybe<Scalars['Boolean']>;
+  eqi?: InputMaybe<Scalars['Boolean']>;
   gt?: InputMaybe<Scalars['Boolean']>;
   gte?: InputMaybe<Scalars['Boolean']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
@@ -182,6 +183,13 @@ export type ComponentBlocksHighlightOverride = {
   __typename?: 'ComponentBlocksHighlightOverride';
   highlightContent?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
+};
+
+export type ComponentBlocksHighlightOverrideFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentBlocksHighlightOverrideFiltersInput>>>;
+  highlightContent?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentBlocksHighlightOverrideFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentBlocksHighlightOverrideFiltersInput>>>;
 };
 
 export type ComponentBlocksHighlightOverrideInput = {
@@ -300,6 +308,15 @@ export type ComponentBlocksSeo = {
   metaTitle?: Maybe<Scalars['String']>;
 };
 
+export type ComponentBlocksSeoFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentBlocksSeoFiltersInput>>>;
+  keywords?: InputMaybe<StringFilterInput>;
+  metaDescription?: InputMaybe<StringFilterInput>;
+  metaTitle?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentBlocksSeoFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentBlocksSeoFiltersInput>>>;
+};
+
 export type ComponentBlocksSeoInput = {
   id?: InputMaybe<Scalars['ID']>;
   keywords?: InputMaybe<Scalars['String']>;
@@ -335,6 +352,15 @@ export type ComponentSectionsDownloadSectionFilesArgs = {
   filters?: InputMaybe<ComponentBlocksFileItemFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentSectionsDownloadSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsDownloadSectionFiltersInput>>>;
+  files?: InputMaybe<ComponentBlocksFileItemFiltersInput>;
+  not?: InputMaybe<ComponentSectionsDownloadSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsDownloadSectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
 };
 
 export type ComponentSectionsDownloadSectionInput = {
@@ -416,6 +442,13 @@ export type ComponentSectionsSliderSectionMediasArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type ComponentSectionsSliderSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsSliderSectionFiltersInput>>>;
+  not?: InputMaybe<ComponentSectionsSliderSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsSliderSectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
+};
+
 export type ComponentSectionsSliderSectionInput = {
   id?: InputMaybe<Scalars['ID']>;
   medias?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -453,6 +486,59 @@ export type Contact = {
   palffy?: Maybe<ComponentBlocksPalace>;
   socialLinks?: Maybe<ComponentBlocksLinks>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ContactCard = {
+  __typename?: 'ContactCard';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  email?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  phone1?: Maybe<Scalars['String']>;
+  phone2?: Maybe<Scalars['String']>;
+  position?: Maybe<Scalars['String']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ContactCardEntity = {
+  __typename?: 'ContactCardEntity';
+  attributes?: Maybe<ContactCard>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type ContactCardEntityResponse = {
+  __typename?: 'ContactCardEntityResponse';
+  data?: Maybe<ContactCardEntity>;
+};
+
+export type ContactCardEntityResponseCollection = {
+  __typename?: 'ContactCardEntityResponseCollection';
+  data: Array<ContactCardEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type ContactCardFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ContactCardFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  email?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ContactCardFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ContactCardFiltersInput>>>;
+  phone1?: InputMaybe<StringFilterInput>;
+  phone2?: InputMaybe<StringFilterInput>;
+  position?: InputMaybe<StringFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type ContactCardInput = {
+  email?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  phone1?: InputMaybe<Scalars['String']>;
+  phone2?: InputMaybe<Scalars['String']>;
+  position?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type ContactEntity = {
@@ -582,23 +668,29 @@ export type ContentPageFiltersInput = {
   createdAt?: InputMaybe<DateTimeFilterInput>;
   dateFrom?: InputMaybe<DateFilterInput>;
   dateTo?: InputMaybe<DateFilterInput>;
+  downloadSection?: InputMaybe<ComponentSectionsDownloadSectionFiltersInput>;
   id?: InputMaybe<IdFilterInput>;
   inheritColorFromParent?: InputMaybe<BooleanFilterInput>;
   locale?: InputMaybe<StringFilterInput>;
   localizations?: InputMaybe<ContentPageFiltersInput>;
   not?: InputMaybe<ContentPageFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ContentPageFiltersInput>>>;
+  override?: InputMaybe<ComponentBlocksHighlightOverrideFiltersInput>;
   parentPage?: InputMaybe<ContentPageFiltersInput>;
+  partners?: InputMaybe<ComponentBlocksPartnerItemFiltersInput>;
   perex?: InputMaybe<StringFilterInput>;
   place?: InputMaybe<PlaceFiltersInput>;
   placeAddress?: InputMaybe<StringFilterInput>;
   placeTitle?: InputMaybe<StringFilterInput>;
+  positions?: InputMaybe<ComponentBlocksPositionItemFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   purchaseId?: InputMaybe<StringFilterInput>;
   relatedContentSubmenuTitle?: InputMaybe<StringFilterInput>;
   relatedContentTitle?: InputMaybe<StringFilterInput>;
   sellTickets?: InputMaybe<BooleanFilterInput>;
+  seo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
   showRemainingTime?: InputMaybe<BooleanFilterInput>;
+  slider?: InputMaybe<ComponentSectionsSliderSectionFiltersInput>;
   slug?: InputMaybe<StringFilterInput>;
   subtitle?: InputMaybe<StringFilterInput>;
   tags?: InputMaybe<TagFiltersInput>;
@@ -655,6 +747,7 @@ export type DateFilterInput = {
   containsi?: InputMaybe<Scalars['Date']>;
   endsWith?: InputMaybe<Scalars['Date']>;
   eq?: InputMaybe<Scalars['Date']>;
+  eqi?: InputMaybe<Scalars['Date']>;
   gt?: InputMaybe<Scalars['Date']>;
   gte?: InputMaybe<Scalars['Date']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
@@ -678,6 +771,7 @@ export type DateTimeFilterInput = {
   containsi?: InputMaybe<Scalars['DateTime']>;
   endsWith?: InputMaybe<Scalars['DateTime']>;
   eq?: InputMaybe<Scalars['DateTime']>;
+  eqi?: InputMaybe<Scalars['DateTime']>;
   gt?: InputMaybe<Scalars['DateTime']>;
   gte?: InputMaybe<Scalars['DateTime']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
@@ -795,6 +889,7 @@ export type FloatFilterInput = {
   containsi?: InputMaybe<Scalars['Float']>;
   endsWith?: InputMaybe<Scalars['Float']>;
   eq?: InputMaybe<Scalars['Float']>;
+  eqi?: InputMaybe<Scalars['Float']>;
   gt?: InputMaybe<Scalars['Float']>;
   gte?: InputMaybe<Scalars['Float']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
@@ -811,7 +906,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContentPageItem | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsAudioSection | ComponentSectionsContactSection | ComponentSectionsDownloadSection | ComponentSectionsGallerySection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsPageSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | Contact | ContentPage | ExhibitionsPage | ExplorePage | GetInvolvedPage | HomePage | I18NLocale | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage;
+export type GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContentPageItem | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsAudioSection | ComponentSectionsContactSection | ComponentSectionsDownloadSection | ComponentSectionsGallerySection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsPageSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | Contact | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | GetInvolvedPage | HomePage | I18NLocale | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage;
 
 export type GetInvolvedPage = {
   __typename?: 'GetInvolvedPage';
@@ -949,6 +1044,7 @@ export type IdFilterInput = {
   containsi?: InputMaybe<Scalars['ID']>;
   endsWith?: InputMaybe<Scalars['ID']>;
   eq?: InputMaybe<Scalars['ID']>;
+  eqi?: InputMaybe<Scalars['ID']>;
   gt?: InputMaybe<Scalars['ID']>;
   gte?: InputMaybe<Scalars['ID']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -972,6 +1068,7 @@ export type IntFilterInput = {
   containsi?: InputMaybe<Scalars['Int']>;
   endsWith?: InputMaybe<Scalars['Int']>;
   eq?: InputMaybe<Scalars['Int']>;
+  eqi?: InputMaybe<Scalars['Int']>;
   gt?: InputMaybe<Scalars['Int']>;
   gte?: InputMaybe<Scalars['Int']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
@@ -995,6 +1092,7 @@ export type JsonFilterInput = {
   containsi?: InputMaybe<Scalars['JSON']>;
   endsWith?: InputMaybe<Scalars['JSON']>;
   eq?: InputMaybe<Scalars['JSON']>;
+  eqi?: InputMaybe<Scalars['JSON']>;
   gt?: InputMaybe<Scalars['JSON']>;
   gte?: InputMaybe<Scalars['JSON']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
@@ -1013,8 +1111,11 @@ export type JsonFilterInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  /** Change user password. Confirm with the current password. */
+  changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createAboutUsPageLocalization?: Maybe<AboutUsPageEntityResponse>;
   createCollectionsPageLocalization?: Maybe<CollectionsPageEntityResponse>;
+  createContactCard?: Maybe<ContactCardEntityResponse>;
   createContactLocalization?: Maybe<ContactEntityResponse>;
   createContentPage?: Maybe<ContentPageEntityResponse>;
   createContentPageLocalization?: Maybe<ContentPageEntityResponse>;
@@ -1033,6 +1134,7 @@ export type Mutation = {
   createTicket?: Maybe<TicketEntityResponse>;
   createTicketLocalization?: Maybe<TicketEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
+  createUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Create a new role */
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
@@ -1041,6 +1143,7 @@ export type Mutation = {
   deleteAboutUsPage?: Maybe<AboutUsPageEntityResponse>;
   deleteCollectionsPage?: Maybe<CollectionsPageEntityResponse>;
   deleteContact?: Maybe<ContactEntityResponse>;
+  deleteContactCard?: Maybe<ContactCardEntityResponse>;
   deleteContentPage?: Maybe<ContentPageEntityResponse>;
   deleteExhibitionsPage?: Maybe<ExhibitionsPageEntityResponse>;
   deleteExplorePage?: Maybe<ExplorePageEntityResponse>;
@@ -1052,6 +1155,7 @@ export type Mutation = {
   deleteTagCategory?: Maybe<TagCategoryEntityResponse>;
   deleteTicket?: Maybe<TicketEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
+  deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
   /** Delete an existing user */
@@ -1071,6 +1175,7 @@ export type Mutation = {
   updateAboutUsPage?: Maybe<AboutUsPageEntityResponse>;
   updateCollectionsPage?: Maybe<CollectionsPageEntityResponse>;
   updateContact?: Maybe<ContactEntityResponse>;
+  updateContactCard?: Maybe<ContactCardEntityResponse>;
   updateContentPage?: Maybe<ContentPageEntityResponse>;
   updateExhibitionsPage?: Maybe<ExhibitionsPageEntityResponse>;
   updateExplorePage?: Maybe<ExplorePageEntityResponse>;
@@ -1083,12 +1188,20 @@ export type Mutation = {
   updateTagCategory?: Maybe<TagCategoryEntityResponse>;
   updateTicket?: Maybe<TicketEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
+  updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
   /** Update an existing user */
   updateUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   updateVisitUsPage?: Maybe<VisitUsPageEntityResponse>;
   upload: UploadFileEntityResponse;
+};
+
+
+export type MutationChangePasswordArgs = {
+  currentPassword: Scalars['String'];
+  password: Scalars['String'];
+  passwordConfirmation: Scalars['String'];
 };
 
 
@@ -1103,6 +1216,11 @@ export type MutationCreateCollectionsPageLocalizationArgs = {
   data?: InputMaybe<CollectionsPageInput>;
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreateContactCardArgs = {
+  data: ContactCardInput;
 };
 
 
@@ -1224,6 +1342,11 @@ export type MutationCreateUploadFileArgs = {
 };
 
 
+export type MutationCreateUploadFolderArgs = {
+  data: UploadFolderInput;
+};
+
+
 export type MutationCreateUsersPermissionsRoleArgs = {
   data: UsersPermissionsRoleInput;
 };
@@ -1253,6 +1376,11 @@ export type MutationDeleteCollectionsPageArgs = {
 
 export type MutationDeleteContactArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationDeleteContactCardArgs = {
+  id: Scalars['ID'];
 };
 
 
@@ -1313,6 +1441,11 @@ export type MutationDeleteTicketArgs = {
 
 
 export type MutationDeleteUploadFileArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteUploadFolderArgs = {
   id: Scalars['ID'];
 };
 
@@ -1390,6 +1523,12 @@ export type MutationUpdateContactArgs = {
 };
 
 
+export type MutationUpdateContactCardArgs = {
+  data: ContactCardInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateContentPageArgs = {
   data: ContentPageInput;
   id: Scalars['ID'];
@@ -1464,6 +1603,12 @@ export type MutationUpdateTicketArgs = {
 
 export type MutationUpdateUploadFileArgs = {
   data: UploadFileInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationUpdateUploadFolderArgs = {
+  data: UploadFolderInput;
   id: Scalars['ID'];
 };
 
@@ -1652,6 +1797,8 @@ export type Query = {
   aboutUsPage?: Maybe<AboutUsPageEntityResponse>;
   collectionsPage?: Maybe<CollectionsPageEntityResponse>;
   contact?: Maybe<ContactEntityResponse>;
+  contactCard?: Maybe<ContactCardEntityResponse>;
+  contactCards?: Maybe<ContactCardEntityResponseCollection>;
   contentPage?: Maybe<ContentPageEntityResponse>;
   contentPageBySlug?: Maybe<ContentPageEntityResponse>;
   contentPages?: Maybe<ContentPageEntityResponseCollection>;
@@ -1677,6 +1824,8 @@ export type Query = {
   tickets?: Maybe<TicketEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
+  uploadFolder?: Maybe<UploadFolderEntityResponse>;
+  uploadFolders?: Maybe<UploadFolderEntityResponseCollection>;
   usersPermissionsRole?: Maybe<UsersPermissionsRoleEntityResponse>;
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
@@ -1697,6 +1846,19 @@ export type QueryCollectionsPageArgs = {
 
 export type QueryContactArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryContactCardArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryContactCardsArgs = {
+  filters?: InputMaybe<ContactCardFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -1858,6 +2020,18 @@ export type QueryUploadFilesArgs = {
 };
 
 
+export type QueryUploadFolderArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryUploadFoldersArgs = {
+  filters?: InputMaybe<UploadFolderFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
 export type QueryUsersPermissionsRoleArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -1898,6 +2072,7 @@ export type StringFilterInput = {
   containsi?: InputMaybe<Scalars['String']>;
   endsWith?: InputMaybe<Scalars['String']>;
   eq?: InputMaybe<Scalars['String']>;
+  eqi?: InputMaybe<Scalars['String']>;
   gt?: InputMaybe<Scalars['String']>;
   gte?: InputMaybe<Scalars['String']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -2129,6 +2304,7 @@ export type TimeFilterInput = {
   containsi?: InputMaybe<Scalars['Time']>;
   endsWith?: InputMaybe<Scalars['Time']>;
   eq?: InputMaybe<Scalars['Time']>;
+  eqi?: InputMaybe<Scalars['Time']>;
   gt?: InputMaybe<Scalars['Time']>;
   gte?: InputMaybe<Scalars['Time']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Time']>>>;
@@ -2189,6 +2365,8 @@ export type UploadFileFiltersInput = {
   caption?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   ext?: InputMaybe<StringFilterInput>;
+  folder?: InputMaybe<UploadFolderFiltersInput>;
+  folderPath?: InputMaybe<StringFilterInput>;
   formats?: InputMaybe<JsonFilterInput>;
   hash?: InputMaybe<StringFilterInput>;
   height?: InputMaybe<IntFilterInput>;
@@ -2210,6 +2388,8 @@ export type UploadFileInput = {
   alternativeText?: InputMaybe<Scalars['String']>;
   caption?: InputMaybe<Scalars['String']>;
   ext?: InputMaybe<Scalars['String']>;
+  folder?: InputMaybe<Scalars['ID']>;
+  folderPath?: InputMaybe<Scalars['String']>;
   formats?: InputMaybe<Scalars['JSON']>;
   hash?: InputMaybe<Scalars['String']>;
   height?: InputMaybe<Scalars['Int']>;
@@ -2226,6 +2406,78 @@ export type UploadFileInput = {
 export type UploadFileRelationResponseCollection = {
   __typename?: 'UploadFileRelationResponseCollection';
   data: Array<UploadFileEntity>;
+};
+
+export type UploadFolder = {
+  __typename?: 'UploadFolder';
+  children?: Maybe<UploadFolderRelationResponseCollection>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  files?: Maybe<UploadFileRelationResponseCollection>;
+  name: Scalars['String'];
+  parent?: Maybe<UploadFolderEntityResponse>;
+  path: Scalars['String'];
+  pathId: Scalars['Int'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type UploadFolderChildrenArgs = {
+  filters?: InputMaybe<UploadFolderFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type UploadFolderFilesArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type UploadFolderEntity = {
+  __typename?: 'UploadFolderEntity';
+  attributes?: Maybe<UploadFolder>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type UploadFolderEntityResponse = {
+  __typename?: 'UploadFolderEntityResponse';
+  data?: Maybe<UploadFolderEntity>;
+};
+
+export type UploadFolderEntityResponseCollection = {
+  __typename?: 'UploadFolderEntityResponseCollection';
+  data: Array<UploadFolderEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type UploadFolderFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
+  children?: InputMaybe<UploadFolderFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  files?: InputMaybe<UploadFileFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<UploadFolderFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
+  parent?: InputMaybe<UploadFolderFiltersInput>;
+  path?: InputMaybe<StringFilterInput>;
+  pathId?: InputMaybe<IntFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type UploadFolderInput = {
+  children?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  files?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  name?: InputMaybe<Scalars['String']>;
+  parent?: InputMaybe<Scalars['ID']>;
+  path?: InputMaybe<Scalars['String']>;
+  pathId?: InputMaybe<Scalars['Int']>;
+};
+
+export type UploadFolderRelationResponseCollection = {
+  __typename?: 'UploadFolderRelationResponseCollection';
+  data: Array<UploadFolderEntity>;
 };
 
 export type UsersPermissionsCreateRolePayload = {

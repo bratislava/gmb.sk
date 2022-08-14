@@ -23,12 +23,12 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
   const { slug, coverMedia, title, subtitle, tags, perex } = sectionItem.attributes
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article
-      role="button"
       tabIndex={-1}
       onClick={() => router.push(`/detail/${slug}`)}
       onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
-      className={cx('lg:flex min-h-[400px] relative', {
+      className={cx('lg:flex min-h-[400px] relative cursor-pointer', {
         'flex-row-reverse': isLeft,
       })}
     >

@@ -66,13 +66,13 @@ const Highlight = ({ highlight }: HighlightProps) => {
 
   return (
     <article className="relative h-fit w-full">
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
-        role="button"
         className="cursor-pointer"
+        tabIndex={-1}
         id={`articleDiv${highlight.id ?? ''}`}
         onClick={() => router.push(`/detail/${slug}`)}
         onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
-        tabIndex={-1}
       >
         <div
           className="flex h-[calc(100vh_-_var(--height-nav))] w-full items-center justify-center bg-gmbLightGray"

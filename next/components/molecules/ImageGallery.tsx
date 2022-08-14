@@ -1,12 +1,16 @@
 import 'react-image-gallery/styles/css/image-gallery.css'
 
 import { useTranslation } from 'next-i18next'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ReactImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
 import Modal from 'react-modal'
+import { useWindowSize } from 'rooks'
+import resolveConfig from 'tailwindcss/resolveConfig'
+import { KeyValuePair } from 'tailwindcss/types/config'
 
 import CloseIcon from '../../assets/icons/close-x.svg'
 import { ImageWithFormatsEntityFragment } from '../../graphql'
+import tailwindConfig from '../../tailwind.config'
 import { StrapiImageFormats } from '../../types/strapiImageFormats'
 import { hasAttributes, withAttributes } from '../../utils/isDefined'
 import ImageGalleryItem from '../atoms/ImageGalleryItem'
@@ -22,6 +26,16 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
   const [imageIndex, setImageIndex] = useState(0)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const { t } = useTranslation()
+  const { innerWidth: windowWidth } = useWindowSize()
+  const [renderGallery, setRenderGallery] = useState(false)
+  const [subImageWidth, setSubImageWidth] = useState<number | undefined>()
+  const subImageRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    setRenderGallery(true)
+  }, [])
+  useEffect(() => {
+    setSubImageWidth(subImageRef.current?.clientWidth)
+  }, [windowWidth, renderGallery])
   const closeModal = () => {
     setShowModal(false)
   }
@@ -33,7 +47,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
   const filteredMedias = medias?.filter(hasAttributes)
 
   const items = filteredMedias.map((media) => {
-    const { alternativeText, height, width, url, formats, caption } = media.attributes
+    const { url, formats, caption } = media.attributes
     const { thumbnail } = formats as StrapiImageFormats
     const item: ReactImageGalleryItem = {
       original: url,
@@ -77,6 +91,24 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
     )
   }
 
+  const fullConfig = resolveConfig(tailwindConfig as any)
+
+  const getBreakpointValue = (value: string): number => {
+    const screens = fullConfig.theme?.screens as KeyValuePair<string, string>
+    if (screens && screens[value]) {
+      return +screens[value].slice(0, screens[value].indexOf('px'))
+    }
+    return 0
+  }
+
+  const mediasToShow = windowWidth
+    ? windowWidth >= getBreakpointValue('md')
+      ? 5
+      : windowWidth >= getBreakpointValue('sm')
+      ? 4
+      : 3
+    : 0
+
   return (
     <div className={className}>
       <Modal
@@ -101,41 +133,51 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
           </div>
         </div>
       </Modal>
-      <div className="grid grid-cols-2 gap-2">
-        <div>
-          <ImageGalleryTile
-            image={withAttributes(medias[0])}
-            index={0}
-            onChoose={(id) => {
-              setShowModal(true)
-              setImageIndex(id)
-            }}
-          />
-        </div>
-        <div className="grid grid-cols-2 grid-rows-2 gap-2">
-          {filteredMedias.slice(1, 4).map((media, index) => (
+      {renderGallery && (
+        <div className="flex flex-col gap-[calc(8px*var(--icon-size-factor))]">
+          <div className="h-[50vh]">
             <ImageGalleryTile
-              image={media}
-              index={index + 1}
+              image={withAttributes(medias[0])}
+              index={0}
               onChoose={(id) => {
                 setShowModal(true)
                 setImageIndex(id)
               }}
-              key={media.attributes.url}
             />
-          ))}
-          <button
-            type="button"
-            className="flex h-full w-full items-center justify-center border-2 border-gmbDark text-center"
-            onClick={() => {
-              setShowModal(true)
-              setImageIndex(filteredMedias.length > 4 ? 4 : 0)
-            }}
-          >
-            <span className="inline-block text-btn">{t('common.morePhotos')}</span>
-          </button>
+          </div>
+          <div className="grid h-fit grid-cols-3 grid-rows-1 gap-[calc(8px*var(--icon-size-factor))] sm:grid-cols-4 md:grid-cols-5">
+            {filteredMedias
+              .slice(1, mediasToShow === filteredMedias.length - 1 ? mediasToShow + 1 : mediasToShow)
+              .map((media, index) => (
+                <div ref={index === 0 ? subImageRef : null} style={{ height: subImageWidth }}>
+                  <ImageGalleryTile
+                    image={media}
+                    index={index + 1}
+                    onChoose={(id) => {
+                      setShowModal(true)
+                      setImageIndex(id)
+                    }}
+                    key={media.attributes.url}
+                  />
+                </div>
+              ))}
+            {filteredMedias.length > mediasToShow + 1 && (
+              <button
+                type="button"
+                className="flex h-full w-full items-center justify-center border-2 border-gmbDark text-center"
+                onClick={() => {
+                  setShowModal(true)
+                  setImageIndex(filteredMedias.length > mediasToShow ? mediasToShow : 0)
+                }}
+              >
+                <span className="inline-block text-btn">
+                  {t('common.morePhotos', { count: filteredMedias.length - mediasToShow })}
+                </span>
+              </button>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }
