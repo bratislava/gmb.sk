@@ -3,13 +3,13 @@ import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import remarkGfm from 'remark-gfm'
 
 import LocationIcon from '../../assets/icons/location.svg'
-import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
+import { ContentPageEntityFragment, GeneralEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'
 import AppLangSwitchers from '../atoms/AppLangSwitchers'
 import Link from '../atoms/Link'
 
 interface FooterProps {
-  contactInfo: WithAttributes<ContactEntityFragment>
+  contactInfo: WithAttributes<GeneralEntityFragment>
   contentPage?: WithAttributes<ContentPageEntityFragment>
 }
 

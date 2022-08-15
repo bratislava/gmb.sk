@@ -10,11 +10,11 @@ import { getRouteForLocale } from '../../utils/localeRoutes'
 
 interface TicketProps {
   contentPage: ContentPageBySlugQuery['contentPageBySlug']
-  contact: ContentPageBySlugQuery['contact']
+  general: ContentPageBySlugQuery['general']
   currentEvents?: ExhibitionsByPlaceQuery['currentEvents']
 }
 
-const Tickets = ({ contentPage, contact, currentEvents }: TicketProps) => {
+const Tickets = ({ contentPage, general, currentEvents }: TicketProps) => {
   const contentPageWithAttributes = withAttributes(contentPage?.data)
 
   if (!contentPage || !contentPageWithAttributes) {
@@ -24,7 +24,7 @@ const Tickets = ({ contentPage, contact, currentEvents }: TicketProps) => {
   return (
     <TicketPage
       contentPage={contentPageWithAttributes}
-      contactInfo={withAttributes(contact?.data)}
+      contactInfo={withAttributes(general?.data)}
       currentEvents={currentEvents?.data.filter(hasAttributes)}
     />
   )
@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
 
   const today = getTodaysDate()
 
-  const [{ contentPageBySlug: contentPage, contact }, translations] = await Promise.all([
+  const [{ contentPageBySlug: contentPage, general }, translations] = await Promise.all([
     client.ContentPageBySlug({
       slug,
       locale,
@@ -59,7 +59,7 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
     return {
       props: {
         contentPage,
-        contact,
+        general,
         ...translations,
       },
     }
@@ -77,7 +77,7 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
   return {
     props: {
       contentPage,
-      contact,
+      general,
       currentEvents,
       ...translations,
     },

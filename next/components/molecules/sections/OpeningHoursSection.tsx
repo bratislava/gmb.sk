@@ -3,17 +3,17 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
 import LocationIcon from '../../../assets/icons/location.svg'
-import { ContactEntityFragment } from '../../../graphql'
+import { GeneralEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
 import Link from '../../atoms/Link'
 import Section from './Section'
 
-interface ContactSectionProps {
-  contactInfo: WithAttributes<ContactEntityFragment> | null | undefined
+interface OpeningHoursSectionProps {
+  contactInfo: WithAttributes<GeneralEntityFragment> | null | undefined
   anchor?: string
 }
 
-const ContactSection = ({ contactInfo, anchor }: ContactSectionProps) => {
+const OpeningHoursSection = ({ contactInfo, anchor }: OpeningHoursSectionProps) => {
   const { t } = useTranslation()
 
   const followPlatformData = [
@@ -85,4 +85,4 @@ const ContactSection = ({ contactInfo, anchor }: ContactSectionProps) => {
   )
 }
 
-export default ContactSection
+export default OpeningHoursSection

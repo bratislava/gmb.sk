@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_sections_contact_sections",
+  "collectionName": "components_sections_opening_hours_sections",
   "info": {
-    "displayName": "contact section",
+    "displayName": "opening hours section",
     "icon": "clock"
   },
   "options": {},

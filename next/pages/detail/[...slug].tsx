@@ -8,17 +8,17 @@ import { hasAttributes, isDefined, withAttributes } from '../../utils/isDefined'
 
 interface DetailProps {
   contentPage: ContentPageBySlugQuery['contentPageBySlug']
-  contact: ContentPageBySlugQuery['contact']
+  general: ContentPageBySlugQuery['general']
 }
 
-const Detail = ({ contentPage, contact }: DetailProps) => {
+const Detail = ({ contentPage, general }: DetailProps) => {
   const contentPageWithAttributes = withAttributes(contentPage?.data)
 
   if (!contentPage || !contentPageWithAttributes) {
     return null
   }
 
-  return <DetailPage contentPage={contentPageWithAttributes} contactInfo={withAttributes(contact?.data)} />
+  return <DetailPage contentPage={contentPageWithAttributes} contactInfo={withAttributes(general?.data)} />
 }
 
 export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, locale = 'sk', preview }) => {
@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, loca
 
   const slug = (typeof params.slug === 'string' ? params.slug : params.slug?.join('/')) ?? ''
 
-  const [{ contentPageBySlug: contentPage, contact }, translations] = await Promise.all([
+  const [{ contentPageBySlug: contentPage, general }, translations] = await Promise.all([
     client.ContentPageBySlug({ slug, locale, isPublished: !preview }),
     serverSideTranslations(locale, ['common']),
   ])
@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, loca
   return {
     props: {
       contentPage,
-      contact,
+      general,
       ...translations,
     },
     revalidate: 10,

@@ -1,7 +1,7 @@
-import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
+import { useTranslation } from 'next-i18next'
 
-import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
+import { ContentPageEntityFragment, GeneralEntityFragment } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { getPurchaseId } from '../../utils/getPurchaseId'
@@ -21,7 +21,7 @@ import Submenu from '../molecules/Submenu'
 
 interface DetailPageProps {
   contentPage: WithAttributes<ContentPageEntityFragment>
-  contactInfo: WithAttributes<ContactEntityFragment> | null | undefined
+  contactInfo: WithAttributes<GeneralEntityFragment> | null | undefined
 }
 
 const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
