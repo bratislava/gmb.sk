@@ -92,7 +92,8 @@
         "sections.audio-section",
         "sections.richtext-section",
         "sections.video-section",
-        "sections.gallery-section"
+        "sections.gallery-section",
+        "sections.contact-section"
       ]
     },
     "slider": {

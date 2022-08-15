@@ -307,6 +307,17 @@ fragment GeneralEntity on GeneralEntity {
   }
 }
 
+fragment ContactEntity on ContactEntity {
+  id
+  attributes {
+    name
+    position
+    email
+    phone1
+    phone2
+  }
+}
+
 fragment OpeningHoursSection on ComponentSectionsOpeningHoursSection {
   id
   submenuTitle
@@ -366,6 +377,19 @@ fragment GallerySection on ComponentSectionsGallerySection {
   medias {
     data {
       ...ImageWithFormatsEntity
+    }
+  }
+}
+
+fragment ContactSection on ComponentSectionsContactSection {
+  id
+  title
+  submenuTitle
+  contacts {
+    contact {
+      data {
+        ...ContactEntity
+      }
     }
   }
 }
@@ -447,5 +471,9 @@ fragment MainContent on ContentPageMainContentDynamicZone {
   ... on ComponentSectionsGallerySection {
     __typename
     ...GallerySection
+  }
+  ... on ComponentSectionsContactSection {
+    __typename
+    ...ContactSection
   }
 }
