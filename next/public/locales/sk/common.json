@@ -96,7 +96,8 @@
   "errors": {
     "emailMandatory": "Email je povinný",
     "emailIncorrectFormat": "Zadajte email v správnom formáte. Napríklad meno.priezvisko@domena.sk",
-    "fieldMandatory": "Súhlas je povinný"
+    "fieldMandatory": "Súhlas je povinný",
+    "error": "Chyba"
   },
   "newsletter": {
     "beInThePicture": "Buďte „v obraze“",

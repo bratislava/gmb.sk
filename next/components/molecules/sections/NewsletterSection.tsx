@@ -18,6 +18,9 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
   const [emailError, setEmailError] = React.useState<string>('')
   const [agreeError, setAgreeError] = React.useState<string>('')
 
+  const emailRef = React.useRef<HTMLInputElement>(null)
+  const agreeRef = React.useRef<HTMLInputElement>(null)
+
   const clear = () => {
     setEmail('')
     setAgree(false)
@@ -42,6 +45,14 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
     setEmailError(newEmailError)
     setAgreeError(newAgreeError)
 
+    if (newAgreeError) {
+      agreeRef?.current?.focus()
+    }
+
+    if (newEmailError) {
+      emailRef?.current?.focus()
+    }
+
     return !newEmailError && !newAgreeError
   }
 
@@ -60,7 +71,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
 
         <MailchimpSubscribe
           url="https://gmb.us3.list-manage.com/subscribe/post?u=26c2efb55660fd966cd447999&id=e18d8cb372"
-          render={({ subscribe }) => {
+          render={({ subscribe, status }) => {
             const handleSubmit = () => {
               if (isFormValid()) {
                 subscribe({
@@ -69,27 +80,40 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                 clear()
               }
             }
+            // if (status === 'error') {
+            // if (true) {
+            //   return (
+            //     <div>
+            //       <p className="text-center text-sm text-red-600">{t('errors.newsletter')}</p>
+            //     </div>
+            //   )
+            // }
             return (
-              <div>
-                <p className="pt-yLg text-xl">{t('newsletter.beInformedEvents')}</p>
-                <div className="flex flex-col gap-xMd pt-10 pb-2 md:flex-row">
+              <>
+                <p className="py-yLg text-xl">{t('newsletter.beInformedEvents')}</p>
+                <label htmlFor="email-input" className="text-md">
+                  {t('newsletter.insertEmail')}
+                  <span className="pl-[6px] text-red-500">*</span>
+                </label>
+                <div className="flex flex-col gap-xMd py-2 md:flex-row">
                   <div className="grow">
                     <input
+                      id="email-input"
                       className="w-full border-2 border-white bg-transparent p-2 py-[calc(18px*var(--icon-size-factor))] text-btn"
                       onChange={(e) => setEmail(e.target.value)}
                       value={email}
                       type="email"
                       required
-                      placeholder={t('newsletter.insertEmail')}
                       aria-invalid={emailError !== ''}
-                      aria-labelledby="email-error"
+                      ref={emailRef}
                     />
                     {emailError ? (
-                      <p id="email-error" className="text-red-500 ">
+                      <label htmlFor="email-input" id="email-error" className="text-red-500">
+                        <span className="sr-only">{t('errors.error')}: </span>
                         {emailError}
-                      </p>
+                      </label>
                     ) : null}
-                    <div className="my-6 flex w-full items-center">
+                    <div className="mt-6 flex w-full items-center">
                       <input
                         id="gdprCheckbox"
                         type="checkbox"
@@ -97,8 +121,8 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                         checked={agree}
                         required
                         onChange={() => setAgree((prev) => !prev)}
-                        aria-labelledby="agree-error"
                         aria-invalid={agreeError !== ''}
+                        ref={agreeRef}
                       />
                       <label
                         htmlFor="gdprCheckbox"
@@ -109,9 +133,10 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                       </label>
                     </div>
                     {agreeError ? (
-                      <p id="agree-error" className="-mt-3 pb-5 text-red-500">
+                      <label htmlFor="gdprCheckbox" id="agree-error" className="-mt-3 pb-5 text-red-500">
+                        <span className="sr-only">{t('errors.error')}: </span>
                         {agreeError}
-                      </p>
+                      </label>
                     ) : null}
                   </div>
                   <div>
@@ -120,7 +145,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                     </Button>
                   </div>
                 </div>
-              </div>
+              </>
             )
           }}
         />
