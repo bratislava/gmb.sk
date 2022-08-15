@@ -5,10 +5,11 @@ import { ContentPageEntityFragment, GeneralEntityFragment } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { getPurchaseId } from '../../utils/getPurchaseId'
-import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
+import { hasAttributes, isDefined, WithAttributes, withAttributes } from '../../utils/isDefined'
 import Audio from '../atoms/Audio'
 import Seo from '../atoms/Seo'
 import Video from '../atoms/Video'
+import ContactCard from '../molecules/ContactCard'
 import Footer from '../molecules/Footer'
 import ImageGallery from '../molecules/ImageGallery'
 import ImgSwiper from '../molecules/ImgSwiper'
@@ -146,6 +147,16 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
                   <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
                     {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
                     <ImageGallery medias={section.medias?.data} />
+                  </Section>
+                )
+              }
+              if (section.__typename === 'ComponentSectionsContactSection') {
+                return (
+                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
+                    {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
+                    {section.contacts?.map((contactItem) => (
+                      <ContactCard contact={withAttributes(contactItem?.contact?.data)} />
+                    ))}
                   </Section>
                 )
               }
