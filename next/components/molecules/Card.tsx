@@ -21,8 +21,8 @@ export const Card = ({ sectionItem, showTags }: CardProps) => {
   const { slug, coverMedia, title, subtitle, tags, perex, dateFrom, dateTo } = sectionItem.attributes
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article
-      role="button"
       tabIndex={-1}
       onClick={() => router.push(`/detail/${slug}`)}
       onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}

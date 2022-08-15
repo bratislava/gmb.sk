@@ -12,6 +12,6 @@ export type StrapiImageFormat = {
 
 export type StrapiImageFormats = {
   small: StrapiImageFormat
-  meditum: StrapiImageFormat
+  medium: StrapiImageFormat
   thumbnail: StrapiImageFormat
 }
