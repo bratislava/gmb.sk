@@ -10,13 +10,13 @@ import { getRouteForLocale } from '../utils/localeRoutes'
 
 interface ExploreProps {
   explorePage: ExplorePageQuery['explorePage']
-  contact: ExplorePageQuery['contact']
+  general: ExplorePageQuery['general']
   tagsTypes: TagsByCategorySlugQuery['tagCategoryBySlug']
   tagsProjects: TagsByCategorySlugQuery['tagCategoryBySlug']
   tagsOthers: TagsByCategorySlugQuery['tagCategoryBySlug']
 }
 
-const Explore = ({ explorePage, contact, tagsTypes, tagsProjects, tagsOthers }: ExploreProps) => {
+const Explore = ({ explorePage, general, tagsTypes, tagsProjects, tagsOthers }: ExploreProps) => {
   if (!explorePage) {
     return null
   }
@@ -24,7 +24,7 @@ const Explore = ({ explorePage, contact, tagsTypes, tagsProjects, tagsOthers }: 
   return (
     <ExplorePage
       explorePage={explorePage}
-      contactInfo={withAttributes(contact?.data)}
+      contactInfo={withAttributes(general?.data)}
       tagsTypes={tagsTypes?.data?.attributes?.tags?.data.filter(hasAttributes)}
       tagsProjects={tagsProjects?.data?.attributes?.tags?.data.filter(hasAttributes)}
       tagsOthers={tagsOthers?.data?.attributes?.tags?.data.filter(hasAttributes)}
@@ -34,7 +34,7 @@ const Explore = ({ explorePage, contact, tagsTypes, tagsProjects, tagsOthers }: 
 
 export const getStaticProps: GetStaticProps<ExploreProps> = async ({ locale = 'sk' }) => {
   const [
-    { explorePage, contact },
+    { explorePage, general },
     { tagCategoryBySlug: tagsTypes },
     { tagCategoryBySlug: tagsProjects },
     { tagCategoryBySlug: tagsOthers },
@@ -62,7 +62,7 @@ export const getStaticProps: GetStaticProps<ExploreProps> = async ({ locale = 's
       tagsTypes,
       tagsProjects,
       tagsOthers,
-      contact,
+      general,
       ...translations,
     },
   }

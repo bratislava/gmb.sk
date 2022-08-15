@@ -11,13 +11,13 @@ import { usePreviousImmediate } from 'rooks'
 import GmbLogoIcon from '../../assets/icons/map-icons/gmb-logo.svg'
 import MirbachovPalacIcon from '../../assets/icons/map-icons/mirbachov-palac.svg'
 import PalffyhoPalacIcon from '../../assets/icons/map-icons/palffyho-palac.svg'
-import { ContactEntityFragment } from '../../graphql'
+import { GeneralEntityFragment } from '../../graphql'
 import Link from '../atoms/Link'
 
 interface MapProps {
   mapboxAccessToken: string
   // eslint-disable-next-line react/require-default-props
-  contactInfo?: ContactEntityFragment
+  contactInfo?: GeneralEntityFragment
 }
 
 type TabKey = 'mhd' | 'bike' | 'car'

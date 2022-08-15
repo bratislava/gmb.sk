@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "contacts",
+  "collectionName": "generals",
   "info": {
-    "singularName": "contact",
-    "pluralName": "contacts",
-    "displayName": "Kontakty, linky, súbory",
+    "singularName": "general",
+    "pluralName": "generals",
+    "displayName": "Všeobecné",
     "description": ""
   },
   "options": {

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 
-import { ContactEntityFragment, ExplorePageQuery, TagEntityFragment } from '../../graphql'
+import { ExplorePageQuery, GeneralEntityFragment, TagEntityFragment } from '../../graphql'
 import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
 import Button from '../atoms/Button'
@@ -16,7 +16,7 @@ import Submenu from '../molecules/Submenu'
 
 interface ExplorePageProps {
   explorePage: ExplorePageQuery['explorePage']
-  contactInfo?: WithAttributes<ContactEntityFragment> | null
+  contactInfo?: WithAttributes<GeneralEntityFragment> | null
   tagsTypes?: WithAttributes<TagEntityFragment>[]
   tagsProjects?: WithAttributes<TagEntityFragment>[]
   tagsOthers?: WithAttributes<TagEntityFragment>[]

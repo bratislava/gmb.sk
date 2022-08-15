@@ -9,10 +9,10 @@ import { hasAttributes, withAttributes } from '../utils/isDefined'
 
 interface IndexProps {
   homePage: HomePageQuery['homePage']
-  contact: HomePageQuery['contact']
+  general: HomePageQuery['general']
   news: NewsQuery['news']
 }
-export const Index = ({ homePage, contact, news }: IndexProps) => {
+export const Index = ({ homePage, general, news }: IndexProps) => {
   const { t, i18n } = useTranslation()
 
   return (
@@ -23,14 +23,14 @@ export const Index = ({ homePage, contact, news }: IndexProps) => {
           ? `${t('common.cityGallery')} ${t('common.bratislavaGenitiv')}`
           : `${t('common.bratislavaGenitiv')} ${t('common.cityGallery')}`
       }
-      contactInfo={withAttributes(contact?.data)}
+      contactInfo={withAttributes(general?.data)}
       newsItems={news?.data?.filter(hasAttributes)}
     />
   )
 }
 
 export const getStaticProps: GetStaticProps<IndexProps> = async ({ locale = 'sk' }) => {
-  const [{ homePage, contact }, { news }, translations] = await Promise.all([
+  const [{ homePage, general }, { news }, translations] = await Promise.all([
     client.HomePage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
     serverSideTranslations(locale, ['common']),
@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps<IndexProps> = async ({ locale = 'sk'
   return {
     props: {
       homePage,
-      contact,
+      general,
       news,
       ...translations,
     },

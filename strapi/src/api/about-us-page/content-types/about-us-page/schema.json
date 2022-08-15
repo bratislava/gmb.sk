@@ -34,7 +34,6 @@
       },
       "type": "dynamiczone",
       "components": [
-        "sections.contact-section",
         "sections.news-section",
         "sections.newsletter-section",
         "sections.page-section"

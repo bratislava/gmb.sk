@@ -1,7 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import { useTranslation } from 'next-i18next'
 
-import { ContactEntityFragment, ContentPageEntityFragment, SectionItemEntityFragment } from '../../graphql'
+import { ContentPageEntityFragment, GeneralEntityFragment, SectionItemEntityFragment } from '../../graphql'
 import { getPurchaseId } from '../../utils/getPurchaseId'
 import { WithAttributes } from '../../utils/isDefined'
 import Link from '../atoms/Link'
@@ -13,7 +13,7 @@ import CardSection from '../molecules/sections/CardSection'
 
 interface ITicketPageProps {
   contentPage: WithAttributes<ContentPageEntityFragment>
-  contactInfo: WithAttributes<ContactEntityFragment> | null | undefined
+  contactInfo: WithAttributes<GeneralEntityFragment> | null | undefined
   currentEvents?: WithAttributes<SectionItemEntityFragment>[]
 }
 

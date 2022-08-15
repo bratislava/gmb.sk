@@ -284,7 +284,7 @@ fragment PalaceDetails on ComponentBlocksPalace {
   phone
 }
 
-fragment ContactEntity on ContactEntity {
+fragment GeneralEntity on GeneralEntity {
   attributes {
     name
     email
@@ -307,7 +307,7 @@ fragment ContactEntity on ContactEntity {
   }
 }
 
-fragment ContactSection on ComponentSectionsContactSection {
+fragment OpeningHoursSection on ComponentSectionsOpeningHoursSection {
   id
   submenuTitle
 }
@@ -405,9 +405,9 @@ fragment Sections on VisitUsPageSectionsDynamicZone {
     __typename
     ...NewsSection
   }
-  ... on ComponentSectionsContactSection {
+  ... on ComponentSectionsOpeningHoursSection {
     __typename
-    ...ContactSection
+    ...OpeningHoursSection
   }
   ... on ComponentSectionsNewsletterSection {
     __typename

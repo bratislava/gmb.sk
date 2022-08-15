@@ -3,8 +3,8 @@ import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 
 import {
-  ContactEntityFragment,
   ExhibitionsPageQuery,
+  GeneralEntityFragment,
   PlaceEntityFragment,
   SectionItemEntityFragment,
   TagEntityFragment,
@@ -27,7 +27,7 @@ interface ExhibitionsPageProps {
   exhibitions?: WithAttributes<SectionItemEntityFragment>[]
   permanentExhibitions?: WithAttributes<SectionItemEntityFragment>[]
   additionalProgram?: WithAttributes<SectionItemEntityFragment>[]
-  contactInfo?: WithAttributes<ContactEntityFragment> | null
+  contactInfo?: WithAttributes<GeneralEntityFragment> | null
   tagsProgram?: WithAttributes<TagEntityFragment>[]
   tagsTargetGroups?: WithAttributes<TagEntityFragment>[]
   tagsLanguages?: WithAttributes<TagEntityFragment>[]
