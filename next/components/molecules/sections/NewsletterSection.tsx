@@ -80,14 +80,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                 clear()
               }
             }
-            // if (status === 'error') {
-            // if (true) {
-            //   return (
-            //     <div>
-            //       <p className="text-center text-sm text-red-600">{t('errors.newsletter')}</p>
-            //     </div>
-            //   )
-            // }
+
             return (
               <>
                 <p className="py-yLg text-xl">{t('newsletter.beInformedEvents')}</p>
@@ -138,9 +131,23 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                         {agreeError}
                       </label>
                     ) : null}
+
+                    {status === 'error' ? (
+                      <p className="pt-10 text-sm text-red-600">{t('newsletter.failure')}</p>
+                    ) : null}
+                    {status === 'success' ? (
+                      <p className="pt-10 text-sm text-green-600">{t('newsletter.success')}</p>
+                    ) : null}
+                    {status === 'sending' ? <p className="pt-10 text-sm">{t('newsletter.sending')}</p> : null}
                   </div>
                   <div>
-                    <Button color="light" onClick={handleSubmit} className="whitespace-nowrap" type="submit">
+                    <Button
+                      color="light"
+                      onClick={handleSubmit}
+                      className="whitespace-nowrap"
+                      type="submit"
+                      disabled={status === 'sending'}
+                    >
                       {t('common.login')}
                     </Button>
                   </div>

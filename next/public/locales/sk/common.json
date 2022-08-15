@@ -103,7 +103,10 @@
     "beInThePicture": "Buďte „v obraze“",
     "newsletter": "Newsletter",
     "beInformedEvents": "Chcete byť informovaní o podujatiach Galérie mesta Bratislavy?",
-    "insertEmail": "Zadajte svoj email"
+    "insertEmail": "Zadajte svoj email",
+    "success": "Úspešne ste sa prihlásili k odberu newslettera.",
+    "failure": "Prihlasovanie k odberu newslettera sa nepodarilo. Skúste to znova neskôr.",
+    "sending": "Odosielam..."
   },
   "map": {
     "ourPremises": "Naše priestory",
