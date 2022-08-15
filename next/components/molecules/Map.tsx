@@ -16,7 +16,6 @@ import Link from '../atoms/Link'
 
 interface MapProps {
   mapboxAccessToken: string
-  // eslint-disable-next-line react/require-default-props
   contactInfo?: GeneralEntityFragment
 }
 

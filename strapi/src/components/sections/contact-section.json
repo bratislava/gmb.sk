@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_contact_sections",
+  "info": {
+    "displayName": "contact section",
+    "icon": "address-card",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "submenuTitle": {
+      "type": "string"
+    },
+    "contacts": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.contact-item"
+    }
+  }
+}
