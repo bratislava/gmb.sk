@@ -86,8 +86,10 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
       </Head>
 
       <div className="py-yMd px-xMd" style={{ background: getContentPageColor(contentPage) }}>
-        <h1 className="text-xxl">{title}</h1>
-        <p className="text-xxl font-regular">{subtitle}</p>
+        <div className="max-w-lg">
+          <h1 className="text-xxl">{title}</h1>
+          <p className="text-xxl font-regular">{subtitle}</p>
+        </div>
       </div>
       <Submenu items={submenu} />
       <div className="h-auto overflow-hidden px-xMd py-yLg">
