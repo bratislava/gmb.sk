@@ -1,14 +1,14 @@
 {
   "kind": "collectionType",
-  "collectionName": "contacts",
+  "collectionName": "contact_cards",
   "info": {
-    "singularName": "contact",
-    "pluralName": "contacts",
+    "singularName": "contact-card",
+    "pluralName": "contact-cards",
     "displayName": "5. Kontakty",
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {
     "i18n": {
@@ -39,7 +39,7 @@
           "localized": false
         }
       },
-      "type": "string"
+      "type": "email"
     },
     "phone1": {
       "pluginOptions": {
