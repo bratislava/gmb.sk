@@ -307,7 +307,7 @@ fragment GeneralEntity on GeneralEntity {
   }
 }
 
-fragment ContactEntity on ContactEntity {
+fragment ContactCardEntity on ContactCardEntity {
   id
   attributes {
     name
@@ -381,14 +381,14 @@ fragment GallerySection on ComponentSectionsGallerySection {
   }
 }
 
-fragment ContactSection on ComponentSectionsContactSection {
+fragment ContactCardsSection on ComponentSectionsContactCardsSection {
   id
   title
   submenuTitle
   contacts {
-    contact {
+    contactCard {
       data {
-        ...ContactEntity
+        ...ContactCardEntity
       }
     }
   }
@@ -472,8 +472,8 @@ fragment MainContent on ContentPageMainContentDynamicZone {
     __typename
     ...GallerySection
   }
-  ... on ComponentSectionsContactSection {
+  ... on ComponentSectionsContactCardsSection {
     __typename
-    ...ContactSection
+    ...ContactCardsSection
   }
 }

@@ -2,12 +2,12 @@ import React from 'react'
 
 import PhoneIcon from '../../assets/icons/phone.svg'
 import MailIcon from '../../assets/icons/social-platforms/E-mail.svg'
-import { ContactEntityFragment } from '../../graphql'
+import { ContactCardEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'
 import Link from '../atoms/Link'
 
 interface IContactCardProps {
-  contact: WithAttributes<ContactEntityFragment> | undefined | null
+  contact: WithAttributes<ContactCardEntityFragment> | undefined | null
 }
 
 const ContactCard = ({ contact }: IContactCardProps) => {

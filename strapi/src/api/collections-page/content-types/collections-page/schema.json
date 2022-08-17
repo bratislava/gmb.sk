@@ -36,7 +36,8 @@
       "components": [
         "sections.page-section",
         "sections.news-section",
-        "sections.newsletter-section"
+        "sections.newsletter-section",
+        "sections.opening-hours-section"
       ]
     },
     "seo": {

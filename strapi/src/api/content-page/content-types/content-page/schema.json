@@ -93,7 +93,7 @@
         "sections.richtext-section",
         "sections.video-section",
         "sections.gallery-section",
-        "sections.contact-section"
+        "sections.contact-cards-section"
       ]
     },
     "slider": {
