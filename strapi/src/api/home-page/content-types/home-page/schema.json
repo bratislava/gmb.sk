@@ -36,7 +36,8 @@
       "components": [
         "sections.news-section",
         "sections.newsletter-section",
-        "sections.page-section"
+        "sections.page-section",
+        "sections.opening-hours-section"
       ]
     },
     "partners": {
