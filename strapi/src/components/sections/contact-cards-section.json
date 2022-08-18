@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_sections_contact_sections",
+  "collectionName": "components_sections_contact_cards_sections",
   "info": {
-    "displayName": "contact section",
+    "displayName": "contact cards section",
     "icon": "address-card",
     "description": ""
   },
@@ -16,7 +16,8 @@
     "contacts": {
       "type": "component",
       "repeatable": true,
-      "component": "blocks.contact-item"
+      "component": "blocks.contact-card-item",
+      "min": 1
     }
   }
 }

@@ -86,8 +86,10 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
       </Head>
 
       <div className="py-yMd px-xMd" style={{ background: getContentPageColor(contentPage) }}>
-        <h1 className="text-xxl">{title}</h1>
-        <p className="text-xxl font-regular">{subtitle}</p>
+        <div className="max-w-lg">
+          <h1 className="text-xxl">{title}</h1>
+          <p className="text-xxl font-regular">{subtitle}</p>
+        </div>
       </div>
       <Submenu items={submenu} />
       <div className="h-auto overflow-hidden px-xMd py-yLg">
@@ -150,12 +152,12 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
                   </Section>
                 )
               }
-              if (section.__typename === 'ComponentSectionsContactSection') {
+              if (section.__typename === 'ComponentSectionsContactCardsSection') {
                 return (
                   <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
                     {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
                     {section.contacts?.map((contactItem) => (
-                      <ContactCard contact={withAttributes(contactItem?.contact?.data)} />
+                      <ContactCard contact={withAttributes(contactItem?.contactCard?.data)} />
                     ))}
                   </Section>
                 )
