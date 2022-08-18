@@ -86,7 +86,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
       </Head>
 
       <div className="py-yMd px-xMd" style={{ background: getContentPageColor(contentPage) }}>
-        <div className="max-w-lg">
+        <div className="max-w-prose">
           <h1 className="text-xxl">{title}</h1>
           <p className="text-xxl font-regular">{subtitle}</p>
         </div>
