@@ -93,7 +93,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
           )}
           style={{ background: getContentPageColor(highlight) }}
         >
-          <div className="max-w-lg">
+          <div className="max-w-prose pr-3">
             <h2 className="text-xxl">{title}</h2>
             <p className="text-xxl font-regular">{subtitle}</p>
           </div>
