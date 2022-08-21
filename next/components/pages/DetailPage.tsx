@@ -87,10 +87,8 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
       </Head>
 
       <div className="py-yMd px-xMd lg:pr-sidepanel" style={{ background: getContentPageColor(contentPage) }}>
-        <div className="lg:mr-xLg">
-          <h1 className="text-xxl">{title}</h1>
-          <p className="text-xxl font-regular">{subtitle}</p>
-        </div>
+        <h1 className="whitespace-pre-wrap text-xxl">{title}</h1>
+        <p className="text-xxl font-regular">{subtitle}</p>
       </div>
       <Submenu items={submenu} />
       <div className="h-auto overflow-hidden px-xMd py-yLg">

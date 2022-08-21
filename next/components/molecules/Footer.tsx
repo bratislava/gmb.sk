@@ -98,10 +98,9 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           </div>
         </div>
         <div className="hidden flex-col justify-end text-right text-sm lg:flex">
-          {/* TODO show switchers when EN content is ready */}
-          {/* <div className="flex justify-end">
+          <div className="flex justify-end">
             <AppLangSwitchers contentPage={contentPage} desktop />
-          </div> */}
+          </div>
           <p>&copy; 2022 {name || t('common.bratislavaCityGallery')}</p>
         </div>
       </div>

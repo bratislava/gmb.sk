@@ -22,7 +22,7 @@
           "localized": true
         }
       },
-      "type": "string",
+      "type": "text",
       "required": true
     },
     "subtitle": {
@@ -269,6 +269,23 @@
       "relation": "oneToMany",
       "target": "api::content-page.content-page",
       "mappedBy": "parentPage"
+    },
+    "showTitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    },
+    "showSlug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "uid",
+      "targetField": "showTitle"
     }
   }
 }
