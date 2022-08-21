@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { GeneralEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'
 import Footer from '../molecules/Footer'

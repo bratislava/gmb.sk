@@ -83,7 +83,7 @@ const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOt
         />
       </div>
       <NewsletterSection />
-      {contactInfo && <Footer contactInfo={contactInfo} />}contactInfo
+      {contactInfo && <Footer contactInfo={contactInfo} />}
     </>
   )
 }

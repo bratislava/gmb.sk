@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next'
-import React from 'react'
+import { useEffect, useState } from 'react'
 
 import CloseIcon from '../../assets/icons/close-x.svg'
 import { ContentPageEntity, ContentPageEntityResponseCollection } from '../../graphql'
@@ -13,13 +13,13 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
-  const [searchTerm, setSearchTerm] = React.useState('')
-  const [contentPages, setContentPages] = React.useState<ContentPageEntity[]>()
+  const [searchTerm, setSearchTerm] = useState('')
+  const [contentPages, setContentPages] = useState<ContentPageEntity[]>()
   const debouncedSearchTerm = useDebounce(searchTerm, 750)
   const { i18n } = useTranslation()
   const locale = i18n.language
 
-  React.useEffect(() => {
+  useEffect(() => {
     /** Here we're using Strapi REST endpoint (through Next api proxy) instead of GraphQL, because Strapi GraphQL doesn't have a straightforward way to use the full text search */
     const searchContentPages = async () => {
       if (!debouncedSearchTerm) {

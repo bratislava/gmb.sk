@@ -29,9 +29,9 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
         data-goout-id={getPurchaseId(contentPage)}
         className="goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--height-nav))] flex-col"
       >
-        <header className="py-yMd px-xMd">
+        <header className="py-yMd px-xMd lg:pr-sidepanel">
           <Link href={`/detail/${slug}`} preserveStyle noUnderline>
-            <div className="max-w-prose">
+            <div className="lg:mr-[5vw]">
               <h1 className="goout-event-title text-xxl">{title}</h1>
               <p className="text-xxl font-regular">{subtitle}</p>
             </div>

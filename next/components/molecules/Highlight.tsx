@@ -3,10 +3,11 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import React from 'react'
+import { useEffect } from 'react'
 
 import { HighlightsItemEntityFragment } from '../../graphql'
 import { getContentPageColor } from '../../utils/getContentPageColor'
+import { getPurchaseId } from '../../utils/getPurchaseId'
 import { isDefined, WithAttributes } from '../../utils/isDefined'
 import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
 import Button from '../atoms/Button'
@@ -41,7 +42,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
 
   gsap.registerPlugin(ScrollTrigger)
 
-  React.useEffect(() => {
+  useEffect(() => {
     ScrollTrigger.create({
       trigger: `#sidepanel${highlight.id}`,
       start: 'top bottom',
@@ -61,7 +62,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
     isDefined(dateFrom) ||
     (positions && positions?.length > 0) ||
     perex ||
-    purchaseId
+    getPurchaseId(highlight)
   )
 
   return (
@@ -88,61 +89,62 @@ const Highlight = ({ highlight }: HighlightProps) => {
           )}
         </div>
         <div
-          className={cx(
-            'absolute bottom-0 z-20 w-full py-yMd px-xMd flex flex-col items-start justify-between gap-y-yMd lg:pr-sidepanel h-fit lg:h-auto'
-          )}
+          className="absolute bottom-0 z-20 flex h-fit w-full py-yMd px-xMd lg:h-auto lg:pr-sidepanel"
           style={{ background: getContentPageColor(highlight) }}
         >
-          <div className="max-w-prose pr-3">
-            <h2 className="text-xxl">{title}</h2>
-            <p className="text-xxl font-regular">{subtitle}</p>
-          </div>
-
-          <div
-            className={cx('lg:hidden w-full flex-1 justify-self-stretch gap-y-yMd justify-between flex flex-col', {
-              hidden: renderOverride,
-            })}
-          >
-            <div className="my-auto">
-              <SidePanelTime datetime={{ dateFrom, dateTo, timeTo, timeFrom }} isOneLine noIcon />
+          <div className="flex flex-col items-start justify-between gap-y-yMd lg:mr-[5vw] ">
+            <div>
+              <h2 className="text-xxl lg:line-clamp-2">{title}</h2>
+              <p className="text-xxl font-regular lg:line-clamp-1">{subtitle}</p>
             </div>
 
-            <div className="mt-auto flex w-full flex-row items-stretch justify-evenly space-x-4">
-              {purchaseId && (
-                <Button size="small" className="w-fit flex-none" href={`/vstupenky/${slug}`}>
-                  {t('common.buyTickets')}
-                </Button>
-              )}
-              {(placeTitle || place?.data?.attributes?.title) && (
-                <div className="flex flex-1 items-center justify-center">
-                  <span className="text-btn uppercase">{placeTitle || place?.data?.attributes?.title}</span>
-                </div>
-              )}
-            </div>
-          </div>
+            {/* Basic info on mobile. It shows only datetime, place and Buy tickets btn, if no override is present.
+                The classic sidepanel is not displayed on mobile screen. */}
+            <div
+              className={cx('flex w-full flex-1 flex-col justify-between gap-y-yMd justify-self-stretch lg:hidden', {
+                hidden: renderOverride,
+              })}
+            >
+              <div className="my-auto">
+                <SidePanelTime datetime={{ dateFrom, dateTo, timeTo, timeFrom }} isOneLine noIcon />
+              </div>
 
-          <Button
-            href={`/detail/${slug}`}
-            className="mt-yLg hidden after:absolute after:inset-0 after:top-[calc(-100vh_-_var(--height-nav))] lg:flex"
-            aria-label={title}
-          >
-            {t('common.detail')}
-          </Button>
+              <div className="mt-auto flex w-full flex-row items-stretch justify-evenly space-x-4">
+                {getPurchaseId(highlight) && (
+                  <Button size="small" className="w-fit flex-none" href={`/vstupenky/${slug}`}>
+                    {t('common.buyTickets')}
+                  </Button>
+                )}
+                {(placeTitle || place?.data?.attributes?.title) && (
+                  <div className="flex flex-1 items-center justify-center">
+                    <span className="text-btn uppercase">{placeTitle || place?.data?.attributes?.title}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Detail button on desktop */}
+            <Button href={`/detail/${slug}`} className="hidden lg:flex" aria-label={title}>
+              {t('common.detail')}
+            </Button>
+          </div>
         </div>
       </div>
-      <div className={cx('relative z-15 bg-white w-sidepanel ml-auto', {})} id={`sidepanel${highlight.id}`}>
+      <div className={cx('z-15 relative ml-auto w-sidepanel bg-white', {})} id={`sidepanel${highlight.id}`}>
         {renderOverride && override?.highlightContent ? (
+          /* If there is override, display it on both mobile and desktop */
           <div className="min-h-fit p-10">
             <SidePanel overrideText={override?.highlightContent} />
           </div>
         ) : renderEventDetailsSidepanel ? (
+          /* If there is no override, display classic sidepanel on desktop */
           <div className="ml-auto hidden min-h-fit p-10 lg:block">
             <SidePanel
               datetime={{ dateFrom, dateTo, timeFrom, timeTo }}
               place={{ place, placeTitle, placeAddress }}
               slug={slug}
               positions={positions?.filter(isDefined).slice(0, 3)}
-              purchaseId={purchaseId}
+              purchaseId={getPurchaseId(highlight)}
               perex={perex ?? undefined}
             />
           </div>

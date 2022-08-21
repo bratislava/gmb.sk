@@ -62,7 +62,7 @@ const ExhibitionsPage = ({
     locale: i18n.language,
   })
 
-  // This useEffect sets filters by the query that appears when someone clicks on a tag in Card or ChessboardTile.
+  /** This useEffect sets filters by the query that appears when someone clicks on a tag in Card or ChessboardTile. */
   useEffect(() => {
     const { tags } = query
     if (!tags) {
@@ -80,7 +80,7 @@ const ExhibitionsPage = ({
 
   /** 'Archive' is not a real tag that has a relationship with the content page. Instead, if Archive is applied
    *  as an active tag, it adds a variable 'today' that will be used to show only content that has either `dateTo` in the past (exhibition that has ended)
-   * or `dateFrom` in the past AND dateTo null, which means it was only a one day event. All other tags still apply while archive is active.
+   *  or `dateFrom` in the past AND dateTo null, which means it was only a one day event. All other tags still apply while archive is active.
    */
   const archiveTagEntity: WithAttributes<TagEntityFragment> = {
     __typename: 'TagEntity',
@@ -151,19 +151,17 @@ const ExhibitionsPage = ({
             title={t('common.exhibitions')}
             sectionItems={exhibitions}
             anchor={getAnchor(t('common.exhibitions'))}
-            showTags
-          />
-          <ChessboardSection
-            title={t('common.permanentExhibitions')}
-            sectionItems={permanentExhibitions}
-            anchor={getAnchor(t('common.permanentExhibitions'))}
-            showTags
           />
           <CardSection
             title={t('common.additionalProgram')}
             sectionItems={additionalProgram}
             anchor={getAnchor(t('common.additionalProgram'))}
             showTags
+          />
+          <ChessboardSection
+            title={t('common.permanentExhibitions')}
+            sectionItems={permanentExhibitions}
+            anchor={getAnchor(t('common.permanentExhibitions'))}
           />
         </>
       )}

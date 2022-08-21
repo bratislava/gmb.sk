@@ -65,7 +65,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
             ))}
           </div>
         </div>
-        <div className="hidden h-full flex-col justify-between lg:flex">
+        <div className="flex h-full flex-col justify-between">
           <h3 className="pb-yLg text-xl">{footerLinks1?.title}</h3>
           <div className="flex flex-col">
             {footerLinks1?.links?.map((link, index) => (
@@ -81,7 +81,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
             ))}
           </div>
         </div>
-        <div className="hidden h-full flex-col justify-between lg:flex">
+        <div className="col-span-2 flex h-full flex-col justify-between lg:col-span-1">
           <h3 className="pb-yLg text-xl">{footerLinks2?.title}</h3>
           <div className="flex flex-col">
             {footerLinks2?.links?.map((link, index) => (
@@ -98,9 +98,10 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
           </div>
         </div>
         <div className="hidden flex-col justify-end text-right text-sm lg:flex">
-          <div className="flex justify-end">
+          {/* TODO show switchers when EN content is ready */}
+          {/* <div className="flex justify-end">
             <AppLangSwitchers contentPage={contentPage} desktop />
-          </div>
+          </div> */}
           <p>&copy; 2022 {name || t('common.bratislavaCityGallery')}</p>
         </div>
       </div>

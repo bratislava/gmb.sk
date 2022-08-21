@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 
 import ChevronDownIcon from '../../assets/icons/chevron-down.svg'
 import { getAnchor } from '../../utils/getAnchor'
@@ -11,7 +11,7 @@ import SubmenuModal from './SubmenuModal'
 
 interface SubmenuProps {
   items?: string[]
-  filters?: React.ReactNode
+  filters?: ReactNode
 }
 
 const Submenu = ({ items, filters }: SubmenuProps) => {

@@ -1,5 +1,4 @@
 const plugin = require('tailwindcss/plugin')
-const { join } = require('path')
 
 const scrollBarHide = plugin(function ({ addUtilities }) {
   addUtilities({
@@ -27,8 +26,12 @@ const dynamicSizing = plugin(({ matchUtilities }) => {
 })
 
 module.exports = {
-  content: [join(__dirname, 'pages/**/*.{js,jsx,ts,tsx}'), join(__dirname, 'components/**/*.{js,jsx,ts,tsx}')],
-  darkMode: 'media', // or 'class'
+  content: ['./pages/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
+  plugins: [scrollBarHide, dynamicSizing, require('@tailwindcss/line-clamp'), require('@tailwindcss/aspect-ratio')],
+  corePlugins: {
+    container: false,
+    aspectRatio: false, // https://tailwindcss.com/docs/aspect-ratio#browser-support
+  },
   theme: {
     fontSize: {
       xxl: ['var(--font-size-xxl)', 'var(--line-height-xxl)'],
@@ -60,7 +63,7 @@ module.exports = {
       colors: {
         gmbDark: '#141414',
         gmbLightGray: '#efefef',
-        gmbGray: '#a0a0a0',
+        gmbGray: '#757575',
         white: '#ffffff',
       },
       spacing: {
@@ -82,9 +85,4 @@ module.exports = {
       },
     },
   },
-  corePlugins: {
-    container: false,
-  },
-  mode: 'jit',
-  plugins: [scrollBarHide, dynamicSizing],
 }

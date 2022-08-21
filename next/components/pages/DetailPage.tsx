@@ -85,8 +85,8 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
         </>
       </Head>
 
-      <div className="py-yMd px-xMd" style={{ background: getContentPageColor(contentPage) }}>
-        <div className="max-w-prose">
+      <div className="py-yMd px-xMd lg:pr-sidepanel" style={{ background: getContentPageColor(contentPage) }}>
+        <div className="lg:mr-[5vw]">
           <h1 className="text-xxl">{title}</h1>
           <p className="text-xxl font-regular">{subtitle}</p>
         </div>
@@ -103,7 +103,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           slug={slug}
           showShare
           title={title}
-          className="float-right ml-[5vw] hidden w-sidepanel lg:block"
+          className="float-right ml-[5vw] hidden w-sidepanel lg:flex"
         />
         {/* Mobile sidepanel info part 1 */}
         <SidePanel
@@ -125,6 +125,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
                     key={section.id}
                     content={section.content}
                     accentColor={getContentPageColor(contentPage)}
+                    className="pb-yMd"
                   />
                 )
               }
@@ -162,6 +163,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
                   </Section>
                 )
               }
+              return null
             })}
           </div>
         </div>

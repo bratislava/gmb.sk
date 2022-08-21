@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
-import React from 'react'
+import { useRef, useState } from 'react'
 import MailchimpSubscribe from 'react-mailchimp-subscribe'
 
 import NewsletterImg from '../../../assets/images/newsletterimg.png'
@@ -13,13 +13,13 @@ export interface NewsletterSectionProps {
 
 const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
   const { t } = useTranslation()
-  const [email, setEmail] = React.useState('')
-  const [agree, setAgree] = React.useState(false)
-  const [emailError, setEmailError] = React.useState<string>('')
-  const [agreeError, setAgreeError] = React.useState<string>('')
+  const [email, setEmail] = useState('')
+  const [agree, setAgree] = useState(false)
+  const [emailError, setEmailError] = useState<string>('')
+  const [agreeError, setAgreeError] = useState<string>('')
 
-  const emailRef = React.useRef<HTMLInputElement>(null)
-  const agreeRef = React.useRef<HTMLInputElement>(null)
+  const emailRef = useRef<HTMLInputElement>(null)
+  const agreeRef = useRef<HTMLInputElement>(null)
 
   const clear = () => {
     setEmail('')

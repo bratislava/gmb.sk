@@ -29,8 +29,7 @@ export const SidePanelTime = ({ datetime, isOneLine, noIcon }: SidePanelTimeProp
           {!noIcon && <TimeIcon className="dh-[24px]" />}
           <span>
             {dateFrom && formatDateString(dateFrom, locale)}
-            {dateTo && ' - '}
-            {dateTo && formatDateString(dateTo, locale)}
+            {dateTo && dateTo !== dateFrom && ` - ${formatDateString(dateTo, locale)}`}
           </span>
           <span>
             {timeFrom && formatTimeString(timeFrom)}
@@ -52,10 +51,10 @@ export const SidePanelTime = ({ datetime, isOneLine, noIcon }: SidePanelTimeProp
         {dateFrom && (
           <span>
             {formatDateString(dateFrom, locale)}
-            {dateTo && ' -'}
+            {dateTo && dateTo !== dateFrom && ' -'}
           </span>
         )}
-        {dateTo && <span>{formatDateString(dateTo, locale)}</span>}
+        {dateTo && dateTo !== dateFrom && <span>{formatDateString(dateTo, locale)}</span>}
         <div>
           {timeFrom && <span>{formatTimeString(timeFrom)}</span>}
           {timeTo && ' - '}

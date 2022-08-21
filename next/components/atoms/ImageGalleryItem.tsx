@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo } from 'react'
 
 interface ImageGalleryItemProps {
   description?: string
@@ -16,7 +16,7 @@ interface ImageGalleryItemProps {
   loading?: 'eager' | 'lazy'
 }
 
-const ImageGalleryItem = React.memo(
+const ImageGalleryItem = memo(
   ({
     description,
     fullscreen, // fullscreen version of img
