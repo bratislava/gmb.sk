@@ -4,7 +4,7 @@ import 'swiper/css/pagination'
 
 import cx from 'classnames'
 import Image from 'next/image'
-import React from 'react'
+import { useRef } from 'react'
 import { Autoplay, Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { NavigationOptions } from 'swiper/types'
@@ -18,8 +18,8 @@ interface ImgSwiperProps {
 }
 
 const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
-  const navigationPrevRef = React.useRef(null)
-  const navigationNextRef = React.useRef(null)
+  const navigationPrevRef = useRef(null)
+  const navigationNextRef = useRef(null)
   const navigationStyle =
     'absolute cursor-pointer top-1/2 z-10 text-gmbDark font-[swiper-icons] text-[32px] font-heavy -mt-4 select-none'
 

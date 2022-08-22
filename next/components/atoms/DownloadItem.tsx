@@ -9,7 +9,7 @@ interface DownloadProps {
   downloadItem: DownloadItemFragment
 }
 
-export const DownloadItem = ({ downloadItem }: DownloadProps) => {
+const DownloadItem = ({ downloadItem }: DownloadProps) => {
   const [fetching, setFetching] = useState(false)
   const [error, setError] = useState(false)
   const { t } = useTranslation()
@@ -40,20 +40,13 @@ export const DownloadItem = ({ downloadItem }: DownloadProps) => {
     <div className="flex h-full flex-col justify-between">
       <h4 className="pb-yMd text-lg">{downloadItem.title ?? file?.name ?? ''}</h4>
       <div>
-        <div className="relative left-[calc(-10px*var(--icon-size-factor))] h-fit w-fit">
-          <FileIcon fill="#fff" className="relative dw-[96px]" />
-          <span className="absolute top-1/2 left-1/2 block -translate-x-1/2 -translate-y-1/2 text-md uppercase">
-            {file?.ext?.slice(1, 5)}
-          </span>
-        </div>
-        <Button
-          disabled={fetching}
-          size="link"
-          color="light"
-          onClick={() => download(file?.url, file?.name)}
-          aria-label="download file"
-          className="pt-yMd"
-        >
+        <Button disabled={fetching} size="link" color="light" className="flex flex-col gap-yMd">
+          <div className="relative left-[calc(-10px*var(--icon-size-factor))] h-fit w-fit">
+            <FileIcon fill="#fff" className="relative dw-[96px]" />
+            <span className="absolute top-1/2 left-1/2 block -translate-x-1/2 -translate-y-1/2 text-md uppercase">
+              {file?.ext?.slice(1, 5)}
+            </span>
+          </div>
           {t('common.download')}
         </Button>
       </div>

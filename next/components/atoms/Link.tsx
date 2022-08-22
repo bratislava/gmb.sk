@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
+import { ReactNode } from 'react'
 
 import { getRouteForLocale, isOfTypeRoute } from '../../utils/localeRoutes'
 
@@ -10,7 +11,7 @@ type LinkProps = React.ComponentPropsWithoutRef<'a'> & {
   href: string
   target?: string
   rel?: string
-  children: React.ReactNode
+  children: ReactNode
   replace?: boolean
   preserveStyle?: boolean
   noUnderline?: boolean
@@ -56,8 +57,8 @@ const Link = ({
         {...rest}
         className={cx(
           {
-            'flex items-center uppercase cursor-pointer text-nav group': !preserveStyle,
-            'hover:underline underline-offset-2': !noUnderline,
+            'group flex cursor-pointer items-center text-nav uppercase': !preserveStyle,
+            'underline-offset-2 hover:underline': !noUnderline,
           },
           className
         )}

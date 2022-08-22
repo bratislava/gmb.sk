@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
-import React, { useEffect } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import Consent from 'react-cookie-consent'
 import Modal from 'react-modal'
 
@@ -16,15 +16,15 @@ import Link from '../atoms/Link'
 const CookieConsent = () => {
   const { t, i18n } = useTranslation()
 
-  const [isCookiesSettingsOpen, setIsCookiesSettingsOpen] = React.useState(false)
-  const [isConsentSubmitted, setConsent] = React.useState(false)
-  const [openPanel, setPanel] = React.useState<string>(t('cookieConsent.securityEssentialTitle'))
+  const [isCookiesSettingsOpen, setIsCookiesSettingsOpen] = useState(false)
+  const [isConsentSubmitted, setConsent] = useState(false)
+  const [openPanel, setPanel] = useState<string>(t('cookieConsent.securityEssentialTitle'))
 
   const persistedCookies = getGDPRCookies()
 
-  const [securityCookies] = React.useState(persistedCookies.securityCookies)
-  const [performanceCookies, setPerformanceCookies] = React.useState(persistedCookies.performanceCookies)
-  const [advertisingAndTargetingCookies, setAdvertisingAndTargetingCookies] = React.useState(
+  const [securityCookies] = useState(persistedCookies.securityCookies)
+  const [performanceCookies, setPerformanceCookies] = useState(persistedCookies.performanceCookies)
+  const [advertisingAndTargetingCookies, setAdvertisingAndTargetingCookies] = useState(
     persistedCookies.advertisingAndTargetingCookies
   )
 
@@ -154,7 +154,7 @@ const CookieConsent = () => {
         disableButtonStyles
         buttonWrapperClasses="flex flex-col gap-y-ySm"
         containerClasses={cx(
-          'fixed left-0 bottom-0 bg-white z-1 items-center text-black px-xMd py-ySm justify-between flex-nowrap gap-x-xMd',
+          'z-1 fixed left-0 bottom-0 flex-nowrap items-center justify-between gap-x-xMd bg-white px-xMd py-ySm text-black',
           {
             flex: !isCookiesSettingsOpen && !isConsentSubmitted,
             hidden: isCookiesSettingsOpen || isConsentSubmitted,
@@ -202,7 +202,7 @@ const Switch = ({ title, value, onValueChange, disabled }: SwitchProps) => {
       aria-disabled={disabled}
       tabIndex={0}
       className={cx(
-        'dw-[60px] dh-[30px] shrink-0 grow-0 flex items-center border-2 rounded-full border-gmbDark mx-3 px-0.5',
+        'mx-3 flex shrink-0 grow-0 items-center rounded-full border-2 border-gmbDark px-0.5 dw-[60px] dh-[30px]',
         {
           'justify-end bg-gmbDark': value,
           'bg-gmbGray': !value,
@@ -217,14 +217,14 @@ const Switch = ({ title, value, onValueChange, disabled }: SwitchProps) => {
         onClick={(e) => {
           if (disabled) e.stopPropagation()
         }}
-        className={cx('dw-[21px] dh-[21px] bg-white rounded-full shadow-md')}
+        className={cx('rounded-full bg-white shadow-md dw-[21px] dh-[21px]')}
       />
     </div>
   )
 }
 interface PanelProps {
   title: string
-  content: React.ReactNode
+  content: ReactNode
   value: boolean
   onValueChange: (value: boolean) => void
   isOpen: boolean
@@ -256,8 +256,8 @@ const Panel = ({ title, content, value, onValueChange, isOpen, setPanel }: Panel
         />
       </div>
       <div
-        className={cx('text-md text-gray-universal-70 transform transition-all duration-200 ease-linear', {
-          'h-0 hidden': !isOpen,
+        className={cx('text-gray-universal-70 transform text-md transition-all duration-200 ease-linear', {
+          'hidden h-0': !isOpen,
           'mt-1 pb-yMd': isOpen,
         })}
       >

@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import React from 'react'
+import { ReactNode } from 'react'
 
 import SectionHeading from '../../atoms/SectionHeading'
 
@@ -7,7 +7,7 @@ interface ISectionProps {
   title?: string
   anchor?: string
   color?: 'light' | 'dark' | 'gray'
-  children?: React.ReactNode
+  children?: ReactNode
   className?: string
 }
 

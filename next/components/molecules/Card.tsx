@@ -14,7 +14,7 @@ interface CardProps {
   showTags?: boolean
 }
 
-export const Card = ({ sectionItem, showTags }: CardProps) => {
+const Card = ({ sectionItem, showTags }: CardProps) => {
   const { t } = useTranslation()
   const router = useRouter()
 

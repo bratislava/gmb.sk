@@ -1,7 +1,7 @@
 import cx from 'classnames'
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import React from 'react'
+import { useTranslation } from 'next-i18next'
+import { useCallback } from 'react'
 import { useCookies } from 'react-cookie'
 
 import { ContentPageEntityFragment } from '../../graphql'
@@ -20,7 +20,7 @@ const AppLangSwitchers = ({ contentPage, desktop }: AppLangSwitchersProps) => {
   const { i18n } = useTranslation()
   const currentLanguage = i18n.language
 
-  const onLocaleChange = React.useCallback(
+  const onLocaleChange = useCallback(
     (locale: string) => {
       const equivalentRouteInTargetLocale = getEquivalentRouteInTargetLocale(router.pathname, locale, contentPage)
 
@@ -71,7 +71,7 @@ const AppLangSwitchers = ({ contentPage, desktop }: AppLangSwitchersProps) => {
         onClick={() => onLocaleChange('en')}
         type="button"
       >
-        ENG
+        EN
       </button>
     </div>
   )

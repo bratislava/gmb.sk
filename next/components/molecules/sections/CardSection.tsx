@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
-import React from 'react'
+import { ReactNode } from 'react'
 
 import { SectionItemEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
@@ -14,7 +14,7 @@ interface CardsSectionProps {
   anchor?: string
   showTags?: boolean
   isLoading?: boolean
-  loadmoreButton?: React.ReactNode
+  loadmoreButton?: ReactNode
   noItemsMessage?: string
 }
 
@@ -33,19 +33,20 @@ const CardSection = ({
     <Section anchor={anchor} title={title}>
       {isLoading ? (
         <div
-          className={cx('grid px-xMd grid-cols-1 gap-x-6 lg:gap-x-10 gap-y-14 md:grid-cols-2 lg:grid-cols-3', {
+          className={cx('grid grid-cols-1 gap-x-6 gap-y-14 px-xMd md:grid-cols-2 lg:grid-cols-3 lg:gap-x-10', {
             'py-yLg': !title,
             'pb-yLg': title,
           })}
         >
           {[1, 2, 3].map((_, index) => (
+            // eslint-disable-next-line react/no-array-index-key
             <CardSkeleton key={index} />
           ))}
         </div>
       ) : sectionItems?.length ? (
         <>
           <div
-            className={cx('grid px-xMd grid-cols-1 gap-x-6 lg:gap-x-10 gap-y-14 md:grid-cols-2 lg:grid-cols-3', {
+            className={cx('grid grid-cols-1 gap-x-6 gap-y-14 px-xMd md:grid-cols-2 lg:grid-cols-3 lg:gap-x-10', {
               'py-yLg': !title,
               'pb-yLg': title,
             })}

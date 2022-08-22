@@ -27,6 +27,7 @@ fragment TicketEntity on TicketEntity {
 }
 
 fragment PartnerEntity on PartnerEntity {
+  id
   attributes {
     title
     logo {
@@ -238,6 +239,7 @@ fragment HighlightsItem on ContentPage {
   ...Datetime
   ...ContentPagePlace
   ...Positions
+  sellTickets
   purchaseId
   override {
     highlightContent

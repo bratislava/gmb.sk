@@ -28,7 +28,7 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
       tabIndex={-1}
       onClick={() => router.push(`/detail/${slug}`)}
       onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
-      className={cx('lg:flex min-h-[400px] relative cursor-pointer', {
+      className={cx('relative min-h-[400px] cursor-pointer lg:flex', {
         'flex-row-reverse': isLeft,
       })}
     >

@@ -1,5 +1,4 @@
 import { useTranslation } from 'next-i18next'
-import React from 'react'
 
 import { PlaceEntityFragment, TagEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'

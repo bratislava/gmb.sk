@@ -4,10 +4,10 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import React from 'react'
+import { useEffect, useState } from 'react'
 
-import HamburgerIcon from '../../assets/icons/ba-hamburger.svg'
 import CloseIcon from '../../assets/icons/close-x.svg'
+import HamburgerIcon from '../../assets/icons/menu.svg'
 import SearchIcon from '../../assets/icons/search.svg'
 import Logo from '../../assets/images/gmb-logo-header.png'
 import { ContentPageEntityFragment } from '../../graphql'
@@ -27,11 +27,11 @@ const Navigation = ({ contentPage }: NavigationProps) => {
   const { t, i18n } = useTranslation()
   const router = useRouter()
 
-  const [isSearchBarOpen, setIsSearchBarOpen] = React.useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
+  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   gsap.registerPlugin(ScrollTrigger)
-  React.useEffect(() => {
+  useEffect(() => {
     gsap.to('#navLogoText', {
       bottom: '+=120',
       ease: 'none',
@@ -44,7 +44,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
     })
   }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     router.events.on('routeChangeStart', closeMobileMenu)
 
     return () => {
@@ -52,7 +52,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
     }
   }, [router.events])
 
-  React.useEffect(() => {
+  useEffect(() => {
     router.events.on('routeChangeComplete', closeSearchBar)
 
     return () => {
@@ -60,7 +60,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
     }
   }, [router.events])
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.body.style.overflow = isSearchBarOpen ? 'hidden' : 'auto'
     return () => {
       document.body.style.overflow = 'auto'
@@ -119,7 +119,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
           <div
             className={cx('lg:flex lg:gap-x-xMd', {
-              'absolute w-full left-0 top-nav bg-white flex flex-col items-center justify-center gap-7 pb-12':
+              'absolute left-0 top-nav flex w-full flex-col items-center justify-center gap-7 bg-white pb-12':
                 isMobileMenuOpen,
               hidden: !isMobileMenuOpen,
             })}
@@ -138,9 +138,10 @@ const Navigation = ({ contentPage }: NavigationProps) => {
               <SearchIcon className="dw-[36px]" />
             </button>
 
-            <div className="text-gray-500 lg:hidden">
+            {/* TODO show switchers when EN content is ready */}
+            {/* <div className="text-gray-500 lg:hidden">
               <AppLangSwitchers contentPage={withAttributes(contentPage) ?? undefined} />
-            </div>
+            </div> */}
           </div>
         </div>
       </nav>
