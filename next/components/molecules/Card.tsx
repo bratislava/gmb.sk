@@ -61,10 +61,10 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
         <p className="text-xl font-regular">{subtitle}</p>
       </div>
 
-      {perex && <div className="text-md">{perex?.slice(0, 200)}…</div>}
-
       {/* empty div to push button to the bottom of the card */}
       <div className="m-0 hidden grow p-0 lg:block" />
+
+      {perex && <div className="text-md line-clamp-5">{perex}</div>}
 
       <Button href={`/detail/${slug}`} aria-label={title} className="max-w-fit">
         {t('common.detail')}

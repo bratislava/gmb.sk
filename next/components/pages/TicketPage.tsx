@@ -27,11 +27,11 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
       <Seo seo={seo} title={title} description={subtitle} />
       <section
         data-goout-id={getPurchaseId(contentPage)}
-        className="goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--height-nav))] flex-col"
+        className="goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--nav-height))] flex-col"
       >
         <header className="py-yMd px-xMd lg:pr-sidepanel">
           <Link href={`/detail/${slug}`} preserveStyle noUnderline>
-            <div className="lg:mr-[5vw]">
+            <div className="lg:mr-xLg">
               <h1 className="goout-event-title text-xxl">{title}</h1>
               <p className="text-xxl font-regular">{subtitle}</p>
             </div>

@@ -100,7 +100,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
               <span
                 id="navLogoText"
-                className="absolute ml-4 whitespace-nowrap pl-logoWidth text-sm leading-[var(--font-size-sm)] group-hover:underline"
+                className="relative ml-4 whitespace-nowrap text-sm leading-[var(--font-size-sm)] group-hover:underline"
               >
                 {i18n.language === 'sk' ? t('common.cityGallery') : t('common.bratislavaGenitiv')}
                 <br />
@@ -111,9 +111,9 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
           <button type="button" className="-mr-5 flex p-5 lg:hidden" onClick={toggleMobileMenu} aria-label="Menu">
             {isMobileMenuOpen ? (
-              <CloseIcon className="dw-[30px] dh-[30px]" />
+              <CloseIcon className="dw-[30] dh-[30]" />
             ) : (
-              <HamburgerIcon className="dw-[30px] dh-[30px]" />
+              <HamburgerIcon className="ml-[-5] dw-[30] dh-[30]" width={20} height={20} />
             )}
           </button>
 
@@ -135,7 +135,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             </Button>
 
             <button type="button" className="-ml-4 px-2" onClick={toggleSearchBar} aria-label={t('common.search')}>
-              <SearchIcon className="dw-[36px]" />
+              <SearchIcon className="dw-[36]" />
             </button>
 
             {/* TODO show switchers when EN content is ready */}

@@ -47,7 +47,7 @@ const Submenu = ({ items, filters }: SubmenuProps) => {
                   setFilterOpen((prev) => !prev)
                 }}
               >
-                {t('common.filter')} <ChevronDownIcon className="dh-[12px] dw-[20px]" />
+                {t('common.filter')} <ChevronDownIcon className="dh-[12] dw-[20]" />
               </Button>
             )}
           </div>
@@ -74,7 +74,7 @@ const Submenu = ({ items, filters }: SubmenuProps) => {
         className="relative flex w-full items-center justify-between bg-gmbDark py-yMd px-xMd text-md uppercase text-white lg:hidden"
       >
         {t('common.quickNavigation')}
-        <ChevronDownIcon className="dh-[12px] dw-[20px]" />
+        <ChevronDownIcon className="dh-[12] dw-[20]" />
       </div>
 
       <SubmenuModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} items={items} filters={filters} />
