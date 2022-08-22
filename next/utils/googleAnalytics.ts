@@ -23,20 +23,11 @@ export const useGoogleAnalyticsPageView = () => {
   const router = useRouter()
 
   useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      const { performanceCookies } = getGDPRCookies()
-      if (!performanceCookies) {
-        return
-      }
-
-      ReactGA.pageview(url)
+    const { performanceCookies } = getGDPRCookies()
+    if (!performanceCookies) {
+      return
     }
 
-    router.events.on('routeChangeComplete', handleRouteChange)
-    router.events.on('hashChangeComplete', handleRouteChange)
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-      router.events.off('hashChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
+    ReactGA.pageview(router.asPath)
+  }, [router.asPath])
 }
