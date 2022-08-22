@@ -295,10 +295,7 @@ query ExhibitionsPage(
   }
   exhibitions: contentPages(
     locale: $locale
-    filters: {
-      tags: { slug: { eq: $tagExhibitions } }
-      or: [{ dateFrom: { gte: $today } }, { dateTo: { gte: $today } }]
-    }
+    filters: { tags: { slug: { eq: $tagExhibitions } }, dateFrom: { lte: $today }, dateTo: { gte: $today } }
   ) {
     data {
       ...SectionItemEntity
@@ -306,10 +303,7 @@ query ExhibitionsPage(
   }
   permanentExhibitions: contentPages(
     locale: $locale
-    filters: {
-      tags: { slug: { eq: $tagPermanentExhibitions } }
-      or: [{ dateFrom: { gte: $today } }, { dateTo: { gte: $today } }]
-    }
+    filters: { tags: { slug: { eq: $tagPermanentExhibitions } }, dateFrom: { lte: $today } }
   ) {
     data {
       ...SectionItemEntity
@@ -317,10 +311,7 @@ query ExhibitionsPage(
   }
   additionalProgram: contentPages(
     locale: $locale
-    filters: {
-      tags: { slug: { in: $tagsAdditionalProgram } }
-      or: [{ dateFrom: { gte: $today } }, { dateTo: { gte: $today } }]
-    }
+    filters: { tags: { slug: { in: $tagsAdditionalProgram } }, dateFrom: { lte: $today }, dateTo: { gte: $today } }
   ) {
     data {
       ...SectionItemEntity
