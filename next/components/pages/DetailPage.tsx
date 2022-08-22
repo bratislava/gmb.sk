@@ -86,7 +86,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
       </Head>
 
       <div className="py-yMd px-xMd lg:pr-sidepanel" style={{ background: getContentPageColor(contentPage) }}>
-        <div className="lg:mr-[5vw]">
+        <div className="lg:mr-xLg">
           <h1 className="text-xxl">{title}</h1>
           <p className="text-xxl font-regular">{subtitle}</p>
         </div>
@@ -103,7 +103,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           slug={slug}
           showShare
           title={title}
-          className="float-right ml-[5vw] hidden w-sidepanel lg:flex"
+          className="float-right ml-xLg hidden w-sidepanel lg:flex"
         />
         {/* Mobile sidepanel info part 1 */}
         <SidePanel
@@ -111,12 +111,12 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           place={{ place, placeTitle, placeAddress }}
           purchaseId={getPurchaseId(contentPage)}
           slug={slug}
-          className="pb-24 lg:hidden"
+          className="pb-yLg lg:hidden"
         />
         <div className="float-none w-auto overflow-hidden">
           {perex && <div className="mb-yLg text-lg">{perex}</div>}
 
-          <div className="ml-xLg">
+          <div className="lg:ml-xLg">
             {mainContent?.filter(isDefined).map((section) => {
               if (section.__typename === 'ComponentSectionsRichtextSection') {
                 return (

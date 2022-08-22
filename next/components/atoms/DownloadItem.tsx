@@ -41,8 +41,8 @@ const DownloadItem = ({ downloadItem }: DownloadProps) => {
       <h4 className="pb-yMd text-lg">{downloadItem.title ?? file?.name ?? ''}</h4>
       <div>
         <Button disabled={fetching} size="link" color="light" className="flex flex-col gap-yMd">
-          <div className="relative left-[calc(-10px*var(--icon-size-factor))] h-fit w-fit">
-            <FileIcon fill="#fff" className="relative dw-[96px]" />
+          <div className="relative left-[calc(-10*var(--size-factor))] h-fit w-fit">
+            <FileIcon fill="#fff" className="relative dw-[96]" />
             <span className="absolute top-1/2 left-1/2 block -translate-x-1/2 -translate-y-1/2 text-md uppercase">
               {file?.ext?.slice(1, 5)}
             </span>

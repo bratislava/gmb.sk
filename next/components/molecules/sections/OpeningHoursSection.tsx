@@ -49,7 +49,7 @@ const OpeningHoursSection = ({ contactInfo, anchor }: OpeningHoursSectionProps) 
               remarkPlugins={[remarkGfm]}
               components={{
                 p: ({ children }) => <p className="text-md">{children}</p>,
-                ul: ({ children }) => <ul className="list list-disc pl-5 pb-[55px]">{children}</ul>,
+                ul: ({ children }) => <ul className="list-disc pl-5 pb-[55px]">{children}</ul>,
               }}
             >
               {contactInfo.attributes.openingHours ?? ''}
@@ -60,14 +60,14 @@ const OpeningHoursSection = ({ contactInfo, anchor }: OpeningHoursSectionProps) 
       <div className="col-span-1 flex h-full flex-col justify-between">
         <h3 className="pb-yLg text-xl">{contactInfo.attributes.mirbach?.title}</h3>
         <div className="justify-self-end text-md">
-          <LocationIcon stroke="white" className="mb-2 dw-[48px]" />
+          <LocationIcon className="mb-2 dw-[48]" />
           <p>{contactInfo.attributes.mirbach?.address}</p>
         </div>
       </div>
       <div className="col-span-1 flex h-full flex-col justify-between">
         <h3 className="pb-yLg text-xl">{contactInfo.attributes.palffy?.title}</h3>
         <div className="justify-self-end text-md">
-          <LocationIcon stroke="white" className="mb-2 dw-[48px]" />
+          <LocationIcon className="mb-2 dw-[48]" />
           <p>{contactInfo.attributes.palffy?.address}</p>
         </div>
       </div>

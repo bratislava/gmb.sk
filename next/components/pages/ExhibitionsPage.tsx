@@ -101,7 +101,7 @@ const ExhibitionsPage = ({
       />
 
       <Submenu
-        items={[t('common.exhibitions'), t('common.permanentExhibitions'), t('common.additionalProgram')]}
+        items={[t('common.exhibitions'), t('common.additionalProgram'), t('common.permanentExhibitions')]}
         filters={
           <Filters
             tagGroups={[

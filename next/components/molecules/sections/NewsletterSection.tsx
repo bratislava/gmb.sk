@@ -92,7 +92,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                   <div className="grow">
                     <input
                       id="email-input"
-                      className="w-full border-2 border-white bg-transparent p-2 py-[calc(18px*var(--icon-size-factor))] text-btn"
+                      className="w-full border-2 border-white bg-transparent p-2 py-[calc(18*var(--size-factor))] text-btn"
                       onChange={(e) => setEmail(e.target.value)}
                       value={email}
                       type="email"
