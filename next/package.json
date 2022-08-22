@@ -12,6 +12,8 @@
     "eslint:fix": "npm run eslint -- --fix"
   },
   "dependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/line-clamp": "^0.4.0",
     "classnames": "^2.3.1",
     "graphql": "^16.5.0",
     "graphql-request": "^4.3.0",
@@ -48,8 +50,6 @@
     "@graphql-codegen/typescript-operations": "^2.4.0",
     "@next/eslint-plugin-next": "^12.1.6",
     "@svgr/webpack": "^6.2.1",
-    "@tailwindcss/aspect-ratio": "^0.4.0",
-    "@tailwindcss/line-clamp": "^0.4.0",
     "@types/js-cookie": "^3.0.2",
     "@types/lodash": "^4.14.182",
     "@types/node": "^18.0.0",
