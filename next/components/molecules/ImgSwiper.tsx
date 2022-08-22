@@ -26,8 +26,8 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
   return slides ? (
     <Swiper
       loop
-      speed={2000}
-      autoplay={{ delay: 2500, disableOnInteraction: true }}
+      speed={600}
+      autoplay={{ delay: 3000, disableOnInteraction: true }}
       navigation={{
         prevEl: navigationPrevRef.current,
         nextEl: navigationNextRef.current,
@@ -42,11 +42,11 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
         el: '.swiper-pagination',
         clickable: true,
         bulletClass:
-          'bg-none border-solid border-gmbDark border-2 w-5 h-5 inline-block rounded-full mx-2.5 cursor-pointer',
+          'bg-none border-solid border-gmbDark border xl:border-2 w-3 xl:w-4 xxl:w-5 h-2 lg:h-3 xl:h-4 xxl:h-5 inline-block rounded-full m-2.5 cursor-pointer shadow shadow-gmbGray',
         bulletActiveClass: 'bg-gmbDark',
       }}
       modules={[Navigation, Autoplay, Pagination]}
-      className="h-[300px] w-full md:h-[450px] lg:h-[600px]"
+      className="w-full dh-[600]"
       id={anchor}
     >
       {slides?.map((item, index) => (
@@ -66,6 +66,7 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
       <div ref={navigationNextRef} className={cx(navigationStyle, 'right-11')}>
         next
       </div>
+      {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
       <div className="swiper-pagination absolute !bottom-12 z-10" />
     </Swiper>
   ) : null

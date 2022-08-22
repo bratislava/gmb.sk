@@ -20,7 +20,7 @@ const PartnersSection = ({ partners, title, anchor }: PartnersSectionProps) => {
             key={partner.id}
             preserveStyle
             noUnderline
-            className="flex items-center justify-center overflow-hidden dh-[115px] dw-[115px]"
+            className="flex items-center justify-center overflow-hidden dh-[115] dw-[115]"
             target="_blank"
           >
             <img

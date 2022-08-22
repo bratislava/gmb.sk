@@ -36,7 +36,6 @@ const Highlight = ({ highlight }: HighlightProps) => {
     positions,
     override,
     perex,
-    purchaseId,
     coverMedia,
   } = highlight.attributes
 
@@ -47,7 +46,15 @@ const Highlight = ({ highlight }: HighlightProps) => {
       trigger: `#sidepanel${highlight.id}`,
       start: 'top bottom',
       end: 'bottom bottom',
-      pin: `#articleDiv${highlight.id}`,
+      pin: `#articleHeader${highlight.id}`,
+      pinSpacing: false,
+      scrub: 0,
+    })
+    ScrollTrigger.create({
+      trigger: `#sidepanel${highlight.id}`,
+      start: 'top bottom',
+      // end: 'bottom bottom',
+      pin: `#articleImg${highlight.id}`,
       pinSpacing: false,
       scrub: 0,
     })
@@ -66,37 +73,35 @@ const Highlight = ({ highlight }: HighlightProps) => {
   )
 
   return (
-    <article className="relative h-fit w-full">
+    <article className="relative h-fit w-full bg-gmbLightGray">
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
-        className="cursor-pointer"
+        className="flex h-[calc(100vh_-_var(--nav-height))] w-full cursor-pointer flex-col"
         tabIndex={-1}
         id={`articleDiv${highlight.id ?? ''}`}
         onClick={() => router.push(`/detail/${slug}`)}
         onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
       >
         <div
-          className="flex h-[calc(100vh_-_var(--height-nav))] w-full items-center justify-center bg-gmbLightGray"
+          className="flex grow bg-cover bg-center"
           id={`articleImg${highlight.id ?? ''}`}
-        >
-          {coverMedia?.data?.attributes?.url && (
-            <img
-              src={coverMedia.data.attributes.url}
-              alt={coverMedia.data.attributes.alternativeText ?? ''}
-              className="h-full w-full object-cover"
-              id={`coverImage${highlight.id}`}
-            />
-          )}
-        </div>
+          style={{ backgroundImage: `url(${coverMedia?.data?.attributes?.url ?? ''})` }}
+        />
         <div
-          className="absolute bottom-0 z-20 flex h-fit w-full py-yMd px-xMd lg:h-auto lg:pr-sidepanel"
+          className="h-fit w-full py-yMd px-xMd lg:h-auto lg:pr-sidepanel"
           style={{ background: getContentPageColor(highlight) }}
+          id={`articleHeader${highlight.id ?? ''}`}
         >
-          <div className="flex flex-col items-start justify-between gap-y-yMd lg:mr-[5vw] ">
+          <div className="flex flex-col items-start justify-between gap-y-yMd lg:mr-xLg">
             <div>
               <h2 className="text-xxl lg:line-clamp-2">{title}</h2>
               <p className="text-xxl font-regular lg:line-clamp-1">{subtitle}</p>
             </div>
+
+            {/* Detail button on desktop */}
+            <Button href={`/detail/${slug}`} className="hidden lg:flex" aria-label={title}>
+              {t('common.detail')}
+            </Button>
 
             {/* Basic info on mobile. It shows only datetime, place and Buy tickets btn, if no override is present.
                 The classic sidepanel is not displayed on mobile screen. */}
@@ -116,17 +121,12 @@ const Highlight = ({ highlight }: HighlightProps) => {
                   </Button>
                 )}
                 {(placeTitle || place?.data?.attributes?.title) && (
-                  <div className="flex flex-1 items-center justify-center">
+                  <div className="flex flex-1 items-center justify-start">
                     <span className="text-btn uppercase">{placeTitle || place?.data?.attributes?.title}</span>
                   </div>
                 )}
               </div>
             </div>
-
-            {/* Detail button on desktop */}
-            <Button href={`/detail/${slug}`} className="hidden lg:flex" aria-label={title}>
-              {t('common.detail')}
-            </Button>
           </div>
         </div>
       </div>

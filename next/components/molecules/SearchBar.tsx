@@ -42,18 +42,18 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
 
   const { t } = useTranslation()
   return (
-    <div className="fixed inset-x-0 top-[var(--height-nav)] z-20 flex h-[calc(100vh-var(--height-nav))] flex-col justify-between bg-gmbDark p-12">
+    <div className="fixed inset-x-0 top-[var(--nav-height)] z-20 flex h-[calc(100vh-var(--nav-height))] flex-col justify-between bg-gmbDark p-12">
       <button
         type="button"
-        className="absolute right-xMd top-yMd"
+        className="absolute right-xMd top-yMd text-white"
         onClick={closeSearchBar}
         aria-label={t('common.closeSearch')}
       >
-        <CloseIcon fill="white" className="dw-[32px] dh-[32px]" />
+        <CloseIcon className="dw-[32] dh-[32]" />
       </button>
       <div className="flex flex-1">
         <input
-          className="border-b-solid active-border-b-solid focus:border-b-solid h-fit max-w-full border-b border-b-white bg-transparent text-xl text-white focus:border-b focus:border-b-white focus:outline-none active:border-b active:border-b-white"
+          className="h-fit max-w-full border-b border-solid border-b-white bg-transparent text-xl text-white focus:border-b-2 focus:outline-none active:border-b-2"
           placeholder={t('common.searchText')}
           aria-label={t('common.searchText')}
           onChange={(e) => {

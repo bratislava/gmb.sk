@@ -65,7 +65,7 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
       aria-label={t(`common.shareOn${capitalizeFirstLetter(platform)}`)}
     >
       <span className={cx(className)}>
-        <ShareIcon {...size} className="dw-[32px]" />
+        <ShareIcon {...size} className="dw-[32]" />
       </span>
     </Link>
   )

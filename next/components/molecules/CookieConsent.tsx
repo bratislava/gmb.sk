@@ -72,13 +72,13 @@ const CookieConsent = () => {
         isOpen={isCookiesSettingsOpen}
         onRequestClose={closeCookiesSettings}
         ariaHideApp={false}
-        className="fixed top-[calc(50%+var(--height-nav))] left-1/2 z-50 mx-auto mt-yMd h-fit w-10/12 translate-y-[calc(-50%-var(--height-nav))] -translate-x-1/2 border-0 border-r-0 bg-white p-0 lg:top-1/2 lg:mt-0 lg:w-7/12 lg:-translate-y-1/2"
+        className="fixed top-[calc(50%+var(--nav-height))] left-1/2 z-50 mx-auto mt-yMd h-fit w-10/12 translate-y-[calc(-50%-var(--nav-height))] -translate-x-1/2 border-0 border-r-0 bg-white p-0 lg:top-1/2 lg:mt-0 lg:w-7/12 lg:-translate-y-1/2"
       >
-        <div className="flex h-[calc(100vh-var(--height-nav)-2*var(--padding-y-md))] flex-col items-center overflow-hidden lg:max-h-[calc(100vh-2*var(--height-nav)-2*var(--padding-y-md))] lg:dh-[650px]">
+        <div className="flex h-[calc(100vh-var(--nav-height)-2*var(--padding-y-md))] flex-col items-center overflow-hidden lg:max-h-[calc(100vh-2*var(--nav-height)-2*var(--padding-y-md))] lg:dh-[650]">
           <div className="mb-[10px] flex w-full flex-[0_0_auto] items-center justify-between border-b py-ySm px-xSm">
             <h1 className="text-lg">{t('cookieConsent.modalTitle')}</h1>
             <button type="button" onClick={closeCookiesSettings} aria-label={t('cookieConsent.closeCookies')}>
-              <CloseIcon className="dw-[25px]" />
+              <CloseIcon className="dw-[25]" />
             </button>
           </div>
           <div className="flex min-h-0 flex-[1_1_auto] flex-col justify-between p-5">
@@ -202,7 +202,7 @@ const Switch = ({ title, value, onValueChange, disabled }: SwitchProps) => {
       aria-disabled={disabled}
       tabIndex={0}
       className={cx(
-        'mx-3 flex shrink-0 grow-0 items-center rounded-full border-2 border-gmbDark px-0.5 dw-[60px] dh-[30px]',
+        'mx-3 flex shrink-0 grow-0 items-center rounded-full border-2 border-gmbDark px-0.5 dw-[60] dh-[30]',
         {
           'justify-end bg-gmbDark': value,
           'bg-gmbGray': !value,
@@ -217,7 +217,7 @@ const Switch = ({ title, value, onValueChange, disabled }: SwitchProps) => {
         onClick={(e) => {
           if (disabled) e.stopPropagation()
         }}
-        className={cx('rounded-full bg-white shadow-md dw-[21px] dh-[21px]')}
+        className={cx('rounded-full bg-white shadow-md dw-[21] dh-[21]')}
       />
     </div>
   )
@@ -244,7 +244,7 @@ const Panel = ({ title, content, value, onValueChange, isOpen, setPanel }: Panel
       >
         <div className="flex items-center gap-xSm text-md text-black">
           <span>
-            {isOpen ? <ChevronDownIcon className="rotate-180 dw-[15px]" /> : <ChevronDownIcon className="dw-[15px]" />}
+            {isOpen ? <ChevronDownIcon className="rotate-180 dw-[15]" /> : <ChevronDownIcon className="dw-[15]" />}
           </span>
           <label htmlFor={`switch-${title}`}>{title}</label>
         </div>

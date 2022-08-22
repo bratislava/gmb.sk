@@ -47,13 +47,21 @@ const Link = ({
     href = `${[translatedRoute, ...rest].join('')}`
   }
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    // Prevent propagation, e.g. when Link is used for tags on Card
+    e.stopPropagation()
+    if (onClick) {
+      onClick(e)
+    }
+  }
+
   return (
     <NextLink href={href} locale={locale} replace={replace}>
       <a
         target={target}
         rel={rel}
         href={href}
-        onClick={onClick}
+        onClick={handleClick}
         {...rest}
         className={cx(
           {
