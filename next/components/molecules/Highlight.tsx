@@ -53,7 +53,6 @@ const Highlight = ({ highlight }: HighlightProps) => {
     ScrollTrigger.create({
       trigger: `#sidepanel${highlight.id}`,
       start: 'top bottom',
-      // end: 'bottom bottom',
       pin: `#articleImg${highlight.id}`,
       pinSpacing: false,
       scrub: 0,

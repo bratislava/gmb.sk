@@ -82,6 +82,7 @@ export type BooleanFilterInput = {
   containsi?: InputMaybe<Scalars['Boolean']>;
   endsWith?: InputMaybe<Scalars['Boolean']>;
   eq?: InputMaybe<Scalars['Boolean']>;
+  eqi?: InputMaybe<Scalars['Boolean']>;
   gt?: InputMaybe<Scalars['Boolean']>;
   gte?: InputMaybe<Scalars['Boolean']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
@@ -195,6 +196,13 @@ export type ComponentBlocksHighlightOverride = {
   __typename?: 'ComponentBlocksHighlightOverride';
   highlightContent?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
+};
+
+export type ComponentBlocksHighlightOverrideFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentBlocksHighlightOverrideFiltersInput>>>;
+  highlightContent?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentBlocksHighlightOverrideFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentBlocksHighlightOverrideFiltersInput>>>;
 };
 
 export type ComponentBlocksHighlightOverrideInput = {
@@ -313,6 +321,15 @@ export type ComponentBlocksSeo = {
   metaTitle?: Maybe<Scalars['String']>;
 };
 
+export type ComponentBlocksSeoFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentBlocksSeoFiltersInput>>>;
+  keywords?: InputMaybe<StringFilterInput>;
+  metaDescription?: InputMaybe<StringFilterInput>;
+  metaTitle?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentBlocksSeoFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentBlocksSeoFiltersInput>>>;
+};
+
 export type ComponentBlocksSeoInput = {
   id?: InputMaybe<Scalars['ID']>;
   keywords?: InputMaybe<Scalars['String']>;
@@ -357,6 +374,15 @@ export type ComponentSectionsDownloadSectionFilesArgs = {
   filters?: InputMaybe<ComponentBlocksFileItemFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentSectionsDownloadSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsDownloadSectionFiltersInput>>>;
+  files?: InputMaybe<ComponentBlocksFileItemFiltersInput>;
+  not?: InputMaybe<ComponentSectionsDownloadSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsDownloadSectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
 };
 
 export type ComponentSectionsDownloadSectionInput = {
@@ -442,6 +468,13 @@ export type ComponentSectionsSliderSectionMediasArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentSectionsSliderSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsSliderSectionFiltersInput>>>;
+  not?: InputMaybe<ComponentSectionsSliderSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsSliderSectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
 };
 
 export type ComponentSectionsSliderSectionInput = {
@@ -631,23 +664,29 @@ export type ContentPageFiltersInput = {
   createdAt?: InputMaybe<DateTimeFilterInput>;
   dateFrom?: InputMaybe<DateFilterInput>;
   dateTo?: InputMaybe<DateFilterInput>;
+  downloadSection?: InputMaybe<ComponentSectionsDownloadSectionFiltersInput>;
   id?: InputMaybe<IdFilterInput>;
   inheritColorFromParent?: InputMaybe<BooleanFilterInput>;
   locale?: InputMaybe<StringFilterInput>;
   localizations?: InputMaybe<ContentPageFiltersInput>;
   not?: InputMaybe<ContentPageFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ContentPageFiltersInput>>>;
+  override?: InputMaybe<ComponentBlocksHighlightOverrideFiltersInput>;
   parentPage?: InputMaybe<ContentPageFiltersInput>;
+  partners?: InputMaybe<ComponentBlocksPartnerItemFiltersInput>;
   perex?: InputMaybe<StringFilterInput>;
   place?: InputMaybe<PlaceFiltersInput>;
   placeAddress?: InputMaybe<StringFilterInput>;
   placeTitle?: InputMaybe<StringFilterInput>;
+  positions?: InputMaybe<ComponentBlocksPositionItemFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   purchaseId?: InputMaybe<StringFilterInput>;
   relatedContentSubmenuTitle?: InputMaybe<StringFilterInput>;
   relatedContentTitle?: InputMaybe<StringFilterInput>;
   sellTickets?: InputMaybe<BooleanFilterInput>;
+  seo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
   showRemainingTime?: InputMaybe<BooleanFilterInput>;
+  slider?: InputMaybe<ComponentSectionsSliderSectionFiltersInput>;
   slug?: InputMaybe<StringFilterInput>;
   subtitle?: InputMaybe<StringFilterInput>;
   tags?: InputMaybe<TagFiltersInput>;
@@ -704,6 +743,7 @@ export type DateFilterInput = {
   containsi?: InputMaybe<Scalars['Date']>;
   endsWith?: InputMaybe<Scalars['Date']>;
   eq?: InputMaybe<Scalars['Date']>;
+  eqi?: InputMaybe<Scalars['Date']>;
   gt?: InputMaybe<Scalars['Date']>;
   gte?: InputMaybe<Scalars['Date']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
@@ -727,6 +767,7 @@ export type DateTimeFilterInput = {
   containsi?: InputMaybe<Scalars['DateTime']>;
   endsWith?: InputMaybe<Scalars['DateTime']>;
   eq?: InputMaybe<Scalars['DateTime']>;
+  eqi?: InputMaybe<Scalars['DateTime']>;
   gt?: InputMaybe<Scalars['DateTime']>;
   gte?: InputMaybe<Scalars['DateTime']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
@@ -844,6 +885,7 @@ export type FloatFilterInput = {
   containsi?: InputMaybe<Scalars['Float']>;
   endsWith?: InputMaybe<Scalars['Float']>;
   eq?: InputMaybe<Scalars['Float']>;
+  eqi?: InputMaybe<Scalars['Float']>;
   gt?: InputMaybe<Scalars['Float']>;
   gte?: InputMaybe<Scalars['Float']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
@@ -1043,6 +1085,7 @@ export type IdFilterInput = {
   containsi?: InputMaybe<Scalars['ID']>;
   endsWith?: InputMaybe<Scalars['ID']>;
   eq?: InputMaybe<Scalars['ID']>;
+  eqi?: InputMaybe<Scalars['ID']>;
   gt?: InputMaybe<Scalars['ID']>;
   gte?: InputMaybe<Scalars['ID']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -1066,6 +1109,7 @@ export type IntFilterInput = {
   containsi?: InputMaybe<Scalars['Int']>;
   endsWith?: InputMaybe<Scalars['Int']>;
   eq?: InputMaybe<Scalars['Int']>;
+  eqi?: InputMaybe<Scalars['Int']>;
   gt?: InputMaybe<Scalars['Int']>;
   gte?: InputMaybe<Scalars['Int']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
@@ -1089,6 +1133,7 @@ export type JsonFilterInput = {
   containsi?: InputMaybe<Scalars['JSON']>;
   endsWith?: InputMaybe<Scalars['JSON']>;
   eq?: InputMaybe<Scalars['JSON']>;
+  eqi?: InputMaybe<Scalars['JSON']>;
   gt?: InputMaybe<Scalars['JSON']>;
   gte?: InputMaybe<Scalars['JSON']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
@@ -1107,6 +1152,8 @@ export type JsonFilterInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  /** Change user password. Confirm with the current password. */
+  changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createAboutUsPageLocalization?: Maybe<AboutUsPageEntityResponse>;
   createCollectionsPageLocalization?: Maybe<CollectionsPageEntityResponse>;
   createContactCard?: Maybe<ContactCardEntityResponse>;
@@ -1190,6 +1237,13 @@ export type Mutation = {
   updateUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   updateVisitUsPage?: Maybe<VisitUsPageEntityResponse>;
   upload: UploadFileEntityResponse;
+};
+
+
+export type MutationChangePasswordArgs = {
+  currentPassword: Scalars['String'];
+  password: Scalars['String'];
+  passwordConfirmation: Scalars['String'];
 };
 
 
@@ -2071,6 +2125,7 @@ export type StringFilterInput = {
   containsi?: InputMaybe<Scalars['String']>;
   endsWith?: InputMaybe<Scalars['String']>;
   eq?: InputMaybe<Scalars['String']>;
+  eqi?: InputMaybe<Scalars['String']>;
   gt?: InputMaybe<Scalars['String']>;
   gte?: InputMaybe<Scalars['String']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -2302,6 +2357,7 @@ export type TimeFilterInput = {
   containsi?: InputMaybe<Scalars['Time']>;
   endsWith?: InputMaybe<Scalars['Time']>;
   eq?: InputMaybe<Scalars['Time']>;
+  eqi?: InputMaybe<Scalars['Time']>;
   gt?: InputMaybe<Scalars['Time']>;
   gte?: InputMaybe<Scalars['Time']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Time']>>>;
@@ -3830,7 +3886,7 @@ export const ExhibitionsPageDocument = gql`
   }
   exhibitions: contentPages(
     locale: $locale
-    filters: {tags: {slug: {eq: $tagExhibitions}}, dateFrom: {lte: $today}, dateTo: {gte: $today}}
+    filters: {tags: {slug: {eq: $tagExhibitions}}, dateTo: {gte: $today}}
   ) {
     data {
       ...SectionItemEntity
@@ -3846,7 +3902,7 @@ export const ExhibitionsPageDocument = gql`
   }
   additionalProgram: contentPages(
     locale: $locale
-    filters: {tags: {slug: {in: $tagsAdditionalProgram}}, dateFrom: {lte: $today}, dateTo: {gte: $today}}
+    filters: {tags: {slug: {in: $tagsAdditionalProgram}}, dateTo: {gte: $today}}
   ) {
     data {
       ...SectionItemEntity
