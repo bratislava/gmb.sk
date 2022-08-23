@@ -89,7 +89,7 @@ module.exports = {
       },
       minHeight: {
         ticket: 'var(--ticket-height)',
-        chessboardTile: 'var(--chessboard-tile-height)',
+        chessboardTile: 'var(--chessboard-height)',
       },
     },
   },

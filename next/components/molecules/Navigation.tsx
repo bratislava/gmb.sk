@@ -15,7 +15,6 @@ import { withAttributes } from '../../utils/isDefined'
 import AppLangSwitchers from '../atoms/AppLangSwitchers'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
-import NavLink from '../atoms/NavLink'
 import SkipNavigation from '../atoms/SkipNavigation'
 import SearchBar from './SearchBar'
 
@@ -124,13 +123,13 @@ const Navigation = ({ contentPage }: NavigationProps) => {
               hidden: !isMobileMenuOpen,
             })}
           >
-            <NavLink url="/vystavy">{t('navigation.exhibitionsEvents')}</NavLink>
-            <NavLink url="/objavujte">{t('navigation.explore')}</NavLink>
-            <NavLink url="/o-galerii">{t('navigation.aboutGallery')}</NavLink>
-            <NavLink url="/zapojte-sa">{t('navigation.getInvolved')}</NavLink>
-            <NavLink url="/zbierky">{t('navigation.collections')}</NavLink>
+            <Link href="/vystavy">{t('navigation.exhibitionsEvents')}</Link>
+            <Link href="/objavujte">{t('navigation.explore')}</Link>
+            <Link href="/o-galerii">{t('navigation.aboutGallery')}</Link>
+            <Link href="/zapojte-sa">{t('navigation.getInvolved')}</Link>
+            <Link href="/zbierky">{t('navigation.collections')}</Link>
 
-            <Button size="small" href="/navstivte" role="link">
+            <Button size="small" href="/navstivte">
               {t('navigation.visitUs')}
             </Button>
 
