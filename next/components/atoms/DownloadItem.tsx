@@ -40,7 +40,14 @@ const DownloadItem = ({ downloadItem }: DownloadProps) => {
     <div className="flex h-full flex-col justify-between">
       <h4 className="pb-yMd text-lg">{downloadItem.title ?? file?.name ?? ''}</h4>
       <div>
-        <Button disabled={fetching} size="link" color="light" className="flex flex-col gap-yMd">
+        <Button
+          disabled={fetching}
+          onClick={() => download(file?.url, file?.name)}
+          aria-label={t('common.downloadFile', { file: file?.name })}
+          size="link"
+          color="light"
+          className="flex flex-col gap-yMd"
+        >
           <div className="relative left-[calc(-10*var(--size-factor))] h-fit w-fit">
             <FileIcon fill="#fff" className="relative dw-[96]" />
             <span className="absolute top-1/2 left-1/2 block -translate-x-1/2 -translate-y-1/2 text-md uppercase">

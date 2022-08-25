@@ -42,7 +42,7 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
         el: '.swiper-pagination',
         clickable: true,
         bulletClass:
-          'bg-none border-solid border-gmbDark border xl:border-2 w-3 xl:w-4 xxl:w-5 h-2 lg:h-3 xl:h-4 xxl:h-5 inline-block rounded-full m-2.5 cursor-pointer shadow shadow-gmbGray',
+          'bg-none border-solid border-gmbDark border xl:border-2 w-3 xl:w-4 xxl:w-5 h-3 xl:h-4 xxl:h-5 inline-block rounded-full m-2.5 cursor-pointer shadow shadow-gmbGray',
         bulletActiveClass: 'bg-gmbDark',
       }}
       modules={[Navigation, Autoplay, Pagination]}

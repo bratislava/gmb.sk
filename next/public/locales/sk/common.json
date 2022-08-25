@@ -47,6 +47,7 @@
     "shareOnWhatsapp": "Zdieľať na Whatsapp",
     "shareOnLinkedIn": "Zdieľať na LinkedIn",
     "download": "Stiahnuť",
+    "downloadFile": "Stiahnuť súbor {{file}}",
     "relatedContent": "Súvisiaci obsah",
     "showIncludedEvents": "Ukáž, čo tam ešte je",
     "noCurrentEvents": "Aktuálne tu neprebiehajú žiadne ďalšie výstavy a expozície.",
