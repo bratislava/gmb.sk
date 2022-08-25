@@ -12,6 +12,8 @@
     "eslint:fix": "npm run eslint -- --fix"
   },
   "dependencies": {
+    "@react-stately/toggle": "^3.4.0",
+    "@react-types/checkbox": "^3.3.2",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/line-clamp": "^0.4.0",
     "classnames": "^2.3.1",
@@ -26,6 +28,7 @@
     "next": "12.2.0",
     "next-i18next": "^11.0.0",
     "react": "18.1.0",
+    "react-aria": "^3.18.0",
     "react-cookie": "^4.1.1",
     "react-cookie-consent": "^8.0.1",
     "react-dom": "18.1.0",

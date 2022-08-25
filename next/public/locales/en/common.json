@@ -46,6 +46,7 @@
     "shareOnWhatsapp": "Share on Whatsapp",
     "shareOnLinkedIn": "Share on LinkedIn",
     "download": "Download",
+    "downloadFile": "Download file {{file}}",
     "relatedContent": "Related content",
     "showIncludedEvents": "Show included events",
     "noCurrentEvents": "There is no other ongoing exhibition currently.",

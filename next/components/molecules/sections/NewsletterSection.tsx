@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import MailchimpSubscribe from 'react-mailchimp-subscribe'
 
-import NewsletterImg from '../../../assets/images/newsletterimg.png'
+import NewsletterImg from '../../../assets/images/v-obraze-white.png'
 import Button from '../../atoms/Button'
+import Checkbox from '../../atoms/Checkbox'
 import Section from './Section'
 
 export interface NewsletterSectionProps {
@@ -27,6 +28,10 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
     setEmailError('')
     setAgreeError('')
   }
+
+  useEffect(() => {
+    setAgreeError('')
+  }, [agree])
 
   const isFormValid = (): boolean => {
     const newAgreeError = !agree ? t('errors.fieldMandatory') : ''
@@ -106,24 +111,11 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                         {emailError}
                       </label>
                     ) : null}
-                    <div className="mt-6 flex w-full items-center">
-                      <input
-                        id="gdprCheckbox"
-                        type="checkbox"
-                        className="relative mr-xSm mt-[-1px] box-border inline-block h-[var(--font-size-btn)] w-[var(--font-size-btn)] flex-none cursor-pointer appearance-none border-2 border-white bg-transparent after:absolute after:top-[-1px] after:left-0 after:inline-block after:text-btn after:font-heavy after:leading-[var(--font-size-btn)] after:text-[#000] after:content-[''] checked:bg-white checked:after:content-['✔']"
-                        checked={agree}
-                        required
-                        onChange={() => setAgree((prev) => !prev)}
-                        aria-invalid={agreeError !== ''}
-                        ref={agreeRef}
-                      />
-                      <label
-                        htmlFor="gdprCheckbox"
-                        className="cursor-pointer select-none overflow-x-hidden whitespace-nowrap text-btn"
-                      >
+                    <div className="mt-6 flex w-full items-center lg:whitespace-nowrap">
+                      <Checkbox isSelected={agree} onChange={setAgree} hasError={!!agreeError}>
                         {t('common.gdprAccept')}
                         <span className="pl-[6px] text-red-500">*</span>
-                      </label>
+                      </Checkbox>
                     </div>
                     {agreeError ? (
                       <label htmlFor="gdprCheckbox" id="agree-error" className="-mt-3 pb-5 text-red-500">
@@ -157,10 +149,8 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
           }}
         />
       </div>
-      <div className="mb-yMd flex justify-center lg:mb-0 lg:w-2/6 ">
-        <div className="flex w-full justify-center lg:block">
-          <Image src={NewsletterImg} alt="newsletter" unoptimized />
-        </div>
+      <div className="relative mb-yMd text-center lg:mb-0 lg:w-2/6 ">
+        <Image src={NewsletterImg} alt="newsletter" unoptimized />
       </div>
     </Section>
   )

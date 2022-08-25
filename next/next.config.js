@@ -68,81 +68,6 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/content/:slug',
-        destination: '/detail/:slug',
-        permanent: true,
-      },
-      {
-        source: '/sk/content/:slug',
-        destination: '/detail/:slug',
-        permanent: true,
-      },
-      {
-        source: '/en/content/:slug',
-        destination: '/detail/:slug',
-        permanent: true,
-      },
-      {
-        source: '/exhibition/detail/:slug',
-        destination: '/detail/:slug',
-        permanent: true,
-      },
-      {
-        source: '/sk/exhibition/detail/:slug',
-        destination: '/detail/:slug',
-        permanent: true,
-      },
-      {
-        source: '/en/exhibition/detail/:slug',
-        destination: '/detail/:slug',
-        permanent: true,
-      },
-      {
-        source: '/sk/exhibition/list/:slug*',
-        destination: '/vystavy',
-        permanent: true,
-      },
-      {
-        source: '/en/exhibition/list/:slug*',
-        destination: '/en/exhibitions',
-        permanent: true,
-      },
-      {
-        source: '/sk/news/:slug*',
-        destination: '/',
-        permanent: true,
-      },
-      {
-        source: '/en/news/:slug*',
-        destination: '/en',
-        permanent: true,
-      },
-      {
-        source: '/sk/publications/:slug*',
-        destination: '/detail/edicna-cinnost-galerie',
-        permanent: true,
-      },
-      {
-        source: '/en/publications/:slug*',
-        destination: '/en/detail/art-loves-paper',
-        permanent: true,
-      },
-      {
-        source: '/sk/month/:slug*',
-        destination: '/',
-        permanent: true,
-      },
-      {
-        source: '/month/:slug*',
-        destination: '/',
-        permanent: true,
-      },
-      {
-        source: '/en/month/:slug*',
-        destination: '/en',
-        permanent: true,
-      },
-      {
         source: '/sk/home',
         destination: '/',
         permanent: true,
@@ -534,6 +459,81 @@ const nextConfig = {
       },
       {
         source: '/en/content/links',
+        destination: '/en',
+        permanent: true,
+      },
+      {
+        source: '/content/:slug',
+        destination: '/detail/:slug',
+        permanent: true,
+      },
+      {
+        source: '/sk/content/:slug',
+        destination: '/detail/:slug',
+        permanent: true,
+      },
+      {
+        source: '/en/content/:slug',
+        destination: '/detail/:slug',
+        permanent: true,
+      },
+      {
+        source: '/exhibition/detail/:slug',
+        destination: '/detail/:slug',
+        permanent: true,
+      },
+      {
+        source: '/sk/exhibition/detail/:slug',
+        destination: '/detail/:slug',
+        permanent: true,
+      },
+      {
+        source: '/en/exhibition/detail/:slug',
+        destination: '/detail/:slug',
+        permanent: true,
+      },
+      {
+        source: '/sk/exhibition/list/:slug*',
+        destination: '/vystavy',
+        permanent: true,
+      },
+      {
+        source: '/en/exhibition/list/:slug*',
+        destination: '/en/exhibitions',
+        permanent: true,
+      },
+      {
+        source: '/sk/news/:slug*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/en/news/:slug*',
+        destination: '/en',
+        permanent: true,
+      },
+      {
+        source: '/sk/publications/:slug*',
+        destination: '/detail/edicna-cinnost-galerie',
+        permanent: true,
+      },
+      {
+        source: '/en/publications/:slug*',
+        destination: '/en/detail/art-loves-paper',
+        permanent: true,
+      },
+      {
+        source: '/sk/month/:slug*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/month/:slug*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/en/month/:slug*',
         destination: '/en',
         permanent: true,
       },
