@@ -104,10 +104,10 @@ jobs:
     with:
       directory: next/
       cluster: tkg-innov-prod
-      url: https://tkg.prod.bratislava.sk
+      url: https://tkg.bratislava.sk
       flag: --production
     secrets:
-      service-account: ${{ secrets.STAGING_STANDALONE_TOKEN }}
+      service-account: ${{ secrets.PROD_STANDALONE_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   deploy-prod-strapi:
@@ -118,7 +118,7 @@ jobs:
     with:
       directory: strapi/
       cluster: tkg-innov-prod
-      url: https://tkg.prod.bratislava.sk
+      url: https://tkg.bratislava.sk
       flag: --production
     secrets:
       service-account: ${{ secrets.PROD_STANDALONE_TOKEN }}
@@ -132,7 +132,7 @@ jobs:
     with:
       directory: next/
       cluster: tkg-innov-prod
-      url: https://tkg.prod.bratislava.sk
+      url: https://tkg.bratislava.sk
       flag: --production
     secrets:
       service-account: ${{ secrets.PROD_STANDALONE_TOKEN }}
