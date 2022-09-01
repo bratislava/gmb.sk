@@ -25,7 +25,6 @@ commonAnnotations:
   commit: ${COMMIT}
   tag: ${TAG}
   image: ${IMAGE}
-  gitTag: ${GIT_TAG}
 
 configMapGenerator:
   - name: ${BUILD_REPOSITORY_NAME}-env
