@@ -9,7 +9,7 @@ export default async function preview(req: NextApiRequest, res: NextApiResponse)
     return res.status(401).json({ message: 'Invalid token' })
   }
 
-  // Fetch the headless CMS to check if the provided `slug` exists
+  // Fetch the CMS to check if the provided `slug` exists
   const contentPage = await client.PreviewContentPageBySlug({ slug: req.query.slug as string })
 
   // If the slug doesn't exist prevent preview mode from being enabled

@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import React from 'react'
+import { useEffect, useState } from 'react'
 
 interface IVideo {
   url: string
@@ -8,12 +8,12 @@ interface IVideo {
 }
 
 const Video = ({ className, url, size = 'default' }: IVideo) => {
-  const [embedUrl, setEmbedUrl] = React.useState('')
+  const [embedUrl, setEmbedUrl] = useState('')
 
   const isYoutubeVideo = url?.startsWith('https://youtu.be') || url?.startsWith('https://www.youtube.com')
   const isVimeoVideo = url?.startsWith('https://vimeo.com')
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isYoutubeVideo) {
       const parseYoutubeUrl = async () => {
         const oembedUrl = `https://www.youtube.com/oembed?url=${url}&format=json`
@@ -47,10 +47,10 @@ const Video = ({ className, url, size = 'default' }: IVideo) => {
     return (
       <figure
         className={cx(className, {
-          'w-full aspect-video': size === 'default',
+          'aspect-w-16 aspect-h-9 w-full': size === 'default',
         })}
       >
-        <iframe title="Youtube video" className={cx('w-full h-full')} src={embedUrl} allowFullScreen />
+        <iframe title="Youtube video" className={cx('h-full w-full')} src={embedUrl} allowFullScreen />
       </figure>
     )
   }
@@ -59,10 +59,10 @@ const Video = ({ className, url, size = 'default' }: IVideo) => {
     return (
       <figure
         className={cx(className, {
-          'w-full aspect-video': size === 'default',
+          'aspect-w-16 aspect-h-9 w-full': size === 'default',
         })}
       >
-        <iframe title="Vimeo video" className={cx('w-full h-full')} src={embedUrl} allowFullScreen />
+        <iframe title="Vimeo video" className={cx('h-full w-full')} src={embedUrl} allowFullScreen />
       </figure>
     )
   }

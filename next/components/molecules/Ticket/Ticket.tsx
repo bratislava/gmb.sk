@@ -16,7 +16,7 @@ interface ITicketProps {
   purchaseIdGift: string | null | undefined
 }
 
-export const Ticket = ({ title, price, description, purchaseIdSelf, purchaseIdGift }: ITicketProps) => {
+const Ticket = ({ title, price, description, purchaseIdSelf, purchaseIdGift }: ITicketProps) => {
   const { t } = useTranslation()
   const router = useRouter()
 
@@ -24,7 +24,7 @@ export const Ticket = ({ title, price, description, purchaseIdSelf, purchaseIdGi
     <div
       className={cx(
         styles.ticket,
-        'goout-ticket flex flex-col mb-yMd justify-between last:mb-0 lg:mb-0 w-full min-h-ticket bg-gmbLightGray relative p-8 hover:bg-[#6cc7ed] last-of-type:after:hidden first-of-type:before:hidden'
+        'goout-ticket relative mb-yMd flex min-h-ticket w-full flex-col justify-between bg-gmbLightGray p-8 last:mb-0 first-of-type:before:hidden last-of-type:after:hidden hover:bg-[#6cc7ed] lg:mb-0'
       )}
     >
       <div className="pb-yMd">

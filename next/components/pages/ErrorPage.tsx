@@ -1,11 +1,9 @@
-import React from 'react'
-
-import { ContactEntityFragment } from '../../graphql'
+import { GeneralEntityFragment } from '../../graphql'
 import { WithAttributes } from '../../utils/isDefined'
-import Footer from "../molecules/Footer"
+import Footer from '../molecules/Footer'
 
 interface ErrorPageProps {
-  contactInfo?: WithAttributes<ContactEntityFragment> | null | undefined
+  contactInfo?: WithAttributes<GeneralEntityFragment> | null | undefined
   statusCode: number
 }
 

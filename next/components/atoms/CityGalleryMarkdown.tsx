@@ -19,7 +19,7 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
       remarkPlugins={[remarkGfm]}
       className={cx(className, 'relative')}
       components={{
-        h1: ({ children }) => <h2 className="pb-yMd text-xxl">{children}</h2>,
+        h1: ({ children }) => <p className="pb-yMd text-md">{children}</p>,
         h2: ({ children }) => <h2 className="pb-yMd text-xl">{children}</h2>,
         h3: ({ children }) => <h3 className="pb-yMd text-lg">{children}</h3>,
         h4: ({ children }) => <h4 className="pb-yMd text-md font-semibold">{children}</h4>,
@@ -51,11 +51,10 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
               rel="noopener noreferrer"
               preserveStyle
               noUnderline
-              className={cx('text-gmbGray underline underline-offset-2 hover:font-semibold', {
-                "after:content-['↗']": isExternal,
-              })}
+              className="pb-yMd text-md text-gmbGray underline underline-offset-2"
             >
               {children}
+              {isExternal && ' ↗'}
             </Link>
           )
         },

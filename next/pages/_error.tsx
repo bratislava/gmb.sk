@@ -7,23 +7,23 @@ import { client } from '../utils/gql'
 import { withAttributes } from '../utils/isDefined'
 
 interface ErrorProps {
-  contact: ErrorPageQuery['contact']
+  general: ErrorPageQuery['general']
   statusCode: number
 }
 
-const Error = ({ contact, statusCode }: ErrorProps) => {
-  return <ErrorPage contactInfo={withAttributes(contact?.data)} statusCode={statusCode} />
+const Error = ({ general, statusCode }: ErrorProps) => {
+  return <ErrorPage contactInfo={withAttributes(general?.data)} statusCode={statusCode} />
 }
 
 export const getServerSideProps: GetServerSideProps<ErrorProps> = async ({ locale = 'sk', res }) => {
-  const [{ contact }, translations] = await Promise.all([
+  const [{ general }, translations] = await Promise.all([
     client.VisitUsPage({ locale }),
     serverSideTranslations(locale, ['common']),
   ])
   return {
     props: {
       statusCode: res.statusCode,
-      contact,
+      general,
       ...translations,
     },
   }

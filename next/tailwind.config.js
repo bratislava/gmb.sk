@@ -1,5 +1,4 @@
 const plugin = require('tailwindcss/plugin')
-const { join } = require('path')
 
 const scrollBarHide = plugin(function ({ addUtilities }) {
   addUtilities({
@@ -15,20 +14,28 @@ const scrollBarHide = plugin(function ({ addUtilities }) {
   })
 })
 
+/** This utility helps us to fluidly determine the sizes, e.g. for icons, paddings, margins, etc.
+ *  It computes factor in rem. Use it as dw-[size] where size is the desired size on FHD screen (3xl) in pixels.
+ *  Use it without units (e.g. dw-[30], not dw-[30px])
+ */
 const dynamicSizing = plugin(({ matchUtilities }) => {
   matchUtilities({
     dw: (value) => ({
-      width: `calc(${value}*var(--icon-size-factor))`,
+      width: `calc(${value}*var(--size-factor))`,
     }),
     dh: (value) => ({
-      height: `calc(${value}*var(--icon-size-factor))`,
+      height: `calc(${value}*var(--size-factor))`,
     }),
   })
 })
 
 module.exports = {
-  content: [join(__dirname, 'pages/**/*.{js,jsx,ts,tsx}'), join(__dirname, 'components/**/*.{js,jsx,ts,tsx}')],
-  darkMode: 'media', // or 'class'
+  content: ['./pages/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
+  plugins: [scrollBarHide, dynamicSizing, require('@tailwindcss/line-clamp'), require('@tailwindcss/aspect-ratio')],
+  corePlugins: {
+    container: false,
+    aspectRatio: false, // https://tailwindcss.com/docs/aspect-ratio#browser-support
+  },
   theme: {
     fontSize: {
       xxl: ['var(--font-size-xxl)', 'var(--line-height-xxl)'],
@@ -49,18 +56,21 @@ module.exports = {
       heavy: '900',
     },
     screens: {
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1280px',
-      '2xl': '1536px',
-      '3xl': '1920px',
+      xs: '374px', // phone portrait, design was made for 374px
+      sm: '640px', // phone landscape
+      md: '768px', // iPad portrait
+      lg: '1024px', // iPad landscape
+      xl: '1280px', // small desktop
+      '1.5xl': '1366px', // medium desktop
+      '2xl': '1536px', // bigger desktop
+      '3xl': '1920px', // large desktop full hd - the most standard
+      '4xl': '2560px', // extra large desktop
     },
     extend: {
       colors: {
         gmbDark: '#141414',
         gmbLightGray: '#efefef',
-        gmbGray: '#a0a0a0',
+        gmbGray: '#757575',
         white: '#ffffff',
       },
       spacing: {
@@ -71,20 +81,16 @@ module.exports = {
         yMd: 'var(--padding-y-md)',
         yLg: 'var(--padding-y-lg)',
         yXl: 'var(--padding-y-xl)',
-        nav: 'var(--height-nav)',
+        nav: 'var(--nav-height)',
         sidepanel: 'var(--sidepanel-width)',
         ticketSidebar: 'var(--ticket-sidebar-width)',
         logoHeight: 'var(--logo-height)',
         logoWidth: 'var(--logo-width)',
       },
       minHeight: {
-        ticket: 'var(--height-ticket)',
+        ticket: 'var(--ticket-height)',
+        chessboardTile: 'var(--chessboard-height)',
       },
     },
   },
-  corePlugins: {
-    container: false,
-  },
-  mode: 'jit',
-  plugins: [scrollBarHide, dynamicSizing],
 }

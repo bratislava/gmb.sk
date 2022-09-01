@@ -16,7 +16,7 @@ const Tag = ({ title, isActive = false, onClick }: ITagPRops) => {
       tabIndex={0}
       aria-pressed={isActive}
       className={cx(
-        'flex justify-center text-center border-2 border-white px-[calc(30px*var(--icon-size-factor))] py-[calc(12px*var(--icon-size-factor))] uppercase text-nav',
+        'flex justify-center border-2 border-white px-[calc(30*var(--size-factor))] py-[calc(12*var(--size-factor))] text-center text-nav uppercase',
         {
           'bg-white text-gmbDark': isActive,
         }

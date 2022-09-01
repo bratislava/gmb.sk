@@ -34,10 +34,10 @@
       },
       "type": "dynamiczone",
       "components": [
-        "sections.contact-section",
         "sections.news-section",
         "sections.newsletter-section",
-        "sections.page-section"
+        "sections.page-section",
+        "sections.opening-hours-section"
       ]
     },
     "partners": {

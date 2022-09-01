@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import React from 'react'
 
 import Page from '../components/pages/Page'
 import { AboutUsPageQuery, NewsQuery } from '../graphql'
@@ -10,11 +9,11 @@ import { hasAttributes, withAttributes } from '../utils/isDefined'
 
 interface AboutProps {
   aboutUsPage: AboutUsPageQuery['aboutUsPage']
-  contact: AboutUsPageQuery['contact']
+  general: AboutUsPageQuery['general']
   news: NewsQuery['news']
 }
 
-const About = ({ aboutUsPage, contact, news }: AboutProps) => {
+const About = ({ aboutUsPage, general, news }: AboutProps) => {
   const { t } = useTranslation()
 
   if (!aboutUsPage) {
@@ -25,14 +24,14 @@ const About = ({ aboutUsPage, contact, news }: AboutProps) => {
     <Page
       page={aboutUsPage}
       title={t('navigation.aboutGallery')}
-      contactInfo={withAttributes(contact?.data)}
+      contactInfo={withAttributes(general?.data)}
       newsItems={news?.data.filter(hasAttributes)}
     />
   )
 }
 
 export const getStaticProps: GetStaticProps<AboutProps> = async ({ locale = 'sk' }) => {
-  const [{ aboutUsPage, contact }, { news }, translations] = await Promise.all([
+  const [{ aboutUsPage, general }, { news }, translations] = await Promise.all([
     client.AboutUsPage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
     serverSideTranslations(locale, ['common']),
@@ -41,7 +40,7 @@ export const getStaticProps: GetStaticProps<AboutProps> = async ({ locale = 'sk'
   return {
     props: {
       aboutUsPage,
-      contact,
+      general,
       news,
       ...translations,
     },

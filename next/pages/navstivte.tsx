@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import React from 'react'
 
 import Page from '../components/pages/Page'
 import { NewsQuery, VisitUsPageQuery } from '../graphql'
@@ -11,12 +10,12 @@ import { getRouteForLocale } from '../utils/localeRoutes'
 
 interface VisitUsProps {
   visitUsPage: VisitUsPageQuery['visitUsPage']
-  contact: VisitUsPageQuery['contact']
+  general: VisitUsPageQuery['general']
   news: NewsQuery['news']
   tickets: VisitUsPageQuery['tickets']
 }
 
-const VisitUs = ({ visitUsPage, contact, news, tickets }: VisitUsProps) => {
+const VisitUs = ({ visitUsPage, general, news, tickets }: VisitUsProps) => {
   const { t } = useTranslation()
 
   if (!visitUsPage) {
@@ -27,7 +26,7 @@ const VisitUs = ({ visitUsPage, contact, news, tickets }: VisitUsProps) => {
     <Page
       page={visitUsPage}
       title={t('navigation.visitUs')}
-      contactInfo={withAttributes(contact?.data)}
+      contactInfo={withAttributes(general?.data)}
       newsItems={news?.data.filter(hasAttributes)}
       tickets={tickets?.data.filter(hasAttributes)}
     />
@@ -35,7 +34,7 @@ const VisitUs = ({ visitUsPage, contact, news, tickets }: VisitUsProps) => {
 }
 
 export const getStaticProps: GetStaticProps<VisitUsProps> = async ({ locale = 'sk' }) => {
-  const [{ visitUsPage, contact, tickets }, { news }, translations] = await Promise.all([
+  const [{ visitUsPage, general, tickets }, { news }, translations] = await Promise.all([
     client.VisitUsPage({ locale }),
     client.News({ locale, tag: getRouteForLocale('aktuality', locale) }),
     serverSideTranslations(locale, ['common']),
@@ -44,7 +43,7 @@ export const getStaticProps: GetStaticProps<VisitUsProps> = async ({ locale = 's
   return {
     props: {
       visitUsPage,
-      contact,
+      general,
       news,
       tickets,
       ...translations,

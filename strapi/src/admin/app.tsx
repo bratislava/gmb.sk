@@ -8,7 +8,7 @@ export default {
 
     // Disable notifications about new Strapi releases
     notifications: {
-      release: false,
+      releases: false,
     },
   },
   bootstrap() {},

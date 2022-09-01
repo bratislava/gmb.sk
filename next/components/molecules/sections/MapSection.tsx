@@ -1,11 +1,11 @@
 import { useTranslation } from 'next-i18next'
 
-import { ContactEntityFragment } from '../../../graphql'
+import { GeneralEntityFragment } from '../../../graphql'
 import Map from '../Map'
 import Section from './Section'
 
 interface IMapSectionProps {
-  contactInfo?: ContactEntityFragment
+  contactInfo?: GeneralEntityFragment
   title?: string
   anchor?: string
 }

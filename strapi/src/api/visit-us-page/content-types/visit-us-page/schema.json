@@ -36,11 +36,11 @@
       "components": [
         "sections.page-section",
         "sections.news-section",
-        "sections.contact-section",
         "sections.newsletter-section",
         "sections.richtext-section",
         "sections.tickets-section",
-        "sections.map-section"
+        "sections.map-section",
+        "sections.opening-hours-section"
       ]
     },
     "seo": {

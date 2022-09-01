@@ -1,6 +1,5 @@
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import React from 'react'
 
 import ExhibitionsPage from '../components/pages/ExhibitionsPage'
 import { ExhibitionsPageQuery, PlacesQuery, TagsByCategorySlugQuery } from '../graphql'
@@ -14,7 +13,7 @@ interface ExhibitionsProps {
   exhibitions: ExhibitionsPageQuery['exhibitions']
   permanentExhibitions: ExhibitionsPageQuery['permanentExhibitions']
   additionalProgram: ExhibitionsPageQuery['additionalProgram']
-  contact: ExhibitionsPageQuery['contact']
+  general: ExhibitionsPageQuery['general']
   tagsProgram: TagsByCategorySlugQuery['tagCategoryBySlug']
   tagsTargetGroups: TagsByCategorySlugQuery['tagCategoryBySlug']
   tagsLanguages: TagsByCategorySlugQuery['tagCategoryBySlug']
@@ -28,7 +27,7 @@ const Exhibitions = ({
   exhibitions,
   permanentExhibitions,
   additionalProgram,
-  contact,
+  general,
   tagsProgram,
   tagsTargetGroups,
   tagsLanguages,
@@ -46,7 +45,7 @@ const Exhibitions = ({
       exhibitions={exhibitions?.data.filter(hasAttributes)}
       permanentExhibitions={permanentExhibitions?.data.filter(hasAttributes)}
       additionalProgram={additionalProgram?.data.filter(hasAttributes)}
-      contactInfo={withAttributes(contact?.data)}
+      contactInfo={withAttributes(general?.data)}
       tagsProgram={tagsProgram?.data?.attributes?.tags?.data.filter(hasAttributes)}
       tagsTargetGroups={tagsTargetGroups?.data?.attributes?.tags?.data.filter(hasAttributes)}
       tagsLanguages={tagsLanguages?.data?.attributes?.tags?.data.filter(hasAttributes)}
@@ -101,7 +100,7 @@ export const getStaticProps: GetStaticProps<ExhibitionsProps> = async ({ locale 
       .map((tag) => tag.attributes.slug)
       .filter((slug) => slug !== tagExhibitions && slug !== tagPermanentExhibitions) ?? []
 
-  const { exhibitionsPage, exhibitions, permanentExhibitions, additionalProgram, contact } =
+  const { exhibitionsPage, exhibitions, permanentExhibitions, additionalProgram, general } =
     await client.ExhibitionsPage({
       locale,
       today,
@@ -116,7 +115,7 @@ export const getStaticProps: GetStaticProps<ExhibitionsProps> = async ({ locale 
       exhibitions,
       permanentExhibitions,
       additionalProgram,
-      contact,
+      general,
       tagsProgram,
       tagsTargetGroups,
       tagsLanguages,

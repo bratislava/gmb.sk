@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import React from 'react'
 
 import Page from '../components/pages/Page'
 import { GetInvolvedPageQuery, HomePageQuery, NewsQuery } from '../graphql'
@@ -10,11 +9,11 @@ import { hasAttributes, withAttributes } from '../utils/isDefined'
 
 interface GetInvolvedProps {
   getInvolvedPage: GetInvolvedPageQuery['getInvolvedPage']
-  contact: HomePageQuery['contact']
+  general: HomePageQuery['general']
   news: NewsQuery['news']
 }
 
-const GetInvolved = ({ getInvolvedPage, contact, news }: GetInvolvedProps) => {
+const GetInvolved = ({ getInvolvedPage, general, news }: GetInvolvedProps) => {
   const { t } = useTranslation()
 
   if (!getInvolvedPage) {
@@ -25,14 +24,14 @@ const GetInvolved = ({ getInvolvedPage, contact, news }: GetInvolvedProps) => {
     <Page
       page={getInvolvedPage}
       title={t('navigation.getInvolved')}
-      contactInfo={withAttributes(contact?.data)}
+      contactInfo={withAttributes(general?.data)}
       newsItems={news?.data.filter(hasAttributes)}
     />
   )
 }
 
 export const getStaticProps: GetStaticProps<GetInvolvedProps> = async ({ locale = 'sk' }) => {
-  const [{ getInvolvedPage, contact }, { news }, translations] = await Promise.all([
+  const [{ getInvolvedPage, general }, { news }, translations] = await Promise.all([
     client.GetInvolvedPage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
     serverSideTranslations(locale, ['common']),
@@ -41,7 +40,7 @@ export const getStaticProps: GetStaticProps<GetInvolvedProps> = async ({ locale 
   return {
     props: {
       getInvolvedPage,
-      contact,
+      general,
       news,
       ...translations,
     },

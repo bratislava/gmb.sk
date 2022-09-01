@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next'
-import React from 'react'
+import { ReactNode } from 'react'
 import Modal from 'react-modal'
 
 import CloseIcon from '../../assets/icons/close-x.svg'
@@ -11,7 +11,7 @@ interface ISubmenuModalProps {
   isOpen: boolean
   onClose: () => void
   items?: string[]
-  filters?: React.ReactNode
+  filters?: ReactNode
 }
 
 const SubmenuModal = ({ isOpen, onClose, items, filters }: ISubmenuModalProps) => {
@@ -27,8 +27,8 @@ const SubmenuModal = ({ isOpen, onClose, items, filters }: ISubmenuModalProps) =
       className="absolute min-h-screen rounded-none border-0 bg-gmbDark p-6 text-white lg:hidden"
     >
       <div className="flex max-h-full flex-col">
-        <button className="absolute right-xSm top-ySm" onClick={onClose}>
-          <CloseIcon fill="#fff" className="dw-[30px] dh-[30px]" />
+        <button type="button" className="absolute right-6 top-7 text-white" onClick={onClose}>
+          <CloseIcon className="dw-[30] dh-[30]" />
         </button>
         <div className="mt-20 flex w-full shrink-0 grow-0 flex-col items-center gap-yMd text-white">
           {items?.map((item, index) => (

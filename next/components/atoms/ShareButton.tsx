@@ -1,11 +1,11 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 
-import EmailIcon from '../../assets/icons/social-platforms/E-mail.svg'
-import FacebookIcon from '../../assets/icons/social-platforms/Facebook.svg'
-import LinkedInIcon from '../../assets/icons/social-platforms/LinkedIn.svg'
-import TwitterIcon from '../../assets/icons/social-platforms/Twitter.svg'
-import WhatsAppIcon from '../../assets/icons/social-platforms/WhatsApp.svg'
+import EmailIcon from '../../assets/icons/social-platforms/email.svg'
+import FacebookIcon from '../../assets/icons/social-platforms/facebook.svg'
+import LinkedInIcon from '../../assets/icons/social-platforms/linkedin.svg'
+import TwitterIcon from '../../assets/icons/social-platforms/twitter.svg'
+import WhatsAppIcon from '../../assets/icons/social-platforms/whatsapp.svg'
 import { capitalizeFirstLetter } from '../../utils/capitalize'
 import { getNextUrl } from '../../utils/getNextUrl'
 import Link from './Link'
@@ -65,7 +65,7 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
       aria-label={t(`common.shareOn${capitalizeFirstLetter(platform)}`)}
     >
       <span className={cx(className)}>
-        <ShareIcon {...size} className="dw-[32px]" />
+        <ShareIcon {...size} className="dw-[32]" />
       </span>
     </Link>
   )

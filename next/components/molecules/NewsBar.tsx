@@ -11,7 +11,7 @@ interface NewsBarProps {
   newsItem: WithAttributes<NewsItemEntityFragment>
 }
 
-export const NewsBar = ({ newsItem }: NewsBarProps) => {
+const NewsBar = ({ newsItem }: NewsBarProps) => {
   const { t } = useTranslation()
   const router = useRouter()
 

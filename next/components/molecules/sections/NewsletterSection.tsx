@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
-import React from 'react'
+import { useEffect, useRef, useState } from 'react'
 import MailchimpSubscribe from 'react-mailchimp-subscribe'
 
-import NewsletterImg from '../../../assets/images/newsletterimg.png'
+import NewsletterImg from '../../../assets/images/v-obraze-white.png'
 import Button from '../../atoms/Button'
+import Checkbox from '../../atoms/Checkbox'
 import Section from './Section'
 
 export interface NewsletterSectionProps {
@@ -13,10 +14,13 @@ export interface NewsletterSectionProps {
 
 const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
   const { t } = useTranslation()
-  const [email, setEmail] = React.useState('')
-  const [agree, setAgree] = React.useState(false)
-  const [emailError, setEmailError] = React.useState<string>('')
-  const [agreeError, setAgreeError] = React.useState<string>('')
+  const [email, setEmail] = useState('')
+  const [agree, setAgree] = useState(false)
+  const [emailError, setEmailError] = useState<string>('')
+  const [agreeError, setAgreeError] = useState<string>('')
+
+  const emailRef = useRef<HTMLInputElement>(null)
+  const agreeRef = useRef<HTMLInputElement>(null)
 
   const clear = () => {
     setEmail('')
@@ -24,6 +28,10 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
     setEmailError('')
     setAgreeError('')
   }
+
+  useEffect(() => {
+    setAgreeError('')
+  }, [agree])
 
   const isFormValid = (): boolean => {
     const newAgreeError = !agree ? t('errors.fieldMandatory') : ''
@@ -41,6 +49,14 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
 
     setEmailError(newEmailError)
     setAgreeError(newAgreeError)
+
+    if (newAgreeError) {
+      agreeRef?.current?.focus()
+    }
+
+    if (newEmailError) {
+      emailRef?.current?.focus()
+    }
 
     return !newEmailError && !newAgreeError
   }
@@ -60,7 +76,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
 
         <MailchimpSubscribe
           url="https://gmb.us3.list-manage.com/subscribe/post?u=26c2efb55660fd966cd447999&id=e18d8cb372"
-          render={({ subscribe }) => {
+          render={({ subscribe, status }) => {
             const handleSubmit = () => {
               if (isFormValid()) {
                 subscribe({
@@ -69,66 +85,72 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                 clear()
               }
             }
+
             return (
-              <div>
-                <p className="pt-yLg text-xl">{t('newsletter.beInformedEvents')}</p>
-                <div className="flex flex-col gap-xMd pt-10 pb-2 md:flex-row">
+              <>
+                <p className="py-yLg text-xl">{t('newsletter.beInformedEvents')}</p>
+                <label htmlFor="email-input" className="text-md">
+                  {t('newsletter.insertEmail')}
+                  <span className="pl-[6px] text-red-500">*</span>
+                </label>
+                <div className="flex flex-col gap-xMd py-2 md:flex-row">
                   <div className="grow">
                     <input
-                      className="w-full border-2 border-white bg-transparent p-2 py-[calc(18px*var(--icon-size-factor))] text-btn"
+                      id="email-input"
+                      className="w-full border-2 border-white bg-transparent p-2 py-[calc(18*var(--size-factor))] text-btn"
                       onChange={(e) => setEmail(e.target.value)}
                       value={email}
                       type="email"
                       required
-                      placeholder={t('newsletter.insertEmail')}
                       aria-invalid={emailError !== ''}
-                      aria-labelledby="email-error"
+                      ref={emailRef}
                     />
                     {emailError ? (
-                      <p id="email-error" className="text-red-500 ">
+                      <label htmlFor="email-input" id="email-error" className="text-red-500">
+                        <span className="sr-only">{t('errors.error')}: </span>
                         {emailError}
-                      </p>
+                      </label>
                     ) : null}
-                    <div className="my-6 flex w-full items-center">
-                      <input
-                        id="gdprCheckbox"
-                        type="checkbox"
-                        className="relative mr-xSm mt-[-1px] box-border inline-block h-[var(--font-size-btn)] w-[var(--font-size-btn)] flex-none cursor-pointer appearance-none border-2 border-white bg-transparent after:absolute after:top-[-1px] after:left-0 after:inline-block after:text-btn after:font-heavy after:leading-[var(--font-size-btn)] after:text-[#000] after:content-[''] checked:bg-white checked:after:content-['✔']"
-                        checked={agree}
-                        required
-                        onChange={() => setAgree((prev) => !prev)}
-                        aria-labelledby="agree-error"
-                        aria-invalid={agreeError !== ''}
-                      />
-                      <label
-                        htmlFor="gdprCheckbox"
-                        className="cursor-pointer select-none overflow-x-hidden whitespace-nowrap text-btn"
-                      >
+                    <div className="mt-6 flex w-full items-center lg:whitespace-nowrap">
+                      <Checkbox isSelected={agree} onChange={setAgree} hasError={!!agreeError}>
                         {t('common.gdprAccept')}
                         <span className="pl-[6px] text-red-500">*</span>
-                      </label>
+                      </Checkbox>
                     </div>
                     {agreeError ? (
-                      <p id="agree-error" className="-mt-3 pb-5 text-red-500">
+                      <label htmlFor="gdprCheckbox" id="agree-error" className="-mt-3 pb-5 text-red-500">
+                        <span className="sr-only">{t('errors.error')}: </span>
                         {agreeError}
-                      </p>
+                      </label>
                     ) : null}
+
+                    {status === 'error' ? (
+                      <p className="pt-10 text-sm text-red-600">{t('newsletter.failure')}</p>
+                    ) : null}
+                    {status === 'success' ? (
+                      <p className="pt-10 text-sm text-green-600">{t('newsletter.success')}</p>
+                    ) : null}
+                    {status === 'sending' ? <p className="pt-10 text-sm">{t('newsletter.sending')}</p> : null}
                   </div>
                   <div>
-                    <Button color="light" onClick={handleSubmit} className="whitespace-nowrap" type="submit">
+                    <Button
+                      color="light"
+                      onClick={handleSubmit}
+                      className="whitespace-nowrap"
+                      type="submit"
+                      disabled={status === 'sending'}
+                    >
                       {t('common.login')}
                     </Button>
                   </div>
                 </div>
-              </div>
+              </>
             )
           }}
         />
       </div>
-      <div className="mb-yMd flex justify-center lg:mb-0 lg:w-2/6 ">
-        <div className="flex w-full justify-center lg:block">
-          <Image src={NewsletterImg} alt="newsletter" unoptimized />
-        </div>
+      <div className="relative mb-yMd text-center lg:mb-0 lg:w-2/6 ">
+        <Image src={NewsletterImg} alt="newsletter" unoptimized />
       </div>
     </Section>
   )

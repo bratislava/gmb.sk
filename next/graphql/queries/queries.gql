@@ -74,9 +74,9 @@ query ContentPageBySlug($locale: I18NLocaleCode!, $slug: String!, $isPublished: 
       ...ContentPageEntity
     }
   }
-  contact(locale: $locale) {
+  general(locale: $locale) {
     data {
-      ...ContactEntity
+      ...GeneralEntity
     }
   }
 }
@@ -137,9 +137,9 @@ query AboutUsPage($locale: I18NLocaleCode!) {
       }
     }
   }
-  contact(locale: $locale) {
+  general(locale: $locale) {
     data {
-      ...ContactEntity
+      ...GeneralEntity
     }
   }
 }
@@ -168,9 +168,9 @@ query HomePage($locale: I18NLocaleCode!) {
       }
     }
   }
-  contact(locale: $locale) {
+  general(locale: $locale) {
     data {
-      ...ContactEntity
+      ...GeneralEntity
     }
   }
 }
@@ -192,9 +192,9 @@ query CollectionPage($locale: I18NLocaleCode!) {
       }
     }
   }
-  contact(locale: $locale) {
+  general(locale: $locale) {
     data {
-      ...ContactEntity
+      ...GeneralEntity
     }
   }
 }
@@ -216,9 +216,9 @@ query GetInvolvedPage($locale: I18NLocaleCode!) {
       }
     }
   }
-  contact(locale: $locale) {
+  general(locale: $locale) {
     data {
-      ...ContactEntity
+      ...GeneralEntity
     }
   }
 }
@@ -245,9 +245,9 @@ query VisitUsPage($locale: I18NLocaleCode!) {
       ...TicketEntity
     }
   }
-  contact(locale: $locale) {
+  general(locale: $locale) {
     data {
-      ...ContactEntity
+      ...GeneralEntity
     }
   }
 }
@@ -266,9 +266,9 @@ query ExplorePage($locale: I18NLocaleCode!) {
       }
     }
   }
-  contact(locale: $locale) {
+  general(locale: $locale) {
     data {
-      ...ContactEntity
+      ...GeneralEntity
     }
   }
 }
@@ -295,10 +295,7 @@ query ExhibitionsPage(
   }
   exhibitions: contentPages(
     locale: $locale
-    filters: {
-      tags: { slug: { eq: $tagExhibitions } }
-      or: [{ dateFrom: { gte: $today } }, { dateTo: { gte: $today } }]
-    }
+    filters: { tags: { slug: { eq: $tagExhibitions } }, dateTo: { gte: $today } }
   ) {
     data {
       ...SectionItemEntity
@@ -306,10 +303,7 @@ query ExhibitionsPage(
   }
   permanentExhibitions: contentPages(
     locale: $locale
-    filters: {
-      tags: { slug: { eq: $tagPermanentExhibitions } }
-      or: [{ dateFrom: { gte: $today } }, { dateTo: { gte: $today } }]
-    }
+    filters: { tags: { slug: { eq: $tagPermanentExhibitions } }, dateFrom: { lte: $today } }
   ) {
     data {
       ...SectionItemEntity
@@ -317,26 +311,23 @@ query ExhibitionsPage(
   }
   additionalProgram: contentPages(
     locale: $locale
-    filters: {
-      tags: { slug: { in: $tagsAdditionalProgram } }
-      or: [{ dateFrom: { gte: $today } }, { dateTo: { gte: $today } }]
-    }
+    filters: { tags: { slug: { in: $tagsAdditionalProgram } }, dateTo: { gte: $today } }
   ) {
     data {
       ...SectionItemEntity
     }
   }
-  contact(locale: $locale) {
+  general(locale: $locale) {
     data {
-      ...ContactEntity
+      ...GeneralEntity
     }
   }
 }
 
 query DisclosureOfInformationPage($locale: I18NLocaleCode!) {
-  contact(locale: $locale) {
+  general(locale: $locale) {
     data {
-      ...ContactEntity
+      ...GeneralEntity
       attributes {
         disclosureMoreFiles {
           title
@@ -351,9 +342,9 @@ query DisclosureOfInformationPage($locale: I18NLocaleCode!) {
 }
 
 query ErrorPage($locale: I18NLocaleCode!) {
-  contact(locale: $locale) {
+  general(locale: $locale) {
     data {
-      ...ContactEntity
+      ...GeneralEntity
     }
   }
 }

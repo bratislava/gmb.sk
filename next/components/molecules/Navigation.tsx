@@ -4,10 +4,10 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import React from 'react'
+import { useEffect, useState } from 'react'
 
-import HamburgerIcon from '../../assets/icons/ba-hamburger.svg'
 import CloseIcon from '../../assets/icons/close-x.svg'
+import HamburgerIcon from '../../assets/icons/menu.svg'
 import SearchIcon from '../../assets/icons/search.svg'
 import Logo from '../../assets/images/gmb-logo-header.png'
 import { ContentPageEntityFragment } from '../../graphql'
@@ -15,7 +15,6 @@ import { withAttributes } from '../../utils/isDefined'
 import AppLangSwitchers from '../atoms/AppLangSwitchers'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
-import NavLink from '../atoms/NavLink'
 import SkipNavigation from '../atoms/SkipNavigation'
 import SearchBar from './SearchBar'
 
@@ -27,11 +26,11 @@ const Navigation = ({ contentPage }: NavigationProps) => {
   const { t, i18n } = useTranslation()
   const router = useRouter()
 
-  const [isSearchBarOpen, setIsSearchBarOpen] = React.useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
+  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   gsap.registerPlugin(ScrollTrigger)
-  React.useEffect(() => {
+  useEffect(() => {
     gsap.to('#navLogoText', {
       bottom: '+=120',
       ease: 'none',
@@ -44,7 +43,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
     })
   }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     router.events.on('routeChangeStart', closeMobileMenu)
 
     return () => {
@@ -52,7 +51,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
     }
   }, [router.events])
 
-  React.useEffect(() => {
+  useEffect(() => {
     router.events.on('routeChangeComplete', closeSearchBar)
 
     return () => {
@@ -60,7 +59,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
     }
   }, [router.events])
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.body.style.overflow = isSearchBarOpen ? 'hidden' : 'auto'
     return () => {
       document.body.style.overflow = 'auto'
@@ -100,7 +99,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
               <span
                 id="navLogoText"
-                className="absolute ml-4 whitespace-nowrap pl-logoWidth text-sm leading-[var(--font-size-sm)] group-hover:underline"
+                className="relative ml-4 whitespace-nowrap text-sm leading-[var(--font-size-sm)] group-hover:underline"
               >
                 {i18n.language === 'sk' ? t('common.cityGallery') : t('common.bratislavaGenitiv')}
                 <br />
@@ -111,36 +110,37 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
           <button type="button" className="-mr-5 flex p-5 lg:hidden" onClick={toggleMobileMenu} aria-label="Menu">
             {isMobileMenuOpen ? (
-              <CloseIcon className="dw-[30px] dh-[30px]" />
+              <CloseIcon className="dw-[30] dh-[30]" />
             ) : (
-              <HamburgerIcon className="dw-[30px] dh-[30px]" />
+              <HamburgerIcon className="ml-[-5] dw-[30] dh-[30]" width={20} height={20} />
             )}
           </button>
 
           <div
             className={cx('lg:flex lg:gap-x-xMd', {
-              'absolute w-full left-0 top-nav bg-white flex flex-col items-center justify-center gap-7 pb-12':
+              'absolute left-0 top-nav flex w-full flex-col items-center justify-center gap-7 bg-white pb-12':
                 isMobileMenuOpen,
               hidden: !isMobileMenuOpen,
             })}
           >
-            <NavLink url="/vystavy">{t('navigation.exhibitionsEvents')}</NavLink>
-            <NavLink url="/objavujte">{t('navigation.explore')}</NavLink>
-            <NavLink url="/o-galerii">{t('navigation.aboutGallery')}</NavLink>
-            <NavLink url="/zapojte-sa">{t('navigation.getInvolved')}</NavLink>
-            <NavLink url="/zbierky">{t('navigation.collections')}</NavLink>
+            <Link href="/vystavy">{t('navigation.exhibitionsEvents')}</Link>
+            <Link href="/objavujte">{t('navigation.explore')}</Link>
+            <Link href="/o-galerii">{t('navigation.aboutGallery')}</Link>
+            <Link href="/zapojte-sa">{t('navigation.getInvolved')}</Link>
+            <Link href="/zbierky">{t('navigation.collections')}</Link>
 
-            <Button size="small" href="/navstivte" role="link">
+            <Button size="small" href="/navstivte">
               {t('navigation.visitUs')}
             </Button>
 
             <button type="button" className="-ml-4 px-2" onClick={toggleSearchBar} aria-label={t('common.search')}>
-              <SearchIcon className="dw-[36px]" />
+              <SearchIcon className="dw-[36]" />
             </button>
 
-            <div className="text-gray-500 lg:hidden">
+            {/* TODO show switchers when EN content is ready */}
+            {/* <div className="text-gray-500 lg:hidden">
               <AppLangSwitchers contentPage={withAttributes(contentPage) ?? undefined} />
-            </div>
+            </div> */}
           </div>
         </div>
       </nav>

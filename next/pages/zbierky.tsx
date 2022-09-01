@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import React from 'react'
 
 import Page from '../components/pages/Page'
 import { CollectionPageQuery, HomePageQuery, NewsQuery } from '../graphql'
@@ -10,11 +9,11 @@ import { hasAttributes, withAttributes } from '../utils/isDefined'
 
 interface CollectionProps {
   collectionsPage: CollectionPageQuery['collectionsPage']
-  contact: HomePageQuery['contact']
+  general: HomePageQuery['general']
   news: NewsQuery['news']
 }
 
-export const Collection = ({ collectionsPage, contact, news }: CollectionProps) => {
+export const Collection = ({ collectionsPage, general, news }: CollectionProps) => {
   const { t } = useTranslation()
 
   if (!collectionsPage) {
@@ -25,14 +24,14 @@ export const Collection = ({ collectionsPage, contact, news }: CollectionProps) 
     <Page
       page={collectionsPage}
       title={t('navigation.collections')}
-      contactInfo={withAttributes(contact?.data)}
+      contactInfo={withAttributes(general?.data)}
       newsItems={news?.data.filter(hasAttributes)}
     />
   )
 }
 
 export const getStaticProps: GetStaticProps<CollectionProps> = async ({ locale = 'sk' }) => {
-  const [{ collectionsPage, contact }, { news }, translations] = await Promise.all([
+  const [{ collectionsPage, general }, { news }, translations] = await Promise.all([
     client.CollectionPage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
     serverSideTranslations(locale, ['common']),
@@ -41,7 +40,7 @@ export const getStaticProps: GetStaticProps<CollectionProps> = async ({ locale =
   return {
     props: {
       collectionsPage,
-      contact,
+      general,
       news,
       ...translations,
     },

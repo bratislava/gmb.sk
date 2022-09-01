@@ -11,8 +11,7 @@ import CityGalleryMarkdown from '../atoms/CityGalleryMarkdown'
 import Link from '../atoms/Link'
 import MobileShareButton from '../atoms/MobileShareButton'
 import ShareButton from '../atoms/ShareButton'
-import { SidePanelPlace } from '../atoms/SidePanelPlace'
-import { SidePanelTime } from '../atoms/SidePanelTime'
+import PlaceTime from './PlaceTime'
 
 interface SidePanelProps {
   overrideText?: string
@@ -43,6 +42,7 @@ const SidePanel = ({
 }: SidePanelProps) => {
   const { t } = useTranslation()
   const [isMobile, setIsMobile] = useState(false)
+
   useEffect(() => {
     // Solution for mobile detection from: https://stackoverflow.com/a/58171659
     let hasTouchScreen = false
@@ -92,21 +92,16 @@ const SidePanel = ({
 
   if (overrideText) {
     return (
-      <aside className={cx(className, 'flex flex-col justify-between w-full space-y-10 bg-white lg:space-y-20')}>
+      <aside className={cx(className, 'flex w-full flex-col justify-between space-y-10 bg-white lg:space-y-20')}>
         <CityGalleryMarkdown content={overrideText} />
       </aside>
     )
   }
-
   return (
-    <aside className={cx(className, 'flex flex-col justify-between w-full space-y-yLg bg-white')}>
+    <aside className={cx(className, 'flex w-full flex-col justify-between gap-yLg bg-white empty:hidden')}>
       {perex && <p className="text-md">{perex}</p>}
 
-      {/* TODO hide this div is there is no datetime and place, otherwise, it causes margin-top to next element */}
-      <div className="grid grid-cols-2">
-        {place && <SidePanelPlace placeFragment={place} />}
-        {datetime && <SidePanelTime datetime={datetime} />}
-      </div>
+      <PlaceTime place={place} datetime={datetime} />
 
       {datetime?.showRemainingTime && daysLeft > 0 && (
         <div className="text-xxl">

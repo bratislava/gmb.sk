@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
-import React, { useEffect } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import Consent from 'react-cookie-consent'
 import Modal from 'react-modal'
 
@@ -16,15 +16,15 @@ import Link from '../atoms/Link'
 const CookieConsent = () => {
   const { t, i18n } = useTranslation()
 
-  const [isCookiesSettingsOpen, setIsCookiesSettingsOpen] = React.useState(false)
-  const [isConsentSubmitted, setConsent] = React.useState(false)
-  const [openPanel, setPanel] = React.useState<string>(t('cookieConsent.securityEssentialTitle'))
+  const [isCookiesSettingsOpen, setIsCookiesSettingsOpen] = useState(false)
+  const [isConsentSubmitted, setConsent] = useState(false)
+  const [openPanel, setPanel] = useState<string>(t('cookieConsent.securityEssentialTitle'))
 
   const persistedCookies = getGDPRCookies()
 
-  const [securityCookies] = React.useState(persistedCookies.securityCookies)
-  const [performanceCookies, setPerformanceCookies] = React.useState(persistedCookies.performanceCookies)
-  const [advertisingAndTargetingCookies, setAdvertisingAndTargetingCookies] = React.useState(
+  const [securityCookies] = useState(persistedCookies.securityCookies)
+  const [performanceCookies, setPerformanceCookies] = useState(persistedCookies.performanceCookies)
+  const [advertisingAndTargetingCookies, setAdvertisingAndTargetingCookies] = useState(
     persistedCookies.advertisingAndTargetingCookies
   )
 
@@ -72,13 +72,13 @@ const CookieConsent = () => {
         isOpen={isCookiesSettingsOpen}
         onRequestClose={closeCookiesSettings}
         ariaHideApp={false}
-        className="fixed top-[calc(50%+var(--height-nav))] left-1/2 z-50 mx-auto mt-yMd h-fit w-10/12 translate-y-[calc(-50%-var(--height-nav))] -translate-x-1/2 border-0 border-r-0 bg-white p-0 lg:top-1/2 lg:mt-0 lg:w-7/12 lg:-translate-y-1/2"
+        className="fixed top-[calc(50%+var(--nav-height))] left-1/2 z-50 mx-auto mt-yMd h-fit w-10/12 translate-y-[calc(-50%-var(--nav-height))] -translate-x-1/2 border-0 border-r-0 bg-white p-0 lg:top-1/2 lg:mt-0 lg:w-7/12 lg:-translate-y-1/2"
       >
-        <div className="flex h-[calc(100vh-var(--height-nav)-2*var(--padding-y-md))] flex-col items-center overflow-hidden lg:max-h-[calc(100vh-2*var(--height-nav)-2*var(--padding-y-md))] lg:dh-[650px]">
+        <div className="flex h-[calc(100vh-var(--nav-height)-2*var(--padding-y-md))] flex-col items-center overflow-hidden lg:max-h-[calc(100vh-2*var(--nav-height)-2*var(--padding-y-md))] lg:dh-[650]">
           <div className="mb-[10px] flex w-full flex-[0_0_auto] items-center justify-between border-b py-ySm px-xSm">
             <h1 className="text-lg">{t('cookieConsent.modalTitle')}</h1>
             <button type="button" onClick={closeCookiesSettings} aria-label={t('cookieConsent.closeCookies')}>
-              <CloseIcon className="dw-[25px]" />
+              <CloseIcon className="dw-[25]" />
             </button>
           </div>
           <div className="flex min-h-0 flex-[1_1_auto] flex-col justify-between p-5">
@@ -154,7 +154,7 @@ const CookieConsent = () => {
         disableButtonStyles
         buttonWrapperClasses="flex flex-col gap-y-ySm"
         containerClasses={cx(
-          'fixed left-0 bottom-0 bg-white z-1 items-center text-black px-xMd py-ySm justify-between flex-nowrap gap-x-xMd',
+          'z-1 fixed left-0 bottom-0 flex-nowrap items-center justify-between gap-x-xMd bg-white px-xMd py-ySm text-black',
           {
             flex: !isCookiesSettingsOpen && !isConsentSubmitted,
             hidden: isCookiesSettingsOpen || isConsentSubmitted,
@@ -202,7 +202,7 @@ const Switch = ({ title, value, onValueChange, disabled }: SwitchProps) => {
       aria-disabled={disabled}
       tabIndex={0}
       className={cx(
-        'dw-[60px] dh-[30px] shrink-0 grow-0 flex items-center border-2 rounded-full border-gmbDark mx-3 px-0.5',
+        'mx-3 flex shrink-0 grow-0 items-center rounded-full border-2 border-gmbDark px-0.5 dw-[60] dh-[30]',
         {
           'justify-end bg-gmbDark': value,
           'bg-gmbGray': !value,
@@ -217,14 +217,14 @@ const Switch = ({ title, value, onValueChange, disabled }: SwitchProps) => {
         onClick={(e) => {
           if (disabled) e.stopPropagation()
         }}
-        className={cx('dw-[21px] dh-[21px] bg-white rounded-full shadow-md')}
+        className={cx('rounded-full bg-white shadow-md dw-[21] dh-[21]')}
       />
     </div>
   )
 }
 interface PanelProps {
   title: string
-  content: React.ReactNode
+  content: ReactNode
   value: boolean
   onValueChange: (value: boolean) => void
   isOpen: boolean
@@ -244,7 +244,7 @@ const Panel = ({ title, content, value, onValueChange, isOpen, setPanel }: Panel
       >
         <div className="flex items-center gap-xSm text-md text-black">
           <span>
-            {isOpen ? <ChevronDownIcon className="rotate-180 dw-[15px]" /> : <ChevronDownIcon className="dw-[15px]" />}
+            {isOpen ? <ChevronDownIcon className="rotate-180 dw-[15]" /> : <ChevronDownIcon className="dw-[15]" />}
           </span>
           <label htmlFor={`switch-${title}`}>{title}</label>
         </div>
@@ -256,8 +256,8 @@ const Panel = ({ title, content, value, onValueChange, isOpen, setPanel }: Panel
         />
       </div>
       <div
-        className={cx('text-md text-gray-universal-70 transform transition-all duration-200 ease-linear', {
-          'h-0 hidden': !isOpen,
+        className={cx('text-gray-universal-70 transform text-md transition-all duration-200 ease-linear', {
+          'hidden h-0': !isOpen,
           'mt-1 pb-yMd': isOpen,
         })}
       >

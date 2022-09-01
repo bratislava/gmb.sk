@@ -1,14 +1,15 @@
-import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
+import { useTranslation } from 'next-i18next'
 
-import { ContactEntityFragment, ContentPageEntityFragment } from '../../graphql'
+import { ContentPageEntityFragment, GeneralEntityFragment } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { getPurchaseId } from '../../utils/getPurchaseId'
-import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
+import { hasAttributes, isDefined, WithAttributes, withAttributes } from '../../utils/isDefined'
 import Audio from '../atoms/Audio'
 import Seo from '../atoms/Seo'
 import Video from '../atoms/Video'
+import ContactCard from '../molecules/ContactCard'
 import Footer from '../molecules/Footer'
 import ImageGallery from '../molecules/ImageGallery'
 import ImgSwiper from '../molecules/ImgSwiper'
@@ -21,7 +22,7 @@ import Submenu from '../molecules/Submenu'
 
 interface DetailPageProps {
   contentPage: WithAttributes<ContentPageEntityFragment>
-  contactInfo: WithAttributes<ContactEntityFragment> | null | undefined
+  contactInfo: WithAttributes<GeneralEntityFragment> | null | undefined
 }
 
 const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
@@ -84,9 +85,11 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
         </>
       </Head>
 
-      <div className="py-yMd px-xMd" style={{ background: getContentPageColor(contentPage) }}>
-        <h1 className="text-xxl">{title}</h1>
-        <p className="text-xxl font-regular">{subtitle}</p>
+      <div className="py-yMd px-xMd lg:pr-sidepanel" style={{ background: getContentPageColor(contentPage) }}>
+        <div className="lg:mr-xLg">
+          <h1 className="text-xxl">{title}</h1>
+          <p className="text-xxl font-regular">{subtitle}</p>
+        </div>
       </div>
       <Submenu items={submenu} />
       <div className="h-auto overflow-hidden px-xMd py-yLg">
@@ -100,7 +103,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           slug={slug}
           showShare
           title={title}
-          className="float-right ml-[5vw] hidden w-sidepanel lg:block"
+          className="float-right ml-xLg hidden w-sidepanel lg:flex"
         />
         {/* Mobile sidepanel info part 1 */}
         <SidePanel
@@ -108,12 +111,12 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           place={{ place, placeTitle, placeAddress }}
           purchaseId={getPurchaseId(contentPage)}
           slug={slug}
-          className="pb-24 lg:hidden"
+          className="pb-yLg lg:hidden"
         />
         <div className="float-none w-auto overflow-hidden">
           {perex && <div className="mb-yLg text-lg">{perex}</div>}
 
-          <div className="ml-xLg">
+          <div className="lg:ml-xLg">
             {mainContent?.filter(isDefined).map((section) => {
               if (section.__typename === 'ComponentSectionsRichtextSection') {
                 return (
@@ -122,6 +125,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
                     key={section.id}
                     content={section.content}
                     accentColor={getContentPageColor(contentPage)}
+                    className="pb-yMd"
                   />
                 )
               }
@@ -149,6 +153,17 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
                   </Section>
                 )
               }
+              if (section.__typename === 'ComponentSectionsContactCardsSection') {
+                return (
+                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
+                    {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
+                    {section.contacts?.map((contactItem) => (
+                      <ContactCard contact={withAttributes(contactItem?.contactCard?.data)} />
+                    ))}
+                  </Section>
+                )
+              }
+              return null
             })}
           </div>
         </div>

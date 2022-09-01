@@ -1,7 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import { useTranslation } from 'next-i18next'
 
-import { ContactEntityFragment, ContentPageEntityFragment, SectionItemEntityFragment } from '../../graphql'
+import { ContentPageEntityFragment, GeneralEntityFragment, SectionItemEntityFragment } from '../../graphql'
 import { getPurchaseId } from '../../utils/getPurchaseId'
 import { WithAttributes } from '../../utils/isDefined'
 import Link from '../atoms/Link'
@@ -13,7 +13,7 @@ import CardSection from '../molecules/sections/CardSection'
 
 interface ITicketPageProps {
   contentPage: WithAttributes<ContentPageEntityFragment>
-  contactInfo: WithAttributes<ContactEntityFragment> | null | undefined
+  contactInfo: WithAttributes<GeneralEntityFragment> | null | undefined
   currentEvents?: WithAttributes<SectionItemEntityFragment>[]
 }
 
@@ -27,11 +27,11 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
       <Seo seo={seo} title={title} description={subtitle} />
       <section
         data-goout-id={getPurchaseId(contentPage)}
-        className="goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--height-nav))] flex-col"
+        className="goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--nav-height))] flex-col"
       >
-        <header className="py-yMd px-xMd">
+        <header className="py-yMd px-xMd lg:pr-sidepanel">
           <Link href={`/detail/${slug}`} preserveStyle noUnderline>
-            <div>
+            <div className="lg:mr-xLg">
               <h1 className="goout-event-title text-xxl">{title}</h1>
               <p className="text-xxl font-regular">{subtitle}</p>
             </div>

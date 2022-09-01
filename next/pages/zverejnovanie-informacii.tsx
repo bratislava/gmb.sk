@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next'
+import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Head from 'next/head'
 
 import Footer from '../components/molecules/Footer'
 import DownloadSection from '../components/molecules/sections/DownloadSection'
@@ -10,14 +10,14 @@ import { client } from '../utils/gql'
 import { isDefined, withAttributes } from '../utils/isDefined'
 
 interface DisclosureOfInformationProps {
-  contact: DisclosureOfInformationPageQuery['contact']
+  general: DisclosureOfInformationPageQuery['general']
 }
 
-export const DisclosureOfInformation = ({ contact }: DisclosureOfInformationProps) => {
+export const DisclosureOfInformation = ({ general }: DisclosureOfInformationProps) => {
   const { t } = useTranslation()
 
   const title = t('footer.disclosureOfInformation')
-  const contactInfo = withAttributes(contact?.data)
+  const contactInfo = withAttributes(general?.data)
 
   return (
     <>
@@ -34,8 +34,8 @@ export const DisclosureOfInformation = ({ contact }: DisclosureOfInformationProp
         />
       </div>
       <DownloadSection
-        files={contact?.data?.attributes?.disclosureMoreFiles?.files?.filter(isDefined)}
-        title={contact?.data?.attributes?.disclosureMoreFiles?.title}
+        files={general?.data?.attributes?.disclosureMoreFiles?.files?.filter(isDefined)}
+        title={general?.data?.attributes?.disclosureMoreFiles?.title}
       />
       {contactInfo && <Footer contactInfo={contactInfo} />}
     </>
@@ -43,14 +43,14 @@ export const DisclosureOfInformation = ({ contact }: DisclosureOfInformationProp
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale = 'sk' }) => {
-  const [{ contact }, translations] = await Promise.all([
+  const [{ general }, translations] = await Promise.all([
     client.DisclosureOfInformationPage({ locale }),
     serverSideTranslations(locale, ['common']),
   ])
 
   return {
     props: {
-      contact,
+      general,
       ...translations,
     },
     revalidate: 10,

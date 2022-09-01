@@ -28,11 +28,11 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
       tabIndex={-1}
       onClick={() => router.push(`/detail/${slug}`)}
       onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
-      className={cx('lg:flex min-h-[400px] relative cursor-pointer', {
+      className={cx('relative min-h-chessboardTile cursor-pointer lg:flex', {
         'flex-row-reverse': isLeft,
       })}
     >
-      <div className="relative h-[300px] w-full bg-gmbLightGray lg:h-auto lg:w-1/2">
+      <div className="relative min-h-chessboardTile w-full bg-gmbLightGray lg:h-auto lg:w-1/2">
         {coverMedia?.data?.attributes ? (
           <Image
             src={coverMedia.data.attributes.url}
@@ -65,7 +65,7 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
         {/* empty div to push button to the bottom of the tile */}
         <div className="m-0 hidden grow p-0 lg:block" />
 
-        {perex ? <div className="text-md">{perex?.slice(0, 200)}…</div> : null}
+        {perex ? <div className="text-md line-clamp-3">{perex}</div> : null}
 
         <Button href={`/detail/${slug}`} aria-label={title}>
           {t('common.detail')}

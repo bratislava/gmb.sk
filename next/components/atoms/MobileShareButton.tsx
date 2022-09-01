@@ -31,14 +31,14 @@ const MobileShareButton = ({ className, slug, title }: MobileShareButtonProps) =
     // right now, this component will NOT be generated when navigator.share is not supported
   }
 
+  if (!hasNavigatorShare) {
+    return null
+  }
+
   return (
-    <>
-      {hasNavigatorShare && (
-        <button className={cx(className)} onClick={openShareDialog}>
-          <ShareIcon className="dw-[32px]" />
-        </button>
-      )}
-    </>
+    <button type="button" className={cx(className)} onClick={openShareDialog}>
+      <ShareIcon className="dw-[32]" />
+    </button>
   )
 }
 

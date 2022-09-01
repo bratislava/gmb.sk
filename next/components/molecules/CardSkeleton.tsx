@@ -1,4 +1,4 @@
-export const CardSkeleton = () => {
+const CardSkeleton = () => {
   return (
     <div className="flex min-h-full animate-pulse flex-col space-y-yMd">
       <div className="h-[458px] w-full overflow-hidden bg-gmbLightGray" />
@@ -6,6 +6,7 @@ export const CardSkeleton = () => {
       <div className="flex flex-wrap gap-6">
         {[1, 2, 3].map((_, index) => (
           <div
+            // eslint-disable-next-line react/no-array-index-key
             key={index}
             className="mb-[calc(var(--line-height-nav)_-_var(--font-size-nav))] h-[var(--font-size-nav)] w-20 bg-gmbLightGray"
           />

@@ -5,6 +5,8 @@ dist
 .env
 .env.local
 .env.development
+.env.production
+.env.development.local
 node_modules
 misc
 .idea
@@ -15,3 +17,4 @@ misc
 build/
 data/
 .next
+

@@ -11,13 +11,12 @@ import { usePreviousImmediate } from 'rooks'
 import GmbLogoIcon from '../../assets/icons/map-icons/gmb-logo.svg'
 import MirbachovPalacIcon from '../../assets/icons/map-icons/mirbachov-palac.svg'
 import PalffyhoPalacIcon from '../../assets/icons/map-icons/palffyho-palac.svg'
-import { ContactEntityFragment } from '../../graphql'
+import { GeneralEntityFragment } from '../../graphql'
 import Link from '../atoms/Link'
 
 interface MapProps {
   mapboxAccessToken: string
-  // eslint-disable-next-line react/require-default-props
-  contactInfo?: ContactEntityFragment
+  contactInfo?: GeneralEntityFragment
 }
 
 type TabKey = 'mhd' | 'bike' | 'car'
@@ -90,7 +89,7 @@ const ZOOMED_OUT_BOUNDS: mapboxgl.LngLatBoundsLike = [
 ]
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
-export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
+const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
   const [selectedTab, setSelectedTab] = useState<Tab | null>(null)
   const previousSelectedTab = usePreviousImmediate(selectedTab)
 
@@ -353,7 +352,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
             <button
               type="button"
               key={tab.key}
-              className={cx('flex space-x-2 uppercase px-4 py-2 items-center underline-offset-2 hover:underline', {
+              className={cx('flex items-center space-x-2 px-4 py-2 uppercase underline-offset-2 hover:underline', {
                 underline: selectedTab?.key === tab.key,
               })}
               onClick={() => (selectedTab?.key !== tab.key ? setSelectedTab(tab) : setSelectedTab(null))}
@@ -445,7 +444,7 @@ export const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
             '#'
           }
           className={cx(
-            'flex items-center border border-white w-fit px-8 py-2 uppercase hover:bg-white hover:text-gmbDark',
+            'flex w-fit items-center border border-white px-8 py-2 uppercase hover:bg-white hover:text-gmbDark',
             { invisible: !(selectedPlaceUrl ?? selectedFeaturePoint) }
           )}
           rel="noreferrer"

@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_sections_opening_hours_sections",
+  "info": {
+    "displayName": "opening hours section",
+    "icon": "clock"
+  },
+  "options": {},
+  "attributes": {
+    "submenuTitle": {
+      "type": "string"
+    }
+  }
+}

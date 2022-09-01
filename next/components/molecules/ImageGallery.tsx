@@ -120,9 +120,9 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
       >
         <div className="relative flex h-full flex-col content-center justify-center text-white">
           <button type="button" className="absolute top-ySm right-xSm z-10" onClick={closeModal}>
-            <CloseIcon className="dw-[25px]" fill="white" />
+            <CloseIcon className="dw-[25]" />
           </button>
-          <div className="">
+          <div>
             <ReactImageGallery
               items={items}
               startIndex={imageIndex}
@@ -134,7 +134,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
         </div>
       </Modal>
       {renderGallery && (
-        <div className="flex flex-col gap-[calc(8px*var(--icon-size-factor))]">
+        <div className="flex flex-col gap-[calc(8*var(--size-factor))]">
           <div className="h-[50vh]">
             <ImageGalleryTile
               image={withAttributes(medias[0])}
@@ -145,11 +145,15 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
               }}
             />
           </div>
-          <div className="grid h-fit grid-cols-3 grid-rows-1 gap-[calc(8px*var(--icon-size-factor))] sm:grid-cols-4 md:grid-cols-5">
+          <div className="grid h-fit grid-cols-3 grid-rows-1 gap-[calc(8*var(--size-factor))] sm:grid-cols-4 md:grid-cols-5">
             {filteredMedias
               .slice(1, mediasToShow === filteredMedias.length - 1 ? mediasToShow + 1 : mediasToShow)
               .map((media, index) => (
-                <div ref={index === 0 ? subImageRef : null} style={{ height: subImageWidth }}>
+                <div
+                  key={media.attributes.url}
+                  ref={index === 0 ? subImageRef : null}
+                  style={{ height: subImageWidth }}
+                >
                   <ImageGalleryTile
                     image={media}
                     index={index + 1}

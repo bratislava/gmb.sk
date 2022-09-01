@@ -46,6 +46,7 @@
     "shareOnWhatsapp": "Share on Whatsapp",
     "shareOnLinkedIn": "Share on LinkedIn",
     "download": "Download",
+    "downloadFile": "Download file {{file}}",
     "relatedContent": "Related content",
     "showIncludedEvents": "Show included events",
     "noCurrentEvents": "There is no other ongoing exhibition currently.",
@@ -94,13 +95,15 @@
   "errors": {
     "emailMandatory": "Email is mandatory",
     "emailIncorrectFormat": "Insert email in correct format, e.g. name.surname@domain.com",
-    "fieldMandatory": "The consent is mandatory"
+    "fieldMandatory": "The consent is mandatory",
+    "error": "Error"
   },
   "newsletter": {
     "beInThePicture": "Be „in the picture“",
     "newsletter": "Newsletter",
     "beInformedEvents": "Would you like to be informed about the events of the Bratislava City Gallery?",
-    "insertEmail": "Insert your email"
+    "insertEmail": "Insert your email",
+    "sending": "Sending..."
   },
   "map": {
     "ourPremises": "Our premises",

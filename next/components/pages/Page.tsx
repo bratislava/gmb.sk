@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next'
 import {
   AboutUsPageQuery,
   CollectionPageQuery,
-  ContactEntityFragment,
+  GeneralEntityFragment,
   GetInvolvedPageQuery,
   HomePageQuery,
   NewsItemEntityFragment,
@@ -15,11 +15,11 @@ import { getAnchor } from '../../utils/getAnchor'
 import { hasAttributes, isDefined, WithAttributes, withAttributes } from '../../utils/isDefined'
 import Seo from '../atoms/Seo'
 import Footer from '../molecules/Footer'
-import ContactSection from '../molecules/sections/ContactSection'
 import HighlightsSection from '../molecules/sections/HighlightsSection'
 import MapSection from '../molecules/sections/MapSection'
 import NewsletterSection from '../molecules/sections/NewsletterSection'
 import NewsSection from '../molecules/sections/NewsSection'
+import OpeningHoursSection from '../molecules/sections/OpeningHoursSection'
 import PageSectionContainer from '../molecules/sections/PageSectionContainer'
 import PartnersSection from '../molecules/sections/PartnersSection'
 import RichtextSection from '../molecules/sections/RichtextSection'
@@ -34,7 +34,7 @@ interface PageProps {
     | CollectionPageQuery['collectionsPage']
     | HomePageQuery['homePage']
   title: string
-  contactInfo: WithAttributes<ContactEntityFragment> | null | undefined
+  contactInfo: WithAttributes<GeneralEntityFragment> | null | undefined
   newsItems?: WithAttributes<NewsItemEntityFragment>[] | null
   tickets?: WithAttributes<TicketEntityFragment>[] | null
 }
@@ -83,9 +83,9 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
             )
           }
 
-          if (section.__typename === 'ComponentSectionsContactSection' && hasAttributes(contactInfo)) {
+          if (section.__typename === 'ComponentSectionsOpeningHoursSection' && hasAttributes(contactInfo)) {
             return (
-              <ContactSection
+              <OpeningHoursSection
                 contactInfo={withAttributes(contactInfo)}
                 anchor={getAnchor(section.submenuTitle)}
                 key={index}
