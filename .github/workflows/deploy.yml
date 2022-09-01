@@ -120,7 +120,7 @@ jobs:
       cluster: tkg-innov-prod
       url: https://tkg.bratislava.sk
       flag: --production
-      debug: true
+      debug: --debug
     secrets:
       service-account: ${{ secrets.PROD_STANDALONE_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
