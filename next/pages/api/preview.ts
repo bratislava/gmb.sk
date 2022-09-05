@@ -1,8 +1,9 @@
+import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { client } from '../../utils/gql'
 
-export default async function preview(req: NextApiRequest, res: NextApiResponse) {
+const preview = async (req: NextApiRequest, res: NextApiResponse) => {
   // Check the secret and next parameters
   // This secret should only be known to this API route and the CMS
   if (req.query.secret !== process.env.STRAPI_PREVIEW_SECRET || !req.query.slug) {
@@ -26,3 +27,5 @@ export default async function preview(req: NextApiRequest, res: NextApiResponse)
   res.writeHead(307, { Location: `/${path}/${contentPage.contentPageBySlug?.data?.attributes?.slug}` })
   res.end()
 }
+
+export default withSentry(preview)
