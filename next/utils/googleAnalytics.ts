@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 import * as ReactGA from 'react-ga'
 
 import { getGDPRCookies } from './GDPRCookies'
 import { getGoogleAnalyticsTrackingId } from './getGoogleAnalyticsTrackingId'
+import useUpdateEffect from './useUpdateEffect'
 
 export const initializeGoogleAnalytics = () => {
   const googleAnalyticsTrackingId = getGoogleAnalyticsTrackingId()
@@ -22,12 +22,16 @@ export const initializeGoogleAnalytics = () => {
 export const useGoogleAnalyticsPageView = () => {
   const router = useRouter()
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     const { performanceCookies } = getGDPRCookies()
     if (!performanceCookies) {
       return
     }
 
-    ReactGA.pageview(router.asPath)
+    trackPageView(router.asPath)
   }, [router.asPath])
+}
+
+export const trackPageView = (url: string) => {
+  ReactGA.pageview(url)
 }

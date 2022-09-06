@@ -1,13 +1,15 @@
 import cx from 'classnames'
+import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import Consent from 'react-cookie-consent'
 import Modal from 'react-modal'
+import { useEffectOnceWhen } from "rooks";
 
 import ChevronDownIcon from '../../assets/icons/chevron-down.svg'
 import CloseIcon from '../../assets/icons/close-x.svg'
 import { getGDPRCookies, setGDPRCookies } from '../../utils/GDPRCookies'
-import { initializeGoogleAnalytics } from '../../utils/googleAnalytics'
+import { initializeGoogleAnalytics, trackPageView } from '../../utils/googleAnalytics'
 import { getRouteForLocale } from '../../utils/localeRoutes'
 import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
 import Button from '../atoms/Button'
@@ -15,6 +17,7 @@ import Link from '../atoms/Link'
 
 const CookieConsent = () => {
   const { t, i18n } = useTranslation()
+  const router = useRouter()
 
   const [isCookiesSettingsOpen, setIsCookiesSettingsOpen] = useState(false)
   const [isConsentSubmitted, setConsent] = useState(false)
@@ -62,9 +65,10 @@ const CookieConsent = () => {
     setConsent(true)
   }
 
-  useEffect(() => {
+  useEffectOnceWhen(() => {
     initializeGoogleAnalytics()
-  }, [persistedCookies.performanceCookies])
+    trackPageView(router.asPath)
+  }, persistedCookies.performanceCookies)
 
   return (
     <>
