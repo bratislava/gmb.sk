@@ -4,8 +4,10 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect } from 'react'
+import { useWindowSize } from 'rooks'
 
 import { HighlightsItemEntityFragment } from '../../graphql'
+import { getBreakpointValue } from '../../utils/getBreakpointValue'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import { getPurchaseId } from '../../utils/getPurchaseId'
 import { isDefined, WithAttributes } from '../../utils/isDefined'
@@ -21,6 +23,8 @@ interface HighlightProps {
 const Highlight = ({ highlight }: HighlightProps) => {
   const { t } = useTranslation()
   const router = useRouter()
+
+  const { innerWidth: windowWidth } = useWindowSize()
 
   const {
     title,
@@ -42,22 +46,24 @@ const Highlight = ({ highlight }: HighlightProps) => {
   gsap.registerPlugin(ScrollTrigger)
 
   useEffect(() => {
-    ScrollTrigger.create({
-      trigger: `#sidepanel${highlight.id}`,
-      start: 'top bottom',
-      end: 'bottom bottom',
-      pin: `#articleHeader${highlight.id}`,
-      pinSpacing: false,
-      scrub: 0,
-    })
-    ScrollTrigger.create({
-      trigger: `#sidepanel${highlight.id}`,
-      start: 'top bottom',
-      pin: `#articleImg${highlight.id}`,
-      pinSpacing: false,
-      scrub: 0,
-    })
-  }, [highlight.id])
+    if (windowWidth && windowWidth > getBreakpointValue('lg')) {
+      ScrollTrigger.create({
+        trigger: `#sidepanel${highlight.id}`,
+        start: 'top bottom',
+        end: 'bottom bottom',
+        pin: `#articleHeader${highlight.id}`,
+        pinSpacing: false,
+        scrub: 0,
+      })
+      ScrollTrigger.create({
+        trigger: `#sidepanel${highlight.id}`,
+        start: 'top bottom',
+        pin: `#articleImg${highlight.id}`,
+        pinSpacing: false,
+        scrub: 0,
+      })
+    }
+  }, [highlight.id, windowWidth])
 
   const renderOverride = !!override?.highlightContent
 
@@ -129,7 +135,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
           </div>
         </div>
       </div>
-      <div className={cx('z-15 relative ml-auto w-sidepanel bg-white', {})} id={`sidepanel${highlight.id}`}>
+      <div className="relative ml-auto w-sidepanel bg-white" id={`sidepanel${highlight.id}`}>
         {renderOverride && override?.highlightContent ? (
           /* If there is override, display it on both mobile and desktop */
           <div className="min-h-fit p-10">
