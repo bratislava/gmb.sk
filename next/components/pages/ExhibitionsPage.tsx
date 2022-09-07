@@ -122,7 +122,7 @@ const ExhibitionsPage = ({
       />
 
       {activeTags.length > 0 || activePlaces.length > 0 ? (
-        <div className="min-h-screen">
+        <div className="relative min-h-screen bg-white">
           {/* List all selected tags for screen readers */}
           <div className="sr-only">
             {`${t('common.filteredBy')}: `}

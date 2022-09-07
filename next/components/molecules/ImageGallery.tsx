@@ -5,13 +5,11 @@ import { useEffect, useRef, useState } from 'react'
 import ReactImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
 import Modal from 'react-modal'
 import { useWindowSize } from 'rooks'
-import resolveConfig from 'tailwindcss/resolveConfig'
-import { KeyValuePair } from 'tailwindcss/types/config'
 
 import CloseIcon from '../../assets/icons/close-x.svg'
 import { ImageWithFormatsEntityFragment } from '../../graphql'
-import tailwindConfig from '../../tailwind.config'
 import { StrapiImageFormats } from '../../types/strapiImageFormats'
+import { getBreakpointValue } from '../../utils/getBreakpointValue'
 import { hasAttributes, withAttributes } from '../../utils/isDefined'
 import ImageGalleryItem from '../atoms/ImageGalleryItem'
 import ImageGalleryTile from '../atoms/ImageGalleryTile'
@@ -22,20 +20,25 @@ interface ImageGalleryProps {
 }
 
 const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
+  const { t } = useTranslation()
+  const { innerWidth: windowWidth } = useWindowSize()
+
   const [showModal, setShowModal] = useState(false)
   const [imageIndex, setImageIndex] = useState(0)
   const [isFullscreen, setIsFullscreen] = useState(false)
-  const { t } = useTranslation()
-  const { innerWidth: windowWidth } = useWindowSize()
   const [renderGallery, setRenderGallery] = useState(false)
   const [subImageWidth, setSubImageWidth] = useState<number | undefined>()
+
   const subImageRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     setRenderGallery(true)
   }, [])
+
   useEffect(() => {
     setSubImageWidth(subImageRef.current?.clientWidth)
   }, [windowWidth, renderGallery])
+
   const closeModal = () => {
     setShowModal(false)
   }
@@ -77,6 +80,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
 
   const renderThumbInner = (item: ReactImageGalleryItem) => {
     return (
+      // eslint-disable-next-line tailwindcss/no-custom-classname
       <span className="image-gallery-thumbnail-inner">
         <img
           className="mx-auto max-h-[80px] object-contain"
@@ -86,19 +90,10 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
           alt={item.thumbnailAlt}
           title={item.thumbnailTitle}
         />
+        {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
         {item.thumbnailLabel && <div className="image-gallery-thumbnail-label">{item.thumbnailLabel}</div>}
       </span>
     )
-  }
-
-  const fullConfig = resolveConfig(tailwindConfig as any)
-
-  const getBreakpointValue = (value: string): number => {
-    const screens = fullConfig.theme?.screens as KeyValuePair<string, string>
-    if (screens && screens[value]) {
-      return +screens[value].slice(0, screens[value].indexOf('px'))
-    }
-    return 0
   }
 
   const mediasToShow = windowWidth
