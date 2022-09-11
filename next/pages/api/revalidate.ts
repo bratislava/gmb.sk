@@ -5,8 +5,7 @@ type Response = { revalidated: boolean } | { message: string } | string
 type RequestPayload = { model: string; entry: { slug: string } }
 
 const revalidate = async (req: NextApiRequest, res: NextApiResponse<Response>) => {
-  /** TODO add secret token to .env.local for production */
-  if (req.query.revalidate_secret_token !== process.env.REVALIDATE_SECRET_TOKEN) {
+  if (req.query.secret !== process.env.REVALIDATE_SECRET_TOKEN) {
     return res.status(401).json({ message: 'Invalid token' })
   }
 

@@ -1,13 +1,29 @@
 import { ContentPageEntityFragment } from '../graphql/index'
 import { WithAttributes } from './isDefined'
 
+const parsePurchaseId = (purchaseId: string) => {
+  let pId = purchaseId
+  if (purchaseId.startsWith('/')) {
+    pId = purchaseId.slice(1)
+  }
+  if (pId.startsWith('listky/')) {
+    return pId.slice(7)
+  }
+  // eslint-disable-next-line no-console
+  console.log('Invalid purchaseId', purchaseId)
+  return null
+}
+
 export function getPurchaseId(contentPage: WithAttributes<ContentPageEntityFragment>) {
-  if (contentPage.attributes.sellTickets) {
-    if (contentPage.attributes.purchaseId) {
-      return contentPage.attributes.purchaseId
+  const { sellTickets, purchaseId, place } = contentPage.attributes
+  const { purchaseId: placePurchaseId } = place?.data?.attributes ?? {}
+
+  if (sellTickets) {
+    if (purchaseId) {
+      return parsePurchaseId(purchaseId)
     }
-    if (contentPage.attributes.place?.data?.attributes?.purchaseId) {
-      return contentPage.attributes.place?.data?.attributes?.purchaseId
+    if (placePurchaseId) {
+      return parsePurchaseId(placePurchaseId)
     }
   }
   return null

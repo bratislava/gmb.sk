@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
 import { useTranslation } from 'next-i18next'
 
 import { ContentPageEntityFragment, GeneralEntityFragment, SectionItemEntityFragment } from '../../graphql'
@@ -23,6 +22,7 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
   const { title, subtitle, place, placeTitle, dateFrom, dateTo, timeFrom, timeTo, slug, seo } = contentPage.attributes
 
   return (
+    /* eslint-disable tailwindcss/no-custom-classname */
     <>
       <Seo seo={seo} title={title} description={subtitle} />
       <section
@@ -64,8 +64,8 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
 
       {contactInfo && <Footer contactInfo={contactInfo} />}
     </>
+    /* eslint-enable tailwindcss/no-custom-classname */
   )
 }
 
 export default TicketPage
-/* eslint-enable tailwindcss/no-custom-classname */
