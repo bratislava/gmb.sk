@@ -136,6 +136,7 @@ const ExhibitionsPage = ({
             loadmoreButton={
               !isReachingEnd && (
                 <div className="flex justify-center py-12">
+                  {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
                   <Button onClick={() => setSize(size + 1)} disabled={isLoadingMore}>
                     {t('common.exploreMoreContent')}
                   </Button>

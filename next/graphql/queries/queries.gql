@@ -312,6 +312,7 @@ query ExhibitionsPage(
   additionalProgram: contentPages(
     locale: $locale
     filters: { tags: { slug: { in: $tagsAdditionalProgram } }, dateTo: { gte: $today } }
+    sort: ["dateFrom:asc"]
   ) {
     data {
       ...SectionItemEntity

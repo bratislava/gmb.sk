@@ -29,9 +29,20 @@ const dynamicSizing = plugin(({ matchUtilities }) => {
   })
 })
 
+const customVariants = plugin(function ({ addVariant }) {
+  addVariant('not-first', '&:not(:first-child)')
+  addVariant('not-last', '&:not(:last-child)')
+})
+
 module.exports = {
   content: ['./pages/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
-  plugins: [scrollBarHide, dynamicSizing, require('@tailwindcss/line-clamp'), require('@tailwindcss/aspect-ratio')],
+  plugins: [
+    scrollBarHide,
+    dynamicSizing,
+    customVariants,
+    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
   corePlugins: {
     container: false,
     aspectRatio: false, // https://tailwindcss.com/docs/aspect-ratio#browser-support

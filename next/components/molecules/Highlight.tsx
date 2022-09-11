@@ -46,7 +46,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
   gsap.registerPlugin(ScrollTrigger)
 
   useEffect(() => {
-    if (windowWidth && windowWidth > getBreakpointValue('lg')) {
+    if (windowWidth && windowWidth >= getBreakpointValue('lg')) {
       ScrollTrigger.create({
         trigger: `#sidepanel${highlight.id}`,
         start: 'top bottom',

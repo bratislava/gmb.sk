@@ -164,9 +164,7 @@ fragment ContentPageEntity on ContentPageEntity {
     }
     childPages {
       data {
-        attributes {
-          ...SectionItem
-        }
+        ...SectionItemEntity
       }
     }
     tags {
@@ -188,68 +186,54 @@ fragment ContentPageEntity on ContentPageEntity {
   }
 }
 
-fragment NewsItem on ContentPage {
-  title
-  subtitle
-  slug
-  color
-  inheritColorFromParent
-  parentPage {
-    data {
-      attributes {
-        color
+fragment NewsItemEntity on ContentPageEntity {
+  id
+  attributes {
+    title
+    subtitle
+    slug
+    color
+    inheritColorFromParent
+    parentPage {
+      data {
+        attributes {
+          color
+        }
       }
     }
   }
 }
 
-fragment NewsItemEntity on ContentPageEntity {
-  id
-  attributes {
-    ...NewsItem
-  }
-}
-
-fragment SectionItem on ContentPage {
-  ...NewsItem
-  perex
-  coverMedia {
-    data {
-      ...ImageEntity
-    }
-  }
-  dateFrom
-  dateTo
-  tags {
-    data {
-      ...TagEntity
-    }
-  }
-}
-
 fragment SectionItemEntity on ContentPageEntity {
-  id
+  ...NewsItemEntity
   attributes {
-    ...SectionItem
-  }
-}
-
-fragment HighlightsItem on ContentPage {
-  ...SectionItem
-  ...Datetime
-  ...ContentPagePlace
-  ...Positions
-  sellTickets
-  purchaseId
-  override {
-    highlightContent
+    perex
+    coverMedia {
+      data {
+        ...ImageEntity
+      }
+    }
+    dateFrom
+    dateTo
+    tags {
+      data {
+        ...TagEntity
+      }
+    }
   }
 }
 
 fragment HighlightsItemEntity on ContentPageEntity {
-  id
+  ...SectionItemEntity
   attributes {
-    ...HighlightsItem
+    ...Datetime
+    ...ContentPagePlace
+    ...Positions
+    sellTickets
+    purchaseId
+    override {
+      highlightContent
+    }
   }
 }
 
@@ -333,9 +317,7 @@ fragment PageSection on ComponentSectionsPageSection {
   contentPages {
     contentPage {
       data {
-        attributes {
-          ...SectionItem
-        }
+        ...SectionItemEntity
       }
     }
   }
