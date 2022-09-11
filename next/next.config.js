@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { i18n } = require('./next-i18next.config')
-const { withSentryConfig } = require('@sentry/nextjs');
+const { withSentryConfig } = require('@sentry/nextjs')
 
 /**
  * @type {import('next').NextConfig}
@@ -642,8 +642,7 @@ const sentryWebpackPluginOptions = {
   silent: true, // Suppresses all logs
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options.
-};
-
+}
 
 const config = (phase, { defaultConfig }) => {
   return {
@@ -660,5 +659,4 @@ const config = (phase, { defaultConfig }) => {
   }
 }
 
-module.exports = withSentryConfig(config, sentryWebpackPluginOptions);
-
+module.exports = withSentryConfig(config, sentryWebpackPluginOptions)
