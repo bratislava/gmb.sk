@@ -5,12 +5,14 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
+import { useWindowSize } from 'rooks'
 
 import CloseIcon from '../../assets/icons/close-x.svg'
 import HamburgerIcon from '../../assets/icons/menu.svg'
 import SearchIcon from '../../assets/icons/search.svg'
 import Logo from '../../assets/images/gmb-logo-header.png'
 import { ContentPageEntityFragment } from '../../graphql'
+import { getBreakpointValue } from '../../utils/getBreakpointValue'
 import { withAttributes } from '../../utils/isDefined'
 import AppLangSwitchers from '../atoms/AppLangSwitchers'
 import Button from '../atoms/Button'
@@ -25,6 +27,7 @@ interface NavigationProps {
 const Navigation = ({ contentPage }: NavigationProps) => {
   const { t, i18n } = useTranslation()
   const router = useRouter()
+  const { innerWidth: windowWidth } = useWindowSize()
 
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -118,8 +121,8 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
           <div
             className={cx('lg:flex lg:gap-x-xMd', {
-              'absolute left-0 top-nav flex w-full flex-col items-center justify-center gap-7 bg-white pb-12':
-                isMobileMenuOpen,
+              'absolute left-0 top-nav flex w-full flex-col items-center justify-center gap-7 bg-white py-yLg':
+                isMobileMenuOpen && (!windowWidth || windowWidth < getBreakpointValue('lg')),
               hidden: !isMobileMenuOpen,
             })}
           >

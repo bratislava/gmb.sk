@@ -24,8 +24,8 @@ export const DisclosureOfInformation = ({ general }: DisclosureOfInformationProp
       <Head>
         <title>{title}</title>
       </Head>
-      <h1 className="m-yLg text-xxl 3xl:m-12">{title}</h1>
-      <div className="m-yLg">
+      <h1 className="px-xMd pt-yLg text-xxl">{title}</h1>
+      <div className="py-yLg px-xMd">
         <iframe
           title={t('footer.disclosureOfInformation')}
           src="https://zmluvy.egov.sk/egov/contracts/place:259/iframe/showZmluvy/showFaktury/showObjednavky/orderBy:datum/direction:desc"

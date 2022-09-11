@@ -48,6 +48,7 @@ const revalidate = async (req: NextApiRequest, res: NextApiResponse<Response>) =
 
     return res.json({ revalidated: true })
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log('Error while revalidating ==>', error)
     return res.status(500).send('Error revalidating')
   }

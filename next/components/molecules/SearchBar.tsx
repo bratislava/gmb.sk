@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 import CloseIcon from '../../assets/icons/close-x.svg'
 import { ContentPageEntity, ContentPageEntityResponseCollection } from '../../graphql'
-import { isNonEmptyArray } from '../../utils/isNonEmptyArray'
+import { isDefined } from '../../utils/isDefined'
 import { logError } from '../../utils/logger'
 import { useDebounce } from '../../utils/useDebounce'
 import Results from './Results'
@@ -15,12 +15,13 @@ interface SearchBarProps {
 const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [contentPages, setContentPages] = useState<ContentPageEntity[]>()
-  const debouncedSearchTerm = useDebounce(searchTerm, 750)
+  const debouncedSearchTerm = useDebounce(searchTerm, 550)
   const { i18n } = useTranslation()
   const locale = i18n.language
 
   useEffect(() => {
-    /** Here we're using Strapi REST endpoint (through Next api proxy) instead of GraphQL, because Strapi GraphQL doesn't have a straightforward way to use the full text search */
+    /** Here we're using Strapi REST endpoint (through Next api proxy) instead of GraphQL,
+     *  because Strapi GraphQL doesn't have a straightforward way to use the full text search */
     const searchContentPages = async () => {
       if (!debouncedSearchTerm) {
         setContentPages([])
@@ -28,7 +29,7 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
       }
 
       const query = new URLSearchParams({
-        searchTerm: debouncedSearchTerm,
+        searchTerm: debouncedSearchTerm.trim(),
         locale,
       }).toString()
 
@@ -42,16 +43,16 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
 
   const { t } = useTranslation()
   return (
-    <div className="fixed inset-x-0 top-[var(--nav-height)] z-20 flex h-[calc(100vh-var(--nav-height))] flex-col justify-between bg-gmbDark p-12">
+    <div className="fixed inset-x-0 top-[var(--nav-height)] z-20 flex h-[calc(100vh-var(--nav-height))] flex-col gap-yLg bg-gmbDark px-xLg py-yLg">
       <button
         type="button"
-        className="absolute right-xMd top-yMd text-white"
+        className="absolute right-0 top-0 px-xMd py-yMd text-white lg:mr-2"
         onClick={closeSearchBar}
         aria-label={t('common.closeSearch')}
       >
-        <CloseIcon className="dw-[32] dh-[32]" />
+        <CloseIcon className="dw-[30] dh-[30]" />
       </button>
-      <div className="flex flex-1">
+      <div>
         <input
           className="h-fit max-w-full border-b border-solid border-b-white bg-transparent text-xl text-white focus:border-b-2 focus:outline-none active:border-b-2"
           placeholder={t('common.searchText')}
@@ -62,8 +63,8 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
           value={searchTerm}
         />
       </div>
-      {isNonEmptyArray(contentPages) ? (
-        <div className="gap-25 flex flex-1 justify-start">
+      {contentPages?.filter(isDefined).length ? (
+        <div>
           <Results results={contentPages} header={t('common.found')} />
         </div>
       ) : null}
