@@ -8,6 +8,7 @@ import { isToday } from '../../utils/isToday'
 import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
+import Subtitle from '../atoms/Subtitle'
 
 interface CardProps {
   sectionItem: WithAttributes<SectionItemEntityFragment>
@@ -18,13 +19,15 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
   const { t } = useTranslation()
   const router = useRouter()
 
-  const { slug, coverMedia, title, subtitle, tags, perex, dateFrom, dateTo } = sectionItem.attributes
+  const { slug, coverMedia, title, tags, perex, dateFrom, dateTo } = sectionItem.attributes
 
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article
       tabIndex={-1}
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onClick={() => router.push(`/detail/${slug}`)}
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
       className="group relative flex min-h-full cursor-pointer flex-col space-y-yMd"
     >
@@ -58,7 +61,9 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
 
       <div>
         <h3 className="text-xl">{title}</h3>
-        <p className="text-xl font-regular">{subtitle}</p>
+        <p className="text-xl font-regular">
+          <Subtitle page={sectionItem} />
+        </p>
       </div>
 
       {/* empty div to push button to the bottom of the card */}

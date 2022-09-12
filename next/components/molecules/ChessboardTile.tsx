@@ -9,6 +9,7 @@ import { hasAttributes, WithAttributes } from '../../utils/isDefined'
 import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
+import Subtitle from '../atoms/Subtitle'
 
 export interface ChessboardTileProps {
   sectionItem: WithAttributes<SectionItemEntityFragment>
@@ -20,13 +21,15 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
   const { t } = useTranslation()
   const router = useRouter()
 
-  const { slug, coverMedia, title, subtitle, tags, perex } = sectionItem.attributes
+  const { slug, coverMedia, title, tags, perex } = sectionItem.attributes
 
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article
       tabIndex={-1}
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onClick={() => router.push(`/detail/${slug}`)}
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
       className={cx('relative min-h-chessboardTile cursor-pointer lg:flex', {
         'flex-row-reverse': isLeft,
@@ -49,7 +52,9 @@ export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTile
       >
         <div>
           <h3 className="text-xl">{title}</h3>
-          <p className="text-xl font-regular">{subtitle}</p>
+          <p className="text-xl font-regular">
+            <Subtitle page={sectionItem} />
+          </p>
         </div>
 
         {showTags && tags && (

@@ -67,9 +67,10 @@ const SidePanel = ({
       // @ts-ignore
       browserData.push(window.opera)
     }
-    for (const data in browserData) {
+    browserData.forEach((data) => {
       if (mobileAndTabletRegexCheck(data)) isMobileDetected = true
-    }
+    })
+
     setIsMobile(hasTouchScreen || isMobileDetected)
   }, [])
 
@@ -147,8 +148,13 @@ const SidePanel = ({
         <div>
           <h4 className="mb-yMd text-lg">{t('common.partners')}</h4>
           <div className="flex flex-wrap gap-5">
-            {partners?.map((partner, index) => (
-              <Link key={index} target="_blank" href={partner.attributes.link ?? '#'} className="overflow-hidden">
+            {partners?.map((partner) => (
+              <Link
+                key={partner.attributes.title}
+                target="_blank"
+                href={partner.attributes.link ?? '#'}
+                className="overflow-hidden"
+              >
                 <img
                   src={partner.attributes.logo.data?.attributes?.url}
                   alt={partner.attributes.logo.data?.attributes?.alternativeText ?? ''}
