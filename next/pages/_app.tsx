@@ -3,7 +3,7 @@ import '../styles/globals.css'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
-import { appWithTranslation, useTranslation } from 'next-i18next'
+import { appWithTranslation, SSRConfig, useTranslation } from 'next-i18next'
 import { SWRConfig } from 'swr'
 
 import CookieConsent from '../components/molecules/CookieConsent'
@@ -11,10 +11,14 @@ import Navigation from '../components/molecules/Navigation'
 import nextI18NextConfig from '../next-i18next.config'
 import { initializeGoogleAnalytics, useGoogleAnalyticsPageView } from '../utils/googleAnalytics'
 import { logError } from '../utils/logger'
+import { ContentPageEntityFragment } from '../graphql'
 
 initializeGoogleAnalytics()
 
-const CustomApp = ({ Component, pageProps }: AppProps) => {
+type PageProps = SSRConfig & { contentPage?: ContentPageEntityFragment }
+type Props = AppProps<PageProps>
+
+const CustomApp = ({ Component, pageProps }: Props) => {
   const { t } = useTranslation()
   useGoogleAnalyticsPageView()
 

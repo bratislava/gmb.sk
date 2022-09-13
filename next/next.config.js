@@ -646,6 +646,14 @@ const sentryWebpackPluginOptions = {
 
 const config = (phase, { defaultConfig }) => {
   return {
+    /** NOTE: Extending the default config produces a bunch of warnings
+     * in the console. While it shouldn't be necessary to extend
+     * the default config in the first place,
+     * in future versions of Next.js, it should be fixed and
+     * not produce warnings. More information here:
+     * https://github.com/vercel/next.js/issues/39161#issuecomment-1201138777
+     * https://github.com/vercel/next.js/pull/39220
+     */
     ...defaultConfig,
     ...nextConfig,
     webpack(config) {
