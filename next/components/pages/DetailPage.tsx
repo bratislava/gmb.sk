@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next'
 import { ContentPageEntityFragment, GeneralEntityFragment } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
 import { getContentPageColor } from '../../utils/getContentPageColor'
+import getDaysLeft from '../../utils/getDaysLeft'
 import { getPurchaseId } from '../../utils/getPurchaseId'
 import { hasAttributes, isDefined, WithAttributes, withAttributes } from '../../utils/isDefined'
 import Audio from '../atoms/Audio'
@@ -175,6 +176,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
             slug={slug}
             showShare
             title={title}
+            className="mt-yLg"
           />
         </div>
       </div>
@@ -184,7 +186,10 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
         <ChessboardSection
           anchor={getAnchor(relatedContentSubmenuTitle)}
           title={relatedContentTitle ?? undefined}
-          sectionItems={childPages.data.filter(hasAttributes)}
+          sectionItems={childPages.data
+            .filter(hasAttributes)
+            .filter((child) => (child.attributes.dateTo ? getDaysLeft(child.attributes.dateTo) >= 0 : child))
+            .sort((a, b) => (a.attributes.dateFrom > b.attributes.dateFrom ? 1 : -1))}
         />
       )}
       {downloadSection && (

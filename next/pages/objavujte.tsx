@@ -64,6 +64,7 @@ export const getStaticProps: GetStaticProps<ExploreProps> = async ({ locale = 's
       general,
       ...translations,
     },
+    revalidate: 10,
   }
 }
 

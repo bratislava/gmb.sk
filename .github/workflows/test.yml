@@ -5,6 +5,8 @@ on:
       - 'master'
     paths:
       - 'next/**'
+env:
+  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 jobs:
   build:
     name: Test yarn build

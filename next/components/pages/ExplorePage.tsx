@@ -66,7 +66,7 @@ const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOt
           />
         }
       />
-      <div className="min-h-screen">
+      <div className="relative min-h-screen bg-white">
         <CardSection
           sectionItems={filteredPages?.filter(isDefined)}
           isLoading={isLoadingInitialData}

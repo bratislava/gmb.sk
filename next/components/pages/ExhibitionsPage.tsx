@@ -122,7 +122,7 @@ const ExhibitionsPage = ({
       />
 
       {activeTags.length > 0 || activePlaces.length > 0 ? (
-        <div className="min-h-screen">
+        <div className="relative min-h-screen bg-white">
           {/* List all selected tags for screen readers */}
           <div className="sr-only">
             {`${t('common.filteredBy')}: `}
@@ -136,6 +136,7 @@ const ExhibitionsPage = ({
             loadmoreButton={
               !isReachingEnd && (
                 <div className="flex justify-center py-12">
+                  {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
                   <Button onClick={() => setSize(size + 1)} disabled={isLoadingMore}>
                     {t('common.exploreMoreContent')}
                   </Button>

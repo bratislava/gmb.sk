@@ -1,6 +1,7 @@
 import cx from 'classnames'
+import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 
 import ChevronDownIcon from '../../assets/icons/chevron-down.svg'
 import { getAnchor } from '../../utils/getAnchor'
@@ -19,6 +20,13 @@ const Submenu = ({ items, filters }: SubmenuProps) => {
 
   const [isFilterOpen, setFilterOpen] = useState(false)
   const [isModalOpen, setModalOpen] = useState(false)
+
+  useEffect(() => {
+    document.body.style.overflow = isModalOpen ? 'hidden' : 'auto'
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [isModalOpen])
 
   if ((!items || items.length === 0) && !filters) {
     return null
@@ -77,7 +85,7 @@ const Submenu = ({ items, filters }: SubmenuProps) => {
         <ChevronDownIcon className="dh-[12] dw-[20]" />
       </div>
 
-      <SubmenuModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} items={items} filters={filters} />
+      {isModalOpen && <SubmenuModal onClose={() => setModalOpen(false)} items={items} filters={filters} />}
     </>
   )
 }

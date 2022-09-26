@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nextjs'
 import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
@@ -15,11 +16,16 @@ const Error = ({ general, statusCode }: ErrorProps) => {
   return <ErrorPage contactInfo={withAttributes(general?.data)} statusCode={statusCode} />
 }
 
-export const getServerSideProps: GetServerSideProps<ErrorProps> = async ({ locale = 'sk', res }) => {
+export const getServerSideProps: GetServerSideProps<ErrorProps> = async (context) => {
+  const { locale = 'sk', res } = context
+
   const [{ general }, translations] = await Promise.all([
     client.VisitUsPage({ locale }),
     serverSideTranslations(locale, ['common']),
   ])
+
+  await Sentry.captureUnderscoreErrorException(context)
+
   return {
     props: {
       statusCode: res.statusCode,
