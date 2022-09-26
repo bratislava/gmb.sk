@@ -8,8 +8,6 @@ on:
   pull_request:
     types:
       - closed
-env:
-  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
 jobs:
   conditions:
