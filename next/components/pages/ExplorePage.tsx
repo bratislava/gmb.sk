@@ -58,6 +58,9 @@ const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOt
           .filter(hasAttributes)}
       />
       <Submenu
+        clearFilters={() => {
+          setActiveTags([])
+        }}
         filters={
           <Filters
             tagGroups={[tagsTypes ?? [], tagsProjects ?? [], tagsOthers ?? []]}
