@@ -25,6 +25,7 @@ const Filters = ({ tagGroups, places, activeTags, setActiveTags, activePlaces, s
       <div className="overflow-auto">
         <div className="flex flex-wrap gap-xSm">
           {tagGroups.map((tagGroup, index) => (
+            // eslint-disable-next-line react/no-array-index-key
             <TagGroup tags={tagGroup} activeTags={activeTags} setActiveTags={setActiveTags} key={index} />
           ))}
         </div>

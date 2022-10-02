@@ -102,6 +102,10 @@ const ExhibitionsPage = ({
 
       <Submenu
         items={[t('common.exhibitions'), t('common.additionalProgram'), t('common.permanentExhibitions')]}
+        clearFilters={() => {
+          setActiveTags([])
+          setActivePlaces([])
+        }}
         filters={
           <Filters
             tagGroups={[

@@ -13,9 +13,10 @@ import SubmenuModal from './SubmenuModal'
 interface SubmenuProps {
   items?: string[]
   filters?: ReactNode
+  clearFilters?: () => void
 }
 
-const Submenu = ({ items, filters }: SubmenuProps) => {
+const Submenu = ({ items, filters, clearFilters }: SubmenuProps) => {
   const { t } = useTranslation()
 
   const [isFilterOpen, setFilterOpen] = useState(false)
@@ -32,6 +33,14 @@ const Submenu = ({ items, filters }: SubmenuProps) => {
     return null
   }
 
+  const handleSubmenuItemClick = () => {
+    if (clearFilters) {
+      clearFilters()
+    }
+    setModalOpen(false)
+    setFilterOpen(false)
+  }
+
   return (
     <>
       {/* Desktop submenu */}
@@ -39,7 +48,7 @@ const Submenu = ({ items, filters }: SubmenuProps) => {
         <div className="flex w-full justify-between">
           <div className="hidden gap-xMd lg:flex">
             {items?.map((item) => (
-              <Link key={item} href={`#${getAnchor(item) ?? ''}`} replace>
+              <Link key={item} href={`#${getAnchor(item) ?? ''}`} replace onClick={handleSubmenuItemClick}>
                 {item}
               </Link>
             ))}
@@ -85,7 +94,14 @@ const Submenu = ({ items, filters }: SubmenuProps) => {
         <ChevronDownIcon className="dh-[12] dw-[20]" />
       </div>
 
-      {isModalOpen && <SubmenuModal onClose={() => setModalOpen(false)} items={items} filters={filters} />}
+      {isModalOpen && (
+        <SubmenuModal
+          onClose={() => setModalOpen(false)}
+          onSubmenuItemClick={handleSubmenuItemClick}
+          items={items}
+          filters={filters}
+        />
+      )}
     </>
   )
 }
