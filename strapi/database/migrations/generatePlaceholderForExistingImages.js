@@ -1,5 +1,7 @@
 "use strict";
 
+
+// Based on https://github.com/WalkingPizza/strapi-plugin-placeholder/issues/1#issuecomment-1228831857
 const FILES_TABLE = "files";
 const BATCH_SIZE = 1000;
 
