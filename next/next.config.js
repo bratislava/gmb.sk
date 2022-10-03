@@ -14,10 +14,6 @@ const nextConfig = {
   serverRuntimeConfig: {
     strapiUrl: process.env.STRAPI_URL,
   },
-  sentry: {
-    disableServerWebpackPlugin: true,
-    disableClientWebpackPlugin: true,
-  },
   async rewrites() {
     return {
       beforeFiles: [

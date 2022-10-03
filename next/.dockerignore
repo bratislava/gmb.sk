@@ -3,10 +3,17 @@
 Dockerfile
 dist
 .env
+.env.example
+.env.test
 .env.local
 .env.development
 .env.production
+.env.deployment
+.env.deployment.local
 .env.development.local
+.env.bratiska-cli-build.dev
+.env.bratiska-cli-build.staging
+.env.bratiska-cli-build.prod
 node_modules
 misc
 .idea

@@ -19,7 +19,7 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
       remarkPlugins={[remarkGfm]}
       className={cx(className, 'relative')}
       components={{
-        h1: ({ children }) => <p className="pb-yMd text-md">{children}</p>,
+        h1: ({ children }) => <div className="pb-yMd text-md">{children}</div>,
         h2: ({ children }) => <h2 className="pb-yMd text-xl">{children}</h2>,
         h3: ({ children }) => <h3 className="pb-yMd text-lg">{children}</h3>,
         h4: ({ children }) => <h4 className="pb-yMd text-md font-semibold">{children}</h4>,
@@ -27,7 +27,7 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
         h6: ({ children }) => <h6 className="pb-yMd text-sm font-semibold text-gmbGray">{children}</h6>,
         p: ({ children }) => {
           if (children.some((child) => typeof child === 'string')) {
-            return <p className="text-md not-last:pb-yMd">{children}</p>
+            return <div className="text-md not-last:pb-yMd">{children}</div>
           }
           return children as ReactElement
         },
