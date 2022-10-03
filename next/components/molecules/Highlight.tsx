@@ -79,19 +79,7 @@ const Highlight = ({ highlight, isPriority }: HighlightProps) => {
     getPurchaseId(highlight)
   )
 
-  const image = (
-    <div className="relative flex grow">
-      <Image
-        src={coverMedia?.data?.attributes?.url ?? ''}
-        alt={coverMedia?.data?.attributes?.alternativeText ?? ''}
-        style={{ objectFit: 'cover' }}
-        blurDataURL={coverMedia?.data?.attributes?.placeholder ?? ''}
-        placeholder="blur"
-        fill
-        priority={isPriority}
-      />
-    </div>
-  )
+
 
   return (
     <article className="relative h-fit w-full bg-gmbLightGray">
@@ -103,7 +91,17 @@ const Highlight = ({ highlight, isPriority }: HighlightProps) => {
         onClick={() => router.push(`/detail/${slug}`)}
         onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
       >
-        {image}
+        <div className="relative flex grow">
+          <Image
+            src={coverMedia?.data?.attributes?.url ?? ''}
+            alt={coverMedia?.data?.attributes?.alternativeText ?? ''}
+            style={{ objectFit: 'cover' }}
+            blurDataURL={coverMedia?.data?.attributes?.placeholder ?? ''}
+            placeholder="blur"
+            fill
+            priority={isPriority}
+          />
+        </div>
         <div
           className="h-fit w-full py-yMd px-xMd lg:h-auto lg:pr-sidepanel"
           style={{ background: getContentPageColor(highlight) }}
