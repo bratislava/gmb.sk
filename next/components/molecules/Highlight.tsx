@@ -93,6 +93,7 @@ const Highlight = ({ highlight, isPriority }: HighlightProps) => {
       >
         <div className="relative flex grow">
           <Image
+            id={`articleImg${highlight.id ?? ''}`}
             src={coverMedia?.data?.attributes?.url ?? ''}
             alt={coverMedia?.data?.attributes?.alternativeText ?? ''}
             style={{ objectFit: 'cover' }}
