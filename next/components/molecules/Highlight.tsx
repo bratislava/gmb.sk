@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import Image from 'next/future/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect } from 'react'
@@ -15,7 +16,6 @@ import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
 import Button from '../atoms/Button'
 import { SidePanelTime } from '../atoms/SidePanelTime'
 import SidePanel from './SidePanel'
-import Image from 'next/future/image'
 
 interface HighlightProps {
   highlight: WithAttributes<HighlightsItemEntityFragment>
@@ -79,36 +79,17 @@ const Highlight = ({ highlight, isPriority }: HighlightProps) => {
     getPurchaseId(highlight)
   )
 
-  console.log(coverMedia?.data)
-
-  // const image = (
-  //   <div
-  //     className="flex grow bg-cover bg-center"
-  //     id={`articleImg${highlight.id ?? ''}`}
-  //     style={{ backgroundImage: `url(${coverMedia?.data?.attributes?.url ?? ''})` }}
-  //   />
-  // )
-
-  const css = { objectFit: 'cover' as const }
-  // const css = { width: '100%', height: 'auto' }
   const image = (
-    <div style={{}} className="flex grow relative">
+    <div className="relative flex grow">
       <Image
         src={coverMedia?.data?.attributes?.url ?? ''}
-        alt="asd"
-        // sizes="100vw"
-        // width={coverMedia?.data?.attributes?.width ?? 'auto'}
-        // height={coverMedia?.data?.attributes?.height ?? 'auto'}
-        // width="auto"
-        // height="auto"
-        style={css}
-        // sizes="100vw"
-        // className={'object-cover'}
+        alt={coverMedia?.data?.attributes?.alternativeText ?? ''}
+        style={{ objectFit: 'cover' }}
         blurDataURL={coverMedia?.data?.attributes?.placeholder ?? ''}
         placeholder="blur"
         fill
         priority={isPriority}
-      ></Image>
+      />
     </div>
   )
 

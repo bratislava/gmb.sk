@@ -5,8 +5,9 @@ const BATCH_SIZE = 1000;
 
 async function up(trx) {
   let lastId = 0;
-  console.log("here");
-  while (false) {
+
+  console.log("Checking for images to generate placeholder for...");
+  while (true) {
     const files = await trx
       .select(["id", "url"])
       .from(FILES_TABLE)
@@ -18,7 +19,7 @@ async function up(trx) {
       .limit(BATCH_SIZE);
 
     for (const file of files) {
-      console.log("🚀 ~ file: palceholder.js ~ line 21 ~ up ~ file", file);
+      console.log("Generating placeholder for file: ", file);
       const placeholder = await strapi
         .plugin("placeholder")
         .service("placeholder")
@@ -37,6 +38,7 @@ async function up(trx) {
 
     lastId = files[files.length - 1].id;
   }
+  console.log("Generating placeholders done.");
 }
 
 async function down() {}
