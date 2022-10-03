@@ -10,20 +10,21 @@ interface ISubmenuModalProps {
   onClose: () => void
   items?: string[]
   filters?: ReactNode
+  onSubmenuItemClick?: () => void
 }
 
-const SubmenuModal = ({ onClose, items, filters }: ISubmenuModalProps) => {
+const SubmenuModal = ({ onClose, items, filters, onSubmenuItemClick }: ISubmenuModalProps) => {
   const { t } = useTranslation()
 
   return (
-    <div className="fixed inset-x-0 top-[var(--nav-height)] z-20 flex h-[calc(100vh-var(--nav-height))] flex-col justify-between bg-gmbDark p-12 lg:hidden">
+    <div className="fixed inset-x-0 top-[var(--nav-height)] z-20 flex h-[calc(100vh-var(--nav-height))] flex-col text-white justify-between bg-gmbDark p-12 lg:hidden">
       <div className="flex max-h-full flex-col">
-        <button type="button" className="absolute right-0 top-0 px-xMd py-yMd text-white" onClick={onClose}>
+        <button type="button" className="absolute right-0 top-0 px-xMd py-yMd" onClick={onClose}>
           <CloseIcon className="dw-[30] dh-[30]" />
         </button>
-        <div className="mt-20 flex w-full shrink-0 grow-0 flex-col items-center gap-yMd text-white">
+        <div className="mt-12 flex w-full shrink-0 grow-0 flex-col items-center gap-yMd">
           {items?.map((item) => (
-            <Link key={getAnchor(item)} href={`#${getAnchor(item) ?? ''}`} onClick={onClose} replace>
+            <Link key={getAnchor(item)} href={`#${getAnchor(item) ?? ''}`} onClick={onSubmenuItemClick} replace>
               {item}
             </Link>
           ))}
