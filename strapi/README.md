@@ -1,5 +1,5 @@
 # Strapi template
-
+bla
 # Quick run
 
 If you want to run an application without installing it locally quickly, you can run it through `docker-compose`:
