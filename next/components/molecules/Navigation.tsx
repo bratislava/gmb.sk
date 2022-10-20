@@ -1,6 +1,4 @@
 import cx from 'classnames'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
@@ -31,20 +29,6 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
-  gsap.registerPlugin(ScrollTrigger)
-  useEffect(() => {
-    gsap.to('#navLogoText', {
-      bottom: '+=120',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: 'main',
-        start: 'top -250px',
-        end: 'top -370px',
-        scrub: 0,
-      },
-    })
-  }, [])
 
   useEffect(() => {
     router.events.on('routeChangeStart', closeMobileMenu)
