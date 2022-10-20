@@ -4,6 +4,12 @@ export default {
       defaultLimit: 100,
     },
   },
+  placeholder: {
+    enabled: true,
+    config: {
+      size: 10,
+    },
+  },
   "custom-richtext-editor": {
     enabled: true,
     resolve: "./src/plugins/custom-richtext-editor",

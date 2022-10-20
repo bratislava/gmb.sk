@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import Image from 'next/future/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect } from 'react'
@@ -18,9 +19,10 @@ import SidePanel from './SidePanel'
 
 interface HighlightProps {
   highlight: WithAttributes<HighlightsItemEntityFragment>
+  isPriority?: boolean
 }
 
-const Highlight = ({ highlight }: HighlightProps) => {
+const Highlight = ({ highlight, isPriority }: HighlightProps) => {
   const { t } = useTranslation()
   const router = useRouter()
 
@@ -77,6 +79,8 @@ const Highlight = ({ highlight }: HighlightProps) => {
     getPurchaseId(highlight)
   )
 
+
+
   return (
     <article className="relative h-fit w-full bg-gmbLightGray">
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
@@ -87,11 +91,18 @@ const Highlight = ({ highlight }: HighlightProps) => {
         onClick={() => router.push(`/detail/${slug}`)}
         onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
       >
-        <div
-          className="flex grow bg-cover bg-center"
-          id={`articleImg${highlight.id ?? ''}`}
-          style={{ backgroundImage: `url(${coverMedia?.data?.attributes?.url ?? ''})` }}
-        />
+        <div className="relative flex grow">
+          <Image
+            id={`articleImg${highlight.id ?? ''}`}
+            src={coverMedia?.data?.attributes?.url ?? ''}
+            alt={coverMedia?.data?.attributes?.alternativeText ?? ''}
+            style={{ objectFit: 'cover' }}
+            blurDataURL={coverMedia?.data?.attributes?.placeholder ?? ''}
+            placeholder="blur"
+            fill
+            priority={isPriority}
+          />
+        </div>
         <div
           className="h-fit w-full py-yMd px-xMd lg:h-auto lg:pr-sidepanel"
           style={{ background: getContentPageColor(highlight) }}
