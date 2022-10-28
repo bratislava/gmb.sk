@@ -68,6 +68,7 @@ jobs:
       cluster: tkg-innov-staging
       url: https://tkg.staging.bratislava.sk
       flag: --staging
+      debug: --debug
     secrets:
       service-account: ${{ secrets.STAGING_STANDALONE_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
@@ -83,6 +84,7 @@ jobs:
       cluster: tkg-innov-staging
       url: https://tkg.staging.bratislava.sk
       flag: --staging
+      debug: --debug
     secrets:
       service-account: ${{ secrets.STAGING_STANDALONE_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
@@ -98,6 +100,7 @@ jobs:
       cluster: tkg-innov-staging
       url: https://tkg.staging.bratislava.sk
       flag: --staging
+      debug: --debug
     secrets:
       service-account: ${{ secrets.STAGING_STANDALONE_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
