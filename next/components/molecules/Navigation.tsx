@@ -11,15 +11,15 @@ import SearchIcon from '../../assets/icons/search.svg'
 import Logo from '../../assets/images/gmb-logo-header.png'
 import { ContentPageEntityFragment } from '../../graphql'
 import { getBreakpointValue } from '../../utils/getBreakpointValue'
-import { withAttributes } from '../../utils/isDefined'
-import AppLangSwitchers from '../atoms/AppLangSwitchers'
+import { WithAttributes } from '../../utils/isDefined'
+// import AppLangSwitchers from '../atoms/AppLangSwitchers'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
 import SkipNavigation from '../atoms/SkipNavigation'
 import SearchBar from './SearchBar'
 
 interface NavigationProps {
-  contentPage?: ContentPageEntityFragment
+  contentPage?: WithAttributes<ContentPageEntityFragment>
 }
 
 const Navigation = ({ contentPage }: NavigationProps) => {
@@ -124,7 +124,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
               <SearchIcon className="dw-[36]" />
             </button>
 
-            {/* TODO show switchers when EN content is ready */}
+            {/* TODO _app.tsx is not getting contentPage */}
             {/* <div className="text-gray-500 lg:hidden">
               <AppLangSwitchers contentPage={withAttributes(contentPage) ?? undefined} />
             </div> */}

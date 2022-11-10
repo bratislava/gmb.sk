@@ -25,6 +25,7 @@ const AppLangSwitchers = ({ contentPage, desktop }: AppLangSwitchersProps) => {
       const equivalentRouteInTargetLocale = getEquivalentRouteInTargetLocale(router.pathname, locale, contentPage)
 
       if (!equivalentRouteInTargetLocale) {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         router.push(
           {
             pathname: `/404`,
@@ -39,6 +40,7 @@ const AppLangSwitchers = ({ contentPage, desktop }: AppLangSwitchersProps) => {
         path: '/',
         sameSite: true,
       })
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.replace(
         {
           pathname: equivalentRouteInTargetLocale,

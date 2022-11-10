@@ -8,10 +8,11 @@ import { SWRConfig } from 'swr'
 
 import CookieConsent from '../components/molecules/CookieConsent'
 import Navigation from '../components/molecules/Navigation'
+import { ContentPageEntityFragment } from '../graphql'
 import nextI18NextConfig from '../next-i18next.config'
 import { initializeGoogleAnalytics, useGoogleAnalyticsPageView } from '../utils/googleAnalytics'
+import { withAttributes } from '../utils/isDefined'
 import { logError } from '../utils/logger'
-import { ContentPageEntityFragment } from '../graphql'
 
 initializeGoogleAnalytics()
 
@@ -44,7 +45,8 @@ const CustomApp = ({ Component, pageProps }: Props) => {
         <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
 
         <header className="flex">
-          <Navigation contentPage={pageProps?.contentPage} />
+          {/* TODO fix: contentPage is always undefined */}
+          <Navigation contentPage={withAttributes(pageProps?.contentPage) ?? undefined} />
         </header>
         <main className="scroll-mt-nav">
           <Component {...pageProps} />
