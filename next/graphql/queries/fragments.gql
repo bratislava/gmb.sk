@@ -128,7 +128,9 @@ fragment ContentPageEntity on ContentPageEntity {
   id
   attributes {
     title
+    titleToShow
     subtitle
+    useDatetimeAsSubtitle
     slug
     coverMedia {
       data {
@@ -191,6 +193,7 @@ fragment NewsItemEntity on ContentPageEntity {
   attributes {
     title
     subtitle
+    useDatetimeAsSubtitle
     slug
     color
     inheritColorFromParent
@@ -213,8 +216,7 @@ fragment SectionItemEntity on ContentPageEntity {
         ...ImageEntity
       }
     }
-    dateFrom
-    dateTo
+    ...Datetime
     tags {
       data {
         ...TagEntity
@@ -226,7 +228,7 @@ fragment SectionItemEntity on ContentPageEntity {
 fragment HighlightsItemEntity on ContentPageEntity {
   ...SectionItemEntity
   attributes {
-    ...Datetime
+    titleToShow
     ...ContentPagePlace
     ...Positions
     sellTickets

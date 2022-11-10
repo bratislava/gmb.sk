@@ -14,6 +14,7 @@ import { isDefined, WithAttributes } from '../../utils/isDefined'
 import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
 import Button from '../atoms/Button'
 import { SidePanelTime } from '../atoms/SidePanelTime'
+import Subtitle from '../atoms/Subtitle'
 import SidePanel from './SidePanel'
 
 interface HighlightProps {
@@ -28,7 +29,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
 
   const {
     title,
-    subtitle,
+    titleToShow,
     dateFrom,
     dateTo,
     timeFrom,
@@ -46,7 +47,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
   gsap.registerPlugin(ScrollTrigger)
 
   useEffect(() => {
-    if (windowWidth && windowWidth >= getBreakpointValue('lg')) {
+    if (highlight.id && windowWidth && windowWidth >= getBreakpointValue('lg')) {
       ScrollTrigger.create({
         trigger: `#sidepanel${highlight.id}`,
         start: 'top bottom',
@@ -84,7 +85,9 @@ const Highlight = ({ highlight }: HighlightProps) => {
         className="flex h-[calc(100vh_-_var(--nav-height))] w-full cursor-pointer flex-col"
         tabIndex={-1}
         id={`articleDiv${highlight.id ?? ''}`}
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onClick={() => router.push(`/detail/${slug}`)}
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
       >
         <div
@@ -99,8 +102,10 @@ const Highlight = ({ highlight }: HighlightProps) => {
         >
           <div className="flex flex-col items-start justify-between gap-y-yMd lg:mr-xLg">
             <div>
-              <h2 className="text-xxl lg:line-clamp-2">{title}</h2>
-              <p className="text-xxl font-regular lg:line-clamp-1">{subtitle}</p>
+              <h2 className="text-xxl md:whitespace-pre-wrap">{titleToShow || title}</h2>
+              <p className="mt-1 text-xxl font-regular lg:mt-2">
+                <Subtitle page={highlight} />
+              </p>
             </div>
 
             {/* Detail button on desktop */}

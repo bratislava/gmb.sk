@@ -13,10 +13,9 @@ export interface SidePanelTimeProps {
 
 export const SidePanelTime = ({ datetime, isOneLine, noIcon }: SidePanelTimeProps) => {
   const { i18n } = useTranslation()
+  const locale = i18n.language
 
   const { dateFrom, dateTo, timeFrom, timeTo } = datetime
-
-  const locale = i18n.language
 
   if (!dateFrom && !dateTo && !timeFrom && !timeTo) {
     return null

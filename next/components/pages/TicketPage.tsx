@@ -7,6 +7,7 @@ import Link from '../atoms/Link'
 import Seo from '../atoms/Seo'
 import { SidePanelPlace } from '../atoms/SidePanelPlace'
 import { SidePanelTime } from '../atoms/SidePanelTime'
+import Subtitle from '../atoms/Subtitle'
 import Footer from '../molecules/Footer'
 import CardSection from '../molecules/sections/CardSection'
 
@@ -19,7 +20,8 @@ interface ITicketPageProps {
 const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProps) => {
   const { t } = useTranslation()
 
-  const { title, subtitle, place, placeTitle, dateFrom, dateTo, timeFrom, timeTo, slug, seo } = contentPage.attributes
+  const { title, titleToShow, subtitle, place, placeTitle, dateFrom, dateTo, timeFrom, timeTo, slug, seo } =
+    contentPage.attributes
 
   return (
     /* eslint-disable tailwindcss/no-custom-classname */
@@ -32,8 +34,10 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
         <header className="py-yMd px-xMd lg:pr-sidepanel">
           <Link href={`/detail/${slug}`} preserveStyle noUnderline>
             <div className="lg:mr-xLg">
-              <h1 className="goout-event-title text-xxl">{title}</h1>
-              <p className="text-xxl font-regular">{subtitle}</p>
+              <h1 className="goout-event-title text-xxl md:whitespace-pre-wrap">{titleToShow || title}</h1>
+              <p className="mt-1 text-xxl font-regular lg:mt-2">
+                <Subtitle page={contentPage} />
+              </p>
             </div>
           </Link>
 

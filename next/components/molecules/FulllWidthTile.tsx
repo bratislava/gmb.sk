@@ -6,6 +6,7 @@ import { getContentPageColor } from '../../utils/getContentPageColor'
 import { WithAttributes } from '../../utils/isDefined'
 import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
 import Button from '../atoms/Button'
+import Subtitle from '../atoms/Subtitle'
 
 export interface IFullWidthTileProps {
   sectionItem: WithAttributes<SectionItemEntityFragment>
@@ -15,19 +16,23 @@ export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
   const { t } = useTranslation()
   const router = useRouter()
 
+  const { slug, coverMedia, title } = sectionItem.attributes
+
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article
       tabIndex={-1}
-      onClick={() => router.push(`/detail/${sectionItem.attributes.slug}`)}
-      onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${sectionItem.attributes.slug}`))}
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
+      onClick={() => router.push(`/detail/${slug}`)}
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
+      onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
       className="w-full cursor-pointer"
     >
       <div className="flex h-screen w-full items-center justify-center overflow-hidden lg:h-full">
-        {sectionItem.attributes.coverMedia?.data?.attributes?.url && (
+        {coverMedia?.data?.attributes?.url && (
           <img
-            src={sectionItem.attributes.coverMedia.data.attributes.url}
-            alt={sectionItem.attributes.coverMedia.data.attributes.alternativeText ?? ''}
+            src={coverMedia.data.attributes.url}
+            alt={coverMedia.data.attributes.alternativeText ?? ''}
             className="min-h-full min-w-full object-cover"
           />
         )}
@@ -38,11 +43,13 @@ export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
         style={{ background: getContentPageColor(sectionItem) }}
       >
         <div>
-          <h3 className="text-xl">{sectionItem.attributes.title}</h3>
-          <p className="pb-yMd text-xl font-regular">{sectionItem.attributes.subtitle}</p>
+          <h3 className="text-xl">{title}</h3>
+          <p className="pb-yMd text-xl font-regular">
+            <Subtitle page={sectionItem} />
+          </p>
         </div>
 
-        <Button href={`/detail/${sectionItem.attributes.slug}`} aria-label={sectionItem.attributes.title}>
+        <Button href={`/detail/${slug}`} aria-label={title}>
           {t('common.detail')}
         </Button>
       </div>

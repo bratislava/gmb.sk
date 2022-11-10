@@ -9,6 +9,7 @@ import { getPurchaseId } from '../../utils/getPurchaseId'
 import { hasAttributes, isDefined, WithAttributes, withAttributes } from '../../utils/isDefined'
 import Audio from '../atoms/Audio'
 import Seo from '../atoms/Seo'
+import Subtitle from '../atoms/Subtitle'
 import Video from '../atoms/Video'
 import ContactCard from '../molecules/ContactCard'
 import Footer from '../molecules/Footer'
@@ -29,7 +30,7 @@ interface DetailPageProps {
 const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
   const {
     title,
-    subtitle,
+    titleToShow,
     perex,
     slug,
     mainContent,
@@ -88,8 +89,10 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
 
       <div className="py-yMd px-xMd lg:pr-sidepanel" style={{ background: getContentPageColor(contentPage) }}>
         <div className="lg:mr-xLg">
-          <h1 className="text-xxl">{title}</h1>
-          <p className="text-xxl font-regular">{subtitle}</p>
+          <h1 className="text-xxl md:whitespace-pre-wrap">{titleToShow || title}</h1>
+          <p className="mt-1 text-xxl font-regular lg:mt-2">
+            <Subtitle page={contentPage} />
+          </p>
         </div>
       </div>
       <Submenu items={submenu} />
