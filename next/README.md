@@ -13,17 +13,23 @@ yarn dev
 # the same as yarn develop
 ```
 
-## Strapi SDK for city-gallery
+For CMS setup see `strapi` directory. You can also run the project against staging or production strapi (useful when developing and debugging) - provided that you're not working on Strapi model changes.
 
-When you change something in Strapi Content type builder, and/or if you change GraphQL queries, you always need to generate new types using Strapi SKD.
+## Generate GraphQL
 
-To generate new types:
+When you change something in Strapi Content type builder, and/or if you change GraphQL queries, you always need to generate new types using Strapi SKD. To update queries, modify files in `graphql` directory.
+
+> Note: Strapi v4 does not export `schema.graphql` by default - instead, you'll need a running server to generate types from graphql endpoint. The Strapi url is set up directly in codegen.yml file.
+
+To generate new types run:
 
 ```
 yarn gen
 ```
 
 For more information, refer to [the documentation](/docs/libs/Strapi-SDK.md).
+
+Open http://localhost:3000 with your browser to see the result.
 
 ## Adding new routes or slugs for filtering
 
@@ -35,7 +41,7 @@ In order to have routes multilingual (for example, to have both `/navstivte` and
 
 2. Add a rewrite to next.config.js, to map the the English route to the existing page, like this:
 
-```
+```ts
 async rewrites() {
   return {
     beforeFiles: [

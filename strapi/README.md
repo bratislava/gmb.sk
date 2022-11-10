@@ -1,124 +1,52 @@
-# Strapi template
+# 🚀 Marianum Strapi
 
-# Quick run
+## Setup
 
-If you want to run an application without installing it locally quickly, you can run it through `docker-compose`:
+Before you start, install all dependencies and create `.env.local` file which is .gitignored and used for local dev.
 
-```bash
-docker-compose up --build
+```
+yarn
+cp .env.example .env.local
 ```
 
-# Local installation
+You need postgres running locally (with correct credentials & database available). The easiest way to get a postgres db with the right credentials up&running is via `docker-compose.yml` file. Check the readme in the root of this repo.
 
-- ### `install`
+## Build
 
-  Run installation for dependencies
+Build your admin panel. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-build)
 
-  ```
-  yarn install
-  ```
-
-- ### `develop`
-
-  Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-develop)
-
-  ```
-  yarn develop
-  ```
-
-- ### `build`
-
-  Build your admin panel. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-build)
-
-  ```
-  yarn build
-  ```
-
-- ### `start`
-
-  Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-start)
-
-  ```
-  yarn start
-  ```
-
-## ⚙️ Deployment
-
-Strapi gives you many possible deployment options for your project. Find the one that suits you on the [deployment section of the documentation](https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/deployment.html).
-
-## Secrets
-
-Let's have a look if you are in the proper cluster:
-
-```bash
-kubectl config current-context
+```
+yarn build
 ```
 
-We are using for secrets `Sealed Secrets` https://github.com/bitnami-labs/sealed-secrets.
-To use a secret in your project, you have to install `kubeseal` if you haven`t installed it yet.
+## Start development server
 
-```bash
-brew install kubeseal
+Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-develop)
+
+```
+yarn dev
 ```
 
-The next thing is going to the folder `secrets` where all our secrets are stored:
+## Start server
 
-```bash
-cd kubernetes/base/secrets
+Start your Strapi application with autoReload disabled (not needed for development). [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-start)
+
+```
+yarn start
 ```
 
-After that, we need to create a temp file for our new secrets. Let's assume we want database connection secretes. You need to make this file `database.yml`
+## Set permissions
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: database-secret
-data:
-  POSTGRES_DB: YmFuYW5h
-  POSTGRES_USER: YmFuYW5h
-  POSTGRES_PASSWORD: YmFuYW5h
-```
+To allow graphql queries, you need to give access to Public role:
 
-- `metadata.name` is the name of the group of secrets in our case, `database-secret`
+Open Strapi admin panel, go to Settings > USERS & PERMISSIONS PLUGIN > Roles > Public. Check `find` and `findOne` for all content types.
 
-- `data` contains environment variables keys (`POSTGRES_DB`) and base64 encode values (`YmFuYW5h`).
+# Project specific config
 
-For example, if you need to set up the database name to `banana`, you need to base64 encode this value. You can use an online base64 converter like https://www.base64encode.org and encode `banana` to `YmFuYW5h`.
+## Custom Richtext Editor plugin
 
-The last thing is encrypting our secrets by kubeseal to be used on Kubernetes. You need to run this command that creates the file `database.secret.yml` where all our values are encrypted and safe to add to the repository.
+Replaces the default WYSIWYG Strapi Richtext Editor with a custom version that:
 
-```bash
-kubeseal --controller-name=sealed-secrets --scope=namespace-wide --namespace=standalone --format=yaml < database.yml > database.secret.yml
-```
-
-If you want to propagate a sealed secret to Kubernetes without a pipeline, you can run this command:
-
-```bash
-kubectl create -f database.secret.yml
-```
-
-If you already have a sealed secret in Kubernetes, you can update it with the command:
-
-```bash
-kubectl apply -f database.secret.yml
-```
-
-Usually, you get this kind of error: `Error from server (AlreadyExists): error when creating "database.secret.yml": sealedsecrets.bitnami.com "nest-Prisma-template-database-secret" already exists`
-
-If you want to check if your secret is there, you can run this command:
-
-```bash
-kubectl get secret --namespace=standalone nest-prisma-template-database-secret
-```
-
-# Customisation
-
-We have added some unique improvements to our version of Strapi.
-
-## Plugins
-
-- **Custom Richtext Editor** - Replaces the default WYSIWYG Strapi Richtext Editor with a custom version that: 
-  - changes **Image** markdown generation to: `![alt||caption](url)` so that caption can be accessed by our frontend
-  - removes **Underline** button
-  - removes **Preview mode** button
+- changes **Image** markdown generation to: `![alt||caption](url)` so that caption can be accessed by our frontend
+- removes **Underline** button
+- removes **Preview mode** button
