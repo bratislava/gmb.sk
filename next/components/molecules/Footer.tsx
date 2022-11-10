@@ -1,4 +1,5 @@
 import { useTranslation } from 'next-i18next'
+import { useMemo } from 'react'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import remarkGfm from 'remark-gfm'
 
@@ -17,6 +18,10 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
   const { t } = useTranslation()
 
   const { name, openingHours, mirbach, palffy, socialLinks, footerLinks1, footerLinks2 } = contactInfo.attributes
+
+  const currentYear = useMemo(() => {
+    return new Date().getFullYear()
+  }, [])
 
   return (
     <footer className="relative bg-gmbDark px-xMd py-yLg text-white">
@@ -56,6 +61,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
               <Link
                 href={link?.url || '#'}
                 target={link?.newWindow ?? true ? '_blank' : '_self'}
+                // eslint-disable-next-line react/no-array-index-key
                 key={index}
                 className="overflow-hidden text-ellipsis whitespace-nowrap text-md uppercase"
                 preserveStyle
@@ -81,13 +87,14 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
             ))}
           </div>
         </div>
-        <div className="col-span-2 flex h-full flex-col justify-between lg:col-span-1">
+        <div className="col-span-2 flex h-full flex-col justify-between md:col-span-1">
           <h3 className="pb-yMd text-xl">{footerLinks2?.title}</h3>
           <div className="flex flex-col">
             {footerLinks2?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
                 target={link?.newWindow ?? true ? '_blank' : '_self'}
+                // eslint-disable-next-line react/no-array-index-key
                 key={index}
                 className="overflow-hidden text-ellipsis whitespace-nowrap text-md uppercase"
                 preserveStyle
@@ -97,12 +104,13 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
             ))}
           </div>
         </div>
-        <div className="hidden flex-col justify-end text-right text-sm lg:flex">
-          {/* TODO show switchers when EN content is ready */}
-          {/* <div className="flex justify-end">
+        <div className="col-span-2 flex flex-col justify-end text-right text-sm md:col-span-1">
+          <div className="flex justify-end">
             <AppLangSwitchers contentPage={contentPage} desktop />
-          </div> */}
-          <p>&copy; 2022 {name || t('common.bratislavaCityGallery')}</p>
+          </div>
+          <p>
+            &copy; {currentYear} {name || t('common.bratislavaCityGallery')}
+          </p>
         </div>
       </div>
     </footer>
