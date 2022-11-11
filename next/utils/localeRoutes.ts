@@ -75,6 +75,7 @@ function getContentPageDetailRouteForTargetLocale(
     return
   }
 
+  // eslint-disable-next-line consistent-return
   return `/detail/${contentPageInTargetLocale?.attributes.slug}`
 }
 
@@ -92,6 +93,7 @@ function getContentPageTicketsRouteForTargetLocale(
 
   const ticketsRoute = getRouteForLocale('/vstupenky', targetLocale)
 
+  // eslint-disable-next-line consistent-return
   return `${ticketsRoute}/${contentPageInTargetLocale?.attributes.slug}`
 }
 

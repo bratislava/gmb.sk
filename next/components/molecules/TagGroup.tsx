@@ -9,20 +9,23 @@ interface ITagGroupProps {
 }
 
 const TagGroup = ({ tags, activeTags, setActiveTags }: ITagGroupProps) => {
+  const handleTagClick = (tagSlug: string) => {
+    if (activeTags.includes(tagSlug)) {
+      setActiveTags((prev) => prev.filter((item) => item !== tagSlug))
+    } else {
+      setActiveTags((prev) => [...prev, tagSlug])
+    }
+  }
+
   return (
     <>
       {tags.map((tag) => (
         <Tag
           // title={`${tag.title} [${tag.contentPages?.filter(isDefined).length ?? 0}]`}
           title={tag.attributes.title}
-          slug={tag.attributes.slug}
           key={tag.attributes.slug}
           isActive={activeTags.includes(tag.attributes.slug)}
-          onClick={() => {
-            activeTags.includes(tag.attributes.slug)
-              ? setActiveTags((prev) => prev.filter((item) => item !== tag.attributes.slug))
-              : setActiveTags((prev) => [...prev, tag.attributes.slug])
-          }}
+          onClick={() => handleTagClick(tag.attributes.slug)}
         />
       ))}
     </>

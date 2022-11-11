@@ -8,11 +8,11 @@ import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
 import Button from '../atoms/Button'
 import Subtitle from '../atoms/Subtitle'
 
-export interface IFullWidthTileProps {
+interface IFullWidthTileProps {
   sectionItem: WithAttributes<SectionItemEntityFragment>
 }
 
-export const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
+const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
   const { t } = useTranslation()
   const router = useRouter()
 

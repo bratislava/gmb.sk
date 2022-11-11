@@ -26,6 +26,8 @@ const MobileShareButton = ({ className, slug, title }: MobileShareButtonProps) =
           title,
           url,
         })
+        // TODO proper error handling
+        // eslint-disable-next-line no-console
         .catch((error) => console.error(error))
     }
     // right now, this component will NOT be generated when navigator.share is not supported

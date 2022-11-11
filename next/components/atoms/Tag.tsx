@@ -2,7 +2,6 @@ import cx from 'classnames'
 
 interface ITagPRops {
   title: string
-  slug?: string
   isActive?: boolean
   onClick?: () => unknown
 }

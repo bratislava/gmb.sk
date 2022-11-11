@@ -3,13 +3,9 @@ import { memo } from 'react'
 interface ImageGalleryItemProps {
   description?: string
   fullscreen?: string // fullscreen version of img
-  handleImageLoaded?: (event: any) => void
   isFullscreen?: boolean
-  onImageError?: (error: any) => void
   original: string
   originalAlt?: string
-  originalHeight?: number
-  originalWidth?: number
   originalTitle?: string
   sizes?: string
   srcSet?: string
@@ -20,13 +16,9 @@ const ImageGalleryItem = memo(
   ({
     description,
     fullscreen, // fullscreen version of img
-    handleImageLoaded,
     isFullscreen = false,
-    onImageError,
     original,
     originalAlt,
-    originalHeight,
-    originalWidth,
     originalTitle,
     sizes,
     srcSet,
@@ -48,7 +40,6 @@ const ImageGalleryItem = memo(
           srcSet={srcSet}
           sizes={sizes}
           title={originalTitle}
-          onError={onImageError}
           loading={loading}
         />
         {!isFullscreen && description && (

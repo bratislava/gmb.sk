@@ -7,6 +7,7 @@ import { mergeProps, useCheckbox, useFocusRing, VisuallyHidden } from 'react-ari
 import CheckIcon from '../../assets/icons/check.svg'
 
 /* eslint-disable react/destructuring-assignment */
+
 /**
  * Heavily inspired by https://react-spectrum.adobe.com/react-aria/useCheckbox.html and Tailwind example provided there.
  */
@@ -45,5 +46,6 @@ const Checkbox = (
     </label>
   )
 }
+/* eslint-enable react/destructuring-assignment */
 
 export default Checkbox

@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
 import cx from 'classnames'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
@@ -16,6 +15,7 @@ interface ITicketProps {
   purchaseIdGift: string | null | undefined
 }
 
+/* eslint-disable tailwindcss/no-custom-classname */
 const Ticket = ({ title, price, description, purchaseIdSelf, purchaseIdGift }: ITicketProps) => {
   const { t } = useTranslation()
   const router = useRouter()
@@ -71,5 +71,6 @@ const Ticket = ({ title, price, description, purchaseIdSelf, purchaseIdGift }: I
     </div>
   )
 }
+/* eslint-enable tailwindcss/no-custom-classname */
 
 export default Ticket

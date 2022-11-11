@@ -1,6 +1,9 @@
 export const formatTimeString = (time: string) => {
-  time = time.slice(0, 5)
-  let [hours, minutes] = time.split(':')
-  hours[0] === '0' && (hours = hours[1])
-  return minutes === '00' ? `${hours} h` : `${hours}.${minutes} h`
+  const timeInner = time.slice(0, 5)
+  const [hours, minutes] = timeInner.split(':')
+
+  const hoursString = hours[0] === '0' ? hours[1] : hours
+  const minutesString = minutes === '00' ? '' : `.${minutes}`
+
+  return `${hoursString}${minutesString} h`
 }

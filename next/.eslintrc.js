@@ -1,6 +1,5 @@
 module.exports = {
   extends: ['auto', 'plugin:tailwindcss/recommended', 'plugin:@next/next/recommended'],
-  plugins: ['only-warn'],
   rules: {
     'react/react-in-jsx-scope': 'off',
     /** We use this a lot with isDefined and hasAttributes */
@@ -37,6 +36,7 @@ module.exports = {
     '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off',
     '@typescript-eslint/no-unsafe-argument': 'off',
+    '@typescript-eslint/no-misused-promises': 'off',
   },
-  ignorePatterns: ['*.config.*', 'graphql', '.eslintrc.js'],
+  ignorePatterns: ['*.config.*', 'graphql', '.eslintrc.js', '*.md'],
 }

@@ -22,6 +22,7 @@ interface NavigationProps {
   contentPage?: WithAttributes<ContentPageEntityFragment>
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Navigation = ({ contentPage }: NavigationProps) => {
   const { t, i18n } = useTranslation()
   const router = useRouter()

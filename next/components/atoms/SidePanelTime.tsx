@@ -11,6 +11,7 @@ export interface SidePanelTimeProps {
   noIcon?: boolean
 }
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export const SidePanelTime = ({ datetime, isOneLine, noIcon }: SidePanelTimeProps) => {
   const { i18n } = useTranslation()
   const locale = i18n.language

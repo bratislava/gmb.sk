@@ -40,7 +40,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
     if (email.length === 0) {
       newEmailError = t('errors.emailMandatory')
     } else if (
-      !/^(([^\s"(),.:;<>@[\\\]]+(\.[^\s"(),.:;<>@[\\\]]+)*)|(".+"))@((\[(?:\d{1,3}\.){3}\d{1,3}])|(([\dA-Za-z\-]+\.)+[A-Za-z]{2,}))$/.test(
+      !/^(([^\s"(),.:;<>@[\\\]]+(\.[^\s"(),.:;<>@[\\\]]+)*)|(".+"))@((\[(?:\d{1,3}\.){3}\d{1,3}])|(([\dA-Za-z-]+\.)+[A-Za-z]{2,}))$/.test(
         String(email).toLowerCase()
       )
     ) {

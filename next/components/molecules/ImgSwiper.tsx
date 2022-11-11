@@ -34,7 +34,9 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
       }}
       onBeforeInit={(swiper) => {
         if (swiper?.params?.navigation) {
+          // eslint-disable-next-line no-param-reassign
           ;(swiper.params.navigation as NavigationOptions).prevEl = navigationPrevRef.current
+          // eslint-disable-next-line no-param-reassign
           ;(swiper.params.navigation as NavigationOptions).nextEl = navigationNextRef.current
         }
       }}
@@ -50,6 +52,7 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
       id={anchor}
     >
       {slides?.map((item, index) => (
+        // eslint-disable-next-line react/no-array-index-key
         <SwiperSlide key={index}>
           <Image
             src={item.attributes.url}

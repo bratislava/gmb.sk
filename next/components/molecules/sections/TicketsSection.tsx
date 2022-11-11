@@ -1,5 +1,4 @@
 import cx from 'classnames'
-import { useTranslation } from 'next-i18next'
 
 import { TicketEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
@@ -15,8 +14,6 @@ interface TicketsSectionProps {
 }
 
 const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) => {
-  const { t } = useTranslation()
-
   return (
     <Section anchor={anchor} title={title}>
       <div

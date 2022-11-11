@@ -21,6 +21,7 @@ interface HighlightProps {
   highlight: WithAttributes<HighlightsItemEntityFragment>
 }
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 const Highlight = ({ highlight }: HighlightProps) => {
   const { t } = useTranslation()
   const router = useRouter()
@@ -140,7 +141,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
           </div>
         </div>
       </div>
-      <div className="relative ml-auto w-sidepanel bg-white" id={`sidepanel${highlight.id}`}>
+      <div className="relative ml-auto w-sidepanel bg-white" id={`sidepanel${highlight.id ?? ''}`}>
         {renderOverride && override?.highlightContent ? (
           /* If there is override, display it on both mobile and desktop */
           <div className="min-h-fit p-10">
