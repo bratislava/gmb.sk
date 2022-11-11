@@ -45,13 +45,16 @@ const SidePanel = ({
 
   useEffect(() => {
     // Solution for mobile detection from: https://stackoverflow.com/a/58171659
+    // TODO may need refactor with not ts-ignores
     let hasTouchScreen = false
     if ('maxTouchPoints' in navigator) {
       hasTouchScreen = navigator.maxTouchPoints > 0
     } else if ('msMaxTouchPoints' in navigator) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       hasTouchScreen = navigator.msMaxTouchPoints > 0
     } else {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const mQ = window.matchMedia && matchMedia('(pointer:coarse)')
       if (mQ && mQ.media === '(pointer:coarse)') {
@@ -64,6 +67,7 @@ const SidePanel = ({
     let isMobileDetected = false
     const browserData = [navigator.userAgent, navigator.vendor]
     if ('opera' in window) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       browserData.push(window.opera)
     }

@@ -18,6 +18,7 @@ const searchContentPages = async (req: NextApiRequest, res: NextApiResponse) => 
     _q: searchTerm,
     _locale: locale,
   })
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
   const response = await fetch(`${contentPageEndpoint}?${query}`)
   const searchResults = await response.json()
 

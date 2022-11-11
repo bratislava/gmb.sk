@@ -71,14 +71,14 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
       {page?.sections
         ?.filter(isDefined)
         .filter(isDefined)
-        .map((section, index) => {
+        .map((section) => {
           if (section.__typename === 'ComponentSectionsNewsSection' && newsItems) {
             return (
               <NewsSection
                 items={newsItems}
                 title={section.title ?? undefined}
                 anchor={getAnchor(section.submenuTitle)}
-                key={index}
+                key={`${section.__typename}-${section.id}`}
               />
             )
           }
@@ -88,17 +88,25 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
               <OpeningHoursSection
                 contactInfo={withAttributes(contactInfo)}
                 anchor={getAnchor(section.submenuTitle)}
-                key={index}
+                key={`${section.__typename}-${section.id}`}
               />
             )
           }
 
           if (section.__typename === 'ComponentSectionsNewsletterSection') {
-            return <NewsletterSection anchor={getAnchor(section.submenuTitle)} key={index} />
+            return (
+              <NewsletterSection anchor={getAnchor(section.submenuTitle)} key={`${section.__typename}-${section.id}`} />
+            )
           }
 
           if (section.__typename === 'ComponentSectionsPageSection') {
-            return <PageSectionContainer section={section} anchor={getAnchor(section.submenuTitle)} key={index} />
+            return (
+              <PageSectionContainer
+                section={section}
+                anchor={getAnchor(section.submenuTitle)}
+                key={`${section.__typename}-${section.id}`}
+              />
+            )
           }
 
           if (section.__typename === 'ComponentSectionsMapSection') {
@@ -107,7 +115,7 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
                 contactInfo={contactInfo ?? undefined}
                 title={section.title ?? undefined}
                 anchor={getAnchor(section.submenuTitle)}
-                key={index}
+                key={`${section.__typename}-${section.id}`}
               />
             )
           }
@@ -119,7 +127,7 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
                 text={section.text ?? undefined}
                 anchor={getAnchor(section.submenuTitle)}
                 tickets={tickets}
-                key={index}
+                key={`${section.__typename}-${section.id}`}
               />
             )
           }
@@ -130,10 +138,12 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
                 content={section.content}
                 anchor={getAnchor(section.submenuTitle)}
                 className="py-yMd px-xMd"
-                key={index}
+                key={`${section.__typename}-${section.id}`}
               />
             )
           }
+
+          return null
         })}
 
       {pageResponse?.data?.attributes?.__typename === 'HomePage' && pageResponse.data?.attributes?.partners?.length ? (

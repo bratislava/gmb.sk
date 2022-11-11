@@ -33,7 +33,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
               remarkPlugins={[remarkGfm]}
               components={{
                 p: ({ children }) => <p className="text-md">{children}</p>,
-                ul: ({ children }) => <ul className="list list-disc pl-5 pb-[55px]">{children}</ul>,
+                ul: ({ children }) => <ul className="list-disc pl-5 pb-[55px]">{children}</ul>,
               }}
             >
               {openingHours ?? ''}
@@ -74,10 +74,12 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
         <div className="flex h-full flex-col justify-between">
           <h3 className="pb-yMd text-xl">{footerLinks1?.title}</h3>
           <div className="flex flex-col">
+            {/* eslint-disable-next-line sonarjs/no-identical-functions */}
             {footerLinks1?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
                 target={link?.newWindow ?? true ? '_blank' : '_self'}
+                // eslint-disable-next-line react/no-array-index-key
                 key={index}
                 className="overflow-hidden text-ellipsis whitespace-nowrap text-md uppercase"
                 preserveStyle
@@ -90,6 +92,7 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
         <div className="col-span-2 flex h-full flex-col justify-between md:col-span-1">
           <h3 className="pb-yMd text-xl">{footerLinks2?.title}</h3>
           <div className="flex flex-col">
+            {/* eslint-disable-next-line sonarjs/no-identical-functions */}
             {footerLinks2?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}

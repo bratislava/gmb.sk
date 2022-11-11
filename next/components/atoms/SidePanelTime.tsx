@@ -11,6 +11,7 @@ export interface SidePanelTimeProps {
   noIcon?: boolean
 }
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export const SidePanelTime = ({ datetime, isOneLine, noIcon }: SidePanelTimeProps) => {
   const { i18n } = useTranslation()
   const locale = i18n.language
@@ -25,7 +26,7 @@ export const SidePanelTime = ({ datetime, isOneLine, noIcon }: SidePanelTimeProp
     return (
       <div className="whitespace-nowrap text-nav">
         <div className="flex items-center gap-3">
-          {!noIcon && <TimeIcon className="dh-[24px]" />}
+          {!noIcon && <TimeIcon className="dh-[24]" />}
           <span>
             {dateFrom && formatDateString(dateFrom, locale)}
             {dateTo && dateTo !== dateFrom && ` - ${formatDateString(dateTo, locale)}`}

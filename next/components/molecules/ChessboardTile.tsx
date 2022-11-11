@@ -11,13 +11,13 @@ import Button from '../atoms/Button'
 import Link from '../atoms/Link'
 import Subtitle from '../atoms/Subtitle'
 
-export interface ChessboardTileProps {
+interface ChessboardTileProps {
   sectionItem: WithAttributes<SectionItemEntityFragment>
   isLeft?: boolean
   showTags?: boolean
 }
 
-export const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTileProps) => {
+const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTileProps) => {
   const { t } = useTranslation()
   const router = useRouter()
 

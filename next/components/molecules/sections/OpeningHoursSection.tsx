@@ -75,6 +75,7 @@ const OpeningHoursSection = ({ contactInfo, anchor }: OpeningHoursSectionProps) 
         <h3 className="pb-yLg text-xl">{t('common.follow')}</h3>
         <div className="flex flex-col justify-between justify-self-end">
           {followPlatformData.map((platform, index) => (
+            // eslint-disable-next-line react/no-array-index-key
             <Link href={platform.href} target="_blank" key={index} className="text-md uppercase" preserveStyle>
               {platform.title}
             </Link>

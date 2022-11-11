@@ -68,9 +68,6 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
         isFullscreen={isFullscreen}
         original={item.original}
         originalAlt={item.originalAlt}
-        originalHeight={item.originalHeight}
-        originalWidth={item.originalWidth}
-        originalTitle={item.originalTitle}
         sizes={item.sizes}
         srcSet={item.srcSet}
         key={item.original}

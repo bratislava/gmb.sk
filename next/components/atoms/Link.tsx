@@ -32,19 +32,22 @@ const Link = ({
 }: LinkProps) => {
   const { i18n } = useTranslation()
 
-  if (!href) return null
+  if (!href) {
+    return null
+  }
 
   if (!href.startsWith('http')) {
     let isFromRoot = false
     if (href[0] === '/') {
       isFromRoot = true
     }
-    const [route, ...rest] = href.split(/(?=\/)/g)
+    const [route, ...restRoute] = href.split(/(?=\/)/g)
     let translatedRoute = route
     if (isFromRoot && isOfTypeRoute(route)) {
       translatedRoute = getRouteForLocale(route, locale || i18n.language || 'sk')
     }
-    href = `${[translatedRoute, ...rest].join('')}`
+    // eslint-disable-next-line no-param-reassign
+    href = `${[translatedRoute, ...restRoute].join('')}`
   }
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {

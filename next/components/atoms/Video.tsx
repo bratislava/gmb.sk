@@ -22,11 +22,12 @@ const Video = ({ className, url, size = 'default' }: IVideo) => {
 
         const substrStart = html.indexOf('src="') + 5
         const substrEnd = html.indexOf('oembed') + 6
-        const embedUrl = html.substring(substrStart, substrEnd)
+        const embedUrlInner = html.slice(substrStart, substrEnd)
 
-        setEmbedUrl(embedUrl)
+        setEmbedUrl(embedUrlInner)
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       if (url) parseYoutubeUrl()
     }
     if (isVimeoVideo) {
@@ -34,11 +35,14 @@ const Video = ({ className, url, size = 'default' }: IVideo) => {
         const regExp = /^.*(vimeo\.com\/)((channels\/[A-z]+\/)|(groups\/[A-z]+\/videos\/))?(\d+)/
         const match = url?.match(regExp)
         const videoId = match && match[5]
-        const embedUrl = `https://player.vimeo.com/video/${videoId}`
 
-        setEmbedUrl(embedUrl)
+        if (videoId) {
+          const embedUrlInner = `https://player.vimeo.com/video/${videoId}`
+          setEmbedUrl(embedUrlInner)
+        }
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       if (url) parseVimeoUrl()
     }
   }, [isVimeoVideo, isYoutubeVideo, url])

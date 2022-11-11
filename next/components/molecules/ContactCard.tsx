@@ -14,9 +14,9 @@ const ContactCard = ({ contact }: IContactCardProps) => {
   const { name, position, email, phone1, phone2 } = contact.attributes
 
   return (
-    <div className="flex flex-col space-y-1 py-yMd">
+    <div className="flex flex-col space-y-1 pb-yMd">
       <div className="text-md font-semibold">{name}</div>
-      <div className="text-md">{position}</div>
+      {position && <div className="text-md">{position}</div>}
       {email && (
         <Link href={`mailto:${email}`} preserveStyle className="text-md text-gmbGray underline underline-offset-2">
           {email}
