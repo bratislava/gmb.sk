@@ -31,14 +31,14 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
           }
           return children as ReactElement
         },
-        ul: ({ children }) => <ul className="list-disc pb-yMd pl-xMd text-md">{children}</ul>,
-        ol: ({ children }) => <ol className="list-decimal pb-yMd pl-xMd text-md">{children}</ol>,
+        ul: ({ children }) => <ul className="list-disc pl-xMd text-md not-last:pb-yMd">{children}</ul>,
+        ol: ({ children }) => <ol className="list-decimal pl-xMd text-md not-last:pb-yMd">{children}</ol>,
         strong: ({ children }) => (
           <strong className="font-medium" style={{ color: accentColor }}>
             {children}
           </strong>
         ),
-        blockquote: ({ children }) => <div className="border-l-4 pb-yMd pl-xMd">{children}</div>,
+        blockquote: ({ children }) => <div className="border-l-4 pl-xMd not-last:pb-yMd">{children}</div>,
         img: ({ src, alt, sizes, width, height }) => (
           <div className="relative">
             {src && <ImageFigure src={src} alt={alt} sizes={sizes} width={width} height={height} />}

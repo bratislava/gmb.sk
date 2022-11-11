@@ -160,7 +160,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
               if (section.__typename === 'ComponentSectionsContactCardsSection') {
                 return (
                   <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
-                    {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
+                    {section.title && <h2 className="pb-yMd text-xl">{section.title}</h2>}
                     {section.contacts?.map((contactItem) => (
                       <ContactCard contact={withAttributes(contactItem?.contactCard?.data)} />
                     ))}
