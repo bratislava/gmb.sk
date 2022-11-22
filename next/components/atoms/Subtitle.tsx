@@ -15,12 +15,12 @@ const Subtitle = ({ page }: ISubtitleProps) => {
   const { subtitle, useDatetimeAsSubtitle, dateFrom, timeFrom } = page.attributes
 
   return (
-    /* strings are valid JSX.Element types but typescript has bug with it so it needs to wrapped with fragment */
+    /* strings are valid JSX.Element types but typescript has bug with it, so it needs to be wrapped with fragment */
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {useDatetimeAsSubtitle ? (
         <>
-          {formatDateString(dateFrom, i18n.language)}
+          {formatDateString(dateFrom, i18n.language, 'short')}
           {timeFrom ? ` / ${formatTimeString(timeFrom)}` : ''}
         </>
       ) : (
