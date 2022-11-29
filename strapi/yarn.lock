@@ -2159,7 +2159,7 @@
     "@strapi/utils" "4.5.2"
     lodash "4.17.21"
 
-"@strapi/plugin-graphql@^4.5.2":
+"@strapi/plugin-graphql@^4.5.1":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@strapi/plugin-graphql/-/plugin-graphql-4.5.2.tgz#b8f46a7e6b6785a969feaf6104453de03e168101"
   integrity sha512-Gw8LZD5P8E4/wycInOCjXZGTkbnhO8ztisb3C+bQwFjPMguyj86WRoGHFzTxttCGKo8cBOG1rNBWyGCgttIYHQ==
@@ -2181,7 +2181,7 @@
     pluralize "^8.0.0"
     subscriptions-transport-ws "0.9.19"
 
-"@strapi/plugin-i18n@^4.5.2":
+"@strapi/plugin-i18n@^4.5.1":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@strapi/plugin-i18n/-/plugin-i18n-4.5.2.tgz#f9e96d71a8c8189f814aae153b8b27a3185f3489"
   integrity sha512-A+ct5Zpc2YuaLf4MHbdhc2obBZeo9xdD+ENJ7TGdcRNOTb2q5IUPAaJy0+4KmaoSYBuUzESQioh/xLwWVMaing==
@@ -2189,7 +2189,7 @@
     "@strapi/utils" "4.5.2"
     lodash "4.17.21"
 
-"@strapi/plugin-upload@4.5.2", "@strapi/plugin-upload@^4.5.2":
+"@strapi/plugin-upload@4.5.2", "@strapi/plugin-upload@^4.5.1":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@strapi/plugin-upload/-/plugin-upload-4.5.2.tgz#b0e921208348b159e86aa5605a930e9661d7dc0e"
   integrity sha512-1I30Xx0a3wMPL9sNCjFvsFcqOtH6HFEyMMNsjAVhr01mCQe2VYPBBm7sQM/nDb7b176Zq2SeJi2qW0Wh/aEotw==
@@ -2215,7 +2215,7 @@
     react-router-dom "5.2.0"
     sharp "0.31.0"
 
-"@strapi/plugin-users-permissions@^4.5.2":
+"@strapi/plugin-users-permissions@^4.5.1":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@strapi/plugin-users-permissions/-/plugin-users-permissions-4.5.2.tgz#28f6fd808fdb0901ed50ad0a9dccd6c547df46ae"
   integrity sha512-/ZYqGBWfy8ps+oVfZ9LDSdoX0SOU1GC8LBm3UUBJ50uPLZww8uauDwVY9v879U9YE8e6d9GGx1yAHlORligZ7A==
@@ -2254,7 +2254,7 @@
     "@strapi/utils" "4.5.2"
     fs-extra "10.0.0"
 
-"@strapi/strapi@^4.5.2":
+"@strapi/strapi@^4.5.1":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@strapi/strapi/-/strapi-4.5.2.tgz#55de61a4a0a25919cbbe869fe175b9d4d102798b"
   integrity sha512-BXeYd5/WJ5umOVUVReCK2PvhpvXs4asmALSMYRFexWwpt48U7LzjyqfKUMPmn3cLiRxjbKPW0XcZ3G4+9Hlotg==
