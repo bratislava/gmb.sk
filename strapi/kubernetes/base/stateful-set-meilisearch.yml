@@ -8,7 +8,6 @@ metadata:
 spec:
   replicas: 1
   serviceName: ${BUILD_REPOSITORY_NAME}-meilisearch
-  minReadySeconds: 60
   selector:
     matchLabels:
       service: meilisearch
