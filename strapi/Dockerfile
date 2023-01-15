@@ -43,6 +43,9 @@ RUN yarn install --production
 
 COPY . ./
 
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
 RUN yarn build
 
 EXPOSE 1337
