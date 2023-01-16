@@ -20,7 +20,7 @@
     "@strapi/plugin-users-permissions": "4.5.6",
     "@strapi/strapi": "4.5.6",
     "@types/node": "^17.0.41",
-    "pg": "8.6.0",
+    "pg": "8.8.0",
     "strapi-plugin-meilisearch": "^0.6.6",
     "strapi-plugin-preview-button": "^0.3.4",
     "strapi-provider-upload-ts-minio": "^3.1.0"
