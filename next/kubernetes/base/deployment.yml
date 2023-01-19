@@ -23,8 +23,8 @@ spec:
               cpu: 500m
               memory: 1Gi
             requests:
-              cpu: 50m
-              memory: 64Mi
+              cpu: ${NEXT_CPU_REQUESTS}
+              memory: ${NEXT_MEMORY_REQUESTS}
           envFrom:
             - secretRef:
                 name: ${BUILD_REPOSITORY_NAME}-general-secret
