@@ -12,6 +12,7 @@ import { ContentPageEntityFragment } from '../graphql'
 import nextI18NextConfig from '../next-i18next.config'
 import { initializeGoogleAnalytics, useGoogleAnalyticsPageView } from '../utils/googleAnalytics'
 import { withAttributes } from '../utils/isDefined'
+import { isProd } from '../utils/isProd'
 import { logError } from '../utils/logger'
 
 initializeGoogleAnalytics()
@@ -43,6 +44,14 @@ const CustomApp = ({ Component, pageProps }: Props) => {
         }}
       >
         <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
+
+        {isProd() ? (
+          <Script
+            strategy="afterInteractive"
+            data-domain="gmb.sk"
+            src="https://plausible.io/js/script.outbound-links.file-downloads.js"
+          />
+        ) : null}
 
         <header className="flex">
           {/* TODO fix: contentPage is always undefined */}
