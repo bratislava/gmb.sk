@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next'
 
 import { NewsItemEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
-import NewsBar from '../NewsBar'
+import NewsBar from '../presentation/NewsBar'
 import Section from './Section'
 
 interface NewsProps {

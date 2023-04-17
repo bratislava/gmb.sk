@@ -1,6 +1,6 @@
 import { HighlightsItemEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
-import Highlight from '../Highlight'
+import Highlight from '../presentation/Highlight'
 import Section from './Section'
 
 interface IHighlightSectionsProps {

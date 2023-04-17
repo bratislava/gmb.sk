@@ -7,9 +7,20 @@ type ButtonProps = React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchor
     size?: 'small' | 'medium' | 'link'
     className?: string
     color?: 'dark' | 'light'
+    stretched?: boolean
   }
 
-const Button = ({ className, children, size = 'medium', onClick, href, color = 'dark', id, ...rest }: ButtonProps) => {
+const Button = ({
+  className,
+  children,
+  size = 'medium',
+  onClick,
+  href,
+  color = 'dark',
+  stretched = false,
+  id,
+  ...rest
+}: ButtonProps) => {
   const styles = {
     className: cx(className, 'flex justify-center border-2 border-solid text-center text-btn font-medium uppercase', {
       'px-[calc(40*var(--size-factor))] py-[calc(14*var(--size-factor))]': size === 'small',
@@ -21,6 +32,7 @@ const Button = ({ className, children, size = 'medium', onClick, href, color = '
         color === 'light' && size !== 'link',
       'border-none text-gmbDark': color === 'dark' && size === 'link',
       'border-none text-white': color === 'light' && size === 'link',
+      'after:absolute after:inset-0': stretched,
     }),
   }
 

@@ -15,6 +15,7 @@ type LinkProps = React.ComponentPropsWithoutRef<'a'> & {
   replace?: boolean
   preserveStyle?: boolean
   noUnderline?: boolean
+  stretched?: boolean
 }
 
 const Link = ({
@@ -28,6 +29,7 @@ const Link = ({
   preserveStyle,
   noUnderline,
   onClick,
+  stretched = false,
   ...rest
 }: LinkProps) => {
   const { i18n } = useTranslation()
@@ -71,6 +73,7 @@ const Link = ({
         {
           'group flex cursor-pointer items-center text-nav uppercase': !preserveStyle,
           'underline-offset-2 hover:underline': !noUnderline,
+          'after:absolute after:inset-0': stretched,
         },
         className
       )}

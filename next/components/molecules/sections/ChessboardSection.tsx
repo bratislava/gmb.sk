@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next'
 import { SectionItemEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
 import Button from '../../atoms/Button'
-import ChessboardTile from '../ChessboardTile'
+import ChessboardTile from '../presentation/ChessboardTile'
 import Section from './Section'
 
 interface ChessboardProps {
