@@ -123,7 +123,7 @@ const WysiwygNav = ({
             size="S"
             onChange={(value) => onActionClick(value, editorRef)}
           >
-            <Option value="h1">h1</Option>
+            {/*<Option value="h1">h1</Option>*/}
             <Option value="h2">h2</Option>
             <Option value="h3">h3</Option>
             <Option value="h4">h4</Option>
@@ -153,6 +153,63 @@ const WysiwygNav = ({
               name="Underline"
               icon={<Underline />}
             />*/}
+            <CustomIconButton
+              onClick={() => onActionClick("Strikethrough", editorRef)}
+              id="Strikethrough"
+              label="Strikethrough"
+              name="Strikethrough"
+              icon={<StrikeThrough />}
+            />
+          </MainButtons>
+
+          <MainButtons>
+            <CustomIconButton
+              onClick={() => onActionClick("BulletList", editorRef)}
+              id="BulletList"
+              label="BulletList"
+              name="BulletList"
+              icon={<BulletList />}
+            />
+            <CustomIconButton
+              onClick={() => onActionClick("NumberList", editorRef)}
+              id="NumberList"
+              label="NumberList"
+              name="NumberList"
+              icon={<NumberList />}
+            />
+          </MainButtons>
+          <MainButtons>
+            {/*<CustomIconButton*/}
+            {/*  onClick={() =>*/}
+            {/*    onActionClick("Code", editorRef)*/}
+            {/*  }*/}
+            {/*  id="Code"*/}
+            {/*  label="Code"*/}
+            {/*  name="Code"*/}
+            {/*  icon={<Code />}*/}
+            {/*/>*/}
+            <CustomIconButton
+              onClick={() => onToggleMediaLib()}
+              id="Image"
+              label="Image"
+              name="Image"
+              icon={<Image />}
+            />
+            <CustomLinkIconButton
+              onClick={() => onActionClick("Link", editorRef)}
+              id="Link"
+              label="Link"
+              name="Link"
+              // eslint-disable-next-line jsx-a11y/anchor-is-valid
+              icon={<Link />}
+            />
+            <CustomIconButton
+              onClick={() => onActionClick("Quote", editorRef)}
+              id="Quote"
+              label="Quote"
+              name="Quote"
+              icon={<Quote />}
+            />
           </MainButtons>
 
           <MoreButton
