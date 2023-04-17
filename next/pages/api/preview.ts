@@ -1,4 +1,3 @@
-import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { client } from '../../utils/gql'
@@ -30,4 +29,4 @@ const preview = async (req: NextApiRequest, res: NextApiResponse) => {
   res.end()
 }
 
-export default withSentry(preview)
+export default preview

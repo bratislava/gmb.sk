@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/nextjs'
 import { GetServerSideProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
@@ -23,8 +22,6 @@ export const getServerSideProps: GetServerSideProps<ErrorProps> = async (context
     client.VisitUsPage({ locale }),
     serverSideTranslations(locale, ['common']),
   ])
-
-  await Sentry.captureUnderscoreErrorException(context)
 
   return {
     props: {

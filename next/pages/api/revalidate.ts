@@ -1,4 +1,3 @@
-import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type Response = { revalidated: boolean } | { message: string } | string
@@ -54,4 +53,4 @@ const revalidate = async (req: NextApiRequest, res: NextApiResponse<Response>) =
   }
 }
 
-export default withSentry(revalidate)
+export default revalidate
