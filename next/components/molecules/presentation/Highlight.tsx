@@ -18,11 +18,10 @@ import SidePanel from '../SidePanel'
 
 interface HighlightProps {
   highlight: WithAttributes<HighlightsItemEntityFragment>
-  isPriority?: boolean
 }
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
-const Highlight = ({ highlight, isPriority }: HighlightProps) => {
+const Highlight = ({ highlight }: HighlightProps) => {
   const { t } = useTranslation()
   const titleId = useId()
 
