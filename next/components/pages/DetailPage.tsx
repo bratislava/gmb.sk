@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 
-import { ContentPageEntityFragment, GeneralEntityFragment } from '../../graphql'
+import { ContentPageEntityFragment } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import getDaysLeft from '../../utils/getDaysLeft'
@@ -12,7 +12,6 @@ import Seo from '../atoms/Seo'
 import Subtitle from '../atoms/Subtitle'
 import Video from '../atoms/Video'
 import ContactCard from '../molecules/ContactCard'
-import Footer from '../molecules/Footer'
 import ImageGallery from '../molecules/ImageGallery'
 import ImgSwiper from '../molecules/ImgSwiper'
 import ChessboardSection from '../molecules/sections/ChessboardSection'
@@ -21,13 +20,13 @@ import RichtextSection from '../molecules/sections/RichtextSection'
 import Section from '../molecules/sections/Section'
 import SidePanel from '../molecules/SidePanel'
 import Submenu from '../molecules/Submenu'
+import PageWrapper from './PageWrapper'
 
 interface DetailPageProps {
   contentPage: WithAttributes<ContentPageEntityFragment>
-  contactInfo: WithAttributes<GeneralEntityFragment> | null | undefined
 }
 
-const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
+const DetailPage = ({ contentPage }: DetailPageProps) => {
   const {
     title,
     titleToShow,
@@ -72,7 +71,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
   const seoImage = seo?.metaImage?.data || coverMedia?.data
 
   return (
-    <div>
+    <PageWrapper contentPage={contentPage}>
       <Seo seo={seo} ogType="article" title={title} description={perex} image={seoImage} />
       <Head>
         <title>{`${title} - ${t('common.bratislavaCityGallery')}`}</title>
@@ -202,8 +201,7 @@ const DetailPage = ({ contentPage, contactInfo }: DetailPageProps) => {
           anchor={getAnchor(downloadSection.submenuTitle)}
         />
       )}
-      {contactInfo && <Footer contactInfo={contactInfo} contentPage={contentPage} />}
-    </div>
+    </PageWrapper>
   )
 }
 

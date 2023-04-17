@@ -1,3 +1,11 @@
+query General($locale: I18NLocaleCode!) {
+  general(locale: $locale) {
+    data {
+      ...GeneralEntity
+    }
+  }
+}
+
 query Places($locale: I18NLocaleCode!) {
   places(locale: $locale) {
     data {
@@ -74,11 +82,6 @@ query ContentPageBySlug($locale: I18NLocaleCode!, $slug: String!, $isPublished: 
       ...ContentPageEntity
     }
   }
-  general(locale: $locale) {
-    data {
-      ...GeneralEntity
-    }
-  }
 }
 
 query AllContentPageSlugs($locale: I18NLocaleCode!) {
@@ -137,11 +140,6 @@ query AboutUsPage($locale: I18NLocaleCode!) {
       }
     }
   }
-  general(locale: $locale) {
-    data {
-      ...GeneralEntity
-    }
-  }
 }
 
 query HomePage($locale: I18NLocaleCode!) {
@@ -168,11 +166,6 @@ query HomePage($locale: I18NLocaleCode!) {
       }
     }
   }
-  general(locale: $locale) {
-    data {
-      ...GeneralEntity
-    }
-  }
 }
 
 query CollectionPage($locale: I18NLocaleCode!) {
@@ -192,11 +185,6 @@ query CollectionPage($locale: I18NLocaleCode!) {
       }
     }
   }
-  general(locale: $locale) {
-    data {
-      ...GeneralEntity
-    }
-  }
 }
 
 query GetInvolvedPage($locale: I18NLocaleCode!) {
@@ -214,11 +202,6 @@ query GetInvolvedPage($locale: I18NLocaleCode!) {
           ...Seo
         }
       }
-    }
-  }
-  general(locale: $locale) {
-    data {
-      ...GeneralEntity
     }
   }
 }
@@ -245,11 +228,6 @@ query VisitUsPage($locale: I18NLocaleCode!) {
       ...TicketEntity
     }
   }
-  general(locale: $locale) {
-    data {
-      ...GeneralEntity
-    }
-  }
 }
 
 query ExplorePage($locale: I18NLocaleCode!) {
@@ -264,11 +242,6 @@ query ExplorePage($locale: I18NLocaleCode!) {
           ...Seo
         }
       }
-    }
-  }
-  general(locale: $locale) {
-    data {
-      ...GeneralEntity
     }
   }
 }
@@ -318,17 +291,11 @@ query ExhibitionsPage(
       ...SectionItemEntity
     }
   }
-  general(locale: $locale) {
-    data {
-      ...GeneralEntity
-    }
-  }
 }
 
 query DisclosureOfInformationPage($locale: I18NLocaleCode!) {
   general(locale: $locale) {
     data {
-      ...GeneralEntity
       attributes {
         disclosureMoreFiles {
           title
@@ -342,10 +309,3 @@ query DisclosureOfInformationPage($locale: I18NLocaleCode!) {
   }
 }
 
-query ErrorPage($locale: I18NLocaleCode!) {
-  general(locale: $locale) {
-    data {
-      ...GeneralEntity
-    }
-  }
-}

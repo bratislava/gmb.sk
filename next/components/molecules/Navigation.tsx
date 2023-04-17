@@ -2,7 +2,7 @@ import cx from 'classnames'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useWindowSize } from 'rooks'
 
 import CloseIcon from '../../assets/icons/close-x.svg'
@@ -12,7 +12,7 @@ import Logo from '../../assets/images/gmb-logo-header.png'
 import { ContentPageEntityFragment } from '../../graphql'
 import { getBreakpointValue } from '../../utils/getBreakpointValue'
 import { WithAttributes } from '../../utils/isDefined'
-// import AppLangSwitchers from '../atoms/AppLangSwitchers'
+import AppLangSwitchers from '../atoms/AppLangSwitchers'
 import Button from '../atoms/Button'
 import Link from '../atoms/Link'
 import SkipNavigation from '../atoms/SkipNavigation'
@@ -121,14 +121,13 @@ const Navigation = ({ contentPage }: NavigationProps) => {
               {t('navigation.visitUs')}
             </Button>
 
-            <button type="button" className="-ml-4 px-2" onClick={toggleSearchBar} aria-label={t('common.search')}>
+            <button type="button" className="-mx-2 px-2" onClick={toggleSearchBar} aria-label={t('common.search')}>
               <SearchIcon className="dw-[36]" />
             </button>
 
-            {/* TODO _app.tsx is not getting contentPage */}
-            {/* <div className="text-gray-500 lg:hidden">
-              <AppLangSwitchers contentPage={withAttributes(contentPage) ?? undefined} />
-            </div> */}
+            <div className="flex w-5 justify-center">
+              <AppLangSwitchers contentPage={contentPage} />
+            </div>
           </div>
         </div>
       </nav>

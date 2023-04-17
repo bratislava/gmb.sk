@@ -3,17 +3,18 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import Page from '../components/pages/Page'
-import { AboutUsPageQuery, NewsQuery } from '../graphql'
+import { AboutUsPageQuery, GeneralQuery, NewsQuery } from '../graphql'
+import { GeneralContextProvider } from '../utils/generalContext'
 import { client } from '../utils/gql'
-import { hasAttributes, withAttributes } from '../utils/isDefined'
+import { hasAttributes } from '../utils/isDefined'
 
 interface AboutProps {
+  generalQuery: GeneralQuery
   aboutUsPage: AboutUsPageQuery['aboutUsPage']
-  general: AboutUsPageQuery['general']
   news: NewsQuery['news']
 }
 
-const About = ({ aboutUsPage, general, news }: AboutProps) => {
+const About = ({ generalQuery, aboutUsPage, news }: AboutProps) => {
   const { t } = useTranslation()
 
   if (!aboutUsPage) {
@@ -21,17 +22,15 @@ const About = ({ aboutUsPage, general, news }: AboutProps) => {
   }
 
   return (
-    <Page
-      page={aboutUsPage}
-      title={t('navigation.aboutGallery')}
-      contactInfo={withAttributes(general?.data)}
-      newsItems={news?.data.filter(hasAttributes)}
-    />
+    <GeneralContextProvider general={generalQuery}>
+      <Page page={aboutUsPage} title={t('navigation.aboutGallery')} newsItems={news?.data.filter(hasAttributes)} />
+    </GeneralContextProvider>
   )
 }
 
 export const getStaticProps: GetStaticProps<AboutProps> = async ({ locale = 'sk' }) => {
-  const [{ aboutUsPage, general }, { news }, translations] = await Promise.all([
+  const [generalQuery, { aboutUsPage }, { news }, translations] = await Promise.all([
+    client.General({ locale }),
     client.AboutUsPage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
     serverSideTranslations(locale, ['common']),
@@ -39,8 +38,8 @@ export const getStaticProps: GetStaticProps<AboutProps> = async ({ locale = 'sk'
 
   return {
     props: {
+      generalQuery,
       aboutUsPage,
-      general,
       news,
       ...translations,
     },

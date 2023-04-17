@@ -2,26 +2,30 @@ import { GetStaticProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ErrorPage from '../components/pages/ErrorPage'
-import { HomePageQuery } from '../graphql'
+import { GeneralQuery } from '../graphql'
+import { GeneralContextProvider } from '../utils/generalContext'
 import { client } from '../utils/gql'
-import { withAttributes } from '../utils/isDefined'
 
 interface ErrorProps {
-  general: HomePageQuery['general']
+  generalQuery: GeneralQuery
 }
 
-const Custom404: NextPage<ErrorProps> = ({ general }: ErrorProps) => {
-  return <ErrorPage contactInfo={withAttributes(general?.data)} statusCode={404} />
+const Custom404: NextPage<ErrorProps> = ({ generalQuery }: ErrorProps) => {
+  return (
+    <GeneralContextProvider general={generalQuery}>
+      <ErrorPage statusCode={404} />
+    </GeneralContextProvider>
+  )
 }
 
 export const getStaticProps: GetStaticProps<ErrorProps> = async ({ locale = 'sk' }) => {
-  const [{ general }, translations] = await Promise.all([
-    client.VisitUsPage({ locale }),
+  const [generalQuery, translations] = await Promise.all([
+    client.General({ locale }),
     serverSideTranslations(locale, ['common']),
   ])
   return {
     props: {
-      general,
+      generalQuery,
       ...translations,
     },
     revalidate: 10,

@@ -2,18 +2,19 @@ import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ExhibitionsPage from '../components/pages/ExhibitionsPage'
-import { ExhibitionsPageQuery, PlacesQuery, TagsByCategorySlugQuery } from '../graphql'
+import { ExhibitionsPageQuery, GeneralQuery, PlacesQuery, TagsByCategorySlugQuery } from '../graphql'
+import { GeneralContextProvider } from '../utils/generalContext'
 import { getTodaysDate } from '../utils/getTodaysDate'
 import { client } from '../utils/gql'
-import { hasAttributes, withAttributes } from '../utils/isDefined'
+import { hasAttributes } from '../utils/isDefined'
 import { getRouteForLocale } from '../utils/localeRoutes'
 
 interface ExhibitionsProps {
+  generalQuery: GeneralQuery
   exhibitionsPage: ExhibitionsPageQuery['exhibitionsPage']
   exhibitions: ExhibitionsPageQuery['exhibitions']
   permanentExhibitions: ExhibitionsPageQuery['permanentExhibitions']
   additionalProgram: ExhibitionsPageQuery['additionalProgram']
-  general: ExhibitionsPageQuery['general']
   tagsProgram: TagsByCategorySlugQuery['tagCategoryBySlug']
   tagsTargetGroups: TagsByCategorySlugQuery['tagCategoryBySlug']
   tagsLanguages: TagsByCategorySlugQuery['tagCategoryBySlug']
@@ -23,11 +24,11 @@ interface ExhibitionsProps {
 }
 
 const Exhibitions = ({
+  generalQuery,
   exhibitionsPage,
   exhibitions,
   permanentExhibitions,
   additionalProgram,
-  general,
   tagsProgram,
   tagsTargetGroups,
   tagsLanguages,
@@ -40,19 +41,20 @@ const Exhibitions = ({
   }
 
   return (
-    <ExhibitionsPage
-      exhibitionsPage={exhibitionsPage}
-      exhibitions={exhibitions?.data.filter(hasAttributes)}
-      permanentExhibitions={permanentExhibitions?.data.filter(hasAttributes)}
-      additionalProgram={additionalProgram?.data.filter(hasAttributes)}
-      contactInfo={withAttributes(general?.data)}
-      tagsProgram={tagsProgram?.data?.attributes?.tags?.data.filter(hasAttributes)}
-      tagsTargetGroups={tagsTargetGroups?.data?.attributes?.tags?.data.filter(hasAttributes)}
-      tagsLanguages={tagsLanguages?.data?.attributes?.tags?.data.filter(hasAttributes)}
-      tagsProjects={tagsProjects?.data?.attributes?.tags?.data.filter(hasAttributes)}
-      tagsOthers={tagsOthers?.data?.attributes?.tags?.data.filter(hasAttributes)}
-      places={places?.data.filter(hasAttributes)}
-    />
+    <GeneralContextProvider general={generalQuery}>
+      <ExhibitionsPage
+        exhibitionsPage={exhibitionsPage}
+        exhibitions={exhibitions?.data.filter(hasAttributes)}
+        permanentExhibitions={permanentExhibitions?.data.filter(hasAttributes)}
+        additionalProgram={additionalProgram?.data.filter(hasAttributes)}
+        tagsProgram={tagsProgram?.data?.attributes?.tags?.data.filter(hasAttributes)}
+        tagsTargetGroups={tagsTargetGroups?.data?.attributes?.tags?.data.filter(hasAttributes)}
+        tagsLanguages={tagsLanguages?.data?.attributes?.tags?.data.filter(hasAttributes)}
+        tagsProjects={tagsProjects?.data?.attributes?.tags?.data.filter(hasAttributes)}
+        tagsOthers={tagsOthers?.data?.attributes?.tags?.data.filter(hasAttributes)}
+        places={places?.data.filter(hasAttributes)}
+      />
+    </GeneralContextProvider>
   )
 }
 
@@ -60,6 +62,7 @@ export const getStaticProps: GetStaticProps<ExhibitionsProps> = async ({ locale 
   const today = getTodaysDate()
 
   const [
+    generalQuery,
     { tagCategoryBySlug: tagsProgram },
     { tagCategoryBySlug: tagsTargetGroups },
     { tagCategoryBySlug: tagsLanguages },
@@ -68,6 +71,7 @@ export const getStaticProps: GetStaticProps<ExhibitionsProps> = async ({ locale 
     { places },
     translations,
   ] = await Promise.all([
+    client.General({ locale }),
     client.TagsByCategorySlug({
       locale,
       tag: getRouteForLocale('program-typy', locale),
@@ -100,22 +104,21 @@ export const getStaticProps: GetStaticProps<ExhibitionsProps> = async ({ locale 
       .map((tag) => tag.attributes.slug)
       .filter((slug) => slug !== tagExhibitions && slug !== tagPermanentExhibitions) ?? []
 
-  const { exhibitionsPage, exhibitions, permanentExhibitions, additionalProgram, general } =
-    await client.ExhibitionsPage({
-      locale,
-      today,
-      tagExhibitions,
-      tagPermanentExhibitions,
-      tagsAdditionalProgram,
-    })
+  const { exhibitionsPage, exhibitions, permanentExhibitions, additionalProgram } = await client.ExhibitionsPage({
+    locale,
+    today,
+    tagExhibitions,
+    tagPermanentExhibitions,
+    tagsAdditionalProgram,
+  })
 
   return {
     props: {
+      generalQuery,
       exhibitionsPage,
       exhibitions,
       permanentExhibitions,
       additionalProgram,
-      general,
       tagsProgram,
       tagsTargetGroups,
       tagsLanguages,

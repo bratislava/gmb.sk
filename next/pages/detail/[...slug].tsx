@@ -2,23 +2,28 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import DetailPage from '../../components/pages/DetailPage'
-import { ContentPageBySlugQuery } from '../../graphql'
+import { ContentPageBySlugQuery, GeneralQuery } from '../../graphql'
+import { GeneralContextProvider } from '../../utils/generalContext'
 import { client } from '../../utils/gql'
 import { hasAttributes, isDefined, withAttributes } from '../../utils/isDefined'
 
 interface DetailProps {
+  generalQuery: GeneralQuery
   contentPage: ContentPageBySlugQuery['contentPageBySlug']
-  general: ContentPageBySlugQuery['general']
 }
 
-const Detail = ({ contentPage, general }: DetailProps) => {
+const Detail = ({ generalQuery, contentPage }: DetailProps) => {
   const contentPageWithAttributes = withAttributes(contentPage?.data)
 
   if (!contentPage || !contentPageWithAttributes) {
     return null
   }
 
-  return <DetailPage contentPage={contentPageWithAttributes} contactInfo={withAttributes(general?.data)} />
+  return (
+    <GeneralContextProvider general={generalQuery}>
+      <DetailPage contentPage={contentPageWithAttributes} />
+    </GeneralContextProvider>
+  )
 }
 
 export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, locale = 'sk', preview }) => {
@@ -30,7 +35,8 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, loca
 
   const slug = (typeof params.slug === 'string' ? params.slug : params.slug?.join('/')) ?? ''
 
-  const [{ contentPageBySlug: contentPage, general }, translations] = await Promise.all([
+  const [generalQuery, { contentPageBySlug: contentPage }, translations] = await Promise.all([
+    client.General({ locale }),
     client.ContentPageBySlug({ slug, locale, isPublished: !preview }),
     serverSideTranslations(locale, ['common']),
   ])
@@ -43,8 +49,8 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, loca
 
   return {
     props: {
+      generalQuery,
       contentPage,
-      general,
       ...translations,
     },
     revalidate: 10,

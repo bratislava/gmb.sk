@@ -3,18 +3,17 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
 import LocationIcon from '../../../assets/icons/location.svg'
-import { GeneralEntityFragment } from '../../../graphql'
-import { WithAttributes } from '../../../utils/isDefined'
+import { useGeneralContext } from '../../../utils/generalContext'
 import Link from '../../atoms/Link'
 import Section from './Section'
 
 interface OpeningHoursSectionProps {
-  contactInfo: WithAttributes<GeneralEntityFragment> | null | undefined
   anchor?: string
 }
 
-const OpeningHoursSection = ({ contactInfo, anchor }: OpeningHoursSectionProps) => {
+const OpeningHoursSection = ({ anchor }: OpeningHoursSectionProps) => {
   const { t } = useTranslation()
+  const { general } = useGeneralContext()
 
   const followPlatformData = [
     {
@@ -35,15 +34,17 @@ const OpeningHoursSection = ({ contactInfo, anchor }: OpeningHoursSectionProps) 
     },
   ]
 
-  if (!contactInfo) {
+  if (!general?.data?.attributes) {
     return null
   }
+
+  const { openingHours, mirbach, palffy } = general.data.attributes
 
   return (
     <Section anchor={anchor} color="dark" className="grid grid-cols-2 gap-9 px-xMd py-yLg lg:grid-cols-4">
       <div className="col-span-2 flex h-full flex-col justify-between lg:col-span-1">
         <h4 className="pb-yLg text-xl">{t('common.openingHours')}</h4>
-        {contactInfo.attributes.openingHours && (
+        {openingHours && (
           <div className="justify-self-end">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
@@ -52,23 +53,23 @@ const OpeningHoursSection = ({ contactInfo, anchor }: OpeningHoursSectionProps) 
                 ul: ({ children }) => <ul className="list-disc pl-5 pb-[55px]">{children}</ul>,
               }}
             >
-              {contactInfo.attributes.openingHours ?? ''}
+              {openingHours ?? ''}
             </ReactMarkdown>
           </div>
         )}
       </div>
       <div className="col-span-1 flex h-full flex-col justify-between">
-        <h3 className="pb-yLg text-xl">{contactInfo.attributes.mirbach?.title}</h3>
+        <h3 className="pb-yLg text-xl">{mirbach?.title}</h3>
         <div className="justify-self-end text-md">
           <LocationIcon className="mb-2 dw-[48]" />
-          <p>{contactInfo.attributes.mirbach?.address}</p>
+          <p>{mirbach?.address}</p>
         </div>
       </div>
       <div className="col-span-1 flex h-full flex-col justify-between">
-        <h3 className="pb-yLg text-xl">{contactInfo.attributes.palffy?.title}</h3>
+        <h3 className="pb-yLg text-xl">{palffy?.title}</h3>
         <div className="justify-self-end text-md">
           <LocationIcon className="mb-2 dw-[48]" />
-          <p>{contactInfo.attributes.palffy?.address}</p>
+          <p>{palffy?.address}</p>
         </div>
       </div>
       <div className="col-span-2 flex h-full flex-col justify-between lg:col-span-1">

@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next'
 
-import { ContentPageEntityFragment, GeneralEntityFragment, SectionItemEntityFragment } from '../../graphql'
+import { ContentPageEntityFragment, SectionItemEntityFragment } from '../../graphql'
 import { getPurchaseId } from '../../utils/getPurchaseId'
 import { WithAttributes } from '../../utils/isDefined'
 import Link from '../atoms/Link'
@@ -8,16 +8,15 @@ import Seo from '../atoms/Seo'
 import { SidePanelPlace } from '../atoms/SidePanelPlace'
 import { SidePanelTime } from '../atoms/SidePanelTime'
 import Subtitle from '../atoms/Subtitle'
-import Footer from '../molecules/Footer'
 import CardSection from '../molecules/sections/CardSection'
+import PageWrapper from './PageWrapper'
 
 interface ITicketPageProps {
   contentPage: WithAttributes<ContentPageEntityFragment>
-  contactInfo: WithAttributes<GeneralEntityFragment> | null | undefined
   currentEvents?: WithAttributes<SectionItemEntityFragment>[]
 }
 
-const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProps) => {
+const TicketPage = ({ contentPage, currentEvents }: ITicketPageProps) => {
   const { t } = useTranslation()
 
   const { title, titleToShow, subtitle, place, placeTitle, dateFrom, dateTo, timeFrom, timeTo, slug, seo } =
@@ -25,7 +24,7 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
 
   return (
     /* eslint-disable tailwindcss/no-custom-classname */
-    <>
+    <PageWrapper contentPage={contentPage}>
       <Seo seo={seo} title={title} description={subtitle} />
       <section
         data-goout-id={getPurchaseId(contentPage)}
@@ -65,9 +64,7 @@ const TicketPage = ({ contentPage, contactInfo, currentEvents }: ITicketPageProp
           place: place?.data?.attributes?.title,
         })}
       />
-
-      {contactInfo && <Footer contactInfo={contactInfo} />}
-    </>
+    </PageWrapper>
     /* eslint-enable tailwindcss/no-custom-classname */
   )
 }

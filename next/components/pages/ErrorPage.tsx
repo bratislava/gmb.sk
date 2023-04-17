@@ -1,15 +1,12 @@
-import { GeneralEntityFragment } from '../../graphql'
-import { WithAttributes } from '../../utils/isDefined'
-import Footer from '../molecules/Footer'
+import PageWrapper from './PageWrapper'
 
 interface ErrorPageProps {
-  contactInfo?: WithAttributes<GeneralEntityFragment> | null | undefined
   statusCode: number
 }
 
-const ErrorPage = ({ statusCode, contactInfo }: ErrorPageProps) => {
+const ErrorPage = ({ statusCode }: ErrorPageProps) => {
   return (
-    <>
+    <PageWrapper>
       <div className="flex h-[calc(100vh-119px)] w-full flex-col items-center justify-center text-center">
         <h1 className="text-xxl">----- {statusCode} -----</h1>
         <h2 className="text-xl">
@@ -21,8 +18,7 @@ const ErrorPage = ({ statusCode, contactInfo }: ErrorPageProps) => {
           }
         </h2>
       </div>
-      {contactInfo && <Footer contactInfo={contactInfo} />}
-    </>
+    </PageWrapper>
   )
 }
 

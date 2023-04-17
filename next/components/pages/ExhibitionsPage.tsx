@@ -2,32 +2,25 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 
-import {
-  ExhibitionsPageQuery,
-  GeneralEntityFragment,
-  PlaceEntityFragment,
-  SectionItemEntityFragment,
-  TagEntityFragment,
-} from '../../graphql'
+import { ExhibitionsPageQuery, PlaceEntityFragment, SectionItemEntityFragment, TagEntityFragment } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
 import { hasAttributes, WithAttributes } from '../../utils/isDefined'
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
 import Button from '../atoms/Button'
 import Seo from '../atoms/Seo'
 import Filters from '../molecules/Filters'
-import Footer from '../molecules/Footer'
 import CardSection from '../molecules/sections/CardSection'
 import ChessboardSection from '../molecules/sections/ChessboardSection'
 import HighlightsSection from '../molecules/sections/HighlightsSection'
 import NewsletterSection from '../molecules/sections/NewsletterSection'
 import Submenu from '../molecules/Submenu'
+import PageWrapper from './PageWrapper'
 
 interface ExhibitionsPageProps {
   exhibitionsPage: ExhibitionsPageQuery['exhibitionsPage']
   exhibitions?: WithAttributes<SectionItemEntityFragment>[]
   permanentExhibitions?: WithAttributes<SectionItemEntityFragment>[]
   additionalProgram?: WithAttributes<SectionItemEntityFragment>[]
-  contactInfo?: WithAttributes<GeneralEntityFragment> | null
   tagsProgram?: WithAttributes<TagEntityFragment>[]
   tagsTargetGroups?: WithAttributes<TagEntityFragment>[]
   tagsLanguages?: WithAttributes<TagEntityFragment>[]
@@ -41,7 +34,6 @@ const ExhibitionsPage = ({
   exhibitions,
   permanentExhibitions,
   additionalProgram,
-  contactInfo,
   tagsProgram,
   tagsTargetGroups,
   tagsLanguages,
@@ -92,7 +84,7 @@ const ExhibitionsPage = ({
   }
 
   return (
-    <>
+    <PageWrapper>
       <Seo seo={seo} />
       <HighlightsSection
         highlights={exhibitionsPage?.data?.attributes?.highlights
@@ -172,9 +164,7 @@ const ExhibitionsPage = ({
       )}
 
       <NewsletterSection />
-
-      {contactInfo && <Footer contactInfo={contactInfo} />}
-    </>
+    </PageWrapper>
   )
 }
 
