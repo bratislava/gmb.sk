@@ -14,7 +14,7 @@ const HighlightsSection = ({ highlights }: IHighlightSectionsProps) => {
 
   return (
     <Section>
-      {highlights.map((item, index) => (
+      {highlights.map((item) => (
         <Highlight key={item.attributes.slug} highlight={item} />
       ))}
     </Section>
