@@ -3,34 +3,37 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import Page from '../components/pages/Page'
-import { HomePageQuery, NewsQuery } from '../graphql'
+import { GeneralQuery, HomePageQuery, NewsQuery } from '../graphql'
+import { GeneralContextProvider } from '../utils/generalContext'
 import { client } from '../utils/gql'
-import { hasAttributes, withAttributes } from '../utils/isDefined'
+import { hasAttributes } from '../utils/isDefined'
 
 interface IndexProps {
+  generalQuery: GeneralQuery
   homePage: HomePageQuery['homePage']
-  general: HomePageQuery['general']
   news: NewsQuery['news']
 }
-export const Index = ({ homePage, general, news }: IndexProps) => {
+export const Index = ({ homePage, generalQuery, news }: IndexProps) => {
   const { t, i18n } = useTranslation()
 
   return (
-    <Page
-      page={homePage}
-      title={
-        i18n.language === 'sk'
-          ? `${t('common.cityGallery')} ${t('common.bratislavaGenitiv')}`
-          : `${t('common.bratislavaGenitiv')} ${t('common.cityGallery')}`
-      }
-      contactInfo={withAttributes(general?.data)}
-      newsItems={news?.data?.filter(hasAttributes)}
-    />
+    <GeneralContextProvider general={generalQuery}>
+      <Page
+        page={homePage}
+        title={
+          i18n.language === 'sk'
+            ? `${t('common.cityGallery')} ${t('common.bratislavaGenitiv')}`
+            : `${t('common.bratislavaGenitiv')} ${t('common.cityGallery')}`
+        }
+        newsItems={news?.data?.filter(hasAttributes)}
+      />
+    </GeneralContextProvider>
   )
 }
 
 export const getStaticProps: GetStaticProps<IndexProps> = async ({ locale = 'sk' }) => {
-  const [{ homePage, general }, { news }, translations] = await Promise.all([
+  const [generalQuery, { homePage }, { news }, translations] = await Promise.all([
+    client.General({ locale }),
     client.HomePage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
     serverSideTranslations(locale, ['common']),
@@ -38,8 +41,8 @@ export const getStaticProps: GetStaticProps<IndexProps> = async ({ locale = 'sk'
 
   return {
     props: {
+      generalQuery,
       homePage,
-      general,
       news,
       ...translations,
     },

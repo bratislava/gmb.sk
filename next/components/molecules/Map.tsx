@@ -11,12 +11,11 @@ import { usePreviousImmediate } from 'rooks'
 import GmbLogoIcon from '../../assets/icons/map-icons/gmb-logo.svg'
 import MirbachovPalacIcon from '../../assets/icons/map-icons/mirbachov-palac.svg'
 import PalffyhoPalacIcon from '../../assets/icons/map-icons/palffyho-palac.svg'
-import { GeneralEntityFragment } from '../../graphql'
+import { useGeneralContext } from '../../utils/generalContext'
 import Link from '../atoms/Link'
 
 interface MapProps {
   mapboxAccessToken: string
-  contactInfo?: GeneralEntityFragment
 }
 
 type TabKey = 'mhd' | 'bike' | 'car'
@@ -89,7 +88,10 @@ const ZOOMED_OUT_BOUNDS: mapboxgl.LngLatBoundsLike = [
 ]
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
-const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
+const Map = ({ mapboxAccessToken }: MapProps) => {
+  const { general } = useGeneralContext()
+  const { palffy, mirbach, openingHours } = general?.data?.attributes ?? {}
+
   const [selectedTab, setSelectedTab] = useState<Tab | null>(null)
   const previousSelectedTab = usePreviousImmediate(selectedTab)
 
@@ -129,14 +131,12 @@ const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
         'https://www.google.com/maps/place/Gal%C3%A9ria+mesta+Bratislavy/@48.1448145,17.1078506,21z/data=!4m5!3m4!1s0x476c895ccb7fc10d:0xb128b708bec5bdcf!8m2!3d48.1447836!4d17.1078744',
       description: (
         <div className="flex flex-col gap-4">
-          <div>{contactInfo?.attributes?.mirbach?.title}</div>
-          <div>{`${contactInfo?.attributes?.mirbach?.address ?? 'no address'} / ${
-            contactInfo?.attributes?.mirbach?.zip ?? 'no zip'
-          } ${contactInfo?.attributes?.mirbach?.city ?? 'no city'}`}</div>
+          <div>{mirbach?.title}</div>
+          <div>{`${mirbach?.address ?? 'no address'} / ${mirbach?.zip ?? 'no zip'} ${mirbach?.city ?? 'no city'}`}</div>
 
           <div>
             <div>{t('common.openingHours')}</div>
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{contactInfo?.attributes?.openingHours ?? ''}</ReactMarkdown>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{openingHours ?? ''}</ReactMarkdown>
           </div>
 
           <Link
@@ -159,16 +159,12 @@ const Map = ({ mapboxAccessToken, contactInfo }: MapProps) => {
         'https://www.google.com/maps/place/Gal%C3%A9ria+mesta+Bratislavy/@48.1422218,17.1069777,20.77z/data=!3m1!5s0x476c8942afadda65:0x4baacd9ceb6cb32e!4m5!3m4!1s0x476c8942b13a89cf:0xc49fbc0f1319519e!8m2!3d48.1422134!4d17.1071462',
       description: (
         <div className="flex flex-col gap-4">
-          <div>{contactInfo?.attributes?.palffy?.title}</div>
-          <div>
-            {`${contactInfo?.attributes?.palffy?.address ?? 'no address'} / ${
-              contactInfo?.attributes?.palffy?.zip ?? 'no zip'
-            } ${contactInfo?.attributes?.palffy?.city ?? 'no city'}`}
-          </div>
+          <div>{palffy?.title}</div>
+          <div>{`${palffy?.address ?? 'no address'} / ${palffy?.zip ?? 'no zip'} ${palffy?.city ?? 'no city'}`}</div>
 
           <div>
             <div>{t('common.openingHours')}</div>
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{contactInfo?.attributes?.openingHours ?? ''}</ReactMarkdown>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{openingHours ?? ''}</ReactMarkdown>
           </div>
 
           <Link

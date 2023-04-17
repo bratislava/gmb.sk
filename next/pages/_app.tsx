@@ -6,21 +6,14 @@ import Script from 'next/script'
 import { appWithTranslation, SSRConfig, useTranslation } from 'next-i18next'
 import { SWRConfig } from 'swr'
 
-import CookieConsent from '../components/molecules/CookieConsent'
-import Navigation from '../components/molecules/Navigation'
-import { ContentPageEntityFragment } from '../graphql'
 import nextI18NextConfig from '../next-i18next.config'
 import { initializeGoogleAnalytics, useGoogleAnalyticsPageView } from '../utils/googleAnalytics'
-import { withAttributes } from '../utils/isDefined'
 import { isProd } from '../utils/isProd'
 import { logError } from '../utils/logger'
 
 initializeGoogleAnalytics()
 
-type PageProps = SSRConfig & { contentPage?: ContentPageEntityFragment }
-type Props = AppProps<PageProps>
-
-const CustomApp = ({ Component, pageProps }: Props) => {
+const CustomApp = ({ Component, pageProps }: AppProps<SSRConfig>) => {
   const { t } = useTranslation()
   useGoogleAnalyticsPageView()
 
@@ -53,14 +46,7 @@ const CustomApp = ({ Component, pageProps }: Props) => {
           />
         ) : null}
 
-        <header className="flex">
-          {/* TODO fix: contentPage is always undefined */}
-          <Navigation contentPage={withAttributes(pageProps?.contentPage) ?? undefined} />
-        </header>
-        <main className="scroll-mt-nav">
-          <Component {...pageProps} />
-        </main>
-        <CookieConsent />
+        <Component {...pageProps} />
       </SWRConfig>
     </>
   )

@@ -3,17 +3,18 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import Page from '../components/pages/Page'
-import { CollectionPageQuery, HomePageQuery, NewsQuery } from '../graphql'
+import { CollectionPageQuery, GeneralQuery, NewsQuery } from '../graphql'
+import { GeneralContextProvider } from '../utils/generalContext'
 import { client } from '../utils/gql'
-import { hasAttributes, withAttributes } from '../utils/isDefined'
+import { hasAttributes } from '../utils/isDefined'
 
 interface CollectionProps {
+  generalQuery: GeneralQuery
   collectionsPage: CollectionPageQuery['collectionsPage']
-  general: HomePageQuery['general']
   news: NewsQuery['news']
 }
 
-export const Collection = ({ collectionsPage, general, news }: CollectionProps) => {
+export const Collection = ({ generalQuery, collectionsPage, news }: CollectionProps) => {
   const { t } = useTranslation()
 
   if (!collectionsPage) {
@@ -21,17 +22,15 @@ export const Collection = ({ collectionsPage, general, news }: CollectionProps) 
   }
 
   return (
-    <Page
-      page={collectionsPage}
-      title={t('navigation.collections')}
-      contactInfo={withAttributes(general?.data)}
-      newsItems={news?.data.filter(hasAttributes)}
-    />
+    <GeneralContextProvider general={generalQuery}>
+      <Page page={collectionsPage} title={t('navigation.collections')} newsItems={news?.data.filter(hasAttributes)} />
+    </GeneralContextProvider>
   )
 }
 
 export const getStaticProps: GetStaticProps<CollectionProps> = async ({ locale = 'sk' }) => {
-  const [{ collectionsPage, general }, { news }, translations] = await Promise.all([
+  const [generalQuery, { collectionsPage }, { news }, translations] = await Promise.all([
+    client.General({ locale }),
     client.CollectionPage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
     serverSideTranslations(locale, ['common']),
@@ -39,8 +38,8 @@ export const getStaticProps: GetStaticProps<CollectionProps> = async ({ locale =
 
   return {
     props: {
+      generalQuery,
       collectionsPage,
-      general,
       news,
       ...translations,
     },

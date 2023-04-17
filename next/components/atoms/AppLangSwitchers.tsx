@@ -11,10 +11,10 @@ import { getEquivalentRouteInTargetLocale } from '../../utils/localeRoutes'
 
 interface AppLangSwitchersProps {
   contentPage?: WithAttributes<ContentPageEntityFragment>
-  desktop?: boolean
+  showBothLanguages?: boolean
 }
 
-const AppLangSwitchers = ({ contentPage, desktop }: AppLangSwitchersProps) => {
+const AppLangSwitchers = ({ contentPage, showBothLanguages }: AppLangSwitchersProps) => {
   const [, setCookies] = useCookies([LocalStorageEnum.LANG])
   const router = useRouter()
   const { i18n } = useTranslation()
@@ -53,22 +53,22 @@ const AppLangSwitchers = ({ contentPage, desktop }: AppLangSwitchersProps) => {
   )
 
   return (
-    <div className={cx('flex', { 'space-x-xMd': !desktop })}>
+    <div className={cx('flex', { 'text-nav': !showBothLanguages })}>
       <button
         className={cx('cursor-pointer', {
           'font-semibold': currentLanguage === 'sk',
-          'text-black': currentLanguage === 'sk' && !desktop,
+          hidden: currentLanguage === 'sk' && !showBothLanguages,
         })}
         onClick={() => onLocaleChange('sk')}
         type="button"
       >
         SK
       </button>
-      {desktop && <p className="px-2">/</p>}
+      {showBothLanguages && <div className="px-2">/</div>}
       <button
         className={cx('cursor-pointer', {
           'font-semibold': currentLanguage === 'en',
-          'text-black': currentLanguage === 'en' && !desktop,
+          hidden: currentLanguage === 'en' && !showBothLanguages,
         })}
         onClick={() => onLocaleChange('en')}
         type="button"

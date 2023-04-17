@@ -3,17 +3,18 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import Page from '../components/pages/Page'
-import { GetInvolvedPageQuery, HomePageQuery, NewsQuery } from '../graphql'
+import { GeneralQuery, GetInvolvedPageQuery, NewsQuery } from '../graphql'
+import { GeneralContextProvider } from '../utils/generalContext'
 import { client } from '../utils/gql'
-import { hasAttributes, withAttributes } from '../utils/isDefined'
+import { hasAttributes } from '../utils/isDefined'
 
 interface GetInvolvedProps {
+  generalQuery: GeneralQuery
   getInvolvedPage: GetInvolvedPageQuery['getInvolvedPage']
-  general: HomePageQuery['general']
   news: NewsQuery['news']
 }
 
-const GetInvolved = ({ getInvolvedPage, general, news }: GetInvolvedProps) => {
+const GetInvolved = ({ generalQuery, getInvolvedPage, news }: GetInvolvedProps) => {
   const { t } = useTranslation()
 
   if (!getInvolvedPage) {
@@ -21,17 +22,15 @@ const GetInvolved = ({ getInvolvedPage, general, news }: GetInvolvedProps) => {
   }
 
   return (
-    <Page
-      page={getInvolvedPage}
-      title={t('navigation.getInvolved')}
-      contactInfo={withAttributes(general?.data)}
-      newsItems={news?.data.filter(hasAttributes)}
-    />
+    <GeneralContextProvider general={generalQuery}>
+      <Page page={getInvolvedPage} title={t('navigation.getInvolved')} newsItems={news?.data.filter(hasAttributes)} />
+    </GeneralContextProvider>
   )
 }
 
 export const getStaticProps: GetStaticProps<GetInvolvedProps> = async ({ locale = 'sk' }) => {
-  const [{ getInvolvedPage, general }, { news }, translations] = await Promise.all([
+  const [generalQuery, { getInvolvedPage }, { news }, translations] = await Promise.all([
+    client.General({ locale }),
     client.GetInvolvedPage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
     serverSideTranslations(locale, ['common']),
@@ -39,8 +38,8 @@ export const getStaticProps: GetStaticProps<GetInvolvedProps> = async ({ locale 
 
   return {
     props: {
+      generalQuery,
       getInvolvedPage,
-      general,
       news,
       ...translations,
     },

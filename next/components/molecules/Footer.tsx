@@ -4,27 +4,31 @@ import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import remarkGfm from 'remark-gfm'
 
 import LocationIcon from '../../assets/icons/location.svg'
-import { ContentPageEntityFragment, GeneralEntityFragment } from '../../graphql'
+import { ContentPageEntityFragment } from '../../graphql'
+import { useGeneralContext } from '../../utils/generalContext'
 import { WithAttributes } from '../../utils/isDefined'
 import AppLangSwitchers from '../atoms/AppLangSwitchers'
 import Link from '../atoms/Link'
 
 interface FooterProps {
-  contactInfo: WithAttributes<GeneralEntityFragment>
   contentPage?: WithAttributes<ContentPageEntityFragment>
 }
 
-const Footer = ({ contactInfo, contentPage }: FooterProps) => {
+const Footer = ({ contentPage }: FooterProps) => {
   const { t } = useTranslation()
 
-  const { name, openingHours, mirbach, palffy, socialLinks, footerLinks1, footerLinks2 } = contactInfo.attributes
+  const { general } = useGeneralContext()
+
+  // eslint-disable-next-line no-unsafe-optional-chaining
+  const { name, openingHours, mirbach, palffy, socialLinks, footerLinks1, footerLinks2 } =
+    general?.data?.attributes ?? {}
 
   const currentYear = useMemo(() => {
     return new Date().getFullYear()
   }, [])
 
   return (
-    <footer className="relative bg-gmbDark px-xMd py-yLg text-white">
+    <div className="relative bg-gmbDark px-xMd py-yLg text-white">
       <div className="grid grid-cols-2 gap-x-xMd gap-y-yLg lg:grid-cols-4">
         <div className="col-span-2 flex h-full flex-col justify-between lg:col-span-1">
           <h3 className="pb-yMd text-xl">{t('common.openingHours')}</h3>
@@ -109,14 +113,14 @@ const Footer = ({ contactInfo, contentPage }: FooterProps) => {
         </div>
         <div className="col-span-2 flex flex-col justify-end text-right text-sm md:col-span-1">
           <div className="flex justify-end">
-            <AppLangSwitchers contentPage={contentPage} desktop />
+            <AppLangSwitchers contentPage={contentPage} showBothLanguages />
           </div>
           <p>
             &copy; {currentYear} {name || t('common.bratislavaCityGallery')}
           </p>
         </div>
       </div>
-    </footer>
+    </div>
   )
 }
 

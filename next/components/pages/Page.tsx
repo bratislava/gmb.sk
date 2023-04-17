@@ -4,7 +4,6 @@ import { useTranslation } from 'next-i18next'
 import {
   AboutUsPageQuery,
   CollectionPageQuery,
-  GeneralEntityFragment,
   GetInvolvedPageQuery,
   HomePageQuery,
   NewsItemEntityFragment,
@@ -12,9 +11,8 @@ import {
   VisitUsPageQuery,
 } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
-import { hasAttributes, isDefined, WithAttributes, withAttributes } from '../../utils/isDefined'
+import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
 import Seo from '../atoms/Seo'
-import Footer from '../molecules/Footer'
 import HighlightsSection from '../molecules/sections/HighlightsSection'
 import MapSection from '../molecules/sections/MapSection'
 import NewsletterSection from '../molecules/sections/NewsletterSection'
@@ -25,6 +23,7 @@ import PartnersSection from '../molecules/sections/PartnersSection'
 import RichtextSection from '../molecules/sections/RichtextSection'
 import TicketsSection from '../molecules/sections/TicketsSection'
 import Submenu from '../molecules/Submenu'
+import PageWrapper from './PageWrapper'
 
 interface PageProps {
   page:
@@ -34,12 +33,11 @@ interface PageProps {
     | CollectionPageQuery['collectionsPage']
     | HomePageQuery['homePage']
   title: string
-  contactInfo: WithAttributes<GeneralEntityFragment> | null | undefined
   newsItems?: WithAttributes<NewsItemEntityFragment>[] | null
   tickets?: WithAttributes<TicketEntityFragment>[] | null
 }
 
-const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: PageProps) => {
+const Page = ({ page: pageResponse, title, newsItems, tickets }: PageProps) => {
   const { t } = useTranslation()
 
   const page = pageResponse?.data?.attributes
@@ -56,7 +54,7 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
     })
 
   return (
-    <>
+    <PageWrapper>
       <Seo seo={page?.seo} />
       <Head>
         <title>{title}</title>
@@ -83,10 +81,9 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
             )
           }
 
-          if (section.__typename === 'ComponentSectionsOpeningHoursSection' && hasAttributes(contactInfo)) {
+          if (section.__typename === 'ComponentSectionsOpeningHoursSection') {
             return (
               <OpeningHoursSection
-                contactInfo={withAttributes(contactInfo)}
                 anchor={getAnchor(section.submenuTitle)}
                 key={`${section.__typename}-${section.id}`}
               />
@@ -112,7 +109,6 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
           if (section.__typename === 'ComponentSectionsMapSection') {
             return (
               <MapSection
-                contactInfo={contactInfo ?? undefined}
                 title={section.title ?? undefined}
                 anchor={getAnchor(section.submenuTitle)}
                 key={`${section.__typename}-${section.id}`}
@@ -152,9 +148,7 @@ const Page = ({ page: pageResponse, title, contactInfo, newsItems, tickets }: Pa
           partners={pageResponse.data?.attributes?.partners?.map((item) => item?.partner?.data)?.filter(hasAttributes)}
         />
       ) : null}
-
-      {contactInfo && <Footer contactInfo={contactInfo} />}
-    </>
+    </PageWrapper>
   )
 }
 

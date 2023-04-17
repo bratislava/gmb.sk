@@ -2,27 +2,26 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 
-import { ExplorePageQuery, GeneralEntityFragment, TagEntityFragment } from '../../graphql'
+import { ExplorePageQuery, TagEntityFragment } from '../../graphql'
 import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
 import Button from '../atoms/Button'
 import Seo from '../atoms/Seo'
 import Filters from '../molecules/Filters'
-import Footer from '../molecules/Footer'
 import CardSection from '../molecules/sections/CardSection'
 import HighlightsSection from '../molecules/sections/HighlightsSection'
 import NewsletterSection from '../molecules/sections/NewsletterSection'
 import Submenu from '../molecules/Submenu'
+import PageWrapper from './PageWrapper'
 
 interface ExplorePageProps {
   explorePage: ExplorePageQuery['explorePage']
-  contactInfo?: WithAttributes<GeneralEntityFragment> | null
   tagsTypes?: WithAttributes<TagEntityFragment>[]
   tagsProjects?: WithAttributes<TagEntityFragment>[]
   tagsOthers?: WithAttributes<TagEntityFragment>[]
 }
 
-const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOthers }: ExplorePageProps) => {
+const ExplorePage = ({ explorePage, tagsTypes, tagsProjects, tagsOthers }: ExplorePageProps) => {
   const { t, i18n } = useTranslation()
   const { query } = useRouter()
 
@@ -50,7 +49,7 @@ const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOt
   const seo = explorePage?.data?.attributes?.seo
 
   return (
-    <>
+    <PageWrapper>
       <Seo seo={seo} />
       <HighlightsSection
         highlights={explorePage?.data?.attributes?.highlights
@@ -86,8 +85,7 @@ const ExplorePage = ({ explorePage, contactInfo, tagsTypes, tagsProjects, tagsOt
         />
       </div>
       <NewsletterSection />
-      {contactInfo && <Footer contactInfo={contactInfo} />}
-    </>
+    </PageWrapper>
   )
 }
 
