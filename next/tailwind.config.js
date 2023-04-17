@@ -36,16 +36,9 @@ const customVariants = plugin(function ({ addVariant }) {
 
 module.exports = {
   content: ['./pages/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
-  plugins: [
-    scrollBarHide,
-    dynamicSizing,
-    customVariants,
-    require('@tailwindcss/line-clamp'),
-    require('@tailwindcss/aspect-ratio'),
-  ],
+  plugins: [scrollBarHide, dynamicSizing, customVariants, require('@tailwindcss/line-clamp')],
   corePlugins: {
     container: false,
-    aspectRatio: false, // https://tailwindcss.com/docs/aspect-ratio#browser-support
   },
   theme: {
     fontSize: {
@@ -101,6 +94,9 @@ module.exports = {
       minHeight: {
         ticket: 'var(--ticket-height)',
         chessboardTile: 'var(--chessboard-height)',
+      },
+      aspectRatio: {
+        '4/3': '4 / 3',
       },
     },
   },

@@ -1,9 +1,10 @@
 import cx from 'classnames'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useWindowSize } from 'rooks'
 
 import { HighlightsItemEntityFragment } from '../../graphql'
@@ -19,10 +20,11 @@ import SidePanel from './SidePanel'
 
 interface HighlightProps {
   highlight: WithAttributes<HighlightsItemEntityFragment>
+  isPriority?: boolean
 }
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
-const Highlight = ({ highlight }: HighlightProps) => {
+const Highlight = ({ highlight, isPriority }: HighlightProps) => {
   const { t } = useTranslation()
   const router = useRouter()
 
@@ -91,11 +93,16 @@ const Highlight = ({ highlight }: HighlightProps) => {
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
       >
-        <div
-          className="flex grow bg-cover bg-center"
-          id={`articleImg${highlight.id ?? ''}`}
-          style={{ backgroundImage: `url(${coverMedia?.data?.attributes?.url ?? ''})` }}
-        />
+        <div className="relative flex grow">
+          <Image
+            id={`articleImg${highlight.id ?? ''}`}
+            src={coverMedia?.data?.attributes?.url ?? ''}
+            alt={coverMedia?.data?.attributes?.alternativeText ?? ''}
+            className="object-cover"
+            fill
+            priority={isPriority}
+          />
+        </div>
         <div
           className="h-fit w-full py-yMd px-xMd lg:h-auto lg:pr-sidepanel"
           style={{ background: getContentPageColor(highlight) }}

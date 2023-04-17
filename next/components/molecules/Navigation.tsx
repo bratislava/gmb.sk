@@ -82,7 +82,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
           <Link href="/" preserveStyle noUnderline className="group min-w-fit">
             <div className="flex">
               <div className="h-logoHeight w-logoWidth">
-                <Image src={Logo} alt="Logo GMB" objectFit="scale-down" unoptimized />
+                <Image src={Logo} alt="Logo GMB" />
               </div>
 
               <span

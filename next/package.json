@@ -25,8 +25,8 @@
     "html-react-parser": "^2.0.0",
     "lodash": "^4.17.21",
     "mapbox-gl": "^2.8.2",
-    "next": "12.3.0",
-    "next-i18next": "^12.0.1",
+    "next": "13.2.3",
+    "next-i18next": "12.1.0",
     "react": "18.2.0",
     "react-aria": "^3.18.0",
     "react-cookie": "^4.1.1",
@@ -68,7 +68,7 @@
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-auto": "^0.7.1",
-    "eslint-config-next": "12.1.6",
+    "eslint-config-next": "^13.3.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-array-func": "^3.1.7",
     "eslint-plugin-eslint-comments": "^3.2.0",
@@ -93,6 +93,7 @@
     "eslint-plugin-unicorn": "^42.0.0",
     "postcss": "^8.4.14",
     "prettier": "^2.7.0",
+    "sharp": "^0.32.0",
     "typescript": "^4.8.3"
   }
 }
