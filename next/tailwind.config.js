@@ -1,20 +1,6 @@
 const plugin = require('tailwindcss/plugin')
 const screens = require('./tailwind.config.screens')
 
-const scrollBarHide = plugin(function ({ addUtilities }) {
-  addUtilities({
-    '.scrollbar-hide': {
-      /* Firefox */
-      'scrollbar-width': 'none',
-
-      /* Safari and Chrome */
-      '&::-webkit-scrollbar': {
-        display: 'none',
-      },
-    },
-  })
-})
-
 /** This utility helps us to fluidly determine the sizes, e.g. for icons, paddings, margins, etc.
  *  It computes factor in rem. Use it as dw-[size] where size is the desired size on FHD screen (3xl) in pixels.
  *  Use it without units (e.g. dw-[30], not dw-[30px])
@@ -37,7 +23,7 @@ const customVariants = plugin(function ({ addVariant }) {
 
 module.exports = {
   content: ['./pages/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
-  plugins: [scrollBarHide, dynamicSizing, customVariants, require('@tailwindcss/line-clamp')],
+  plugins: [dynamicSizing, customVariants, require('tailwind-scrollbar-hide')],
   corePlugins: {
     container: false,
   },
