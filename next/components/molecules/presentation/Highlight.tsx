@@ -2,21 +2,19 @@ import cx from 'classnames'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import React, { useEffect } from 'react'
+import React, { useEffect, useId } from 'react'
 import { useWindowSize } from 'rooks'
 
-import { HighlightsItemEntityFragment } from '../../graphql'
-import { getBreakpointValue } from '../../utils/getBreakpointValue'
-import { getContentPageColor } from '../../utils/getContentPageColor'
-import { getPurchaseId } from '../../utils/getPurchaseId'
-import { isDefined, WithAttributes } from '../../utils/isDefined'
-import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
-import Button from '../atoms/Button'
-import { SidePanelTime } from '../atoms/SidePanelTime'
-import Subtitle from '../atoms/Subtitle'
-import SidePanel from './SidePanel'
+import { HighlightsItemEntityFragment } from '../../../graphql'
+import { getBreakpointValue } from '../../../utils/getBreakpointValue'
+import { getContentPageColor } from '../../../utils/getContentPageColor'
+import { getPurchaseId } from '../../../utils/getPurchaseId'
+import { isDefined, WithAttributes } from '../../../utils/isDefined'
+import Button from '../../atoms/Button'
+import { SidePanelTime } from '../../atoms/SidePanelTime'
+import Subtitle from '../../atoms/Subtitle'
+import SidePanel from '../SidePanel'
 
 interface HighlightProps {
   highlight: WithAttributes<HighlightsItemEntityFragment>
@@ -26,7 +24,7 @@ interface HighlightProps {
 // eslint-disable-next-line sonarjs/cognitive-complexity
 const Highlight = ({ highlight, isPriority }: HighlightProps) => {
   const { t } = useTranslation()
-  const router = useRouter()
+  const titleId = useId()
 
   const { innerWidth: windowWidth } = useWindowSize()
 
@@ -84,15 +82,7 @@ const Highlight = ({ highlight, isPriority }: HighlightProps) => {
   return (
     <article className="relative h-fit w-full bg-gmbLightGray">
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-      <div
-        className="flex h-[calc(100vh_-_var(--nav-height))] w-full cursor-pointer flex-col"
-        tabIndex={-1}
-        id={`articleDiv${highlight.id ?? ''}`}
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        onClick={() => router.push(`/detail/${slug}`)}
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
-      >
+      <div className="flex h-[calc(100vh_-_var(--nav-height))] w-full flex-col" id={`articleDiv${highlight.id ?? ''}`}>
         <div className="relative flex grow">
           <Image
             id={`articleImg${highlight.id ?? ''}`}
@@ -109,7 +99,7 @@ const Highlight = ({ highlight, isPriority }: HighlightProps) => {
           id={`articleHeader${highlight.id ?? ''}`}
         >
           <div className="flex flex-col items-start justify-between gap-y-yMd lg:mr-xLg">
-            <div>
+            <div id={titleId}>
               <h2 className="text-xxl md:whitespace-pre-wrap">{titleToShow || title}</h2>
               <p className="mt-1 text-xxl font-regular lg:mt-2">
                 <Subtitle page={highlight} />
@@ -117,7 +107,7 @@ const Highlight = ({ highlight, isPriority }: HighlightProps) => {
             </div>
 
             {/* Detail button on desktop */}
-            <Button href={`/detail/${slug}`} className="hidden lg:flex" aria-label={title}>
+            <Button href={`/detail/${slug}`} className="hidden lg:flex" stretched aria-labelledby={titleId}>
               {t('common.detail')}
             </Button>
 

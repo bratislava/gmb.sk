@@ -2,14 +2,14 @@ import cx from 'classnames'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import { useId } from 'react'
 
-import { SectionItemEntityFragment } from '../../graphql'
-import { getContentPageColor } from '../../utils/getContentPageColor'
-import { hasAttributes, WithAttributes } from '../../utils/isDefined'
-import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
-import Button from '../atoms/Button'
-import Link from '../atoms/Link'
-import Subtitle from '../atoms/Subtitle'
+import { SectionItemEntityFragment } from '../../../graphql'
+import { getContentPageColor } from '../../../utils/getContentPageColor'
+import { hasAttributes, WithAttributes } from '../../../utils/isDefined'
+import Button from '../../atoms/Button'
+import Link from '../../atoms/Link'
+import Subtitle from '../../atoms/Subtitle'
 
 interface ChessboardTileProps {
   sectionItem: WithAttributes<SectionItemEntityFragment>
@@ -20,18 +20,14 @@ interface ChessboardTileProps {
 const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTileProps) => {
   const { t } = useTranslation()
   const router = useRouter()
+  const titleId = useId()
 
   const { slug, coverMedia, title, tags, perex } = sectionItem.attributes
 
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article
-      tabIndex={-1}
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
-      onClick={() => router.push(`/detail/${slug}`)}
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
-      onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
-      className={cx('relative min-h-chessboardTile cursor-pointer lg:flex', {
+      className={cx('relative min-h-chessboardTile lg:flex', {
         'flex-row-reverse': isLeft,
       })}
     >
@@ -44,7 +40,7 @@ const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTileProps) 
         className="flex w-full flex-1 flex-col items-start space-y-yMd px-xMd py-yMd lg:w-1/2"
         style={{ background: getContentPageColor(sectionItem) }}
       >
-        <div>
+        <div id={titleId}>
           <h3 className="text-xl">{title}</h3>
           <p className="text-xl font-regular">
             <Subtitle page={sectionItem} />
@@ -66,7 +62,7 @@ const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTileProps) 
 
         {perex ? <div className="text-md line-clamp-3">{perex}</div> : null}
 
-        <Button href={`/detail/${slug}`} aria-label={title}>
+        <Button href={`/detail/${slug}`} stretched aria-labelledby={titleId}>
           {t('common.detail')}
         </Button>
       </div>

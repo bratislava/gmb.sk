@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next'
 import { SectionItemEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
 import Button from '../../atoms/Button'
-import FullWidthTile from '../FullWidthTile'
+import FullWidthTile from '../presentation/FullWidthTile'
 import Section from './Section'
 
 interface FullWidthSectionProps {

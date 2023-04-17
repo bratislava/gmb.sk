@@ -4,8 +4,8 @@ import { ReactNode } from 'react'
 
 import { SectionItemEntityFragment } from '../../../graphql'
 import { WithAttributes } from '../../../utils/isDefined'
-import Card from '../Card'
-import CardSkeleton from '../CardSkeleton'
+import Card from '../presentation/Card'
+import CardSkeleton from '../presentation/CardSkeleton'
 import Section from './Section'
 
 interface CardsSectionProps {
