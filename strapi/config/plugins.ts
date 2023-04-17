@@ -4,10 +4,6 @@ export default {
       defaultLimit: 100,
     },
   },
-  "custom-richtext-editor": {
-    enabled: true,
-    resolve: "./src/plugins/custom-richtext-editor",
-  },
   "preview-button-i18n": {
     enabled: true,
     resolve: "./src/plugins/preview-button-i18n",
