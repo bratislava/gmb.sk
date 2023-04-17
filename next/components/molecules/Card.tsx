@@ -31,17 +31,9 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
       onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
       className="group relative flex min-h-full cursor-pointer flex-col space-y-yMd"
     >
-      <div className="overflow-hidden bg-gmbLightGray">
+      <div className="relative aspect-4/3 overflow-hidden bg-gmbLightGray">
         {coverMedia?.data?.attributes ? (
-          <Image
-            src={coverMedia.data.attributes.url}
-            alt={coverMedia.data.attributes.alternativeText ?? undefined}
-            height="458px"
-            width="580px"
-            objectFit="cover"
-            layout="responsive"
-            unoptimized
-          />
+          <Image src={coverMedia.data.attributes.url} alt="" className="object-cover" fill />
         ) : null}
       </div>
 

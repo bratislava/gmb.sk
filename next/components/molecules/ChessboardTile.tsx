@@ -37,13 +37,7 @@ const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTileProps) 
     >
       <div className="relative min-h-chessboardTile w-full bg-gmbLightGray lg:h-auto lg:w-1/2">
         {coverMedia?.data?.attributes ? (
-          <Image
-            src={coverMedia.data.attributes.url}
-            alt={coverMedia.data.attributes.alternativeText ?? ''}
-            layout="fill"
-            objectFit="cover"
-            unoptimized
-          />
+          <Image src={coverMedia.data.attributes.url} alt="" fill className="object-cover" />
         ) : null}
       </div>
       <div

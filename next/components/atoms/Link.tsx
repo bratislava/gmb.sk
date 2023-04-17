@@ -59,23 +59,23 @@ const Link = ({
   }
 
   return (
-    <NextLink href={href} locale={locale} replace={replace}>
-      <a
-        target={target}
-        rel={rel}
-        href={href}
-        onClick={handleClick}
-        {...rest}
-        className={cx(
-          {
-            'group flex cursor-pointer items-center text-nav uppercase': !preserveStyle,
-            'underline-offset-2 hover:underline': !noUnderline,
-          },
-          className
-        )}
-      >
-        {children}
-      </a>
+    <NextLink
+      href={href}
+      locale={locale}
+      replace={replace}
+      target={target}
+      rel={rel}
+      onClick={handleClick}
+      {...rest}
+      className={cx(
+        {
+          'group flex cursor-pointer items-center text-nav uppercase': !preserveStyle,
+          'underline-offset-2 hover:underline': !noUnderline,
+        },
+        className
+      )}
+    >
+      {children}
     </NextLink>
   )
 }

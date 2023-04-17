@@ -149,8 +149,8 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
           }}
         />
       </div>
-      <div className="relative mb-yMd text-center lg:mb-0 lg:w-2/6 ">
-        <Image src={NewsletterImg} alt="newsletter" unoptimized />
+      <div className="relative mb-yMd h-40 text-center lg:mb-0 lg:h-auto lg:w-2/6">
+        <Image src={NewsletterImg} alt="newsletter" fill className="object-contain" />
       </div>
     </Section>
   )
