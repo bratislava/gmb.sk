@@ -1,7 +1,9 @@
+import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 import { useId } from 'react'
 
 import { SectionItemEntityFragment } from '../../../graphql'
+import { generateImageSizes } from '../../../utils/generateImageSizes'
 import { getContentPageColor } from '../../../utils/getContentPageColor'
 import { WithAttributes } from '../../../utils/isDefined'
 import Button from '../../atoms/Button'
@@ -18,13 +20,15 @@ const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
   const { slug, coverMedia, title } = sectionItem.attributes
 
   return (
-    <article className="relative w-full">
-      <div className="flex h-screen w-full items-center justify-center overflow-hidden lg:h-full">
+    <article className="relative h-auto w-full">
+      <div className="relative flex h-screen min-h-screen w-full items-center justify-center overflow-hidden lg:h-full">
         {coverMedia?.data?.attributes?.url && (
-          <img
+          <Image
             src={coverMedia.data.attributes.url}
-            alt={coverMedia.data.attributes.alternativeText ?? ''}
-            className="min-h-full min-w-full object-cover"
+            alt=""
+            className="object-cover"
+            fill
+            sizes={generateImageSizes({ default: '100w' })}
           />
         )}
       </div>
