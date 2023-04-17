@@ -1,4 +1,3 @@
-import { withSentry } from '@sentry/nextjs'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { buildUrl } from '../../utils/gql'
@@ -25,4 +24,4 @@ const searchContentPages = async (req: NextApiRequest, res: NextApiResponse) => 
   res.status(200).json(searchResults)
 }
 
-export default withSentry(searchContentPages)
+export default searchContentPages

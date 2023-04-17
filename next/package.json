@@ -15,7 +15,6 @@
   "dependencies": {
     "@react-stately/toggle": "^3.4.0",
     "@react-types/checkbox": "^3.3.2",
-    "@sentry/nextjs": "^7.12.1",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/line-clamp": "^0.4.0",
     "classnames": "^2.3.1",
