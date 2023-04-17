@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next'
 import { useId } from 'react'
 
 import { SectionItemEntityFragment } from '../../../graphql'
+import { generateImageSizes } from '../../../utils/generateImageSizes'
 import { getContentPageColor } from '../../../utils/getContentPageColor'
 import { hasAttributes, WithAttributes } from '../../../utils/isDefined'
 import Button from '../../atoms/Button'
@@ -33,7 +34,13 @@ const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTileProps) 
     >
       <div className="relative min-h-chessboardTile w-full bg-gmbLightGray lg:h-auto lg:w-1/2">
         {coverMedia?.data?.attributes ? (
-          <Image src={coverMedia.data.attributes.url} alt="" fill className="object-cover" />
+          <Image
+            src={coverMedia.data.attributes.url}
+            alt=""
+            fill
+            className="object-cover"
+            sizes={generateImageSizes({ default: '100vw', lg: '50vw' })}
+          />
         ) : null}
       </div>
       <div

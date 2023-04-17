@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import MailchimpSubscribe from 'react-mailchimp-subscribe'
 
 import NewsletterImg from '../../../assets/images/v-obraze-white.png'
+import { generateImageSizes } from '../../../utils/generateImageSizes'
 import Button from '../../atoms/Button'
 import Checkbox from '../../atoms/Checkbox'
 import Section from './Section'
@@ -150,7 +151,13 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
         />
       </div>
       <div className="relative mb-yMd h-40 text-center lg:mb-0 lg:h-auto lg:w-2/6">
-        <Image src={NewsletterImg} alt="newsletter" fill className="object-contain" />
+        <Image
+          src={NewsletterImg}
+          alt="newsletter"
+          fill
+          className="object-contain"
+          sizes={generateImageSizes({ default: '33vw' })}
+        />
       </div>
     </Section>
   )

@@ -90,7 +90,7 @@ const Highlight = ({ highlight, isPriority }: HighlightProps) => {
             alt={coverMedia?.data?.attributes?.alternativeText ?? ''}
             className="object-cover"
             fill
-            priority={isPriority}
+            priority
           />
         </div>
         <div

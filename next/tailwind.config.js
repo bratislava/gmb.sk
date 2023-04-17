@@ -1,4 +1,5 @@
 const plugin = require('tailwindcss/plugin')
+const screens = require('./tailwind.config.screens')
 
 const scrollBarHide = plugin(function ({ addUtilities }) {
   addUtilities({
@@ -41,6 +42,7 @@ module.exports = {
     container: false,
   },
   theme: {
+    screens,
     fontSize: {
       xxl: ['var(--font-size-xxl)', 'var(--line-height-xxl)'],
       xl: ['var(--font-size-xl)', 'var(--line-height-xl)'],
@@ -58,17 +60,6 @@ module.exports = {
       semibold: '600',
       bold: '700',
       heavy: '900',
-    },
-    screens: {
-      xs: '374px', // phone portrait, design was made for 374px
-      sm: '640px', // phone landscape
-      md: '768px', // iPad portrait
-      lg: '1024px', // iPad landscape
-      xl: '1280px', // small desktop
-      '1.5xl': '1366px', // medium desktop
-      '2xl': '1536px', // bigger desktop
-      '3xl': '1920px', // large desktop full hd - the most standard
-      '4xl': '2560px', // extra large desktop
     },
     extend: {
       colors: {

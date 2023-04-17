@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next'
 import { useId } from 'react'
 
 import { SectionItemEntityFragment } from '../../../graphql'
+import { generateImageSizes } from '../../../utils/generateImageSizes'
 import { hasAttributes, WithAttributes } from '../../../utils/isDefined'
 import { isToday } from '../../../utils/isToday'
 import Button from '../../atoms/Button'
@@ -27,7 +28,13 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
     <article className="relative flex min-h-full flex-col space-y-yMd">
       <div className="relative aspect-4/3 overflow-hidden bg-gmbLightGray">
         {coverMedia?.data?.attributes ? (
-          <Image src={coverMedia.data.attributes.url} alt="" className="object-cover" fill />
+          <Image
+            src={coverMedia.data.attributes.url}
+            alt=""
+            className="object-cover"
+            fill
+            sizes={generateImageSizes({ default: '100vw', md: '50vw', lg: '33vw' })}
+          />
         ) : null}
       </div>
 
