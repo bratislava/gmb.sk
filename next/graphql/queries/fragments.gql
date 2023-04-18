@@ -188,6 +188,14 @@ fragment ContentPageEntity on ContentPageEntity {
   }
 }
 
+fragment CommonSearchPageEntity on ContentPageEntity {
+  id
+  attributes {
+    title
+    slug
+  }
+}
+
 fragment NewsItemEntity on ContentPageEntity {
   id
   attributes {

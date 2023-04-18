@@ -1,11 +1,17 @@
 import { useTranslation } from 'next-i18next'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useQuery } from 'react-query'
 
 import CloseIcon from '../../assets/icons/close-x.svg'
-import { ContentPageEntity, ContentPageEntityResponseCollection } from '../../graphql'
+import {
+  commonSearchDefaultFilters,
+  commonSearchFetcher,
+  CommonSearchFilters,
+  getCommonSearchQueryKey,
+} from '../../services/meilisearch/fetchers/commonSearchFetcher'
 import { isDefined } from '../../utils/isDefined'
-import { logError } from '../../utils/logger'
-import { useDebounce } from '../../utils/useDebounce'
+import { useRoutePreservedState } from '../../utils/useRoutePreservedState'
+import { useSearch } from '../../utils/useSearch'
 import Results from './Results'
 
 interface SearchBarProps {
@@ -13,33 +19,31 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [contentPages, setContentPages] = useState<ContentPageEntity[]>()
-  const debouncedSearchTerm = useDebounce(searchTerm, 550)
   const { i18n } = useTranslation()
   const locale = i18n.language
 
+  const [filters, setFilters] = useRoutePreservedState<CommonSearchFilters>(commonSearchDefaultFilters)
+
+  const { input, setInput, searchValue } = useSearch({ syncWithUrlQuery: false })
+
+  const { data } = useQuery({
+    queryKey: getCommonSearchQueryKey(filters),
+    queryFn: () => commonSearchFetcher(filters, locale),
+    keepPreviousData: true,
+  })
+
+  // TODO pagination
+  // const handlePageChange = (newPage: number) => {
+  //   setFilters({ ...filters, page: newPage })
+  // }
+
   useEffect(() => {
-    /** Here we're using Strapi REST endpoint (through Next api proxy) instead of GraphQL,
-     *  because Strapi GraphQL doesn't have a straightforward way to use the full text search */
-    const searchContentPages = async () => {
-      if (!debouncedSearchTerm) {
-        setContentPages([])
-        return
-      }
-
-      const query = new URLSearchParams({
-        searchTerm: debouncedSearchTerm.trim(),
-        locale,
-      }).toString()
-
-      const response = await fetch(`/api/search-content-pages?${query}`)
-      const searchResults = (await response.json()) as ContentPageEntityResponseCollection
-      setContentPages(searchResults?.data)
+    if (filters.searchValue === searchValue) {
+      return
     }
 
-    searchContentPages().catch(logError)
-  }, [debouncedSearchTerm, locale])
+    setFilters((prevFilters) => ({ ...prevFilters, page: 1, searchValue }))
+  }, [filters.searchValue, searchValue, setFilters])
 
   const { t } = useTranslation()
   return (
@@ -58,14 +62,14 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
           placeholder={t('common.searchText')}
           aria-label={t('common.searchText')}
           onChange={(e) => {
-            setSearchTerm(e.target.value)
+            setInput(e.target.value)
           }}
-          value={searchTerm}
+          value={input}
         />
       </div>
-      {contentPages?.filter(isDefined).length ? (
+      {data?.hits?.filter(isDefined).length ? (
         <div>
-          <Results results={contentPages} header={t('common.found')} />
+          <Results results={data.hits.filter(isDefined)} header={t('common.found')} />
         </div>
       ) : null}
     </div>

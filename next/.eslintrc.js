@@ -14,10 +14,8 @@ module.exports = {
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
     /** It's annoying to refactor from one style to another */
     'arrow-body-style': 'off',
-    /** This are exceptions that we use with "__" */
+    /** These are exceptions that we use with "__" */
     'no-underscore-dangle': [2, { allow: ['__NEXT_DATA__', '__NEXT_LOADED_PAGES__', '__typename'] }],
-    /** Links get confused for secrets */
-    'no-secrets/no-secrets': ['error', { ignoreContent: '^http' }],
     /** Use official sorting */
     'tailwindcss/classnames-order': ['warn', { callees: ['classnames', 'cx'], officialSorting: true }],
     /** White list custom classes */
@@ -37,6 +35,7 @@ module.exports = {
     '@typescript-eslint/no-unsafe-member-access': 'off',
     '@typescript-eslint/no-unsafe-argument': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
+    'lodash/prefer-noop': 'off',
   },
   ignorePatterns: ['*.config.*', 'graphql', '.eslintrc.js', '*.md'],
 }

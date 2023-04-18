@@ -4,7 +4,11 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
 import { appWithTranslation, SSRConfig, useTranslation } from 'next-i18next'
+import { NextAdapter } from 'next-query-params'
+import React from 'react'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { SWRConfig } from 'swr'
+import { QueryParamProvider } from 'use-query-params'
 
 import nextI18NextConfig from '../next-i18next.config'
 import { initializeGoogleAnalytics, useGoogleAnalyticsPageView } from '../utils/googleAnalytics'
@@ -16,6 +20,8 @@ initializeGoogleAnalytics()
 const CustomApp = ({ Component, pageProps }: AppProps<SSRConfig>) => {
   const { t } = useTranslation()
   useGoogleAnalyticsPageView()
+
+  const queryClient = new QueryClient()
 
   return (
     <>
@@ -29,25 +35,29 @@ const CustomApp = ({ Component, pageProps }: AppProps<SSRConfig>) => {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <SWRConfig
-        value={{
-          onError: (error: unknown) => {
-            logError(error)
-          },
-        }}
-      >
-        <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
+      <QueryClientProvider client={queryClient}>
+        <QueryParamProvider adapter={NextAdapter}>
+          <SWRConfig
+            value={{
+              onError: (error: unknown) => {
+                logError(error)
+              },
+            }}
+          >
+            <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
 
-        {isProd() ? (
-          <Script
-            strategy="afterInteractive"
-            data-domain="gmb.sk"
-            src="https://plausible.io/js/script.outbound-links.file-downloads.js"
-          />
-        ) : null}
+            {isProd() ? (
+              <Script
+                strategy="afterInteractive"
+                data-domain="gmb.sk"
+                src="https://plausible.io/js/script.outbound-links.file-downloads.js"
+              />
+            ) : null}
 
-        <Component {...pageProps} />
-      </SWRConfig>
+            <Component {...pageProps} />
+          </SWRConfig>
+        </QueryParamProvider>
+      </QueryClientProvider>
     </>
   )
 }

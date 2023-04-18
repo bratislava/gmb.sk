@@ -1,3 +1,5 @@
+import meilisearchConfig from "./plugins.meilisearch.config";
+
 export default {
   graphql: {
     config: {
@@ -65,5 +67,8 @@ export default {
         },
       ],
     },
+  },
+  meilisearch: {
+    config: meilisearchConfig,
   },
 };
