@@ -8,10 +8,13 @@
     "develop": "cross-env ENV_PATH='./.env.local' strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "patch-package": "^6.5.1",
+    "postinstall-postinstall": "^2.1.0"
   },
   "dependencies": {
     "@strapi/plugin-graphql": "4.9.0",

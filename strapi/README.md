@@ -43,10 +43,20 @@ Open Strapi admin panel, go to Settings > USERS & PERMISSIONS PLUGIN > Roles > P
 
 # Project specific config
 
-## Custom Richtext Editor plugin
+## Patches
 
-Replaces the default WYSIWYG Strapi Richtext Editor with a custom version that:
+We use [patch-package](https://github.com/ds300/patch-package) to slightly change the behaviour of some packages. See the `patches` folder for more details.
 
-- changes **Image** markdown generation to: `![alt||caption](url)` so that caption can be accessed by our frontend
-- removes **Underline** button
-- removes **Preview mode** button
+When updating these packages, please run also `patch-package`:
+```
+yarn patch-package @strapi/admin
+```
+In `@strapi/admin`, we modify the default WYSIWYG Strapi Richtext Editor with a custom version that:
+
+- changes `Image` markdown generation to: `![alt||caption](url)` so that caption can be accessed by our frontend
+- removes `Underline` button
+- removes `Preview mode` and `Expand` button
+- removes `Code` button
+- removes `h1` option
+- adds `Superscript` button
+- slightly rearranges the buttons

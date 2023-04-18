@@ -3,6 +3,7 @@ import { ReactHTMLElement } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { ReactElement } from 'react-markdown/lib/react-markdown'
 import remarkGfm from 'remark-gfm'
+import supersub from 'remark-supersub'
 
 import ImageFigure from './ImageFigure'
 import Link from './Link'
@@ -16,7 +17,7 @@ export interface CityGalleryMarkdownProps {
 const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMarkdownProps) => {
   return (
     <ReactMarkdown
-      remarkPlugins={[remarkGfm]}
+      remarkPlugins={[remarkGfm, supersub]}
       className={cx(className, 'relative')}
       components={{
         h1: ({ children }) => <div className="pb-yMd text-md">{children}</div>,
@@ -50,7 +51,6 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
             <Link
               href={href ?? '#'}
               target={isExternal ? '_blank' : '_self'}
-              rel="noopener noreferrer"
               preserveStyle
               noUnderline
               className="pb-yMd text-md text-gmbGray underline underline-offset-2"
