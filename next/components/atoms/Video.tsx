@@ -51,7 +51,7 @@ const Video = ({ className, url, size = 'default' }: IVideo) => {
     return (
       <figure
         className={cx(className, {
-          'aspect-w-16 aspect-h-9 w-full': size === 'default',
+          'aspect-video w-full': size === 'default',
         })}
       >
         <iframe title="Youtube video" className={cx('h-full w-full')} src={embedUrl} allowFullScreen />
@@ -63,7 +63,7 @@ const Video = ({ className, url, size = 'default' }: IVideo) => {
     return (
       <figure
         className={cx(className, {
-          'aspect-w-16 aspect-h-9 w-full': size === 'default',
+          'aspect-video w-full': size === 'default',
         })}
       >
         <iframe title="Vimeo video" className={cx('h-full w-full')} src={embedUrl} allowFullScreen />

@@ -2,8 +2,9 @@ import cx from 'classnames'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import React, { useEffect, useId } from 'react'
+import React, { useEffect } from 'react'
 import { useWindowSize } from 'rooks'
 
 import { HighlightsItemEntityFragment } from '../../../graphql'
@@ -11,7 +12,9 @@ import { getBreakpointValue } from '../../../utils/getBreakpointValue'
 import { getContentPageColor } from '../../../utils/getContentPageColor'
 import { getPurchaseId } from '../../../utils/getPurchaseId'
 import { isDefined, WithAttributes } from '../../../utils/isDefined'
+import { onEnterOrSpaceKeyDown } from '../../../utils/onEnterOrSpaceKeyDown'
 import Button from '../../atoms/Button'
+import Link from '../../atoms/Link'
 import { SidePanelTime } from '../../atoms/SidePanelTime'
 import Subtitle from '../../atoms/Subtitle'
 import SidePanel from '../SidePanel'
@@ -23,7 +26,7 @@ interface HighlightProps {
 // eslint-disable-next-line sonarjs/cognitive-complexity
 const Highlight = ({ highlight }: HighlightProps) => {
   const { t } = useTranslation()
-  const titleId = useId()
+  const router = useRouter()
 
   const { innerWidth: windowWidth } = useWindowSize()
 
@@ -81,8 +84,16 @@ const Highlight = ({ highlight }: HighlightProps) => {
   return (
     <article className="relative h-fit w-full bg-gmbLightGray">
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-      <div className="flex h-[calc(100vh_-_var(--nav-height))] w-full flex-col" id={`articleDiv${highlight.id ?? ''}`}>
-        <div className="relative flex grow">
+      <div
+        className="group flex h-[calc(100vh_-_var(--nav-height))] w-full cursor-pointer flex-col"
+        tabIndex={-1}
+        id={`articleDiv${highlight.id ?? ''}`}
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        onClick={() => router.push(`/detail/${slug}`)}
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
+      >
+        <div className="relative flex grow cursor-pointer">
           <Image
             id={`articleImg${highlight.id ?? ''}`}
             src={coverMedia?.data?.attributes?.url ?? ''}
@@ -98,15 +109,15 @@ const Highlight = ({ highlight }: HighlightProps) => {
           id={`articleHeader${highlight.id ?? ''}`}
         >
           <div className="flex flex-col items-start justify-between gap-y-yMd lg:mr-xLg">
-            <div id={titleId}>
+            <Link href={`/detail/${slug}`} preserveStyle stretched className="group-hover:underline">
               <h2 className="text-xxl md:whitespace-pre-wrap">{titleToShow || title}</h2>
               <p className="mt-1 text-xxl font-regular lg:mt-2">
                 <Subtitle page={highlight} />
               </p>
-            </div>
+            </Link>
 
             {/* Detail button on desktop */}
-            <Button href={`/detail/${slug}`} className="hidden lg:flex" stretched aria-labelledby={titleId}>
+            <Button className="hidden lg:flex" tabIndex={-1} groupHover>
               {t('common.detail')}
             </Button>
 
