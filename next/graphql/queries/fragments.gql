@@ -196,6 +196,18 @@ fragment CommonSearchPageEntity on ContentPageEntity {
   }
 }
 
+fragment ExhibitionArchive on ComponentBlocksExhibitionArchive {
+  title
+  subtitle
+  perex
+  color
+  coverMedia {
+    data {
+      ...ImageEntity
+    }
+  }
+}
+
 fragment NewsItemEntity on ContentPageEntity {
   id
   attributes {
