@@ -26,7 +26,7 @@ const nextConfig = {
           destination: `${process.env.STRAPI_URL}/uploads/:file`,
         },
         /**
-         * Rewrites to make the the translation of URL work. Based on an approached outlined here:
+         * Rewrites to make the translation of URL work. Based on an approached outlined here:
          * https://stackoverflow.com/questions/68723485/how-to-setup-i18n-translated-url-routes-in-next-js/68731057#68731057
          */
         {
@@ -52,6 +52,10 @@ const nextConfig = {
         {
           source: '/collections',
           destination: '/zbierky',
+        },
+        {
+          source: '/exhibitions/archive',
+          destination: '/vystavy/archiv',
         },
         {
           source: '/tickets/:event',

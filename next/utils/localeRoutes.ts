@@ -13,6 +13,7 @@ const routesSkToEn = {
   '/zbierky': '/collections',
   '/detail': '/detail',
   '/vstupenky': '/tickets',
+  '/vystavy/archiv': '/exhibitions/archive',
   '/zverejnovanie-informacii': '/disclosure-of-information',
   '/detail/ochrana-osobnych-udajov': '/detail/privacy-policy',
   // Tags

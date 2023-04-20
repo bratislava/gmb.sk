@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_blocks_exhibition_archives",
+  "info": {
+    "displayName": "exhibition archive",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "perex": {
+      "type": "text"
+    },
+    "color": {
+      "type": "string"
+    },
+    "coverMedia": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": false
+    }
+  }
+}

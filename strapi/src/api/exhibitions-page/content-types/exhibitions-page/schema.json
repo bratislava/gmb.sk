@@ -35,6 +35,27 @@
         }
       },
       "component": "blocks.seo"
+    },
+    "archive": {
+      "displayName": "exhibition archive",
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "blocks.exhibition-archive"
+    },
+    "archiveSeo": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "blocks.seo"
     }
   }
 }

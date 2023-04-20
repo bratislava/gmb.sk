@@ -4,9 +4,10 @@ interface ITagPRops {
   title: string
   isActive?: boolean
   onClick?: () => unknown
+  className?: string
 }
 
-const Tag = ({ title, isActive = false, onClick }: ITagPRops) => {
+const Tag = ({ title, isActive = false, onClick, className }: ITagPRops) => {
   return (
     <div
       onClick={onClick}
@@ -18,7 +19,8 @@ const Tag = ({ title, isActive = false, onClick }: ITagPRops) => {
         'flex justify-center border-2 border-white px-[calc(30*var(--size-factor))] py-[calc(12*var(--size-factor))] text-center text-nav uppercase',
         {
           'bg-white text-gmbDark': isActive,
-        }
+        },
+        className
       )}
     >
       {title}

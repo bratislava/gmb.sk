@@ -5,6 +5,10 @@ export default {
     config: {
       defaultLimit: 100,
     },
+    artifacts: {
+      // When changing schema path, also change watchIgnoreFiles in strapi/config/admin.js
+      schema: true,
+    },
   },
   "preview-button-i18n": {
     enabled: true,

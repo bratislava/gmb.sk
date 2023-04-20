@@ -260,6 +260,9 @@ query ExhibitionsPage(
         highlights {
           ...Highlight
         }
+        archive {
+          ...ExhibitionArchive
+        }
         seo {
           ...Seo
         }
@@ -289,6 +292,19 @@ query ExhibitionsPage(
   ) {
     data {
       ...SectionItemEntity
+    }
+  }
+}
+
+query ArchivePage($locale: I18NLocaleCode!) {
+  archivePage: exhibitionsPage(locale: $locale) {
+    data {
+      attributes {
+        __typename
+        archiveSeo {
+          ...Seo
+        }
+      }
     }
   }
 }

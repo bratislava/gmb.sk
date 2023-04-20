@@ -1,13 +1,13 @@
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import ExhibitionsPage from '../components/pages/ExhibitionsPage'
-import { ExhibitionsPageQuery, GeneralQuery, PlacesQuery, TagsByCategorySlugQuery } from '../graphql'
-import { GeneralContextProvider } from '../utils/generalContext'
-import { getTodaysDate } from '../utils/getTodaysDate'
-import { client } from '../utils/gql'
-import { hasAttributes } from '../utils/isDefined'
-import { getRouteForLocale } from '../utils/localeRoutes'
+import ExhibitionsPage from '../../components/pages/ExhibitionsPage'
+import { ExhibitionsPageQuery, GeneralQuery, PlacesQuery, TagsByCategorySlugQuery } from '../../graphql'
+import { GeneralContextProvider } from '../../utils/generalContext'
+import { getTodaysDate } from '../../utils/getTodaysDate'
+import { client } from '../../utils/gql'
+import { hasAttributes } from '../../utils/isDefined'
+import { getRouteForLocale } from '../../utils/localeRoutes'
 
 interface ExhibitionsProps {
   generalQuery: GeneralQuery

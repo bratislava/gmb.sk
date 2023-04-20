@@ -5,14 +5,17 @@ import { useEffect, useState } from 'react'
 import { ExhibitionsPageQuery, PlaceEntityFragment, SectionItemEntityFragment, TagEntityFragment } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
 import { hasAttributes, WithAttributes } from '../../utils/isDefined'
+import { getRouteForLocale } from '../../utils/localeRoutes'
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
 import Button from '../atoms/Button'
 import Seo from '../atoms/Seo'
 import Filters from '../molecules/Filters'
+import ChessboardTile from '../molecules/presentation/ChessboardTile'
 import CardSection from '../molecules/sections/CardSection'
 import ChessboardSection from '../molecules/sections/ChessboardSection'
 import HighlightsSection from '../molecules/sections/HighlightsSection'
 import NewsletterSection from '../molecules/sections/NewsletterSection'
+import Section from '../molecules/sections/Section'
 import Submenu from '../molecules/Submenu'
 import PageWrapper from './PageWrapper'
 
@@ -70,9 +73,16 @@ const ExhibitionsPage = ({
 
   const seo = exhibitionsPage?.data?.attributes?.seo
 
+  const archiveEntityObject = {
+    attributes: {
+      ...exhibitionsPage?.data?.attributes?.archive,
+      slug: '#', // slug is override customLinkHref, but required as prop
+    },
+  } as WithAttributes<SectionItemEntityFragment>
+
   /** 'Archive' is not a real tag that has a relationship with the content page. Instead, if Archive is applied
    *  as an active tag, it adds a variable 'today' that will be used to show only content that has either `dateTo` in the past (exhibition that has ended)
-   *  or `dateFrom` in the past AND dateTo null, which means it was only a one day event. All other tags still apply while archive is active.
+   *  or `dateFrom` in the past AND dateTo null, which means it was only a one-day event. All other tags still apply while archive is active.
    */
   const archiveTagEntity: WithAttributes<TagEntityFragment> = {
     __typename: 'TagEntity',
@@ -93,7 +103,12 @@ const ExhibitionsPage = ({
       />
 
       <Submenu
-        items={[t('common.exhibitions'), t('common.additionalProgram'), t('common.permanentExhibitions')]}
+        items={[
+          t('common.exhibitions'),
+          t('common.additionalProgram'),
+          t('common.permanentExhibitions'),
+          t('common.exhibitionArchive'),
+        ]}
         clearFilters={() => {
           setActiveTags([])
           setActivePlaces([])
@@ -160,6 +175,14 @@ const ExhibitionsPage = ({
             sectionItems={permanentExhibitions}
             anchor={getAnchor(t('common.permanentExhibitions'))}
           />
+          {archiveEntityObject ? (
+            <Section anchor={getAnchor(t('common.exhibitionArchive'))} title={t('common.exhibitionArchive')}>
+              <ChessboardTile
+                sectionItem={archiveEntityObject}
+                customLinkHref={getRouteForLocale('/vystavy/archiv', i18n.language)}
+              />
+            </Section>
+          ) : null}
         </>
       )}
 

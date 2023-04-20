@@ -16,9 +16,10 @@ interface ChessboardTileProps {
   sectionItem: WithAttributes<SectionItemEntityFragment>
   isLeft?: boolean
   showTags?: boolean
+  customLinkHref?: string
 }
 
-const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTileProps) => {
+const ChessboardTile = ({ sectionItem, isLeft, showTags, customLinkHref }: ChessboardTileProps) => {
   const { t } = useTranslation()
   const router = useRouter()
   const titleId = useId()
@@ -69,7 +70,7 @@ const ChessboardTile = ({ sectionItem, isLeft, showTags }: ChessboardTileProps) 
 
         {perex ? <div className="text-md line-clamp-3">{perex}</div> : null}
 
-        <Button href={`/detail/${slug}`} stretched aria-labelledby={titleId}>
+        <Button href={customLinkHref ?? `/detail/${slug}`} stretched aria-labelledby={titleId}>
           {t('common.detail')}
         </Button>
       </div>

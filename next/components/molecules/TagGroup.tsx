@@ -3,7 +3,7 @@ import { WithAttributes } from '../../utils/isDefined'
 import Tag from '../atoms/Tag'
 
 interface ITagGroupProps {
-  tags: WithAttributes<TagEntityFragment>[] | WithAttributes<PlaceEntityFragment>[]
+  tags: WithAttributes<TagEntityFragment>[] | WithAttributes<PlaceEntityFragment>[] | string[]
   activeTags: string[]
   setActiveTags: React.Dispatch<React.SetStateAction<string[]>>
 }
@@ -19,15 +19,25 @@ const TagGroup = ({ tags, activeTags, setActiveTags }: ITagGroupProps) => {
 
   return (
     <>
-      {tags.map((tag) => (
-        <Tag
-          // title={`${tag.title} [${tag.contentPages?.filter(isDefined).length ?? 0}]`}
-          title={tag.attributes.title}
-          key={tag.attributes.slug}
-          isActive={activeTags.includes(tag.attributes.slug)}
-          onClick={() => handleTagClick(tag.attributes.slug)}
-        />
-      ))}
+      {tags.map((tag) =>
+        typeof tag === 'string' ? (
+          // Used for years in filters, set to same width
+          <Tag
+            title={tag}
+            key={tag}
+            isActive={activeTags.includes(tag)}
+            onClick={() => handleTagClick(tag)}
+            className="w-[calc(110*var(--size-factor))]"
+          />
+        ) : (
+          <Tag
+            title={tag.attributes.title}
+            key={tag.attributes.slug}
+            isActive={activeTags.includes(tag.attributes.slug)}
+            onClick={() => handleTagClick(tag.attributes.slug)}
+          />
+        )
+      )}
     </>
   )
 }

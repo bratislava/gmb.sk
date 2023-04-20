@@ -17,9 +17,20 @@ const config = {
         "seo.metaTitle",
         "seo.metaDescription",
         "positions.names",
+        "exhibitionYear",
       ],
-      filterableAttributes: ["locale"],
+      filterableAttributes: ["locale", "tags.slug", "exhibitionYear"],
+      sortableAttributes: ["exhibitionYear"],
     },
+    transformEntry: ({ entry }) => ({
+      ...entry,
+      dateFromTimestamp: entry.dateFrom
+        ? new Date(entry.dateFrom).getTime()
+        : undefined,
+      exhibitionYear: entry.dateFrom
+        ? new Date(entry.dateFrom).getFullYear()
+        : undefined,
+    }),
   },
 };
 
