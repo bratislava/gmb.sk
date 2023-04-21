@@ -3,7 +3,7 @@ const config = {
   apiKey: process.env.MEILISEARCH_ADMIN_API_KEY,
 
   "content-page": {
-    indexName: "common_search_index",
+    indexName: "search_index",
     entriesQuery: {
       locale: "all",
     },

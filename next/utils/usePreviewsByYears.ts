@@ -5,7 +5,7 @@ import { SectionItemEntityFragment } from '../graphql'
 import { archiveFetcher } from '../services/meilisearch/fetchers/archiveFetcher'
 import { hasAttributes, isDefined } from './isDefined'
 
-export const PAGE_SIZE = 3
+export const PAGE_SIZE = 6
 
 export const usePreviewsByYears = ({
   searchValue,

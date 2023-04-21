@@ -14,22 +14,22 @@ export type ArchiveFilters = {
 export const archiveDefaultFilters: ArchiveFilters = {
   searchValue: '',
   years: [],
-  pageSize: 3,
+  pageSize: 6,
   page: 1,
 }
 
 // export const getArchiveQueryKey = (filters: ArchiveFilters, locale: string) => ['archive', filters, locale]
 
 export const archiveFetcher = (filters: ArchiveFilters, locale: string) => {
-  const sxhibitionsTag = getRouteForLocale('vystavy', locale)
+  const exhibitionsTags = [getRouteForLocale('vystavy', locale), getRouteForLocale('stale-expozicie', locale)]
 
   return meiliClient
-    .index('common_search_index')
+    .index('search_index')
     .search(filters.searchValue, {
       ...getMeilisearchPageOptions({ page: filters.page, pageSize: filters.pageSize }),
       filter: [
         `locale = ${locale}`,
-        `tags.slug = ${sxhibitionsTag}`,
+        `tags.slug IN [${exhibitionsTags.join(', ')}]`,
         filters.years.length > 0 ? `exhibitionYear IN [${filters.years.join(', ')}]` : '',
       ],
       sort: ['exhibitionYear:desc'],

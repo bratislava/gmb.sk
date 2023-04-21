@@ -21,7 +21,7 @@ const Subtitle = ({ page }: ISubtitleProps) => {
       {useDatetimeAsSubtitle ? (
         <>
           {formatDateString(dateFrom, i18n.language, 'short')}
-          {timeFrom ? ` / ${formatTimeString(timeFrom)}` : ''}
+          {timeFrom ? ` / ${formatTimeString(timeFrom, i18n.language)}` : ''}
         </>
       ) : (
         subtitle || null
