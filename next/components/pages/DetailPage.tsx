@@ -43,6 +43,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
     placeAddress,
     positions,
     partners,
+    showShareButtons,
     relatedContentTitle,
     relatedContentSubmenuTitle,
     childPages,
@@ -51,6 +52,9 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
     seo,
     coverMedia,
   } = contentPage.attributes
+
+  // 'true' as fallback for older pages where showShareButtons is not defined
+  const showShare = showShareButtons ?? true
 
   const { t } = useTranslation()
 
@@ -86,7 +90,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
         </>
       </Head>
 
-      <div className="py-yMd px-xMd lg:pr-sidepanel" style={{ background: getContentPageColor(contentPage) }}>
+      <div className="px-xMd py-yMd lg:pr-sidepanel" style={{ background: getContentPageColor(contentPage) }}>
         <div className="lg:mr-xLg">
           <h1 className="text-xxl md:whitespace-pre-wrap">{titleToShow || title}</h1>
           <p className="mt-1 text-xxl font-regular lg:mt-2">
@@ -104,7 +108,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
           partners={partners?.map((item) => item?.partner?.data).filter(hasAttributes)}
           purchaseId={getPurchaseId(contentPage)}
           slug={slug}
-          showShare
+          showShare={showShare}
           title={title}
           className="float-right ml-xLg hidden w-sidepanel lg:flex"
         />
@@ -160,8 +164,9 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
                 return (
                   <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
                     {section.title && <h2 className="pb-yMd text-xl">{section.title}</h2>}
-                    {section.contacts?.map((contactItem) => (
-                      <ContactCard contact={withAttributes(contactItem?.contactCard?.data)} />
+                    {section.contacts?.map((contactItem, index) => (
+                      // eslint-disable-next-line react/no-array-index-key
+                      <ContactCard key={index} contact={withAttributes(contactItem?.contactCard?.data)} />
                     ))}
                   </Section>
                 )
@@ -176,7 +181,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
             positions={positions?.filter(isDefined)}
             partners={partners?.map((item) => item?.partner?.data).filter(hasAttributes)}
             slug={slug}
-            showShare
+            showShare={showShare}
             title={title}
             className="mt-yLg"
           />

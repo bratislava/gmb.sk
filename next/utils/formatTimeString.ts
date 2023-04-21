@@ -1,9 +1,10 @@
-export const formatTimeString = (time: string) => {
-  const timeInner = time.slice(0, 5)
-  const [hours, minutes] = timeInner.split(':')
+export const formatTimeString = (time: string, locale: string) => {
+  const [hours, minutes] = time.split(':') // seconds are ignored
+  const hoursInt = parseInt(hours, 10)
 
-  const hoursString = hours[0] === '0' ? hours[1] : hours
-  const minutesString = minutes === '00' ? '' : `.${minutes}`
+  if (locale === 'en') {
+    return hoursInt > 12 ? `${hoursInt - 12}:${minutes} pm` : `${hoursInt}:${minutes} am`
+  }
 
-  return `${hoursString}${minutesString} h`
+  return `${hours}:${minutes} h`
 }

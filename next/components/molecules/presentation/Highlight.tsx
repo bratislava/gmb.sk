@@ -104,12 +104,12 @@ const Highlight = ({ highlight }: HighlightProps) => {
           />
         </div>
         <div
-          className="h-fit w-full py-yMd px-xMd lg:h-auto lg:pr-sidepanel"
+          className="h-fit w-full px-xMd py-yMd lg:h-auto lg:pr-sidepanel"
           style={{ background: getContentPageColor(highlight) }}
           id={`articleHeader${highlight.id ?? ''}`}
         >
           <div className="flex flex-col items-start justify-between gap-y-yMd lg:mr-xLg">
-            <Link href={`/detail/${slug}`} preserveStyle stretched className="group-hover:underline">
+            <Link href={`/detail/${slug}`} preserveStyle stretched className="hover:no-underline">
               <h2 className="text-xxl md:whitespace-pre-wrap">{titleToShow || title}</h2>
               <p className="mt-1 text-xxl font-regular lg:mt-2">
                 <Subtitle page={highlight} />

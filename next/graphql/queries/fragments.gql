@@ -146,6 +146,7 @@ fragment ContentPageEntity on ContentPageEntity {
     ...Partners
     sellTickets
     purchaseId
+    showShareButtons
     mainContent {
       ...MainContent
     }
@@ -419,6 +420,15 @@ fragment DownloadSection on ComponentSectionsDownloadSection {
   submenuTitle
   files {
     ...DownloadItem
+  }
+}
+
+fragment ArchiveSection on ComponentSectionsArchiveSection {
+  id
+  title
+  submenuTitle
+  archiveCard {
+    ...ExhibitionArchive
   }
 }
 

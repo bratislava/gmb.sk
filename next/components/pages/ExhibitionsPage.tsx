@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 import { ExhibitionsPageQuery, PlaceEntityFragment, SectionItemEntityFragment, TagEntityFragment } from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
-import { hasAttributes, WithAttributes } from '../../utils/isDefined'
+import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
 import { getRouteForLocale } from '../../utils/localeRoutes'
 import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
 import Button from '../atoms/Button'
@@ -71,14 +71,7 @@ const ExhibitionsPage = ({
     }
   }, [query])
 
-  const seo = exhibitionsPage?.data?.attributes?.seo
-
-  const archiveEntityObject = {
-    attributes: {
-      ...exhibitionsPage?.data?.attributes?.archive,
-      slug: '#', // slug is override customLinkHref, but required as prop
-    },
-  } as WithAttributes<SectionItemEntityFragment>
+  const { seo, archiveSection } = exhibitionsPage?.data?.attributes ?? {}
 
   /** 'Archive' is not a real tag that has a relationship with the content page. Instead, if Archive is applied
    *  as an active tag, it adds a variable 'today' that will be used to show only content that has either `dateTo` in the past (exhibition that has ended)
@@ -107,8 +100,8 @@ const ExhibitionsPage = ({
           t('common.exhibitions'),
           t('common.additionalProgram'),
           t('common.permanentExhibitions'),
-          t('common.exhibitionArchive'),
-        ]}
+          archiveSection?.submenuTitle,
+        ].filter(isDefined)}
         clearFilters={() => {
           setActiveTags([])
           setActivePlaces([])
@@ -175,10 +168,17 @@ const ExhibitionsPage = ({
             sectionItems={permanentExhibitions}
             anchor={getAnchor(t('common.permanentExhibitions'))}
           />
-          {archiveEntityObject ? (
-            <Section anchor={getAnchor(t('common.exhibitionArchive'))} title={t('common.exhibitionArchive')}>
+          {archiveSection ? (
+            <Section anchor={getAnchor(archiveSection.submenuTitle)} title={archiveSection.title ?? undefined}>
               <ChessboardTile
-                sectionItem={archiveEntityObject}
+                sectionItem={
+                  {
+                    attributes: {
+                      ...archiveSection?.archiveCard,
+                      slug: '#', // slug is override customLinkHref, but required as prop
+                    },
+                  } as WithAttributes<SectionItemEntityFragment>
+                }
                 customLinkHref={getRouteForLocale('/vystavy/archiv', i18n.language)}
               />
             </Section>

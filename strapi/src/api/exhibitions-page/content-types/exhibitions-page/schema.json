@@ -36,8 +36,7 @@
       },
       "component": "blocks.seo"
     },
-    "archive": {
-      "displayName": "exhibition archive",
+    "archiveSection": {
       "type": "component",
       "repeatable": false,
       "pluginOptions": {
@@ -45,7 +44,7 @@
           "localized": true
         }
       },
-      "component": "blocks.exhibition-archive"
+      "component": "sections.archive-section"
     },
     "archiveSeo": {
       "type": "component",

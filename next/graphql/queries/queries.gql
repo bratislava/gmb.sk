@@ -260,8 +260,8 @@ query ExhibitionsPage(
         highlights {
           ...Highlight
         }
-        archive {
-          ...ExhibitionArchive
+        archiveSection {
+          ...ArchiveSection
         }
         seo {
           ...Seo
