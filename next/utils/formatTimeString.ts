@@ -6,5 +6,5 @@ export const formatTimeString = (time: string, locale: string) => {
     return hoursInt > 12 ? `${hoursInt - 12}:${minutes} pm` : `${hoursInt}:${minutes} am`
   }
 
-  return `${hours}:${minutes} h`
+  return `${hours}.${minutes} h`
 }
