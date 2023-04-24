@@ -79,7 +79,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-array-func": "^3.1.8",
     "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-html": "^7.1.0",
     "eslint-plugin-json": "^3.1.0",
     "eslint-plugin-lodash": "^7.4.0",
     "eslint-plugin-lodash-fp": "^2.2.0-a1",
