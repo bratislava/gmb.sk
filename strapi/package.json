@@ -18,7 +18,7 @@
     "@strapi/plugin-graphql": "4.9.0",
     "@strapi/plugin-i18n": "4.9.0",
     "@strapi/plugin-upload": "4.9.0",
-    "@strapi/plugin-users-permissions": "4.9.0",
+    "@strapi/plugin-users-permissions": "4.9.2",
     "@strapi/strapi": "4.9.0",
     "@types/node": "^17.0.41",
     "patch-package": "^6.5.1",
