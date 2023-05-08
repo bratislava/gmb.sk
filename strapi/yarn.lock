@@ -1833,6 +1833,15 @@
     "@formatjs/icu-skeleton-parser" "1.3.18"
     tslib "^2.4.0"
 
+"@formatjs/icu-messageformat-parser@2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@formatjs/icu-messageformat-parser/-/icu-messageformat-parser-2.3.1.tgz#953080ea5c053bc73bdf55d0a524a3c3c133ae6b"
+  integrity sha512-knF2AkAKN4Upv4oIiKY4Wd/dLH68TNMPgV/tJMu/T6FP9aQwbv8fpj7U3lkyniPaNVxvia56Gxax8MKOjtxLSQ==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.14.3"
+    "@formatjs/icu-skeleton-parser" "1.3.18"
+    tslib "^2.4.0"
+
 "@formatjs/icu-skeleton-parser@1.3.18":
   version "1.3.18"
   resolved "https://registry.yarnpkg.com/@formatjs/icu-skeleton-parser/-/icu-skeleton-parser-1.3.18.tgz#7aed3d60e718c8ad6b0e64820be44daa1e29eeeb"
@@ -1867,6 +1876,15 @@
     "@formatjs/intl-localematcher" "0.2.32"
     tslib "^2.4.0"
 
+"@formatjs/intl-displaynames@6.3.1":
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-displaynames/-/intl-displaynames-6.3.1.tgz#6dcea7cb801460e2a8fa63eb38c54aa1b24f92c0"
+  integrity sha512-TlxguMDUbnFrJ4NA8fSyqXC62M7czvlRJ5mrJgtB91JVA+QPjjNdcRm1qPIC/DcU/pGUDcEzThn/x5A+jp15gg==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.14.3"
+    "@formatjs/intl-localematcher" "0.2.32"
+    tslib "^2.4.0"
+
 "@formatjs/intl-listformat@6.5.3":
   version "6.5.3"
   resolved "https://registry.yarnpkg.com/@formatjs/intl-listformat/-/intl-listformat-6.5.3.tgz#f29da613a8062dc3e4e3d847ba890c3ea745f051"
@@ -1880,6 +1898,15 @@
   version "7.1.9"
   resolved "https://registry.yarnpkg.com/@formatjs/intl-listformat/-/intl-listformat-7.1.9.tgz#0c2ce67b610054f215dd2635a6da7da308cfbe3d"
   integrity sha512-5YikxwRqRXTVWVujhswDOTCq6gs+m9IcNbNZLa6FLtyBStAjEsuE2vAU+lPsbz9ZTST57D5fodjIh2JXT6sMWQ==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.14.3"
+    "@formatjs/intl-localematcher" "0.2.32"
+    tslib "^2.4.0"
+
+"@formatjs/intl-listformat@7.2.1":
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-listformat/-/intl-listformat-7.2.1.tgz#874eddc7d53ba2e3fd911bf30efc459fc99f08db"
+  integrity sha512-fRJFWLrGa7d25I4JSxNjKX29oXGcIXx8fJjgURnvs2C3ijS4gurUgFrUwLbv/2KfPfyJ5g567pz2INelNJZBdw==
   dependencies:
     "@formatjs/ecma402-abstract" "1.14.3"
     "@formatjs/intl-localematcher" "0.2.32"
@@ -1923,6 +1950,19 @@
     "@formatjs/intl-displaynames" "6.2.6"
     "@formatjs/intl-listformat" "7.1.9"
     intl-messageformat "10.3.3"
+    tslib "^2.4.0"
+
+"@formatjs/intl@2.7.1":
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl/-/intl-2.7.1.tgz#f7e052ff09e9fe019ad83d4139af0de40084a2ae"
+  integrity sha512-se6vxidsN3PCmzqTsDd3YDT4IX9ZySPy39LYhF7x2ssNvlGMOuW3umkrIhKkXB7ZskqsJGY53LVCdiHsSwhGng==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.14.3"
+    "@formatjs/fast-memoize" "2.0.1"
+    "@formatjs/icu-messageformat-parser" "2.3.1"
+    "@formatjs/intl-displaynames" "6.3.1"
+    "@formatjs/intl-listformat" "7.2.1"
+    intl-messageformat "10.3.4"
     tslib "^2.4.0"
 
 "@graphql-tools/merge@8.2.14":
@@ -2534,6 +2574,22 @@
     plop "2.7.6"
     pluralize "8.0.0"
 
+"@strapi/helper-plugin@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.yarnpkg.com/@strapi/helper-plugin/-/helper-plugin-4.10.2.tgz#3e5553b1c6f48b7cb1af6e4ebdfa446e3fc7c824"
+  integrity sha512-8FMfYIFdHIlUPbOhoKL+N7gI5UZxy2kRVIZVRXYjoYMZ2Zkxn7J0qmjJD59IAblO8DI5zAr7p4D/BQfWLi8KqA==
+  dependencies:
+    axios "1.3.4"
+    date-fns "2.29.3"
+    formik "^2.2.6"
+    immer "9.0.19"
+    lodash "4.17.21"
+    prop-types "^15.7.2"
+    qs "6.11.1"
+    react-helmet "^6.1.0"
+    react-intl "6.4.1"
+    react-select "5.7.0"
+
 "@strapi/helper-plugin@4.9.0":
   version "4.9.0"
   resolved "https://registry.yarnpkg.com/@strapi/helper-plugin/-/helper-plugin-4.9.0.tgz#efb28c07dc516e0160724ec734c296b8c0d4f74a"
@@ -2666,6 +2722,39 @@
     redux "^4.2.1"
     yup "^0.32.9"
 
+"@strapi/plugin-upload@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.yarnpkg.com/@strapi/plugin-upload/-/plugin-upload-4.10.2.tgz#655527b5262ab6325cae981a5761dbfe4bf10784"
+  integrity sha512-ePypOE/0wSWesIHkj1sCym++1ut5oDxMuzbhtYkLYb4s77plgJg5cGY966boLj2qtZ1Ada/GQoGEVTtnp4V5UQ==
+  dependencies:
+    "@strapi/design-system" "1.6.6"
+    "@strapi/helper-plugin" "4.10.2"
+    "@strapi/icons" "1.6.6"
+    "@strapi/provider-upload-local" "4.10.2"
+    "@strapi/utils" "4.10.2"
+    axios "1.3.4"
+    byte-size "7.0.1"
+    cropperjs "1.5.12"
+    date-fns "2.29.3"
+    formik "2.2.9"
+    fs-extra "10.0.0"
+    immer "9.0.19"
+    koa-range "0.3.0"
+    koa-static "5.0.0"
+    lodash "4.17.21"
+    mime-types "2.1.35"
+    prop-types "^15.7.2"
+    qs "6.11.1"
+    react-copy-to-clipboard "^5.1.0"
+    react-dnd "15.1.2"
+    react-helmet "^6.1.0"
+    react-intl "6.4.1"
+    react-query "3.24.3"
+    react-redux "8.0.5"
+    react-select "5.7.0"
+    sharp "0.32.0"
+    yup "^0.32.9"
+
 "@strapi/plugin-upload@4.9.0":
   version "4.9.0"
   resolved "https://registry.yarnpkg.com/@strapi/plugin-upload/-/plugin-upload-4.9.0.tgz#80ed4c8f5e12a1cd0fa174627d9a1df8f64c7047"
@@ -2738,6 +2827,14 @@
   dependencies:
     "@strapi/utils" "4.9.0"
     sendmail "^1.6.1"
+
+"@strapi/provider-upload-local@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.yarnpkg.com/@strapi/provider-upload-local/-/provider-upload-local-4.10.2.tgz#4f6149db91a01cbb3391b4dfafd819edc700d9b4"
+  integrity sha512-ZMJyNDeMNLk9l4XNh/jEHd01hmo0hwGzl7HyF9bcyfRS0AGm5GFHlldr0HSwpza+GIeLw728lr094Qd3Lqr1dw==
+  dependencies:
+    "@strapi/utils" "4.10.2"
+    fs-extra "10.0.0"
 
 "@strapi/provider-upload-local@4.9.0":
   version "4.9.0"
@@ -2819,10 +2916,10 @@
     prettier "2.8.4"
     typescript "4.6.2"
 
-"@strapi/utils@4.9.0":
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/@strapi/utils/-/utils-4.9.0.tgz#35731524d4c237f046b4fb4df1c32730dc85ad7d"
-  integrity sha512-Tyr2Qk4pixl1uVVLdF0hehwaEKBiYqaB7/JMSzjsaN8/8XwLPEi5Y3cymYkzZy2Dcyl58FW+V+3fHmAUN39y9A==
+"@strapi/utils@4.10.2", "@strapi/utils@^4.5.4":
+  version "4.10.2"
+  resolved "https://registry.yarnpkg.com/@strapi/utils/-/utils-4.10.2.tgz#cf804424f037de71a6467c4125181044396f8f5b"
+  integrity sha512-vf3fXtOK26hDjQq8+fv/PpvEjeVBUaD9cI8k7j8aSz3A1DY8BYL0KDBX/Gm9T55b0Lzxwz39zURA1+pQquxsFg==
   dependencies:
     "@sindresorhus/slugify" "1.1.0"
     date-fns "2.29.3"
@@ -2831,10 +2928,10 @@
     p-map "4.0.0"
     yup "0.32.9"
 
-"@strapi/utils@^4.5.4":
-  version "4.9.1"
-  resolved "https://registry.yarnpkg.com/@strapi/utils/-/utils-4.9.1.tgz#c0fa0c329e9a102f3a8d527d820a523883ec1020"
-  integrity sha512-FC6iIyHc5OMu46soiQPnmdrfkBsYKrBhogmYMqDwwqwTbT7ynXL2EgRz1T8/Y0Zb8YvjvWcaOYYF17AhWB9Mug==
+"@strapi/utils@4.9.0":
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/@strapi/utils/-/utils-4.9.0.tgz#35731524d4c237f046b4fb4df1c32730dc85ad7d"
+  integrity sha512-Tyr2Qk4pixl1uVVLdF0hehwaEKBiYqaB7/JMSzjsaN8/8XwLPEi5Y3cymYkzZy2Dcyl58FW+V+3fHmAUN39y9A==
   dependencies:
     "@sindresorhus/slugify" "1.1.0"
     date-fns "2.29.3"
@@ -6802,15 +6899,10 @@ ignore@^5.1.1:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.0.tgz#6d3bac8fa7fe0d45d9f9be7bac2fc279577e345a"
   integrity sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==
 
-immer@9.0.19:
+immer@9.0.19, immer@^9.0.12:
   version "9.0.19"
   resolved "https://registry.yarnpkg.com/immer/-/immer-9.0.19.tgz#67fb97310555690b5f9cd8380d38fc0aabb6b38b"
   integrity sha512-eY+Y0qcsB4TZKwgQzLaE/lqYMlKhv5J9dyd2RhhtGhNo2njPXDqU9XPfcNfa3MIDsdtZt5KlkIsirlo4dHsWdQ==
-
-immer@^9.0.12:
-  version "9.0.15"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-9.0.15.tgz#0b9169e5b1d22137aba7d43f8a81a495dd1b62dc"
-  integrity sha512-2eB/sswms9AEUSkOm4SbV5Y7Vmt/bKRwByd52jfLkW4OLYeaTP3EEiJ9agqU0O/tq6Dk62Zfj+TJSqfm1rLVGQ==
 
 import-fresh@^3.2.1:
   version "3.3.0"
@@ -6938,6 +7030,16 @@ intl-messageformat@10.3.3:
     "@formatjs/ecma402-abstract" "1.14.3"
     "@formatjs/fast-memoize" "2.0.1"
     "@formatjs/icu-messageformat-parser" "2.3.0"
+    tslib "^2.4.0"
+
+intl-messageformat@10.3.4:
+  version "10.3.4"
+  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-10.3.4.tgz#20f064c28b46fa6d352a4c4ba5e9bfc597af3eba"
+  integrity sha512-/FxUIrlbPtuykSNX85CB5sp2FjLVeTmdD7TfRkVFPft2n4FgcSlAcilFytYiFAEmPHc+0PvpLCIPXeaGFzIvOg==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.14.3"
+    "@formatjs/fast-memoize" "2.0.1"
+    "@formatjs/icu-messageformat-parser" "2.3.1"
     tslib "^2.4.0"
 
 intl-messageformat@9.13.0:
@@ -8466,6 +8568,11 @@ node-addon-api@^5.0.0:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-5.0.0.tgz#7d7e6f9ef89043befdb20c1989c905ebde18c501"
   integrity sha512-CvkDw2OEnme7ybCykJpVcKH+uAOLV2qLqiyla128dN9TkEWfrYmxG6C2boDe5KcNQqZF3orkqzGgOMvZ/JNekA==
 
+node-addon-api@^6.0.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-6.1.0.tgz#ac8470034e58e67d0c6f1204a18ae6995d9c0d76"
+  integrity sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==
+
 node-fetch@2.6.7, node-fetch@^2.6.7:
   version "2.6.7"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
@@ -9346,17 +9453,10 @@ qs@6.10.3:
   dependencies:
     side-channel "^1.0.4"
 
-qs@6.11.1:
+qs@6.11.1, qs@^6.10.2, qs@^6.10.3, qs@^6.4.0, qs@^6.5.2, qs@^6.9.6:
   version "6.11.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.11.1.tgz#6c29dff97f0c0060765911ba65cbc9764186109f"
   integrity sha512-0wsrzgTz/kAVIeuxSjnpGC56rzYtr6JT/2BwEvMaPhFIoYa1aGO8LbzuU1R0uUYQkLpWBTOj0l/CLAJB64J6nQ==
-  dependencies:
-    side-channel "^1.0.4"
-
-qs@^6.10.2, qs@^6.10.3, qs@^6.4.0, qs@^6.5.2, qs@^6.9.6:
-  version "6.10.5"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.10.5.tgz#974715920a80ff6a262264acd2c7e6c2a53282b4"
-  integrity sha512-O5RlPh0VFtR78y79rgcgKK4wbAI0C5zGVLztOIdpWX6ep368q5Hv6XRxDvXuZ9q3C6v+e3n8UfZZJw7IIG27eQ==
   dependencies:
     side-channel "^1.0.4"
 
@@ -9491,6 +9591,22 @@ react-intl@6.3.2:
     "@types/react" "16 || 17 || 18"
     hoist-non-react-statics "^3.3.2"
     intl-messageformat "10.3.3"
+    tslib "^2.4.0"
+
+react-intl@6.4.1:
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-6.4.1.tgz#01e4bd5497cb93d87146e966d8eda25851d4d9b6"
+  integrity sha512-/aT5595AEMZ+Pjmt8W2R5/ZkYJmyyd6jTzHzqhJ1LnfeG36+N5huBtykxYhHqLc1BrIRQ1fTX1orYC0Ej5ojtg==
+  dependencies:
+    "@formatjs/ecma402-abstract" "1.14.3"
+    "@formatjs/icu-messageformat-parser" "2.3.1"
+    "@formatjs/intl" "2.7.1"
+    "@formatjs/intl-displaynames" "6.3.1"
+    "@formatjs/intl-listformat" "7.2.1"
+    "@types/hoist-non-react-statics" "^3.3.1"
+    "@types/react" "16 || 17 || 18"
+    hoist-non-react-statics "^3.3.2"
+    intl-messageformat "10.3.4"
     tslib "^2.4.0"
 
 react-intl@^5.24.6:
@@ -10300,6 +10416,20 @@ sharp@0.31.1:
     node-addon-api "^5.0.0"
     prebuild-install "^7.1.1"
     semver "^7.3.7"
+    simple-get "^4.0.1"
+    tar-fs "^2.1.1"
+    tunnel-agent "^0.6.0"
+
+sharp@0.32.0:
+  version "0.32.0"
+  resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.32.0.tgz#146b3e1930d56518699908d9116d8a03be1f5cf6"
+  integrity sha512-yLAypVcqj1toSAqRSwbs86nEzfyZVDYqjuUX8grhFpeij0DDNagKJXELS/auegDBRDg1XBtELdOGfo2X1cCpeA==
+  dependencies:
+    color "^4.2.3"
+    detect-libc "^2.0.1"
+    node-addon-api "^6.0.0"
+    prebuild-install "^7.1.1"
+    semver "^7.3.8"
     simple-get "^4.0.1"
     tar-fs "^2.1.1"
     tunnel-agent "^0.6.0"
