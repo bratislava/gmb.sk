@@ -48,7 +48,7 @@ export const usePreviewsByTags = ({
 
       return ['PreviewsByTags', variables]
     },
-    (_key, variables) => client.PreviewsByTags(variables)
+    ([, variables]) => client.PreviewsByTags(variables)
   )
 
   const filteredPages = data
@@ -59,7 +59,7 @@ export const usePreviewsByTags = ({
 
   const isLoadingInitialData = !data && !error
 
-  const isLoadingMore = isLoadingInitialData || (size > 0 && data && typeof data[size - 1] === 'undefined')
+  const isLoadingMore = isLoadingInitialData || (size > 0 && data && data[size - 1] === undefined)
 
   const isEmpty = filteredPages?.length === 0
 

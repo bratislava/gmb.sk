@@ -98,9 +98,9 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
           <button type="button" className="-mr-5 flex p-5 lg:hidden" onClick={toggleMobileMenu} aria-label="Menu">
             {isMobileMenuOpen ? (
-              <CloseIcon className="dw-[30] dh-[30]" />
+              <CloseIcon className="dh-[30] dw-[30]" />
             ) : (
-              <HamburgerIcon className="ml-[-5] dw-[30] dh-[30]" width={20} height={20} />
+              <HamburgerIcon className="ml-[-5] dh-[30] dw-[30]" width={20} height={20} />
             )}
           </button>
 

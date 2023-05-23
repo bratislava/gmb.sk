@@ -36,6 +36,9 @@ module.exports = {
     '@typescript-eslint/no-unsafe-argument': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
     'lodash/prefer-noop': 'off',
+    'unicorn/switch-case-braces': 'off',
+    /** Translation t function is typed as any */
+    '@typescript-eslint/restrict-template-expressions': 'off',
   },
   ignorePatterns: ['*.config.*', 'graphql', '.eslintrc.js', '*.md'],
 }
