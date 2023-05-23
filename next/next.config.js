@@ -6,7 +6,16 @@ const { i18n } = require('./next-i18next.config')
 const nextConfig = {
   i18n,
   images: {
-    domains: ['localhost', 'cdn-api.bratislava.sk'],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn-api.bratislava.sk',
+      },
+    ],
   },
   reactStrictMode: true,
   serverRuntimeConfig: {
