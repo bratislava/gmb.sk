@@ -7,7 +7,11 @@ const ImageFigure = ({ src, alt, noCaption, width, height, sizes }: IImageProps)
   return (
     <figure className="relative max-w-full">
       <img src={src} alt={altText} width={width} height={height} sizes={sizes} />
-      {!noCaption && alt && <figcaption className="my-yMd block text-sm text-gmbGray">{caption || alt}</figcaption>}
+      {!noCaption && alt && (
+        <figcaption aria-hidden={caption === alt} className="my-yMd block text-sm text-gmbGray">
+          {caption || alt}
+        </figcaption>
+      )}
     </figure>
   )
 }
