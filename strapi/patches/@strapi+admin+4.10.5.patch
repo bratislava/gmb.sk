@@ -1,43 +1,21 @@
 diff --git a/node_modules/@strapi/admin/admin/src/content-manager/components/Wysiwyg/WysiwygNav.js b/node_modules/@strapi/admin/admin/src/content-manager/components/Wysiwyg/WysiwygNav.js
-index 1ac6475..36a177b 100644
+index 0211842..266175e 100644
 --- a/node_modules/@strapi/admin/admin/src/content-manager/components/Wysiwyg/WysiwygNav.js
 +++ b/node_modules/@strapi/admin/admin/src/content-manager/components/Wysiwyg/WysiwygNav.js
-@@ -66,7 +66,6 @@ const WysiwygNav = ({
-               size="S"
-               aria-label={selectPlaceholder}
-             >
--              <Option value="h1">h1</Option>
-               <Option value="h2">h2</Option>
-               <Option value="h3">h3</Option>
-               <Option value="h4">h4</Option>
-@@ -83,13 +82,6 @@ const WysiwygNav = ({
-                 name="Italic"
-                 icon={<Italic />}
-               />
--              <CustomIconButton
--                disabled
--                id="Underline"
--                label="Underline"
--                name="Underline"
--                icon={<Underline />}
--              />
-             </MainButtons>
- 
-             <MoreButton disabled id="more" label="More" icon={<More />} />
-@@ -118,7 +110,6 @@ const WysiwygNav = ({
-             size="S"
-             onChange={(value) => onActionClick(value, editorRef)}
-           >
+@@ -62,7 +62,6 @@ const WysiwygNav = ({
+       <Flex padding={2} background="neutral100" justifyContent="space-between">
+         <StyledFlex>
+           <Select disabled placeholder={selectPlaceholder} size="S" label={selectPlaceholder}>
 -            <Option value="h1">h1</Option>
              <Option value="h2">h2</Option>
              <Option value="h3">h3</Option>
              <Option value="h4">h4</Option>
-@@ -141,13 +132,6 @@ const WysiwygNav = ({
-               name="Italic"
-               icon={<Italic />}
-             />
+@@ -73,13 +72,6 @@ const WysiwygNav = ({
+           <MainButtons>
+             <CustomIconButton disabled id="Bold" label="Bold" name="Bold" icon={<Bold />} />
+             <CustomIconButton disabled id="Italic" label="Italic" name="Italic" icon={<Italic />} />
 -            <CustomIconButton
--              onClick={() => onActionClick('Underline', editorRef)}
+-              disabled
 -              id="Underline"
 -              label="Underline"
 -              name="Underline"
@@ -45,61 +23,83 @@ index 1ac6475..36a177b 100644
 -            />
            </MainButtons>
  
-           <MoreButton
-@@ -162,13 +146,6 @@ const WysiwygNav = ({
-               <FocusTrap onEscape={handleTogglePopover} restoreFocus={false}>
-                 <Flex>
-                   <IconButtonGroupMargin>
--                    <CustomIconButton
--                      onClick={() => onActionClick('Strikethrough', editorRef, handleTogglePopover)}
--                      id="Strikethrough"
--                      label="Strikethrough"
--                      name="Strikethrough"
--                      icon={<StrikeThrough />}
--                    />
-                     <CustomIconButton
-                       onClick={() => onActionClick('BulletList', editorRef, handleTogglePopover)}
-                       id="BulletList"
-@@ -184,14 +161,7 @@ const WysiwygNav = ({
-                       icon={<NumberList />}
-                     />
-                   </IconButtonGroupMargin>
--                  <IconButtonGroup>
--                    <CustomIconButton
--                      onClick={() => onActionClick('Code', editorRef, handleTogglePopover)}
--                      id="Code"
--                      label="Code"
--                      name="Code"
--                      icon={<Code />}
--                    />
-+                  <IconButtonGroupMargin>
-                     <CustomIconButton
-                       onClick={() => {
-                         handleTogglePopover();
-@@ -217,6 +187,22 @@ const WysiwygNav = ({
-                       name="Quote"
-                       icon={<Quote />}
-                     />
-+                  </IconButtonGroupMargin>
-+                  <IconButtonGroup>
-+                    <CustomIconButton
-+                      onClick={() => onActionClick('Strikethrough', editorRef, handleTogglePopover)}
-+                      id="Strikethrough"
-+                      label="Strikethrough"
-+                      name="Strikethrough"
-+                      icon={<StrikeThrough />}
-+                    />
-+                    <CustomIconButton
-+                      onClick={() => onActionClick('Superscript', editorRef, handleTogglePopover)}
-+                      id="Superscript"
-+                      label="Superscript"
-+                      name="Superscript"
-+                      icon={<SuperscriptIcon />}
-+                    />
-                   </IconButtonGroup>
-                 </Flex>
-               </FocusTrap>
-@@ -237,6 +223,26 @@ const WysiwygNav = ({
+           <MoreButton disabled id="more" label="More" icon={<More />} />
+@@ -106,7 +98,6 @@ const WysiwygNav = ({
+           size="S"
+           onChange={(value) => onActionClick(value, editorRef)}
+         >
+-          <Option value="h1">h1</Option>
+           <Option value="h2">h2</Option>
+           <Option value="h3">h3</Option>
+           <Option value="h4">h4</Option>
+@@ -129,13 +120,6 @@ const WysiwygNav = ({
+             name="Italic"
+             icon={<Italic />}
+           />
+-          <CustomIconButton
+-            onClick={() => onActionClick('Underline', editorRef)}
+-            id="Underline"
+-            label="Underline"
+-            name="Underline"
+-            icon={<Underline />}
+-          />
+         </MainButtons>
+ 
+         <MoreButton
+@@ -150,13 +134,6 @@ const WysiwygNav = ({
+             <FocusTrap onEscape={handleTogglePopover} restoreFocus={false}>
+               <Flex>
+                 <IconButtonGroupMargin>
+-                  <CustomIconButton
+-                    onClick={() => onActionClick('Strikethrough', editorRef, handleTogglePopover)}
+-                    id="Strikethrough"
+-                    label="Strikethrough"
+-                    name="Strikethrough"
+-                    icon={<StrikeThrough />}
+-                  />
+                   <CustomIconButton
+                     onClick={() => onActionClick('BulletList', editorRef, handleTogglePopover)}
+                     id="BulletList"
+@@ -172,14 +149,7 @@ const WysiwygNav = ({
+                     icon={<NumberList />}
+                   />
+                 </IconButtonGroupMargin>
+-                <IconButtonGroup>
+-                  <CustomIconButton
+-                    onClick={() => onActionClick('Code', editorRef, handleTogglePopover)}
+-                    id="Code"
+-                    label="Code"
+-                    name="Code"
+-                    icon={<Code />}
+-                  />
++                <IconButtonGroupMargin>
+                   <CustomIconButton
+                     onClick={() => {
+                       handleTogglePopover();
+@@ -205,6 +175,22 @@ const WysiwygNav = ({
+                     name="Quote"
+                     icon={<Quote />}
+                   />
++                </IconButtonGroupMargin>
++                <IconButtonGroup>
++                  <CustomIconButton
++                    onClick={() => onActionClick('Strikethrough', editorRef, handleTogglePopover)}
++                    id="Strikethrough"
++                    label="Strikethrough"
++                    name="Strikethrough"
++                    icon={<StrikeThrough />}
++                  />
++                  <CustomIconButton
++                    onClick={() => onActionClick('Superscript', editorRef, handleTogglePopover)}
++                    id="Superscript"
++                    label="Superscript"
++                    name="Superscript"
++                    icon={<SuperscriptIcon />}
++                  />
+                 </IconButtonGroup>
+               </Flex>
+             </FocusTrap>
+@@ -224,6 +210,27 @@ const WysiwygNav = ({
    );
  };
  
@@ -123,11 +123,12 @@ index 1ac6475..36a177b 100644
 +  );
 +}
 +
++
  WysiwygNav.defaultProps = {
    isPreviewMode: false,
    onActionClick() {},
 diff --git a/node_modules/@strapi/admin/admin/src/content-manager/components/Wysiwyg/index.js b/node_modules/@strapi/admin/admin/src/content-manager/components/Wysiwyg/index.js
-index 0cf3c8f..14d5bd6 100644
+index 0cf3c8f..2b3f083 100644
 --- a/node_modules/@strapi/admin/admin/src/content-manager/components/Wysiwyg/index.js
 +++ b/node_modules/@strapi/admin/admin/src/content-manager/components/Wysiwyg/index.js
 @@ -60,7 +60,8 @@ const Wysiwyg = ({
@@ -147,7 +148,7 @@ index 0cf3c8f..14d5bd6 100644
 -      alt: f.alternativeText || f.name,
 +      // This adds caption into alt property so we can use both on the frontend.
 +      // Inserted image in markdown will look like this: ![alt||caption](url)
-+      alt: `${f.alternativeText}||${f.caption}` || f.name,
++      alt: `${f.alternativeText ?? 'AltText'}||${f.caption ?? 'Popis'}` || f.name,
        url: prefixFileUrlWithBackendUrl(f.url),
        mime: f.mime,
      }));
