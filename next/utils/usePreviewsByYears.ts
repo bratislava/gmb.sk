@@ -32,7 +32,7 @@ export const usePreviewsByYears = ({
 
       return ['PreviewsByYears', variables, locale]
     },
-    (_key, variables) => archiveFetcher(variables, locale)
+    ([, variables, localeInner]) => archiveFetcher(variables, localeInner)
   )
 
   const filteredPages = data
@@ -43,7 +43,7 @@ export const usePreviewsByYears = ({
 
   const isLoadingInitialData = !data && !error
 
-  const isLoadingMore = isLoadingInitialData || (size > 0 && data && typeof data[size - 1] === 'undefined')
+  const isLoadingMore = isLoadingInitialData || (size > 0 && data && data[size - 1] === undefined)
 
   const isEmpty = filteredPages?.length === 0
 

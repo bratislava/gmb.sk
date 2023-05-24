@@ -182,7 +182,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
 
   const mapRef = useRef<MapRef>(null)
 
-  const onGalleryClick = useCallback((gallery: typeof galleries[number], e: MouseEvent) => {
+  const onGalleryClick = useCallback((gallery: (typeof galleries)[number], e: MouseEvent) => {
     e.stopPropagation()
     setSelectedGallery(gallery)
     setDescription(gallery.description)
@@ -351,7 +351,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
               className={cx('flex items-center space-x-2 px-4 py-2 uppercase underline-offset-2 hover:underline', {
                 underline: selectedTab?.key === tab.key,
               })}
-              onClick={() => (selectedTab?.key !== tab.key ? setSelectedTab(tab) : setSelectedTab(null))}
+              onClick={() => (selectedTab?.key === tab.key ? setSelectedTab(null) : setSelectedTab(tab))}
             >
               {tab.label}
             </button>
@@ -399,7 +399,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
               </Marker>
             ))}
           </Mapbox>
-          <div className="pointer-events-none absolute top-0 right-0 hidden h-full w-1/6 bg-gradient-to-r from-transparent to-gmbDark lg:block" />
+          <div className="pointer-events-none absolute right-0 top-0 hidden h-full w-1/6 bg-gradient-to-r from-transparent to-gmbDark lg:block" />
         </div>
       </div>
       <div className="flex items-center p-8 lg:col-start-3 lg:h-[600px]">

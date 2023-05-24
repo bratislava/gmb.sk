@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next'
 import React, { ReactNode, useState } from 'react'
 import Consent from 'react-cookie-consent'
 import Modal from 'react-modal'
-import { useEffectOnceWhen } from "rooks";
+import { useEffectOnceWhen } from 'rooks'
 
 import ChevronDownIcon from '../../assets/icons/chevron-down.svg'
 import CloseIcon from '../../assets/icons/close-x.svg'
@@ -76,10 +76,10 @@ const CookieConsent = () => {
         isOpen={isCookiesSettingsOpen}
         onRequestClose={closeCookiesSettings}
         ariaHideApp={false}
-        className="fixed top-[calc(50%+var(--nav-height))] left-1/2 z-50 mx-auto mt-yMd h-fit w-10/12 translate-y-[calc(-50%-var(--nav-height))] -translate-x-1/2 border-0 border-r-0 bg-white p-0 lg:top-1/2 lg:mt-0 lg:w-7/12 lg:-translate-y-1/2"
+        className="fixed left-1/2 top-[calc(50%+var(--nav-height))] z-50 mx-auto mt-yMd h-fit w-10/12 -translate-x-1/2 translate-y-[calc(-50%-var(--nav-height))] border-0 bg-white p-0 lg:top-1/2 lg:mt-0 lg:w-7/12 lg:-translate-y-1/2"
       >
         <div className="flex h-[calc(100vh-var(--nav-height)-2*var(--padding-y-md))] flex-col items-center overflow-hidden lg:max-h-[calc(100vh-2*var(--nav-height)-2*var(--padding-y-md))] lg:dh-[650]">
-          <div className="mb-[10px] flex w-full flex-[0_0_auto] items-center justify-between border-b py-ySm px-xSm">
+          <div className="mb-[10px] flex w-full flex-[0_0_auto] items-center justify-between border-b px-xSm py-ySm">
             <h1 className="text-lg">{t('cookieConsent.modalTitle')}</h1>
             <button type="button" onClick={closeCookiesSettings} aria-label={t('cookieConsent.closeCookies')}>
               <CloseIcon className="dw-[25]" />
@@ -158,7 +158,7 @@ const CookieConsent = () => {
         disableButtonStyles
         buttonWrapperClasses="flex flex-col gap-y-ySm"
         containerClasses={cx(
-          'z-1 fixed left-0 bottom-0 flex-nowrap items-center justify-between gap-x-xMd bg-white px-xMd py-ySm text-black',
+          'z-1 fixed bottom-0 left-0 flex-nowrap items-center justify-between gap-x-xMd bg-white px-xMd py-ySm text-black',
           {
             flex: !isCookiesSettingsOpen && !isConsentSubmitted,
             hidden: isCookiesSettingsOpen || isConsentSubmitted,
@@ -206,7 +206,7 @@ const Switch = ({ title, value, onValueChange, disabled }: SwitchProps) => {
       aria-disabled={disabled}
       tabIndex={0}
       className={cx(
-        'mx-3 flex shrink-0 grow-0 items-center rounded-full border-2 border-gmbDark px-0.5 dw-[60] dh-[30]',
+        'mx-3 flex shrink-0 grow-0 items-center rounded-full border-2 border-gmbDark px-0.5 dh-[30] dw-[60]',
         {
           'justify-end bg-gmbDark': value,
           'bg-gmbGray': !value,
@@ -221,7 +221,7 @@ const Switch = ({ title, value, onValueChange, disabled }: SwitchProps) => {
         onClick={(e) => {
           if (disabled) e.stopPropagation()
         }}
-        className={cx('rounded-full bg-white shadow-md dw-[21] dh-[21]')}
+        className={cx('rounded-full bg-white shadow-md dh-[21] dw-[21]')}
       />
     </div>
   )

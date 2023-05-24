@@ -35,7 +35,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
   }, [agree])
 
   const isFormValid = (): boolean => {
-    const newAgreeError = !agree ? t('errors.fieldMandatory') : ''
+    const newAgreeError = agree ? '' : t('errors.fieldMandatory')
 
     let newEmailError = ''
     if (email.length === 0) {
