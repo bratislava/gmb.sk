@@ -60,6 +60,15 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
 
   const { t, i18n } = useTranslation()
 
+  // TODO Add parent page as related content, with option to not to include it :D
+  const relatedContentFiltered =
+    childPages?.data
+      .filter(hasAttributes)
+      .filter((child) => (child.attributes.dateTo ? getDaysLeft(child.attributes.dateTo) >= 0 : child))
+      .sort((a, b) => (a.attributes.dateFrom > b.attributes.dateFrom ? 1 : -1)) ?? []
+
+  const showRelatedContent = relatedContentFiltered.length > 0
+
   const submenu: string[] = []
 
   mainContent?.filter(isDefined).forEach((section) => {
@@ -67,7 +76,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
       submenu.push(section.submenuTitle)
     }
   })
-  if (relatedContentSubmenuTitle && childPages?.data?.filter(hasAttributes).length) {
+  if (relatedContentSubmenuTitle && showRelatedContent) {
     submenu.push(relatedContentSubmenuTitle)
   }
   if (downloadSection?.submenuTitle) {
@@ -196,17 +205,13 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
         </div>
       </div>
       {slider && <ImgSwiper slides={slider?.medias?.data.filter(hasAttributes)} />}
-      {/* TODO Add parent page as related content */}
-      {childPages && childPages.data.length > 0 && (
+      {relatedContentFiltered.length > 0 ? (
         <ChessboardSection
           anchor={getAnchor(relatedContentSubmenuTitle)}
           title={relatedContentTitle ?? undefined}
-          sectionItems={childPages.data
-            .filter(hasAttributes)
-            .filter((child) => (child.attributes.dateTo ? getDaysLeft(child.attributes.dateTo) >= 0 : child))
-            .sort((a, b) => (a.attributes.dateFrom > b.attributes.dateFrom ? 1 : -1))}
+          sectionItems={relatedContentFiltered}
         />
-      )}
+      ) : null}
       {downloadSection && (
         <DownloadSection
           title={downloadSection.title}
