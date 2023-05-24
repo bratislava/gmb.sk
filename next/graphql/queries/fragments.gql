@@ -214,6 +214,7 @@ fragment NewsItemEntity on ContentPageEntity {
   attributes {
     title
     subtitle
+    addedAt
     useDatetimeAsSubtitle
     slug
     color

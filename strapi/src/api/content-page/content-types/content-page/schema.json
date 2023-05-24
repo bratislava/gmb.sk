@@ -295,6 +295,14 @@
       "relation": "oneToMany",
       "target": "api::content-page.content-page",
       "mappedBy": "parentPage"
+    },
+    "addedAt": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "datetime"
     }
   }
 }
