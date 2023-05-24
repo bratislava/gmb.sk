@@ -11,41 +11,40 @@ import Link from './Link'
 export interface CityGalleryMarkdownProps {
   content: string | null | undefined
   className?: string
-  accentColor?: string
 }
 
-const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMarkdownProps) => {
+const CityGalleryMarkdown = ({ className, content }: CityGalleryMarkdownProps) => {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm, supersub]}
       className={cx(className, 'relative')}
       components={{
-        h1: ({ children }) => <div className="pb-yMd text-md">{children}</div>,
-        h2: ({ children }) => <h2 className="pb-yMd text-xl">{children}</h2>,
-        h3: ({ children }) => <h3 className="pb-yMd text-lg">{children}</h3>,
-        h4: ({ children }) => <h4 className="pb-yMd text-md font-semibold">{children}</h4>,
-        h5: ({ children }) => <h5 className="pb-yMd text-sm font-semibold">{children}</h5>,
-        h6: ({ children }) => <h6 className="pb-yMd text-sm font-semibold text-gmbGray">{children}</h6>,
-        p: ({ children }) => {
-          if (children.some((child) => typeof child === 'string')) {
-            return <div className="text-md not-last:pb-yMd">{children}</div>
-          }
-          return children as ReactElement
-        },
-        ul: ({ children }) => <ul className="list-disc pl-xMd text-md not-last:pb-yMd">{children}</ul>,
-        ol: ({ children }) => <ol className="list-decimal pl-xMd text-md not-last:pb-yMd">{children}</ol>,
-        strong: ({ children }) => (
-          <strong className="font-medium" style={{ color: accentColor }}>
-            {children}
-          </strong>
+        /* eslint-disable jsx-a11y/heading-has-content */
+        // We don't want to use h1 in markdown, so it returns standard <p> tag
+        h1: 'p',
+        h2: ({ node, level, ...props }) => <h2 className="pb-yMd text-xl" {...props} />,
+        h3: ({ node, level, ...props }) => <h3 className="pb-yMd text-lg" {...props} />,
+        h4: ({ node, level, ...props }) => <h4 className="pb-yMd text-md font-semibold" {...props} />,
+        h5: ({ node, level, ...props }) => <h5 className="pb-yMd text-sm font-semibold" {...props} />,
+        h6: ({ node, level, ...props }) => <h6 className="pb-yMd text-sm font-semibold text-gmbGray" {...props} />,
+        /* eslint-enable jsx-a11y/heading-has-content */
+        p: ({ node, ...props }) => <p className="text-md not-last:pb-yMd" {...props} />,
+
+        ul: ({ node, depth, ordered, ...props }) => (
+          <ul className="list-disc pl-xMd text-md not-last:pb-yMd" {...props} />
         ),
-        blockquote: ({ children }) => <div className="border-l-4 pl-xMd not-last:pb-yMd">{children}</div>,
+        ol: ({ node, depth, ordered, ...props }) => (
+          <ol className="list-decimal pl-xMd text-md not-last:pb-yMd" {...props} />
+        ),
+        strong: ({ node, ...props }) => <strong className="font-semibold" {...props} />,
+        blockquote: ({ children }) => <blockquote className="border-l-4 pl-xMd not-last:pb-yMd">{children}</blockquote>,
         img: ({ src, alt, sizes, width, height }) => (
           <div className="relative">
             {src && <ImageFigure src={src} alt={alt} sizes={sizes} width={width} height={height} />}
           </div>
         ),
-        a: ({ children, href }) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        a: ({ node, title, children, href }) => {
           const isExternal = href?.startsWith('http')
           return (
             <Link
@@ -79,7 +78,7 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
           const theadTyped = thead as TableSection
           const tbodyTyped = tbody as TableSection
           return (
-            <table className="mb-yMd ml-xMd border-2 py-ySm px-xSm">
+            <table className="mb-yMd ml-xMd border-2 px-xSm py-ySm">
               <thead className="border-b-4">
                 {theadTyped.props.children?.map((tr) => (
                   <tr className="border-2">

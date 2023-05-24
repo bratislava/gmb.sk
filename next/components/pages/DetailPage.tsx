@@ -131,7 +131,6 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
                     anchor={getAnchor(section.submenuTitle)}
                     key={section.id}
                     content={section.content}
-                    accentColor={getContentPageColor(contentPage)}
                     className="pb-yMd"
                   />
                 )
