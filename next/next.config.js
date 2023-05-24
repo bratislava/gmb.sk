@@ -21,6 +21,8 @@ const nextConfig = {
   serverRuntimeConfig: {
     strapiUrl: process.env.STRAPI_URL,
   },
+  output: 'standalone',
+
   async rewrites() {
     return {
       beforeFiles: [
@@ -372,7 +374,6 @@ const nextConfig = {
         destination: '/detail/goticka-tabulova-malba-a-plastika',
         locale: false,
         permanent: true,
-        locale: false,
       },
       {
         source: '/sk/exhibition/detail/131',
