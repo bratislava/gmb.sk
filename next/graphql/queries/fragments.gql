@@ -132,6 +132,7 @@ fragment ContentPageEntity on ContentPageEntity {
     subtitle
     useDatetimeAsSubtitle
     slug
+    addedAt
     coverMedia {
       data {
         ...ImageEntity

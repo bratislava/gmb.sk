@@ -75,7 +75,8 @@
     "privacyPolicyGenitiv": "ochrany osobných údajov",
     "morePhotos_one": "+{{count}} fotka",
     "morePhotos_few": "+{{count}} fotky",
-    "morePhotos_other": "+{{count}} fotiek"
+    "morePhotos_other": "+{{count}} fotiek",
+    "addedAt": "Pridané"
   },
   "navigation": {
     "visitUs": "Navštívte",
