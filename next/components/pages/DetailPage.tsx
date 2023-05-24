@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 
 import { ContentPageEntityFragment } from '../../graphql'
+import { formatDateString } from '../../utils/formatDateString'
 import { getAnchor } from '../../utils/getAnchor'
 import { getContentPageColor } from '../../utils/getContentPageColor'
 import getDaysLeft from '../../utils/getDaysLeft'
@@ -30,6 +31,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
   const {
     title,
     titleToShow,
+    addedAt,
     perex,
     slug,
     mainContent,
@@ -56,7 +58,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
   // 'true' as fallback for older pages where showShareButtons is not defined
   const showShare = showShareButtons ?? true
 
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const submenu: string[] = []
 
@@ -121,6 +123,12 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
           className="pb-yLg lg:hidden"
         />
         <div className="float-none w-auto overflow-hidden">
+          {addedAt && (
+            <div className="mb-yMd text-md">
+              {t('common.addedAt')} {formatDateString(addedAt, i18n.language)}
+            </div>
+          )}
+
           {perex && <div className="mb-yLg text-lg">{perex}</div>}
 
           <div className="lg:ml-xLg">

@@ -73,7 +73,8 @@
     "privacyPolicy": "privacy policy",
     "privacyPolicyGenitiv": "privacy policy",
     "morePhotos_one": "+{{count}} photo",
-    "morePhotos_other": "+{{count}} photos"
+    "morePhotos_other": "+{{count}} photos",
+    "addedAt": "Published"
   },
   "navigation": {
     "visitUs": "Visit us",
