@@ -3709,7 +3709,7 @@ export const PreviewsByTagsDocument = gql`
   contentPages(
     locale: $locale
     pagination: {start: $offset, limit: $limit}
-    filters: {tags: {slug: {in: $tagSlugs}}, place: {slug: {in: $placesSlugs}}, dateTo: {lt: $dateForFilteringPastEvents, gt: $dateForFilteringFutureEvents}}
+    filters: {tags: {slug: {in: $tagSlugs}}, place: {slug: {in: $placesSlugs}}, or: [{dateTo: {lt: $dateForFilteringPastEvents, null: true}}, {dateTo: {lt: $dateForFilteringPastEvents, gt: $dateForFilteringFutureEvents}}]}
     sort: $sort
   ) {
     data {
