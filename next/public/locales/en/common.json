@@ -74,7 +74,10 @@
     "privacyPolicyGenitiv": "privacy policy",
     "morePhotos_one": "+{{count}} photo",
     "morePhotos_other": "+{{count}} photos",
-    "addedAt": "Published"
+    "addedAt": "Published",
+    "errors": {
+      "404": "Page not found"
+    }
   },
   "navigation": {
     "visitUs": "Visit us",
