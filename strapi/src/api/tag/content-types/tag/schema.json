@@ -46,6 +46,14 @@
       "relation": "manyToMany",
       "target": "api::content-page.content-page",
       "mappedBy": "tags"
+    },
+    "titleInternal": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }
