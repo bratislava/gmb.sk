@@ -1,3 +1,4 @@
+import FocusTrap from 'focus-trap-react'
 import { useTranslation } from 'next-i18next'
 import { useEffect } from 'react'
 import { useQuery } from 'react-query'
@@ -47,32 +48,37 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
 
   const { t } = useTranslation()
   return (
-    <div className="fixed inset-x-0 top-[var(--nav-height)] z-20 flex h-[calc(100vh-var(--nav-height))] flex-col gap-yLg bg-gmbDark px-xLg py-yLg">
-      <button
-        type="button"
-        className="absolute right-0 top-0 px-xMd py-yMd text-white lg:mr-2"
-        onClick={closeSearchBar}
-        aria-label={t('common.closeSearch')}
-      >
-        <CloseIcon className="dw-[30] dh-[30]" />
-      </button>
-      <div>
-        <input
-          className="h-fit max-w-full border-b border-solid border-b-white bg-transparent text-xl text-white focus:border-b-2 focus:outline-none active:border-b-2"
-          placeholder={t('common.searchText')}
-          aria-label={t('common.searchText')}
-          onChange={(e) => {
-            setInput(e.target.value)
-          }}
-          value={input}
-        />
-      </div>
-      {data?.hits?.filter(isDefined).length ? (
+    <FocusTrap>
+      <div className="fixed inset-x-0 top-[var(--nav-height)] z-20 flex h-[calc(100vh-var(--nav-height))] flex-col gap-yLg bg-gmbDark px-xLg py-yLg">
         <div>
-          <Results results={data.hits.filter(isDefined)} header={t('common.found')} />
+          <input
+            className="h-fit max-w-full border-b border-solid border-b-white bg-transparent text-xl text-white focus:border-b-2 focus:outline-none active:border-b-2"
+            placeholder={t('common.searchText')}
+            aria-label={t('common.searchText')}
+            onChange={(e) => {
+              setInput(e.target.value)
+            }}
+            value={input}
+            // It should be okay to disable this rule here, because the search bar is first thing rendered in search modal
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus
+          />
         </div>
-      ) : null}
-    </div>
+        <button
+          type="button"
+          className="absolute right-0 top-0 px-xMd py-yMd text-white lg:mr-2"
+          onClick={closeSearchBar}
+          aria-label={t('common.closeSearch')}
+        >
+          <CloseIcon className="dh-[30] dw-[30]" />
+        </button>
+        {data?.hits?.filter(isDefined).length ? (
+          <div>
+            <Results results={data.hits.filter(isDefined)} header={t('common.found')} />
+          </div>
+        ) : null}
+      </div>
+    </FocusTrap>
   )
 }
 
