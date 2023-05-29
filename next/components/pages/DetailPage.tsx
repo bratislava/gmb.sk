@@ -112,17 +112,18 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
       <Submenu items={submenu} />
       <div className="h-auto overflow-hidden px-xMd py-yLg">
         {/* Desktop sidepanel */}
-        <SidePanel
-          datetime={{ dateFrom, dateTo, timeFrom, timeTo, showRemainingTime }}
-          place={{ place, placeTitle, placeAddress }}
-          positions={positions?.filter(isDefined)}
-          partners={partners?.map((item) => item?.partner?.data).filter(hasAttributes)}
-          purchaseId={getPurchaseId(contentPage)}
-          slug={slug}
-          showShare={showShare}
-          title={title}
-          className="float-right ml-xLg hidden w-sidepanel lg:flex"
-        />
+        <div className="float-right ml-xLg hidden min-h-screen w-sidepanel lg:flex">
+          <SidePanel
+            datetime={{ dateFrom, dateTo, timeFrom, timeTo, showRemainingTime }}
+            place={{ place, placeTitle, placeAddress }}
+            positions={positions?.filter(isDefined)}
+            partners={partners?.map((item) => item?.partner?.data).filter(hasAttributes)}
+            purchaseId={getPurchaseId(contentPage)}
+            slug={slug}
+            showShare={showShare}
+            title={title}
+          />
+        </div>
         {/* Mobile sidepanel info part 1 */}
         <SidePanel
           datetime={{ dateFrom, dateTo, timeFrom, timeTo, showRemainingTime }}

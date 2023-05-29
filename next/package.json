@@ -17,6 +17,7 @@
     "@react-types/checkbox": "^3.4.3",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "classnames": "^2.3.2",
+    "focus-trap-react": "^10.1.4",
     "graphql": "^16.5.0",
     "graphql-request": "^4.3.0",
     "graphql-tag": "^2.12.6",
