@@ -1,7 +1,7 @@
 import last from 'lodash/last'
 import useSWRInfinite from 'swr/infinite'
 
-import { SectionItemEntityFragment } from '../graphql'
+import { PreviewsByTagsQueryVariables, SectionItemEntityFragment } from '../graphql'
 import { getTodaysDate } from './getTodaysDate'
 import { client } from './gql'
 import { hasAttributes, isDefined } from './isDefined'
@@ -12,10 +12,12 @@ export const usePreviewsByTags = ({
   activeTags,
   activePlaces,
   locale,
+  kind,
 }: {
   activeTags: string[]
   activePlaces: string[]
   locale: string
+  kind: 'program' | 'explore'
 }) => {
   const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
     (index, previousList: SectionItemEntityFragment[]) => {
@@ -23,17 +25,24 @@ export const usePreviewsByTags = ({
         return null
       }
 
-      const tagSlugsVariables = activeTags.length > 0 ? { tagSlugs: activeTags } : {}
-
-      const archiveVariables = activeTags.includes('archive')
+      const tagSlugsVariables: Omit<PreviewsByTagsQueryVariables, 'locale'> = activeTags.includes('archive')
         ? {
-            dateTo: getTodaysDate(),
+            dateForFilteringPastEvents: getTodaysDate(),
             /** We don't send archive tag to the server
              * If there are other tags than 'archive', remove 'archive' and  use the remaining tags.
-             * If archive is the only one, pass undefiend */
+             * If archive is the only one, pass undefined */
             tagSlugs: activeTags.length > 1 ? activeTags.filter((tag) => tag !== 'archive') : undefined,
+            /** Past program pages sorted from closest to the past
+             * (If Archive is selected, it's only for program pages, so we don't need to take care about explore pages) */
+            sort: ['dateFrom:desc'],
           }
-        : {}
+        : {
+            dateForFilteringFutureEvents: kind === 'program' ? getTodaysDate() : undefined,
+            tagSlugs: activeTags.length > 0 ? activeTags : undefined,
+            /** Explore pages sorted by addedAt from the newest
+             * OR Future program pages sorted by dateTo from closest to the future */
+            sort: kind === 'program' ? ['dateTo:asc'] : ['addedAt:desc'],
+          }
 
       const activePlacesVariables = activePlaces.length > 0 ? { placesSlugs: activePlaces } : {}
 
@@ -42,9 +51,8 @@ export const usePreviewsByTags = ({
         limit: PAGE_SIZE,
         offset: index * PAGE_SIZE,
         ...tagSlugsVariables,
-        ...archiveVariables,
         ...activePlacesVariables,
-      }
+      } as PreviewsByTagsQueryVariables
 
       return ['PreviewsByTags', variables]
     },

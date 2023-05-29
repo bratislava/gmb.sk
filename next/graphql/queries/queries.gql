@@ -51,13 +51,15 @@ query PreviewsByTags(
   $offset: Int
   $tagSlugs: [String]
   $placesSlugs: [String]
-  $dateTo: Date
+  $dateForFilteringPastEvents: Date
+  $dateForFilteringFutureEvents: Date
+  $sort: [String] = ["dateFrom:desc", "publishedAt:desc"] # keeping this default sorting as it was before
 ) {
   contentPages(
     locale: $locale
     pagination: { start: $offset, limit: $limit }
-    filters: { tags: { slug: { in: $tagSlugs } }, place: { slug: { in: $placesSlugs } }, dateTo: { lt: $dateTo } }
-    sort: ["dateFrom:desc", "publishedAt:desc"]
+    filters: { tags: { slug: { in: $tagSlugs } }, place: { slug: { in: $placesSlugs } }, dateTo: { lt: $dateForFilteringPastEvents, gt: $dateForFilteringFutureEvents } }
+    sort: $sort
   ) {
     data {
       ...SectionItemEntity

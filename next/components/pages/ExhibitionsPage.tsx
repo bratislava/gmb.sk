@@ -55,6 +55,7 @@ const ExhibitionsPage = ({
     activeTags: activeTags.length > 0 ? activeTags : initialTags,
     activePlaces,
     locale: i18n.language,
+    kind: 'program',
   })
 
   /** This useEffect sets filters by the query that appears when someone clicks on a tag in Card or ChessboardTile. */

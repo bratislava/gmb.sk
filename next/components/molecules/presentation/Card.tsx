@@ -17,7 +17,6 @@ interface CardProps {
   showTags?: boolean
 }
 
-// TODO decide how to display addedAt date in listings
 const Card = ({ sectionItem, showTags }: CardProps) => {
   const { t, i18n } = useTranslation()
   const router = useRouter()
@@ -58,8 +57,7 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
               </Link>
             ))}
           </div>
-          {/* TODO addedAt */}
-          {/* {addedAt && <div className="shrink-0 text-btn text-gray-400">{formatDateString(addedAt, i18n.language)}</div>} */}
+          {addedAt && <div className="shrink-0 text-btn text-gmbGray">{formatDateString(addedAt, i18n.language)}</div>}
         </div>
       ) : null}
 
@@ -68,12 +66,6 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
         <p className="text-xl font-regular">
           <Subtitle page={sectionItem} />
         </p>
-        {/* TODO addedAt - remove hidden */}
-        {addedAt && (
-          <p className="mt-yMd hidden text-md">
-            {t('common.addedAt')} {formatDateString(addedAt, i18n.language)}
-          </p>
-        )}
       </div>
 
       {perex && <div className="line-clamp-5 text-md">{perex}</div>}
