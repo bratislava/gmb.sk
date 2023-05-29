@@ -51,14 +51,23 @@ query PreviewsByTags(
   $offset: Int
   $tagSlugs: [String]
   $placesSlugs: [String]
-  $dateForFilteringPastEvents: Date
-  $dateForFilteringFutureEvents: Date
+  $dateForFilteringPastEvents: Date # pass either this or dateForFilteringFutureEvents
+  $dateForFilteringFutureEvents: Date # pass either this or dateForFilteringPastEvents
   $sort: [String] = ["dateFrom:desc", "publishedAt:desc"] # keeping this default sorting as it was before
 ) {
   contentPages(
     locale: $locale
     pagination: { start: $offset, limit: $limit }
-    filters: { tags: { slug: { in: $tagSlugs } }, place: { slug: { in: $placesSlugs } }, dateTo: { lt: $dateForFilteringPastEvents, gt: $dateForFilteringFutureEvents } }
+    filters: {
+      tags: { slug: { in: $tagSlugs } },
+      place: { slug: { in: $placesSlugs } },
+      or: [
+        # if dateForFilteringFutureEvents is passed, we get all events with null dateTo, and dateTo greater than dateForFilteringFutureEvents
+        # if dateForFilteringPastEvents is passed, first condition is always false, and we get all events with dateTo less than dateForFilteringPastEvents, so events with null dateTo are filtered out
+        { dateTo: { lt: $dateForFilteringPastEvents, null: true } },
+        { dateTo: { lt: $dateForFilteringPastEvents, gt: $dateForFilteringFutureEvents}}
+      ]
+    }
     sort: $sort
   ) {
     data {
