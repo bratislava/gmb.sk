@@ -2979,7 +2979,9 @@ export type PreviewsByTagsQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']>;
   tagSlugs?: InputMaybe<Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>>;
   placesSlugs?: InputMaybe<Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>>;
-  dateTo?: InputMaybe<Scalars['Date']>;
+  dateForFilteringPastEvents?: InputMaybe<Scalars['Date']>;
+  dateForFilteringFutureEvents?: InputMaybe<Scalars['Date']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>>;
 }>;
 
 
@@ -3703,12 +3705,12 @@ export const NewsDocument = gql`
 }
     ${NewsItemEntityFragmentDoc}`;
 export const PreviewsByTagsDocument = gql`
-    query PreviewsByTags($locale: I18NLocaleCode!, $limit: Int, $offset: Int, $tagSlugs: [String], $placesSlugs: [String], $dateTo: Date) {
+    query PreviewsByTags($locale: I18NLocaleCode!, $limit: Int, $offset: Int, $tagSlugs: [String], $placesSlugs: [String], $dateForFilteringPastEvents: Date, $dateForFilteringFutureEvents: Date, $sort: [String] = ["dateFrom:desc", "publishedAt:desc"]) {
   contentPages(
     locale: $locale
     pagination: {start: $offset, limit: $limit}
-    filters: {tags: {slug: {in: $tagSlugs}}, place: {slug: {in: $placesSlugs}}, dateTo: {lt: $dateTo}}
-    sort: ["dateFrom:desc", "publishedAt:desc"]
+    filters: {tags: {slug: {in: $tagSlugs}}, place: {slug: {in: $placesSlugs}}, dateTo: {lt: $dateForFilteringPastEvents, gt: $dateForFilteringFutureEvents}}
+    sort: $sort
   ) {
     data {
       ...SectionItemEntity

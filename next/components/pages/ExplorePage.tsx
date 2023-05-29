@@ -32,6 +32,7 @@ const ExplorePage = ({ explorePage, tagsTypes, tagsProjects, tagsOthers }: Explo
     activeTags: activeTags.length > 0 ? activeTags : initialTags,
     activePlaces: [],
     locale: i18n.language,
+    kind: 'explore',
   })
 
   useEffect(() => {
