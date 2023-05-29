@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next'
+
 import PageWrapper from './PageWrapper'
 
 interface ErrorPageProps {
@@ -5,6 +7,8 @@ interface ErrorPageProps {
 }
 
 const ErrorPage = ({ statusCode }: ErrorPageProps) => {
+  const { t } = useTranslation()
+
   return (
     <PageWrapper>
       <div className="flex h-[calc(100vh-119px)] w-full flex-col items-center justify-center text-center">
@@ -12,7 +16,7 @@ const ErrorPage = ({ statusCode }: ErrorPageProps) => {
         <h2 className="text-xl">
           {
             {
-              404: 'Page not found',
+              404: t('common.errors.404'),
               500: 'Internal server error',
             }[statusCode]
           }

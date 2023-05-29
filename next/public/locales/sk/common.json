@@ -76,7 +76,10 @@
     "morePhotos_one": "+{{count}} fotka",
     "morePhotos_few": "+{{count}} fotky",
     "morePhotos_other": "+{{count}} fotiek",
-    "addedAt": "Pridané"
+    "addedAt": "Pridané",
+    "errors": {
+      "404": "Ľutujeme, stránka sa nenašla."
+    }
   },
   "navigation": {
     "visitUs": "Navštívte",
