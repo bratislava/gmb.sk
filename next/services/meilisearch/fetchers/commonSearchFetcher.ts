@@ -18,7 +18,7 @@ export const getCommonSearchQueryKey = (filters: CommonSearchFilters) => ['commo
 
 export const commonSearchFetcher = (filters: CommonSearchFilters, locale: string) => {
   return meiliClient
-    .index('common_search_index')
+    .index('search_index')
     .search(filters.searchValue, {
       ...getMeilisearchPageOptions({ page: filters.page, pageSize: filters.pageSize }),
       filter: [`locale = ${locale}`],
