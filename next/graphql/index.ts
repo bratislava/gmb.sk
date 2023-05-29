@@ -2195,6 +2195,7 @@ export type Tag = {
   slug: Scalars['String'];
   tagCategory?: Maybe<TagCategoryEntityResponse>;
   title: Scalars['String'];
+  titleInternal?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -2309,6 +2310,7 @@ export type TagFiltersInput = {
   slug?: InputMaybe<StringFilterInput>;
   tagCategory?: InputMaybe<TagCategoryFiltersInput>;
   title?: InputMaybe<StringFilterInput>;
+  titleInternal?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -2317,6 +2319,7 @@ export type TagInput = {
   slug?: InputMaybe<Scalars['String']>;
   tagCategory?: InputMaybe<Scalars['ID']>;
   title?: InputMaybe<Scalars['String']>;
+  titleInternal?: InputMaybe<Scalars['String']>;
 };
 
 export type TagRelationResponseCollection = {
