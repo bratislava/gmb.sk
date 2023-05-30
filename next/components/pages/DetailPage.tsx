@@ -64,7 +64,9 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
   const relatedContentFiltered =
     childPages?.data
       .filter(hasAttributes)
-      .filter((child) => (child.attributes.dateTo ? getDaysLeft(child.attributes.dateTo) >= 0 : child))
+      .filter((child) =>
+        child.attributes.dateTo ? getDaysLeft(child.attributes.dateTo) >= 0 : child
+      )
       .sort((a, b) => (a.attributes.dateFrom > b.attributes.dateFrom ? 1 : -1)) ?? []
 
   const showRelatedContent = relatedContentFiltered.length > 0
@@ -101,7 +103,10 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
         </>
       </Head>
 
-      <div className="px-xMd py-yMd lg:pr-sidepanel" style={{ background: getContentPageColor(contentPage) }}>
+      <div
+        className="px-xMd py-yMd lg:pr-sidepanel"
+        style={{ background: getContentPageColor(contentPage) }}
+      >
         <div className="lg:mr-xLg">
           <h1 className="text-xxl md:whitespace-pre-wrap">{titleToShow || title}</h1>
           <p className="mt-1 text-xxl font-regular lg:mt-2">
@@ -112,7 +117,8 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
       <Submenu items={submenu} />
       <div className="h-auto overflow-hidden px-xMd py-yLg">
         {/* Desktop sidepanel */}
-        <div className="float-right ml-xLg hidden min-h-screen w-sidepanel lg:flex">
+        {/* min-h is needed to keep sidepanel space even if sidepanel is empty */}
+        <div className="float-right ml-xLg hidden min-h-[1px] w-sidepanel lg:flex">
           <SidePanel
             datetime={{ dateFrom, dateTo, timeFrom, timeTo, showRemainingTime }}
             place={{ place, placeTitle, placeAddress }}
@@ -156,7 +162,11 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
               }
               if (section.__typename === 'ComponentSectionsVideoSection') {
                 return (
-                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
+                  <Section
+                    anchor={getAnchor(section.submenuTitle)}
+                    key={section.id}
+                    className="pb-yMd"
+                  >
                     {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
                     {section.url ? <Video url={section.url} /> : null}
                   </Section>
@@ -164,7 +174,11 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
               }
               if (section.__typename === 'ComponentSectionsAudioSection') {
                 return (
-                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
+                  <Section
+                    anchor={getAnchor(section.submenuTitle)}
+                    key={section.id}
+                    className="pb-yMd"
+                  >
                     {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
                     {section.url ? <Audio url={section.url} /> : null}
                   </Section>
@@ -172,7 +186,11 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
               }
               if (section.__typename === 'ComponentSectionsGallerySection') {
                 return (
-                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
+                  <Section
+                    anchor={getAnchor(section.submenuTitle)}
+                    key={section.id}
+                    className="pb-yMd"
+                  >
                     {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
                     <ImageGallery medias={section.medias?.data} />
                   </Section>
@@ -180,11 +198,18 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
               }
               if (section.__typename === 'ComponentSectionsContactCardsSection') {
                 return (
-                  <Section anchor={getAnchor(section.submenuTitle)} key={section.id} className="pb-yMd">
+                  <Section
+                    anchor={getAnchor(section.submenuTitle)}
+                    key={section.id}
+                    className="pb-yMd"
+                  >
                     {section.title && <h2 className="pb-yMd text-xl">{section.title}</h2>}
                     {section.contacts?.map((contactItem, index) => (
-                      // eslint-disable-next-line react/no-array-index-key
-                      <ContactCard key={index} contact={withAttributes(contactItem?.contactCard?.data)} />
+                      <ContactCard
+                        // eslint-disable-next-line react/no-array-index-key
+                        key={index}
+                        contact={withAttributes(contactItem?.contactCard?.data)}
+                      />
                     ))}
                   </Section>
                 )

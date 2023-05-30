@@ -26,7 +26,11 @@ const Detail = ({ generalQuery, contentPage }: DetailProps) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, locale = 'sk', preview }) => {
+export const getStaticProps: GetStaticProps<DetailProps> = async ({
+  params,
+  locale = 'sk',
+  preview,
+}) => {
   if (!params) {
     return {
       notFound: true,
@@ -65,7 +69,9 @@ export const getStaticPaths: GetStaticPaths = async ({ locales = [] }) => {
   /** We have a quite complicated and nested structure here, so we need to flatten the response and filter out nullables */
   const allContentPages = contentPageSlugsResponses
     .flat()
-    .map((contentPageSlugsResponse) => contentPageSlugsResponse.contentPages?.data.filter(hasAttributes))
+    .map((contentPageSlugsResponse) =>
+      contentPageSlugsResponse.contentPages?.data.filter(hasAttributes)
+    )
     .filter(isDefined)
     .flat()
 

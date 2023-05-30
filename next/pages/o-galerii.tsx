@@ -23,7 +23,11 @@ const About = ({ generalQuery, aboutUsPage, news }: AboutProps) => {
 
   return (
     <GeneralContextProvider general={generalQuery}>
-      <Page page={aboutUsPage} title={t('navigation.aboutGallery')} newsItems={news?.data.filter(hasAttributes)} />
+      <Page
+        page={aboutUsPage}
+        title={t('navigation.aboutGallery')}
+        newsItems={news?.data.filter(hasAttributes)}
+      />
     </GeneralContextProvider>
   )
 }

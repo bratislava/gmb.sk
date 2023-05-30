@@ -16,7 +16,13 @@ interface ExploreProps {
   tagsOthers: TagsByCategorySlugQuery['tagCategoryBySlug']
 }
 
-const Explore = ({ generalQuery, explorePage, tagsTypes, tagsProjects, tagsOthers }: ExploreProps) => {
+const Explore = ({
+  generalQuery,
+  explorePage,
+  tagsTypes,
+  tagsProjects,
+  tagsOthers,
+}: ExploreProps) => {
   if (!explorePage) {
     return null
   }

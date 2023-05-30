@@ -56,7 +56,7 @@ const DownloadItem = ({ downloadItem }: DownloadProps) => {
         >
           <div className="relative left-[calc(-10*var(--size-factor))] h-fit w-fit">
             <FileIcon fill="#fff" className="relative dw-[96]" />
-            <span className="absolute top-1/2 left-1/2 block -translate-x-1/2 -translate-y-1/2 text-md uppercase">
+            <span className="absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 text-md uppercase">
               {file?.ext?.slice(1, 5)}
             </span>
           </div>

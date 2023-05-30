@@ -24,12 +24,19 @@ const Tickets = ({ generalQuery, contentPage, currentEvents }: TicketProps) => {
 
   return (
     <GeneralContextProvider general={generalQuery}>
-      <TicketPage contentPage={contentPageWithAttributes} currentEvents={currentEvents?.data.filter(hasAttributes)} />
+      <TicketPage
+        contentPage={contentPageWithAttributes}
+        currentEvents={currentEvents?.data.filter(hasAttributes)}
+      />
     </GeneralContextProvider>
   )
 }
 
-export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, locale = 'sk', preview }) => {
+export const getStaticProps: GetStaticProps<TicketProps> = async ({
+  params,
+  locale = 'sk',
+  preview,
+}) => {
   if (!params) {
     return {
       notFound: true,

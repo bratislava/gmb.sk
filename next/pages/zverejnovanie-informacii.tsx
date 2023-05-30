@@ -15,7 +15,10 @@ interface DisclosureOfInformationProps {
   generalMoreFile: DisclosureOfInformationPageQuery['general']
 }
 
-export const DisclosureOfInformation = ({ generalQuery, generalMoreFile }: DisclosureOfInformationProps) => {
+export const DisclosureOfInformation = ({
+  generalQuery,
+  generalMoreFile,
+}: DisclosureOfInformationProps) => {
   const { t } = useTranslation()
 
   const title = t('footer.disclosureOfInformation')
@@ -27,7 +30,7 @@ export const DisclosureOfInformation = ({ generalQuery, generalMoreFile }: Discl
           <title>{title}</title>
         </Head>
         <h1 className="px-xMd pt-yLg text-xxl">{title}</h1>
-        <div className="py-yLg px-xMd">
+        <div className="px-xMd py-yLg">
           <iframe
             title={t('footer.disclosureOfInformation')}
             src="https://zmluvy.egov.sk/egov/contracts/place:259/iframe/showZmluvy/showFaktury/showObjednavky/orderBy:datum/direction:desc"

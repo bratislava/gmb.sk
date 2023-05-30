@@ -57,7 +57,11 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
               </Link>
             ))}
           </div>
-          {addedAt && <div className="shrink-0 text-btn text-gmbGray">{formatDateString(addedAt, i18n.language)}</div>}
+          {addedAt && (
+            <div className="shrink-0 text-btn text-gmbGray">
+              {formatDateString(addedAt, i18n.language)}
+            </div>
+          )}
         </div>
       ) : null}
 

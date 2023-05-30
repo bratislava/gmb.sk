@@ -6,6 +6,7 @@ interface IPlaceTimeProps {
   place: ContentPagePlaceFragment | undefined
   datetime: DatetimeFragment | undefined
 }
+
 const PlaceTime = ({ place, datetime }: IPlaceTimeProps) => {
   if (
     place?.place?.data?.attributes?.address ||

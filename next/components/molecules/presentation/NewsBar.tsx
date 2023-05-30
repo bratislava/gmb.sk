@@ -18,7 +18,12 @@ const NewsBar = ({ newsItem }: NewsBarProps) => {
       className="group relative flex items-center justify-between px-xMd py-yMd"
       style={{ background: getContentPageColor(newsItem) }}
     >
-      <Link href={`/detail/${newsItem.attributes.slug}`} stretched preserveStyle className="hover:no-underline">
+      <Link
+        href={`/detail/${newsItem.attributes.slug}`}
+        stretched
+        preserveStyle
+        className="hover:no-underline"
+      >
         <h3 className="whitespace-pre-wrap text-xl">{newsItem.attributes.title}</h3>
         <p className="whitespace-pre-wrap text-xl font-regular">{newsItem.attributes.subtitle}</p>
       </Link>

@@ -81,7 +81,11 @@ const CookieConsent = () => {
         <div className="flex h-[calc(100vh-var(--nav-height)-2*var(--padding-y-md))] flex-col items-center overflow-hidden lg:max-h-[calc(100vh-2*var(--nav-height)-2*var(--padding-y-md))] lg:dh-[650]">
           <div className="mb-[10px] flex w-full flex-[0_0_auto] items-center justify-between border-b px-xSm py-ySm">
             <h1 className="text-lg">{t('cookieConsent.modalTitle')}</h1>
-            <button type="button" onClick={closeCookiesSettings} aria-label={t('cookieConsent.closeCookies')}>
+            <button
+              type="button"
+              onClick={closeCookiesSettings}
+              aria-label={t('cookieConsent.closeCookies')}
+            >
               <CloseIcon className="dw-[25]" />
             </button>
           </div>
@@ -151,8 +155,16 @@ const CookieConsent = () => {
         declineButtonText={t('cookieConsent.rejectAll')}
         flipButtons
         ButtonComponent={Button}
-        customButtonProps={{ size: 'small', tabIndex: 1, 'aria-label': t('cookieConsent.acceptAll') }}
-        customDeclineButtonProps={{ size: 'small', tabIndex: 1, 'aria-label': t('cookieConsent.rejectAll') }}
+        customButtonProps={{
+          size: 'small',
+          tabIndex: 1,
+          'aria-label': t('cookieConsent.acceptAll'),
+        }}
+        customDeclineButtonProps={{
+          size: 'small',
+          tabIndex: 1,
+          'aria-label': t('cookieConsent.rejectAll'),
+        }}
         buttonClasses="lg:whitespace-nowrap"
         declineButtonClasses="lg:whitespace-nowrap"
         disableButtonStyles
@@ -226,6 +238,7 @@ const Switch = ({ title, value, onValueChange, disabled }: SwitchProps) => {
     </div>
   )
 }
+
 interface PanelProps {
   title: string
   content: ReactNode
@@ -248,7 +261,11 @@ const Panel = ({ title, content, value, onValueChange, isOpen, setPanel }: Panel
       >
         <div className="flex items-center gap-xSm text-md text-black">
           <span>
-            {isOpen ? <ChevronDownIcon className="rotate-180 dw-[15]" /> : <ChevronDownIcon className="dw-[15]" />}
+            {isOpen ? (
+              <ChevronDownIcon className="rotate-180 dw-[15]" />
+            ) : (
+              <ChevronDownIcon className="dw-[15]" />
+            )}
           </span>
           <label htmlFor={`switch-${title}`}>{title}</label>
         </div>
@@ -260,10 +277,13 @@ const Panel = ({ title, content, value, onValueChange, isOpen, setPanel }: Panel
         />
       </div>
       <div
-        className={cx('text-gray-universal-70 transform text-md transition-all duration-200 ease-linear', {
-          'hidden h-0': !isOpen,
-          'mt-1 pb-yMd': isOpen,
-        })}
+        className={cx(
+          'text-gray-universal-70 transform text-md transition-all duration-200 ease-linear',
+          {
+            'hidden h-0': !isOpen,
+            'mt-1 pb-yMd': isOpen,
+          }
+        )}
       >
         {content}
       </div>

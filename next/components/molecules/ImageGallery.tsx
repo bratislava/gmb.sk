@@ -88,7 +88,9 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
           title={item.thumbnailTitle}
         />
         {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
-        {item.thumbnailLabel && <div className="image-gallery-thumbnail-label">{item.thumbnailLabel}</div>}
+        {item.thumbnailLabel && (
+          <div className="image-gallery-thumbnail-label">{item.thumbnailLabel}</div>
+        )}
       </span>
     )
   }
@@ -111,7 +113,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
         overlayClassName="bg-[rgba(0,0,0,0.9)] fixed inset-0 z-[51]"
       >
         <div className="relative flex h-full flex-col content-center justify-center text-white">
-          <button type="button" className="absolute top-ySm right-xSm z-10" onClick={closeModal}>
+          <button type="button" className="absolute right-xSm top-ySm z-10" onClick={closeModal}>
             <CloseIcon className="dw-[25]" />
           </button>
           <div>
@@ -139,7 +141,10 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
           </div>
           <div className="grid h-fit grid-cols-3 grid-rows-1 gap-[calc(8*var(--size-factor))] sm:grid-cols-4 md:grid-cols-5">
             {filteredMedias
-              .slice(1, mediasToShow === filteredMedias.length - 1 ? mediasToShow + 1 : mediasToShow)
+              .slice(
+                1,
+                mediasToShow === filteredMedias.length - 1 ? mediasToShow + 1 : mediasToShow
+              )
               .map((media, index) => (
                 <div
                   key={media.attributes.url}

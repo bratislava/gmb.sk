@@ -2,7 +2,12 @@ import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ExhibitionsPage from '../../components/pages/ExhibitionsPage'
-import { ExhibitionsPageQuery, GeneralQuery, PlacesQuery, TagsByCategorySlugQuery } from '../../graphql'
+import {
+  ExhibitionsPageQuery,
+  GeneralQuery,
+  PlacesQuery,
+  TagsByCategorySlugQuery,
+} from '../../graphql'
 import { GeneralContextProvider } from '../../utils/generalContext'
 import { getTodaysDate } from '../../utils/getTodaysDate'
 import { client } from '../../utils/gql'
@@ -104,13 +109,14 @@ export const getStaticProps: GetStaticProps<ExhibitionsProps> = async ({ locale 
       .map((tag) => tag.attributes.slug)
       .filter((slug) => slug !== tagExhibitions && slug !== tagPermanentExhibitions) ?? []
 
-  const { exhibitionsPage, exhibitions, permanentExhibitions, additionalProgram } = await client.ExhibitionsPage({
-    locale,
-    today,
-    tagExhibitions,
-    tagPermanentExhibitions,
-    tagsAdditionalProgram,
-  })
+  const { exhibitionsPage, exhibitions, permanentExhibitions, additionalProgram } =
+    await client.ExhibitionsPage({
+      locale,
+      today,
+      tagExhibitions,
+      tagPermanentExhibitions,
+      tagsAdditionalProgram,
+    })
 
   return {
     props: {

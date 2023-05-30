@@ -19,7 +19,12 @@ const Results = ({ header, results }: ResultsProps) => {
             const { slug, title } = result.attributes
             return (
               <li>
-                <Link key={slug} className="text-md text-white" preserveStyle href={`/detail/${slug}`}>
+                <Link
+                  key={slug}
+                  className="text-md text-white"
+                  preserveStyle
+                  href={`/detail/${slug}`}
+                >
                   {title}
                   {/* TODO show tags, didn't work even before using meilisearch */}
                   {/* {tags ? ( */}

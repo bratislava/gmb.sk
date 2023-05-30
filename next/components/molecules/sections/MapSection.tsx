@@ -16,7 +16,7 @@ const MapSection = ({ title, anchor }: IMapSectionProps) => {
       {process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN ? (
         <Map mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN} />
       ) : (
-        <div className="relative bg-gmbDark py-yMd px-xMd text-white">
+        <div className="relative bg-gmbDark px-xMd py-yMd text-white">
           <p className="text-md">{t('visitUs.mapNotWorking')}</p>
         </div>
       )}

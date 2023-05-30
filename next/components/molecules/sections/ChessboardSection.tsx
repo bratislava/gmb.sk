@@ -15,7 +15,14 @@ interface ChessboardProps {
   loadmore?: boolean
 }
 
-const ChessboardSection = ({ title, sectionItems, anchor, flipped, showTags, loadmore }: ChessboardProps) => {
+const ChessboardSection = ({
+  title,
+  sectionItems,
+  anchor,
+  flipped,
+  showTags,
+  loadmore,
+}: ChessboardProps) => {
   const { t } = useTranslation()
 
   return (
@@ -38,7 +45,7 @@ const ChessboardSection = ({ title, sectionItems, anchor, flipped, showTags, loa
           )}
         </>
       ) : (
-        <div className="relative py-yMd px-xMd">
+        <div className="relative px-xMd py-yMd">
           <p className="pb-yMd text-md">{t('common.nothingToShow')}</p>
         </div>
       )}

@@ -2,7 +2,16 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
-import { FC, MouseEvent, ReactNode, SVGProps, useCallback, useEffect, useRef, useState } from 'react'
+import {
+  FC,
+  MouseEvent,
+  ReactNode,
+  SVGProps,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import Mapbox, { MapRef, Marker } from 'react-map-gl'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -75,7 +84,13 @@ interface Gallery {
   description: ReactNode
 }
 
-const customLayers = ['on-street-parking', 'parking', 'city-transport', 'bike-stands', 'slovnaftbajk']
+const customLayers = [
+  'on-street-parking',
+  'parking',
+  'city-transport',
+  'bike-stands',
+  'slovnaftbajk',
+]
 
 const ZOOMED_IN_BOUNDS: mapboxgl.LngLatBoundsLike = [
   [17.102_652_962_668_316, 48.140_976_775_235_4],
@@ -132,7 +147,9 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
       description: (
         <div className="flex flex-col gap-4">
           <div>{mirbach?.title}</div>
-          <div>{`${mirbach?.address ?? 'no address'} / ${mirbach?.zip ?? 'no zip'} ${mirbach?.city ?? 'no city'}`}</div>
+          <div>{`${mirbach?.address ?? 'no address'} / ${mirbach?.zip ?? 'no zip'} ${
+            mirbach?.city ?? 'no city'
+          }`}</div>
 
           <div>
             <div>{t('common.openingHours')}</div>
@@ -160,7 +177,9 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
       description: (
         <div className="flex flex-col gap-4">
           <div>{palffy?.title}</div>
-          <div>{`${palffy?.address ?? 'no address'} / ${palffy?.zip ?? 'no zip'} ${palffy?.city ?? 'no city'}`}</div>
+          <div>{`${palffy?.address ?? 'no address'} / ${palffy?.zip ?? 'no zip'} ${
+            palffy?.city ?? 'no city'
+          }`}</div>
 
           <div>
             <div>{t('common.openingHours')}</div>
@@ -348,10 +367,15 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
             <button
               type="button"
               key={tab.key}
-              className={cx('flex items-center space-x-2 px-4 py-2 uppercase underline-offset-2 hover:underline', {
-                underline: selectedTab?.key === tab.key,
-              })}
-              onClick={() => (selectedTab?.key === tab.key ? setSelectedTab(null) : setSelectedTab(tab))}
+              className={cx(
+                'flex items-center space-x-2 px-4 py-2 uppercase underline-offset-2 hover:underline',
+                {
+                  underline: selectedTab?.key === tab.key,
+                }
+              )}
+              onClick={() =>
+                selectedTab?.key === tab.key ? setSelectedTab(null) : setSelectedTab(tab)
+              }
             >
               {tab.label}
             </button>
@@ -380,10 +404,16 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
             interactive={false}
           >
             {galleries.map((gallery) => (
-              <Marker longitude={gallery.coordinates[0]} latitude={gallery.coordinates[1]} key={gallery.key}>
+              <Marker
+                longitude={gallery.coordinates[0]}
+                latitude={gallery.coordinates[1]}
+                key={gallery.key}
+              >
                 <button type="button" className="group" onClick={(e) => onGalleryClick(gallery, e)}>
                   <gallery.icon
-                    className={cx('group-hover:scale-0', { 'scale-0': selectedGallery?.key === gallery.key })}
+                    className={cx('group-hover:scale-0', {
+                      'scale-0': selectedGallery?.key === gallery.key,
+                    })}
                     width="64"
                     height="64"
                   />

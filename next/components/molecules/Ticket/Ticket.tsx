@@ -38,8 +38,10 @@ const Ticket = ({ title, price, description, purchaseIdSelf, purchaseIdGift }: I
             className="relative"
             components={{
               p: ({ children }) => <p className="pb-yMd text-btn">{children}</p>,
-              ul: ({ children }) => <ul className="list-disc pl-5 pb-yMd text-btn">{children}</ul>,
-              ol: ({ children }) => <ol className="list-decimal pl-5 pb-yMd text-btn">{children}</ol>,
+              ul: ({ children }) => <ul className="list-disc pb-yMd pl-5 text-btn">{children}</ul>,
+              ol: ({ children }) => (
+                <ol className="list-decimal pb-yMd pl-5 text-btn">{children}</ol>
+              ),
             }}
           >
             {description ?? ''}

@@ -4,7 +4,13 @@ import { GeneralQuery } from '../graphql'
 
 const GeneralContext = createContext<GeneralQuery | null>(null)
 
-export const GeneralContextProvider = ({ children, general }: { children: ReactNode; general: GeneralQuery }) => {
+export const GeneralContextProvider = ({
+  children,
+  general,
+}: {
+  children: ReactNode
+  general: GeneralQuery
+}) => {
   return <GeneralContext.Provider value={general}>{children}</GeneralContext.Provider>
 }
 

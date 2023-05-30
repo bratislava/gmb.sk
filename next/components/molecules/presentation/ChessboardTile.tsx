@@ -58,7 +58,11 @@ const ChessboardTile = ({ sectionItem, isLeft, showTags, customLinkHref }: Chess
         {showTags && tags && (
           <div className="flex space-x-3">
             {tags.data.filter(hasAttributes).map((tag) => (
-              <Link role="button" href={`${router.pathname}/?tags=${tag.attributes.slug}`} key={tag.attributes.slug}>
+              <Link
+                role="button"
+                href={`${router.pathname}/?tags=${tag.attributes.slug}`}
+                key={tag.attributes.slug}
+              >
                 {tag.attributes.title}
               </Link>
             ))}
@@ -68,7 +72,7 @@ const ChessboardTile = ({ sectionItem, isLeft, showTags, customLinkHref }: Chess
         {/* empty div to push button to the bottom of the tile */}
         <div className="m-0 hidden grow p-0 lg:block" />
 
-        {perex ? <div className="text-md line-clamp-3">{perex}</div> : null}
+        {perex ? <div className="line-clamp-3 text-md">{perex}</div> : null}
 
         <Button href={customLinkHref ?? `/detail/${slug}`} stretched aria-labelledby={titleId}>
           {t('common.detail')}

@@ -15,7 +15,11 @@ const revalidate = async (req: NextApiRequest, res: NextApiResponse<Response>) =
       const contentPageUrl = `/detail/${payload?.entry?.slug}`
       const ticketsPageUrl = `/vstupenky/${payload?.entry?.slug}`
 
-      await Promise.all([res.revalidate(contentPageUrl), res.revalidate(ticketsPageUrl), res.revalidate('/')])
+      await Promise.all([
+        res.revalidate(contentPageUrl),
+        res.revalidate(ticketsPageUrl),
+        res.revalidate('/'),
+      ])
     }
 
     if (payload?.model === 'about-us-page') {

@@ -8,9 +8,11 @@
     "develop": "next dev",
     "build": "next build",
     "start": "next start",
-    "gen": "graphql-codegen",
-    "eslint": "eslint --color --ext .html,.js,.json,.jsx,.md,.ts,.tsx .",
-    "eslint:fix": "npm run eslint -- --fix"
+    "gen": "graphql-codegen && prettier --write ./graphql/index.ts",
+    "lint": "eslint components pages utils",
+    "lint:fix": "yarn lint --fix",
+    "prettier": "prettier --write ."
+
   },
   "dependencies": {
     "@react-stately/toggle": "^3.5.1",

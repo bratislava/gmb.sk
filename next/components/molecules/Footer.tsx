@@ -37,7 +37,7 @@ const Footer = ({ contentPage }: FooterProps) => {
               remarkPlugins={[remarkGfm]}
               components={{
                 p: ({ children }) => <p className="text-md">{children}</p>,
-                ul: ({ children }) => <ul className="list-disc pl-5 pb-[55px]">{children}</ul>,
+                ul: ({ children }) => <ul className="list-disc pb-[55px] pl-5">{children}</ul>,
               }}
             >
               {openingHours ?? ''}

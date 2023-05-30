@@ -18,7 +18,11 @@ const ContactCard = ({ contact }: IContactCardProps) => {
       <div className="text-md font-semibold">{name}</div>
       {position && <div className="text-md">{position}</div>}
       {email && (
-        <Link href={`mailto:${email}`} preserveStyle className="text-md text-gmbGray underline underline-offset-2">
+        <Link
+          href={`mailto:${email}`}
+          preserveStyle
+          className="text-md text-gmbGray underline underline-offset-2"
+        >
           {email}
         </Link>
       )}

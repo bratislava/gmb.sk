@@ -25,13 +25,16 @@ export const usePreviewsByTags = ({
         return null
       }
 
-      const tagSlugsVariables: Omit<PreviewsByTagsQueryVariables, 'locale'> = activeTags.includes('archive')
+      const tagSlugsVariables: Omit<PreviewsByTagsQueryVariables, 'locale'> = activeTags.includes(
+        'archive'
+      )
         ? {
             dateForFilteringPastEvents: getTodaysDate(),
             /** We don't send archive tag to the server
              * If there are other tags than 'archive', remove 'archive' and  use the remaining tags.
              * If archive is the only one, pass undefined */
-            tagSlugs: activeTags.length > 1 ? activeTags.filter((tag) => tag !== 'archive') : undefined,
+            tagSlugs:
+              activeTags.length > 1 ? activeTags.filter((tag) => tag !== 'archive') : undefined,
             /** Past program pages sorted from closest to the past
              * (If Archive is selected, it's only for program pages, so we don't need to take care about explore pages) */
             sort: ['dateFrom:desc'],
