@@ -113,3 +113,8 @@ exports
 build
 .strapi-updater.json
 .strapi
+
+############################
+# bratiska-cli files
+############################
+manifest-*.y?ml
