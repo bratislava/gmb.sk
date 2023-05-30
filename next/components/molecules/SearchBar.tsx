@@ -23,7 +23,9 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
   const { i18n } = useTranslation()
   const locale = i18n.language
 
-  const [filters, setFilters] = useRoutePreservedState<CommonSearchFilters>(commonSearchDefaultFilters)
+  const [filters, setFilters] = useRoutePreservedState<CommonSearchFilters>(
+    commonSearchDefaultFilters
+  )
 
   const { input, setInput, searchValue } = useSearch({ syncWithUrlQuery: false })
 

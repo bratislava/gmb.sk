@@ -2,7 +2,10 @@ import { useTranslation } from 'next-i18next'
 import { useEffect, useMemo, useState } from 'react'
 
 import { ArchivePageQuery } from '../../graphql'
-import { archiveDefaultFilters, ArchiveFilters } from '../../services/meilisearch/fetchers/archiveFetcher'
+import {
+  archiveDefaultFilters,
+  ArchiveFilters,
+} from '../../services/meilisearch/fetchers/archiveFetcher'
 import { isDefined } from '../../utils/isDefined'
 import { usePreviewsByYears } from '../../utils/usePreviewsByYears'
 import { useRoutePreservedState } from '../../utils/useRoutePreservedState'
@@ -31,16 +34,19 @@ const ArchivePage = ({ archivePage }: ArchivePageProps) => {
   const years = useMemo(() => {
     const todaysYear = new Date().getFullYear()
     const startYear = 2006 // this is the oldest exhibition
-    return Array.from({ length: todaysYear - startYear + 1 }, (_, i) => (i + startYear).toString()).reverse()
+    return Array.from({ length: todaysYear - startYear + 1 }, (_, i) =>
+      (i + startYear).toString()
+    ).reverse()
   }, [])
 
   const [activeYears, setActiveYears] = useState<string[]>([])
 
-  const { size, setSize, filteredPages, isLoadingInitialData, isLoadingMore, isReachingEnd } = usePreviewsByYears({
-    searchValue,
-    activeYears: activeYears.length > 0 ? activeYears : [],
-    locale: i18n.language,
-  })
+  const { size, setSize, filteredPages, isLoadingInitialData, isLoadingMore, isReachingEnd } =
+    usePreviewsByYears({
+      searchValue,
+      activeYears: activeYears.length > 0 ? activeYears : [],
+      locale: i18n.language,
+    })
 
   useEffect(() => {
     if (filters.searchValue === searchValue) {

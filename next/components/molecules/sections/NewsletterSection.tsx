@@ -119,7 +119,11 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                       </Checkbox>
                     </div>
                     {agreeError ? (
-                      <label htmlFor="gdprCheckbox" id="agree-error" className="-mt-3 pb-5 text-red-500">
+                      <label
+                        htmlFor="gdprCheckbox"
+                        id="agree-error"
+                        className="-mt-3 pb-5 text-red-500"
+                      >
                         <span className="sr-only">{t('errors.error')}: </span>
                         {agreeError}
                       </label>
@@ -131,7 +135,9 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
                     {status === 'success' ? (
                       <p className="pt-10 text-sm text-green-600">{t('newsletter.success')}</p>
                     ) : null}
-                    {status === 'sending' ? <p className="pt-10 text-sm">{t('newsletter.sending')}</p> : null}
+                    {status === 'sending' ? (
+                      <p className="pt-10 text-sm">{t('newsletter.sending')}</p>
+                    ) : null}
                   </div>
                   <div>
                     <Button

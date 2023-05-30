@@ -23,7 +23,11 @@ const GetInvolved = ({ generalQuery, getInvolvedPage, news }: GetInvolvedProps) 
 
   return (
     <GeneralContextProvider general={generalQuery}>
-      <Page page={getInvolvedPage} title={t('navigation.getInvolved')} newsItems={news?.data.filter(hasAttributes)} />
+      <Page
+        page={getInvolvedPage}
+        title={t('navigation.getInvolved')}
+        newsItems={news?.data.filter(hasAttributes)}
+      />
     </GeneralContextProvider>
   )
 }

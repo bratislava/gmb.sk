@@ -106,14 +106,20 @@ export function getEquivalentRouteInTargetLocale(
   const isDetailRoute = pathname.startsWith('/detail') && isDefined(contentPage)
 
   if (isDetailRoute) {
-    return getContentPageDetailRouteForTargetLocale(contentPage.attributes.localizations, targetLocale)
+    return getContentPageDetailRouteForTargetLocale(
+      contentPage.attributes.localizations,
+      targetLocale
+    )
   }
 
   const isTicketsRoute =
     (pathname.startsWith('/tickets') || pathname.startsWith('/vstupenky')) && isDefined(contentPage)
 
   if (isTicketsRoute) {
-    return getContentPageTicketsRouteForTargetLocale(contentPage.attributes.localizations, targetLocale)
+    return getContentPageTicketsRouteForTargetLocale(
+      contentPage.attributes.localizations,
+      targetLocale
+    )
   }
 
   return getRouteForTargetLocale(pathname, targetLocale)

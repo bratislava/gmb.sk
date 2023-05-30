@@ -2,7 +2,12 @@ import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 
-import { ContentPagePlaceFragment, DatetimeFragment, PartnerEntityFragment, PositionFragment } from '../../graphql'
+import {
+  ContentPagePlaceFragment,
+  DatetimeFragment,
+  PartnerEntityFragment,
+  PositionFragment,
+} from '../../graphql'
 import getDaysLeft from '../../utils/getDaysLeft'
 import { isDefined, WithAttributes } from '../../utils/isDefined'
 import mobileAndTabletRegexCheck from '../../utils/mobileAndTabletRegexCheck'
@@ -97,13 +102,23 @@ const SidePanel = ({
 
   if (overrideText) {
     return (
-      <aside className={cx(className, 'flex w-full flex-col justify-between space-y-10 bg-white lg:space-y-20')}>
+      <aside
+        className={cx(
+          className,
+          'flex w-full flex-col justify-between space-y-10 bg-white lg:space-y-20'
+        )}
+      >
         <CityGalleryMarkdown content={overrideText} />
       </aside>
     )
   }
   return (
-    <aside className={cx(className, 'flex w-full flex-col justify-between gap-yLg bg-white empty:hidden')}>
+    <aside
+      className={cx(
+        className,
+        'flex w-full flex-col justify-between gap-yLg bg-white empty:hidden'
+      )}
+    >
       {perex && <p className="text-md">{perex}</p>}
 
       <PlaceTime place={place} datetime={datetime} />

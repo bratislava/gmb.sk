@@ -124,9 +124,12 @@ const Highlight = ({ highlight }: HighlightProps) => {
             {/* Basic info on mobile. It shows only datetime, place and Buy tickets btn, if no override is present.
                 The classic sidepanel is not displayed on mobile screen. */}
             <div
-              className={cx('flex w-full flex-1 flex-col justify-between gap-y-yMd justify-self-stretch lg:hidden', {
-                hidden: renderOverride,
-              })}
+              className={cx(
+                'flex w-full flex-1 flex-col justify-between gap-y-yMd justify-self-stretch lg:hidden',
+                {
+                  hidden: renderOverride,
+                }
+              )}
             >
               <div className="my-auto">
                 <SidePanelTime datetime={{ dateFrom, dateTo, timeTo, timeFrom }} isOneLine noIcon />
@@ -140,7 +143,9 @@ const Highlight = ({ highlight }: HighlightProps) => {
                 )}
                 {(placeTitle || place?.data?.attributes?.title) && (
                   <div className="flex flex-1 items-center justify-start">
-                    <span className="text-btn uppercase">{placeTitle || place?.data?.attributes?.title}</span>
+                    <span className="text-btn uppercase">
+                      {placeTitle || place?.data?.attributes?.title}
+                    </span>
                   </div>
                 )}
               </div>

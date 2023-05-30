@@ -41,7 +41,11 @@ const OpeningHoursSection = ({ anchor }: OpeningHoursSectionProps) => {
   const { openingHours, mirbach, palffy } = general.data.attributes
 
   return (
-    <Section anchor={anchor} color="dark" className="grid grid-cols-2 gap-9 px-xMd py-yLg lg:grid-cols-4">
+    <Section
+      anchor={anchor}
+      color="dark"
+      className="grid grid-cols-2 gap-9 px-xMd py-yLg lg:grid-cols-4"
+    >
       <div className="col-span-2 flex h-full flex-col justify-between lg:col-span-1">
         <h4 className="pb-yLg text-xl">{t('common.openingHours')}</h4>
         {openingHours && (
@@ -50,7 +54,7 @@ const OpeningHoursSection = ({ anchor }: OpeningHoursSectionProps) => {
               remarkPlugins={[remarkGfm]}
               components={{
                 p: ({ children }) => <p className="text-md">{children}</p>,
-                ul: ({ children }) => <ul className="list-disc pl-5 pb-[55px]">{children}</ul>,
+                ul: ({ children }) => <ul className="list-disc pb-[55px] pl-5">{children}</ul>,
               }}
             >
               {openingHours ?? ''}
@@ -76,8 +80,14 @@ const OpeningHoursSection = ({ anchor }: OpeningHoursSectionProps) => {
         <h3 className="pb-yLg text-xl">{t('common.follow')}</h3>
         <div className="flex flex-col justify-between justify-self-end">
           {followPlatformData.map((platform, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <Link href={platform.href} target="_blank" key={index} className="text-md uppercase" preserveStyle>
+            <Link
+              href={platform.href}
+              target="_blank"
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
+              className="text-md uppercase"
+              preserveStyle
+            >
               {platform.title}
             </Link>
           ))}

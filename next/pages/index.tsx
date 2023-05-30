@@ -13,6 +13,7 @@ interface IndexProps {
   homePage: HomePageQuery['homePage']
   news: NewsQuery['news']
 }
+
 export const Index = ({ homePage, generalQuery, news }: IndexProps) => {
   const { t, i18n } = useTranslation()
 

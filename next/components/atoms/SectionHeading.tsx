@@ -4,7 +4,7 @@ export interface ISectionHeadingProps {
 
 const SectionHeading = ({ title }: ISectionHeadingProps) => {
   return (
-    <header className="relative bg-white py-yLg px-xMd">
+    <header className="relative bg-white px-xMd py-yLg">
       <h2 className="text-xxl">{title}</h2>
     </header>
   )

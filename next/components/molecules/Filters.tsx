@@ -35,14 +35,19 @@ const Filters = ({
         <p className="block text-lg">{t('common.filter')}</p>
         {/* TODO reset icon */}
       </div>
-      <div className="overflow-auto flex flex-col gap-yMd">
+      <div className="flex flex-col gap-yMd overflow-auto">
         <div className="flex flex-wrap gap-xSm empty:hidden">
           {tagGroups &&
             activeTags &&
             setActiveTags &&
             tagGroups.map((tagGroup, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <TagGroup tags={tagGroup} activeTags={activeTags} setActiveTags={setActiveTags} key={index} />
+              <TagGroup
+                tags={tagGroup}
+                activeTags={activeTags}
+                setActiveTags={setActiveTags}
+                // eslint-disable-next-line react/no-array-index-key
+                key={index}
+              />
             ))}
         </div>
         <div className="flex flex-wrap gap-xSm empty:hidden">

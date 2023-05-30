@@ -29,7 +29,7 @@ const ImageGalleryItem = memo(
     return (
       <div className="flex h-[calc(100vh-100px)] w-full flex-col">
         {!isFullscreen && description && (
-          <div className="invisible mt-1 mb-yLg min-h-0 max-w-full flex-[0_0_auto] px-xLg sm:mb-0">
+          <div className="invisible mb-yLg mt-1 min-h-0 max-w-full flex-[0_0_auto] px-xLg sm:mb-0">
             <span className="max-w-full whitespace-normal text-btn">{description}</span>
           </div>
         )}
@@ -43,7 +43,7 @@ const ImageGalleryItem = memo(
           loading={loading}
         />
         {!isFullscreen && description && (
-          <div className="mt-1 mb-yLg min-h-0 max-w-full flex-[0_0_auto] px-xLg sm:mb-0">
+          <div className="mb-yLg mt-1 min-h-0 max-w-full flex-[0_0_auto] px-xLg sm:mb-0">
             <span className="max-w-full whitespace-normal text-btn">{description}</span>
           </div>
         )}

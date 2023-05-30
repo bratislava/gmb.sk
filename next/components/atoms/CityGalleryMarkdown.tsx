@@ -25,21 +25,29 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
         h3: ({ children }) => <h3 className="pb-yMd text-lg">{children}</h3>,
         h4: ({ children }) => <h4 className="pb-yMd text-md font-semibold">{children}</h4>,
         h5: ({ children }) => <h5 className="pb-yMd text-sm font-semibold">{children}</h5>,
-        h6: ({ children }) => <h6 className="pb-yMd text-sm font-semibold text-gmbGray">{children}</h6>,
+        h6: ({ children }) => (
+          <h6 className="pb-yMd text-sm font-semibold text-gmbGray">{children}</h6>
+        ),
         p: ({ children }) => {
           if (children.some((child) => typeof child === 'string')) {
             return <div className="text-md not-last:pb-yMd">{children}</div>
           }
           return children as ReactElement
         },
-        ul: ({ children }) => <ul className="list-disc pl-xMd text-md not-last:pb-yMd">{children}</ul>,
-        ol: ({ children }) => <ol className="list-decimal pl-xMd text-md not-last:pb-yMd">{children}</ol>,
+        ul: ({ children }) => (
+          <ul className="list-disc pl-xMd text-md not-last:pb-yMd">{children}</ul>
+        ),
+        ol: ({ children }) => (
+          <ol className="list-decimal pl-xMd text-md not-last:pb-yMd">{children}</ol>
+        ),
         strong: ({ children }) => (
           <strong className="font-medium" style={{ color: accentColor }}>
             {children}
           </strong>
         ),
-        blockquote: ({ children }) => <div className="border-l-4 pl-xMd not-last:pb-yMd">{children}</div>,
+        blockquote: ({ children }) => (
+          <div className="border-l-4 pl-xMd not-last:pb-yMd">{children}</div>
+        ),
         img: ({ src, alt, sizes, width, height }) => (
           <div className="relative">
             {src && <ImageFigure src={src} alt={alt} sizes={sizes} width={width} height={height} />}
@@ -79,12 +87,14 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
           const theadTyped = thead as TableSection
           const tbodyTyped = tbody as TableSection
           return (
-            <table className="mb-yMd ml-xMd border-2 py-ySm px-xSm">
+            <table className="mb-yMd ml-xMd border-2 px-xSm py-ySm">
               <thead className="border-b-4">
                 {theadTyped.props.children?.map((tr) => (
                   <tr className="border-2">
                     {tr.props.children?.map((th) => (
-                      <th className="border-2 px-xSm py-ySm text-center text-md font-bold">{th.props.children}</th>
+                      <th className="border-2 px-xSm py-ySm text-center text-md font-bold">
+                        {th.props.children}
+                      </th>
                     ))}
                   </tr>
                 ))}
@@ -93,7 +103,9 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
                 {tbodyTyped.props.children?.map((tr) => (
                   <tr className="border-2">
                     {tr.props.children?.map((td) => (
-                      <td className="border-2 px-xSm py-ySm text-center text-md">{td.props.children}</td>
+                      <td className="border-2 px-xSm py-ySm text-center text-md">
+                        {td.props.children}
+                      </td>
                     ))}
                   </tr>
                 ))}

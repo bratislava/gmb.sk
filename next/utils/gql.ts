@@ -9,7 +9,8 @@ const { serverRuntimeConfig } = getConfig()
 // URL becomes full url to strapi on server, but just /graphql (for proxy) on client
 const protocol =
   serverRuntimeConfig?.strapiUrl &&
-  (serverRuntimeConfig?.strapiUrl.startsWith('http://') || serverRuntimeConfig?.strapiUrl.startsWith('https://'))
+  (serverRuntimeConfig?.strapiUrl.startsWith('http://') ||
+    serverRuntimeConfig?.strapiUrl.startsWith('https://'))
     ? ''
     : 'http://'
 

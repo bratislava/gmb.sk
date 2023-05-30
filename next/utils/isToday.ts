@@ -7,7 +7,6 @@ export function isToday(datetime: { dateFrom: string; dateTo: string }) {
     const dateTo = new Date(datetime?.dateTo)
     dateTo.setHours(23, 59, 59)
     return dateFrom.getTime() <= today.getTime() && dateTo.getTime() >= today.getTime()
-  } 
-    return today.getTime() === dateFrom.getTime()
-  
+  }
+  return today.getTime() === dateFrom.getTime()
 }

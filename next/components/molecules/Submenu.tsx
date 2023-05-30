@@ -43,11 +43,16 @@ const Submenu = ({ items, filters, clearFilters }: SubmenuProps) => {
   return (
     <>
       {/* Desktop submenu */}
-      <div className="relative hidden w-full flex-col bg-gmbDark py-yMd px-xMd text-white lg:flex">
+      <div className="relative hidden w-full flex-col bg-gmbDark px-xMd py-yMd text-white lg:flex">
         <div className="flex w-full justify-between">
           <div className="hidden gap-xMd lg:flex">
             {items?.map((item) => (
-              <Link key={item} href={`#${getAnchor(item) ?? ''}`} replace onClick={handleSubmenuItemClick}>
+              <Link
+                key={item}
+                href={`#${getAnchor(item) ?? ''}`}
+                replace
+                onClick={handleSubmenuItemClick}
+              >
                 {item}
               </Link>
             ))}
@@ -87,7 +92,7 @@ const Submenu = ({ items, filters, clearFilters }: SubmenuProps) => {
         onKeyDown={onEnterOrSpaceKeyDown(() => setModalOpen((prev) => !prev))}
         tabIndex={0}
         aria-expanded={isModalOpen}
-        className="relative flex w-full items-center justify-between bg-gmbDark py-yMd px-xMd text-md uppercase text-white lg:hidden"
+        className="relative flex w-full items-center justify-between bg-gmbDark px-xMd py-yMd text-md uppercase text-white lg:hidden"
       >
         {t('common.quickNavigation')}
         <ChevronDownIcon className="dh-[12] dw-[20]" />

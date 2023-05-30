@@ -23,9 +23,12 @@ const preview = async (req: NextApiRequest, res: NextApiResponse) => {
 
   // Redirect to the path from the fetched contentPage
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
-  const path = contentPage.contentPageBySlug?.data?.attributes?.locale === 'sk' ? 'detail' : 'en/detail'
+  const path =
+    contentPage.contentPageBySlug?.data?.attributes?.locale === 'sk' ? 'detail' : 'en/detail'
   // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-  res.writeHead(307, { Location: `/${path}/${contentPage.contentPageBySlug?.data?.attributes?.slug}` })
+  res.writeHead(307, {
+    Location: `/${path}/${contentPage.contentPageBySlug?.data?.attributes?.slug}`,
+  })
   res.end()
 }
 

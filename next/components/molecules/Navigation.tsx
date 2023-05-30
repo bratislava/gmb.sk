@@ -96,7 +96,12 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             </div>
           </Link>
 
-          <button type="button" className="-mr-5 flex p-5 lg:hidden" onClick={toggleMobileMenu} aria-label="Menu">
+          <button
+            type="button"
+            className="-mr-5 flex p-5 lg:hidden"
+            onClick={toggleMobileMenu}
+            aria-label="Menu"
+          >
             {isMobileMenuOpen ? (
               <CloseIcon className="dh-[30] dw-[30]" />
             ) : (
@@ -121,7 +126,12 @@ const Navigation = ({ contentPage }: NavigationProps) => {
               {t('navigation.visitUs')}
             </Button>
 
-            <button type="button" className="-mx-2 px-2" onClick={toggleSearchBar} aria-label={t('common.search')}>
+            <button
+              type="button"
+              className="-mx-2 px-2"
+              onClick={toggleSearchBar}
+              aria-label={t('common.search')}
+            >
               <SearchIcon className="dw-[36]" />
             </button>
 

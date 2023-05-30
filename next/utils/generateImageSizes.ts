@@ -17,7 +17,9 @@ export const generateImageSizes = (sizes: SizesInput) => {
   // We don't want to rely on order provided by sizes, so we use key order from `screens`.
   // To apply min-width correctly the result value should start from the biggest screen size, therefore it's reversed.
   return [
-    ...(Object.keys(screens).filter((screen) => sizesKeys.includes(screen)) as [keyof typeof screens])
+    ...(
+      Object.keys(screens).filter((screen) => sizesKeys.includes(screen)) as [keyof typeof screens]
+    )
       .reverse()
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       .map((screen) => `(min-width: ${screens[screen]}) ${sizes[screen]}`),

@@ -33,10 +33,13 @@ const CardSection = ({
     <Section anchor={anchor} title={title}>
       {isLoading ? (
         <div
-          className={cx('grid grid-cols-1 gap-x-6 gap-y-14 px-xMd md:grid-cols-2 lg:grid-cols-3 lg:gap-x-10', {
-            'py-yLg': !title,
-            'pb-yLg': title,
-          })}
+          className={cx(
+            'grid grid-cols-1 gap-x-6 gap-y-14 px-xMd md:grid-cols-2 lg:grid-cols-3 lg:gap-x-10',
+            {
+              'py-yLg': !title,
+              'pb-yLg': title,
+            }
+          )}
         >
           {[1, 2, 3].map((_, index) => (
             // eslint-disable-next-line react/no-array-index-key
@@ -46,10 +49,13 @@ const CardSection = ({
       ) : sectionItems?.length ? (
         <>
           <div
-            className={cx('grid grid-cols-1 gap-x-6 gap-y-14 px-xMd md:grid-cols-2 lg:grid-cols-3 lg:gap-x-10', {
-              'py-yLg': !title,
-              'pb-yLg': title,
-            })}
+            className={cx(
+              'grid grid-cols-1 gap-x-6 gap-y-14 px-xMd md:grid-cols-2 lg:grid-cols-3 lg:gap-x-10',
+              {
+                'py-yLg': !title,
+                'pb-yLg': title,
+              }
+            )}
           >
             {sectionItems.map((item) => (
               <Card key={item.attributes.slug} sectionItem={item} showTags={showTags} />
@@ -59,7 +65,7 @@ const CardSection = ({
           {loadmoreButton && <div className="flex justify-center py-12">{loadmoreButton}</div>}
         </>
       ) : (
-        <div className="relative px-xMd pt-yMd pb-[calc(var(--padding-y)+40px)]">
+        <div className="relative px-xMd pb-[calc(var(--padding-y)+40px)] pt-yMd">
           <p className="text-md">{noItemsMessage ?? t('common.nothingToShow')}</p>
         </div>
       )}

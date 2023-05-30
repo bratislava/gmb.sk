@@ -23,7 +23,11 @@ export const Collection = ({ generalQuery, collectionsPage, news }: CollectionPr
 
   return (
     <GeneralContextProvider general={generalQuery}>
-      <Page page={collectionsPage} title={t('navigation.collections')} newsItems={news?.data.filter(hasAttributes)} />
+      <Page
+        page={collectionsPage}
+        title={t('navigation.collections')}
+        newsItems={news?.data.filter(hasAttributes)}
+      />
     </GeneralContextProvider>
   )
 }

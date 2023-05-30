@@ -23,7 +23,7 @@ const NewsSection = ({ items, title, anchor }: NewsProps) => {
           ))}
         </>
       ) : (
-        <div className="relative py-yMd px-xMd">
+        <div className="relative px-xMd py-yMd">
           <p className="pb-yMd text-md">{t('common.nothingToShow')}</p>
         </div>
       )}

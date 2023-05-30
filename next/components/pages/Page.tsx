@@ -61,7 +61,9 @@ const Page = ({ page: pageResponse, title, newsItems, tickets }: PageProps) => {
       </Head>
 
       <HighlightsSection
-        highlights={page?.highlights?.map((highlight) => highlight?.contentPage?.data).filter(hasAttributes)}
+        highlights={page?.highlights
+          ?.map((highlight) => highlight?.contentPage?.data)
+          .filter(hasAttributes)}
       />
 
       {page?.sections && <Submenu items={submenu} />}
@@ -92,7 +94,10 @@ const Page = ({ page: pageResponse, title, newsItems, tickets }: PageProps) => {
 
           if (section.__typename === 'ComponentSectionsNewsletterSection') {
             return (
-              <NewsletterSection anchor={getAnchor(section.submenuTitle)} key={`${section.__typename}-${section.id}`} />
+              <NewsletterSection
+                anchor={getAnchor(section.submenuTitle)}
+                key={`${section.__typename}-${section.id}`}
+              />
             )
           }
 
@@ -133,7 +138,7 @@ const Page = ({ page: pageResponse, title, newsItems, tickets }: PageProps) => {
               <RichtextSection
                 content={section.content}
                 anchor={getAnchor(section.submenuTitle)}
-                className="py-yMd px-xMd"
+                className="px-xMd py-yMd"
                 key={`${section.__typename}-${section.id}`}
               />
             )
@@ -142,10 +147,13 @@ const Page = ({ page: pageResponse, title, newsItems, tickets }: PageProps) => {
           return null
         })}
 
-      {pageResponse?.data?.attributes?.__typename === 'HomePage' && pageResponse.data?.attributes?.partners?.length ? (
+      {pageResponse?.data?.attributes?.__typename === 'HomePage' &&
+      pageResponse.data?.attributes?.partners?.length ? (
         <PartnersSection
           title={t('common.partners')}
-          partners={pageResponse.data?.attributes?.partners?.map((item) => item?.partner?.data)?.filter(hasAttributes)}
+          partners={pageResponse.data?.attributes?.partners
+            ?.map((item) => item?.partner?.data)
+            ?.filter(hasAttributes)}
         />
       ) : null}
     </PageWrapper>

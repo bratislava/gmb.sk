@@ -22,7 +22,11 @@ const AppLangSwitchers = ({ contentPage, showBothLanguages }: AppLangSwitchersPr
 
   const onLocaleChange = useCallback(
     (locale: string) => {
-      const equivalentRouteInTargetLocale = getEquivalentRouteInTargetLocale(router.pathname, locale, contentPage)
+      const equivalentRouteInTargetLocale = getEquivalentRouteInTargetLocale(
+        router.pathname,
+        locale,
+        contentPage
+      )
 
       if (!equivalentRouteInTargetLocale) {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises

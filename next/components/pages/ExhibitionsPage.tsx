@@ -2,7 +2,12 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 
-import { ExhibitionsPageQuery, PlaceEntityFragment, SectionItemEntityFragment, TagEntityFragment } from '../../graphql'
+import {
+  ExhibitionsPageQuery,
+  PlaceEntityFragment,
+  SectionItemEntityFragment,
+  TagEntityFragment,
+} from '../../graphql'
 import { getAnchor } from '../../utils/getAnchor'
 import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
 import { getRouteForLocale } from '../../utils/localeRoutes'
@@ -51,12 +56,13 @@ const ExhibitionsPage = ({
   const [activePlaces, setActivePlaces] = useState<string[]>([])
   const initialTags = tagsProgram?.map((tag) => tag.attributes.slug) ?? []
 
-  const { size, setSize, filteredPages, isLoadingInitialData, isReachingEnd, isLoadingMore } = usePreviewsByTags({
-    activeTags: activeTags.length > 0 ? activeTags : initialTags,
-    activePlaces,
-    locale: i18n.language,
-    kind: 'program',
-  })
+  const { size, setSize, filteredPages, isLoadingInitialData, isReachingEnd, isLoadingMore } =
+    usePreviewsByTags({
+      activeTags: activeTags.length > 0 ? activeTags : initialTags,
+      activePlaces,
+      locale: i18n.language,
+      kind: 'program',
+    })
 
   /** This useEffect sets filters by the query that appears when someone clicks on a tag in Card or ChessboardTile. */
   useEffect(() => {
@@ -132,7 +138,8 @@ const ExhibitionsPage = ({
           <div className="sr-only">
             {`${t('common.filteredBy')}: `}
             {[...activeTags, ...activePlaces].map(
-              (tag, index) => `${tag}${index === [...activeTags, ...activePlaces].length - 1 ? '' : ', '} `
+              (tag, index) =>
+                `${tag}${index === [...activeTags, ...activePlaces].length - 1 ? '' : ', '} `
             )}
           </div>
           <CardSection
@@ -170,7 +177,10 @@ const ExhibitionsPage = ({
             anchor={getAnchor(t('common.permanentExhibitions'))}
           />
           {archiveSection ? (
-            <Section anchor={getAnchor(archiveSection.submenuTitle)} title={archiveSection.title ?? undefined}>
+            <Section
+              anchor={getAnchor(archiveSection.submenuTitle)}
+              title={archiveSection.title ?? undefined}
+            >
               <ChessboardTile
                 sectionItem={
                   {

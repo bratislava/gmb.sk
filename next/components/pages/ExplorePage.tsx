@@ -28,12 +28,13 @@ const ExplorePage = ({ explorePage, tagsTypes, tagsProjects, tagsOthers }: Explo
   const [activeTags, setActiveTags] = useState<string[]>([])
   const initialTags = tagsTypes?.map((tag) => tag.attributes.slug) ?? []
 
-  const { size, setSize, filteredPages, isLoadingInitialData, isLoadingMore, isReachingEnd } = usePreviewsByTags({
-    activeTags: activeTags.length > 0 ? activeTags : initialTags,
-    activePlaces: [],
-    locale: i18n.language,
-    kind: 'explore',
-  })
+  const { size, setSize, filteredPages, isLoadingInitialData, isLoadingMore, isReachingEnd } =
+    usePreviewsByTags({
+      activeTags: activeTags.length > 0 ? activeTags : initialTags,
+      activePlaces: [],
+      locale: i18n.language,
+      kind: 'explore',
+    })
 
   useEffect(() => {
     const { tags } = query
