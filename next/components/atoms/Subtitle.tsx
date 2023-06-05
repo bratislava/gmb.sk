@@ -18,6 +18,7 @@ const Subtitle = ({ page }: ISubtitleProps) => {
     /* strings are valid JSX.Element types but typescript has bug with it, so it needs to be wrapped with fragment */
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
+      {/* Show only dateFrom and timeFrom, as GMB wanted */}
       {useDatetimeAsSubtitle ? (
         <>
           {formatDateString(dateFrom, i18n.language, 'short')}
