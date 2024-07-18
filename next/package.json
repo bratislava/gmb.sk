@@ -10,9 +10,9 @@
     "start": "next start",
     "gen": "graphql-codegen && prettier --write ./graphql/index.ts",
     "lint": "eslint components pages utils",
+    "lint:quiet": "yarn lint --quiet",
     "lint:fix": "yarn lint --fix",
     "prettier": "prettier --write ."
-
   },
   "dependencies": {
     "@react-stately/toggle": "^3.5.1",

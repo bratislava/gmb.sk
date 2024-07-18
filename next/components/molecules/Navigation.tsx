@@ -31,6 +31,33 @@ const Navigation = ({ contentPage }: NavigationProps) => {
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
+  const menuLinks = [
+    {
+      href: '/vystavy',
+      label: t('navigation.exhibitionsEvents'),
+    },
+    {
+      href: '/objavujte',
+      label: t('navigation.explore'),
+    },
+    {
+      href: '/o-galerii',
+      label: t('navigation.aboutGallery'),
+    },
+    {
+      href: '/zapojte-sa',
+      label: t('navigation.getInvolved'),
+    },
+    {
+      href: '/zbierky',
+      label: t('navigation.collections'),
+    },
+    {
+      href: 'https://umeniemesta.sk',
+      label: t('navigation.artOfTheCity'),
+    },
+  ]
+
   useEffect(() => {
     router.events.on('routeChangeStart', closeMobileMenu)
 
@@ -78,7 +105,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
       <nav className="fixed inset-x-0 top-0 z-50 flex h-nav w-full bg-white drop-shadow-md">
         <SkipNavigation />
 
-        <div className="mx-xMd flex w-full items-center justify-between">
+        <div className="mx-xMd flex w-full items-center justify-between gap-x-xMd">
           <Link href="/" preserveStyle noUnderline className="group min-w-fit">
             <div className="flex">
               <div className="h-logoHeight w-logoWidth">
@@ -116,11 +143,24 @@ const Navigation = ({ contentPage }: NavigationProps) => {
               hidden: !isMobileMenuOpen,
             })}
           >
-            <Link href="/vystavy">{t('navigation.exhibitionsEvents')}</Link>
-            <Link href="/objavujte">{t('navigation.explore')}</Link>
-            <Link href="/o-galerii">{t('navigation.aboutGallery')}</Link>
-            <Link href="/zapojte-sa">{t('navigation.getInvolved')}</Link>
-            <Link href="/zbierky">{t('navigation.collections')}</Link>
+            {menuLinks.map((menuLink) => {
+              const isExternal = menuLink.href.startsWith('http')
+
+              // Add nbsp and arrow to indicate external link
+              // \u{0000FE0E} is Unicode variation selector that prevents symbols to be rendered as emojis on iOS
+              // https://stackoverflow.com/questions/8335724/unicode-characters-being-drawn-differently-in-ios5
+
+              return (
+                <Link
+                  href={menuLink.href}
+                  className="text-center"
+                  target={isExternal ? '_blank' : undefined}
+                >
+                  {menuLink.label}
+                  {isExternal ? `\u00A0↗\u{0000FE0E}` : ''}
+                </Link>
+              )
+            })}
 
             <Button size="small" href="/navstivte">
               {t('navigation.visitUs')}
