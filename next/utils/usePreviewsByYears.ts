@@ -1,9 +1,9 @@
 import last from 'lodash/last'
 import useSWRInfinite from 'swr/infinite'
 
-import { SectionItemEntityFragment } from '../graphql'
-import { archiveFetcher } from '../services/meilisearch/fetchers/archiveFetcher'
-import { hasAttributes, isDefined } from './isDefined'
+import { SectionItemEntityFragment } from '@/graphql'
+import { archiveFetcher } from '@/services/meilisearch/fetchers/archiveFetcher'
+import { hasAttributes, isDefined } from '@/isDefined'
 
 export const PAGE_SIZE = 6
 

@@ -1,6 +1,6 @@
-import { ContentPageEntityFragment } from '../graphql'
-import { getKeyByValue } from './getKeyByValue'
-import { hasAttributes, isDefined, WithAttributes } from './isDefined'
+import { ContentPageEntityFragment } from '@/graphql'
+import { getKeyByValue } from '@/getKeyByValue'
+import { hasAttributes, isDefined, WithAttributes } from '@/isDefined'
 
 const routesSkToEn = {
   // Routes

@@ -1,4 +1,4 @@
-import { ContentPageEntityFragment } from '../graphql'
+import { ContentPageEntityFragment } from '@/graphql'
 
 // TODO use css var for #efefef color
 export const getContentPageColor = (contentPage: ContentPageEntityFragment) =>

@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext } from 'react'
 
-import { GeneralQuery } from '../graphql'
+import { GeneralQuery } from '@/graphql'
 
 const GeneralContext = createContext<GeneralQuery | null>(null)
 
