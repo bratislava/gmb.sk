@@ -2,21 +2,21 @@ import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 
+import Button from '@/components/atoms/Button'
+import CityGalleryMarkdown from '@/components/atoms/CityGalleryMarkdown'
+import Link from '@/components/atoms/Link'
+import MobileShareButton from '@/components/atoms/MobileShareButton'
+import ShareButton from '@/components/atoms/ShareButton'
+import PlaceTime from '@/components/molecules/PlaceTime'
 import {
   ContentPagePlaceFragment,
   DatetimeFragment,
   PartnerEntityFragment,
   PositionFragment,
-} from '../../graphql'
-import getDaysLeft from '../../utils/getDaysLeft'
-import { isDefined, WithAttributes } from '../../utils/isDefined'
-import mobileAndTabletRegexCheck from '../../utils/mobileAndTabletRegexCheck'
-import Button from '../atoms/Button'
-import CityGalleryMarkdown from '../atoms/CityGalleryMarkdown'
-import Link from '../atoms/Link'
-import MobileShareButton from '../atoms/MobileShareButton'
-import ShareButton from '../atoms/ShareButton'
-import PlaceTime from './PlaceTime'
+} from '@/graphql'
+import getDaysLeft from '@/utils/getDaysLeft'
+import { isDefined, WithAttributes } from '@/utils/isDefined'
+import mobileAndTabletRegexCheck from '@/utils/mobileAndTabletRegexCheck'
 
 interface SidePanelProps {
   overrideText?: string

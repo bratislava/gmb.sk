@@ -1,10 +1,10 @@
 import { useTranslation } from 'next-i18next'
 
-import { NewsItemEntityFragment } from '../../../graphql'
-import { getContentPageColor } from '../../../utils/getContentPageColor'
-import { WithAttributes } from '../../../utils/isDefined'
-import Button from '../../atoms/Button'
-import Link from '../../atoms/Link'
+import Button from '@/components/atoms/Button'
+import Link from '@/components/atoms/Link'
+import { NewsItemEntityFragment } from '@/graphql'
+import { getContentPageColor } from '@/utils/getContentPageColor'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface NewsBarProps {
   newsItem: WithAttributes<NewsItemEntityFragment>

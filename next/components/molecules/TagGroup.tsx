@@ -1,6 +1,6 @@
-import { PlaceEntityFragment, TagEntityFragment } from '../../graphql'
-import { WithAttributes } from '../../utils/isDefined'
-import Tag from '../atoms/Tag'
+import Tag from '@/components/atoms/Tag'
+import { PlaceEntityFragment, TagEntityFragment } from '@/graphql'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface ITagGroupProps {
   tags: WithAttributes<TagEntityFragment>[] | WithAttributes<PlaceEntityFragment>[] | string[]

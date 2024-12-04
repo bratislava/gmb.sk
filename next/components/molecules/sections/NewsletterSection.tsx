@@ -3,11 +3,11 @@ import { useTranslation } from 'next-i18next'
 import { useEffect, useRef, useState } from 'react'
 import MailchimpSubscribe from 'react-mailchimp-subscribe'
 
-import NewsletterImg from '../../../assets/images/v-obraze-white.png'
-import { generateImageSizes } from '../../../utils/generateImageSizes'
-import Button from '../../atoms/Button'
-import Checkbox from '../../atoms/Checkbox'
-import Section from './Section'
+import NewsletterImg from '@/assets/images/v-obraze-white.png'
+import Button from '@/components/atoms/Button'
+import Checkbox from '@/components/atoms/Checkbox'
+import Section from '@/components/molecules/sections/Section'
+import { generateImageSizes } from '@/utils/generateImageSizes'
 
 export interface NewsletterSectionProps {
   anchor?: string

@@ -1,5 +1,5 @@
-import LocationIcon from '../../assets/icons/location.svg'
-import { ContentPagePlaceFragment } from '../../graphql'
+import LocationIcon from '@/assets/icons/location.svg'
+import { ContentPagePlaceFragment } from '@/graphql'
 
 export interface SidePanelPlaceProps {
   placeFragment: ContentPagePlaceFragment

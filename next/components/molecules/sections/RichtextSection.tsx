@@ -1,5 +1,5 @@
-import CityGalleryMarkdown from '../../atoms/CityGalleryMarkdown'
-import Section from './Section'
+import CityGalleryMarkdown from '@/components/atoms/CityGalleryMarkdown'
+import Section from '@/components/molecules/sections/Section'
 
 interface IRichtextSectionProps {
   content: string | null | undefined

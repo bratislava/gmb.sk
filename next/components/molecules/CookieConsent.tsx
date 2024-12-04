@@ -6,14 +6,14 @@ import Consent from 'react-cookie-consent'
 import Modal from 'react-modal'
 import { useEffectOnceWhen } from 'rooks'
 
-import ChevronDownIcon from '../../assets/icons/chevron-down.svg'
-import CloseIcon from '../../assets/icons/close-x.svg'
-import { getGDPRCookies, setGDPRCookies } from '../../utils/GDPRCookies'
-import { initializeGoogleAnalytics, trackPageView } from '../../utils/googleAnalytics'
-import { getRouteForLocale } from '../../utils/localeRoutes'
-import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
-import Button from '../atoms/Button'
-import Link from '../atoms/Link'
+import ChevronDownIcon from '@/assets/icons/chevron-down.svg'
+import CloseIcon from '@/assets/icons/close-x.svg'
+import Button from '@/components/atoms/Button'
+import Link from '@/components/atoms/Link'
+import { getGDPRCookies, setGDPRCookies } from '@/utils/GDPRCookies'
+import { initializeGoogleAnalytics, trackPageView } from '@/utils/googleAnalytics'
+import { getRouteForLocale } from '@/utils/localeRoutes'
+import { onEnterOrSpaceKeyDown } from '@/utils/onEnterOrSpaceKeyDown'
 
 const CookieConsent = () => {
   const { t, i18n } = useTranslation()

@@ -2,11 +2,11 @@ import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import { ReactNode } from 'react'
 
-import { SectionItemEntityFragment } from '../../../graphql'
-import { WithAttributes } from '../../../utils/isDefined'
-import Card from '../presentation/Card'
-import CardSkeleton from '../presentation/CardSkeleton'
-import Section from './Section'
+import Card from '@/components/molecules/presentation/Card'
+import CardSkeleton from '@/components/molecules/presentation/CardSkeleton'
+import Section from '@/components/molecules/sections/Section'
+import { SectionItemEntityFragment } from '@/graphql'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface CardsSectionProps {
   title?: string

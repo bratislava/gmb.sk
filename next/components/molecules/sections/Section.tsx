@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import { ReactNode } from 'react'
 
-import SectionHeading from '../../atoms/SectionHeading'
+import SectionHeading from '@/components/atoms/SectionHeading'
 
 interface ISectionProps {
   title?: string

@@ -1,7 +1,7 @@
-import { HighlightsItemEntityFragment } from '../../../graphql'
-import { WithAttributes } from '../../../utils/isDefined'
-import Highlight from '../presentation/Highlight'
-import Section from './Section'
+import Highlight from '@/components/molecules/presentation/Highlight'
+import Section from '@/components/molecules/sections/Section'
+import { HighlightsItemEntityFragment } from '@/graphql'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface IHighlightSectionsProps {
   highlights: WithAttributes<HighlightsItemEntityFragment>[] | null | undefined

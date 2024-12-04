@@ -1,8 +1,8 @@
-import { PageSectionFragment } from '../../../graphql'
-import { hasAttributes } from '../../../utils/isDefined'
-import CardSection from './CardSection'
-import ChessboardSection from './ChessboardSection'
-import FullWidthSection from './FullWidthSection'
+import CardSection from '@/components/molecules/sections/CardSection'
+import ChessboardSection from '@/components/molecules/sections/ChessboardSection'
+import FullWidthSection from '@/components/molecules/sections/FullWidthSection'
+import { PageSectionFragment } from '@/graphql'
+import { hasAttributes } from '@/utils/isDefined'
 
 export interface SectionProps {
   section: PageSectionFragment

@@ -1,12 +1,12 @@
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import ExplorePage from '../components/pages/ExplorePage'
-import { ExplorePageQuery, GeneralQuery, TagsByCategorySlugQuery } from '../graphql'
-import { GeneralContextProvider } from '../utils/generalContext'
-import { client } from '../utils/gql'
-import { hasAttributes } from '../utils/isDefined'
-import { getRouteForLocale } from '../utils/localeRoutes'
+import ExplorePage from '@/components/pages/ExplorePage'
+import { ExplorePageQuery, GeneralQuery, TagsByCategorySlugQuery } from '@/graphql'
+import { GeneralContextProvider } from '@/utils/generalContext'
+import { client } from '@/utils/gql'
+import { hasAttributes } from '@/utils/isDefined'
+import { getRouteForLocale } from '@/utils/localeRoutes'
 
 interface ExploreProps {
   generalQuery: GeneralQuery

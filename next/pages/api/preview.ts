@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { client } from '../../utils/gql'
+import { client } from '@/utils/gql'
 
 // eslint-disable-next-line consistent-return
 const preview = async (req: NextApiRequest, res: NextApiResponse) => {

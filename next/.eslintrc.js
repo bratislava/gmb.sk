@@ -15,9 +15,15 @@ module.exports = {
     /** It's annoying to refactor from one style to another */
     'arrow-body-style': 'off',
     /** These are exceptions that we use with "__" */
-    'no-underscore-dangle': [2, { allow: ['__NEXT_DATA__', '__NEXT_LOADED_PAGES__', '__typename'] }],
+    'no-underscore-dangle': [
+      2,
+      { allow: ['__NEXT_DATA__', '__NEXT_LOADED_PAGES__', '__typename'] },
+    ],
     /** Use official sorting */
-    'tailwindcss/classnames-order': ['warn', { callees: ['classnames', 'cx'], officialSorting: true }],
+    'tailwindcss/classnames-order': [
+      'warn',
+      { callees: ['classnames', 'cx'], officialSorting: true },
+    ],
     /** White list custom classes */
     'tailwindcss/no-custom-classname': ['warn', { whitelist: ['.*dw.*', '.*dh.*'] }],
     /** Hoisting of functions is useful */
@@ -39,6 +45,7 @@ module.exports = {
     'unicorn/switch-case-braces': 'off',
     /** Translation t function is typed as any */
     '@typescript-eslint/restrict-template-expressions': 'off',
+    'import/extensions': 'off',
   },
   ignorePatterns: ['*.config.*', 'graphql', '.eslintrc.js', '*.md'],
 }

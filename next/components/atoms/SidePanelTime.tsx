@@ -1,9 +1,9 @@
 import { useTranslation } from 'next-i18next'
 
-import TimeIcon from '../../assets/icons/time.svg'
-import { DatetimeFragment } from '../../graphql'
-import { formatDateString } from '../../utils/formatDateString'
-import { formatTimeString } from '../../utils/formatTimeString'
+import TimeIcon from '@/assets/icons/time.svg'
+import { DatetimeFragment } from '@/graphql'
+import { formatDateString } from '@/utils/formatDateString'
+import { formatTimeString } from '@/utils/formatTimeString'
 
 export interface SidePanelTimeProps {
   datetime: DatetimeFragment

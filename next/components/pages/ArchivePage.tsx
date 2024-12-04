@@ -1,21 +1,21 @@
 import { useTranslation } from 'next-i18next'
 import { useEffect, useMemo, useState } from 'react'
 
-import { ArchivePageQuery } from '../../graphql'
+import Button from '@/components/atoms/Button'
+import Seo from '@/components/atoms/Seo'
+import Filters from '@/components/molecules/Filters'
+import CardSection from '@/components/molecules/sections/CardSection'
+import Submenu from '@/components/molecules/Submenu'
+import PageWrapper from '@/components/pages/PageWrapper'
+import { ArchivePageQuery } from '@/graphql'
 import {
   archiveDefaultFilters,
   ArchiveFilters,
-} from '../../services/meilisearch/fetchers/archiveFetcher'
-import { isDefined } from '../../utils/isDefined'
-import { usePreviewsByYears } from '../../utils/usePreviewsByYears'
-import { useRoutePreservedState } from '../../utils/useRoutePreservedState'
-import { useSearch } from '../../utils/useSearch'
-import Button from '../atoms/Button'
-import Seo from '../atoms/Seo'
-import Filters from '../molecules/Filters'
-import CardSection from '../molecules/sections/CardSection'
-import Submenu from '../molecules/Submenu'
-import PageWrapper from './PageWrapper'
+} from '@/services/meilisearch/fetchers/archiveFetcher'
+import { isDefined } from '@/utils/isDefined'
+import { usePreviewsByYears } from '@/utils/usePreviewsByYears'
+import { useRoutePreservedState } from '@/utils/useRoutePreservedState'
+import { useSearch } from '@/utils/useSearch'
 
 interface ArchivePageProps {
   archivePage: ArchivePageQuery['archivePage']

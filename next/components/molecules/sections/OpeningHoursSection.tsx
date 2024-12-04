@@ -2,10 +2,10 @@ import { useTranslation } from 'next-i18next'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
-import LocationIcon from '../../../assets/icons/location.svg'
-import { useGeneralContext } from '../../../utils/generalContext'
-import Link from '../../atoms/Link'
-import Section from './Section'
+import LocationIcon from '@/assets/icons/location.svg'
+import Link from '@/components/atoms/Link'
+import Section from '@/components/molecules/sections/Section'
+import { useGeneralContext } from '@/utils/generalContext'
 
 interface OpeningHoursSectionProps {
   anchor?: string

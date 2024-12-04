@@ -1,9 +1,9 @@
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 
-import FileIcon from '../../assets/icons/file.svg'
-import { DownloadItemFragment } from '../../graphql'
-import Button from './Button'
+import FileIcon from '@/assets/icons/file.svg'
+import Button from '@/components/atoms/Button'
+import { DownloadItemFragment } from '@/graphql'
 
 interface DownloadProps {
   downloadItem: DownloadItemFragment

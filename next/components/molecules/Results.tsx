@@ -1,6 +1,6 @@
-import { CommonSearchPageEntityFragment } from '../../graphql'
-import { hasAttributes } from '../../utils/isDefined'
-import Link from '../atoms/Link'
+import Link from '@/components/atoms/Link'
+import { CommonSearchPageEntityFragment } from '@/graphql'
+import { hasAttributes } from '@/utils/isDefined'
 
 interface ResultsProps {
   results: CommonSearchPageEntityFragment[]

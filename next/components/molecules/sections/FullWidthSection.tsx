@@ -1,10 +1,10 @@
 import { useTranslation } from 'next-i18next'
 
-import { SectionItemEntityFragment } from '../../../graphql'
-import { WithAttributes } from '../../../utils/isDefined'
-import Button from '../../atoms/Button'
-import FullWidthTile from '../presentation/FullWidthTile'
-import Section from './Section'
+import Button from '@/components/atoms/Button'
+import FullWidthTile from '@/components/molecules/presentation/FullWidthTile'
+import Section from '@/components/molecules/sections/Section'
+import { SectionItemEntityFragment } from '@/graphql'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface FullWidthSectionProps {
   title?: string

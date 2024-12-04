@@ -2,7 +2,7 @@ import cx from 'classnames'
 import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
 
-import Link from './Link'
+import Link from '@/components/atoms/Link'
 
 export interface INavLinkProps {
   url: string

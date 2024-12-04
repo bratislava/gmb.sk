@@ -3,17 +3,17 @@ import { useTranslation } from 'next-i18next'
 import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 
-import CloseIcon from '../../assets/icons/close-x.svg'
+import CloseIcon from '@/assets/icons/close-x.svg'
+import Results from '@/components/molecules/Results'
 import {
   commonSearchDefaultFilters,
   commonSearchFetcher,
   CommonSearchFilters,
   getCommonSearchQueryKey,
-} from '../../services/meilisearch/fetchers/commonSearchFetcher'
-import { isDefined } from '../../utils/isDefined'
-import { useRoutePreservedState } from '../../utils/useRoutePreservedState'
-import { useSearch } from '../../utils/useSearch'
-import Results from './Results'
+} from '@/services/meilisearch/fetchers/commonSearchFetcher'
+import { isDefined } from '@/utils/isDefined'
+import { useRoutePreservedState } from '@/utils/useRoutePreservedState'
+import { useSearch } from '@/utils/useSearch'
 
 interface SearchBarProps {
   closeSearchBar: () => void

@@ -2,11 +2,11 @@ import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import Page from '../components/pages/Page'
-import { CollectionPageQuery, GeneralQuery, NewsQuery } from '../graphql'
-import { GeneralContextProvider } from '../utils/generalContext'
-import { client } from '../utils/gql'
-import { hasAttributes } from '../utils/isDefined'
+import Page from '@/components/pages/Page'
+import { CollectionPageQuery, GeneralQuery, NewsQuery } from '@/graphql'
+import { GeneralContextProvider } from '@/utils/generalContext'
+import { client } from '@/utils/gql'
+import { hasAttributes } from '@/utils/isDefined'
 
 interface CollectionProps {
   generalQuery: GeneralQuery

@@ -2,8 +2,8 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-import { ImageEntityFragment, SeoFragment } from '../../graphql'
-import { getNextUrl } from '../../utils/getNextUrl'
+import { ImageEntityFragment, SeoFragment } from '@/graphql'
+import { getNextUrl } from '@/utils/getNextUrl'
 
 interface SeoProps {
   seo?: SeoFragment | null

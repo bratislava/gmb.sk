@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { ReactNode } from 'react'
 
-import { getRouteForLocale, isOfTypeRoute } from '../../utils/localeRoutes'
+import { getRouteForLocale, isOfTypeRoute } from '@/utils/localeRoutes'
 
 type LinkProps = React.ComponentPropsWithoutRef<'a'> & {
   locale?: string

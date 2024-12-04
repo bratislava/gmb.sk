@@ -2,12 +2,12 @@ import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import Page from '../components/pages/Page'
-import { GeneralQuery, NewsQuery, VisitUsPageQuery } from '../graphql'
-import { GeneralContextProvider } from '../utils/generalContext'
-import { client } from '../utils/gql'
-import { hasAttributes } from '../utils/isDefined'
-import { getRouteForLocale } from '../utils/localeRoutes'
+import Page from '@/components/pages/Page'
+import { GeneralQuery, NewsQuery, VisitUsPageQuery } from '@/graphql'
+import { GeneralContextProvider } from '@/utils/generalContext'
+import { client } from '@/utils/gql'
+import { hasAttributes } from '@/utils/isDefined'
+import { getRouteForLocale } from '@/utils/localeRoutes'
 
 interface VisitUsProps {
   generalQuery: GeneralQuery

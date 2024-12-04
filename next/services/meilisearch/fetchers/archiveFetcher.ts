@@ -1,8 +1,8 @@
-import { SectionItemEntityFragment } from '../../../graphql'
-import { WithAttributes } from '../../../utils/isDefined'
-import { getRouteForLocale } from '../../../utils/localeRoutes'
-import { getMeilisearchPageOptions } from '../getMeilisearchPageOptions'
-import { meiliClient } from '../meilisearch'
+import { SectionItemEntityFragment } from '@/graphql'
+import { getMeilisearchPageOptions } from '@/services/meilisearch/getMeilisearchPageOptions'
+import { meiliClient } from '@/services/meilisearch/meilisearch'
+import { WithAttributes } from '@/utils/isDefined'
+import { getRouteForLocale } from '@/utils/localeRoutes'
 
 export type ArchiveFilters = {
   searchValue: string

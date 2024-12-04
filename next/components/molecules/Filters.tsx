@@ -1,8 +1,8 @@
 import { useTranslation } from 'next-i18next'
 
-import { PlaceEntityFragment, TagEntityFragment } from '../../graphql'
-import { WithAttributes } from '../../utils/isDefined'
-import TagGroup from './TagGroup'
+import TagGroup from '@/components/molecules/TagGroup'
+import { PlaceEntityFragment, TagEntityFragment } from '@/graphql'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface FiltersProps {
   tagGroups?: WithAttributes<TagEntityFragment>[][]

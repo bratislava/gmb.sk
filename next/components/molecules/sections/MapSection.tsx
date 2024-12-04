@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next'
 
-import Map from '../Map'
-import Section from './Section'
+import Map from '@/components/molecules/Map'
+import Section from '@/components/molecules/sections/Section'
 
 interface IMapSectionProps {
   title?: string

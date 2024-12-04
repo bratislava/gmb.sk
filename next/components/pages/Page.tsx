@@ -1,6 +1,18 @@
 import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 
+import Seo from '@/components/atoms/Seo'
+import HighlightsSection from '@/components/molecules/sections/HighlightsSection'
+import MapSection from '@/components/molecules/sections/MapSection'
+import NewsletterSection from '@/components/molecules/sections/NewsletterSection'
+import NewsSection from '@/components/molecules/sections/NewsSection'
+import OpeningHoursSection from '@/components/molecules/sections/OpeningHoursSection'
+import PageSectionContainer from '@/components/molecules/sections/PageSectionContainer'
+import PartnersSection from '@/components/molecules/sections/PartnersSection'
+import RichtextSection from '@/components/molecules/sections/RichtextSection'
+import TicketsSection from '@/components/molecules/sections/TicketsSection'
+import Submenu from '@/components/molecules/Submenu'
+import PageWrapper from '@/components/pages/PageWrapper'
 import {
   AboutUsPageQuery,
   CollectionPageQuery,
@@ -9,21 +21,9 @@ import {
   NewsItemEntityFragment,
   TicketEntityFragment,
   VisitUsPageQuery,
-} from '../../graphql'
-import { getAnchor } from '../../utils/getAnchor'
-import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
-import Seo from '../atoms/Seo'
-import HighlightsSection from '../molecules/sections/HighlightsSection'
-import MapSection from '../molecules/sections/MapSection'
-import NewsletterSection from '../molecules/sections/NewsletterSection'
-import NewsSection from '../molecules/sections/NewsSection'
-import OpeningHoursSection from '../molecules/sections/OpeningHoursSection'
-import PageSectionContainer from '../molecules/sections/PageSectionContainer'
-import PartnersSection from '../molecules/sections/PartnersSection'
-import RichtextSection from '../molecules/sections/RichtextSection'
-import TicketsSection from '../molecules/sections/TicketsSection'
-import Submenu from '../molecules/Submenu'
-import PageWrapper from './PageWrapper'
+} from '@/graphql'
+import { getAnchor } from '@/utils/getAnchor'
+import { hasAttributes, isDefined, WithAttributes } from '@/utils/isDefined'
 
 interface PageProps {
   page:

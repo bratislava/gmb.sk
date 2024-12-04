@@ -1,14 +1,14 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 
-import EmailIcon from '../../assets/icons/social-platforms/email.svg'
-import FacebookIcon from '../../assets/icons/social-platforms/facebook.svg'
-import LinkedInIcon from '../../assets/icons/social-platforms/linkedin.svg'
-import TwitterIcon from '../../assets/icons/social-platforms/twitter.svg'
-import WhatsAppIcon from '../../assets/icons/social-platforms/whatsapp.svg'
-import { capitalizeFirstLetter } from '../../utils/capitalize'
-import { getNextUrl } from '../../utils/getNextUrl'
-import Link from './Link'
+import EmailIcon from '@/assets/icons/social-platforms/email.svg'
+import FacebookIcon from '@/assets/icons/social-platforms/facebook.svg'
+import LinkedInIcon from '@/assets/icons/social-platforms/linkedin.svg'
+import TwitterIcon from '@/assets/icons/social-platforms/twitter.svg'
+import WhatsAppIcon from '@/assets/icons/social-platforms/whatsapp.svg'
+import Link from '@/components/atoms/Link'
+import { capitalizeFirstLetter } from '@/utils/capitalize'
+import { getNextUrl } from '@/utils/getNextUrl'
 
 interface ShareButtonProps {
   slug: string

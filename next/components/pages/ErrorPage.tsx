@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next'
 
-import PageWrapper from './PageWrapper'
+import PageWrapper from '@/components/pages/PageWrapper'
 
 interface ErrorPageProps {
   statusCode: number

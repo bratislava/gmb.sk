@@ -2,27 +2,27 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 
+import Button from '@/components/atoms/Button'
+import Seo from '@/components/atoms/Seo'
+import Filters from '@/components/molecules/Filters'
+import ChessboardTile from '@/components/molecules/presentation/ChessboardTile'
+import CardSection from '@/components/molecules/sections/CardSection'
+import ChessboardSection from '@/components/molecules/sections/ChessboardSection'
+import HighlightsSection from '@/components/molecules/sections/HighlightsSection'
+import NewsletterSection from '@/components/molecules/sections/NewsletterSection'
+import Section from '@/components/molecules/sections/Section'
+import Submenu from '@/components/molecules/Submenu'
+import PageWrapper from '@/components/pages/PageWrapper'
 import {
   ExhibitionsPageQuery,
   PlaceEntityFragment,
   SectionItemEntityFragment,
   TagEntityFragment,
-} from '../../graphql'
-import { getAnchor } from '../../utils/getAnchor'
-import { hasAttributes, isDefined, WithAttributes } from '../../utils/isDefined'
-import { getRouteForLocale } from '../../utils/localeRoutes'
-import { usePreviewsByTags } from '../../utils/usePreviewsByTags'
-import Button from '../atoms/Button'
-import Seo from '../atoms/Seo'
-import Filters from '../molecules/Filters'
-import ChessboardTile from '../molecules/presentation/ChessboardTile'
-import CardSection from '../molecules/sections/CardSection'
-import ChessboardSection from '../molecules/sections/ChessboardSection'
-import HighlightsSection from '../molecules/sections/HighlightsSection'
-import NewsletterSection from '../molecules/sections/NewsletterSection'
-import Section from '../molecules/sections/Section'
-import Submenu from '../molecules/Submenu'
-import PageWrapper from './PageWrapper'
+} from '@/graphql'
+import { getAnchor } from '@/utils/getAnchor'
+import { hasAttributes, isDefined, WithAttributes } from '@/utils/isDefined'
+import { getRouteForLocale } from '@/utils/localeRoutes'
+import { usePreviewsByTags } from '@/utils/usePreviewsByTags'
 
 interface ExhibitionsPageProps {
   exhibitionsPage: ExhibitionsPageQuery['exhibitionsPage']

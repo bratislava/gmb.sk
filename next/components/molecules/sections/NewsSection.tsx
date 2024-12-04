@@ -1,9 +1,9 @@
 import { useTranslation } from 'next-i18next'
 
-import { NewsItemEntityFragment } from '../../../graphql'
-import { WithAttributes } from '../../../utils/isDefined'
-import NewsBar from '../presentation/NewsBar'
-import Section from './Section'
+import NewsBar from '@/components/molecules/presentation/NewsBar'
+import Section from '@/components/molecules/sections/Section'
+import { NewsItemEntityFragment } from '@/graphql'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface NewsProps {
   items: WithAttributes<NewsItemEntityFragment>[]

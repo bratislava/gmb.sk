@@ -4,8 +4,8 @@ import { useTranslation } from 'next-i18next'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
-import Button from '../../atoms/Button'
-import styles from './Ticket.module.css'
+import Button from '@/components/atoms/Button'
+import styles from '@/Ticket.module.css'
 
 interface ITicketProps {
   title: string | null | undefined

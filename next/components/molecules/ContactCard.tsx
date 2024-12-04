@@ -1,6 +1,6 @@
-import { ContactCardEntityFragment } from '../../graphql'
-import { WithAttributes } from '../../utils/isDefined'
-import Link from '../atoms/Link'
+import Link from '@/components/atoms/Link'
+import { ContactCardEntityFragment } from '@/graphql'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface IContactCardProps {
   contact: WithAttributes<ContactCardEntityFragment> | undefined | null
