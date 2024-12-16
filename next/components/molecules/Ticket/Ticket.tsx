@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
 import Button from '@/components/atoms/Button'
-import styles from '@/Ticket.module.css'
+import styles from '@/components/molecules/Ticket/Ticket.module.css'
 
 interface ITicketProps {
   title: string | null | undefined

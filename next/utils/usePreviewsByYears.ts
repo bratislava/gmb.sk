@@ -3,7 +3,7 @@ import useSWRInfinite from 'swr/infinite'
 
 import { SectionItemEntityFragment } from '@/graphql'
 import { archiveFetcher } from '@/services/meilisearch/fetchers/archiveFetcher'
-import { hasAttributes, isDefined } from '@/isDefined'
+import { hasAttributes, isDefined } from '@/utils/isDefined'
 
 export const PAGE_SIZE = 6
 

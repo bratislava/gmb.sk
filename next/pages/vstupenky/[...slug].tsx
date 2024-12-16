@@ -93,6 +93,6 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({
 }
 
 /** This is a kind of hack, but getStaticPaths is exactly the same as for the detail, so here we just reexport it from that page */
-export { getStaticPaths } from '@/detail/[...slug]'
+export { getStaticPaths } from '@/pages/detail/[...slug]'
 
 export default Tickets
