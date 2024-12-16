@@ -2,12 +2,12 @@ import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 import { useId } from 'react'
 
-import { SectionItemEntityFragment } from '../../../graphql'
-import { generateImageSizes } from '../../../utils/generateImageSizes'
-import { getContentPageColor } from '../../../utils/getContentPageColor'
-import { WithAttributes } from '../../../utils/isDefined'
-import Button from '../../atoms/Button'
-import Subtitle from '../../atoms/Subtitle'
+import Button from '@/components/atoms/Button'
+import Subtitle from '@/components/atoms/Subtitle'
+import { SectionItemEntityFragment } from '@/graphql'
+import { generateImageSizes } from '@/utils/generateImageSizes'
+import { getContentPageColor } from '@/utils/getContentPageColor'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface IFullWidthTileProps {
   sectionItem: WithAttributes<SectionItemEntityFragment>

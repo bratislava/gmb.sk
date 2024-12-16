@@ -5,8 +5,8 @@ import { ReactElement } from 'react-markdown/lib/react-markdown'
 import remarkGfm from 'remark-gfm'
 import supersub from 'remark-supersub'
 
-import ImageFigure from './ImageFigure'
-import Link from './Link'
+import ImageFigure from '@/components/atoms/ImageFigure'
+import Link from '@/components/atoms/Link'
 
 export interface CityGalleryMarkdownProps {
   content: string | null | undefined

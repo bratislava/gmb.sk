@@ -1,9 +1,9 @@
 import { useTranslation } from 'next-i18next'
 
-import { ContentPageEntityFragment } from '../../graphql'
-import { formatDateString } from '../../utils/formatDateString'
-import { formatTimeString } from '../../utils/formatTimeString'
-import { WithAttributes } from '../../utils/isDefined'
+import { ContentPageEntityFragment } from '@/graphql'
+import { formatDateString } from '@/utils/formatDateString'
+import { formatTimeString } from '@/utils/formatTimeString'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface ISubtitleProps {
   page: WithAttributes<ContentPageEntityFragment>

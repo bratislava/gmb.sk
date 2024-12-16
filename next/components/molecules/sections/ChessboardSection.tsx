@@ -1,10 +1,10 @@
 import { useTranslation } from 'next-i18next'
 
-import { SectionItemEntityFragment } from '../../../graphql'
-import { WithAttributes } from '../../../utils/isDefined'
-import Button from '../../atoms/Button'
-import ChessboardTile from '../presentation/ChessboardTile'
-import Section from './Section'
+import Button from '@/components/atoms/Button'
+import ChessboardTile from '@/components/molecules/presentation/ChessboardTile'
+import Section from '@/components/molecules/sections/Section'
+import { SectionItemEntityFragment } from '@/graphql'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface ChessboardProps {
   title?: string

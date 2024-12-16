@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 import * as ReactGA from 'react-ga'
 
-import { getGDPRCookies } from './GDPRCookies'
-import { getGoogleAnalyticsTrackingId } from './getGoogleAnalyticsTrackingId'
-import useUpdateEffect from './useUpdateEffect'
+import { getGDPRCookies } from '@/utils/GDPRCookies'
+import { getGoogleAnalyticsTrackingId } from '@/utils/getGoogleAnalyticsTrackingId'
+import useUpdateEffect from '@/utils/useUpdateEffect'
 
 export const initializeGoogleAnalytics = () => {
   const googleAnalyticsTrackingId = getGoogleAnalyticsTrackingId()

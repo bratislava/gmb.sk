@@ -1,10 +1,10 @@
 import { GetStaticProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import ErrorPage from '../components/pages/ErrorPage'
-import { GeneralQuery } from '../graphql'
-import { GeneralContextProvider } from '../utils/generalContext'
-import { client } from '../utils/gql'
+import ErrorPage from '@/components/pages/ErrorPage'
+import { GeneralQuery } from '@/graphql'
+import { GeneralContextProvider } from '@/utils/generalContext'
+import { client } from '@/utils/gql'
 
 interface ErrorProps {
   generalQuery: GeneralQuery

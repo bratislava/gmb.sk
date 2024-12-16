@@ -1,13 +1,13 @@
 import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
-import React, { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 
-import ChevronDownIcon from '../../assets/icons/chevron-down.svg'
-import { getAnchor } from '../../utils/getAnchor'
-import { onEnterOrSpaceKeyDown } from '../../utils/onEnterOrSpaceKeyDown'
-import Button from '../atoms/Button'
-import Link from '../atoms/Link'
-import SubmenuModal from './SubmenuModal'
+import ChevronDownIcon from '@/assets/icons/chevron-down.svg'
+import Button from '@/components/atoms/Button'
+import Link from '@/components/atoms/Link'
+import SubmenuModal from '@/components/molecules/SubmenuModal'
+import { getAnchor } from '@/utils/getAnchor'
+import { onEnterOrSpaceKeyDown } from '@/utils/onEnterOrSpaceKeyDown'
 
 interface SubmenuProps {
   items?: string[]

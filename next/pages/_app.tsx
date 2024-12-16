@@ -1,19 +1,18 @@
-import '../styles/globals.css'
+import '@/styles/globals.css'
 
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
 import { appWithTranslation, SSRConfig, useTranslation } from 'next-i18next'
 import { NextAdapter } from 'next-query-params'
-import React from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { SWRConfig } from 'swr'
 import { QueryParamProvider } from 'use-query-params'
 
-import nextI18NextConfig from '../next-i18next.config'
-import { initializeGoogleAnalytics, useGoogleAnalyticsPageView } from '../utils/googleAnalytics'
-import { isProd } from '../utils/isProd'
-import { logError } from '../utils/logger'
+import nextI18NextConfig from '@/next-i18next.config'
+import { initializeGoogleAnalytics, useGoogleAnalyticsPageView } from '@/utils/googleAnalytics'
+import { isProd } from '@/utils/isProd'
+import { logError } from '@/utils/logger'
 
 initializeGoogleAnalytics()
 

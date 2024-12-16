@@ -1,10 +1,10 @@
 import { useTranslation } from 'next-i18next'
 import { ReactNode } from 'react'
 
-import CloseIcon from '../../assets/icons/close-x.svg'
-import { getAnchor } from '../../utils/getAnchor'
-import Button from '../atoms/Button'
-import Link from '../atoms/Link'
+import CloseIcon from '@/assets/icons/close-x.svg'
+import Button from '@/components/atoms/Button'
+import Link from '@/components/atoms/Link'
+import { getAnchor } from '@/utils/getAnchor'
 
 interface ISubmenuModalProps {
   onClose: () => void

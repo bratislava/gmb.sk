@@ -1,11 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import DetailPage from '../../components/pages/DetailPage'
-import { ContentPageBySlugQuery, GeneralQuery } from '../../graphql'
-import { GeneralContextProvider } from '../../utils/generalContext'
-import { client } from '../../utils/gql'
-import { hasAttributes, isDefined, withAttributes } from '../../utils/isDefined'
+import DetailPage from '@/components/pages/DetailPage'
+import { ContentPageBySlugQuery, GeneralQuery } from '@/graphql'
+import { GeneralContextProvider } from '@/utils/generalContext'
+import { client } from '@/utils/gql'
+import { hasAttributes, isDefined, withAttributes } from '@/utils/isDefined'
 
 interface DetailProps {
   generalQuery: GeneralQuery

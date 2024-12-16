@@ -1,6 +1,6 @@
-import { CommonSearchPageEntityFragment } from '../../../graphql'
-import { getMeilisearchPageOptions } from '../getMeilisearchPageOptions'
-import { meiliClient } from '../meilisearch'
+import { CommonSearchPageEntityFragment } from '@/graphql'
+import { getMeilisearchPageOptions } from '@/services/meilisearch/getMeilisearchPageOptions'
+import { meiliClient } from '@/services/meilisearch/meilisearch'
 
 export type CommonSearchFilters = {
   searchValue: string

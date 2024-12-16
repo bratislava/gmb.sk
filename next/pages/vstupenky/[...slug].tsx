@@ -1,13 +1,13 @@
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import TicketPage from '../../components/pages/TicketPage'
-import { ContentPageBySlugQuery, ExhibitionsByPlaceQuery, GeneralQuery } from '../../graphql'
-import { GeneralContextProvider } from '../../utils/generalContext'
-import { getTodaysDate } from '../../utils/getTodaysDate'
-import { client } from '../../utils/gql'
-import { hasAttributes, withAttributes } from '../../utils/isDefined'
-import { getRouteForLocale } from '../../utils/localeRoutes'
+import TicketPage from '@/components/pages/TicketPage'
+import { ContentPageBySlugQuery, ExhibitionsByPlaceQuery, GeneralQuery } from '@/graphql'
+import { GeneralContextProvider } from '@/utils/generalContext'
+import { getTodaysDate } from '@/utils/getTodaysDate'
+import { client } from '@/utils/gql'
+import { hasAttributes, withAttributes } from '@/utils/isDefined'
+import { getRouteForLocale } from '@/utils/localeRoutes'
 
 interface TicketProps {
   generalQuery: GeneralQuery
@@ -93,6 +93,6 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({
 }
 
 /** This is a kind of hack, but getStaticPaths is exactly the same as for the detail, so here we just reexport it from that page */
-export { getStaticPaths } from '../detail/[...slug]'
+export { getStaticPaths } from '@/pages/detail/[...slug]'
 
 export default Tickets

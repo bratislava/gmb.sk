@@ -3,12 +3,12 @@ import { useMemo } from 'react'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import remarkGfm from 'remark-gfm'
 
-import LocationIcon from '../../assets/icons/location.svg'
-import { ContentPageEntityFragment } from '../../graphql'
-import { useGeneralContext } from '../../utils/generalContext'
-import { WithAttributes } from '../../utils/isDefined'
-import AppLangSwitchers from '../atoms/AppLangSwitchers'
-import Link from '../atoms/Link'
+import LocationIcon from '@/assets/icons/location.svg'
+import AppLangSwitchers from '@/components/atoms/AppLangSwitchers'
+import Link from '@/components/atoms/Link'
+import { ContentPageEntityFragment } from '@/graphql'
+import { useGeneralContext } from '@/utils/generalContext'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface FooterProps {
   contentPage?: WithAttributes<ContentPageEntityFragment>

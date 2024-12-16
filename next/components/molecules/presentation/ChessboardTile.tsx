@@ -4,13 +4,13 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useId } from 'react'
 
-import { SectionItemEntityFragment } from '../../../graphql'
-import { generateImageSizes } from '../../../utils/generateImageSizes'
-import { getContentPageColor } from '../../../utils/getContentPageColor'
-import { hasAttributes, WithAttributes } from '../../../utils/isDefined'
-import Button from '../../atoms/Button'
-import Link from '../../atoms/Link'
-import Subtitle from '../../atoms/Subtitle'
+import Button from '@/components/atoms/Button'
+import Link from '@/components/atoms/Link'
+import Subtitle from '@/components/atoms/Subtitle'
+import { SectionItemEntityFragment } from '@/graphql'
+import { generateImageSizes } from '@/utils/generateImageSizes'
+import { getContentPageColor } from '@/utils/getContentPageColor'
+import { hasAttributes, WithAttributes } from '@/utils/isDefined'
 
 interface ChessboardTileProps {
   sectionItem: WithAttributes<SectionItemEntityFragment>

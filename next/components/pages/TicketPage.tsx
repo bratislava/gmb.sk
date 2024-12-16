@@ -1,15 +1,15 @@
 import { useTranslation } from 'next-i18next'
 
-import { ContentPageEntityFragment, SectionItemEntityFragment } from '../../graphql'
-import { getPurchaseId } from '../../utils/getPurchaseId'
-import { WithAttributes } from '../../utils/isDefined'
-import Link from '../atoms/Link'
-import Seo from '../atoms/Seo'
-import { SidePanelPlace } from '../atoms/SidePanelPlace'
-import { SidePanelTime } from '../atoms/SidePanelTime'
-import Subtitle from '../atoms/Subtitle'
-import CardSection from '../molecules/sections/CardSection'
-import PageWrapper from './PageWrapper'
+import Link from '@/components/atoms/Link'
+import Seo from '@/components/atoms/Seo'
+import { SidePanelPlace } from '@/components/atoms/SidePanelPlace'
+import { SidePanelTime } from '@/components/atoms/SidePanelTime'
+import Subtitle from '@/components/atoms/Subtitle'
+import CardSection from '@/components/molecules/sections/CardSection'
+import PageWrapper from '@/components/pages/PageWrapper'
+import { ContentPageEntityFragment, SectionItemEntityFragment } from '@/graphql'
+import { getPurchaseId } from '@/utils/getPurchaseId'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface ITicketPageProps {
   contentPage: WithAttributes<ContentPageEntityFragment>

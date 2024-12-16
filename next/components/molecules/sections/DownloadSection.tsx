@@ -1,7 +1,7 @@
-import { DownloadItemFragment } from '../../../graphql'
-import { isDefined } from '../../../utils/isDefined'
-import DownloadItem from '../../atoms/DownloadItem'
-import Section from './Section'
+import DownloadItem from '@/components/atoms/DownloadItem'
+import Section from '@/components/molecules/sections/Section'
+import { DownloadItemFragment } from '@/graphql'
+import { isDefined } from '@/utils/isDefined'
 
 interface DownloadSectionProps {
   title?: string | null

@@ -1,10 +1,10 @@
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import ArchivePage from '../../components/pages/ArchivePage'
-import { ArchivePageQuery, GeneralQuery } from '../../graphql'
-import { GeneralContextProvider } from '../../utils/generalContext'
-import { client } from '../../utils/gql'
+import ArchivePage from '@/components/pages/ArchivePage'
+import { ArchivePageQuery, GeneralQuery } from '@/graphql'
+import { GeneralContextProvider } from '@/utils/generalContext'
+import { client } from '@/utils/gql'
 
 interface ArchivePageProps {
   generalQuery: GeneralQuery

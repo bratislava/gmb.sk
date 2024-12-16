@@ -1,8 +1,8 @@
 import cx from 'classnames'
 import { useEffect, useState } from 'react'
 
-import ShareIcon from '../../assets/icons/share-nodes.svg'
-import { getNextUrl } from '../../utils/getNextUrl'
+import ShareIcon from '@/assets/icons/share-nodes.svg'
+import { getNextUrl } from '@/utils/getNextUrl'
 
 interface MobileShareButtonProps {
   className?: string

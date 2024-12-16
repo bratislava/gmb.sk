@@ -6,13 +6,13 @@ import ReactImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
 import Modal from 'react-modal'
 import { useWindowSize } from 'rooks'
 
-import CloseIcon from '../../assets/icons/close-x.svg'
-import { ImageWithFormatsEntityFragment } from '../../graphql'
-import { StrapiImageFormats } from '../../types/strapiImageFormats'
-import { getBreakpointValue } from '../../utils/getBreakpointValue'
-import { hasAttributes, withAttributes } from '../../utils/isDefined'
-import ImageGalleryItem from '../atoms/ImageGalleryItem'
-import ImageGalleryTile from '../atoms/ImageGalleryTile'
+import CloseIcon from '@/assets/icons/close-x.svg'
+import ImageGalleryItem from '@/components/atoms/ImageGalleryItem'
+import ImageGalleryTile from '@/components/atoms/ImageGalleryTile'
+import { ImageWithFormatsEntityFragment } from '@/graphql'
+import { StrapiImageFormats } from '@/types/strapiImageFormats'
+import { getBreakpointValue } from '@/utils/getBreakpointValue'
+import { hasAttributes, withAttributes } from '@/utils/isDefined'
 
 interface ImageGalleryProps {
   medias?: ImageWithFormatsEntityFragment[]

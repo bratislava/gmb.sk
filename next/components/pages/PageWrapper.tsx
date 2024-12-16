@@ -1,9 +1,9 @@
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 
-import { ContentPageEntityFragment } from '../../graphql'
-import { WithAttributes } from '../../utils/isDefined'
-import Footer from '../molecules/Footer'
-import Navigation from '../molecules/Navigation'
+import Footer from '@/components/molecules/Footer'
+import Navigation from '@/components/molecules/Navigation'
+import { ContentPageEntityFragment } from '@/graphql'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface IPageWrapperProps {
   contentPage?: WithAttributes<ContentPageEntityFragment>

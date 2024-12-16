@@ -1,5 +1,5 @@
-import { ContentPageEntityFragment } from '../graphql/index'
-import { WithAttributes } from './isDefined'
+import { ContentPageEntityFragment } from '@/graphql/index'
+import { WithAttributes } from '@/utils/isDefined'
 
 const parsePurchaseId = (purchaseId: string) => {
   let pId = purchaseId

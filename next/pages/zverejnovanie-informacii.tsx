@@ -3,12 +3,12 @@ import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import DownloadSection from '../components/molecules/sections/DownloadSection'
-import PageWrapper from '../components/pages/PageWrapper'
-import { DisclosureOfInformationPageQuery, GeneralQuery } from '../graphql'
-import { GeneralContextProvider } from '../utils/generalContext'
-import { client } from '../utils/gql'
-import { isDefined } from '../utils/isDefined'
+import DownloadSection from '@/components/molecules/sections/DownloadSection'
+import PageWrapper from '@/components/pages/PageWrapper'
+import { DisclosureOfInformationPageQuery, GeneralQuery } from '@/graphql'
+import { GeneralContextProvider } from '@/utils/generalContext'
+import { client } from '@/utils/gql'
+import { isDefined } from '@/utils/isDefined'
 
 interface DisclosureOfInformationProps {
   generalQuery: GeneralQuery

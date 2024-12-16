@@ -3,14 +3,14 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useId } from 'react'
 
-import { SectionItemEntityFragment } from '../../../graphql'
-import { formatDateString } from '../../../utils/formatDateString'
-import { generateImageSizes } from '../../../utils/generateImageSizes'
-import { hasAttributes, WithAttributes } from '../../../utils/isDefined'
-import { isToday } from '../../../utils/isToday'
-import Button from '../../atoms/Button'
-import Link from '../../atoms/Link'
-import Subtitle from '../../atoms/Subtitle'
+import Button from '@/components/atoms/Button'
+import Link from '@/components/atoms/Link'
+import Subtitle from '@/components/atoms/Subtitle'
+import { SectionItemEntityFragment } from '@/graphql'
+import { formatDateString } from '@/utils/formatDateString'
+import { generateImageSizes } from '@/utils/generateImageSizes'
+import { hasAttributes, WithAttributes } from '@/utils/isDefined'
+import { isToday } from '@/utils/isToday'
 
 interface CardProps {
   sectionItem: WithAttributes<SectionItemEntityFragment>

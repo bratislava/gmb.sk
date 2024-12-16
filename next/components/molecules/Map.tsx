@@ -17,11 +17,11 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { usePreviousImmediate } from 'rooks'
 
-import GmbLogoIcon from '../../assets/icons/map-icons/gmb-logo.svg'
-import MirbachovPalacIcon from '../../assets/icons/map-icons/mirbachov-palac.svg'
-import PalffyhoPalacIcon from '../../assets/icons/map-icons/palffyho-palac.svg'
-import { useGeneralContext } from '../../utils/generalContext'
-import Link from '../atoms/Link'
+import GmbLogoIcon from '@/assets/icons/map-icons/gmb-logo.svg'
+import MirbachovPalacIcon from '@/assets/icons/map-icons/mirbachov-palac.svg'
+import PalffyhoPalacIcon from '@/assets/icons/map-icons/palffyho-palac.svg'
+import Link from '@/components/atoms/Link'
+import { useGeneralContext } from '@/utils/generalContext'
 
 interface MapProps {
   mapboxAccessToken: string

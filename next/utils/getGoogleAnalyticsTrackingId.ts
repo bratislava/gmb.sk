@@ -1,4 +1,4 @@
-import { logError } from './logger'
+import { logError } from '@/utils/logger'
 
 export const getGoogleAnalyticsTrackingId = () => {
   if (!process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID) {

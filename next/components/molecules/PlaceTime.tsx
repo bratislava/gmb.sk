@@ -1,6 +1,6 @@
-import { ContentPagePlaceFragment, DatetimeFragment } from '../../graphql'
-import { SidePanelPlace } from '../atoms/SidePanelPlace'
-import { SidePanelTime } from '../atoms/SidePanelTime'
+import { SidePanelPlace } from '@/components/atoms/SidePanelPlace'
+import { SidePanelTime } from '@/components/atoms/SidePanelTime'
+import { ContentPagePlaceFragment, DatetimeFragment } from '@/graphql'
 
 interface IPlaceTimeProps {
   place: ContentPagePlaceFragment | undefined

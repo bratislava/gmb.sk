@@ -9,8 +9,8 @@ import { Autoplay, Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { NavigationOptions } from 'swiper/types'
 
-import { ImageEntityFragment } from '../../graphql'
-import { WithAttributes } from '../../utils/isDefined'
+import { ImageEntityFragment } from '@/graphql'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface ImgSwiperProps {
   slides?: WithAttributes<ImageEntityFragment>[]

@@ -1,10 +1,10 @@
 import { useToggleState } from '@react-stately/toggle'
 import type { AriaCheckboxProps } from '@react-types/checkbox'
 import cx from 'classnames'
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { mergeProps, useCheckbox, useFocusRing, VisuallyHidden } from 'react-aria'
 
-import CheckIcon from '../../assets/icons/check.svg'
+import CheckIcon from '@/assets/icons/check.svg'
 
 /* eslint-disable react/destructuring-assignment */
 

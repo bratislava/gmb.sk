@@ -1,10 +1,10 @@
 import cx from 'classnames'
 
-import { TicketEntityFragment } from '../../../graphql'
-import { WithAttributes } from '../../../utils/isDefined'
-import CityGalleryMarkdown from '../../atoms/CityGalleryMarkdown'
-import Ticket from '../Ticket/Ticket'
-import Section from './Section'
+import CityGalleryMarkdown from '@/components/atoms/CityGalleryMarkdown'
+import Section from '@/components/molecules/sections/Section'
+import Ticket from '@/components/molecules/Ticket/Ticket'
+import { TicketEntityFragment } from '@/graphql'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface TicketsSectionProps {
   tickets: WithAttributes<TicketEntityFragment>[]

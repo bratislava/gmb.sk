@@ -4,10 +4,10 @@ import { useTranslation } from 'next-i18next'
 import { useCallback } from 'react'
 import { useCookies } from 'react-cookie'
 
-import { ContentPageEntityFragment } from '../../graphql'
-import { LocalStorageEnum } from '../../types/localStorage.d'
-import { WithAttributes } from '../../utils/isDefined'
-import { getEquivalentRouteInTargetLocale } from '../../utils/localeRoutes'
+import { ContentPageEntityFragment } from '@/graphql'
+import { LocalStorageEnum } from '@/types/localStorage'
+import { WithAttributes } from '@/utils/isDefined'
+import { getEquivalentRouteInTargetLocale } from '@/utils/localeRoutes'
 
 interface AppLangSwitchersProps {
   contentPage?: WithAttributes<ContentPageEntityFragment>

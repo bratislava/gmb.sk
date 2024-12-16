@@ -1,7 +1,7 @@
-import { PartnerEntityFragment } from '../../../graphql'
-import { WithAttributes } from '../../../utils/isDefined'
-import Link from '../../atoms/Link'
-import Section from './Section'
+import Link from '@/components/atoms/Link'
+import Section from '@/components/molecules/sections/Section'
+import { PartnerEntityFragment } from '@/graphql'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface PartnersSectionProps {
   title?: string

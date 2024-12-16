@@ -1,6 +1,6 @@
 import cx from 'classnames'
 
-import Link from './Link'
+import Link from '@/components/atoms/Link'
 
 type ButtonProps = React.DetailedHTMLProps<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,

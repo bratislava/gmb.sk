@@ -1,7 +1,7 @@
 import cx from 'classnames'
 
-import { ImageWithFormatsEntityFragment } from '../../graphql'
-import { WithAttributes } from '../../utils/isDefined'
+import { ImageWithFormatsEntityFragment } from '@/graphql'
+import { WithAttributes } from '@/utils/isDefined'
 
 interface ImageGalleryTileProps {
   image?: WithAttributes<ImageWithFormatsEntityFragment> | null

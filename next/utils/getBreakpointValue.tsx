@@ -1,7 +1,7 @@
 import resolveConfig from 'tailwindcss/resolveConfig'
 import { KeyValuePair } from 'tailwindcss/types/config'
 
-import tailwindConfig from '../tailwind.config'
+import tailwindConfig from '@/tailwind.config'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const fullConfig = resolveConfig(tailwindConfig as any)
