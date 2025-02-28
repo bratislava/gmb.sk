@@ -13,6 +13,9 @@ WORKDIR /build
 COPY ./package.json ./yarn.lock ./
 # Uncomment if you need any to apply any patches
 COPY patches ./patches
+# copy any installation files for Strapi plugins you want to build. For example:
+# COPY src/plugins/<package-name>/package.json src/plugins/<package-name>/yarn.lock ./src/plugins/<package-name>/
+# Or leave empty (do not add anyting) if you don't have any custom plugins (most likely ./plugins directory)
 
 FROM build-base AS install-prod
 ENV YARN_CACHE_FOLDER=/build/.cache/yarn
@@ -56,5 +59,4 @@ COPY --chown=node:node --from=install-prod /build/node_modules ./node_modules
 COPY --chown=node:node --from=build /build/app/config ./config
 COPY --chown=node:node --from=build /build/app/public ./public
 COPY --chown=node:node --from=build /build/app/dist ./dist
-COPY --chown=node:node --from=build /build/app/src/plugins/preview-button-i18n/ ./src/plugins/preview-button-i18n/
 CMD [ "strapi", "start" ]
