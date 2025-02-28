@@ -82,6 +82,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/robots.txt',
+        destination: '/api/robots',
+        permanent: true,
+      },
+      {
         source: '/sk/home',
         destination: '/',
         permanent: true,
