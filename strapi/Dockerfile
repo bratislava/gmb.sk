@@ -1,4 +1,4 @@
-FROM node:16-alpine AS base
+FROM node:18.20.7 AS base
 
 FROM base AS build-base
 RUN apk update \

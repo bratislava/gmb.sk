@@ -26,7 +26,7 @@
     "react-router-dom": "^6.2.1"
   },
   "engines": {
-    "node": ">=12.x.x <=16.x.x",
+    "node": ">=14.x.x <=18.x.x",
     "npm": ">=6.0.0"
   },
   "author": {
@@ -53,5 +53,9 @@
     "draft",
     "page",
     "next"
-  ]
+  ],
+  "volta": {
+    "node": "18.20.7",
+    "yarn": "1.22.22"
+  }
 }
