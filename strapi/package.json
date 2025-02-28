@@ -9,7 +9,7 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "postinstall": "patch-package && yarn --cwd ./src/plugins/preview-button-i18n/ install"
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "cross-env": "^7.0.3"
