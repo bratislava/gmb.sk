@@ -11,6 +11,7 @@ module.exports = {
     returnNull: false,
   },
   serializeConfig: false,
+  defaultNS: ['translation'], // Changed to match the namespace used by i18next-parser
   reloadOnPrerender: process.env.NODE_ENV === 'development',
   localePath: path.resolve('./public/locales'),
 }
