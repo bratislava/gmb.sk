@@ -249,7 +249,7 @@ interface PanelProps {
 }
 
 const Panel = ({ title, content, value, onValueChange, isOpen, setPanel }: PanelProps) => {
-  const { t } = useTranslation(['common'])
+  const { t } = useTranslation()
   return (
     <>
       <div
