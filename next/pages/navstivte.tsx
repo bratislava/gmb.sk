@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps<VisitUsProps> = async ({ locale = 's
     client.General({ locale }),
     client.VisitUsPage({ locale }),
     client.News({ locale, tag: getRouteForLocale('aktuality', locale) }),
-    serverSideTranslations(locale, ['common']),
+    serverSideTranslations(locale),
   ])
 
   return {

@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps<IndexProps> = async ({ locale = 'sk'
     client.General({ locale }),
     client.HomePage({ locale }),
     client.News({ locale, tag: locale === 'en' ? 'news' : 'aktuality' }),
-    serverSideTranslations(locale, ['common']),
+    serverSideTranslations(locale),
   ])
 
   return {

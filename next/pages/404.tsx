@@ -21,7 +21,7 @@ const Custom404: NextPage<ErrorProps> = ({ generalQuery }: ErrorProps) => {
 export const getStaticProps: GetStaticProps<ErrorProps> = async ({ locale = 'sk' }) => {
   const [generalQuery, translations] = await Promise.all([
     client.General({ locale }),
-    serverSideTranslations(locale, ['common']),
+    serverSideTranslations(locale),
   ])
   return {
     props: {

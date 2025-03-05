@@ -93,7 +93,7 @@ export const getStaticProps: GetStaticProps<ExhibitionsProps> = async ({ locale 
       tag: getRouteForLocale('program-ostatne', locale),
     }),
     client.Places({ locale }),
-    serverSideTranslations(locale, ['common']),
+    serverSideTranslations(locale),
   ])
 
   const tagExhibitions = getRouteForLocale('vystavy', locale)
