@@ -12,7 +12,9 @@
     "lint": "eslint components pages utils",
     "lint:quiet": "yarn lint --quiet",
     "lint:fix": "yarn lint --fix",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "parse-translations": "i18next",
+    "update-i18next": "yarn add next-i18next@latest react-i18next@latest i18next@latest -E && yarn add eslint-plugin-i18next@latest i18next-parser@latest --dev --exact"
   },
   "dependencies": {
     "@react-stately/toggle": "^3.5.1",
@@ -26,6 +28,7 @@
     "gsap": "^3.11.5",
     "html-react-parser": "^3.0.16",
     "i18next": "22.5.0",
+    "i18next-parser": "^9.3.0",
     "lodash": "^4.17.21",
     "mapbox-gl": "^2.14.1",
     "meilisearch": "0.32.4",
