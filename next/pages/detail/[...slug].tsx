@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({
   const [generalQuery, { contentPageBySlug: contentPage }, translations] = await Promise.all([
     client.General({ locale }),
     client.ContentPageBySlug({ slug, locale, isPublished: !preview }),
-    serverSideTranslations(locale, ['common']),
+    serverSideTranslations(locale),
   ])
 
   if (!contentPage) {
