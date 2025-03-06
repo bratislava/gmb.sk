@@ -7,7 +7,6 @@ import LinkedInIcon from '@/assets/icons/social-platforms/linkedin.svg'
 import TwitterIcon from '@/assets/icons/social-platforms/twitter.svg'
 import WhatsAppIcon from '@/assets/icons/social-platforms/whatsapp.svg'
 import Link from '@/components/atoms/Link'
-import { capitalizeFirstLetter } from '@/utils/capitalize'
 import { getNextUrl } from '@/utils/getNextUrl'
 
 interface ShareButtonProps {
@@ -50,6 +49,14 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
     linkedin: LinkedInIcon,
   }[platform]
 
+  const translationMap = {
+    facebook: t('common.shareOn.facebook'),
+    email: t('common.shareOn.email'),
+    twitter: t('common.shareOn.twitter'),
+    whatsapp: t('common.shareOn.whatsapp'),
+    linkedin: t('common.shareOn.linkedin'),
+  } satisfies Record<Platform, string>
+
   return (
     <Link
       href={encodedHref}
@@ -62,7 +69,7 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
         window.open(encodedHref, t('common.share'), 'width=600,height=600')
         event.preventDefault()
       }}
-      aria-label={t(`common.shareOn${capitalizeFirstLetter(platform)}`)}
+      aria-label={translationMap[platform]}
     >
       <span className={cx(className)}>
         <ShareIcon {...size} className="dw-[32]" />
