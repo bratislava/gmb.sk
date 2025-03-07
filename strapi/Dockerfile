@@ -1,6 +1,7 @@
-FROM node:16-alpine AS base
+# Froze version due to https://github.com/nodejs/docker-node/issues/2009
+FROM node:18-alpine3.18 AS base
 
-FROM base AS build-base
+FROM base AS install
 RUN apk update \
  && apk add --no-cache build-base \
                        gcc \
@@ -10,31 +11,32 @@ RUN apk update \
                        libpng-dev \
                        vips-dev
 WORKDIR /build
-COPY ./package.json ./yarn.lock ./
+COPY ./package.json package-lock.json ./
 # Uncomment if you need any to apply any patches
 COPY patches ./patches
+# copy any installation files for Strapi plugins you want to build. For example:
+# COPY src/plugins/<package-name>/package.json src/plugins/<package-name>/package-lock.json ./src/plugins/<package-name>/
+# Or leave empty (do not add anything) if you don't have any custom plugins (most likely ./plugins directory)
 
-FROM build-base AS install-prod
-ENV YARN_CACHE_FOLDER=/build/.cache/yarn
-RUN --mount=type=cache,target=/build/.cache/yarn \
-    yarn config set network-timeout 600000 -g \
- && yarn install --production
+ENV NPM_CONFIG_CACHE=/build/.cache/npm
+RUN --mount=type=cache,target=/build/.cache/npm \
+    npm clean-install --include=dev
 
-FROM install-prod AS build
+FROM install AS build
 WORKDIR /build/app
 COPY ./ .
-RUN --mount=type=cache,target=/build/.cache/yarn \
-    yarn install --development \
- && yarn build
+RUN --mount=type=cache,target=/build/.cache/npm \
+    npm run build \
+ && npm prune --production
 
 FROM base AS app-base
-RUN apk add --no-cache vips-dev \
-                       tini
+RUN apk add --update --no-cache vips-dev \
+                                tini
 RUN mkdir -p /home/node/app \
  && chown node:node /home/node/app
 USER node
 WORKDIR /home/node/app
-# Adds strapi cli to the PATH
+# Adds Strapi cli to the PATH
 ENV PATH=/home/node/app/node_modules/.bin:$PATH
 ENV NODE_ENV=production
 EXPOSE 1337
@@ -47,14 +49,13 @@ ENTRYPOINT [ "/sbin/tini", "--" ]
 
 FROM app-base AS dev
 ENV NODE_ENV=development
-COPY --chown=node:node --from=build /build/node_modules ./node_modules
-CMD [ "yarn", "develop" ]
+COPY --chown=node:node --from=install /build/node_modules ./node_modules
+CMD [ "npm", "run", "develop" ]
 
 FROM app-base AS prod
-COPY --chown=node:node --from=build /build/app/favicon.ico /build/package.json /build/yarn.lock /build/app/tsconfig.json ./
-COPY --chown=node:node --from=install-prod /build/node_modules ./node_modules
+COPY --chown=node:node --from=build /build/app/favicon.ico /build/package.json /build/app/tsconfig.json ./
+COPY --chown=node:node --from=build /build/node_modules ./node_modules
 COPY --chown=node:node --from=build /build/app/config ./config
 COPY --chown=node:node --from=build /build/app/public ./public
 COPY --chown=node:node --from=build /build/app/dist ./dist
-COPY --chown=node:node --from=build /build/app/src/plugins/preview-button-i18n/ ./src/plugins/preview-button-i18n/
 CMD [ "strapi", "start" ]
