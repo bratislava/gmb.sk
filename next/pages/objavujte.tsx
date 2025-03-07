@@ -62,7 +62,7 @@ export const getStaticProps: GetStaticProps<ExploreProps> = async ({ locale = 's
       locale,
       tag: getRouteForLocale('objavujte-ostatne', locale),
     }),
-    serverSideTranslations(locale, ['common']),
+    serverSideTranslations(locale),
   ])
 
   return {

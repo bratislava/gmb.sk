@@ -51,7 +51,7 @@ export const getStaticProps: GetStaticProps = async ({ locale = 'sk' }) => {
   const [generalQuery, { general: generalMoreFile }, translations] = await Promise.all([
     client.General({ locale }),
     client.DisclosureOfInformationPage({ locale }),
-    serverSideTranslations(locale, ['common']),
+    serverSideTranslations(locale),
   ])
 
   return {

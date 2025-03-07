@@ -77,6 +77,7 @@ type FeaturePoint =
 
 interface Gallery {
   key: string
+  localisedName: string
   icon: FC<SVGProps<SVGSVGElement>>
   hoverIcon: FC<SVGProps<SVGSVGElement>>
   coordinates: [number, number]
@@ -139,6 +140,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
   const galleries: Gallery[] = [
     {
       key: 'mirbach',
+      localisedName: t('map.palaceTitle.mirbach'),
       icon: GmbLogoIcon,
       hoverIcon: MirbachovPalacIcon,
       coordinates: [17.107_771, 48.144_776],
@@ -169,6 +171,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
     },
     {
       key: 'palffy',
+      localisedName: t('map.palaceTitle.palffy'),
       icon: GmbLogoIcon,
       hoverIcon: PalffyhoPalacIcon,
       coordinates: [17.107_084, 48.142_137],
@@ -446,7 +449,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
                       className="flex items-center gap-2 text-md hover:underline"
                       onClick={(e) => onGalleryClick(gallery, e)}
                     >
-                      <span>{t(`map.${gallery.key}Palace`)}</span>
+                      <span>{gallery.localisedName}</span>
                     </button>
                   ))}
                 </>

@@ -53,7 +53,7 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({
       locale,
       isPublished: !preview,
     }),
-    serverSideTranslations(locale, ['common']),
+    serverSideTranslations(locale),
   ])
 
   if (!contentPage) {
