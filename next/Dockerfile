@@ -1,21 +1,21 @@
-FROM node:18-alpine AS base
+FROM node:18-alpine3.18 AS base
 ENV NEXT_TELEMETRY_DISABLED=1
 
-FROM base AS build-base
+FROM base AS install
 WORKDIR /build
 COPY ./package.json package-lock.json ./
 ENV NPM_CONFIG_CACHE=/build/.cache/npm
 RUN --mount=type=cache,target=/build/.cache/npm \
     npm clean-install --include=dev
 
-FROM build-base AS build
+FROM install AS build
 COPY . ./
 RUN --mount=type=cache,target=/build/.cache/npm \
     npm run build \
  && npm prune --production
 
 FROM base AS app-base
-RUN apk add --no-cache tini
+RUN apk add --update --no-cache tini
 RUN mkdir -p /home/node/app \
  && chown node:node /home/node/app
 USER node
@@ -31,7 +31,7 @@ ENTRYPOINT [ "/sbin/tini", "--" ]
 
 FROM app-base AS dev
 ENV NODE_ENV=development
-COPY --chown=node:node --from=build-base /build/node_modules ./node_modules
+COPY --chown=node:node --from=install /build/node_modules ./node_modules
 CMD [ "npm", "run", "develop" ]
 
 FROM app-base AS prod

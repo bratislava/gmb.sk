@@ -1,6 +1,7 @@
+# Froze version due to https://github.com/nodejs/docker-node/issues/2009
 FROM node:18-alpine3.18 AS base
 
-FROM base AS build-base
+FROM base AS install
 RUN apk update \
  && apk add --no-cache build-base \
                        gcc \
@@ -21,7 +22,7 @@ ENV NPM_CONFIG_CACHE=/build/.cache/npm
 RUN --mount=type=cache,target=/build/.cache/npm \
     npm clean-install --include=dev
 
-FROM build-base AS build
+FROM install AS build
 WORKDIR /build/app
 COPY ./ .
 RUN --mount=type=cache,target=/build/.cache/npm \
@@ -48,7 +49,7 @@ ENTRYPOINT [ "/sbin/tini", "--" ]
 
 FROM app-base AS dev
 ENV NODE_ENV=development
-COPY --chown=node:node --from=build-base /build/node_modules ./node_modules
+COPY --chown=node:node --from=install /build/node_modules ./node_modules
 CMD [ "npm", "run", "develop" ]
 
 FROM app-base AS prod
