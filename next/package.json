@@ -14,7 +14,7 @@
     "lint:fix": "yarn lint --fix",
     "prettier": "prettier --write .",
     "parse-translations": "i18next",
-    "update-i18next": "yarn add next-i18next@latest react-i18next@latest i18next@latest -E && yarn add eslint-plugin-i18next@latest i18next-parser@latest --dev --exact"
+    "update-i18next": "npm install next-i18next@latest react-i18next@latest i18next@latest --save-exact && yarn add eslint-plugin-i18next@latest i18next-parser@latest --save-dev --save-exact"
   },
   "dependencies": {
     "@react-stately/toggle": "^3.5.1",
