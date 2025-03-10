@@ -23,7 +23,7 @@ export const getStaticProps: GetStaticProps<ArchivePageProps> = async ({ locale 
   const [generalQuery, { archivePage }, translations] = await Promise.all([
     client.General({ locale }),
     client.ArchivePage({ locale }),
-    serverSideTranslations(locale, ['common']),
+    serverSideTranslations(locale),
   ])
 
   return {
