@@ -52,10 +52,11 @@ const Navigation = ({ contentPage }: NavigationProps) => {
       href: '/zbierky',
       label: t('navigation.collections'),
     },
-    {
-      href: 'https://umeniemesta.sk',
-      label: t('navigation.artOfTheCity'),
-    },
+    // TODO hidden until confirmed to release
+    // {
+    //   href: 'https://umeniemesta.sk',
+    //   label: t('navigation.artOfTheCity'),
+    // },
   ]
 
   useEffect(() => {
