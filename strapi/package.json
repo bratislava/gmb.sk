@@ -15,11 +15,11 @@
     "cross-env": "^7.0.3"
   },
   "dependencies": {
-    "@strapi/plugin-graphql": "4.11.4",
-    "@strapi/plugin-i18n": "4.11.4",
-    "@strapi/plugin-upload": "4.11.4",
-    "@strapi/plugin-users-permissions": "4.11.4",
-    "@strapi/strapi": "4.11.4",
+    "@strapi/plugin-graphql": "4.14.0",
+    "@strapi/plugin-i18n": "4.14.0",
+    "@strapi/plugin-upload": "4.14.0",
+    "@strapi/plugin-users-permissions": "4.14.0",
+    "@strapi/strapi": "4.14.0",
     "patch-package": "^7.0.0",
     "pg": "8.8.0",
     "postinstall-postinstall": "^2.1.0",
