@@ -19,7 +19,9 @@
         "name": "next"
       }
     ],
-    "baseUrl": "./",
+    // TODO - solve a problem with build when uncommented
+    // baseUrl should be specified when paths is used. It wasn't. But when we tried to specify it, it caused a problem with i18n from useTranslation() not having .language prop.
+    // "baseUrl": "./",
     "paths": {
       "@/*": ["./*"]
     }
