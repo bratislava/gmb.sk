@@ -41,6 +41,8 @@ spec:
                 name: ${BUILD_REPOSITORY_NAME}-plugin-preview-secret
             - secretRef:
                 name: minio-secret-standalone
+            - secretRef:
+                name: ${BUILD_REPOSITORY_NAME}-mailgun-secret
             - configMapRef:
                 name: ${BUILD_REPOSITORY_NAME}-env
             - configMapRef:
