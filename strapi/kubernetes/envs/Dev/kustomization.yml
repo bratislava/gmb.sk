@@ -1,6 +1,7 @@
 resources:
   - scaler.yml
   - ../../base
+  - secrets/mailgun.secret.yml
 
 generatorOptions:
   disableNameSuffixHash: true
