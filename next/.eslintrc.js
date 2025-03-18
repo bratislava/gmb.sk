@@ -47,5 +47,5 @@ module.exports = {
     '@typescript-eslint/restrict-template-expressions': 'off',
     'import/extensions': 'off',
   },
-  ignorePatterns: ['*.config.*', 'graphql', '.eslintrc.js', '*.md'],
+  ignorePatterns: ['*.config.*', 'src/services/graphql', '.eslintrc.js', '*.md'],
 }
