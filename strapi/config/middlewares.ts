@@ -1,4 +1,5 @@
 export default [
+  "strapi::logger",
   "strapi::errors",
   /**
    * Setting up strapi::security middleware to avoid some blocking (e.g. thumbnails in Media Library are not shown without this setting).
@@ -20,7 +21,6 @@ export default [
   },
   "strapi::cors",
   "strapi::poweredBy",
-  "strapi::logger",
   "strapi::query",
   "strapi::body",
   "strapi::session",
