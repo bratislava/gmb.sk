@@ -1,5 +1,5 @@
 # Froze version due to https://github.com/nodejs/docker-node/issues/2009
-FROM node:18-alpine3.18 AS base
+FROM node:20.9-alpine AS base
 
 FROM base AS install
 RUN apk update \
