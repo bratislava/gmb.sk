@@ -7,9 +7,9 @@ import {
   ExhibitionsByPlaceQuery,
   GeneralQuery,
 } from '@/src/services/graphql'
+import { client } from '@/src/services/graphql/gql'
 import { GeneralContextProvider } from '@/src/utils/generalContext'
 import { getTodaysDate } from '@/src/utils/getTodaysDate'
-import { client } from '@/src/utils/gql'
 import { hasAttributes, withAttributes } from '@/src/utils/isDefined'
 import { getRouteForLocale } from '@/src/utils/localeRoutes'
 

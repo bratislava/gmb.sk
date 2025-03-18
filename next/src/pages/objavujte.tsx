@@ -3,8 +3,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import ExplorePage from '@/src/components/pages/ExplorePage'
 import { ExplorePageQuery, GeneralQuery, TagsByCategorySlugQuery } from '@/src/services/graphql'
+import { client } from '@/src/services/graphql/gql'
 import { GeneralContextProvider } from '@/src/utils/generalContext'
-import { client } from '@/src/utils/gql'
 import { hasAttributes } from '@/src/utils/isDefined'
 import { getRouteForLocale } from '@/src/utils/localeRoutes'
 
