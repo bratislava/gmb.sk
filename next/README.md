@@ -3,14 +3,13 @@
 Install dependencies:
 
 ```bash
-yarn
+npm install
 ```
 
 To start the frontend app, simply run:
 
 ```bash
-yarn dev
-# the same as yarn develop
+npm run dev
 ```
 
 For CMS setup see `strapi` directory. You can also run the project against staging or production strapi (useful when developing and debugging) - provided that you're not working on Strapi model changes.
@@ -24,7 +23,7 @@ When you change something in Strapi Content type builder, and/or if you change G
 To generate new types run:
 
 ```
-yarn gen
+npm run gen
 ```
 
 For more information, refer to [the documentation](/docs/libs/Strapi-SDK.md).
@@ -62,8 +61,8 @@ async rewrites() {
 
 ## Static Site Generation
 
-If you want to test static site generation locally, you need to run `yarn build` and `yarn start`. This commands run by default with the prod env variable, so in order to have the local env variable for strapi, you need to create `.env.local` with `STRAPI_URL=localhost:1337` to override the prod values. This file is ignored by git, because it often contains sensitive secrets
+If you want to test static site generation locally, you need to run `npm run build` and `npm run start`. This commands run by default with the prod env variable, so in order to have the local env variable for strapi, you need to create `.env.local` with `STRAPI_URL=localhost:1337` to override the prod values. This file is ignored by git, because it often contains sensitive secrets
 
-## Fluid resposive design
+## Fluid responsive design
 
 If you need to change some font sizes or spacing, check the `styles/globals.css` and `tailwing.config.js` files how are all sizes set up.
