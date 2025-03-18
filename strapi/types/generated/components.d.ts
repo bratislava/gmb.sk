@@ -1,4 +1,4 @@
-import type { Schema, Attribute } from '@strapi/strapi';
+import type { Attribute, Schema } from '@strapi/strapi';
 
 export interface BlocksContactCardItem extends Schema.Component {
   collectionName: 'components_blocks_contact_card_items';
@@ -33,15 +33,15 @@ export interface BlocksContentPageItem extends Schema.Component {
 export interface BlocksExhibitionArchive extends Schema.Component {
   collectionName: 'components_blocks_exhibition_archives';
   info: {
-    displayName: 'exhibition archive';
     description: '';
+    displayName: 'exhibition archive';
   };
   attributes: {
-    title: Attribute.String & Attribute.Required;
-    subtitle: Attribute.String;
-    perex: Attribute.Text;
     color: Attribute.String;
-    coverMedia: Attribute.Media;
+    coverMedia: Attribute.Media<'images'>;
+    perex: Attribute.Text;
+    subtitle: Attribute.String;
+    title: Attribute.String & Attribute.Required;
   };
 }
 
@@ -52,8 +52,8 @@ export interface BlocksFileItem extends Schema.Component {
     icon: 'file';
   };
   attributes: {
+    file: Attribute.Media<'images' | 'files' | 'audios'> & Attribute.Required;
     title: Attribute.String;
-    file: Attribute.Media & Attribute.Required;
   };
 }
 
@@ -71,14 +71,14 @@ export interface BlocksHighlightOverride extends Schema.Component {
 export interface BlocksLinkItem extends Schema.Component {
   collectionName: 'components_blocks_link_items';
   info: {
+    description: '';
     displayName: 'link item';
     icon: 'external-link-alt';
-    description: '';
   };
   attributes: {
+    newWindow: Attribute.Boolean & Attribute.DefaultTo<true>;
     title: Attribute.String & Attribute.Required;
     url: Attribute.String;
-    newWindow: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -89,8 +89,8 @@ export interface BlocksLinks extends Schema.Component {
     icon: 'list-ul';
   };
   attributes: {
-    title: Attribute.String;
     links: Attribute.Component<'blocks.link-item', true>;
+    title: Attribute.String;
   };
 }
 
@@ -101,11 +101,11 @@ export interface BlocksPalace extends Schema.Component {
     icon: 'building';
   };
   attributes: {
-    title: Attribute.String;
     address: Attribute.String;
-    zip: Attribute.String;
     city: Attribute.String;
     phone: Attribute.String;
+    title: Attribute.String;
+    zip: Attribute.String;
   };
 }
 
@@ -127,13 +127,13 @@ export interface BlocksPartnerItem extends Schema.Component {
 export interface BlocksPositionItem extends Schema.Component {
   collectionName: 'components_blocks_position_items';
   info: {
+    description: '';
     displayName: 'position item';
     icon: 'user';
-    description: '';
   };
   attributes: {
-    title: Attribute.String;
     names: Attribute.Text;
+    title: Attribute.String;
   };
 }
 
@@ -144,28 +144,28 @@ export interface BlocksSeo extends Schema.Component {
     icon: 'bolt';
   };
   attributes: {
-    metaTitle: Attribute.String;
-    metaDescription: Attribute.Text;
     keywords: Attribute.String;
-    metaImage: Attribute.Media &
+    metaDescription: Attribute.Text;
+    metaImage: Attribute.Media<'images'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
       }>;
+    metaTitle: Attribute.String;
   };
 }
 
 export interface SectionsArchiveSection extends Schema.Component {
   collectionName: 'components_sections_archive_sections';
   info: {
-    displayName: 'archive section';
     description: '';
+    displayName: 'archive section';
   };
   attributes: {
-    title: Attribute.String;
-    submenuTitle: Attribute.String;
     archiveCard: Attribute.Component<'blocks.exhibition-archive'>;
+    submenuTitle: Attribute.String;
+    title: Attribute.String;
   };
 }
 
@@ -176,8 +176,8 @@ export interface SectionsAudioSection extends Schema.Component {
     icon: 'microphone';
   };
   attributes: {
-    title: Attribute.String;
     submenuTitle: Attribute.String;
+    title: Attribute.String;
     url: Attribute.String;
   };
 }
@@ -185,17 +185,20 @@ export interface SectionsAudioSection extends Schema.Component {
 export interface SectionsContactCardsSection extends Schema.Component {
   collectionName: 'components_sections_contact_cards_sections';
   info: {
+    description: '';
     displayName: 'contact cards section';
     icon: 'address-card';
-    description: '';
   };
   attributes: {
-    title: Attribute.String;
-    submenuTitle: Attribute.String;
     contacts: Attribute.Component<'blocks.contact-card-item', true> &
-      Attribute.SetMinMax<{
-        min: 1;
-      }>;
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+    submenuTitle: Attribute.String;
+    title: Attribute.String;
   };
 }
 
@@ -206,9 +209,9 @@ export interface SectionsDownloadSection extends Schema.Component {
     icon: 'cloud-download-alt';
   };
   attributes: {
-    title: Attribute.String;
-    submenuTitle: Attribute.String;
     files: Attribute.Component<'blocks.file-item', true>;
+    submenuTitle: Attribute.String;
+    title: Attribute.String;
   };
 }
 
@@ -219,9 +222,9 @@ export interface SectionsGallerySection extends Schema.Component {
     icon: 'images';
   };
   attributes: {
-    title: Attribute.String;
+    medias: Attribute.Media<'images', true>;
     submenuTitle: Attribute.String;
-    medias: Attribute.Media;
+    title: Attribute.String;
   };
 }
 
@@ -232,8 +235,8 @@ export interface SectionsMapSection extends Schema.Component {
     icon: 'map';
   };
   attributes: {
-    title: Attribute.String;
     submenuTitle: Attribute.String;
+    title: Attribute.String;
   };
 }
 
@@ -244,8 +247,8 @@ export interface SectionsNewsSection extends Schema.Component {
     icon: 'newspaper';
   };
   attributes: {
-    title: Attribute.String;
     submenuTitle: Attribute.String;
+    title: Attribute.String;
   };
 }
 
@@ -274,16 +277,16 @@ export interface SectionsOpeningHoursSection extends Schema.Component {
 export interface SectionsPageSection extends Schema.Component {
   collectionName: 'components_sections_page_sections';
   info: {
+    description: '';
     displayName: 'page section';
     icon: 'bars';
-    description: '';
   };
   attributes: {
-    title: Attribute.String;
-    submenuTitle: Attribute.String;
+    contentPages: Attribute.Component<'blocks.content-page-item', true>;
     layout: Attribute.Enumeration<['chessboard', 'cards', 'fullwidth']> &
       Attribute.DefaultTo<'chessboard'>;
-    contentPages: Attribute.Component<'blocks.content-page-item', true>;
+    submenuTitle: Attribute.String;
+    title: Attribute.String;
   };
 }
 
@@ -294,8 +297,8 @@ export interface SectionsRichtextSection extends Schema.Component {
     icon: 'align-center';
   };
   attributes: {
-    submenuTitle: Attribute.String;
     content: Attribute.RichText;
+    submenuTitle: Attribute.String;
   };
 }
 
@@ -306,8 +309,8 @@ export interface SectionsSliderSection extends Schema.Component {
     icon: 'arrows-alt-h';
   };
   attributes: {
+    medias: Attribute.Media<'images', true>;
     submenuTitle: Attribute.String;
-    medias: Attribute.Media;
   };
 }
 
@@ -318,9 +321,9 @@ export interface SectionsTicketsSection extends Schema.Component {
     icon: 'ticket-alt';
   };
   attributes: {
-    title: Attribute.String;
     submenuTitle: Attribute.String;
     text: Attribute.RichText;
+    title: Attribute.String;
   };
 }
 
@@ -331,8 +334,8 @@ export interface SectionsVideoSection extends Schema.Component {
     icon: 'play-circle';
   };
   attributes: {
-    title: Attribute.String;
     submenuTitle: Attribute.String;
+    title: Attribute.String;
     url: Attribute.String;
   };
 }
