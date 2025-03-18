@@ -20,8 +20,8 @@
     "@strapi/plugin-upload": "4.15.5",
     "@strapi/plugin-users-permissions": "4.15.5",
     "@strapi/strapi": "4.15.5",
-    "patch-package": "^7.0.0",
-    "pg": "8.8.0",
+    "patch-package": "^7.0.2",
+    "pg": "8.11.6",
     "postinstall-postinstall": "^2.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -33,16 +33,16 @@
   "author": {
     "name": "A Strapi developer"
   },
+  "license": "MIT",
   "strapi": {
     "uuid": "20072671-bc90-4b88-a793-c0ab37171cec"
   },
   "engines": {
-    "node": ">=14.x.x <=18.x.x",
-    "npm": ">=6.0.0"
+    "node": ">=20.9.x",
+    "npm": ">=10.8.x"
   },
-  "license": "MIT",
   "volta": {
-    "node": "18.20.3",
-    "npm": "10.7.0"
+    "node": "20.9.0",
+    "npm": "10.8.1"
   }
 }
