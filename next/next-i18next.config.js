@@ -1,5 +1,5 @@
-const path = require('path')
-
+// This config is used by next-i18next. The `i18n` "subconfig" should be also imported and used in next.config.js.
+// Docs: https://github.com/i18next/next-i18next?tab=readme-ov-file#3-project-setup
 /**
  * @type {import('next-i18next').UserConfig}
  */
