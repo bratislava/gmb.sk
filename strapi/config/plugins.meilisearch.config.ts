@@ -1,4 +1,4 @@
-const config = {
+const meilisearchConfig = {
   host: process.env.MEILISEARCH_HOST,
   apiKey: process.env.MEILISEARCH_ADMIN_API_KEY,
 
@@ -34,4 +34,4 @@ const config = {
   },
 };
 
-export default config;
+export default meilisearchConfig;

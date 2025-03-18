@@ -6,8 +6,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import DownloadSection from '@/src/components/molecules/sections/DownloadSection'
 import PageWrapper from '@/src/components/pages/PageWrapper'
 import { DisclosureOfInformationPageQuery, GeneralQuery } from '@/src/services/graphql'
+import { client } from '@/src/services/graphql/gql'
 import { GeneralContextProvider } from '@/src/utils/generalContext'
-import { client } from '@/src/utils/gql'
 import { isDefined } from '@/src/utils/isDefined'
 
 interface DisclosureOfInformationProps {

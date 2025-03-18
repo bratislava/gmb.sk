@@ -3,8 +3,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import DetailPage from '@/src/components/pages/DetailPage'
 import { ContentPageBySlugQuery, GeneralQuery } from '@/src/services/graphql'
+import { client } from '@/src/services/graphql/gql'
 import { GeneralContextProvider } from '@/src/utils/generalContext'
-import { client } from '@/src/utils/gql'
 import { hasAttributes, isDefined, withAttributes } from '@/src/utils/isDefined'
 
 interface DetailProps {

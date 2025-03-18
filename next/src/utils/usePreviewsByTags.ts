@@ -2,8 +2,8 @@ import last from 'lodash/last'
 import useSWRInfinite from 'swr/infinite'
 
 import { PreviewsByTagsQueryVariables, SectionItemEntityFragment } from '@/src/services/graphql'
+import { client } from '@/src/services/graphql/gql'
 import { getTodaysDate } from '@/src/utils/getTodaysDate'
-import { client } from '@/src/utils/gql'
 import { hasAttributes, isDefined } from '@/src/utils/isDefined'
 
 export const PAGE_SIZE = 6
