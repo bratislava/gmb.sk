@@ -1,14 +1,14 @@
 {
   "kind": "collectionType",
-  "collectionName": "places",
+  "collectionName": "main_pages",
   "info": {
-    "singularName": "place",
-    "pluralName": "places",
-    "displayName": "8. Miesta",
+    "singularName": "main-page",
+    "pluralName": "main-pages",
+    "displayName": "2. Hlavné stránky",
     "description": ""
   },
   "options": {
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "pluginOptions": {
     "i18n": {
@@ -35,28 +35,32 @@
       "targetField": "title",
       "required": true
     },
-    "address": {
+    "sections": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "string",
-      "required": true
+      "type": "dynamiczone",
+      "components": [
+        "sections.tickets-section",
+        "sections.richtext-section",
+        "sections.page-section",
+        "sections.opening-hours-section",
+        "sections.newsletter-section",
+        "sections.news-section",
+        "sections.map-section"
+      ]
     },
-    "contentPages": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::content-page.content-page",
-      "mappedBy": "place"
-    },
-    "purchaseId": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
       "pluginOptions": {
         "i18n": {
-          "localized": false
+          "localized": true
         }
       },
-      "type": "string"
+      "component": "blocks.seo"
     }
   }
 }

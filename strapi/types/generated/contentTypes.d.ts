@@ -496,7 +496,7 @@ export interface ApiContactCardContactCard extends Schema.CollectionType {
   collectionName: 'contact_cards';
   info: {
     description: '';
-    displayName: '5. Kontakty';
+    displayName: '6. Kontakty';
     pluralName: 'contact-cards';
     singularName: 'contact-card';
   };
@@ -1159,11 +1159,88 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
   };
 }
 
+export interface ApiMainPageMainPage extends Schema.CollectionType {
+  collectionName: 'main_pages';
+  info: {
+    description: '';
+    displayName: '2. Hlavn\u00E9 str\u00E1nky';
+    pluralName: 'main-pages';
+    singularName: 'main-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::main-page.main-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    locale: Attribute.String;
+    localizations: Attribute.Relation<
+      'api::main-page.main-page',
+      'oneToMany',
+      'api::main-page.main-page'
+    >;
+    publishedAt: Attribute.DateTime;
+    sections: Attribute.DynamicZone<
+      [
+        'sections.tickets-section',
+        'sections.richtext-section',
+        'sections.page-section',
+        'sections.opening-hours-section',
+        'sections.newsletter-section',
+        'sections.news-section',
+        'sections.map-section'
+      ]
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo: Attribute.Component<'blocks.seo'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<'api::main-page.main-page', 'title'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::main-page.main-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPartnerPartner extends Schema.CollectionType {
   collectionName: 'partners';
   info: {
     description: '';
-    displayName: '3. Partneri';
+    displayName: '4. Partneri';
     pluralName: 'partners';
     singularName: 'partner';
   };
@@ -1223,7 +1300,7 @@ export interface ApiPlacePlace extends Schema.CollectionType {
   collectionName: 'places';
   info: {
     description: '';
-    displayName: '7. Miesta';
+    displayName: '8. Miesta';
     pluralName: 'places';
     singularName: 'place';
   };
@@ -1295,7 +1372,7 @@ export interface ApiTagCategoryTagCategory extends Schema.CollectionType {
   collectionName: 'tag_categories';
   info: {
     description: '';
-    displayName: '6. Kateg\u00F3rie tagov';
+    displayName: '7. Kateg\u00F3rie tagov';
     pluralName: 'tag-categories';
     singularName: 'tag-category';
   };
@@ -1354,7 +1431,7 @@ export interface ApiTagTag extends Schema.CollectionType {
   collectionName: 'tags';
   info: {
     description: '';
-    displayName: '2. Tagy';
+    displayName: '3. Tagy';
     pluralName: 'tags';
     singularName: 'tag';
   };
@@ -1416,7 +1493,7 @@ export interface ApiTicketTicket extends Schema.CollectionType {
   collectionName: 'tickets';
   info: {
     description: '';
-    displayName: '4. Permanentky';
+    displayName: '5. Permanentky';
     pluralName: 'tickets';
     singularName: 'ticket';
   };
@@ -1997,6 +2074,7 @@ declare module '@strapi/types' {
       'api::general.general': ApiGeneralGeneral;
       'api::get-involved-page.get-involved-page': ApiGetInvolvedPageGetInvolvedPage;
       'api::home-page.home-page': ApiHomePageHomePage;
+      'api::main-page.main-page': ApiMainPageMainPage;
       'api::partner.partner': ApiPartnerPartner;
       'api::place.place': ApiPlacePlace;
       'api::tag-category.tag-category': ApiTagCategoryTagCategory;
