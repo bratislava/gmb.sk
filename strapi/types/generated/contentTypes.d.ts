@@ -1159,6 +1159,83 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
   };
 }
 
+export interface ApiMainPageMainPage extends Schema.CollectionType {
+  collectionName: 'main_pages';
+  info: {
+    description: '';
+    displayName: '8. Hlavn\u00E9 str\u00E1nky';
+    pluralName: 'main-pages';
+    singularName: 'main-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::main-page.main-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    locale: Attribute.String;
+    localizations: Attribute.Relation<
+      'api::main-page.main-page',
+      'oneToMany',
+      'api::main-page.main-page'
+    >;
+    publishedAt: Attribute.DateTime;
+    sections: Attribute.DynamicZone<
+      [
+        'sections.page-section',
+        'sections.tickets-section',
+        'sections.richtext-section',
+        'sections.opening-hours-section',
+        'sections.newsletter-section',
+        'sections.news-section',
+        'sections.map-section'
+      ]
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo: Attribute.Component<'blocks.seo'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<'api::main-page.main-page', 'title'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::main-page.main-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPartnerPartner extends Schema.CollectionType {
   collectionName: 'partners';
   info: {
@@ -1997,6 +2074,7 @@ declare module '@strapi/types' {
       'api::general.general': ApiGeneralGeneral;
       'api::get-involved-page.get-involved-page': ApiGetInvolvedPageGetInvolvedPage;
       'api::home-page.home-page': ApiHomePageHomePage;
+      'api::main-page.main-page': ApiMainPageMainPage;
       'api::partner.partner': ApiPartnerPartner;
       'api::place.place': ApiPlacePlace;
       'api::tag-category.tag-category': ApiTagCategoryTagCategory;

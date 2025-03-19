@@ -1116,7 +1116,7 @@ type GeneralRelationResponseCollection {
   data: [GeneralEntity!]!
 }
 
-union GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDownloadSection | ComponentSectionsGallerySection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
+union GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDownloadSection | ComponentSectionsGallerySection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
 
 type GetInvolvedPage {
   createdAt: DateTime
@@ -1375,6 +1375,63 @@ input LongFilterInput {
   startsWith: Long
 }
 
+type MainPage {
+  createdAt: DateTime
+  locale: String
+  localizations(filters: MainPageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): MainPageRelationResponseCollection
+  publishedAt: DateTime
+  sections: [MainPageSectionsDynamicZone]
+  seo: ComponentBlocksSeo
+  slug: String!
+  title: String!
+  updatedAt: DateTime
+}
+
+type MainPageEntity {
+  attributes: MainPage
+  id: ID
+}
+
+type MainPageEntityResponse {
+  data: MainPageEntity
+}
+
+type MainPageEntityResponseCollection {
+  data: [MainPageEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input MainPageFiltersInput {
+  and: [MainPageFiltersInput]
+  createdAt: DateTimeFilterInput
+  id: IDFilterInput
+  locale: StringFilterInput
+  localizations: MainPageFiltersInput
+  not: MainPageFiltersInput
+  or: [MainPageFiltersInput]
+  publishedAt: DateTimeFilterInput
+  seo: ComponentBlocksSeoFiltersInput
+  slug: StringFilterInput
+  title: StringFilterInput
+  updatedAt: DateTimeFilterInput
+}
+
+input MainPageInput {
+  publishedAt: DateTime
+  sections: [MainPageSectionsDynamicZoneInput!]
+  seo: ComponentBlocksSeoInput
+  slug: String
+  title: String
+}
+
+type MainPageRelationResponseCollection {
+  data: [MainPageEntity!]!
+}
+
+union MainPageSectionsDynamicZone = ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsRichtextSection | ComponentSectionsTicketsSection | Error
+
+scalar MainPageSectionsDynamicZoneInput
+
 type Mutation {
   """Change user password. Confirm with the current password."""
   changePassword(currentPassword: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
@@ -1389,6 +1446,8 @@ type Mutation {
   createGeneralLocalization(data: GeneralInput, id: ID, locale: I18NLocaleCode): GeneralEntityResponse
   createGetInvolvedPageLocalization(data: GetInvolvedPageInput, id: ID, locale: I18NLocaleCode): GetInvolvedPageEntityResponse
   createHomePageLocalization(data: HomePageInput, id: ID, locale: I18NLocaleCode): HomePageEntityResponse
+  createMainPage(data: MainPageInput!, locale: I18NLocaleCode): MainPageEntityResponse
+  createMainPageLocalization(data: MainPageInput, id: ID, locale: I18NLocaleCode): MainPageEntityResponse
   createPartner(data: PartnerInput!, locale: I18NLocaleCode): PartnerEntityResponse
   createPartnerLocalization(data: PartnerInput, id: ID, locale: I18NLocaleCode): PartnerEntityResponse
   createPlace(data: PlaceInput!, locale: I18NLocaleCode): PlaceEntityResponse
@@ -1417,6 +1476,7 @@ type Mutation {
   deleteGeneral(locale: I18NLocaleCode): GeneralEntityResponse
   deleteGetInvolvedPage(locale: I18NLocaleCode): GetInvolvedPageEntityResponse
   deleteHomePage(locale: I18NLocaleCode): HomePageEntityResponse
+  deleteMainPage(id: ID!, locale: I18NLocaleCode): MainPageEntityResponse
   deletePartner(id: ID!, locale: I18NLocaleCode): PartnerEntityResponse
   deletePlace(id: ID!, locale: I18NLocaleCode): PlaceEntityResponse
   deleteTag(id: ID!, locale: I18NLocaleCode): TagEntityResponse
@@ -1458,6 +1518,7 @@ type Mutation {
   updateGeneral(data: GeneralInput!, locale: I18NLocaleCode): GeneralEntityResponse
   updateGetInvolvedPage(data: GetInvolvedPageInput!, locale: I18NLocaleCode): GetInvolvedPageEntityResponse
   updateHomePage(data: HomePageInput!, locale: I18NLocaleCode): HomePageEntityResponse
+  updateMainPage(data: MainPageInput!, id: ID!, locale: I18NLocaleCode): MainPageEntityResponse
   updatePartner(data: PartnerInput!, id: ID!, locale: I18NLocaleCode): PartnerEntityResponse
   updatePlace(data: PlaceInput!, id: ID!, locale: I18NLocaleCode): PlaceEntityResponse
   updateTag(data: TagInput!, id: ID!, locale: I18NLocaleCode): TagEntityResponse
@@ -1610,6 +1671,8 @@ type Query {
   homePage(locale: I18NLocaleCode): HomePageEntityResponse
   i18NLocale(id: ID): I18NLocaleEntityResponse
   i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): I18NLocaleEntityResponseCollection
+  mainPage(id: ID, locale: I18NLocaleCode): MainPageEntityResponse
+  mainPages(filters: MainPageFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): MainPageEntityResponseCollection
   me: UsersPermissionsMe
   partner(id: ID, locale: I18NLocaleCode): PartnerEntityResponse
   partners(filters: PartnerFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, sort: [String] = []): PartnerEntityResponseCollection
