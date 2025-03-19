@@ -26,11 +26,7 @@ const Detail = ({ generalQuery, contentPage }: DetailProps) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<DetailProps> = async ({
-  params,
-  locale = 'sk',
-  preview,
-}) => {
+export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, locale = 'sk' }) => {
   if (!params) {
     return {
       notFound: true,
@@ -41,7 +37,7 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({
 
   const [generalQuery, { contentPageBySlug: contentPage }, translations] = await Promise.all([
     client.General({ locale }),
-    client.ContentPageBySlug({ slug, locale, isPublished: !preview }),
+    client.ContentPageBySlug({ slug, locale, isPublished: true }),
     serverSideTranslations(locale),
   ])
 

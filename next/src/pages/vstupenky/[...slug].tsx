@@ -36,11 +36,7 @@ const Tickets = ({ generalQuery, contentPage, currentEvents }: TicketProps) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<TicketProps> = async ({
-  params,
-  locale = 'sk',
-  preview,
-}) => {
+export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, locale = 'sk' }) => {
   if (!params) {
     return {
       notFound: true,
@@ -55,7 +51,7 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({
     client.ContentPageBySlug({
       slug,
       locale,
-      isPublished: !preview,
+      isPublished: true,
     }),
     serverSideTranslations(locale),
   ])
