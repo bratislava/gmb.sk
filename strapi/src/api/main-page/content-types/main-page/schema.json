@@ -4,7 +4,7 @@
   "info": {
     "singularName": "main-page",
     "pluralName": "main-pages",
-    "displayName": "2. Hlavné stránky",
+    "displayName": "8. Hlavné stránky",
     "description": ""
   },
   "options": {
@@ -43,9 +43,9 @@
       },
       "type": "dynamiczone",
       "components": [
+        "sections.page-section",
         "sections.tickets-section",
         "sections.richtext-section",
-        "sections.page-section",
         "sections.opening-hours-section",
         "sections.newsletter-section",
         "sections.news-section",

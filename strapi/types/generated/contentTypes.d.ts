@@ -496,7 +496,7 @@ export interface ApiContactCardContactCard extends Schema.CollectionType {
   collectionName: 'contact_cards';
   info: {
     description: '';
-    displayName: '6. Kontakty';
+    displayName: '5. Kontakty';
     pluralName: 'contact-cards';
     singularName: 'contact-card';
   };
@@ -1163,7 +1163,7 @@ export interface ApiMainPageMainPage extends Schema.CollectionType {
   collectionName: 'main_pages';
   info: {
     description: '';
-    displayName: '2. Hlavn\u00E9 str\u00E1nky';
+    displayName: '8. Hlavn\u00E9 str\u00E1nky';
     pluralName: 'main-pages';
     singularName: 'main-page';
   };
@@ -1192,9 +1192,9 @@ export interface ApiMainPageMainPage extends Schema.CollectionType {
     publishedAt: Attribute.DateTime;
     sections: Attribute.DynamicZone<
       [
+        'sections.page-section',
         'sections.tickets-section',
         'sections.richtext-section',
-        'sections.page-section',
         'sections.opening-hours-section',
         'sections.newsletter-section',
         'sections.news-section',
@@ -1240,7 +1240,7 @@ export interface ApiPartnerPartner extends Schema.CollectionType {
   collectionName: 'partners';
   info: {
     description: '';
-    displayName: '4. Partneri';
+    displayName: '3. Partneri';
     pluralName: 'partners';
     singularName: 'partner';
   };
@@ -1300,7 +1300,7 @@ export interface ApiPlacePlace extends Schema.CollectionType {
   collectionName: 'places';
   info: {
     description: '';
-    displayName: '8. Miesta';
+    displayName: '7. Miesta';
     pluralName: 'places';
     singularName: 'place';
   };
@@ -1372,7 +1372,7 @@ export interface ApiTagCategoryTagCategory extends Schema.CollectionType {
   collectionName: 'tag_categories';
   info: {
     description: '';
-    displayName: '7. Kateg\u00F3rie tagov';
+    displayName: '6. Kateg\u00F3rie tagov';
     pluralName: 'tag-categories';
     singularName: 'tag-category';
   };
@@ -1431,7 +1431,7 @@ export interface ApiTagTag extends Schema.CollectionType {
   collectionName: 'tags';
   info: {
     description: '';
-    displayName: '3. Tagy';
+    displayName: '2. Tagy';
     pluralName: 'tags';
     singularName: 'tag';
   };
@@ -1493,7 +1493,7 @@ export interface ApiTicketTicket extends Schema.CollectionType {
   collectionName: 'tickets';
   info: {
     description: '';
-    displayName: '5. Permanentky';
+    displayName: '4. Permanentky';
     pluralName: 'tickets';
     singularName: 'ticket';
   };
