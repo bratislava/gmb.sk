@@ -5,6 +5,9 @@
   },
   "options": {},
   "attributes": {
+    "title": {
+      "type": "string"
+    },
     "partners": {
       "type": "component",
       "repeatable": true,

@@ -496,6 +496,7 @@ export type ComponentSectionsPartners = {
   __typename?: 'ComponentSectionsPartners';
   id: Scalars['ID'];
   partners?: Maybe<Array<Maybe<ComponentBlocksPartnerItem>>>;
+  title?: Maybe<Scalars['String']>;
 };
 
 

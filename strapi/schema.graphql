@@ -593,6 +593,7 @@ input ComponentSectionsPageSectionInput {
 type ComponentSectionsPartners {
   id: ID!
   partners(filters: ComponentBlocksPartnerItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksPartnerItem]
+  title: String
 }
 
 input ComponentSectionsPartnersFiltersInput {
@@ -600,11 +601,13 @@ input ComponentSectionsPartnersFiltersInput {
   not: ComponentSectionsPartnersFiltersInput
   or: [ComponentSectionsPartnersFiltersInput]
   partners: ComponentBlocksPartnerItemFiltersInput
+  title: StringFilterInput
 }
 
 input ComponentSectionsPartnersInput {
   id: ID
   partners: [ComponentBlocksPartnerItemInput]
+  title: String
 }
 
 type ComponentSectionsRichtextSection {

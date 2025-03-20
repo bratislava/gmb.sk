@@ -307,6 +307,7 @@ export interface SectionsPartners extends Schema.Component {
   };
   attributes: {
     partners: Attribute.Component<'blocks.partner-item', true>;
+    title: Attribute.String;
   };
 }
 
