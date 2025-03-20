@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_sections_partners",
+  "info": {
+    "displayName": "partners section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "partners": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.partner-item"
+    }
+  }
+}

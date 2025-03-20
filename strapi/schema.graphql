@@ -473,6 +473,23 @@ input ComponentSectionsGallerySectionInput {
   title: String
 }
 
+type ComponentSectionsHighlights {
+  highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
+  id: ID!
+}
+
+input ComponentSectionsHighlightsFiltersInput {
+  and: [ComponentSectionsHighlightsFiltersInput]
+  highlights: ComponentBlocksContentPageItemFiltersInput
+  not: ComponentSectionsHighlightsFiltersInput
+  or: [ComponentSectionsHighlightsFiltersInput]
+}
+
+input ComponentSectionsHighlightsInput {
+  highlights: [ComponentBlocksContentPageItemInput]
+  id: ID
+}
+
 type ComponentSectionsMapSection {
   id: ID!
   submenuTitle: String
@@ -570,6 +587,26 @@ input ComponentSectionsPageSectionInput {
   id: ID
   layout: ENUM_COMPONENTSECTIONSPAGESECTION_LAYOUT
   submenuTitle: String
+  title: String
+}
+
+type ComponentSectionsPartners {
+  id: ID!
+  partners(filters: ComponentBlocksPartnerItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksPartnerItem]
+  title: String
+}
+
+input ComponentSectionsPartnersFiltersInput {
+  and: [ComponentSectionsPartnersFiltersInput]
+  not: ComponentSectionsPartnersFiltersInput
+  or: [ComponentSectionsPartnersFiltersInput]
+  partners: ComponentBlocksPartnerItemFiltersInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsPartnersInput {
+  id: ID
+  partners: [ComponentBlocksPartnerItemInput]
   title: String
 }
 
@@ -1116,7 +1153,7 @@ type GeneralRelationResponseCollection {
   data: [GeneralEntity!]!
 }
 
-union GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDownloadSection | ComponentSectionsGallerySection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
+union GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDownloadSection | ComponentSectionsGallerySection | ComponentSectionsHighlights | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartners | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
 
 type GetInvolvedPage {
   createdAt: DateTime
@@ -1428,7 +1465,7 @@ type MainPageRelationResponseCollection {
   data: [MainPageEntity!]!
 }
 
-union MainPageSectionsDynamicZone = ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsRichtextSection | ComponentSectionsTicketsSection | Error
+union MainPageSectionsDynamicZone = ComponentSectionsHighlights | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartners | ComponentSectionsRichtextSection | ComponentSectionsTicketsSection | Error
 
 scalar MainPageSectionsDynamicZoneInput
 

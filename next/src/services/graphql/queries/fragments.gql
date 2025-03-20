@@ -124,6 +124,28 @@ fragment Links on ComponentBlocksLinks {
   }
 }
 
+fragment MainPageEntity on MainPageEntity {
+  id
+  attributes {
+    title
+    slug
+    sections {
+      ...MainPageSections
+    }
+    seo {
+      ...Seo
+    }
+    localizations {
+      data {
+        attributes {
+          slug
+          locale
+        }
+      }
+    }
+  }
+}
+
 fragment ContentPageEntity on ContentPageEntity {
   id
   attributes {
@@ -270,6 +292,14 @@ fragment Highlight on ComponentBlocksContentPageItem {
   }
 }
 
+fragment Partner on ComponentBlocksPartnerItem {
+  partner {
+    data {
+      ...PartnerEntity
+    }
+  }
+}
+
 fragment DownloadItem on ComponentBlocksFileItem {
   id
   title
@@ -332,6 +362,20 @@ fragment ContactCardEntity on ContactCardEntity {
 fragment OpeningHoursSection on ComponentSectionsOpeningHoursSection {
   id
   submenuTitle
+}
+
+fragment HighlightsSection on ComponentSectionsHighlights {
+  id
+  highlights {
+    ...Highlight
+  }
+}
+
+fragment PartnersSection on ComponentSectionsPartners {
+  id
+  partners {
+    ...Partner
+  }
 }
 
 fragment PageSection on ComponentSectionsPageSection {
@@ -466,6 +510,18 @@ fragment Sections on VisitUsPageSectionsDynamicZone {
   ... on ComponentSectionsRichtextSection {
     __typename
     ...RichtextSection
+  }
+}
+
+fragment MainPageSections on MainPageSectionsDynamicZone {
+  ...Sections
+  ... on ComponentSectionsHighlights {
+    __typename
+    ...HighlightsSection
+  }
+  ... on ComponentSectionsPartners {
+    __typename
+    ...PartnersSection
   }
 }
 

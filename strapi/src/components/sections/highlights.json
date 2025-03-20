@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_sections_highlights",
+  "info": {
+    "displayName": "highlights section"
+  },
+  "options": {},
+  "attributes": {
+    "highlights": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.content-page-item"
+    }
+  }
+}
