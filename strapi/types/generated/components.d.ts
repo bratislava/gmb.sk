@@ -228,6 +228,16 @@ export interface SectionsGallerySection extends Schema.Component {
   };
 }
 
+export interface SectionsHighlights extends Schema.Component {
+  collectionName: 'components_sections_highlights';
+  info: {
+    displayName: 'highlights section';
+  };
+  attributes: {
+    highlights: Attribute.Component<'blocks.content-page-item', true>;
+  };
+}
+
 export interface SectionsMapSection extends Schema.Component {
   collectionName: 'components_sections_map_sections';
   info: {
@@ -287,6 +297,16 @@ export interface SectionsPageSection extends Schema.Component {
       Attribute.DefaultTo<'chessboard'>;
     submenuTitle: Attribute.String;
     title: Attribute.String;
+  };
+}
+
+export interface SectionsPartners extends Schema.Component {
+  collectionName: 'components_sections_partners';
+  info: {
+    displayName: 'partners section';
+  };
+  attributes: {
+    partners: Attribute.Component<'blocks.partner-item', true>;
   };
 }
 
@@ -359,11 +379,13 @@ declare module '@strapi/types' {
       'sections.contact-cards-section': SectionsContactCardsSection;
       'sections.download-section': SectionsDownloadSection;
       'sections.gallery-section': SectionsGallerySection;
+      'sections.highlights': SectionsHighlights;
       'sections.map-section': SectionsMapSection;
       'sections.news-section': SectionsNewsSection;
       'sections.newsletter-section': SectionsNewsletterSection;
       'sections.opening-hours-section': SectionsOpeningHoursSection;
       'sections.page-section': SectionsPageSection;
+      'sections.partners': SectionsPartners;
       'sections.richtext-section': SectionsRichtextSection;
       'sections.slider-section': SectionsSliderSection;
       'sections.tickets-section': SectionsTicketsSection;

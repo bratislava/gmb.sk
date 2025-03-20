@@ -1193,8 +1193,10 @@ export interface ApiMainPageMainPage extends Schema.CollectionType {
     sections: Attribute.DynamicZone<
       [
         'sections.page-section',
-        'sections.tickets-section',
         'sections.richtext-section',
+        'sections.highlights',
+        'sections.partners',
+        'sections.tickets-section',
         'sections.opening-hours-section',
         'sections.newsletter-section',
         'sections.news-section',
