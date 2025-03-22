@@ -215,6 +215,16 @@ export interface SectionsDownloadSection extends Schema.Component {
   };
 }
 
+export interface SectionsExplore extends Schema.Component {
+  collectionName: 'components_sections_explores';
+  info: {
+    displayName: 'explore section';
+  };
+  attributes: {
+    title: Attribute.String;
+  };
+}
+
 export interface SectionsGallerySection extends Schema.Component {
   collectionName: 'components_sections_gallery_sections';
   info: {
@@ -379,6 +389,7 @@ declare module '@strapi/types' {
       'sections.audio-section': SectionsAudioSection;
       'sections.contact-cards-section': SectionsContactCardsSection;
       'sections.download-section': SectionsDownloadSection;
+      'sections.explore': SectionsExplore;
       'sections.gallery-section': SectionsGallerySection;
       'sections.highlights': SectionsHighlights;
       'sections.map-section': SectionsMapSection;

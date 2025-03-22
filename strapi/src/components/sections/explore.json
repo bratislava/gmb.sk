@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_sections_explores",
+  "info": {
+    "displayName": "explore section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  }
+}

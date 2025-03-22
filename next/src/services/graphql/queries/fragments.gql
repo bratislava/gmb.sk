@@ -378,6 +378,11 @@ fragment PartnersSection on ComponentSectionsPartners {
   }
 }
 
+fragment ExploreSection on ComponentSectionsExplore {
+  id
+  title
+}
+
 fragment PageSection on ComponentSectionsPageSection {
   id
   title
@@ -522,6 +527,10 @@ fragment MainPageSections on MainPageSectionsDynamicZone {
   ... on ComponentSectionsPartners {
     __typename
     ...PartnersSection
+  }
+  ... on ComponentSectionsExplore {
+    __typename
+    ...ExploreSection
   }
 }
 

@@ -1196,6 +1196,7 @@ export interface ApiMainPageMainPage extends Schema.CollectionType {
         'sections.richtext-section',
         'sections.highlights',
         'sections.partners',
+        'sections.explore',
         'sections.tickets-section',
         'sections.opening-hours-section',
         'sections.newsletter-section',
