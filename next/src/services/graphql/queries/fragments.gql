@@ -300,6 +300,18 @@ fragment Partner on ComponentBlocksPartnerItem {
   }
 }
 
+fragment MenuLinkItem on ComponentBlocksMenuLinkItem {
+  id
+  title
+  url
+  mainPage {
+    data {
+      ...MainPageEntity
+    }
+  }
+  hasButtonStyle
+}
+
 fragment DownloadItem on ComponentBlocksFileItem {
   id
   title

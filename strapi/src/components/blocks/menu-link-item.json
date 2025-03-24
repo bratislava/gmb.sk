@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_blocks_menu_link_items",
+  "info": {
+    "displayName": "menu link item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string"
+    },
+    "mainPage": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::main-page.main-page"
+    },
+    "hasButtonStyle": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
