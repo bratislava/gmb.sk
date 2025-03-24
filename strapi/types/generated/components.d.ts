@@ -94,6 +94,23 @@ export interface BlocksLinks extends Schema.Component {
   };
 }
 
+export interface BlocksMenuLinkItem extends Schema.Component {
+  collectionName: 'components_blocks_menu_link_items';
+  info: {
+    displayName: 'menu link item';
+  };
+  attributes: {
+    hasButtonStyle: Attribute.Boolean & Attribute.DefaultTo<false>;
+    mainPage: Attribute.Relation<
+      'blocks.menu-link-item',
+      'oneToOne',
+      'api::main-page.main-page'
+    >;
+    title: Attribute.String & Attribute.Required;
+    url: Attribute.String;
+  };
+}
+
 export interface BlocksPalace extends Schema.Component {
   collectionName: 'components_blocks_palaces';
   info: {
@@ -381,6 +398,7 @@ declare module '@strapi/types' {
       'blocks.highlight-override': BlocksHighlightOverride;
       'blocks.link-item': BlocksLinkItem;
       'blocks.links': BlocksLinks;
+      'blocks.menu-link-item': BlocksMenuLinkItem;
       'blocks.palace': BlocksPalace;
       'blocks.partner-item': BlocksPartnerItem;
       'blocks.position-item': BlocksPositionItem;

@@ -124,6 +124,15 @@ fragment Links on ComponentBlocksLinks {
   }
 }
 
+fragment MenuEntity on MenuEntity {
+  id
+  attributes {
+    menuLinks {
+      ...MenuLinkItem
+    }
+  }
+}
+
 fragment MainPageEntity on MainPageEntity {
   id
   attributes {
@@ -298,6 +307,18 @@ fragment Partner on ComponentBlocksPartnerItem {
       ...PartnerEntity
     }
   }
+}
+
+fragment MenuLinkItem on ComponentBlocksMenuLinkItem {
+  id
+  title
+  url
+  mainPage {
+    data {
+      ...MainPageEntity
+    }
+  }
+  hasButtonStyle
 }
 
 fragment DownloadItem on ComponentBlocksFileItem {
