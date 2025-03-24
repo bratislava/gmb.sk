@@ -124,6 +124,15 @@ fragment Links on ComponentBlocksLinks {
   }
 }
 
+fragment MenuEntity on MenuEntity {
+  id
+  attributes {
+    menuLinks {
+      ...MenuLinkItem
+    }
+  }
+}
+
 fragment MainPageEntity on MainPageEntity {
   id
   attributes {

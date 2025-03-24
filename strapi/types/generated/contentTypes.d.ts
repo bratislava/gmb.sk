@@ -1238,6 +1238,43 @@ export interface ApiMainPageMainPage extends Schema.CollectionType {
   };
 }
 
+export interface ApiMenuMenu extends Schema.SingleType {
+  collectionName: 'menus';
+  info: {
+    displayName: 'Menu';
+    pluralName: 'menus';
+    singularName: 'menu';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    locale: Attribute.String;
+    localizations: Attribute.Relation<
+      'api::menu.menu',
+      'oneToMany',
+      'api::menu.menu'
+    >;
+    menuLinks: Attribute.Component<'blocks.menu-link-item', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPartnerPartner extends Schema.CollectionType {
   collectionName: 'partners';
   info: {
@@ -2077,6 +2114,7 @@ declare module '@strapi/types' {
       'api::get-involved-page.get-involved-page': ApiGetInvolvedPageGetInvolvedPage;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::main-page.main-page': ApiMainPageMainPage;
+      'api::menu.menu': ApiMenuMenu;
       'api::partner.partner': ApiPartnerPartner;
       'api::place.place': ApiPlacePlace;
       'api::tag-category.tag-category': ApiTagCategoryTagCategory;

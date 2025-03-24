@@ -1179,7 +1179,7 @@ type GeneralRelationResponseCollection {
   data: [GeneralEntity!]!
 }
 
-union GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDownloadSection | ComponentSectionsGallerySection | ComponentSectionsHighlights | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartners | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
+union GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDownloadSection | ComponentSectionsGallerySection | ComponentSectionsHighlights | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartners | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
 
 type GetInvolvedPage {
   createdAt: DateTime
@@ -1495,6 +1495,47 @@ union MainPageSectionsDynamicZone = ComponentSectionsHighlights | ComponentSecti
 
 scalar MainPageSectionsDynamicZoneInput
 
+type Menu {
+  createdAt: DateTime
+  locale: String
+  localizations: MenuRelationResponseCollection
+  menuLinks(filters: ComponentBlocksMenuLinkItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksMenuLinkItem]
+  updatedAt: DateTime
+}
+
+type MenuEntity {
+  attributes: Menu
+  id: ID
+}
+
+type MenuEntityResponse {
+  data: MenuEntity
+}
+
+type MenuEntityResponseCollection {
+  data: [MenuEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input MenuFiltersInput {
+  and: [MenuFiltersInput]
+  createdAt: DateTimeFilterInput
+  locale: StringFilterInput
+  localizations: MenuFiltersInput
+  menuLinks: ComponentBlocksMenuLinkItemFiltersInput
+  not: MenuFiltersInput
+  or: [MenuFiltersInput]
+  updatedAt: DateTimeFilterInput
+}
+
+input MenuInput {
+  menuLinks: [ComponentBlocksMenuLinkItemInput]
+}
+
+type MenuRelationResponseCollection {
+  data: [MenuEntity!]!
+}
+
 type Mutation {
   """Change user password. Confirm with the current password."""
   changePassword(currentPassword: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
@@ -1511,6 +1552,7 @@ type Mutation {
   createHomePageLocalization(data: HomePageInput, id: ID, locale: I18NLocaleCode): HomePageEntityResponse
   createMainPage(data: MainPageInput!, locale: I18NLocaleCode): MainPageEntityResponse
   createMainPageLocalization(data: MainPageInput, id: ID, locale: I18NLocaleCode): MainPageEntityResponse
+  createMenuLocalization(data: MenuInput, id: ID, locale: I18NLocaleCode): MenuEntityResponse
   createPartner(data: PartnerInput!, locale: I18NLocaleCode): PartnerEntityResponse
   createPartnerLocalization(data: PartnerInput, id: ID, locale: I18NLocaleCode): PartnerEntityResponse
   createPlace(data: PlaceInput!, locale: I18NLocaleCode): PlaceEntityResponse
@@ -1540,6 +1582,7 @@ type Mutation {
   deleteGetInvolvedPage(locale: I18NLocaleCode): GetInvolvedPageEntityResponse
   deleteHomePage(locale: I18NLocaleCode): HomePageEntityResponse
   deleteMainPage(id: ID!, locale: I18NLocaleCode): MainPageEntityResponse
+  deleteMenu(locale: I18NLocaleCode): MenuEntityResponse
   deletePartner(id: ID!, locale: I18NLocaleCode): PartnerEntityResponse
   deletePlace(id: ID!, locale: I18NLocaleCode): PlaceEntityResponse
   deleteTag(id: ID!, locale: I18NLocaleCode): TagEntityResponse
@@ -1582,6 +1625,7 @@ type Mutation {
   updateGetInvolvedPage(data: GetInvolvedPageInput!, locale: I18NLocaleCode): GetInvolvedPageEntityResponse
   updateHomePage(data: HomePageInput!, locale: I18NLocaleCode): HomePageEntityResponse
   updateMainPage(data: MainPageInput!, id: ID!, locale: I18NLocaleCode): MainPageEntityResponse
+  updateMenu(data: MenuInput!, locale: I18NLocaleCode): MenuEntityResponse
   updatePartner(data: PartnerInput!, id: ID!, locale: I18NLocaleCode): PartnerEntityResponse
   updatePlace(data: PlaceInput!, id: ID!, locale: I18NLocaleCode): PlaceEntityResponse
   updateTag(data: TagInput!, id: ID!, locale: I18NLocaleCode): TagEntityResponse
@@ -1737,6 +1781,7 @@ type Query {
   mainPage(id: ID, locale: I18NLocaleCode): MainPageEntityResponse
   mainPages(filters: MainPageFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): MainPageEntityResponseCollection
   me: UsersPermissionsMe
+  menu(locale: I18NLocaleCode): MenuEntityResponse
   partner(id: ID, locale: I18NLocaleCode): PartnerEntityResponse
   partners(filters: PartnerFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, sort: [String] = []): PartnerEntityResponseCollection
   place(id: ID, locale: I18NLocaleCode): PlaceEntityResponse
