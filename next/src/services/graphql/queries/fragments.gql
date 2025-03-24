@@ -385,18 +385,23 @@ fragment OpeningHoursSection on ComponentSectionsOpeningHoursSection {
   submenuTitle
 }
 
-fragment HighlightsSection on ComponentSectionsHighlights {
+fragment HighlightsSection on ComponentSectionsHighlightsSection {
   id
   highlights {
     ...Highlight
   }
 }
 
-fragment PartnersSection on ComponentSectionsPartners {
+fragment PartnersSection on ComponentSectionsPartnersSection {
   id
   partners {
     ...Partner
   }
+}
+
+fragment ExploreSection on ComponentSectionsExploreSection {
+  id
+  title
 }
 
 fragment PageSection on ComponentSectionsPageSection {
@@ -536,13 +541,17 @@ fragment Sections on VisitUsPageSectionsDynamicZone {
 
 fragment MainPageSections on MainPageSectionsDynamicZone {
   ...Sections
-  ... on ComponentSectionsHighlights {
+  ... on ComponentSectionsHighlightsSection {
     __typename
     ...HighlightsSection
   }
-  ... on ComponentSectionsPartners {
+  ... on ComponentSectionsPartnersSection {
     __typename
     ...PartnersSection
+  }
+  ... on ComponentSectionsExploreSection {
+    __typename
+    ...ExploreSection
   }
 }
 
