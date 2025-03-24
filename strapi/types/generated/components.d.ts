@@ -215,6 +215,16 @@ export interface SectionsDownloadSection extends Schema.Component {
   };
 }
 
+export interface SectionsExploreSection extends Schema.Component {
+  collectionName: 'components_sections_explore_sections';
+  info: {
+    displayName: 'explore section';
+  };
+  attributes: {
+    title: Attribute.String;
+  };
+}
+
 export interface SectionsGallerySection extends Schema.Component {
   collectionName: 'components_sections_gallery_sections';
   info: {
@@ -228,8 +238,8 @@ export interface SectionsGallerySection extends Schema.Component {
   };
 }
 
-export interface SectionsHighlights extends Schema.Component {
-  collectionName: 'components_sections_highlights';
+export interface SectionsHighlightsSection extends Schema.Component {
+  collectionName: 'components_sections_highlights_sections';
   info: {
     displayName: 'highlights section';
   };
@@ -300,8 +310,8 @@ export interface SectionsPageSection extends Schema.Component {
   };
 }
 
-export interface SectionsPartners extends Schema.Component {
-  collectionName: 'components_sections_partners';
+export interface SectionsPartnersSection extends Schema.Component {
+  collectionName: 'components_sections_partners_sections';
   info: {
     displayName: 'partners section';
   };
@@ -379,14 +389,15 @@ declare module '@strapi/types' {
       'sections.audio-section': SectionsAudioSection;
       'sections.contact-cards-section': SectionsContactCardsSection;
       'sections.download-section': SectionsDownloadSection;
+      'sections.explore-section': SectionsExploreSection;
       'sections.gallery-section': SectionsGallerySection;
-      'sections.highlights': SectionsHighlights;
+      'sections.highlights-section': SectionsHighlightsSection;
       'sections.map-section': SectionsMapSection;
       'sections.news-section': SectionsNewsSection;
       'sections.newsletter-section': SectionsNewsletterSection;
       'sections.opening-hours-section': SectionsOpeningHoursSection;
       'sections.page-section': SectionsPageSection;
-      'sections.partners': SectionsPartners;
+      'sections.partners-section': SectionsPartnersSection;
       'sections.richtext-section': SectionsRichtextSection;
       'sections.slider-section': SectionsSliderSection;
       'sections.tickets-section': SectionsTicketsSection;

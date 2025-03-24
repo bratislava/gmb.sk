@@ -451,6 +451,23 @@ input ComponentSectionsDownloadSectionInput {
   title: String
 }
 
+type ComponentSectionsExploreSection {
+  id: ID!
+  title: String
+}
+
+input ComponentSectionsExploreSectionFiltersInput {
+  and: [ComponentSectionsExploreSectionFiltersInput]
+  not: ComponentSectionsExploreSectionFiltersInput
+  or: [ComponentSectionsExploreSectionFiltersInput]
+  title: StringFilterInput
+}
+
+input ComponentSectionsExploreSectionInput {
+  id: ID
+  title: String
+}
+
 type ComponentSectionsGallerySection {
   id: ID!
   medias(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
@@ -473,19 +490,19 @@ input ComponentSectionsGallerySectionInput {
   title: String
 }
 
-type ComponentSectionsHighlights {
+type ComponentSectionsHighlightsSection {
   highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
   id: ID!
 }
 
-input ComponentSectionsHighlightsFiltersInput {
-  and: [ComponentSectionsHighlightsFiltersInput]
+input ComponentSectionsHighlightsSectionFiltersInput {
+  and: [ComponentSectionsHighlightsSectionFiltersInput]
   highlights: ComponentBlocksContentPageItemFiltersInput
-  not: ComponentSectionsHighlightsFiltersInput
-  or: [ComponentSectionsHighlightsFiltersInput]
+  not: ComponentSectionsHighlightsSectionFiltersInput
+  or: [ComponentSectionsHighlightsSectionFiltersInput]
 }
 
-input ComponentSectionsHighlightsInput {
+input ComponentSectionsHighlightsSectionInput {
   highlights: [ComponentBlocksContentPageItemInput]
   id: ID
 }
@@ -590,21 +607,21 @@ input ComponentSectionsPageSectionInput {
   title: String
 }
 
-type ComponentSectionsPartners {
+type ComponentSectionsPartnersSection {
   id: ID!
   partners(filters: ComponentBlocksPartnerItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksPartnerItem]
   title: String
 }
 
-input ComponentSectionsPartnersFiltersInput {
-  and: [ComponentSectionsPartnersFiltersInput]
-  not: ComponentSectionsPartnersFiltersInput
-  or: [ComponentSectionsPartnersFiltersInput]
+input ComponentSectionsPartnersSectionFiltersInput {
+  and: [ComponentSectionsPartnersSectionFiltersInput]
+  not: ComponentSectionsPartnersSectionFiltersInput
+  or: [ComponentSectionsPartnersSectionFiltersInput]
   partners: ComponentBlocksPartnerItemFiltersInput
   title: StringFilterInput
 }
 
-input ComponentSectionsPartnersInput {
+input ComponentSectionsPartnersSectionInput {
   id: ID
   partners: [ComponentBlocksPartnerItemInput]
   title: String
@@ -1153,7 +1170,7 @@ type GeneralRelationResponseCollection {
   data: [GeneralEntity!]!
 }
 
-union GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDownloadSection | ComponentSectionsGallerySection | ComponentSectionsHighlights | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartners | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
+union GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDownloadSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
 
 type GetInvolvedPage {
   createdAt: DateTime
@@ -1465,7 +1482,7 @@ type MainPageRelationResponseCollection {
   data: [MainPageEntity!]!
 }
 
-union MainPageSectionsDynamicZone = ComponentSectionsHighlights | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartners | ComponentSectionsRichtextSection | ComponentSectionsTicketsSection | Error
+union MainPageSectionsDynamicZone = ComponentSectionsExploreSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsTicketsSection | Error
 
 scalar MainPageSectionsDynamicZoneInput
 
