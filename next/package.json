@@ -19,7 +19,6 @@
   "dependencies": {
     "@react-stately/toggle": "^3.5.1",
     "@react-types/checkbox": "^3.4.3",
-    "@strapi/provider-email-mailgun": "^5.11.3",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "classnames": "^2.3.2",
     "focus-trap-react": "^10.1.4",
