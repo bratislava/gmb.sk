@@ -10,8 +10,8 @@
     "start": "next start",
     "gen": "graphql-codegen && prettier --write src/services/graphql/index.ts",
     "lint": "eslint src",
-    "lint:quiet": "npm run lint --quiet",
-    "lint:fix": "npm run lint --fix",
+    "lint:quiet": "npm run lint -- --quiet",
+    "lint:fix": "npm run lint -- --fix",
     "prettier": "prettier --write .",
     "parse-translations": "i18next",
     "update-i18next": "npm install next-i18next@latest react-i18next@latest i18next@latest --save-exact && npm install eslint-plugin-i18next@latest i18next-parser@latest --save-dev --save-exact"
