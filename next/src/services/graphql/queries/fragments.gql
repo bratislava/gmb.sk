@@ -504,6 +504,20 @@ fragment ArchiveSection on ComponentSectionsArchiveSection {
   }
 }
 
+fragment ArchiveBannerSection on ComponentSectionsArchiveBannerSection {
+  id
+  title
+  submenuTitle
+  banner {
+    ...ExhibitionArchive
+  }
+}
+
+fragment ExhibitionsSection on ComponentSectionsExhibitionsSection {
+  id
+  title
+}
+
 fragment Sections on VisitUsPageSectionsDynamicZone {
   ... on Error {
     code
@@ -552,6 +566,14 @@ fragment MainPageSections on MainPageSectionsDynamicZone {
   ... on ComponentSectionsExploreSection {
     __typename
     ...ExploreSection
+  }
+  ... on ComponentSectionsExhibitionsSection {
+    __typename
+    ...ExhibitionsSection
+  }
+  ... on ComponentSectionsArchiveBannerSection {
+    __typename
+    ...ArchiveBannerSection
   }
 }
 

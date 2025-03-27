@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_sections_archive_banner_sections",
+  "info": {
+    "displayName": "archive banner section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "submenuTitle": {
+      "type": "string"
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.exhibition-archive"
+    }
+  }
+}
