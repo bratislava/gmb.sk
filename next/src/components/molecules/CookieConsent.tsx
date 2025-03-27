@@ -211,6 +211,8 @@ const Switch = ({ title, value, onValueChange, disabled }: SwitchProps) => {
   }
 
   return (
+    // We use label with htmlFor to get accessible name
+    // eslint-disable-next-line jsx-a11y/control-has-associated-label
     <div
       id={`switch-${title}`}
       role="checkbox"
@@ -238,7 +240,6 @@ const Switch = ({ title, value, onValueChange, disabled }: SwitchProps) => {
     </div>
   )
 }
-
 interface PanelProps {
   title: string
   content: ReactNode

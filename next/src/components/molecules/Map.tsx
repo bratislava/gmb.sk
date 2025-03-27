@@ -412,7 +412,12 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
                 latitude={gallery.coordinates[1]}
                 key={gallery.key}
               >
-                <button type="button" className="group" onClick={(e) => onGalleryClick(gallery, e)}>
+                <button
+                  type="button"
+                  className="group"
+                  onClick={(e) => onGalleryClick(gallery, e)}
+                  aria-label={gallery.localisedName}
+                >
                   <gallery.icon
                     className={cx('group-hover:scale-0', {
                       'scale-0': selectedGallery?.key === gallery.key,
