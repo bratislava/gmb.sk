@@ -1,7 +1,7 @@
 import meilisearchConfig from "./plugins.meilisearch.config"
 import graphqlConfig from "./plugins.graphql.config"
 
-module.exports = ({ env }) => ({
+const pluginsConfig = ({ env }) => ({
   graphql: {
     config: graphqlConfig,
   },
@@ -24,3 +24,5 @@ module.exports = ({ env }) => ({
     },
   },
 })
+
+export default pluginsConfig
