@@ -252,6 +252,7 @@ export interface SectionsExhibitionsSection extends Schema.Component {
     icon: 'brush';
   };
   attributes: {
+    archiveBannerSection: Attribute.Component<'sections.archive-banner-section'>;
     title: Attribute.String;
   };
 }

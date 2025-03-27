@@ -83,6 +83,7 @@ const MainPage = ({
 
   return (
     <PageWrapper>
+      {/* TODO This code will be extracted into a separate SeoHead component */}
       <Seo seo={page?.seo} />
       <Head>
         <title>{`${title || ''} – Galéria mesta Bratislavy`}</title>

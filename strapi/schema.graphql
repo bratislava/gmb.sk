@@ -501,18 +501,21 @@ input ComponentSectionsDownloadSectionInput {
 }
 
 type ComponentSectionsExhibitionsSection {
+  archiveBannerSection: ComponentSectionsArchiveBannerSection
   id: ID!
   title: String
 }
 
 input ComponentSectionsExhibitionsSectionFiltersInput {
   and: [ComponentSectionsExhibitionsSectionFiltersInput]
+  archiveBannerSection: ComponentSectionsArchiveBannerSectionFiltersInput
   not: ComponentSectionsExhibitionsSectionFiltersInput
   or: [ComponentSectionsExhibitionsSectionFiltersInput]
   title: StringFilterInput
 }
 
 input ComponentSectionsExhibitionsSectionInput {
+  archiveBannerSection: ComponentSectionsArchiveBannerSectionInput
   id: ID
   title: String
 }
@@ -1548,7 +1551,7 @@ type MainPageRelationResponseCollection {
   data: [MainPageEntity!]!
 }
 
-union MainPageSectionsDynamicZone = ComponentSectionsArchiveBannerSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsTicketsSection | Error
+union MainPageSectionsDynamicZone = ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsTicketsSection | Error
 
 scalar MainPageSectionsDynamicZoneInput
 

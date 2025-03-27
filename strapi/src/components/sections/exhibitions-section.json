@@ -9,6 +9,11 @@
   "attributes": {
     "title": {
       "type": "string"
+    },
+    "archiveBannerSection": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.archive-banner-section"
     }
   }
 }

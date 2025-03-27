@@ -516,6 +516,9 @@ fragment ArchiveBannerSection on ComponentSectionsArchiveBannerSection {
 fragment ExhibitionsSection on ComponentSectionsExhibitionsSection {
   id
   title
+  archiveBannerSection {
+    ...ArchiveBannerSection
+  }
 }
 
 fragment Sections on VisitUsPageSectionsDynamicZone {
@@ -570,10 +573,6 @@ fragment MainPageSections on MainPageSectionsDynamicZone {
   ... on ComponentSectionsExhibitionsSection {
     __typename
     ...ExhibitionsSection
-  }
-  ... on ComponentSectionsArchiveBannerSection {
-    __typename
-    ...ArchiveBannerSection
   }
 }
 

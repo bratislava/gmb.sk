@@ -1198,7 +1198,6 @@ export interface ApiMainPageMainPage extends Schema.CollectionType {
         'sections.partners-section',
         'sections.explore-section',
         'sections.exhibitions-section',
-        'sections.archive-banner-section',
         'sections.tickets-section',
         'sections.opening-hours-section',
         'sections.newsletter-section',
