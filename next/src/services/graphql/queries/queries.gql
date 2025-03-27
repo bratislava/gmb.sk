@@ -32,7 +32,12 @@ query TagsByCategorySlug($locale: I18NLocaleCode!, $tag: String!) {
   }
 }
 
-query News($locale: I18NLocaleCode!, $tag: String!, $limit: Int = 5, $sort: [String] = ["publishedAt:desc"]) {
+query News(
+  $locale: I18NLocaleCode!
+  $tag: String!
+  $limit: Int = 5
+  $sort: [String] = ["publishedAt:desc"]
+) {
   news: contentPages(
     locale: $locale
     sort: $sort
@@ -59,13 +64,13 @@ query PreviewsByTags(
     locale: $locale
     pagination: { start: $offset, limit: $limit }
     filters: {
-      tags: { slug: { in: $tagSlugs } },
-      place: { slug: { in: $placesSlugs } },
+      tags: { slug: { in: $tagSlugs } }
+      place: { slug: { in: $placesSlugs } }
       or: [
         # if dateForFilteringFutureEvents is passed, we get all events with null dateTo, and dateTo greater than dateForFilteringFutureEvents
         # if dateForFilteringPastEvents is passed, first condition is always false, and we get all events with dateTo less than dateForFilteringPastEvents, so events with null dateTo are filtered out
-        { dateTo: { lt: $dateForFilteringPastEvents, null: true } },
-        { dateTo: { lt: $dateForFilteringPastEvents, gt: $dateForFilteringFutureEvents}}
+        { dateTo: { lt: $dateForFilteringPastEvents, null: true } }
+        { dateTo: { lt: $dateForFilteringPastEvents, gt: $dateForFilteringFutureEvents } }
       ]
     }
     sort: $sort
@@ -102,6 +107,32 @@ query AllContentPageSlugs($locale: I18NLocaleCode!) {
         slug
         locale
       }
+    }
+  }
+}
+
+query MainPageBySlug($slug: String!, $locale: I18NLocaleCode!) {
+  mainPages(filters: { slug: { eq: $slug } }, locale: $locale) {
+    data {
+      ...MainPageEntity
+    }
+  }
+}
+
+query AllMainPageSlugs($locale: I18NLocaleCode!) {
+  mainPages(locale: $locale) {
+    data {
+      attributes {
+        slug
+      }
+    }
+  }
+}
+
+query Tickets($locale: I18NLocaleCode!) {
+  tickets(locale: $locale) {
+    data {
+      ...TicketEntity
     }
   }
 }
@@ -335,4 +366,3 @@ query DisclosureOfInformationPage($locale: I18NLocaleCode!) {
     }
   }
 }
-
