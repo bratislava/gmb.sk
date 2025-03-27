@@ -3314,6 +3314,13 @@ export type AllMainPageSlugsQueryVariables = Exact<{
 
 export type AllMainPageSlugsQuery = { __typename?: 'Query', mainPages?: { __typename?: 'MainPageEntityResponseCollection', data: Array<{ __typename?: 'MainPageEntity', attributes?: { __typename?: 'MainPage', slug: string } | null }> } | null };
 
+export type TicketsQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode'];
+}>;
+
+
+export type TicketsQuery = { __typename?: 'Query', tickets?: { __typename?: 'TicketEntityResponseCollection', data: Array<{ __typename?: 'TicketEntity', id?: string | null, attributes?: { __typename?: 'Ticket', title: string, price?: number | null, description?: string | null, purchaseIdSelf?: string | null, purchaseIdGift?: string | null } | null }> } | null };
+
 export type ExhibitionsByPlaceQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode'];
   slug: Scalars['String'];
@@ -4173,6 +4180,15 @@ export const AllMainPageSlugsDocument = gql`
   }
 }
     `;
+export const TicketsDocument = gql`
+    query Tickets($locale: I18NLocaleCode!) {
+  tickets(locale: $locale) {
+    data {
+      ...TicketEntity
+    }
+  }
+}
+    ${TicketEntityFragmentDoc}`;
 export const ExhibitionsByPlaceDocument = gql`
     query ExhibitionsByPlace($locale: I18NLocaleCode!, $slug: String!, $today: Date!, $tagExhibitions: String!, $tagPermanentExhibitions: String!, $place: String!) {
   currentEvents: contentPages(
@@ -4443,6 +4459,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     AllMainPageSlugs(variables: AllMainPageSlugsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AllMainPageSlugsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<AllMainPageSlugsQuery>(AllMainPageSlugsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AllMainPageSlugs', 'query');
+    },
+    Tickets(variables: TicketsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TicketsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TicketsQuery>(TicketsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Tickets', 'query');
     },
     ExhibitionsByPlace(variables: ExhibitionsByPlaceQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ExhibitionsByPlaceQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ExhibitionsByPlaceQuery>(ExhibitionsByPlaceDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ExhibitionsByPlace', 'query');

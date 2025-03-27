@@ -129,6 +129,14 @@ query AllMainPageSlugs($locale: I18NLocaleCode!) {
   }
 }
 
+query Tickets($locale: I18NLocaleCode!) {
+  tickets(locale: $locale) {
+    data {
+      ...TicketEntity
+    }
+  }
+}
+
 query ExhibitionsByPlace(
   $locale: I18NLocaleCode!
   $slug: String!
