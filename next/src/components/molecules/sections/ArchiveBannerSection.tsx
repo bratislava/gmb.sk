@@ -1,11 +1,9 @@
 import ChessboardTile from '@/src/components/molecules/presentation/ChessboardTile'
-import Section from '@/src/components/molecules/sections/Section'
+import Section, { ISectionProps } from '@/src/components/molecules/sections/Section'
 import { ArchiveBannerSectionFragment, SectionItemEntityFragment } from '@/src/services/graphql'
 import { WithAttributes } from '@/src/utils/isDefined'
 
-type ArchiveBannerSectionProps = {
-  title?: string
-  anchor?: string
+type ArchiveBannerSectionProps = Pick<ISectionProps, 'title' | 'anchor'> & {
   banner?: ArchiveBannerSectionFragment['banner']
 }
 
