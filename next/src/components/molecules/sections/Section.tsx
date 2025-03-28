@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 
 import SectionHeading from '@/src/components/atoms/SectionHeading'
 
-interface ISectionProps {
+export interface ISectionProps {
   title?: string
   anchor?: string
   color?: 'light' | 'dark' | 'gray'

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_exhibitions_sections",
+  "info": {
+    "displayName": "exhibitions section",
+    "icon": "brush",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "archiveBannerSection": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.archive-banner-section"
+    }
+  }
+}
