@@ -18,9 +18,7 @@ const FullWidthSection = ({ title, sectionItems, anchor, loadmore }: FullWidthSe
 
   return (
     <Section anchor={anchor} title={title}>
-      {sectionItems?.map((item) => (
-        <FullWidthTile key={item.attributes.slug} sectionItem={item} />
-      ))}
+      {sectionItems?.map((item) => <FullWidthTile key={item.attributes.slug} sectionItem={item} />)}
 
       {loadmore && (
         <div className="flex justify-center py-yMd">

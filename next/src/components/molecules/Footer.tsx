@@ -64,7 +64,7 @@ const Footer = ({ contentPage }: FooterProps) => {
             {socialLinks?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
-                target={link?.newWindow ?? true ? '_blank' : '_self'}
+                target={(link?.newWindow ?? true) ? '_blank' : '_self'}
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
                 className="overflow-hidden text-ellipsis whitespace-nowrap text-md uppercase"
@@ -82,7 +82,7 @@ const Footer = ({ contentPage }: FooterProps) => {
             {footerLinks1?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
-                target={link?.newWindow ?? true ? '_blank' : '_self'}
+                target={(link?.newWindow ?? true) ? '_blank' : '_self'}
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
                 className="overflow-hidden text-ellipsis whitespace-nowrap text-md uppercase"
@@ -100,7 +100,7 @@ const Footer = ({ contentPage }: FooterProps) => {
             {footerLinks2?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
-                target={link?.newWindow ?? true ? '_blank' : '_self'}
+                target={(link?.newWindow ?? true) ? '_blank' : '_self'}
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
                 className="overflow-hidden text-ellipsis whitespace-nowrap text-md uppercase"

@@ -99,8 +99,8 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
     ? windowWidth >= getBreakpointValue('md')
       ? 5
       : windowWidth >= getBreakpointValue('sm')
-      ? 4
-      : 3
+        ? 4
+        : 3
     : 0
 
   return (

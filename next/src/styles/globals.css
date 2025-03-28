@@ -169,6 +169,10 @@
     /* 19.1667rem(306.6672px) at 80rem(1280px) increasing to 38.3333rem(613.3328px) at 160rem(2560px) */
     --ticket-height: clamp(19.1667rem, calc(19.1667rem + ((1vw - 0.8rem) * 23.9583)), 38.3333rem);
     /* 19.7917rem(316.6672px) at 80rem(1280px) increasing to 39.5833rem(633.3328px) at 160rem(2560px) */
-    --ticket-sidebar-width: clamp(19.7917rem, calc(19.7917rem + ((1vw - 0.8rem) * 24.7396)), 39.5833rem);
+    --ticket-sidebar-width: clamp(
+      19.7917rem,
+      calc(19.7917rem + ((1vw - 0.8rem) * 24.7396)),
+      39.5833rem
+    );
   }
 }
