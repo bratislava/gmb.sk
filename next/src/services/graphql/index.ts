@@ -1,11 +1,11 @@
-import { GraphQLClient } from 'graphql-request';
-import * as Dom from 'graphql-request/dist/types.dom';
+import { GraphQLClient, RequestOptions } from 'graphql-request';
 import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+type GraphQLClientRequestHeaders = RequestOptions['requestHeaders'];
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -16,14 +16,22 @@ export type Scalars = {
   AboutUsPageSectionsDynamicZoneInput: any;
   CollectionsPageSectionsDynamicZoneInput: any;
   ContentPageMainContentDynamicZoneInput: any;
+  /** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   Date: any;
+  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: any;
   GetInvolvedPageSectionsDynamicZoneInput: any;
   HomePageSectionsDynamicZoneInput: any;
+  /** A string used to identify an i18n locale */
   I18NLocaleCode: any;
+  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: any;
+  /** The `BigInt` scalar type represents non-fractional signed whole numeric values. */
+  Long: any;
   MainPageSectionsDynamicZoneInput: any;
+  /** A time string with format HH:mm:ss.SSS */
   Time: any;
+  /** The `Upload` scalar type represents a file upload. */
   Upload: any;
   VisitUsPageSectionsDynamicZoneInput: any;
 };
@@ -55,6 +63,24 @@ export type AboutUsPageEntity = {
 export type AboutUsPageEntityResponse = {
   __typename?: 'AboutUsPageEntityResponse';
   data?: Maybe<AboutUsPageEntity>;
+};
+
+export type AboutUsPageEntityResponseCollection = {
+  __typename?: 'AboutUsPageEntityResponseCollection';
+  data: Array<AboutUsPageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type AboutUsPageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<AboutUsPageFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  highlights?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<AboutUsPageFiltersInput>;
+  not?: InputMaybe<AboutUsPageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<AboutUsPageFiltersInput>>>;
+  seo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type AboutUsPageInput = {
@@ -124,6 +150,24 @@ export type CollectionsPageEntityResponse = {
   data?: Maybe<CollectionsPageEntity>;
 };
 
+export type CollectionsPageEntityResponseCollection = {
+  __typename?: 'CollectionsPageEntityResponseCollection';
+  data: Array<CollectionsPageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type CollectionsPageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<CollectionsPageFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  highlights?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<CollectionsPageFiltersInput>;
+  not?: InputMaybe<CollectionsPageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<CollectionsPageFiltersInput>>>;
+  seo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
 export type CollectionsPageInput = {
   highlights?: InputMaybe<Array<InputMaybe<ComponentBlocksContentPageItemInput>>>;
   sections?: InputMaybe<Array<Scalars['CollectionsPageSectionsDynamicZoneInput']>>;
@@ -148,6 +192,11 @@ export type ComponentBlocksContactCardItemFiltersInput = {
   contactCard?: InputMaybe<ContactCardFiltersInput>;
   not?: InputMaybe<ComponentBlocksContactCardItemFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentBlocksContactCardItemFiltersInput>>>;
+};
+
+export type ComponentBlocksContactCardItemInput = {
+  contactCard?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 export type ComponentBlocksContentPageItem = {
@@ -176,6 +225,16 @@ export type ComponentBlocksExhibitionArchive = {
   perex?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   title: Scalars['String'];
+};
+
+export type ComponentBlocksExhibitionArchiveFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentBlocksExhibitionArchiveFiltersInput>>>;
+  color?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentBlocksExhibitionArchiveFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentBlocksExhibitionArchiveFiltersInput>>>;
+  perex?: InputMaybe<StringFilterInput>;
+  subtitle?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
 };
 
 export type ComponentBlocksExhibitionArchiveInput = {
@@ -263,6 +322,14 @@ export type ComponentBlocksLinksLinksArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type ComponentBlocksLinksFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentBlocksLinksFiltersInput>>>;
+  links?: InputMaybe<ComponentBlocksLinkItemFiltersInput>;
+  not?: InputMaybe<ComponentBlocksLinksFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentBlocksLinksFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
 export type ComponentBlocksLinksInput = {
   id?: InputMaybe<Scalars['ID']>;
   links?: InputMaybe<Array<InputMaybe<ComponentBlocksLinkItemInput>>>;
@@ -304,6 +371,17 @@ export type ComponentBlocksPalace = {
   phone?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   zip?: Maybe<Scalars['String']>;
+};
+
+export type ComponentBlocksPalaceFiltersInput = {
+  address?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<ComponentBlocksPalaceFiltersInput>>>;
+  city?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentBlocksPalaceFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentBlocksPalaceFiltersInput>>>;
+  phone?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  zip?: InputMaybe<StringFilterInput>;
 };
 
 export type ComponentBlocksPalaceInput = {
@@ -388,6 +466,15 @@ export type ComponentSectionsArchiveSection = {
   title?: Maybe<Scalars['String']>;
 };
 
+export type ComponentSectionsArchiveSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsArchiveSectionFiltersInput>>>;
+  archiveCard?: InputMaybe<ComponentBlocksExhibitionArchiveFiltersInput>;
+  not?: InputMaybe<ComponentSectionsArchiveSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsArchiveSectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
 export type ComponentSectionsArchiveSectionInput = {
   archiveCard?: InputMaybe<ComponentBlocksExhibitionArchiveInput>;
   id?: InputMaybe<Scalars['ID']>;
@@ -403,6 +490,22 @@ export type ComponentSectionsAudioSection = {
   url?: Maybe<Scalars['String']>;
 };
 
+export type ComponentSectionsAudioSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsAudioSectionFiltersInput>>>;
+  not?: InputMaybe<ComponentSectionsAudioSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsAudioSectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSectionsAudioSectionInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  submenuTitle?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
 export type ComponentSectionsContactCardsSection = {
   __typename?: 'ComponentSectionsContactCardsSection';
   contacts?: Maybe<Array<Maybe<ComponentBlocksContactCardItem>>>;
@@ -416,6 +519,22 @@ export type ComponentSectionsContactCardsSectionContactsArgs = {
   filters?: InputMaybe<ComponentBlocksContactCardItemFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentSectionsContactCardsSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsContactCardsSectionFiltersInput>>>;
+  contacts?: InputMaybe<ComponentBlocksContactCardItemFiltersInput>;
+  not?: InputMaybe<ComponentSectionsContactCardsSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsContactCardsSectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSectionsContactCardsSectionInput = {
+  contacts?: InputMaybe<Array<InputMaybe<ComponentBlocksContactCardItemInput>>>;
+  id?: InputMaybe<Scalars['ID']>;
+  submenuTitle?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
 };
 
 export type ComponentSectionsDownloadSection = {
@@ -455,6 +574,18 @@ export type ComponentSectionsExploreSection = {
   title?: Maybe<Scalars['String']>;
 };
 
+export type ComponentSectionsExploreSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsExploreSectionFiltersInput>>>;
+  not?: InputMaybe<ComponentSectionsExploreSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsExploreSectionFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSectionsExploreSectionInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export type ComponentSectionsGallerySection = {
   __typename?: 'ComponentSectionsGallerySection';
   id: Scalars['ID'];
@@ -470,6 +601,21 @@ export type ComponentSectionsGallerySectionMediasArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type ComponentSectionsGallerySectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsGallerySectionFiltersInput>>>;
+  not?: InputMaybe<ComponentSectionsGallerySectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsGallerySectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSectionsGallerySectionInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  medias?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  submenuTitle?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export type ComponentSectionsHighlightsSection = {
   __typename?: 'ComponentSectionsHighlightsSection';
   highlights?: Maybe<Array<Maybe<ComponentBlocksContentPageItem>>>;
@@ -483,11 +629,37 @@ export type ComponentSectionsHighlightsSectionHighlightsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type ComponentSectionsHighlightsSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsHighlightsSectionFiltersInput>>>;
+  highlights?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
+  not?: InputMaybe<ComponentSectionsHighlightsSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsHighlightsSectionFiltersInput>>>;
+};
+
+export type ComponentSectionsHighlightsSectionInput = {
+  highlights?: InputMaybe<Array<InputMaybe<ComponentBlocksContentPageItemInput>>>;
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export type ComponentSectionsMapSection = {
   __typename?: 'ComponentSectionsMapSection';
   id: Scalars['ID'];
   submenuTitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
+};
+
+export type ComponentSectionsMapSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsMapSectionFiltersInput>>>;
+  not?: InputMaybe<ComponentSectionsMapSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsMapSectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSectionsMapSectionInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  submenuTitle?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
 };
 
 export type ComponentSectionsNewsSection = {
@@ -497,16 +669,54 @@ export type ComponentSectionsNewsSection = {
   title?: Maybe<Scalars['String']>;
 };
 
+export type ComponentSectionsNewsSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsNewsSectionFiltersInput>>>;
+  not?: InputMaybe<ComponentSectionsNewsSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsNewsSectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSectionsNewsSectionInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  submenuTitle?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export type ComponentSectionsNewsletterSection = {
   __typename?: 'ComponentSectionsNewsletterSection';
   id: Scalars['ID'];
   submenuTitle?: Maybe<Scalars['String']>;
 };
 
+export type ComponentSectionsNewsletterSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsNewsletterSectionFiltersInput>>>;
+  not?: InputMaybe<ComponentSectionsNewsletterSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsNewsletterSectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSectionsNewsletterSectionInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  submenuTitle?: InputMaybe<Scalars['String']>;
+};
+
 export type ComponentSectionsOpeningHoursSection = {
   __typename?: 'ComponentSectionsOpeningHoursSection';
   id: Scalars['ID'];
   submenuTitle?: Maybe<Scalars['String']>;
+};
+
+export type ComponentSectionsOpeningHoursSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsOpeningHoursSectionFiltersInput>>>;
+  not?: InputMaybe<ComponentSectionsOpeningHoursSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsOpeningHoursSectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSectionsOpeningHoursSectionInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  submenuTitle?: InputMaybe<Scalars['String']>;
 };
 
 export type ComponentSectionsPageSection = {
@@ -525,6 +735,24 @@ export type ComponentSectionsPageSectionContentPagesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type ComponentSectionsPageSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsPageSectionFiltersInput>>>;
+  contentPages?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
+  layout?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentSectionsPageSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsPageSectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSectionsPageSectionInput = {
+  contentPages?: InputMaybe<Array<InputMaybe<ComponentBlocksContentPageItemInput>>>;
+  id?: InputMaybe<Scalars['ID']>;
+  layout?: InputMaybe<Enum_Componentsectionspagesection_Layout>;
+  submenuTitle?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export type ComponentSectionsPartnersSection = {
   __typename?: 'ComponentSectionsPartnersSection';
   id: Scalars['ID'];
@@ -539,11 +767,39 @@ export type ComponentSectionsPartnersSectionPartnersArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type ComponentSectionsPartnersSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsPartnersSectionFiltersInput>>>;
+  not?: InputMaybe<ComponentSectionsPartnersSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsPartnersSectionFiltersInput>>>;
+  partners?: InputMaybe<ComponentBlocksPartnerItemFiltersInput>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSectionsPartnersSectionInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  partners?: InputMaybe<Array<InputMaybe<ComponentBlocksPartnerItemInput>>>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export type ComponentSectionsRichtextSection = {
   __typename?: 'ComponentSectionsRichtextSection';
   content?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   submenuTitle?: Maybe<Scalars['String']>;
+};
+
+export type ComponentSectionsRichtextSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsRichtextSectionFiltersInput>>>;
+  content?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentSectionsRichtextSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsRichtextSectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSectionsRichtextSectionInput = {
+  content?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  submenuTitle?: InputMaybe<Scalars['String']>;
 };
 
 export type ComponentSectionsSliderSection = {
@@ -581,12 +837,44 @@ export type ComponentSectionsTicketsSection = {
   title?: Maybe<Scalars['String']>;
 };
 
+export type ComponentSectionsTicketsSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsTicketsSectionFiltersInput>>>;
+  not?: InputMaybe<ComponentSectionsTicketsSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsTicketsSectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
+  text?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSectionsTicketsSectionInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  submenuTitle?: InputMaybe<Scalars['String']>;
+  text?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export type ComponentSectionsVideoSection = {
   __typename?: 'ComponentSectionsVideoSection';
   id: Scalars['ID'];
   submenuTitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
+};
+
+export type ComponentSectionsVideoSectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSectionsVideoSectionFiltersInput>>>;
+  not?: InputMaybe<ComponentSectionsVideoSectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSectionsVideoSectionFiltersInput>>>;
+  submenuTitle?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSectionsVideoSectionInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  submenuTitle?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
 };
 
 export type ContactCard = {
@@ -930,6 +1218,26 @@ export type ExhibitionsPageEntityResponse = {
   data?: Maybe<ExhibitionsPageEntity>;
 };
 
+export type ExhibitionsPageEntityResponseCollection = {
+  __typename?: 'ExhibitionsPageEntityResponseCollection';
+  data: Array<ExhibitionsPageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type ExhibitionsPageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ExhibitionsPageFiltersInput>>>;
+  archiveSection?: InputMaybe<ComponentSectionsArchiveSectionFiltersInput>;
+  archiveSeo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  highlights?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<ExhibitionsPageFiltersInput>;
+  not?: InputMaybe<ExhibitionsPageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ExhibitionsPageFiltersInput>>>;
+  seo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
 export type ExhibitionsPageInput = {
   archiveSection?: InputMaybe<ComponentSectionsArchiveSectionInput>;
   archiveSeo?: InputMaybe<ComponentBlocksSeoInput>;
@@ -968,6 +1276,24 @@ export type ExplorePageEntity = {
 export type ExplorePageEntityResponse = {
   __typename?: 'ExplorePageEntityResponse';
   data?: Maybe<ExplorePageEntity>;
+};
+
+export type ExplorePageEntityResponseCollection = {
+  __typename?: 'ExplorePageEntityResponseCollection';
+  data: Array<ExplorePageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type ExplorePageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ExplorePageFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  highlights?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<ExplorePageFiltersInput>;
+  not?: InputMaybe<ExplorePageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ExplorePageFiltersInput>>>;
+  seo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type ExplorePageInput = {
@@ -1039,6 +1365,31 @@ export type GeneralEntityResponse = {
   data?: Maybe<GeneralEntity>;
 };
 
+export type GeneralEntityResponseCollection = {
+  __typename?: 'GeneralEntityResponseCollection';
+  data: Array<GeneralEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type GeneralFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<GeneralFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  disclosureMoreFiles?: InputMaybe<ComponentSectionsDownloadSectionFiltersInput>;
+  email?: InputMaybe<StringFilterInput>;
+  footerLinks1?: InputMaybe<ComponentBlocksLinksFiltersInput>;
+  footerLinks2?: InputMaybe<ComponentBlocksLinksFiltersInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<GeneralFiltersInput>;
+  mirbach?: InputMaybe<ComponentBlocksPalaceFiltersInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<GeneralFiltersInput>;
+  openingHours?: InputMaybe<StringFilterInput>;
+  or?: InputMaybe<Array<InputMaybe<GeneralFiltersInput>>>;
+  palffy?: InputMaybe<ComponentBlocksPalaceFiltersInput>;
+  socialLinks?: InputMaybe<ComponentBlocksLinksFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
 export type GeneralInput = {
   disclosureMoreFiles?: InputMaybe<ComponentSectionsDownloadSectionInput>;
   email?: InputMaybe<Scalars['String']>;
@@ -1085,6 +1436,24 @@ export type GetInvolvedPageEntity = {
 export type GetInvolvedPageEntityResponse = {
   __typename?: 'GetInvolvedPageEntityResponse';
   data?: Maybe<GetInvolvedPageEntity>;
+};
+
+export type GetInvolvedPageEntityResponseCollection = {
+  __typename?: 'GetInvolvedPageEntityResponseCollection';
+  data: Array<GetInvolvedPageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type GetInvolvedPageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<GetInvolvedPageFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  highlights?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<GetInvolvedPageFiltersInput>;
+  not?: InputMaybe<GetInvolvedPageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<GetInvolvedPageFiltersInput>>>;
+  seo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type GetInvolvedPageInput = {
@@ -1137,6 +1506,25 @@ export type HomePageEntityResponse = {
   data?: Maybe<HomePageEntity>;
 };
 
+export type HomePageEntityResponseCollection = {
+  __typename?: 'HomePageEntityResponseCollection';
+  data: Array<HomePageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type HomePageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<HomePageFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  highlights?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<HomePageFiltersInput>;
+  not?: InputMaybe<HomePageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<HomePageFiltersInput>>>;
+  partners?: InputMaybe<ComponentBlocksPartnerItemFiltersInput>;
+  seo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
 export type HomePageInput = {
   highlights?: InputMaybe<Array<InputMaybe<ComponentBlocksContentPageItemInput>>>;
   partners?: InputMaybe<Array<InputMaybe<ComponentBlocksPartnerItemInput>>>;
@@ -1185,6 +1573,16 @@ export type I18NLocaleFiltersInput = {
   not?: InputMaybe<I18NLocaleFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<I18NLocaleFiltersInput>>>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type I18NLocaleInput = {
+  code?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type I18NLocaleRelationResponseCollection = {
+  __typename?: 'I18NLocaleRelationResponseCollection';
+  data: Array<I18NLocaleEntity>;
 };
 
 export type IdFilterInput = {
@@ -1260,6 +1658,31 @@ export type JsonFilterInput = {
   null?: InputMaybe<Scalars['Boolean']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
   startsWith?: InputMaybe<Scalars['JSON']>;
+};
+
+export type LongFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['Long']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Long']>>>;
+  contains?: InputMaybe<Scalars['Long']>;
+  containsi?: InputMaybe<Scalars['Long']>;
+  endsWith?: InputMaybe<Scalars['Long']>;
+  eq?: InputMaybe<Scalars['Long']>;
+  eqi?: InputMaybe<Scalars['Long']>;
+  gt?: InputMaybe<Scalars['Long']>;
+  gte?: InputMaybe<Scalars['Long']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Long']>>>;
+  lt?: InputMaybe<Scalars['Long']>;
+  lte?: InputMaybe<Scalars['Long']>;
+  ne?: InputMaybe<Scalars['Long']>;
+  nei?: InputMaybe<Scalars['Long']>;
+  not?: InputMaybe<LongFilterInput>;
+  notContains?: InputMaybe<Scalars['Long']>;
+  notContainsi?: InputMaybe<Scalars['Long']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Long']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Long']>>>;
+  startsWith?: InputMaybe<Scalars['Long']>;
 };
 
 export type MainPage = {
@@ -1355,6 +1778,23 @@ export type MenuEntity = {
 export type MenuEntityResponse = {
   __typename?: 'MenuEntityResponse';
   data?: Maybe<MenuEntity>;
+};
+
+export type MenuEntityResponseCollection = {
+  __typename?: 'MenuEntityResponseCollection';
+  data: Array<MenuEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type MenuFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<MenuFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<MenuFiltersInput>;
+  menuLinks?: InputMaybe<ComponentBlocksMenuLinkItemFiltersInput>;
+  not?: InputMaybe<MenuFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<MenuFiltersInput>>>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type MenuInput = {
@@ -2887,6 +3327,17 @@ export type UsersPermissionsPermissionEntity = {
   id?: Maybe<Scalars['ID']>;
 };
 
+export type UsersPermissionsPermissionEntityResponse = {
+  __typename?: 'UsersPermissionsPermissionEntityResponse';
+  data?: Maybe<UsersPermissionsPermissionEntity>;
+};
+
+export type UsersPermissionsPermissionEntityResponseCollection = {
+  __typename?: 'UsersPermissionsPermissionEntityResponseCollection';
+  data: Array<UsersPermissionsPermissionEntity>;
+  meta: ResponseCollectionMeta;
+};
+
 export type UsersPermissionsPermissionFiltersInput = {
   action?: InputMaybe<StringFilterInput>;
   and?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>;
@@ -2896,6 +3347,11 @@ export type UsersPermissionsPermissionFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>;
   role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type UsersPermissionsPermissionInput = {
+  action?: InputMaybe<Scalars['String']>;
+  role?: InputMaybe<Scalars['ID']>;
 };
 
 export type UsersPermissionsPermissionRelationResponseCollection = {
@@ -2971,6 +3427,11 @@ export type UsersPermissionsRoleInput = {
   permissions?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   type?: InputMaybe<Scalars['String']>;
   users?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+};
+
+export type UsersPermissionsRoleRelationResponseCollection = {
+  __typename?: 'UsersPermissionsRoleRelationResponseCollection';
+  data: Array<UsersPermissionsRoleEntity>;
 };
 
 export type UsersPermissionsUpdateRolePayload = {
@@ -3069,6 +3530,24 @@ export type VisitUsPageEntity = {
 export type VisitUsPageEntityResponse = {
   __typename?: 'VisitUsPageEntityResponse';
   data?: Maybe<VisitUsPageEntity>;
+};
+
+export type VisitUsPageEntityResponseCollection = {
+  __typename?: 'VisitUsPageEntityResponseCollection';
+  data: Array<VisitUsPageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type VisitUsPageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<VisitUsPageFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  highlights?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<VisitUsPageFiltersInput>;
+  not?: InputMaybe<VisitUsPageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<VisitUsPageFiltersInput>>>;
+  seo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type VisitUsPageInput = {
@@ -4423,36 +4902,36 @@ export const DisclosureOfInformationPageDocument = gql`
 }
     ${DownloadItemFragmentDoc}`;
 
-export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
+export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
 
-const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) => action();
+const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType, _variables) => action();
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    General(variables: GeneralQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GeneralQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GeneralQuery>(GeneralDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'General', 'query');
+    General(variables: GeneralQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GeneralQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GeneralQuery>(GeneralDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'General', 'query', variables);
     },
-    Places(variables: PlacesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PlacesQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PlacesQuery>(PlacesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Places', 'query');
+    Places(variables: PlacesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PlacesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PlacesQuery>(PlacesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Places', 'query', variables);
     },
-    TagsByCategorySlug(variables: TagsByCategorySlugQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TagsByCategorySlugQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TagsByCategorySlugQuery>(TagsByCategorySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'TagsByCategorySlug', 'query');
+    TagsByCategorySlug(variables: TagsByCategorySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TagsByCategorySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TagsByCategorySlugQuery>(TagsByCategorySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'TagsByCategorySlug', 'query', variables);
     },
-    News(variables: NewsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<NewsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<NewsQuery>(NewsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'News', 'query');
+    News(variables: NewsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<NewsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<NewsQuery>(NewsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'News', 'query', variables);
     },
-    PreviewsByTags(variables: PreviewsByTagsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PreviewsByTagsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PreviewsByTagsQuery>(PreviewsByTagsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PreviewsByTags', 'query');
+    PreviewsByTags(variables: PreviewsByTagsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PreviewsByTagsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PreviewsByTagsQuery>(PreviewsByTagsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PreviewsByTags', 'query', variables);
     },
-    PreviewContentPageBySlug(variables: PreviewContentPageBySlugQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PreviewContentPageBySlugQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PreviewContentPageBySlugQuery>(PreviewContentPageBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PreviewContentPageBySlug', 'query');
+    PreviewContentPageBySlug(variables: PreviewContentPageBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PreviewContentPageBySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PreviewContentPageBySlugQuery>(PreviewContentPageBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PreviewContentPageBySlug', 'query', variables);
     },
-    ContentPageBySlug(variables: ContentPageBySlugQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ContentPageBySlugQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<ContentPageBySlugQuery>(ContentPageBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ContentPageBySlug', 'query');
+    ContentPageBySlug(variables: ContentPageBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ContentPageBySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ContentPageBySlugQuery>(ContentPageBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ContentPageBySlug', 'query', variables);
     },
-    AllContentPageSlugs(variables: AllContentPageSlugsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AllContentPageSlugsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AllContentPageSlugsQuery>(AllContentPageSlugsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AllContentPageSlugs', 'query');
+    AllContentPageSlugs(variables: AllContentPageSlugsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<AllContentPageSlugsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<AllContentPageSlugsQuery>(AllContentPageSlugsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AllContentPageSlugs', 'query', variables);
     },
     MainPageBySlug(variables: MainPageBySlugQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MainPageBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<MainPageBySlugQuery>(MainPageBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'MainPageBySlug', 'query');
@@ -4463,35 +4942,35 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     Tickets(variables: TicketsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TicketsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TicketsQuery>(TicketsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Tickets', 'query');
     },
-    ExhibitionsByPlace(variables: ExhibitionsByPlaceQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ExhibitionsByPlaceQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<ExhibitionsByPlaceQuery>(ExhibitionsByPlaceDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ExhibitionsByPlace', 'query');
+    ExhibitionsByPlace(variables: ExhibitionsByPlaceQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ExhibitionsByPlaceQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ExhibitionsByPlaceQuery>(ExhibitionsByPlaceDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ExhibitionsByPlace', 'query', variables);
     },
-    AboutUsPage(variables: AboutUsPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AboutUsPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AboutUsPageQuery>(AboutUsPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AboutUsPage', 'query');
+    AboutUsPage(variables: AboutUsPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<AboutUsPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<AboutUsPageQuery>(AboutUsPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AboutUsPage', 'query', variables);
     },
-    HomePage(variables: HomePageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<HomePageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<HomePageQuery>(HomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'HomePage', 'query');
+    HomePage(variables: HomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<HomePageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<HomePageQuery>(HomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'HomePage', 'query', variables);
     },
-    CollectionPage(variables: CollectionPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CollectionPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CollectionPageQuery>(CollectionPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CollectionPage', 'query');
+    CollectionPage(variables: CollectionPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CollectionPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CollectionPageQuery>(CollectionPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CollectionPage', 'query', variables);
     },
-    GetInvolvedPage(variables: GetInvolvedPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetInvolvedPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetInvolvedPageQuery>(GetInvolvedPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetInvolvedPage', 'query');
+    GetInvolvedPage(variables: GetInvolvedPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetInvolvedPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetInvolvedPageQuery>(GetInvolvedPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GetInvolvedPage', 'query', variables);
     },
-    VisitUsPage(variables: VisitUsPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<VisitUsPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<VisitUsPageQuery>(VisitUsPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'VisitUsPage', 'query');
+    VisitUsPage(variables: VisitUsPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<VisitUsPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<VisitUsPageQuery>(VisitUsPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'VisitUsPage', 'query', variables);
     },
-    ExplorePage(variables: ExplorePageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ExplorePageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<ExplorePageQuery>(ExplorePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ExplorePage', 'query');
+    ExplorePage(variables: ExplorePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ExplorePageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ExplorePageQuery>(ExplorePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ExplorePage', 'query', variables);
     },
-    ExhibitionsPage(variables: ExhibitionsPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ExhibitionsPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<ExhibitionsPageQuery>(ExhibitionsPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ExhibitionsPage', 'query');
+    ExhibitionsPage(variables: ExhibitionsPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ExhibitionsPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ExhibitionsPageQuery>(ExhibitionsPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ExhibitionsPage', 'query', variables);
     },
-    ArchivePage(variables: ArchivePageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ArchivePageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<ArchivePageQuery>(ArchivePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ArchivePage', 'query');
+    ArchivePage(variables: ArchivePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ArchivePageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ArchivePageQuery>(ArchivePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ArchivePage', 'query', variables);
     },
-    DisclosureOfInformationPage(variables: DisclosureOfInformationPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DisclosureOfInformationPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<DisclosureOfInformationPageQuery>(DisclosureOfInformationPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DisclosureOfInformationPage', 'query');
+    DisclosureOfInformationPage(variables: DisclosureOfInformationPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DisclosureOfInformationPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DisclosureOfInformationPageQuery>(DisclosureOfInformationPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DisclosureOfInformationPage', 'query', variables);
     }
   };
 }
