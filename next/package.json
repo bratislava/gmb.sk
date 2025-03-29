@@ -22,6 +22,7 @@
     "update-prettier": "npm install prettier@latest eslint-config-prettier@latest eslint-plugin-prettier@latest --save-dev --save-exact",
     "update-graphql": "npm install graphql@latest graphql-request@6 graphql-tag@latest --save-exact && npm install @graphql-codegen/cli@latest @graphql-codegen/typescript@latest @graphql-codegen/typescript-operations@latest @graphql-codegen/typescript-graphql-request@latest --save-dev --save-exact",
     "update-react-query": "npm install @tanstack/react-query@latest --save-exact && npm install @tanstack/eslint-plugin-query@latest --save-dev --save-exact",
+    "update-mapbox": "npm install react-map-gl@latest mapbox-gl@latest --save-exact",
     "update-typescript": "npm install typescript@latest --save-dev --save-exact"
   },
   "dependencies": {
@@ -38,7 +39,7 @@
     "html-react-parser": "^3.0.16",
     "i18next": "24.2.3",
     "lodash": "^4.17.21",
-    "mapbox-gl": "^2.14.1",
+    "mapbox-gl": "3.10.0",
     "meilisearch": "0.32.4",
     "next": "14.2.26",
     "next-i18next": "15.4.2",
@@ -50,7 +51,7 @@
     "react-i18next": "15.4.1",
     "react-image-gallery": "^1.2.11",
     "react-mailchimp-subscribe": "^2.1.3",
-    "react-map-gl": "^7.0.23",
+    "react-map-gl": "7.1.9",
     "react-markdown": "^10.1.0",
     "react-modal": "^3.16.1",
     "remark-gfm": "^4.0.1",

@@ -257,7 +257,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
 
       if (!clickedFeature) return
 
-      if (!customLayers.includes(clickedFeature.layer.id)) {
+      if (!clickedFeature.layer?.id || !customLayers.includes(clickedFeature.layer.id)) {
         setSelectedGallery(null)
         setDescription(null)
         setSelectedFeaturePoint(null)
