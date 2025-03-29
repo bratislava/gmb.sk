@@ -34,6 +34,7 @@ module.exports = {
     'no-secrets/no-secrets': 'off',
     /** We use img on purpose */
     '@next/next/no-img-element': 'off',
+    'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
     /** Strapi and graphql somehow produce a lot of eslint errors with this rules */
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
@@ -46,6 +47,8 @@ module.exports = {
     /** Translation t function is typed as any */
     '@typescript-eslint/restrict-template-expressions': 'off',
     'import/extensions': 'off',
+    'pii/no-phone-number': 'off',
+    'const-case/uppercase': 'off',
   },
   ignorePatterns: ['*.config.*', 'src/services/graphql', '.eslintrc.js', '*.md'],
 }
