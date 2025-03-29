@@ -5,7 +5,7 @@ import 'swiper/css/pagination'
 import cx from 'classnames'
 import Image from 'next/image'
 import { useRef } from 'react'
-import { Autoplay, Navigation, Pagination } from 'swiper'
+import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { NavigationOptions } from 'swiper/types'
 
