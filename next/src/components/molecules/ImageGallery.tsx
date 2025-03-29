@@ -87,8 +87,8 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
           alt={item.thumbnailAlt}
           title={item.thumbnailTitle}
         />
-        {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
         {item.thumbnailLabel && (
+          // eslint-disable-next-line tailwindcss/no-custom-classname
           <div className="image-gallery-thumbnail-label">{item.thumbnailLabel}</div>
         )}
       </span>
