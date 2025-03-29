@@ -28,7 +28,6 @@ const DownloadItem = ({ downloadItem }: DownloadProps) => {
         setFetching(false)
         const blobURL = URL.createObjectURL(blob)
         const a = document.createElement('a')
-        // eslint-disable-next-line scanjs-rules/assign_to_href
         a.href = blobURL
         a.style.display = 'none'
         // TOTO may need refactor

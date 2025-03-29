@@ -1,8 +1,10 @@
 module.exports = {
   extends: [
     'auto',
-    'plugin:tailwindcss/recommended',
+    'plugin:react/recommended',
     'plugin:@next/next/recommended',
+    'plugin:i18next/recommended',
+    'plugin:tailwindcss/recommended',
     'plugin:@tanstack/eslint-plugin-query/recommended',
   ],
   rules: {
@@ -42,10 +44,6 @@ module.exports = {
     'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
     /** Strapi and graphql somehow produce a lot of eslint errors with this rules */
     '@typescript-eslint/no-unsafe-assignment': 'off',
-    '@typescript-eslint/no-unsafe-call': 'off',
-    '@typescript-eslint/no-unsafe-return': 'off',
-    '@typescript-eslint/no-unsafe-member-access': 'off',
-    '@typescript-eslint/no-unsafe-argument': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
     'lodash/prefer-noop': 'off',
     'unicorn/switch-case-braces': 'off',
@@ -54,6 +52,11 @@ module.exports = {
     'import/extensions': 'off',
     'pii/no-phone-number': 'off',
     'const-case/uppercase': 'off',
+    'react/display-name': 'off',
+
+    /* Formatting rules */
+    'prettier/prettier': ['error', { endOfLine: 'auto' }], // TODO revisit, prettier should not be run by eslint
+    'padding-line-between-statements': ['warn', { blankLine: 'always', prev: '*', next: 'return' }],
   },
   ignorePatterns: ['*.config.*', 'src/services/graphql', '.eslintrc.js', '*.md'],
 }

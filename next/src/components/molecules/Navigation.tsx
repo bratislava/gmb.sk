@@ -138,7 +138,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
               hidden: !isMobileMenuOpen,
             })}
           >
-            {menuLinks.map((menuLink) => {
+            {menuLinks.map((menuLink, index) => {
               const isExternal = menuLink.href.startsWith('http')
 
               // Add nbsp and arrow to indicate external link
@@ -147,6 +147,8 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
               return (
                 <Link
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
                   href={menuLink.href}
                   className="text-center"
                   target={isExternal ? '_blank' : undefined}

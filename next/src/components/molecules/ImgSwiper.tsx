@@ -63,9 +63,11 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
           />
         </SwiperSlide>
       ))}
+      {/* eslint-disable-next-line i18next/no-literal-string */}
       <div ref={navigationPrevRef} className={cx(navigationStyle, 'left-11')}>
         prev
       </div>
+      {/* eslint-disable-next-line i18next/no-literal-string */}
       <div ref={navigationNextRef} className={cx(navigationStyle, 'right-11')}>
         next
       </div>
