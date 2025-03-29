@@ -51,7 +51,7 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
   const { t } = useTranslation()
   return (
     <FocusTrap>
-      <div className="fixed inset-x-0 top-[var(--nav-height)] z-20 flex h-[calc(100vh-var(--nav-height))] flex-col gap-yLg bg-gmbDark px-xLg py-yLg">
+      <div className="fixed inset-x-0 top-nav z-20 flex h-[calc(100vh-var(--nav-height))] flex-col gap-yLg bg-gmbDark px-xLg py-yLg">
         <div>
           <input
             className="h-fit max-w-full border-b border-solid border-b-white bg-transparent text-xl text-white focus:border-b-2 focus:outline-none active:border-b-2"

@@ -118,7 +118,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
       <div className="h-auto overflow-hidden px-xMd py-yLg">
         {/* Desktop sidepanel */}
         {/* min-h is needed to keep sidepanel space even if sidepanel is empty */}
-        <div className="float-right ml-xLg hidden min-h-[1px] w-sidepanel lg:flex">
+        <div className="float-right ml-xLg hidden min-h-px w-sidepanel lg:flex">
           <SidePanel
             datetime={{ dateFrom, dateTo, timeFrom, timeTo, showRemainingTime }}
             place={{ place, placeTitle, placeAddress }}

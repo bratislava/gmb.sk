@@ -4933,14 +4933,14 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     AllContentPageSlugs(variables: AllContentPageSlugsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<AllContentPageSlugsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<AllContentPageSlugsQuery>(AllContentPageSlugsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AllContentPageSlugs', 'query', variables);
     },
-    MainPageBySlug(variables: MainPageBySlugQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MainPageBySlugQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MainPageBySlugQuery>(MainPageBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'MainPageBySlug', 'query');
+    MainPageBySlug(variables: MainPageBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<MainPageBySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MainPageBySlugQuery>(MainPageBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'MainPageBySlug', 'query', variables);
     },
-    AllMainPageSlugs(variables: AllMainPageSlugsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AllMainPageSlugsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AllMainPageSlugsQuery>(AllMainPageSlugsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AllMainPageSlugs', 'query');
+    AllMainPageSlugs(variables: AllMainPageSlugsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<AllMainPageSlugsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<AllMainPageSlugsQuery>(AllMainPageSlugsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AllMainPageSlugs', 'query', variables);
     },
-    Tickets(variables: TicketsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TicketsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TicketsQuery>(TicketsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Tickets', 'query');
+    Tickets(variables: TicketsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TicketsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TicketsQuery>(TicketsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Tickets', 'query', variables);
     },
     ExhibitionsByPlace(variables: ExhibitionsByPlaceQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ExhibitionsByPlaceQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ExhibitionsByPlaceQuery>(ExhibitionsByPlaceDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ExhibitionsByPlace', 'query', variables);

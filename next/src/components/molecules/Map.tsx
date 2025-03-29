@@ -15,7 +15,6 @@ import {
 import Mapbox, { MapRef, Marker } from 'react-map-gl'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { usePreviousImmediate } from 'rooks'
 
 import GmbLogoIcon from '@/src/assets/icons/map-icons/gmb-logo.svg'
 import MirbachovPalacIcon from '@/src/assets/icons/map-icons/mirbachov-palac.svg'
@@ -102,6 +101,23 @@ const ZOOMED_OUT_BOUNDS: mapboxgl.LngLatBoundsLike = [
   [17.101_943_044_995_41, 48.139_388_456_891_595],
   [17.117_128_583_907_345, 48.148_904_917_409_11],
 ]
+
+/**
+ * usePreviousImmediate hook from rooks
+ *
+ * @param currentValue The value whose previous value is to be tracked
+ * @returns The previous value
+ * @see https://rooks.vercel.app/docs/usePreviousImmediate
+ */
+function usePreviousImmediate<T>(currentValue: T): T | null {
+  const previousRef = useRef<T | null>(null)
+
+  useEffect(() => {
+    previousRef.current = currentValue
+  })
+
+  return previousRef.current
+}
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 const Map = ({ mapboxAccessToken }: MapProps) => {
@@ -386,7 +402,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
         })}
       </div>
       <div className="relative w-full overflow-hidden bg-gmbDark pt-96 lg:col-span-2 lg:col-start-1 lg:row-span-3 lg:row-start-1">
-        <div className="absolute top-0 h-full w-full">
+        <div className="absolute top-0 size-full">
           <Mapbox
             ref={mapRef}
             mapboxAccessToken={mapboxAccessToken}

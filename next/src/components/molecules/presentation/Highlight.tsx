@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect } from 'react'
-import { useWindowSize } from 'rooks'
+import { useWindowSize } from 'usehooks-ts'
 
 import Button from '@/src/components/atoms/Button'
 import Link from '@/src/components/atoms/Link'
@@ -28,7 +28,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
   const { t } = useTranslation()
   const router = useRouter()
 
-  const { innerWidth: windowWidth } = useWindowSize()
+  const { width: windowWidth } = useWindowSize()
 
   const {
     title,
