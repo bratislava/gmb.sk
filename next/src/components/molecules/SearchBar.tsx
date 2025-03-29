@@ -1,7 +1,7 @@
-import FocusTrap from 'focus-trap-react'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { FocusTrap } from 'focus-trap-react'
 import { useTranslation } from 'next-i18next'
 import { useEffect } from 'react'
-import { useQuery } from 'react-query'
 
 import CloseIcon from '@/src/assets/icons/close-x.svg'
 import Results from '@/src/components/molecules/Results'
@@ -32,7 +32,7 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
   const { data } = useQuery({
     queryKey: getCommonSearchQueryKey(filters),
     queryFn: () => commonSearchFetcher(filters, locale),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   })
 
   // TODO pagination

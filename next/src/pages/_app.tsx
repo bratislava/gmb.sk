@@ -5,7 +5,7 @@ import Head from 'next/head'
 import Script from 'next/script'
 import { appWithTranslation, SSRConfig, useTranslation } from 'next-i18next'
 import { NextAdapter } from 'next-query-params'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { SWRConfig } from 'swr'
 import { QueryParamProvider } from 'use-query-params'
 
