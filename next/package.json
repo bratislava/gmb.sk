@@ -36,7 +36,7 @@
     "graphql-request": "6.1.0",
     "graphql-tag": "2.12.6",
     "gsap": "^3.12.7",
-    "html-react-parser": "^3.0.16",
+    "html-react-parser": "^5.2.2",
     "i18next": "24.2.3",
     "lodash": "^4.17.21",
     "mapbox-gl": "3.10.0",
