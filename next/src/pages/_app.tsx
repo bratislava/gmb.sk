@@ -1,24 +1,20 @@
 import '@/src/styles/globals.css'
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
 import { appWithTranslation, SSRConfig, useTranslation } from 'next-i18next'
 import { NextAdapter } from 'next-query-params'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { SWRConfig } from 'swr'
 import { QueryParamProvider } from 'use-query-params'
 
 import nextI18NextConfig from '@/next-i18next.config'
-import { initializeGoogleAnalytics, useGoogleAnalyticsPageView } from '@/src/utils/googleAnalytics'
 import { isProd } from '@/src/utils/isProd'
 import { logError } from '@/src/utils/logger'
 
-initializeGoogleAnalytics()
-
 const CustomApp = ({ Component, pageProps }: AppProps<SSRConfig>) => {
   const { t } = useTranslation()
-  useGoogleAnalyticsPageView()
 
   const queryClient = new QueryClient()
 

@@ -2,10 +2,8 @@ import cx from 'classnames'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useCallback } from 'react'
-import { useCookies } from 'react-cookie'
 
 import { ContentPageEntityFragment } from '@/src/services/graphql'
-import { LocalStorageEnum } from '@/src/types/localStorage'
 import { WithAttributes } from '@/src/utils/isDefined'
 import { getEquivalentRouteInTargetLocale } from '@/src/utils/localeRoutes'
 
@@ -15,7 +13,6 @@ interface AppLangSwitchersProps {
 }
 
 const AppLangSwitchers = ({ contentPage, showBothLanguages }: AppLangSwitchersProps) => {
-  const [, setCookies] = useCookies([LocalStorageEnum.LANG])
   const router = useRouter()
   const { i18n } = useTranslation()
   const currentLanguage = i18n.language
@@ -40,10 +37,6 @@ const AppLangSwitchers = ({ contentPage, showBothLanguages }: AppLangSwitchersPr
         return
       }
 
-      setCookies(LocalStorageEnum.LANG, locale, {
-        path: '/',
-        sameSite: true,
-      })
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.replace(
         {
@@ -53,7 +46,7 @@ const AppLangSwitchers = ({ contentPage, showBothLanguages }: AppLangSwitchersPr
         { locale }
       )
     },
-    [router, setCookies, contentPage]
+    [router, contentPage]
   )
 
   return (
