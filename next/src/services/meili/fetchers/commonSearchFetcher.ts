@@ -14,7 +14,11 @@ export const commonSearchDefaultFilters: CommonSearchFilters = {
   page: 1,
 }
 
-export const getCommonSearchQueryKey = (filters: CommonSearchFilters) => ['commonSearch', filters]
+export const getCommonSearchQueryKey = (filters: CommonSearchFilters, locale: string) => [
+  'commonSearch',
+  filters,
+  locale,
+]
 
 export const commonSearchFetcher = (filters: CommonSearchFilters, locale: string) => {
   return meiliClient

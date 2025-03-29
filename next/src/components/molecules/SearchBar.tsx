@@ -30,7 +30,7 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
   const { input, setInput, searchValue } = useSearch({ syncWithUrlQuery: false })
 
   const { data } = useQuery({
-    queryKey: getCommonSearchQueryKey(filters),
+    queryKey: getCommonSearchQueryKey(filters, locale),
     queryFn: () => commonSearchFetcher(filters, locale),
     placeholderData: keepPreviousData,
   })

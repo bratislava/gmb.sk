@@ -1,5 +1,10 @@
 module.exports = {
-  extends: ['auto', 'plugin:tailwindcss/recommended', 'plugin:@next/next/recommended'],
+  extends: [
+    'auto',
+    'plugin:tailwindcss/recommended',
+    'plugin:@next/next/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
+  ],
   rules: {
     'react/react-in-jsx-scope': 'off',
     /** We use this a lot with isDefined and hasAttributes */
