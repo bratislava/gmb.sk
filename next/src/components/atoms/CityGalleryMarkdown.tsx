@@ -83,6 +83,7 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
           ),
           a: ({ children, href }) => {
             const isExternal = href?.startsWith('http')
+
             return (
               <Link
                 href={href ?? '#'}

@@ -23,6 +23,7 @@ const Submenu = ({ items, filters, clearFilters }: SubmenuProps) => {
 
   useEffect(() => {
     document.body.style.overflow = isModalOpen ? 'hidden' : 'auto'
+
     return () => {
       document.body.style.overflow = 'auto'
     }

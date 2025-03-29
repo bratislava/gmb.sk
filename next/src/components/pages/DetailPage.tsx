@@ -214,6 +214,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
                   </Section>
                 )
               }
+
               return null
             })}
           </div>

@@ -57,6 +57,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
       thumbnail: thumbnail.url,
       description: caption ?? undefined,
     }
+
     return item
   })
 

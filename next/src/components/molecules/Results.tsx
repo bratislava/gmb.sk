@@ -17,6 +17,7 @@ const Results = ({ header, results }: ResultsProps) => {
           .slice(0, 6)
           .map((result, index) => {
             const { slug, title } = result.attributes
+
             return (
               // eslint-disable-next-line react/no-array-index-key
               <li key={index}>

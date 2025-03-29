@@ -61,6 +61,7 @@ export function getRouteForTargetLocale(route: string, targetLocale: string) {
   if (targetLocale === 'en') {
     return routesSkToEn[route]
   }
+
   return route
 }
 

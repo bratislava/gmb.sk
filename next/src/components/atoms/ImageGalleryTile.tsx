@@ -14,6 +14,7 @@ const ImageGalleryTile = ({ image, className, onChoose, index }: ImageGalleryTil
   if (!image) return null
 
   const { url, alternativeText } = image.attributes
+
   return (
     <button
       type="button"

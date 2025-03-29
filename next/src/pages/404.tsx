@@ -23,6 +23,7 @@ export const getStaticProps: GetStaticProps<ErrorProps> = async ({ locale = 'sk'
     client.General({ locale }),
     serverSideTranslations(locale),
   ])
+
   return {
     props: {
       generalQuery,

@@ -71,6 +71,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
   useEffect(() => {
     document.body.style.overflow = isSearchBarOpen ? 'hidden' : 'auto'
+
     return () => {
       document.body.style.overflow = 'auto'
     }

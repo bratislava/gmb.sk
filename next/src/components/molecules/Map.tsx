@@ -262,6 +262,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
         setDescription(null)
         setSelectedFeaturePoint(null)
         setSelectedPlaceUrl(null)
+
         return
       }
 

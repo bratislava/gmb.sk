@@ -49,6 +49,7 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
   }, [filters.searchValue, searchValue, setFilters])
 
   const { t } = useTranslation()
+
   return (
     <FocusTrap>
       <div className="fixed inset-x-0 top-nav z-20 flex h-[calc(100vh-var(--nav-height))] flex-col gap-yLg bg-gmbDark px-xLg py-yLg">

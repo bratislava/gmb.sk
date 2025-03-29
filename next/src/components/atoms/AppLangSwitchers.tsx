@@ -34,6 +34,7 @@ const AppLangSwitchers = ({ contentPage, showBothLanguages }: AppLangSwitchersPr
           undefined,
           { locale }
         )
+
         return
       }
 
