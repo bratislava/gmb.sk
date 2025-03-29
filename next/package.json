@@ -29,7 +29,7 @@
     "@react-types/checkbox": "^3.4.3",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "classnames": "^2.5.1",
-    "focus-trap-react": "^10.1.4",
+    "focus-trap-react": "^11.0.3",
     "graphql": "16.10.0",
     "graphql-request": "6.1.0",
     "graphql-tag": "2.12.6",
