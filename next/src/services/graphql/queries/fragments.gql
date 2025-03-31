@@ -409,6 +409,15 @@ fragment ExploreSection on ComponentSectionsExploreSection {
   title
 }
 
+fragment DisclosureSection on ComponentSectionsDisclosureSection {
+  id
+  title
+  submenuTitle
+  additionalFilesSection {
+    ...DownloadSection
+  }
+}
+
 fragment PageSection on ComponentSectionsPageSection {
   id
   title
@@ -582,6 +591,10 @@ fragment MainPageSections on MainPageSectionsDynamicZone {
   ... on ComponentSectionsExhibitionsSection {
     __typename
     ...ExhibitionsSection
+  }
+  ... on ComponentSectionsDisclosureSection {
+    __typename
+    ...DisclosureSection
   }
 }
 

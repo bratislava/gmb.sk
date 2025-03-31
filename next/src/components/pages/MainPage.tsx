@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 
 import Seo from '@/src/components/atoms/Seo'
+import DisclosureSection from '@/src/components/molecules/sections/DisclosureSection'
 import ExhibitionArchiveSection from '@/src/components/molecules/sections/ExhibitionArchiveSection'
 import ExhibitionsSection from '@/src/components/molecules/sections/ExhibitionsSection'
 import ExploreSection from '@/src/components/molecules/sections/ExploreSection'
@@ -94,6 +95,7 @@ const MainPage = ({
       {page?.sections
         ?.filter(isDefined)
         .filter(isDefined)
+        // eslint-disable-next-line sonarjs/cognitive-complexity
         .map((section) => {
           if (section.__typename === 'ComponentSectionsNewsSection' && newsItems) {
             return (
@@ -228,6 +230,17 @@ const MainPage = ({
             return (
               <ExhibitionArchiveSection
                 title={section.title ?? undefined}
+                key={`${section.__typename}-${section.id}`}
+              />
+            )
+          }
+
+          if (section.__typename === 'ComponentSectionsDisclosureSection') {
+            return (
+              <DisclosureSection
+                title={section.title ?? undefined}
+                anchor={getAnchor(section.submenuTitle)}
+                additionalFilesSection={section?.additionalFilesSection}
                 key={`${section.__typename}-${section.id}`}
               />
             )
