@@ -173,6 +173,18 @@ export interface BlocksSeo extends Schema.Component {
   };
 }
 
+export interface SectionsArchiveBannerSection extends Schema.Component {
+  collectionName: 'components_sections_archive_banner_sections';
+  info: {
+    displayName: 'archive banner section';
+  };
+  attributes: {
+    banner: Attribute.Component<'blocks.exhibition-archive'>;
+    submenuTitle: Attribute.String;
+    title: Attribute.String;
+  };
+}
+
 export interface SectionsArchiveSection extends Schema.Component {
   collectionName: 'components_sections_archive_sections';
   info: {
@@ -232,14 +244,15 @@ export interface SectionsDownloadSection extends Schema.Component {
   };
 }
 
-export interface SectionsExhibitionArchiveSection extends Schema.Component {
-  collectionName: 'components_sections_exhibition_archive_sections';
+export interface SectionsExhibitionsSection extends Schema.Component {
+  collectionName: 'components_sections_exhibitions_sections';
   info: {
     description: '';
-    displayName: 'exhibition archive section';
-    icon: 'archive';
+    displayName: 'exhibitions section';
+    icon: 'brush';
   };
   attributes: {
+    archiveBannerSection: Attribute.Component<'sections.archive-banner-section'>;
     title: Attribute.String;
   };
 }
@@ -415,11 +428,12 @@ declare module '@strapi/types' {
       'blocks.partner-item': BlocksPartnerItem;
       'blocks.position-item': BlocksPositionItem;
       'blocks.seo': BlocksSeo;
+      'sections.archive-banner-section': SectionsArchiveBannerSection;
       'sections.archive-section': SectionsArchiveSection;
       'sections.audio-section': SectionsAudioSection;
       'sections.contact-cards-section': SectionsContactCardsSection;
       'sections.download-section': SectionsDownloadSection;
-      'sections.exhibition-archive-section': SectionsExhibitionArchiveSection;
+      'sections.exhibitions-section': SectionsExhibitionsSection;
       'sections.explore-section': SectionsExploreSection;
       'sections.gallery-section': SectionsGallerySection;
       'sections.highlights-section': SectionsHighlightsSection;

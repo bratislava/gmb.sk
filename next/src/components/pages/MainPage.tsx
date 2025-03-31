@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 
 import Seo from '@/src/components/atoms/Seo'
+import ExhibitionsSection from '@/src/components/molecules/sections/ExhibitionsSection'
 import ExhibitionArchiveSection from '@/src/components/molecules/sections/ExhibitionArchiveSection'
 import ExploreSection from '@/src/components/molecules/sections/ExploreSection'
 import HighlightsSection from '@/src/components/molecules/sections/HighlightsSection'
@@ -50,7 +51,6 @@ const MainPage = ({
   page: pageEntity,
   newsItems,
   tickets,
-  /* eslint-disable @typescript-eslint/no-unused-vars */
   exhibitions,
   permanentExhibitions,
   additionalProgram,
@@ -60,7 +60,6 @@ const MainPage = ({
   tagsLanguages,
   tagsProjects,
   tagsOthers,
-  /* eslint-enable @typescript-eslint/no-unused-vars */
   tagsExploreTypes,
   tagsExploreProjects,
   tagsExploreOthers,
@@ -84,6 +83,7 @@ const MainPage = ({
 
   return (
     <PageWrapper>
+      {/* TODO This code will be extracted into a separate SeoHead component */}
       <Seo seo={page?.seo} />
       <Head>
         <title>{`${title || ''} – Galéria mesta Bratislavy`}</title>
@@ -200,6 +200,25 @@ const MainPage = ({
                 tagsTypes={tagsExploreTypes}
                 tagsProjects={tagsExploreProjects}
                 tagsOthers={tagsExploreOthers}
+                key={`${section.__typename}-${section.id}`}
+              />
+            )
+          }
+
+          if (section.__typename === 'ComponentSectionsExhibitionsSection') {
+            return (
+              <ExhibitionsSection
+                title={section.title ?? undefined}
+                archiveBannerSection={section?.archiveBannerSection}
+                exhibitions={exhibitions}
+                permanentExhibitions={permanentExhibitions}
+                additionalProgram={additionalProgram}
+                places={places}
+                tagsProgram={tagsProgram}
+                tagsTargetGroups={tagsTargetGroups}
+                tagsLanguages={tagsLanguages}
+                tagsProjects={tagsProjects}
+                tagsOthers={tagsOthers}
                 key={`${section.__typename}-${section.id}`}
               />
             )
