@@ -15,12 +15,12 @@
     "cross-env": "^7.0.3"
   },
   "dependencies": {
-    "@strapi/plugin-graphql": "4.25.21",
-    "@strapi/plugin-i18n": "4.25.21",
-    "@strapi/plugin-upload": "4.25.21",
-    "@strapi/plugin-users-permissions": "4.25.21",
-    "@strapi/provider-email-mailgun": "^5.11.3",
-    "@strapi/strapi": "4.25.21",
+    "@strapi/plugin-graphql": "4.25.22",
+    "@strapi/plugin-i18n": "4.25.22",
+    "@strapi/plugin-upload": "4.25.22",
+    "@strapi/plugin-users-permissions": "4.25.22",
+    "@strapi/provider-email-mailgun": "4.25.22",
+    "@strapi/strapi": "4.25.22",
     "patch-package": "^7.0.2",
     "pg": "8.11.6",
     "postinstall-postinstall": "^2.1.0",
