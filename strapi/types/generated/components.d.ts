@@ -231,6 +231,19 @@ export interface SectionsContactCardsSection extends Schema.Component {
   };
 }
 
+export interface SectionsDisclosureSection extends Schema.Component {
+  collectionName: 'components_sections_disclosure_sections';
+  info: {
+    description: '';
+    displayName: 'disclosure section';
+  };
+  attributes: {
+    additionalFilesSection: Attribute.Component<'sections.download-section'>;
+    submenuTitle: Attribute.String;
+    title: Attribute.String;
+  };
+}
+
 export interface SectionsDownloadSection extends Schema.Component {
   collectionName: 'components_sections_download_sections';
   info: {
@@ -299,19 +312,6 @@ export interface SectionsHighlightsSection extends Schema.Component {
   };
   attributes: {
     highlights: Attribute.Component<'blocks.content-page-item', true>;
-  };
-}
-
-export interface SectionsInformationDisclosureSection extends Schema.Component {
-  collectionName: 'components_sections_information_disclosure_sections';
-  info: {
-    description: '';
-    displayName: 'information disclosure section';
-  };
-  attributes: {
-    additionalFilesSection: Attribute.Component<'sections.download-section'>;
-    submenuTitle: Attribute.String;
-    title: Attribute.String;
   };
 }
 
@@ -457,13 +457,13 @@ declare module '@strapi/types' {
       'sections.archive-section': SectionsArchiveSection;
       'sections.audio-section': SectionsAudioSection;
       'sections.contact-cards-section': SectionsContactCardsSection;
+      'sections.disclosure-section': SectionsDisclosureSection;
       'sections.download-section': SectionsDownloadSection;
       'sections.exhibition-archive-section': SectionsExhibitionArchiveSection;
       'sections.exhibitions-section': SectionsExhibitionsSection;
       'sections.explore-section': SectionsExploreSection;
       'sections.gallery-section': SectionsGallerySection;
       'sections.highlights-section': SectionsHighlightsSection;
-      'sections.information-disclosure-section': SectionsInformationDisclosureSection;
       'sections.map-section': SectionsMapSection;
       'sections.news-section': SectionsNewsSection;
       'sections.newsletter-section': SectionsNewsletterSection;

@@ -2,11 +2,11 @@ import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 
 import Seo from '@/src/components/atoms/Seo'
+import DisclosureSection from '@/src/components/molecules/sections/DisclosureSection'
 import ExhibitionArchiveSection from '@/src/components/molecules/sections/ExhibitionArchiveSection'
 import ExhibitionsSection from '@/src/components/molecules/sections/ExhibitionsSection'
 import ExploreSection from '@/src/components/molecules/sections/ExploreSection'
 import HighlightsSection from '@/src/components/molecules/sections/HighlightsSection'
-import InformationDisclosureSection from '@/src/components/molecules/sections/InformationDisclosureSection'
 import MapSection from '@/src/components/molecules/sections/MapSection'
 import NewsletterSection from '@/src/components/molecules/sections/NewsletterSection'
 import NewsSection from '@/src/components/molecules/sections/NewsSection'
@@ -235,9 +235,9 @@ const MainPage = ({
             )
           }
 
-          if (section.__typename === 'ComponentSectionsInformationDisclosureSection') {
+          if (section.__typename === 'ComponentSectionsDisclosureSection') {
             return (
-              <InformationDisclosureSection
+              <DisclosureSection
                 title={section.title ?? undefined}
                 anchor={getAnchor(section.submenuTitle)}
                 additionalFilesSection={section?.additionalFilesSection}

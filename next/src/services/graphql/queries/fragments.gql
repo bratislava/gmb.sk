@@ -409,7 +409,7 @@ fragment ExploreSection on ComponentSectionsExploreSection {
   title
 }
 
-fragment InformationDisclosureSection on ComponentSectionsInformationDisclosureSection {
+fragment DisclosureSection on ComponentSectionsDisclosureSection {
   id
   title
   submenuTitle
@@ -592,9 +592,9 @@ fragment MainPageSections on MainPageSectionsDynamicZone {
     __typename
     ...ExhibitionsSection
   }
-  ... on ComponentSectionsInformationDisclosureSection {
+  ... on ComponentSectionsDisclosureSection {
     __typename
-    ...InformationDisclosureSection
+    ...DisclosureSection
   }
 }
 

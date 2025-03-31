@@ -2,18 +2,14 @@ import { useTranslation } from 'next-i18next'
 
 import DownloadSection from '@/src/components/molecules/sections/DownloadSection'
 import Section, { ISectionProps } from '@/src/components/molecules/sections/Section'
-import { InformationDisclosureSectionFragment } from '@/src/services/graphql'
+import { DisclosureSectionFragment } from '@/src/services/graphql'
 import { isDefined } from '@/src/utils/isDefined'
 
-type InformationDisclosureSectionProps = Pick<ISectionProps, 'title' | 'anchor'> & {
-  additionalFilesSection?: InformationDisclosureSectionFragment['additionalFilesSection']
+type DisclosureSectionProps = Pick<ISectionProps, 'title' | 'anchor'> & {
+  additionalFilesSection?: DisclosureSectionFragment['additionalFilesSection']
 }
 
-const InformationDisclosureSection = ({
-  title,
-  anchor,
-  additionalFilesSection,
-}: InformationDisclosureSectionProps) => {
+const DisclosureSection = ({ title, anchor, additionalFilesSection }: DisclosureSectionProps) => {
   const { t } = useTranslation()
 
   return (
@@ -34,4 +30,4 @@ const InformationDisclosureSection = ({
   )
 }
 
-export default InformationDisclosureSection
+export default DisclosureSection
