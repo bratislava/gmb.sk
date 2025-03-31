@@ -44,15 +44,18 @@ export const getStaticPaths: GetStaticPaths<StaticParams> = async ({ locales = [
   const mainPageSlugsPromises = locales.map((locale) => client.AllMainPageSlugs({ locale }))
   const mainPageSlugsResponses = await Promise.all(mainPageSlugsPromises)
 
-  const paths = mainPageSlugsResponses.flatMap((mainPageSlugResponse) =>
+  const paths = mainPageSlugsResponses.flatMap((mainPageSlugResponse, index) =>
     (mainPageSlugResponse?.mainPages?.data ?? [])
       .filter(hasAttributes)
       .filter(isDefined)
-      .map((mainPage) => ({ params: { slug: mainPage.attributes.slug } }))
+      .map((mainPage) => ({
+        params: { slug: mainPage.attributes.slug },
+        locale: locales[index],
+      }))
   )
 
   // eslint-disable-next-line no-console
-  console.log(`Main pages: Generated static paths for ${paths.length} slugs.`)
+  console.log(`Main pages: Generated static paths for ${paths.length} slugs with locales.`)
 
   return { paths, fallback: 'blocking' }
 }
