@@ -6,6 +6,7 @@ import ExhibitionArchiveSection from '@/src/components/molecules/sections/Exhibi
 import ExhibitionsSection from '@/src/components/molecules/sections/ExhibitionsSection'
 import ExploreSection from '@/src/components/molecules/sections/ExploreSection'
 import HighlightsSection from '@/src/components/molecules/sections/HighlightsSection'
+import InformationDisclosureSection from '@/src/components/molecules/sections/InformationDisclosureSection'
 import MapSection from '@/src/components/molecules/sections/MapSection'
 import NewsletterSection from '@/src/components/molecules/sections/NewsletterSection'
 import NewsSection from '@/src/components/molecules/sections/NewsSection'
@@ -94,6 +95,7 @@ const MainPage = ({
       {page?.sections
         ?.filter(isDefined)
         .filter(isDefined)
+        // eslint-disable-next-line sonarjs/cognitive-complexity
         .map((section) => {
           if (section.__typename === 'ComponentSectionsNewsSection' && newsItems) {
             return (
@@ -228,6 +230,17 @@ const MainPage = ({
             return (
               <ExhibitionArchiveSection
                 title={section.title ?? undefined}
+                key={`${section.__typename}-${section.id}`}
+              />
+            )
+          }
+
+          if (section.__typename === 'ComponentSectionsInformationDisclosureSection') {
+            return (
+              <InformationDisclosureSection
+                title={section.title ?? undefined}
+                anchor={getAnchor(section.submenuTitle)}
+                additionalFilesSection={section?.additionalFilesSection}
                 key={`${section.__typename}-${section.id}`}
               />
             )
