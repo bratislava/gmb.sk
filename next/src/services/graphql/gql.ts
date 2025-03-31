@@ -20,8 +20,8 @@ export const buildUrl = (path: string): string =>
     serverRuntimeConfig?.strapiUrl
       ? `${protocol}${serverRuntimeConfig.strapiUrl}`
       : isServer()
-      ? ''
-      : window.location.origin
+        ? ''
+        : window.location.origin
   }${path}`
 /* eslint-enable @typescript-eslint/restrict-template-expressions */
 

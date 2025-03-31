@@ -1,3 +1,4 @@
+/* eslint-disable xss/no-mixed-html */
 import { useTranslation } from 'next-i18next'
 import useSWR from 'swr'
 

@@ -40,6 +40,7 @@ export const SidePanelTime = ({ datetime, isOneLine, noIcon }: SidePanelTimeProp
       </div>
     )
   }
+
   return (
     <div className="whitespace-nowrap text-nav">
       {!noIcon && (

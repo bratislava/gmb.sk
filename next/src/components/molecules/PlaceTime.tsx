@@ -25,6 +25,7 @@ const PlaceTime = ({ place, datetime }: IPlaceTimeProps) => {
       </div>
     )
   }
+
   return null
 }
 

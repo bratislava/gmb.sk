@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next'
 import { useEffect, useRef, useState } from 'react'
 import ReactImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
 import Modal from 'react-modal'
-import { useWindowSize } from 'rooks'
+import { useWindowSize } from 'usehooks-ts'
 
 import CloseIcon from '@/src/assets/icons/close-x.svg'
 import ImageGalleryItem from '@/src/components/atoms/ImageGalleryItem'
@@ -21,7 +21,7 @@ interface ImageGalleryProps {
 
 const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
   const { t } = useTranslation()
-  const { innerWidth: windowWidth } = useWindowSize()
+  const { width: windowWidth } = useWindowSize()
 
   const [showModal, setShowModal] = useState(false)
   const [imageIndex, setImageIndex] = useState(0)
@@ -57,6 +57,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
       thumbnail: thumbnail.url,
       description: caption ?? undefined,
     }
+
     return item
   })
 
@@ -87,8 +88,8 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
           alt={item.thumbnailAlt}
           title={item.thumbnailTitle}
         />
-        {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
         {item.thumbnailLabel && (
+          // eslint-disable-next-line tailwindcss/no-custom-classname
           <div className="image-gallery-thumbnail-label">{item.thumbnailLabel}</div>
         )}
       </span>
@@ -99,8 +100,8 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
     ? windowWidth >= getBreakpointValue('md')
       ? 5
       : windowWidth >= getBreakpointValue('sm')
-      ? 4
-      : 3
+        ? 4
+        : 3
     : 0
 
   return (
@@ -109,10 +110,10 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
         isOpen={showModal}
         onRequestClose={closeModal}
         ariaHideApp={false}
-        className="relative h-full w-full"
+        className="relative size-full"
         overlayClassName="bg-[rgba(0,0,0,0.9)] fixed inset-0 z-[51]"
       >
-        <div className="relative flex h-full flex-col content-center justify-center text-white">
+        <div className="relative flex h-full flex-col place-content-center text-white">
           <button type="button" className="absolute right-xSm top-ySm z-10" onClick={closeModal}>
             <CloseIcon className="dw-[25]" />
           </button>
@@ -165,7 +166,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
             {filteredMedias.length > mediasToShow + 1 && (
               <button
                 type="button"
-                className="flex h-full w-full items-center justify-center border-2 border-gmbDark text-center"
+                className="flex size-full items-center justify-center border-2 border-gmbDark text-center"
                 onClick={() => {
                   setShowModal(true)
                   setImageIndex(filteredMedias.length > mediasToShow ? mediasToShow : 0)

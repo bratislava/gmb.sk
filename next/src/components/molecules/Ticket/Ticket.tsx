@@ -33,19 +33,22 @@ const Ticket = ({ title, price, description, purchaseIdSelf, purchaseIdGift }: I
       </div>
       <div>
         {description ? (
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            className="relative"
-            components={{
-              p: ({ children }) => <p className="pb-yMd text-btn">{children}</p>,
-              ul: ({ children }) => <ul className="list-disc pb-yMd pl-5 text-btn">{children}</ul>,
-              ol: ({ children }) => (
-                <ol className="list-decimal pb-yMd pl-5 text-btn">{children}</ol>
-              ),
-            }}
-          >
-            {description ?? ''}
-          </ReactMarkdown>
+          <div className="relative">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                p: ({ children }) => <p className="pb-yMd text-btn">{children}</p>,
+                ul: ({ children }) => (
+                  <ul className="list-disc pb-yMd pl-5 text-btn">{children}</ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="list-decimal pb-yMd pl-5 text-btn">{children}</ol>
+                ),
+              }}
+            >
+              {description ?? ''}
+            </ReactMarkdown>
+          </div>
         ) : null}
         {purchaseIdSelf ? (
           <Button

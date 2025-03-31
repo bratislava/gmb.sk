@@ -1,7 +1,7 @@
-import FocusTrap from 'focus-trap-react'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { FocusTrap } from 'focus-trap-react'
 import { useTranslation } from 'next-i18next'
 import { useEffect } from 'react'
-import { useQuery } from 'react-query'
 
 import CloseIcon from '@/src/assets/icons/close-x.svg'
 import Results from '@/src/components/molecules/Results'
@@ -30,9 +30,9 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
   const { input, setInput, searchValue } = useSearch({ syncWithUrlQuery: false })
 
   const { data } = useQuery({
-    queryKey: getCommonSearchQueryKey(filters),
+    queryKey: getCommonSearchQueryKey(filters, locale),
     queryFn: () => commonSearchFetcher(filters, locale),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   })
 
   // TODO pagination
@@ -49,9 +49,10 @@ const SearchBar = ({ closeSearchBar }: SearchBarProps) => {
   }, [filters.searchValue, searchValue, setFilters])
 
   const { t } = useTranslation()
+
   return (
     <FocusTrap>
-      <div className="fixed inset-x-0 top-[var(--nav-height)] z-20 flex h-[calc(100vh-var(--nav-height))] flex-col gap-yLg bg-gmbDark px-xLg py-yLg">
+      <div className="fixed inset-x-0 top-nav z-20 flex h-[calc(100vh-var(--nav-height))] flex-col gap-yLg bg-gmbDark px-xLg py-yLg">
         <div>
           <input
             className="h-fit max-w-full border-b border-solid border-b-white bg-transparent text-xl text-white focus:border-b-2 focus:outline-none active:border-b-2"

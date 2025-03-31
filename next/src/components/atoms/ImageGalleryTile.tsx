@@ -14,13 +14,14 @@ const ImageGalleryTile = ({ image, className, onChoose, index }: ImageGalleryTil
   if (!image) return null
 
   const { url, alternativeText } = image.attributes
+
   return (
     <button
       type="button"
       className={cx(className, 'h-full w-full')}
       onClick={() => onChoose(index)}
     >
-      <img src={url} alt={alternativeText ?? ''} className="h-full w-full object-cover" />
+      <img src={url} alt={alternativeText ?? ''} className="size-full object-cover" />
     </button>
   )
 }

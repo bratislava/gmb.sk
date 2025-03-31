@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import { useMemo } from 'react'
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
+import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
 import LocationIcon from '@/src/assets/icons/location.svg'
@@ -64,10 +64,10 @@ const Footer = ({ contentPage }: FooterProps) => {
             {socialLinks?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
-                target={link?.newWindow ?? true ? '_blank' : '_self'}
+                target={(link?.newWindow ?? true) ? '_blank' : '_self'}
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
-                className="overflow-hidden text-ellipsis whitespace-nowrap text-md uppercase"
+                className="truncate text-md uppercase"
                 preserveStyle
               >
                 {link?.title}
@@ -82,10 +82,10 @@ const Footer = ({ contentPage }: FooterProps) => {
             {footerLinks1?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
-                target={link?.newWindow ?? true ? '_blank' : '_self'}
+                target={(link?.newWindow ?? true) ? '_blank' : '_self'}
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
-                className="overflow-hidden text-ellipsis whitespace-nowrap text-md uppercase"
+                className="truncate text-md uppercase"
                 preserveStyle
               >
                 {link?.title}
@@ -100,10 +100,10 @@ const Footer = ({ contentPage }: FooterProps) => {
             {footerLinks2?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
-                target={link?.newWindow ?? true ? '_blank' : '_self'}
+                target={(link?.newWindow ?? true) ? '_blank' : '_self'}
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
-                className="overflow-hidden text-ellipsis whitespace-nowrap text-md uppercase"
+                className="truncate text-md uppercase"
                 preserveStyle
               >
                 {link?.title}

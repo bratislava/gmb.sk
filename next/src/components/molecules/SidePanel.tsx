@@ -112,6 +112,7 @@ const SidePanel = ({
       </aside>
     )
   }
+
   return (
     <aside
       className={cx(

@@ -6,5 +6,6 @@ export const getAnchor = (text: string | null | undefined): string | undefined =
   if (isDefined(text)) {
     return slugify(text)
   }
+
   return undefined
 }

@@ -17,7 +17,7 @@ const SubmenuModal = ({ onClose, items, filters, onSubmenuItemClick }: ISubmenuM
   const { t } = useTranslation()
 
   return (
-    <div className="fixed inset-x-0 top-[var(--nav-height)] z-20 flex h-[calc(100vh-var(--nav-height))] flex-col justify-between bg-gmbDark p-12 text-white lg:hidden">
+    <div className="fixed inset-x-0 top-nav z-20 flex h-[calc(100vh-var(--nav-height))] flex-col justify-between bg-gmbDark p-12 text-white lg:hidden">
       <div className="flex max-h-full flex-col">
         <button type="button" className="absolute right-0 top-0 px-xMd py-yMd" onClick={onClose}>
           <CloseIcon className="dh-[30] dw-[30]" />

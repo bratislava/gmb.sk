@@ -15,10 +15,12 @@ const Results = ({ header, results }: ResultsProps) => {
         {results
           ?.filter(hasAttributes)
           .slice(0, 6)
-          .map((result) => {
+          .map((result, index) => {
             const { slug, title } = result.attributes
+
             return (
-              <li>
+              // eslint-disable-next-line react/no-array-index-key
+              <li key={index}>
                 <Link
                   key={slug}
                   className="text-md text-white"

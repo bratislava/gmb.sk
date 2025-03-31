@@ -11,5 +11,6 @@ export const getBreakpointValue = (value: string): number => {
   if (screens && screens[value]) {
     return +screens[value].slice(0, screens[value].indexOf('px'))
   }
+
   return 0
 }

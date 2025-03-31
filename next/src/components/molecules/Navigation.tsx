@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
-import { useWindowSize } from 'rooks'
+import { useWindowSize } from 'usehooks-ts'
 
 import CloseIcon from '@/src/assets/icons/close-x.svg'
 import HamburgerIcon from '@/src/assets/icons/menu.svg'
@@ -22,11 +22,10 @@ interface NavigationProps {
   contentPage?: WithAttributes<ContentPageEntityFragment>
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Navigation = ({ contentPage }: NavigationProps) => {
   const { t, i18n } = useTranslation()
   const router = useRouter()
-  const { innerWidth: windowWidth } = useWindowSize()
+  const { width: windowWidth } = useWindowSize()
 
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -52,11 +51,6 @@ const Navigation = ({ contentPage }: NavigationProps) => {
       href: '/zbierky',
       label: t('navigation.collections'),
     },
-    // TODO hidden until confirmed to release
-    // {
-    //   href: 'https://umeniemesta.sk',
-    //   label: t('navigation.artOfTheCity'),
-    // },
   ]
 
   useEffect(() => {
@@ -77,6 +71,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
   useEffect(() => {
     document.body.style.overflow = isSearchBarOpen ? 'hidden' : 'auto'
+
     return () => {
       document.body.style.overflow = 'auto'
     }
@@ -144,7 +139,7 @@ const Navigation = ({ contentPage }: NavigationProps) => {
               hidden: !isMobileMenuOpen,
             })}
           >
-            {menuLinks.map((menuLink) => {
+            {menuLinks.map((menuLink, index) => {
               const isExternal = menuLink.href.startsWith('http')
 
               // Add nbsp and arrow to indicate external link
@@ -153,6 +148,8 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
               return (
                 <Link
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
                   href={menuLink.href}
                   className="text-center"
                   target={isExternal ? '_blank' : undefined}

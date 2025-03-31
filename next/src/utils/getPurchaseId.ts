@@ -11,6 +11,7 @@ const parsePurchaseId = (purchaseId: string) => {
   }
   // eslint-disable-next-line no-console
   console.log('Invalid purchaseId', purchaseId)
+
   return null
 }
 
@@ -26,5 +27,6 @@ export function getPurchaseId(contentPage: WithAttributes<ContentPageEntityFragm
       return parsePurchaseId(placePurchaseId)
     }
   }
+
   return null
 }
