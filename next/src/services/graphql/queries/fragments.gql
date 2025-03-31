@@ -392,6 +392,11 @@ fragment HighlightsSection on ComponentSectionsHighlightsSection {
   }
 }
 
+fragment ExhibitionArchiveSection on ComponentSectionsExhibitionArchiveSection {
+  id
+  title
+}
+
 fragment PartnersSection on ComponentSectionsPartnersSection {
   id
   partners {
@@ -565,6 +570,10 @@ fragment MainPageSections on MainPageSectionsDynamicZone {
   ... on ComponentSectionsPartnersSection {
     __typename
     ...PartnersSection
+  }
+  ... on ComponentSectionsExhibitionArchiveSection {
+    __typename
+    ...ExhibitionArchiveSection
   }
   ... on ComponentSectionsExploreSection {
     __typename

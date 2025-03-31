@@ -244,6 +244,18 @@ export interface SectionsDownloadSection extends Schema.Component {
   };
 }
 
+export interface SectionsExhibitionArchiveSection extends Schema.Component {
+  collectionName: 'components_sections_exhibition_archive_sections';
+  info: {
+    description: '';
+    displayName: 'exhibition archive section';
+    icon: 'archive';
+  };
+  attributes: {
+    title: Attribute.String;
+  };
+}
+
 export interface SectionsExhibitionsSection extends Schema.Component {
   collectionName: 'components_sections_exhibitions_sections';
   info: {
@@ -433,6 +445,7 @@ declare module '@strapi/types' {
       'sections.audio-section': SectionsAudioSection;
       'sections.contact-cards-section': SectionsContactCardsSection;
       'sections.download-section': SectionsDownloadSection;
+      'sections.exhibition-archive-section': SectionsExhibitionArchiveSection;
       'sections.exhibitions-section': SectionsExhibitionsSection;
       'sections.explore-section': SectionsExploreSection;
       'sections.gallery-section': SectionsGallerySection;

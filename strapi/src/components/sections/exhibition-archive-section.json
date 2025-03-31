@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_sections_exhibition_archive_sections",
+  "info": {
+    "displayName": "exhibition archive section",
+    "icon": "archive",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  }
+}

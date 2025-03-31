@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 
 import Seo from '@/src/components/atoms/Seo'
+import ExhibitionArchiveSection from '@/src/components/molecules/sections/ExhibitionArchiveSection'
 import ExhibitionsSection from '@/src/components/molecules/sections/ExhibitionsSection'
 import ExploreSection from '@/src/components/molecules/sections/ExploreSection'
 import HighlightsSection from '@/src/components/molecules/sections/HighlightsSection'
@@ -218,6 +219,15 @@ const MainPage = ({
                 tagsLanguages={tagsLanguages}
                 tagsProjects={tagsProjects}
                 tagsOthers={tagsOthers}
+                key={`${section.__typename}-${section.id}`}
+              />
+            )
+          }
+
+          if (section.__typename === 'ComponentSectionsExhibitionArchiveSection') {
+            return (
+              <ExhibitionArchiveSection
+                title={section.title ?? undefined}
                 key={`${section.__typename}-${section.id}`}
               />
             )
