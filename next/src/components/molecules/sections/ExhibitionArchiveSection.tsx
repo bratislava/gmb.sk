@@ -47,9 +47,6 @@ const ExhibitionArchiveSection = ({ title }: ExhibitionArchiveSectionProps) => {
   }, [filters.searchValue, searchValue, setFilters])
 
   useEffect(() => {
-    if (filters.years === activeYears) {
-      return
-    }
     setFilters((prevFilters) => ({ ...prevFilters, page: 1, years: activeYears }))
   }, [filters.years, activeYears, setFilters])
 
