@@ -302,6 +302,19 @@ export interface SectionsHighlightsSection extends Schema.Component {
   };
 }
 
+export interface SectionsInformationDisclosureSection extends Schema.Component {
+  collectionName: 'components_sections_information_disclosure_sections';
+  info: {
+    description: '';
+    displayName: 'information disclosure section';
+  };
+  attributes: {
+    additionalFilesSection: Attribute.Component<'sections.download-section'>;
+    submenuTitle: Attribute.String;
+    title: Attribute.String;
+  };
+}
+
 export interface SectionsMapSection extends Schema.Component {
   collectionName: 'components_sections_map_sections';
   info: {
@@ -450,6 +463,7 @@ declare module '@strapi/types' {
       'sections.explore-section': SectionsExploreSection;
       'sections.gallery-section': SectionsGallerySection;
       'sections.highlights-section': SectionsHighlightsSection;
+      'sections.information-disclosure-section': SectionsInformationDisclosureSection;
       'sections.map-section': SectionsMapSection;
       'sections.news-section': SectionsNewsSection;
       'sections.newsletter-section': SectionsNewsletterSection;

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_information_disclosure_sections",
+  "info": {
+    "displayName": "information disclosure section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "submenuTitle": {
+      "type": "string"
+    },
+    "additionalFilesSection": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.download-section"
+    }
+  }
+}
