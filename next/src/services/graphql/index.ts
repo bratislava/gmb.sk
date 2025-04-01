@@ -3894,7 +3894,7 @@ export type AllMainPageSlugsQueryVariables = Exact<{
 }>;
 
 
-export type AllMainPageSlugsQuery = { __typename?: 'Query', mainPages?: { __typename?: 'MainPageEntityResponseCollection', data: Array<{ __typename?: 'MainPageEntity', attributes?: { __typename?: 'MainPage', slug: string } | null }> } | null };
+export type AllMainPageSlugsQuery = { __typename?: 'Query', mainPages?: { __typename?: 'MainPageEntityResponseCollection', data: Array<{ __typename?: 'MainPageEntity', attributes?: { __typename?: 'MainPage', slug: string, locale?: string | null } | null }> } | null };
 
 export type TicketsQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input'];
@@ -4807,6 +4807,7 @@ export const AllMainPageSlugsDocument = gql`
     data {
       attributes {
         slug
+        locale
       }
     }
   }

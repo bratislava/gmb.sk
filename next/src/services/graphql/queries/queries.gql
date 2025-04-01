@@ -124,6 +124,7 @@ query AllMainPageSlugs($locale: I18NLocaleCode!) {
     data {
       attributes {
         slug
+        locale
       }
     }
   }

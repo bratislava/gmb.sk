@@ -25,6 +25,7 @@ const ExhibitionArchiveSection = ({ title }: ExhibitionArchiveSectionProps) => {
   const years = useMemo(() => {
     const todaysYear = new Date().getFullYear()
     const startYear = 2006 // this is the oldest exhibition
+
     return Array.from({ length: todaysYear - startYear + 1 }, (_, i) =>
       (i + startYear).toString()
     ).reverse()
