@@ -1,7 +1,7 @@
-diff --git a/node_modules/@strapi/admin/dist/_chunks/index-Fnq9LxjS.js b/node_modules/@strapi/admin/dist/_chunks/index-Fnq9LxjS.js
-index 6c8a441..b450085 100644
---- a/node_modules/@strapi/admin/dist/_chunks/index-Fnq9LxjS.js
-+++ b/node_modules/@strapi/admin/dist/_chunks/index-Fnq9LxjS.js
+diff --git a/node_modules/@strapi/admin/dist/_chunks/index-dk76Bb5X.js b/node_modules/@strapi/admin/dist/_chunks/index-dk76Bb5X.js
+index 17a52c4..a987657 100644
+--- a/node_modules/@strapi/admin/dist/_chunks/index-dk76Bb5X.js
++++ b/node_modules/@strapi/admin/dist/_chunks/index-dk76Bb5X.js
 @@ -12584,7 +12584,7 @@ const Wysiwyg = React__namespace.forwardRef(
      };
      const handleSelectAssets = (files) => {
@@ -11,10 +11,10 @@ index 6c8a441..b450085 100644
          url: helperPlugin.prefixFileUrlWithBackendUrl(f.url),
          mime: f.mime
        }));
-diff --git a/node_modules/@strapi/admin/dist/_chunks/index-Go7rNONx.mjs b/node_modules/@strapi/admin/dist/_chunks/index-Go7rNONx.mjs
-index a9fd050..ea821ed 100644
---- a/node_modules/@strapi/admin/dist/_chunks/index-Go7rNONx.mjs
-+++ b/node_modules/@strapi/admin/dist/_chunks/index-Go7rNONx.mjs
+diff --git a/node_modules/@strapi/admin/dist/_chunks/index-uCIlbOdV.mjs b/node_modules/@strapi/admin/dist/_chunks/index-uCIlbOdV.mjs
+index 95a5860..0f33be1 100644
+--- a/node_modules/@strapi/admin/dist/_chunks/index-uCIlbOdV.mjs
++++ b/node_modules/@strapi/admin/dist/_chunks/index-uCIlbOdV.mjs
 @@ -12524,7 +12524,7 @@ const Wysiwyg = React.forwardRef(
      };
      const handleSelectAssets = (files) => {

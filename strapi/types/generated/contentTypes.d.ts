@@ -586,11 +586,6 @@ export interface ApiContentPageContentPage extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    childPages: Attribute.Relation<
-      'api::content-page.content-page',
-      'oneToMany',
-      'api::content-page.content-page'
-    >;
     color: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -628,6 +623,11 @@ export interface ApiContentPageContentPage extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    childPages: Attribute.Relation<
+      'api::content-page.content-page',
+      'oneToMany',
+      'api::content-page.content-page'
+    >;
     inheritColorFromParent: Attribute.Boolean &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1898,11 +1898,6 @@ export interface PluginUploadFolder extends Schema.CollectionType {
     };
   };
   attributes: {
-    children: Attribute.Relation<
-      'plugin::upload.folder',
-      'oneToMany',
-      'plugin::upload.folder'
-    >;
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'plugin::upload.folder',
@@ -1914,6 +1909,11 @@ export interface PluginUploadFolder extends Schema.CollectionType {
       'plugin::upload.folder',
       'oneToMany',
       'plugin::upload.file'
+    >;
+    children: Attribute.Relation<
+      'plugin::upload.folder',
+      'oneToMany',
+      'plugin::upload.folder'
     >;
     name: Attribute.String &
       Attribute.Required &
