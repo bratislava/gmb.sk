@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 
 import Button from '@/src/components/atoms/Button'
-import Seo from '@/src/components/atoms/Seo'
+import SeoHead from '@/src/components/atoms/SeoHead'
 import Filters from '@/src/components/molecules/Filters'
 import CardSection from '@/src/components/molecules/sections/CardSection'
 import HighlightsSection from '@/src/components/molecules/sections/HighlightsSection'
@@ -52,7 +52,7 @@ const ExplorePage = ({ explorePage, tagsTypes, tagsProjects, tagsOthers }: Explo
 
   return (
     <PageWrapper>
-      <Seo seo={seo} />
+      <SeoHead seo={seo} />
       <HighlightsSection
         highlights={explorePage?.data?.attributes?.highlights
           ?.map((highlight) => highlight?.contentPage?.data)

@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next'
 import { useEffect, useMemo, useState } from 'react'
 
 import Button from '@/src/components/atoms/Button'
-import Seo from '@/src/components/atoms/Seo'
+import SeoHead from '@/src/components/atoms/SeoHead'
 import Filters from '@/src/components/molecules/Filters'
 import CardSection from '@/src/components/molecules/sections/CardSection'
 import Submenu from '@/src/components/molecules/Submenu'
@@ -62,7 +62,8 @@ const ArchivePage = ({ archivePage }: ArchivePageProps) => {
 
   return (
     <PageWrapper>
-      <Seo seo={seo} />
+      <SeoHead seo={seo} />
+
       <Submenu
         clearFilters={() => {
           setActiveYears([])

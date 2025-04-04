@@ -1,8 +1,7 @@
-import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 
 import Audio from '@/src/components/atoms/Audio'
-import Seo from '@/src/components/atoms/Seo'
+import SeoHead from '@/src/components/atoms/SeoHead'
 import Subtitle from '@/src/components/atoms/Subtitle'
 import Video from '@/src/components/atoms/Video'
 import ContactCard from '@/src/components/molecules/ContactCard'
@@ -89,19 +88,14 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
 
   return (
     <PageWrapper contentPage={contentPage}>
-      <Seo seo={seo} ogType="article" title={title} description={perex} image={seoImage} />
-      <Head>
-        <title>{`${title} - ${t('common.bratislavaCityGallery')}`}</title>
-        <>
-          {/* TODO: Query author from strapi */}
-          {/* <meta property="og:article:author" content="author" /> */}
-          {/* "A high-level section name. E.g. Technology" */}
-          {/* <meta property="og:article:section" content="Art and culture" /> */}
-          {/* article:tag are an 'array' which means more of the same meta tags are allowed */}
-          {/* <meta property="og:article:tag" content="tag1" /> */}
-          {/* <meta property="og:article:tag" content="tag2" /> */}
-        </>
-      </Head>
+      <SeoHead seo={seo} ogType="article" title={title} description={perex} image={seoImage} />
+      {/* TODO: Query author from strapi */}
+      {/* <meta property="og:article:author" content="author" /> */}
+      {/* "A high-level section name. E.g. Technology" */}
+      {/* <meta property="og:article:section" content="Art and culture" /> */}
+      {/* article:tag are an 'array' which means more of the same meta tags are allowed */}
+      {/* <meta property="og:article:tag" content="tag1" /> */}
+      {/* <meta property="og:article:tag" content="tag2" /> */}
 
       <div
         className="px-xMd py-yMd lg:pr-sidepanel"

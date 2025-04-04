@@ -6,7 +6,7 @@ import { ImageEntityFragment, SeoFragment } from '@/src/services/graphql'
 import { getNextUrl } from '@/src/utils/getNextUrl'
 
 type SeoHeadProps = {
-  title: string | undefined | null
+  title?: string | undefined | null
   seo?: SeoFragment | null
   ogType?: string
   description?: string | null

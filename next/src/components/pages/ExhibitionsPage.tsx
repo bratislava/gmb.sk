@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 
 import Button from '@/src/components/atoms/Button'
-import Seo from '@/src/components/atoms/Seo'
+import SeoHead from '@/src/components/atoms/SeoHead'
 import Filters from '@/src/components/molecules/Filters'
 import ChessboardTile from '@/src/components/molecules/presentation/ChessboardTile'
 import CardSection from '@/src/components/molecules/sections/CardSection'
@@ -95,7 +95,7 @@ const ExhibitionsPage = ({
 
   return (
     <PageWrapper>
-      <Seo seo={seo} />
+      <SeoHead seo={seo} />
       <HighlightsSection
         highlights={exhibitionsPage?.data?.attributes?.highlights
           ?.map((highlight) => highlight?.contentPage?.data)
