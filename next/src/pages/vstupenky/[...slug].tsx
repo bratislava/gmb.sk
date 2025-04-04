@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import Script from 'next/script'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import TicketPage from '@/src/components/pages/TicketPage'
@@ -28,6 +29,9 @@ const Tickets = ({ generalQuery, contentPage, currentEvents }: TicketProps) => {
 
   return (
     <GeneralContextProvider general={generalQuery}>
+      {/* Load GoOut script to be able to show purchase form */}
+      <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
+
       <TicketPage
         contentPage={contentPageWithAttributes}
         currentEvents={currentEvents?.data.filter(hasAttributes)}
