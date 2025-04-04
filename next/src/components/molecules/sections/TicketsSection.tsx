@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import Script from 'next/script'
 
 import CityGalleryMarkdown from '@/src/components/atoms/CityGalleryMarkdown'
 import Section from '@/src/components/molecules/sections/Section'
@@ -16,6 +17,9 @@ interface TicketsSectionProps {
 const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) => {
   return (
     <Section anchor={anchor} title={title}>
+      {/* Load GoOut script to be able to show purchase form */}
+      <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
+
       <div
         className={cx('px-xMd pb-yMd', {
           'py-yMd': !title,
