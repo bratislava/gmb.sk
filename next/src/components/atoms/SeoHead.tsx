@@ -5,31 +5,42 @@ import { useTranslation } from 'next-i18next'
 import { ImageEntityFragment, SeoFragment } from '@/src/services/graphql'
 import { getNextUrl } from '@/src/utils/getNextUrl'
 
-interface SeoProps {
+type SeoHeadProps = {
+  title?: string | undefined | null
   seo?: SeoFragment | null
   ogType?: string
-  title?: string
   description?: string | null
   image?: ImageEntityFragment | null
 }
 
-const Seo = ({ seo, ogType = 'website', title, description, image }: SeoProps) => {
+/**
+ * Inspired by OLO: https://github.com/bratislava/olo.sk/blob/master/next/src/components/common/SeoHead/SeoHead.tsx
+ */
+
+const SeoHead = ({ title, seo, ogType = 'website', description, image }: SeoHeadProps) => {
   const { t } = useTranslation()
   const { asPath } = useRouter()
 
   const fullUrl = `${getNextUrl()}${asPath}`
 
+  const metaTitle = `${seo?.metaTitle || title || ''} – ${t('common.bratislavaCityGallery')}`
+
   return (
     <Head>
-      <meta name="title" content={seo?.metaTitle || title || ''} />
+      <title>{`${title || ''} – ${t('common.bratislavaCityGallery')}`}</title>
+
+      <meta name="title" content={metaTitle} />
       <meta name="description" content={seo?.metaDescription || description || ''} />
       <meta name="keywords" content={seo?.keywords ?? ''} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+      {fullUrl ? <link rel="canonical" href={fullUrl} /> : null}
+
       {/* Documentation: https://ogp.me/ */}
-      <meta property="og:title" content={seo?.metaTitle || title || ''} />
+      <meta property="og:title" content={metaTitle} />
       <meta property="og:type" content={ogType} />
-      <meta property="og:url" content={fullUrl} />
+      {fullUrl ? <meta property="og:url" content={fullUrl} /> : null}
+
       {/* TODO: Twitter's image size limit is only 1MB */}
       <meta property="og:image" content={image?.attributes?.url ?? ''} />
       <meta name="twitter:card" content="summary_large_image" />
@@ -47,4 +58,4 @@ const Seo = ({ seo, ogType = 'website', title, description, image }: SeoProps) =
   )
 }
 
-export default Seo
+export default SeoHead

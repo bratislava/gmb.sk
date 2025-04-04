@@ -1,7 +1,6 @@
-import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 
-import Seo from '@/src/components/atoms/Seo'
+import SeoHead from '@/src/components/atoms/SeoHead'
 import DisclosureSection from '@/src/components/molecules/sections/DisclosureSection'
 import ExhibitionArchiveSection from '@/src/components/molecules/sections/ExhibitionArchiveSection'
 import ExhibitionsSection from '@/src/components/molecules/sections/ExhibitionsSection'
@@ -84,11 +83,7 @@ const MainPage = ({
 
   return (
     <PageWrapper>
-      {/* TODO This code will be extracted into a separate SeoHead component */}
-      <Seo seo={page?.seo} />
-      <Head>
-        <title>{`${title || ''} – Galéria mesta Bratislavy`}</title>
-      </Head>
+      <SeoHead title={title} seo={page?.seo} />
 
       {page?.sections && <Submenu items={submenu} />}
 

@@ -1,7 +1,6 @@
-import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 
-import Seo from '@/src/components/atoms/Seo'
+import SeoHead from '@/src/components/atoms/SeoHead'
 import HighlightsSection from '@/src/components/molecules/sections/HighlightsSection'
 import MapSection from '@/src/components/molecules/sections/MapSection'
 import NewsletterSection from '@/src/components/molecules/sections/NewsletterSection'
@@ -55,10 +54,7 @@ const Page = ({ page: pageResponse, title, newsItems, tickets }: PageProps) => {
 
   return (
     <PageWrapper>
-      <Seo seo={page?.seo} />
-      <Head>
-        <title>{title}</title>
-      </Head>
+      <SeoHead title={title} seo={page?.seo} />
 
       <HighlightsSection
         highlights={page?.highlights

@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next'
 
 import Link from '@/src/components/atoms/Link'
-import Seo from '@/src/components/atoms/Seo'
+import SeoHead from '@/src/components/atoms/SeoHead'
 import { SidePanelPlace } from '@/src/components/atoms/SidePanelPlace'
 import { SidePanelTime } from '@/src/components/atoms/SidePanelTime'
 import Subtitle from '@/src/components/atoms/Subtitle'
@@ -36,7 +36,7 @@ const TicketPage = ({ contentPage, currentEvents }: ITicketPageProps) => {
   return (
     /* eslint-disable tailwindcss/no-custom-classname */
     <PageWrapper contentPage={contentPage}>
-      <Seo seo={seo} title={title} description={subtitle} />
+      <SeoHead seo={seo} title={title} description={subtitle} />
       <section
         data-goout-id={getPurchaseId(contentPage)}
         className="goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--nav-height))] flex-col"
