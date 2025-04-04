@@ -89,13 +89,6 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
   return (
     <PageWrapper contentPage={contentPage}>
       <SeoHead seo={seo} ogType="article" title={title} description={perex} image={seoImage} />
-      {/* TODO: Query author from strapi */}
-      {/* <meta property="og:article:author" content="author" /> */}
-      {/* "A high-level section name. E.g. Technology" */}
-      {/* <meta property="og:article:section" content="Art and culture" /> */}
-      {/* article:tag are an 'array' which means more of the same meta tags are allowed */}
-      {/* <meta property="og:article:tag" content="tag1" /> */}
-      {/* <meta property="og:article:tag" content="tag2" /> */}
 
       <div
         className="px-xMd py-yMd lg:pr-sidepanel"
