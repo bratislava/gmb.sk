@@ -4,6 +4,11 @@ query General($locale: I18NLocaleCode!) {
       ...GeneralEntity
     }
   }
+  menu(locale: $locale) {
+    data {
+      ...MenuEntity
+    }
+  }
 }
 
 query Places($locale: I18NLocaleCode!) {

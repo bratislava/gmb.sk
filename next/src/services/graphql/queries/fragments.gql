@@ -125,7 +125,6 @@ fragment Links on ComponentBlocksLinks {
 }
 
 fragment MenuEntity on MenuEntity {
-  id
   attributes {
     menuLinks {
       ...MenuLinkItem
@@ -152,6 +151,13 @@ fragment MainPageEntity on MainPageEntity {
         }
       }
     }
+  }
+}
+
+fragment MainPageSlugEntity on MainPageEntity {
+  attributes {
+    title
+    slug
   }
 }
 
@@ -315,7 +321,7 @@ fragment MenuLinkItem on ComponentBlocksMenuLinkItem {
   url
   mainPage {
     data {
-      ...MainPageEntity
+      ...MainPageSlugEntity
     }
   }
   hasButtonStyle
