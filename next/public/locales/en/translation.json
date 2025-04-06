@@ -68,6 +68,7 @@
   "map.street": "Street",
   "map.virtualTour": "Virtual tour",
   "navigation.aboutGallery": "About",
+  "navigation.aria.navAriaLabel": "Main navigation",
   "navigation.collections": "Collections",
   "navigation.exhibitionsEvents": "Exhibitions & Events",
   "navigation.explore": "Explore",
