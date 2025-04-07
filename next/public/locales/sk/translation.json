@@ -54,6 +54,8 @@
   "errors.error": "Chyba",
   "errors.fieldMandatory": "Súhlas je povinný",
   "footer.disclosureOfInformation": "Zverejňovanie informácií",
+  "localization.aria.english": "Anglicky",
+  "localization.aria.slovak": "Slovensky",
   "map.bikeText": "Odložte si svoj bicykel v niektorom zo stojanov alebo využite zdieľané bicykle.",
   "map.byBike": "Bicyklom",
   "map.byCar": "Autom",

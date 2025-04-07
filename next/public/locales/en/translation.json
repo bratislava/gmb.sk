@@ -50,6 +50,8 @@
   "errors.error": "Error",
   "errors.fieldMandatory": "The consent is mandatory",
   "footer.disclosureOfInformation": "Disclosure of information",
+  "localization.aria.english": "Change to English",
+  "localization.aria.slovak": "Change to Slovak",
   "map.bikeText": "Leave your bicycle at any of the bike stands or use bike sharing.",
   "map.byBike": "Bicycle",
   "map.byCar": "Car",
