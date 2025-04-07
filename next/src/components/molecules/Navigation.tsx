@@ -14,44 +14,23 @@ import Button from '@/src/components/atoms/Button'
 import Link from '@/src/components/atoms/Link'
 import SkipNavigation from '@/src/components/atoms/SkipNavigation'
 import SearchBar from '@/src/components/molecules/SearchBar'
-import { ContentPageEntityFragment } from '@/src/services/graphql'
+import { PageWrapperProps } from '@/src/components/pages/PageWrapper'
+import { useGeneralContext } from '@/src/utils/generalContext'
 import { getBreakpointValue } from '@/src/utils/getBreakpointValue'
-import { WithAttributes } from '@/src/utils/isDefined'
+import { getParsedMenu } from '@/src/utils/getParsedMenu'
 
-interface NavigationProps {
-  contentPage?: WithAttributes<ContentPageEntityFragment>
-}
+type NavigationProps = Pick<PageWrapperProps, 'page'>
 
-const Navigation = ({ contentPage }: NavigationProps) => {
+const Navigation = ({ page }: NavigationProps) => {
   const { t, i18n } = useTranslation()
   const router = useRouter()
   const { width: windowWidth } = useWindowSize()
+  const { menu } = useGeneralContext()
+
+  const menuLinks = getParsedMenu(menu)
 
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
-  const menuLinks = [
-    {
-      href: '/vystavy',
-      label: t('navigation.exhibitionsEvents'),
-    },
-    {
-      href: '/objavujte',
-      label: t('navigation.explore'),
-    },
-    {
-      href: '/o-galerii',
-      label: t('navigation.aboutGallery'),
-    },
-    {
-      href: '/zapojte-sa',
-      label: t('navigation.getInvolved'),
-    },
-    {
-      href: '/zbierky',
-      label: t('navigation.collections'),
-    },
-  ]
 
   useEffect(() => {
     router.events.on('routeChangeStart', closeMobileMenu)
@@ -98,18 +77,30 @@ const Navigation = ({ contentPage }: NavigationProps) => {
 
   return (
     <>
-      <nav className="fixed inset-x-0 top-0 z-50 flex h-nav w-full bg-white drop-shadow-md">
+      <nav
+        aria-label={t('navigation.aria.navAriaLabel')}
+        className="fixed inset-x-0 top-0 z-50 flex h-nav w-full bg-white drop-shadow-md"
+      >
         <SkipNavigation />
 
         <div className="mx-xMd flex w-full items-center justify-between gap-x-xMd">
-          <Link href="/" preserveStyle noUnderline className="group min-w-fit">
+          {/* Logo button */}
+          <Link
+            href="/"
+            preserveStyle
+            noUnderline
+            locale={router.locale}
+            aria-label={t('navigation.aria.logoButton')}
+            className="group min-w-fit"
+          >
             <div className="flex">
               <div className="h-logoHeight w-logoWidth">
-                <Image src={Logo} alt="Logo GMB" />
+                <Image src={Logo} alt="" />
               </div>
 
               <span
                 id="navLogoText"
+                aria-hidden
                 className="relative ml-4 whitespace-nowrap text-sm leading-[var(--font-size-sm)] group-hover:underline"
               >
                 {i18n.language === 'sk' ? t('common.cityGallery') : t('common.bratislavaGenitiv')}
@@ -119,11 +110,16 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             </div>
           </Link>
 
+          {/* Hamburger button */}
           <button
             type="button"
             className="-mr-5 flex p-5 lg:hidden"
             onClick={toggleMobileMenu}
-            aria-label="Menu"
+            aria-label={
+              isMobileMenuOpen
+                ? t('mobileNavigation.aria.closeMenu')
+                : t('mobileNavigation.aria.openMenu')
+            }
           >
             {isMobileMenuOpen ? (
               <CloseIcon className="dh-[30] dw-[30]" />
@@ -132,7 +128,8 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             )}
           </button>
 
-          <div
+          {/* Navigation links */}
+          <ul
             className={cx('lg:flex lg:gap-x-xMd', {
               'absolute left-0 top-nav flex w-full flex-col items-center justify-center gap-7 bg-white py-yLg':
                 isMobileMenuOpen && (!windowWidth || windowWidth < getBreakpointValue('lg')),
@@ -140,50 +137,55 @@ const Navigation = ({ contentPage }: NavigationProps) => {
             })}
           >
             {menuLinks.map((menuLink, index) => {
-              const isExternal = menuLink.href.startsWith('http')
+              const label = menuLink?.title ?? menuLink?.mainPage?.title ?? ''
+              const href = menuLink?.url ?? menuLink?.mainPage?.slug ?? '#'
+
+              const isLast = menuLinks.length - 1 === index
+              const hasButtonStyle = (menuLink?.hasButtonStyle && isLast) ?? false
+
+              const isExternal = href.startsWith('http')
 
               // Add nbsp and arrow to indicate external link
               // \u{0000FE0E} is Unicode variation selector that prevents symbols to be rendered as emojis on iOS
               // https://stackoverflow.com/questions/8335724/unicode-characters-being-drawn-differently-in-ios5
 
               return (
-                <Link
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={index}
-                  href={menuLink.href}
-                  className="text-center"
-                  target={isExternal ? '_blank' : undefined}
-                >
-                  {menuLink.label}
-                  {isExternal ? `\u00A0↗\u{0000FE0E}` : ''}
-                </Link>
+                <li key={menuLink.id} className="flex text-center">
+                  {hasButtonStyle ? (
+                    <Button size="small" href={href}>
+                      {label}
+                    </Button>
+                  ) : (
+                    <Link
+                      href={href}
+                      target={isExternal ? '_blank' : '_self'}
+                      locale={router.locale}
+                    >
+                      {label}
+                      {isExternal ? `\u00A0↗\u{0000FE0E}` : ''}
+                    </Link>
+                  )}
+                </li>
               )
             })}
 
-            <Button size="small" href="/navstivte">
-              {t('navigation.visitUs')}
-            </Button>
+            <li className="-mx-2 flex px-2">
+              <button type="button" onClick={toggleSearchBar} aria-label={t('common.search')}>
+                <SearchIcon className="dw-[36]" />
+              </button>
+            </li>
 
-            <button
-              type="button"
-              className="-mx-2 px-2"
-              onClick={toggleSearchBar}
-              aria-label={t('common.search')}
-            >
-              <SearchIcon className="dw-[36]" />
-            </button>
-
-            <div className="flex w-5 justify-center">
-              <AppLangSwitchers contentPage={contentPage} />
-            </div>
-          </div>
+            <li className="flex w-5 justify-center">
+              <AppLangSwitchers page={page} />
+            </li>
+          </ul>
         </div>
       </nav>
 
       {/* empty div under navigation header */}
       <div className="relative w-full pb-nav" />
 
-      {isSearchBarOpen && <SearchBar closeSearchBar={closeSearchBar} />}
+      {isSearchBarOpen ? <SearchBar closeSearchBar={closeSearchBar} /> : null}
     </>
   )
 }
