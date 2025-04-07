@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import Script from 'next/script'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
@@ -25,6 +26,9 @@ const VisitUs = ({ generalQuery, visitUsPage, news, tickets }: VisitUsProps) => 
 
   return (
     <GeneralContextProvider general={generalQuery}>
+      {/* Load GoOut script to be able to show purchase form */}
+      <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
+
       <Page
         page={visitUsPage}
         title={t('navigation.visitUs')}
