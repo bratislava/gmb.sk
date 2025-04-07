@@ -85,7 +85,7 @@
     "@typescript-eslint/parser": "^6.21.0",
     "autoprefixer": "10.4.21",
     "eslint": "^8.57.1",
-    "eslint-config-adjunct": "4.12.2",
+    "eslint-config-adjunct": "4.13.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.1.0",
     "eslint-config-auto": "0.9.0",
