@@ -82,7 +82,7 @@ const MainPage = ({
     })
 
   return (
-    <PageWrapper>
+    <PageWrapper page={hasAttributes(pageEntity) ? pageEntity : undefined}>
       <SeoHead title={title} seo={page?.seo} />
 
       {page?.sections && <Submenu items={submenu} />}

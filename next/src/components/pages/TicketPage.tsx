@@ -35,7 +35,7 @@ const TicketPage = ({ contentPage, currentEvents }: ITicketPageProps) => {
 
   return (
     /* eslint-disable tailwindcss/no-custom-classname */
-    <PageWrapper contentPage={contentPage}>
+    <PageWrapper page={contentPage}>
       <SeoHead seo={seo} title={title} description={subtitle} />
       <section
         data-goout-id={getPurchaseId(contentPage)}
