@@ -134,6 +134,7 @@ fragment MenuEntity on MenuEntity {
 
 fragment MainPageEntity on MainPageEntity {
   id
+  __typename
   attributes {
     title
     slug
