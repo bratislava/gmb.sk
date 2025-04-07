@@ -3,30 +3,26 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import React, { useCallback } from 'react'
 
-import { ContentPageEntityFragment } from '@/src/services/graphql'
-import { WithAttributes } from '@/src/utils/isDefined'
+import { PageWrapperProps } from '@/src/components/pages/PageWrapper'
 import { getEquivalentRouteInTargetLocale } from '@/src/utils/localeRoutes'
 
-interface AppLangSwitchersProps {
-  contentPage?: WithAttributes<ContentPageEntityFragment>
-  showBothLanguages?: boolean
-}
+type AppLangSwitchersProps = { showBothLanguages?: boolean } & Pick<PageWrapperProps, 'page'>
 
-const AppLangSwitchers = ({ contentPage, showBothLanguages }: AppLangSwitchersProps) => {
+const AppLangSwitchers = ({ page, showBothLanguages }: AppLangSwitchersProps) => {
   const { t } = useTranslation()
   const router = useRouter()
 
-  const { pathname, locale: currentLocale, locales } = router // Use router to access locale for better Next integration
+  const { asPath, locale: currentLocale, locales } = router // Use router to access locale for better Next integration
+  // `asPath` provides the actual path with resolved values, which is essential for dynamic routes
+  // For non-dynamic routes, using either `asPath` or `pathname` typically won't make a difference
 
   const onLocaleChange = useCallback(
     (locale: string) => {
-      const equivalentRouteInTargetLocale = getEquivalentRouteInTargetLocale(
-        pathname,
-        locale,
-        contentPage
-      )
+      const cleanPath = asPath.split('?')[0].split('#')[0] // Remove query parameters and hash fragments
 
-      if (!equivalentRouteInTargetLocale) {
+      const localizedPath = getEquivalentRouteInTargetLocale(cleanPath, locale, page)
+
+      if (!localizedPath) {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         router.push({ pathname: `/404` }, undefined, { locale })
 
@@ -34,9 +30,9 @@ const AppLangSwitchers = ({ contentPage, showBothLanguages }: AppLangSwitchersPr
       }
 
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.replace({ pathname: equivalentRouteInTargetLocale }, undefined, { locale })
+      router.replace({ pathname: localizedPath }, undefined, { locale })
     },
-    [pathname, contentPage, router]
+    [asPath, page, router]
   )
 
   return (
