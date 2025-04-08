@@ -719,6 +719,7 @@ input ComponentSectionsPageSectionInput {
 type ComponentSectionsPartnersSection {
   id: ID!
   partners(filters: ComponentBlocksPartnerItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksPartnerItem]
+  submenuTitle: String
   title: String
 }
 
@@ -727,12 +728,14 @@ input ComponentSectionsPartnersSectionFiltersInput {
   not: ComponentSectionsPartnersSectionFiltersInput
   or: [ComponentSectionsPartnersSectionFiltersInput]
   partners: ComponentBlocksPartnerItemFiltersInput
+  submenuTitle: StringFilterInput
   title: StringFilterInput
 }
 
 input ComponentSectionsPartnersSectionInput {
   id: ID
   partners: [ComponentBlocksPartnerItemInput]
+  submenuTitle: String
   title: String
 }
 

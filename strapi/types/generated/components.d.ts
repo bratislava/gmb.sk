@@ -380,10 +380,12 @@ export interface SectionsPageSection extends Schema.Component {
 export interface SectionsPartnersSection extends Schema.Component {
   collectionName: 'components_sections_partners_sections';
   info: {
+    description: '';
     displayName: 'partners section';
   };
   attributes: {
     partners: Attribute.Component<'blocks.partner-item', true>;
+    submenuTitle: Attribute.String;
     title: Attribute.String;
   };
 }

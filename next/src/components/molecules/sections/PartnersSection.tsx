@@ -12,7 +12,7 @@ interface PartnersSectionProps {
 const PartnersSection = ({ partners, title, anchor }: PartnersSectionProps) => {
   return (
     <Section anchor={anchor} color="gray" className="px-xMd py-yLg">
-      {title && <h2 className="mb-yLg text-xxl">{title}</h2>}
+      {title ? <h2 className="mb-yLg text-xxl">{title}</h2> : null}
       <div className="flex flex-wrap gap-xMd">
         {partners?.map((partner) => (
           <Link
