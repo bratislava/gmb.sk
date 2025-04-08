@@ -166,25 +166,6 @@ query ExhibitionsByPlace(
   }
 }
 
-query AboutUsPage($locale: I18NLocaleCode!) {
-  aboutUsPage(locale: $locale) {
-    data {
-      attributes {
-        __typename
-        highlights {
-          ...Highlight
-        }
-        sections {
-          ...Sections
-        }
-        seo {
-          ...Seo
-        }
-      }
-    }
-  }
-}
-
 query HomePage($locale: I18NLocaleCode!) {
   homePage(locale: $locale) {
     data {
@@ -211,107 +192,13 @@ query HomePage($locale: I18NLocaleCode!) {
   }
 }
 
-query CollectionPage($locale: I18NLocaleCode!) {
-  collectionsPage(locale: $locale) {
-    data {
-      attributes {
-        __typename
-        highlights {
-          ...Highlight
-        }
-        sections {
-          ...Sections
-        }
-        seo {
-          ...Seo
-        }
-      }
-    }
-  }
-}
-
-query GetInvolvedPage($locale: I18NLocaleCode!) {
-  getInvolvedPage(locale: $locale) {
-    data {
-      attributes {
-        __typename
-        highlights {
-          ...Highlight
-        }
-        sections {
-          ...Sections
-        }
-        seo {
-          ...Seo
-        }
-      }
-    }
-  }
-}
-
-query VisitUsPage($locale: I18NLocaleCode!) {
-  visitUsPage(locale: $locale) {
-    data {
-      attributes {
-        __typename
-        highlights {
-          ...Highlight
-        }
-        sections {
-          ...Sections
-        }
-        seo {
-          ...Seo
-        }
-      }
-    }
-  }
-  tickets(locale: $locale) {
-    data {
-      ...TicketEntity
-    }
-  }
-}
-
-query ExplorePage($locale: I18NLocaleCode!) {
-  explorePage(locale: $locale) {
-    data {
-      attributes {
-        __typename
-        highlights {
-          ...Highlight
-        }
-        seo {
-          ...Seo
-        }
-      }
-    }
-  }
-}
-
-query ExhibitionsPage(
+query ExhibitionsAndEvents(
   $locale: I18NLocaleCode!
   $today: Date!
   $tagExhibitions: String!
   $tagPermanentExhibitions: String!
   $tagsAdditionalProgram: [String]!
 ) {
-  exhibitionsPage(locale: $locale) {
-    data {
-      attributes {
-        __typename
-        highlights {
-          ...Highlight
-        }
-        archiveSection {
-          ...ArchiveSection
-        }
-        seo {
-          ...Seo
-        }
-      }
-    }
-  }
   exhibitions: contentPages(
     locale: $locale
     filters: { tags: { slug: { eq: $tagExhibitions } }, dateTo: { gte: $today } }
@@ -335,35 +222,6 @@ query ExhibitionsPage(
   ) {
     data {
       ...SectionItemEntity
-    }
-  }
-}
-
-query ArchivePage($locale: I18NLocaleCode!) {
-  archivePage: exhibitionsPage(locale: $locale) {
-    data {
-      attributes {
-        __typename
-        archiveSeo {
-          ...Seo
-        }
-      }
-    }
-  }
-}
-
-query DisclosureOfInformationPage($locale: I18NLocaleCode!) {
-  general(locale: $locale) {
-    data {
-      attributes {
-        disclosureMoreFiles {
-          title
-          submenuTitle
-          files {
-            ...DownloadItem
-          }
-        }
-      }
     }
   }
 }
