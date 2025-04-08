@@ -47,9 +47,6 @@ const AppLangSwitchers = ({ page, showBothLanguages }: AppLangSwitchersProps) =>
               <button
                 type="button"
                 onClick={() => onLocaleChange(locale)}
-                aria-label={
-                  locale === 'sk' ? t('localization.aria.slovak') : t('localization.aria.english')
-                }
                 className={cx('cursor-pointer uppercase', {
                   'font-semibold': currentLocale === locale,
                 })}

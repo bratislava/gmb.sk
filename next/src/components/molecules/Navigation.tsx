@@ -77,10 +77,7 @@ const Navigation = ({ page }: NavigationProps) => {
 
   return (
     <>
-      <nav
-        aria-label={t('navigation.aria.navAriaLabel')}
-        className="fixed inset-x-0 top-0 z-50 flex h-nav w-full bg-white drop-shadow-md"
-      >
+      <nav className="fixed inset-x-0 top-0 z-50 flex h-nav w-full bg-white drop-shadow-md">
         <SkipNavigation />
 
         <div className="mx-xMd flex w-full items-center justify-between gap-x-xMd">
@@ -90,7 +87,6 @@ const Navigation = ({ page }: NavigationProps) => {
             preserveStyle
             noUnderline
             locale={router.locale}
-            aria-label={t('navigation.aria.logoButton')}
             className="group min-w-fit"
           >
             <div className="flex">
@@ -111,16 +107,7 @@ const Navigation = ({ page }: NavigationProps) => {
           </Link>
 
           {/* Hamburger button */}
-          <button
-            type="button"
-            className="-mr-5 flex p-5 lg:hidden"
-            onClick={toggleMobileMenu}
-            aria-label={
-              isMobileMenuOpen
-                ? t('mobileNavigation.aria.closeMenu')
-                : t('mobileNavigation.aria.openMenu')
-            }
-          >
+          <button type="button" className="-mr-5 flex p-5 lg:hidden" onClick={toggleMobileMenu}>
             {isMobileMenuOpen ? (
               <CloseIcon className="dh-[30] dw-[30]" />
             ) : (
