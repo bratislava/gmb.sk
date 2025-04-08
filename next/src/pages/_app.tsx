@@ -39,8 +39,6 @@ const CustomApp = ({ Component, pageProps }: AppProps<SSRConfig>) => {
               },
             }}
           >
-            <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
-
             {isProd() ? (
               <Script
                 strategy="afterInteractive"
