@@ -509,15 +509,6 @@ fragment DownloadSection on ComponentSectionsDownloadSection {
   }
 }
 
-fragment ArchiveSection on ComponentSectionsArchiveSection {
-  id
-  title
-  submenuTitle
-  archiveCard {
-    ...ExhibitionArchive
-  }
-}
-
 fragment ArchiveBannerSection on ComponentSectionsArchiveBannerSection {
   id
   title
