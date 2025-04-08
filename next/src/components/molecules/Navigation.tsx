@@ -138,7 +138,10 @@ const Navigation = ({ page }: NavigationProps) => {
           >
             {menuLinks.map((menuLink, index) => {
               const label = menuLink?.title ?? menuLink?.mainPage?.title ?? ''
-              const href = menuLink?.url ?? menuLink?.mainPage?.slug ?? '#'
+
+              const slug = menuLink?.mainPage?.slug
+              // Add a leading slash to ensure that the link as an absolute path
+              const href = menuLink?.url ?? (slug && `/${slug}`) ?? '#'
 
               const isLast = menuLinks.length - 1 === index
               const hasButtonStyle = (menuLink?.hasButtonStyle && isLast) ?? false

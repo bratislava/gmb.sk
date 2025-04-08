@@ -109,7 +109,7 @@ const getMainPageRouteForTargetLocale = (
 
   if (!mainPageInTargetLocale) return
 
-  // Always ensure slug has a leading slash, regardless of current path
+  // Always ensure slug has a leading slash to prevent issues with routing
   const slug = mainPageInTargetLocale?.attributes.slug
 
   // eslint-disable-next-line consistent-return
