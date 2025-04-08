@@ -1,6 +1,5 @@
 import cx from 'classnames'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
 import React, { useCallback } from 'react'
 
 import { PageWrapperProps } from '@/src/components/pages/PageWrapper'
@@ -9,7 +8,6 @@ import { getEquivalentRouteInTargetLocale } from '@/src/utils/localeRoutes'
 type AppLangSwitchersProps = { showBothLanguages?: boolean } & Pick<PageWrapperProps, 'page'>
 
 const AppLangSwitchers = ({ page, showBothLanguages }: AppLangSwitchersProps) => {
-  const { t } = useTranslation()
   const router = useRouter()
 
   const { asPath, locale: currentLocale, locales } = router // Use router to access locale for better Next integration
