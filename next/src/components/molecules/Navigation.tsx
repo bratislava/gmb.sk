@@ -91,7 +91,7 @@ const Navigation = ({ page }: NavigationProps) => {
           >
             <div className="flex">
               <div className="h-logoHeight w-logoWidth">
-                <Image src={Logo} alt="" />
+                <Image src={Logo} alt="Logo GMB" />
               </div>
 
               <span
