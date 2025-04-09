@@ -82,13 +82,7 @@ const Navigation = ({ page }: NavigationProps) => {
 
         <div className="mx-xMd flex w-full items-center justify-between gap-x-xMd">
           {/* Logo button */}
-          <Link
-            href="/"
-            preserveStyle
-            noUnderline
-            locale={router.locale}
-            className="group min-w-fit"
-          >
+          <Link href="/" preserveStyle noUnderline className="group min-w-fit">
             <div className="flex">
               <div className="h-logoHeight w-logoWidth">
                 <Image src={Logo} alt="Logo GMB" />
@@ -106,7 +100,12 @@ const Navigation = ({ page }: NavigationProps) => {
           </Link>
 
           {/* Hamburger button */}
-          <button type="button" className="-mr-5 flex p-5 lg:hidden" onClick={toggleMobileMenu}>
+          <button
+            type="button"
+            className="-mr-5 flex p-5 lg:hidden"
+            onClick={toggleMobileMenu}
+            aria-label="Menu"
+          >
             {isMobileMenuOpen ? (
               <CloseIcon className="dh-[30] dw-[30]" />
             ) : (
@@ -130,7 +129,7 @@ const Navigation = ({ page }: NavigationProps) => {
               const href = menuLink?.url ?? (slug && `/${slug}`) ?? '#'
 
               const isLast = menuLinks.length - 1 === index
-              const hasButtonStyle = (menuLink?.hasButtonStyle && isLast) ?? false
+              const hasButtonStyle = menuLink?.hasButtonStyle && isLast
 
               const isExternal = href.startsWith('http')
 
@@ -145,11 +144,7 @@ const Navigation = ({ page }: NavigationProps) => {
                       {label}
                     </Button>
                   ) : (
-                    <Link
-                      href={href}
-                      target={isExternal ? '_blank' : '_self'}
-                      locale={router.locale}
-                    >
+                    <Link href={href} target={isExternal ? '_blank' : '_self'}>
                       {label}
                       {isExternal ? `\u00A0↗\u{0000FE0E}` : ''}
                     </Link>
