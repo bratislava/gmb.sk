@@ -15,17 +15,13 @@ interface IndexProps {
 }
 
 export const Index = ({ homePage, generalQuery, news }: IndexProps) => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   return (
     <GeneralContextProvider general={generalQuery}>
       <Page
         page={homePage}
-        title={
-          i18n.language === 'sk'
-            ? `${t('common.cityGallery')} ${t('common.bratislavaGenitiv')}`
-            : `${t('common.bratislavaGenitiv')} ${t('common.cityGallery')}`
-        }
+        title={t('common.home')}
         newsItems={news?.data?.filter(hasAttributes)}
       />
     </GeneralContextProvider>

@@ -55,7 +55,8 @@
         "sections.opening-hours-section",
         "sections.newsletter-section",
         "sections.news-section",
-        "sections.map-section"
+        "sections.map-section",
+        "sections.global-search-section"
       ]
     },
     "seo": {

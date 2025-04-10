@@ -125,7 +125,6 @@ fragment Links on ComponentBlocksLinks {
 }
 
 fragment MenuEntity on MenuEntity {
-  id
   attributes {
     menuLinks {
       ...MenuLinkItem
@@ -135,6 +134,7 @@ fragment MenuEntity on MenuEntity {
 
 fragment MainPageEntity on MainPageEntity {
   id
+  __typename
   attributes {
     title
     slug
@@ -152,6 +152,13 @@ fragment MainPageEntity on MainPageEntity {
         }
       }
     }
+  }
+}
+
+fragment MainPageSlugEntity on MainPageEntity {
+  attributes {
+    title
+    slug
   }
 }
 
@@ -315,7 +322,7 @@ fragment MenuLinkItem on ComponentBlocksMenuLinkItem {
   url
   mainPage {
     data {
-      ...MainPageEntity
+      ...MainPageSlugEntity
     }
   }
   hasButtonStyle
@@ -537,6 +544,11 @@ fragment ExhibitionsSection on ComponentSectionsExhibitionsSection {
   }
 }
 
+fragment GlobalSearchSection on ComponentSectionsGlobalSearchSection {
+  id
+  title
+}
+
 fragment Sections on VisitUsPageSectionsDynamicZone {
   ... on Error {
     code
@@ -597,6 +609,10 @@ fragment MainPageSections on MainPageSectionsDynamicZone {
   ... on ComponentSectionsDisclosureSection {
     __typename
     ...DisclosureSection
+  }
+  ... on ComponentSectionsGlobalSearchSection {
+    __typename
+    ...GlobalSearchSection
   }
 }
 

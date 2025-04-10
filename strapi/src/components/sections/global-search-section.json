@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_sections_global_search_sections",
+  "info": {
+    "displayName": "global search section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  }
+}
