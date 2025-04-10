@@ -427,71 +427,6 @@ export interface ApiAboutUsPageAboutUsPage extends Schema.SingleType {
   };
 }
 
-export interface ApiCollectionsPageCollectionsPage extends Schema.SingleType {
-  collectionName: 'collections_pages';
-  info: {
-    description: '';
-    displayName: 'Zbierky';
-    pluralName: 'collections-pages';
-    singularName: 'collections-page';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::collections-page.collections-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    highlights: Attribute.Component<'blocks.content-page-item', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Attribute.String;
-    localizations: Attribute.Relation<
-      'api::collections-page.collections-page',
-      'oneToMany',
-      'api::collections-page.collections-page'
-    >;
-    sections: Attribute.DynamicZone<
-      [
-        'sections.page-section',
-        'sections.news-section',
-        'sections.newsletter-section',
-        'sections.opening-hours-section'
-      ]
-    > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    seo: Attribute.Component<'blocks.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'api::collections-page.collections-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiContactCardContactCard extends Schema.CollectionType {
   collectionName: 'contact_cards';
   info: {
@@ -2104,7 +2039,6 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about-us-page.about-us-page': ApiAboutUsPageAboutUsPage;
-      'api::collections-page.collections-page': ApiCollectionsPageCollectionsPage;
       'api::contact-card.contact-card': ApiContactCardContactCard;
       'api::content-page.content-page': ApiContentPageContentPage;
       'api::exhibitions-page.exhibitions-page': ApiExhibitionsPageExhibitionsPage;

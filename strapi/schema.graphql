@@ -77,56 +77,6 @@ input BooleanFilterInput {
   startsWith: Boolean
 }
 
-type CollectionsPage {
-  createdAt: DateTime
-  highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
-  locale: String
-  localizations: CollectionsPageRelationResponseCollection
-  sections: [CollectionsPageSectionsDynamicZone]
-  seo: ComponentBlocksSeo
-  updatedAt: DateTime
-}
-
-type CollectionsPageEntity {
-  attributes: CollectionsPage
-  id: ID
-}
-
-type CollectionsPageEntityResponse {
-  data: CollectionsPageEntity
-}
-
-type CollectionsPageEntityResponseCollection {
-  data: [CollectionsPageEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input CollectionsPageFiltersInput {
-  and: [CollectionsPageFiltersInput]
-  createdAt: DateTimeFilterInput
-  highlights: ComponentBlocksContentPageItemFiltersInput
-  locale: StringFilterInput
-  localizations: CollectionsPageFiltersInput
-  not: CollectionsPageFiltersInput
-  or: [CollectionsPageFiltersInput]
-  seo: ComponentBlocksSeoFiltersInput
-  updatedAt: DateTimeFilterInput
-}
-
-input CollectionsPageInput {
-  highlights: [ComponentBlocksContentPageItemInput]
-  sections: [CollectionsPageSectionsDynamicZoneInput!]
-  seo: ComponentBlocksSeoInput
-}
-
-type CollectionsPageRelationResponseCollection {
-  data: [CollectionsPageEntity!]!
-}
-
-union CollectionsPageSectionsDynamicZone = ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | Error
-
-scalar CollectionsPageSectionsDynamicZoneInput
-
 type ComponentBlocksContactCardItem {
   contactCard: ContactCardEntityResponse
   id: ID!
@@ -1273,7 +1223,7 @@ type GeneralRelationResponseCollection {
   data: [GeneralEntity!]!
 }
 
-union GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
+union GenericMorph = AboutUsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
 
 type GetInvolvedPage {
   createdAt: DateTime
@@ -1634,7 +1584,6 @@ type Mutation {
   """Change user password. Confirm with the current password."""
   changePassword(currentPassword: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
   createAboutUsPageLocalization(data: AboutUsPageInput, id: ID, locale: I18NLocaleCode): AboutUsPageEntityResponse
-  createCollectionsPageLocalization(data: CollectionsPageInput, id: ID, locale: I18NLocaleCode): CollectionsPageEntityResponse
   createContactCard(data: ContactCardInput!, locale: I18NLocaleCode): ContactCardEntityResponse
   createContactCardLocalization(data: ContactCardInput, id: ID, locale: I18NLocaleCode): ContactCardEntityResponse
   createContentPage(data: ContentPageInput!, locale: I18NLocaleCode): ContentPageEntityResponse
@@ -1667,7 +1616,6 @@ type Mutation {
   createUsersPermissionsUser(data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
   createVisitUsPageLocalization(data: VisitUsPageInput, id: ID, locale: I18NLocaleCode): VisitUsPageEntityResponse
   deleteAboutUsPage(locale: I18NLocaleCode): AboutUsPageEntityResponse
-  deleteCollectionsPage(locale: I18NLocaleCode): CollectionsPageEntityResponse
   deleteContactCard(id: ID!, locale: I18NLocaleCode): ContactCardEntityResponse
   deleteContentPage(id: ID!, locale: I18NLocaleCode): ContentPageEntityResponse
   deleteExhibitionsPage(locale: I18NLocaleCode): ExhibitionsPageEntityResponse
@@ -1709,7 +1657,6 @@ type Mutation {
   """
   resetPassword(code: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
   updateAboutUsPage(data: AboutUsPageInput!, locale: I18NLocaleCode): AboutUsPageEntityResponse
-  updateCollectionsPage(data: CollectionsPageInput!, locale: I18NLocaleCode): CollectionsPageEntityResponse
   updateContactCard(data: ContactCardInput!, id: ID!, locale: I18NLocaleCode): ContactCardEntityResponse
   updateContentPage(data: ContentPageInput!, id: ID!, locale: I18NLocaleCode): ContentPageEntityResponse
   updateExhibitionsPage(data: ExhibitionsPageInput!, locale: I18NLocaleCode): ExhibitionsPageEntityResponse
@@ -1859,7 +1806,6 @@ enum PublicationState {
 
 type Query {
   aboutUsPage(locale: I18NLocaleCode): AboutUsPageEntityResponse
-  collectionsPage(locale: I18NLocaleCode): CollectionsPageEntityResponse
   contactCard(id: ID, locale: I18NLocaleCode): ContactCardEntityResponse
   contactCards(filters: ContactCardFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, sort: [String] = []): ContactCardEntityResponseCollection
   contentPage(id: ID, locale: I18NLocaleCode): ContentPageEntityResponse

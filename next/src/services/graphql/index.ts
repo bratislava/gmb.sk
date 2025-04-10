@@ -16,7 +16,6 @@ export type Scalars = {
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
   AboutUsPageSectionsDynamicZoneInput: { input: any; output: any; }
-  CollectionsPageSectionsDynamicZoneInput: { input: any; output: any; }
   ContentPageMainContentDynamicZoneInput: { input: any; output: any; }
   /** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   Date: { input: any; output: any; }
@@ -122,66 +121,6 @@ export type BooleanFilterInput = {
   or?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
   startsWith?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
-export type CollectionsPage = {
-  __typename?: 'CollectionsPage';
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  highlights?: Maybe<Array<Maybe<ComponentBlocksContentPageItem>>>;
-  locale?: Maybe<Scalars['String']['output']>;
-  localizations?: Maybe<CollectionsPageRelationResponseCollection>;
-  sections?: Maybe<Array<Maybe<CollectionsPageSectionsDynamicZone>>>;
-  seo?: Maybe<ComponentBlocksSeo>;
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-
-export type CollectionsPageHighlightsArgs = {
-  filters?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type CollectionsPageEntity = {
-  __typename?: 'CollectionsPageEntity';
-  attributes?: Maybe<CollectionsPage>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
-
-export type CollectionsPageEntityResponse = {
-  __typename?: 'CollectionsPageEntityResponse';
-  data?: Maybe<CollectionsPageEntity>;
-};
-
-export type CollectionsPageEntityResponseCollection = {
-  __typename?: 'CollectionsPageEntityResponseCollection';
-  data: Array<CollectionsPageEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type CollectionsPageFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<CollectionsPageFiltersInput>>>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  highlights?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
-  locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<CollectionsPageFiltersInput>;
-  not?: InputMaybe<CollectionsPageFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<CollectionsPageFiltersInput>>>;
-  seo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type CollectionsPageInput = {
-  highlights?: InputMaybe<Array<InputMaybe<ComponentBlocksContentPageItemInput>>>;
-  sections?: InputMaybe<Array<Scalars['CollectionsPageSectionsDynamicZoneInput']['input']>>;
-  seo?: InputMaybe<ComponentBlocksSeoInput>;
-};
-
-export type CollectionsPageRelationResponseCollection = {
-  __typename?: 'CollectionsPageRelationResponseCollection';
-  data: Array<CollectionsPageEntity>;
-};
-
-export type CollectionsPageSectionsDynamicZone = ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | Error;
 
 export type ComponentBlocksContactCardItem = {
   __typename?: 'ComponentBlocksContactCardItem';
@@ -1490,7 +1429,7 @@ export type GeneralRelationResponseCollection = {
   data: Array<GeneralEntity>;
 };
 
-export type GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage;
+export type GenericMorph = AboutUsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage;
 
 export type GetInvolvedPage = {
   __typename?: 'GetInvolvedPage';
@@ -1894,7 +1833,6 @@ export type Mutation = {
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createAboutUsPageLocalization?: Maybe<AboutUsPageEntityResponse>;
-  createCollectionsPageLocalization?: Maybe<CollectionsPageEntityResponse>;
   createContactCard?: Maybe<ContactCardEntityResponse>;
   createContactCardLocalization?: Maybe<ContactCardEntityResponse>;
   createContentPage?: Maybe<ContentPageEntityResponse>;
@@ -1925,7 +1863,6 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   createVisitUsPageLocalization?: Maybe<VisitUsPageEntityResponse>;
   deleteAboutUsPage?: Maybe<AboutUsPageEntityResponse>;
-  deleteCollectionsPage?: Maybe<CollectionsPageEntityResponse>;
   deleteContactCard?: Maybe<ContactCardEntityResponse>;
   deleteContentPage?: Maybe<ContentPageEntityResponse>;
   deleteExhibitionsPage?: Maybe<ExhibitionsPageEntityResponse>;
@@ -1959,7 +1896,6 @@ export type Mutation = {
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateAboutUsPage?: Maybe<AboutUsPageEntityResponse>;
-  updateCollectionsPage?: Maybe<CollectionsPageEntityResponse>;
   updateContactCard?: Maybe<ContactCardEntityResponse>;
   updateContentPage?: Maybe<ContentPageEntityResponse>;
   updateExhibitionsPage?: Maybe<ExhibitionsPageEntityResponse>;
@@ -1995,13 +1931,6 @@ export type MutationChangePasswordArgs = {
 
 export type MutationCreateAboutUsPageLocalizationArgs = {
   data?: InputMaybe<AboutUsPageInput>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
-export type MutationCreateCollectionsPageLocalizationArgs = {
-  data?: InputMaybe<CollectionsPageInput>;
   id?: InputMaybe<Scalars['ID']['input']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
@@ -2185,11 +2114,6 @@ export type MutationDeleteAboutUsPageArgs = {
 };
 
 
-export type MutationDeleteCollectionsPageArgs = {
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
 export type MutationDeleteContactCardArgs = {
   id: Scalars['ID']['input'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
@@ -2335,12 +2259,6 @@ export type MutationResetPasswordArgs = {
 
 export type MutationUpdateAboutUsPageArgs = {
   data: AboutUsPageInput;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
-export type MutationUpdateCollectionsPageArgs = {
-  data: CollectionsPageInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
@@ -2637,7 +2555,6 @@ export enum PublicationState {
 export type Query = {
   __typename?: 'Query';
   aboutUsPage?: Maybe<AboutUsPageEntityResponse>;
-  collectionsPage?: Maybe<CollectionsPageEntityResponse>;
   contactCard?: Maybe<ContactCardEntityResponse>;
   contactCards?: Maybe<ContactCardEntityResponseCollection>;
   contentPage?: Maybe<ContentPageEntityResponse>;
@@ -2680,11 +2597,6 @@ export type Query = {
 
 
 export type QueryAboutUsPageArgs = {
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
-export type QueryCollectionsPageArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
