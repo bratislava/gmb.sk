@@ -3313,23 +3313,19 @@ export type ExhibitionsSectionFragment = { __typename?: 'ComponentSectionsExhibi
 
 export type GlobalSearchSectionFragment = { __typename?: 'ComponentSectionsGlobalSearchSection', id: string, title?: string | null };
 
-type Sections_ComponentSectionsMapSection_Fragment = { __typename: 'ComponentSectionsMapSection', id: string, title?: string | null, submenuTitle?: string | null };
+type Sections_ComponentSectionsAudioSection_Fragment = { __typename?: 'ComponentSectionsAudioSection' };
 
-type Sections_ComponentSectionsNewsSection_Fragment = { __typename: 'ComponentSectionsNewsSection', id: string, title?: string | null, submenuTitle?: string | null };
+type Sections_ComponentSectionsContactCardsSection_Fragment = { __typename?: 'ComponentSectionsContactCardsSection' };
 
-type Sections_ComponentSectionsNewsletterSection_Fragment = { __typename: 'ComponentSectionsNewsletterSection', id: string, submenuTitle?: string | null };
-
-type Sections_ComponentSectionsOpeningHoursSection_Fragment = { __typename: 'ComponentSectionsOpeningHoursSection', id: string, submenuTitle?: string | null };
-
-type Sections_ComponentSectionsPageSection_Fragment = { __typename: 'ComponentSectionsPageSection', id: string, title?: string | null, submenuTitle?: string | null, layout?: Enum_Componentsectionspagesection_Layout | null, contentPages?: Array<{ __typename?: 'ComponentBlocksContentPageItem', contentPage?: { __typename?: 'ContentPageEntityResponse', data?: { __typename?: 'ContentPageEntity', id?: string | null, attributes?: { __typename?: 'ContentPage', perex?: string | null, title: string, subtitle?: string | null, addedAt?: any | null, useDatetimeAsSubtitle?: boolean | null, slug: string, color?: string | null, inheritColorFromParent?: boolean | null, dateFrom?: any | null, dateTo?: any | null, timeFrom?: any | null, timeTo?: any | null, showRemainingTime?: boolean | null, coverMedia?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null } | null } | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', title: string, slug: string } | null }> } | null, parentPage?: { __typename?: 'ContentPageEntityResponse', data?: { __typename?: 'ContentPageEntity', attributes?: { __typename?: 'ContentPage', color?: string | null } | null } | null } | null } | null } | null } | null } | null> | null };
+type Sections_ComponentSectionsGallerySection_Fragment = { __typename?: 'ComponentSectionsGallerySection' };
 
 type Sections_ComponentSectionsRichtextSection_Fragment = { __typename: 'ComponentSectionsRichtextSection', id: string, submenuTitle?: string | null, content?: string | null };
 
-type Sections_ComponentSectionsTicketsSection_Fragment = { __typename: 'ComponentSectionsTicketsSection', id: string, title?: string | null, submenuTitle?: string | null, text?: string | null };
+type Sections_ComponentSectionsVideoSection_Fragment = { __typename?: 'ComponentSectionsVideoSection' };
 
 type Sections_Error_Fragment = { __typename?: 'Error', code: string, message?: string | null };
 
-export type SectionsFragment = Sections_ComponentSectionsMapSection_Fragment | Sections_ComponentSectionsNewsSection_Fragment | Sections_ComponentSectionsNewsletterSection_Fragment | Sections_ComponentSectionsOpeningHoursSection_Fragment | Sections_ComponentSectionsPageSection_Fragment | Sections_ComponentSectionsRichtextSection_Fragment | Sections_ComponentSectionsTicketsSection_Fragment | Sections_Error_Fragment;
+export type SectionsFragment = Sections_ComponentSectionsAudioSection_Fragment | Sections_ComponentSectionsContactCardsSection_Fragment | Sections_ComponentSectionsGallerySection_Fragment | Sections_ComponentSectionsRichtextSection_Fragment | Sections_ComponentSectionsVideoSection_Fragment | Sections_Error_Fragment;
 
 type MainPageSections_ComponentSectionsDisclosureSection_Fragment = { __typename: 'ComponentSectionsDisclosureSection', id: string, title?: string | null, submenuTitle?: string | null, additionalFilesSection?: { __typename?: 'ComponentSectionsDownloadSection', id: string, title?: string | null, submenuTitle?: string | null, files?: Array<{ __typename?: 'ComponentBlocksFileItem', id: string, title?: string | null, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, caption?: string | null, alternativeText?: string | null, ext?: string | null, size: number, url: string } | null } | null } } | null> | null } | null };
 
@@ -3485,7 +3481,7 @@ export type HomePageQueryVariables = Exact<{
 }>;
 
 
-export type HomePageQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageEntityResponse', data?: { __typename?: 'HomePageEntity', attributes?: { __typename: 'HomePage', highlights?: Array<{ __typename?: 'ComponentBlocksContentPageItem', contentPage?: { __typename?: 'ContentPageEntityResponse', data?: { __typename?: 'ContentPageEntity', id?: string | null, attributes?: { __typename?: 'ContentPage', titleToShow?: string | null, sellTickets?: boolean | null, purchaseId?: string | null, perex?: string | null, title: string, subtitle?: string | null, addedAt?: any | null, useDatetimeAsSubtitle?: boolean | null, slug: string, color?: string | null, inheritColorFromParent?: boolean | null, placeTitle?: string | null, placeAddress?: string | null, dateFrom?: any | null, dateTo?: any | null, timeFrom?: any | null, timeTo?: any | null, showRemainingTime?: boolean | null, override?: { __typename?: 'ComponentBlocksHighlightOverride', highlightContent?: string | null } | null, coverMedia?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null } | null } | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', title: string, slug: string } | null }> } | null, parentPage?: { __typename?: 'ContentPageEntityResponse', data?: { __typename?: 'ContentPageEntity', attributes?: { __typename?: 'ContentPage', color?: string | null } | null } | null } | null, place?: { __typename?: 'PlaceEntityResponse', data?: { __typename?: 'PlaceEntity', attributes?: { __typename?: 'Place', title: string, address: string, slug: string, purchaseId?: string | null } | null } | null } | null, positions?: Array<{ __typename?: 'ComponentBlocksPositionItem', title?: string | null, names?: string | null } | null> | null } | null } | null } | null } | null> | null, sections?: Array<{ __typename: 'ComponentSectionsNewsSection', id: string, title?: string | null, submenuTitle?: string | null } | { __typename: 'ComponentSectionsNewsletterSection', id: string, submenuTitle?: string | null } | { __typename: 'ComponentSectionsOpeningHoursSection', id: string, submenuTitle?: string | null } | { __typename: 'ComponentSectionsPageSection', id: string, title?: string | null, submenuTitle?: string | null, layout?: Enum_Componentsectionspagesection_Layout | null, contentPages?: Array<{ __typename?: 'ComponentBlocksContentPageItem', contentPage?: { __typename?: 'ContentPageEntityResponse', data?: { __typename?: 'ContentPageEntity', id?: string | null, attributes?: { __typename?: 'ContentPage', perex?: string | null, title: string, subtitle?: string | null, addedAt?: any | null, useDatetimeAsSubtitle?: boolean | null, slug: string, color?: string | null, inheritColorFromParent?: boolean | null, dateFrom?: any | null, dateTo?: any | null, timeFrom?: any | null, timeTo?: any | null, showRemainingTime?: boolean | null, coverMedia?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null } | null } | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', title: string, slug: string } | null }> } | null, parentPage?: { __typename?: 'ContentPageEntityResponse', data?: { __typename?: 'ContentPageEntity', attributes?: { __typename?: 'ContentPage', color?: string | null } | null } | null } | null } | null } | null } | null } | null> | null } | { __typename?: 'Error', code: string, message?: string | null } | null> | null, partners?: Array<{ __typename?: 'ComponentBlocksPartnerItem', partner?: { __typename?: 'PartnerEntityResponse', data?: { __typename?: 'PartnerEntity', id?: string | null, attributes?: { __typename?: 'Partner', title: string, link?: string | null, logo: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null } | null } } | null } | null } | null } | null> | null, seo?: { __typename?: 'ComponentBlocksSeo', metaTitle?: string | null, metaDescription?: string | null, keywords?: string | null, metaImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null } | null } | null } | null } | null } | null } | null };
+export type HomePageQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageEntityResponse', data?: { __typename?: 'HomePageEntity', attributes?: { __typename: 'HomePage', highlights?: Array<{ __typename?: 'ComponentBlocksContentPageItem', contentPage?: { __typename?: 'ContentPageEntityResponse', data?: { __typename?: 'ContentPageEntity', id?: string | null, attributes?: { __typename?: 'ContentPage', titleToShow?: string | null, sellTickets?: boolean | null, purchaseId?: string | null, perex?: string | null, title: string, subtitle?: string | null, addedAt?: any | null, useDatetimeAsSubtitle?: boolean | null, slug: string, color?: string | null, inheritColorFromParent?: boolean | null, placeTitle?: string | null, placeAddress?: string | null, dateFrom?: any | null, dateTo?: any | null, timeFrom?: any | null, timeTo?: any | null, showRemainingTime?: boolean | null, override?: { __typename?: 'ComponentBlocksHighlightOverride', highlightContent?: string | null } | null, coverMedia?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null } | null } | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', title: string, slug: string } | null }> } | null, parentPage?: { __typename?: 'ContentPageEntityResponse', data?: { __typename?: 'ContentPageEntity', attributes?: { __typename?: 'ContentPage', color?: string | null } | null } | null } | null, place?: { __typename?: 'PlaceEntityResponse', data?: { __typename?: 'PlaceEntity', attributes?: { __typename?: 'Place', title: string, address: string, slug: string, purchaseId?: string | null } | null } | null } | null, positions?: Array<{ __typename?: 'ComponentBlocksPositionItem', title?: string | null, names?: string | null } | null> | null } | null } | null } | null } | null> | null, sections?: Array<{ __typename?: 'ComponentSectionsNewsSection' } | { __typename?: 'ComponentSectionsNewsletterSection' } | { __typename?: 'ComponentSectionsOpeningHoursSection' } | { __typename?: 'ComponentSectionsPageSection' } | { __typename?: 'Error', code: string, message?: string | null } | null> | null, partners?: Array<{ __typename?: 'ComponentBlocksPartnerItem', partner?: { __typename?: 'PartnerEntityResponse', data?: { __typename?: 'PartnerEntity', id?: string | null, attributes?: { __typename?: 'Partner', title: string, link?: string | null, logo: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null } | null } } | null } | null } | null } | null> | null, seo?: { __typename?: 'ComponentBlocksSeo', metaTitle?: string | null, metaDescription?: string | null, keywords?: string | null, metaImage?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null } | null } | null } | null } | null } | null } | null };
 
 export type ExhibitionsAndEventsQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input'];
@@ -3540,6 +3536,25 @@ export const MenuEntityFragmentDoc = gql`
   }
 }
     ${MenuLinkItemFragmentDoc}`;
+export const RichtextSectionFragmentDoc = gql`
+    fragment RichtextSection on ComponentSectionsRichtextSection {
+  id
+  submenuTitle
+  content
+}
+    `;
+export const SectionsFragmentDoc = gql`
+    fragment Sections on ContentPageMainContentDynamicZone {
+  ... on Error {
+    code
+    message
+  }
+  ... on ComponentSectionsRichtextSection {
+    __typename
+    ...RichtextSection
+  }
+}
+    ${RichtextSectionFragmentDoc}`;
 export const NewsItemEntityFragmentDoc = gql`
     fragment NewsItemEntity on ContentPageEntity {
   id
@@ -3659,55 +3674,6 @@ export const MapSectionFragmentDoc = gql`
   submenuTitle
 }
     `;
-export const RichtextSectionFragmentDoc = gql`
-    fragment RichtextSection on ComponentSectionsRichtextSection {
-  id
-  submenuTitle
-  content
-}
-    `;
-export const SectionsFragmentDoc = gql`
-    fragment Sections on VisitUsPageSectionsDynamicZone {
-  ... on Error {
-    code
-    message
-  }
-  ... on ComponentSectionsPageSection {
-    __typename
-    ...PageSection
-  }
-  ... on ComponentSectionsNewsSection {
-    __typename
-    ...NewsSection
-  }
-  ... on ComponentSectionsOpeningHoursSection {
-    __typename
-    ...OpeningHoursSection
-  }
-  ... on ComponentSectionsNewsletterSection {
-    __typename
-    ...NewsletterSection
-  }
-  ... on ComponentSectionsTicketsSection {
-    __typename
-    ...TicketsSection
-  }
-  ... on ComponentSectionsMapSection {
-    __typename
-    ...MapSection
-  }
-  ... on ComponentSectionsRichtextSection {
-    __typename
-    ...RichtextSection
-  }
-}
-    ${PageSectionFragmentDoc}
-${NewsSectionFragmentDoc}
-${OpeningHoursSectionFragmentDoc}
-${NewsletterSectionFragmentDoc}
-${TicketsSectionFragmentDoc}
-${MapSectionFragmentDoc}
-${RichtextSectionFragmentDoc}`;
 export const PlaceEntityFragmentDoc = gql`
     fragment PlaceEntity on PlaceEntity {
   attributes {
@@ -3900,6 +3866,30 @@ export const GlobalSearchSectionFragmentDoc = gql`
 export const MainPageSectionsFragmentDoc = gql`
     fragment MainPageSections on MainPageSectionsDynamicZone {
   ...Sections
+  ... on ComponentSectionsPageSection {
+    __typename
+    ...PageSection
+  }
+  ... on ComponentSectionsNewsSection {
+    __typename
+    ...NewsSection
+  }
+  ... on ComponentSectionsOpeningHoursSection {
+    __typename
+    ...OpeningHoursSection
+  }
+  ... on ComponentSectionsNewsletterSection {
+    __typename
+    ...NewsletterSection
+  }
+  ... on ComponentSectionsTicketsSection {
+    __typename
+    ...TicketsSection
+  }
+  ... on ComponentSectionsMapSection {
+    __typename
+    ...MapSection
+  }
   ... on ComponentSectionsHighlightsSection {
     __typename
     ...HighlightsSection
@@ -3930,6 +3920,12 @@ export const MainPageSectionsFragmentDoc = gql`
   }
 }
     ${SectionsFragmentDoc}
+${PageSectionFragmentDoc}
+${NewsSectionFragmentDoc}
+${OpeningHoursSectionFragmentDoc}
+${NewsletterSectionFragmentDoc}
+${TicketsSectionFragmentDoc}
+${MapSectionFragmentDoc}
 ${HighlightsSectionFragmentDoc}
 ${PartnersSectionFragmentDoc}
 ${ExhibitionArchiveSectionFragmentDoc}
@@ -4050,14 +4046,7 @@ export const ContactCardsSectionFragmentDoc = gql`
     ${ContactCardEntityFragmentDoc}`;
 export const MainContentFragmentDoc = gql`
     fragment MainContent on ContentPageMainContentDynamicZone {
-  ... on Error {
-    code
-    message
-  }
-  ... on ComponentSectionsRichtextSection {
-    __typename
-    ...RichtextSection
-  }
+  ...Sections
   ... on ComponentSectionsVideoSection {
     __typename
     ...VideoSection
@@ -4075,7 +4064,7 @@ export const MainContentFragmentDoc = gql`
     ...ContactCardsSection
   }
 }
-    ${RichtextSectionFragmentDoc}
+    ${SectionsFragmentDoc}
 ${VideoSectionFragmentDoc}
 ${AudioSectionFragmentDoc}
 ${GallerySectionFragmentDoc}

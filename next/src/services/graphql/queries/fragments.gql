@@ -540,11 +540,19 @@ fragment GlobalSearchSection on ComponentSectionsGlobalSearchSection {
   title
 }
 
-fragment Sections on VisitUsPageSectionsDynamicZone {
+fragment Sections on ContentPageMainContentDynamicZone {
   ... on Error {
     code
     message
   }
+  ... on ComponentSectionsRichtextSection {
+    __typename
+    ...RichtextSection
+  }
+}
+
+fragment MainPageSections on MainPageSectionsDynamicZone {
+  ...Sections
   ... on ComponentSectionsPageSection {
     __typename
     ...PageSection
@@ -569,14 +577,6 @@ fragment Sections on VisitUsPageSectionsDynamicZone {
     __typename
     ...MapSection
   }
-  ... on ComponentSectionsRichtextSection {
-    __typename
-    ...RichtextSection
-  }
-}
-
-fragment MainPageSections on MainPageSectionsDynamicZone {
-  ...Sections
   ... on ComponentSectionsHighlightsSection {
     __typename
     ...HighlightsSection
@@ -608,14 +608,7 @@ fragment MainPageSections on MainPageSectionsDynamicZone {
 }
 
 fragment MainContent on ContentPageMainContentDynamicZone {
-  ... on Error {
-    code
-    message
-  }
-  ... on ComponentSectionsRichtextSection {
-    __typename
-    ...RichtextSection
-  }
+  ...Sections
   ... on ComponentSectionsVideoSection {
     __typename
     ...VideoSection
