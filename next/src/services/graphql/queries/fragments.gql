@@ -406,6 +406,8 @@ fragment ExhibitionArchiveSection on ComponentSectionsExhibitionArchiveSection {
 
 fragment PartnersSection on ComponentSectionsPartnersSection {
   id
+  title
+  submenuTitle
   partners {
     ...Partner
   }
