@@ -1,4 +1,4 @@
-import { ContentPageEntityFragment } from '@/src/services/graphql'
+import { ContentPageEntityFragment, MainPageEntityFragment } from '@/src/services/graphql'
 import { getKeyByValue } from '@/src/utils/getKeyByValue'
 import { hasAttributes, isDefined, WithAttributes } from '@/src/utils/isDefined'
 
@@ -99,29 +99,53 @@ function getContentPageTicketsRouteForTargetLocale(
   return `${ticketsRoute}/${contentPageInTargetLocale?.attributes.slug}`
 }
 
+const getMainPageRouteForTargetLocale = (
+  mainPageLocalizations: WithAttributes<MainPageEntityFragment>['attributes']['localizations'],
+  targetLocale: string
+) => {
+  const mainPageInTargetLocale = mainPageLocalizations?.data
+    ?.filter(hasAttributes)
+    .find((localization) => localization.attributes.locale === targetLocale)
+
+  if (!mainPageInTargetLocale) return
+
+  // Always ensure slug has a leading slash to prevent issues with routing
+  const slug = mainPageInTargetLocale?.attributes.slug
+
+  // eslint-disable-next-line consistent-return
+  return slug?.startsWith('/') ? slug : `/${slug}`
+}
+
+type Page =
+  | WithAttributes<ContentPageEntityFragment>
+  | WithAttributes<MainPageEntityFragment>
+  | undefined
+
+const isMainPage = (page: Page): page is WithAttributes<MainPageEntityFragment> => {
+  return isDefined(page) && page.__typename === 'MainPageEntity'
+}
+
 export function getEquivalentRouteInTargetLocale(
-  pathname: string,
+  path: string, // Expects full path from Next router
   targetLocale: string,
-  contentPage: WithAttributes<ContentPageEntityFragment> | undefined
+  page: Page
 ) {
-  const isDetailRoute = pathname.startsWith('/detail') && isDefined(contentPage)
+  if (isMainPage(page)) {
+    return getMainPageRouteForTargetLocale(page.attributes.localizations, targetLocale)
+  }
+
+  const isDetailRoute = path.startsWith('/detail') && isDefined(page)
 
   if (isDetailRoute) {
-    return getContentPageDetailRouteForTargetLocale(
-      contentPage.attributes.localizations,
-      targetLocale
-    )
+    return getContentPageDetailRouteForTargetLocale(page.attributes.localizations, targetLocale)
   }
 
   const isTicketsRoute =
-    (pathname.startsWith('/tickets') || pathname.startsWith('/vstupenky')) && isDefined(contentPage)
+    (path.startsWith('/tickets') || path.startsWith('/vstupenky')) && isDefined(page)
 
   if (isTicketsRoute) {
-    return getContentPageTicketsRouteForTargetLocale(
-      contentPage.attributes.localizations,
-      targetLocale
-    )
+    return getContentPageTicketsRouteForTargetLocale(page.attributes.localizations, targetLocale)
   }
 
-  return getRouteForTargetLocale(pathname, targetLocale)
+  return getRouteForTargetLocale(path, targetLocale)
 }

@@ -25,6 +25,7 @@ import { getAnchor } from '@/src/utils/getAnchor'
 import { hasAttributes, isDefined, WithAttributes } from '@/src/utils/isDefined'
 
 interface PageProps {
+  // TODO `page` should only be of `HomePageQuery['homePage']` type once the menu has been refactored
   page:
     | AboutUsPageQuery['aboutUsPage']
     | GetInvolvedPageQuery['getInvolvedPage']
@@ -36,6 +37,7 @@ interface PageProps {
   tickets?: WithAttributes<TicketEntityFragment>[] | null
 }
 
+// TODO This component could be renamed to `HomePage` for clarity
 const Page = ({ page: pageResponse, title, newsItems, tickets }: PageProps) => {
   const { t } = useTranslation()
 
