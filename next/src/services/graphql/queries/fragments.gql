@@ -542,6 +542,11 @@ fragment ExhibitionsSection on ComponentSectionsExhibitionsSection {
   }
 }
 
+fragment GlobalSearchSection on ComponentSectionsGlobalSearchSection {
+  id
+  title
+}
+
 fragment Sections on VisitUsPageSectionsDynamicZone {
   ... on Error {
     code
@@ -602,6 +607,10 @@ fragment MainPageSections on MainPageSectionsDynamicZone {
   ... on ComponentSectionsDisclosureSection {
     __typename
     ...DisclosureSection
+  }
+  ... on ComponentSectionsGlobalSearchSection {
+    __typename
+    ...GlobalSearchSection
   }
 }
 
