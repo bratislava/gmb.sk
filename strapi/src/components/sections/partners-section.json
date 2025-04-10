@@ -1,11 +1,15 @@
 {
   "collectionName": "components_sections_partners_sections",
   "info": {
-    "displayName": "partners section"
+    "displayName": "partners section",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
+      "type": "string"
+    },
+    "submenuTitle": {
       "type": "string"
     },
     "partners": {

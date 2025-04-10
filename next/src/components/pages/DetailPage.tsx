@@ -87,7 +87,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
   const seoImage = seo?.metaImage?.data || coverMedia?.data
 
   return (
-    <PageWrapper contentPage={contentPage}>
+    <PageWrapper page={contentPage}>
       <SeoHead seo={seo} ogType="article" title={title} description={perex} image={seoImage} />
 
       <div

@@ -6,15 +6,12 @@ import remarkGfm from 'remark-gfm'
 import LocationIcon from '@/src/assets/icons/location.svg'
 import AppLangSwitchers from '@/src/components/atoms/AppLangSwitchers'
 import Link from '@/src/components/atoms/Link'
-import { ContentPageEntityFragment } from '@/src/services/graphql'
+import { PageWrapperProps } from '@/src/components/pages/PageWrapper'
 import { useGeneralContext } from '@/src/utils/generalContext'
-import { WithAttributes } from '@/src/utils/isDefined'
 
-interface FooterProps {
-  contentPage?: WithAttributes<ContentPageEntityFragment>
-}
+type FooterProps = Pick<PageWrapperProps, 'page'>
 
-const Footer = ({ contentPage }: FooterProps) => {
+const Footer = ({ page }: FooterProps) => {
   const { t } = useTranslation()
 
   const { general } = useGeneralContext()
@@ -113,7 +110,7 @@ const Footer = ({ contentPage }: FooterProps) => {
         </div>
         <div className="col-span-2 flex flex-col justify-end text-right text-sm md:col-span-1">
           <div className="flex justify-end">
-            <AppLangSwitchers contentPage={contentPage} showBothLanguages />
+            <AppLangSwitchers page={page} showBothLanguages />
           </div>
           <p>
             &copy; {currentYear} {name || t('common.bratislavaCityGallery')}

@@ -305,6 +305,16 @@ export interface SectionsGallerySection extends Schema.Component {
   };
 }
 
+export interface SectionsGlobalSearchSection extends Schema.Component {
+  collectionName: 'components_sections_global_search_sections';
+  info: {
+    displayName: 'global search section';
+  };
+  attributes: {
+    title: Attribute.String;
+  };
+}
+
 export interface SectionsHighlightsSection extends Schema.Component {
   collectionName: 'components_sections_highlights_sections';
   info: {
@@ -380,10 +390,12 @@ export interface SectionsPageSection extends Schema.Component {
 export interface SectionsPartnersSection extends Schema.Component {
   collectionName: 'components_sections_partners_sections';
   info: {
+    description: '';
     displayName: 'partners section';
   };
   attributes: {
     partners: Attribute.Component<'blocks.partner-item', true>;
+    submenuTitle: Attribute.String;
     title: Attribute.String;
   };
 }
@@ -463,6 +475,7 @@ declare module '@strapi/types' {
       'sections.exhibitions-section': SectionsExhibitionsSection;
       'sections.explore-section': SectionsExploreSection;
       'sections.gallery-section': SectionsGallerySection;
+      'sections.global-search-section': SectionsGlobalSearchSection;
       'sections.highlights-section': SectionsHighlightsSection;
       'sections.map-section': SectionsMapSection;
       'sections.news-section': SectionsNewsSection;

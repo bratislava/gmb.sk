@@ -82,7 +82,7 @@ const MainPage = ({
     })
 
   return (
-    <PageWrapper>
+    <PageWrapper page={hasAttributes(pageEntity) ? pageEntity : undefined}>
       <SeoHead title={title} seo={page?.seo} />
 
       {page?.sections && <Submenu items={submenu} />}
@@ -170,7 +170,8 @@ const MainPage = ({
           ) {
             return (
               <PartnersSection
-                title={t('common.partners')}
+                title={section?.title ?? t('common.partners')}
+                anchor={getAnchor(section.submenuTitle)}
                 partners={section.partners
                   ?.map((item) => item?.partner?.data)
                   ?.filter(hasAttributes)}
