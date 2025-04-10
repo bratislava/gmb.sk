@@ -2,56 +2,6 @@
 ### Do not make changes to this file directly
 
 
-type AboutUsPage {
-  createdAt: DateTime
-  highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
-  locale: String
-  localizations: AboutUsPageRelationResponseCollection
-  sections: [AboutUsPageSectionsDynamicZone]
-  seo: ComponentBlocksSeo
-  updatedAt: DateTime
-}
-
-type AboutUsPageEntity {
-  attributes: AboutUsPage
-  id: ID
-}
-
-type AboutUsPageEntityResponse {
-  data: AboutUsPageEntity
-}
-
-type AboutUsPageEntityResponseCollection {
-  data: [AboutUsPageEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input AboutUsPageFiltersInput {
-  and: [AboutUsPageFiltersInput]
-  createdAt: DateTimeFilterInput
-  highlights: ComponentBlocksContentPageItemFiltersInput
-  locale: StringFilterInput
-  localizations: AboutUsPageFiltersInput
-  not: AboutUsPageFiltersInput
-  or: [AboutUsPageFiltersInput]
-  seo: ComponentBlocksSeoFiltersInput
-  updatedAt: DateTimeFilterInput
-}
-
-input AboutUsPageInput {
-  highlights: [ComponentBlocksContentPageItemInput]
-  sections: [AboutUsPageSectionsDynamicZoneInput!]
-  seo: ComponentBlocksSeoInput
-}
-
-type AboutUsPageRelationResponseCollection {
-  data: [AboutUsPageEntity!]!
-}
-
-union AboutUsPageSectionsDynamicZone = ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | Error
-
-scalar AboutUsPageSectionsDynamicZoneInput
-
 input BooleanFilterInput {
   and: [Boolean]
   between: [Boolean]
@@ -1132,7 +1082,7 @@ type GeneralRelationResponseCollection {
   data: [GeneralEntity!]!
 }
 
-union GenericMorph = AboutUsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
+union GenericMorph = ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
 
 type HomePage {
   createdAt: DateTime
@@ -1442,7 +1392,6 @@ type MenuRelationResponseCollection {
 type Mutation {
   """Change user password. Confirm with the current password."""
   changePassword(currentPassword: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
-  createAboutUsPageLocalization(data: AboutUsPageInput, id: ID, locale: I18NLocaleCode): AboutUsPageEntityResponse
   createContactCard(data: ContactCardInput!, locale: I18NLocaleCode): ContactCardEntityResponse
   createContactCardLocalization(data: ContactCardInput, id: ID, locale: I18NLocaleCode): ContactCardEntityResponse
   createContentPage(data: ContentPageInput!, locale: I18NLocaleCode): ContentPageEntityResponse
@@ -1471,7 +1420,6 @@ type Mutation {
   """Create a new user"""
   createUsersPermissionsUser(data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
   createVisitUsPageLocalization(data: VisitUsPageInput, id: ID, locale: I18NLocaleCode): VisitUsPageEntityResponse
-  deleteAboutUsPage(locale: I18NLocaleCode): AboutUsPageEntityResponse
   deleteContactCard(id: ID!, locale: I18NLocaleCode): ContactCardEntityResponse
   deleteContentPage(id: ID!, locale: I18NLocaleCode): ContentPageEntityResponse
   deleteGeneral(locale: I18NLocaleCode): GeneralEntityResponse
@@ -1509,7 +1457,6 @@ type Mutation {
   Reset user password. Confirm with a code (resetToken from forgotPassword)
   """
   resetPassword(code: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
-  updateAboutUsPage(data: AboutUsPageInput!, locale: I18NLocaleCode): AboutUsPageEntityResponse
   updateContactCard(data: ContactCardInput!, id: ID!, locale: I18NLocaleCode): ContactCardEntityResponse
   updateContentPage(data: ContentPageInput!, id: ID!, locale: I18NLocaleCode): ContentPageEntityResponse
   updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
@@ -1655,7 +1602,6 @@ enum PublicationState {
 }
 
 type Query {
-  aboutUsPage(locale: I18NLocaleCode): AboutUsPageEntityResponse
   contactCard(id: ID, locale: I18NLocaleCode): ContactCardEntityResponse
   contactCards(filters: ContactCardFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, sort: [String] = []): ContactCardEntityResponseCollection
   contentPage(id: ID, locale: I18NLocaleCode): ContentPageEntityResponse

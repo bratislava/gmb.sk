@@ -362,71 +362,6 @@ export interface AdminUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiAboutUsPageAboutUsPage extends Schema.SingleType {
-  collectionName: 'about_us_pages';
-  info: {
-    description: '';
-    displayName: 'O gal\u00E9rii';
-    pluralName: 'about-us-pages';
-    singularName: 'about-us-page';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::about-us-page.about-us-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    highlights: Attribute.Component<'blocks.content-page-item', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Attribute.String;
-    localizations: Attribute.Relation<
-      'api::about-us-page.about-us-page',
-      'oneToMany',
-      'api::about-us-page.about-us-page'
-    >;
-    sections: Attribute.DynamicZone<
-      [
-        'sections.news-section',
-        'sections.newsletter-section',
-        'sections.page-section',
-        'sections.opening-hours-section'
-      ]
-    > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    seo: Attribute.Component<'blocks.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'api::about-us-page.about-us-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiContactCardContactCard extends Schema.CollectionType {
   collectionName: 'contact_cards';
   info: {
@@ -1863,7 +1798,6 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::about-us-page.about-us-page': ApiAboutUsPageAboutUsPage;
       'api::contact-card.contact-card': ApiContactCardContactCard;
       'api::content-page.content-page': ApiContentPageContentPage;
       'api::general.general': ApiGeneralGeneral;

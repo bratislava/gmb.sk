@@ -15,7 +15,6 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
-  AboutUsPageSectionsDynamicZoneInput: { input: any; output: any; }
   ContentPageMainContentDynamicZoneInput: { input: any; output: any; }
   /** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   Date: { input: any; output: any; }
@@ -35,66 +34,6 @@ export type Scalars = {
   Upload: { input: any; output: any; }
   VisitUsPageSectionsDynamicZoneInput: { input: any; output: any; }
 };
-
-export type AboutUsPage = {
-  __typename?: 'AboutUsPage';
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  highlights?: Maybe<Array<Maybe<ComponentBlocksContentPageItem>>>;
-  locale?: Maybe<Scalars['String']['output']>;
-  localizations?: Maybe<AboutUsPageRelationResponseCollection>;
-  sections?: Maybe<Array<Maybe<AboutUsPageSectionsDynamicZone>>>;
-  seo?: Maybe<ComponentBlocksSeo>;
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-
-export type AboutUsPageHighlightsArgs = {
-  filters?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type AboutUsPageEntity = {
-  __typename?: 'AboutUsPageEntity';
-  attributes?: Maybe<AboutUsPage>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
-
-export type AboutUsPageEntityResponse = {
-  __typename?: 'AboutUsPageEntityResponse';
-  data?: Maybe<AboutUsPageEntity>;
-};
-
-export type AboutUsPageEntityResponseCollection = {
-  __typename?: 'AboutUsPageEntityResponseCollection';
-  data: Array<AboutUsPageEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type AboutUsPageFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<AboutUsPageFiltersInput>>>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  highlights?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
-  locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<AboutUsPageFiltersInput>;
-  not?: InputMaybe<AboutUsPageFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<AboutUsPageFiltersInput>>>;
-  seo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type AboutUsPageInput = {
-  highlights?: InputMaybe<Array<InputMaybe<ComponentBlocksContentPageItemInput>>>;
-  sections?: InputMaybe<Array<Scalars['AboutUsPageSectionsDynamicZoneInput']['input']>>;
-  seo?: InputMaybe<ComponentBlocksSeoInput>;
-};
-
-export type AboutUsPageRelationResponseCollection = {
-  __typename?: 'AboutUsPageRelationResponseCollection';
-  data: Array<AboutUsPageEntity>;
-};
-
-export type AboutUsPageSectionsDynamicZone = ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | Error;
 
 export type BooleanFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
@@ -1313,7 +1252,7 @@ export type GeneralRelationResponseCollection = {
   data: Array<GeneralEntity>;
 };
 
-export type GenericMorph = AboutUsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage;
+export type GenericMorph = ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage;
 
 export type HomePage = {
   __typename?: 'HomePage';
@@ -1656,7 +1595,6 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
-  createAboutUsPageLocalization?: Maybe<AboutUsPageEntityResponse>;
   createContactCard?: Maybe<ContactCardEntityResponse>;
   createContactCardLocalization?: Maybe<ContactCardEntityResponse>;
   createContentPage?: Maybe<ContentPageEntityResponse>;
@@ -1683,7 +1621,6 @@ export type Mutation = {
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   createVisitUsPageLocalization?: Maybe<VisitUsPageEntityResponse>;
-  deleteAboutUsPage?: Maybe<AboutUsPageEntityResponse>;
   deleteContactCard?: Maybe<ContactCardEntityResponse>;
   deleteContentPage?: Maybe<ContentPageEntityResponse>;
   deleteGeneral?: Maybe<GeneralEntityResponse>;
@@ -1713,7 +1650,6 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
-  updateAboutUsPage?: Maybe<AboutUsPageEntityResponse>;
   updateContactCard?: Maybe<ContactCardEntityResponse>;
   updateContentPage?: Maybe<ContentPageEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
@@ -1741,13 +1677,6 @@ export type MutationChangePasswordArgs = {
   currentPassword: Scalars['String']['input'];
   password: Scalars['String']['input'];
   passwordConfirmation: Scalars['String']['input'];
-};
-
-
-export type MutationCreateAboutUsPageLocalizationArgs = {
-  data?: InputMaybe<AboutUsPageInput>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 
@@ -1903,11 +1832,6 @@ export type MutationCreateVisitUsPageLocalizationArgs = {
 };
 
 
-export type MutationDeleteAboutUsPageArgs = {
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
 export type MutationDeleteContactCardArgs = {
   id: Scalars['ID']['input'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
@@ -2033,12 +1957,6 @@ export type MutationResetPasswordArgs = {
   code: Scalars['String']['input'];
   password: Scalars['String']['input'];
   passwordConfirmation: Scalars['String']['input'];
-};
-
-
-export type MutationUpdateAboutUsPageArgs = {
-  data: AboutUsPageInput;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 
@@ -2315,7 +2233,6 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
-  aboutUsPage?: Maybe<AboutUsPageEntityResponse>;
   contactCard?: Maybe<ContactCardEntityResponse>;
   contactCards?: Maybe<ContactCardEntityResponseCollection>;
   contentPage?: Maybe<ContentPageEntityResponse>;
@@ -2351,11 +2268,6 @@ export type Query = {
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
   visitUsPage?: Maybe<VisitUsPageEntityResponse>;
-};
-
-
-export type QueryAboutUsPageArgs = {
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 
