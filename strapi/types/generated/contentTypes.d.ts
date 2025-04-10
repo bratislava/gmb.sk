@@ -830,12 +830,6 @@ export interface ApiExhibitionsPageExhibitionsPage extends Schema.SingleType {
     };
   };
   attributes: {
-    archiveSection: Attribute.Component<'sections.archive-section'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     archiveSeo: Attribute.Component<'blocks.seo'> &
       Attribute.SetPluginOptions<{
         i18n: {

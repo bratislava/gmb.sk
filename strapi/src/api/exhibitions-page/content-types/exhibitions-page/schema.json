@@ -36,16 +36,6 @@
       },
       "component": "blocks.seo"
     },
-    "archiveSection": {
-      "type": "component",
-      "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "sections.archive-section"
-    },
     "archiveSeo": {
       "type": "component",
       "repeatable": false,

@@ -484,30 +484,6 @@ export type ComponentSectionsArchiveBannerSectionInput = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type ComponentSectionsArchiveSection = {
-  __typename?: 'ComponentSectionsArchiveSection';
-  archiveCard?: Maybe<ComponentBlocksExhibitionArchive>;
-  id: Scalars['ID']['output'];
-  submenuTitle?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type ComponentSectionsArchiveSectionFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentSectionsArchiveSectionFiltersInput>>>;
-  archiveCard?: InputMaybe<ComponentBlocksExhibitionArchiveFiltersInput>;
-  not?: InputMaybe<ComponentSectionsArchiveSectionFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentSectionsArchiveSectionFiltersInput>>>;
-  submenuTitle?: InputMaybe<StringFilterInput>;
-  title?: InputMaybe<StringFilterInput>;
-};
-
-export type ComponentSectionsArchiveSectionInput = {
-  archiveCard?: InputMaybe<ComponentBlocksExhibitionArchiveInput>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  submenuTitle?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type ComponentSectionsAudioSection = {
   __typename?: 'ComponentSectionsAudioSection';
   id: Scalars['ID']['output'];
@@ -1300,7 +1276,6 @@ export type Error = {
 
 export type ExhibitionsPage = {
   __typename?: 'ExhibitionsPage';
-  archiveSection?: Maybe<ComponentSectionsArchiveSection>;
   archiveSeo?: Maybe<ComponentBlocksSeo>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   highlights?: Maybe<Array<Maybe<ComponentBlocksContentPageItem>>>;
@@ -1336,7 +1311,6 @@ export type ExhibitionsPageEntityResponseCollection = {
 
 export type ExhibitionsPageFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ExhibitionsPageFiltersInput>>>;
-  archiveSection?: InputMaybe<ComponentSectionsArchiveSectionFiltersInput>;
   archiveSeo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   highlights?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
@@ -1349,7 +1323,6 @@ export type ExhibitionsPageFiltersInput = {
 };
 
 export type ExhibitionsPageInput = {
-  archiveSection?: InputMaybe<ComponentSectionsArchiveSectionInput>;
   archiveSeo?: InputMaybe<ComponentBlocksSeoInput>;
   highlights?: InputMaybe<Array<InputMaybe<ComponentBlocksContentPageItemInput>>>;
   seo?: InputMaybe<ComponentBlocksSeoInput>;
@@ -1517,7 +1490,7 @@ export type GeneralRelationResponseCollection = {
   data: Array<GeneralEntity>;
 };
 
-export type GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsArchiveSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage;
+export type GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage;
 
 export type GetInvolvedPage = {
   __typename?: 'GetInvolvedPage';

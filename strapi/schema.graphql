@@ -408,29 +408,6 @@ input ComponentSectionsArchiveBannerSectionInput {
   title: String
 }
 
-type ComponentSectionsArchiveSection {
-  archiveCard: ComponentBlocksExhibitionArchive
-  id: ID!
-  submenuTitle: String
-  title: String
-}
-
-input ComponentSectionsArchiveSectionFiltersInput {
-  and: [ComponentSectionsArchiveSectionFiltersInput]
-  archiveCard: ComponentBlocksExhibitionArchiveFiltersInput
-  not: ComponentSectionsArchiveSectionFiltersInput
-  or: [ComponentSectionsArchiveSectionFiltersInput]
-  submenuTitle: StringFilterInput
-  title: StringFilterInput
-}
-
-input ComponentSectionsArchiveSectionInput {
-  archiveCard: ComponentBlocksExhibitionArchiveInput
-  id: ID
-  submenuTitle: String
-  title: String
-}
-
 type ComponentSectionsAudioSection {
   id: ID!
   submenuTitle: String
@@ -1110,7 +1087,6 @@ type Error {
 }
 
 type ExhibitionsPage {
-  archiveSection: ComponentSectionsArchiveSection
   archiveSeo: ComponentBlocksSeo
   createdAt: DateTime
   highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
@@ -1136,7 +1112,6 @@ type ExhibitionsPageEntityResponseCollection {
 
 input ExhibitionsPageFiltersInput {
   and: [ExhibitionsPageFiltersInput]
-  archiveSection: ComponentSectionsArchiveSectionFiltersInput
   archiveSeo: ComponentBlocksSeoFiltersInput
   createdAt: DateTimeFilterInput
   highlights: ComponentBlocksContentPageItemFiltersInput
@@ -1149,7 +1124,6 @@ input ExhibitionsPageFiltersInput {
 }
 
 input ExhibitionsPageInput {
-  archiveSection: ComponentSectionsArchiveSectionInput
   archiveSeo: ComponentBlocksSeoInput
   highlights: [ComponentBlocksContentPageItemInput]
   seo: ComponentBlocksSeoInput
@@ -1299,7 +1273,7 @@ type GeneralRelationResponseCollection {
   data: [GeneralEntity!]!
 }
 
-union GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsArchiveSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
+union GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
 
 type GetInvolvedPage {
   createdAt: DateTime
