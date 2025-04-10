@@ -813,18 +813,14 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
       'oneToMany',
       'api::home-page.home-page'
     >;
-    partners: Attribute.Component<'blocks.partner-item', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     sections: Attribute.DynamicZone<
       [
         'sections.news-section',
         'sections.newsletter-section',
         'sections.page-section',
-        'sections.opening-hours-section'
+        'sections.opening-hours-section',
+        'sections.richtext-section',
+        'sections.partners-section'
       ]
     > &
       Attribute.SetPluginOptions<{

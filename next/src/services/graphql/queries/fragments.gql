@@ -626,3 +626,27 @@ fragment MainContent on ContentPageMainContentDynamicZone {
     ...ContactCardsSection
   }
 }
+
+fragment HomePageSections on HomePageSectionsDynamicZone {
+  ...Sections
+  ... on ComponentSectionsPageSection {
+    __typename
+    ...PageSection
+  }
+  ... on ComponentSectionsNewsSection {
+    __typename
+    ...NewsSection
+  }
+  ... on ComponentSectionsOpeningHoursSection {
+    __typename
+    ...OpeningHoursSection
+  }
+  ... on ComponentSectionsNewsletterSection {
+    __typename
+    ...NewsletterSection
+  }
+  ... on ComponentSectionsPartnersSection {
+    __typename
+    ...PartnersSection
+  }
+}

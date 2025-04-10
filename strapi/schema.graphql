@@ -1089,7 +1089,6 @@ type HomePage {
   highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
   locale: String
   localizations: HomePageRelationResponseCollection
-  partners(filters: ComponentBlocksPartnerItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksPartnerItem]
   sections: [HomePageSectionsDynamicZone]
   seo: ComponentBlocksSeo
   updatedAt: DateTime
@@ -1117,14 +1116,12 @@ input HomePageFiltersInput {
   localizations: HomePageFiltersInput
   not: HomePageFiltersInput
   or: [HomePageFiltersInput]
-  partners: ComponentBlocksPartnerItemFiltersInput
   seo: ComponentBlocksSeoFiltersInput
   updatedAt: DateTimeFilterInput
 }
 
 input HomePageInput {
   highlights: [ComponentBlocksContentPageItemInput]
-  partners: [ComponentBlocksPartnerItemInput]
   sections: [HomePageSectionsDynamicZoneInput!]
   seo: ComponentBlocksSeoInput
 }
@@ -1133,7 +1130,7 @@ type HomePageRelationResponseCollection {
   data: [HomePageEntity!]!
 }
 
-union HomePageSectionsDynamicZone = ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | Error
+union HomePageSectionsDynamicZone = ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | Error
 
 scalar HomePageSectionsDynamicZoneInput
 

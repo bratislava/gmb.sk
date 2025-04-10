@@ -180,14 +180,7 @@ query HomePage($locale: I18NLocaleCode!) {
           ...Highlight
         }
         sections {
-          ...Sections
-        }
-        partners {
-          partner {
-            data {
-              ...PartnerEntity
-            }
-          }
+          ...HomePageSections
         }
         seo {
           ...Seo
