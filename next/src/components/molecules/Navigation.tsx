@@ -77,19 +77,29 @@ const Navigation = ({ page }: NavigationProps) => {
 
   return (
     <>
-      <nav className="fixed inset-x-0 top-0 z-50 flex h-nav w-full bg-white drop-shadow-md">
+      <nav
+        aria-label={t('navigation.aria.navAriaLabel')}
+        className="fixed inset-x-0 top-0 z-50 flex h-nav w-full bg-white drop-shadow-md"
+      >
         <SkipNavigation />
 
         <div className="mx-xMd flex w-full items-center justify-between gap-x-xMd">
           {/* Logo button */}
-          <Link href="/" preserveStyle noUnderline className="group min-w-fit">
+          <Link
+            href="/"
+            preserveStyle
+            noUnderline
+            aria-label={t('navigation.aria.logoButton')}
+            className="group min-w-fit"
+          >
             <div className="flex">
               <div className="h-logoHeight w-logoWidth">
-                <Image src={Logo} alt="Logo GMB" />
+                <Image src={Logo} alt="" />
               </div>
 
               <span
                 id="navLogoText"
+                aria-hidden
                 className="relative ml-4 whitespace-nowrap text-sm leading-[var(--font-size-sm)] group-hover:underline"
               >
                 {i18n.language === 'sk' ? t('common.cityGallery') : t('common.bratislavaGenitiv')}
@@ -104,7 +114,11 @@ const Navigation = ({ page }: NavigationProps) => {
             type="button"
             className="-mr-5 flex p-5 lg:hidden"
             onClick={toggleMobileMenu}
-            aria-label="Menu"
+            aria-label={
+              isMobileMenuOpen
+                ? t('mobileNavigation.aria.closeMenu')
+                : t('mobileNavigation.aria.openMenu')
+            }
           >
             {isMobileMenuOpen ? (
               <CloseIcon className="dh-[30] dw-[30]" />
