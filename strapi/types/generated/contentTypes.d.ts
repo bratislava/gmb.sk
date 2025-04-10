@@ -748,58 +748,6 @@ export interface ApiContentPageContentPage extends Schema.CollectionType {
   };
 }
 
-export interface ApiExplorePageExplorePage extends Schema.SingleType {
-  collectionName: 'explore_pages';
-  info: {
-    description: '';
-    displayName: 'Objavujte';
-    pluralName: 'explore-pages';
-    singularName: 'explore-page';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::explore-page.explore-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    highlights: Attribute.Component<'blocks.content-page-item', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Attribute.String;
-    localizations: Attribute.Relation<
-      'api::explore-page.explore-page',
-      'oneToMany',
-      'api::explore-page.explore-page'
-    >;
-    seo: Attribute.Component<'blocks.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'api::explore-page.explore-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiGeneralGeneral extends Schema.SingleType {
   collectionName: 'generals';
   info: {
@@ -1918,7 +1866,6 @@ declare module '@strapi/types' {
       'api::about-us-page.about-us-page': ApiAboutUsPageAboutUsPage;
       'api::contact-card.contact-card': ApiContactCardContactCard;
       'api::content-page.content-page': ApiContentPageContentPage;
-      'api::explore-page.explore-page': ApiExplorePageExplorePage;
       'api::general.general': ApiGeneralGeneral;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::main-page.main-page': ApiMainPageMainPage;
