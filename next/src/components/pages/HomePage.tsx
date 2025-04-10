@@ -45,7 +45,7 @@ const HomePage = ({ page: pageResponse, title, newsItems }: HomePageProps) => {
           .filter(hasAttributes)}
       />
 
-      {page?.sections && <Submenu items={submenu} />}
+      {page?.sections ? <Submenu items={submenu} /> : null}
 
       {page?.sections
         ?.filter(isDefined)
@@ -80,6 +80,20 @@ const HomePage = ({ page: pageResponse, title, newsItems }: HomePageProps) => {
             )
           }
 
+          if (
+            section.__typename === 'ComponentSectionsPartnersSection' &&
+            section?.partners?.length
+          ) {
+            return (
+              <PartnersSection
+                title={section.title ?? t('common.partners')}
+                anchor={getAnchor(section.submenuTitle)}
+                partners={section.partners.map((item) => item?.partner?.data).filter(hasAttributes)}
+                key={`${section.__typename}-${section.id}`}
+              />
+            )
+          }
+
           if (section.__typename === 'ComponentSectionsPageSection') {
             return (
               <PageSectionContainer
@@ -92,15 +106,6 @@ const HomePage = ({ page: pageResponse, title, newsItems }: HomePageProps) => {
 
           return null
         })}
-
-      {pageResponse?.data?.attributes?.partners?.length ? (
-        <PartnersSection
-          title={t('common.partners')}
-          partners={pageResponse.data?.attributes?.partners
-            ?.map((item) => item?.partner?.data)
-            ?.filter(hasAttributes)}
-        />
-      ) : null}
     </PageWrapper>
   )
 }
