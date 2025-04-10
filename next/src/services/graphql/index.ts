@@ -21,7 +21,6 @@ export type Scalars = {
   Date: { input: any; output: any; }
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: { input: any; output: any; }
-  GetInvolvedPageSectionsDynamicZoneInput: { input: any; output: any; }
   HomePageSectionsDynamicZoneInput: { input: any; output: any; }
   /** A string used to identify an i18n locale */
   I18NLocaleCode: { input: any; output: any; }
@@ -1429,67 +1428,7 @@ export type GeneralRelationResponseCollection = {
   data: Array<GeneralEntity>;
 };
 
-export type GenericMorph = AboutUsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage;
-
-export type GetInvolvedPage = {
-  __typename?: 'GetInvolvedPage';
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  highlights?: Maybe<Array<Maybe<ComponentBlocksContentPageItem>>>;
-  locale?: Maybe<Scalars['String']['output']>;
-  localizations?: Maybe<GetInvolvedPageRelationResponseCollection>;
-  sections?: Maybe<Array<Maybe<GetInvolvedPageSectionsDynamicZone>>>;
-  seo?: Maybe<ComponentBlocksSeo>;
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-
-export type GetInvolvedPageHighlightsArgs = {
-  filters?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type GetInvolvedPageEntity = {
-  __typename?: 'GetInvolvedPageEntity';
-  attributes?: Maybe<GetInvolvedPage>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
-
-export type GetInvolvedPageEntityResponse = {
-  __typename?: 'GetInvolvedPageEntityResponse';
-  data?: Maybe<GetInvolvedPageEntity>;
-};
-
-export type GetInvolvedPageEntityResponseCollection = {
-  __typename?: 'GetInvolvedPageEntityResponseCollection';
-  data: Array<GetInvolvedPageEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type GetInvolvedPageFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<GetInvolvedPageFiltersInput>>>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  highlights?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
-  locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<GetInvolvedPageFiltersInput>;
-  not?: InputMaybe<GetInvolvedPageFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<GetInvolvedPageFiltersInput>>>;
-  seo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type GetInvolvedPageInput = {
-  highlights?: InputMaybe<Array<InputMaybe<ComponentBlocksContentPageItemInput>>>;
-  sections?: InputMaybe<Array<Scalars['GetInvolvedPageSectionsDynamicZoneInput']['input']>>;
-  seo?: InputMaybe<ComponentBlocksSeoInput>;
-};
-
-export type GetInvolvedPageRelationResponseCollection = {
-  __typename?: 'GetInvolvedPageRelationResponseCollection';
-  data: Array<GetInvolvedPageEntity>;
-};
-
-export type GetInvolvedPageSectionsDynamicZone = ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | Error;
+export type GenericMorph = AboutUsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage;
 
 export type HomePage = {
   __typename?: 'HomePage';
@@ -1840,7 +1779,6 @@ export type Mutation = {
   createExhibitionsPageLocalization?: Maybe<ExhibitionsPageEntityResponse>;
   createExplorePageLocalization?: Maybe<ExplorePageEntityResponse>;
   createGeneralLocalization?: Maybe<GeneralEntityResponse>;
-  createGetInvolvedPageLocalization?: Maybe<GetInvolvedPageEntityResponse>;
   createHomePageLocalization?: Maybe<HomePageEntityResponse>;
   createMainPage?: Maybe<MainPageEntityResponse>;
   createMainPageLocalization?: Maybe<MainPageEntityResponse>;
@@ -1868,7 +1806,6 @@ export type Mutation = {
   deleteExhibitionsPage?: Maybe<ExhibitionsPageEntityResponse>;
   deleteExplorePage?: Maybe<ExplorePageEntityResponse>;
   deleteGeneral?: Maybe<GeneralEntityResponse>;
-  deleteGetInvolvedPage?: Maybe<GetInvolvedPageEntityResponse>;
   deleteHomePage?: Maybe<HomePageEntityResponse>;
   deleteMainPage?: Maybe<MainPageEntityResponse>;
   deleteMenu?: Maybe<MenuEntityResponse>;
@@ -1902,7 +1839,6 @@ export type Mutation = {
   updateExplorePage?: Maybe<ExplorePageEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateGeneral?: Maybe<GeneralEntityResponse>;
-  updateGetInvolvedPage?: Maybe<GetInvolvedPageEntityResponse>;
   updateHomePage?: Maybe<HomePageEntityResponse>;
   updateMainPage?: Maybe<MainPageEntityResponse>;
   updateMenu?: Maybe<MenuEntityResponse>;
@@ -1978,13 +1914,6 @@ export type MutationCreateExplorePageLocalizationArgs = {
 
 export type MutationCreateGeneralLocalizationArgs = {
   data?: InputMaybe<GeneralInput>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
-export type MutationCreateGetInvolvedPageLocalizationArgs = {
-  data?: InputMaybe<GetInvolvedPageInput>;
   id?: InputMaybe<Scalars['ID']['input']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
@@ -2141,11 +2070,6 @@ export type MutationDeleteGeneralArgs = {
 };
 
 
-export type MutationDeleteGetInvolvedPageArgs = {
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
 export type MutationDeleteHomePageArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
@@ -2297,12 +2221,6 @@ export type MutationUpdateFileInfoArgs = {
 
 export type MutationUpdateGeneralArgs = {
   data: GeneralInput;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
-export type MutationUpdateGetInvolvedPageArgs = {
-  data: GetInvolvedPageInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
@@ -2563,7 +2481,6 @@ export type Query = {
   exhibitionsPage?: Maybe<ExhibitionsPageEntityResponse>;
   explorePage?: Maybe<ExplorePageEntityResponse>;
   general?: Maybe<GeneralEntityResponse>;
-  getInvolvedPage?: Maybe<GetInvolvedPageEntityResponse>;
   homePage?: Maybe<HomePageEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
@@ -2648,11 +2565,6 @@ export type QueryExplorePageArgs = {
 
 
 export type QueryGeneralArgs = {
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
-export type QueryGetInvolvedPageArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 

@@ -1223,57 +1223,7 @@ type GeneralRelationResponseCollection {
   data: [GeneralEntity!]!
 }
 
-union GenericMorph = AboutUsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
-
-type GetInvolvedPage {
-  createdAt: DateTime
-  highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
-  locale: String
-  localizations: GetInvolvedPageRelationResponseCollection
-  sections: [GetInvolvedPageSectionsDynamicZone]
-  seo: ComponentBlocksSeo
-  updatedAt: DateTime
-}
-
-type GetInvolvedPageEntity {
-  attributes: GetInvolvedPage
-  id: ID
-}
-
-type GetInvolvedPageEntityResponse {
-  data: GetInvolvedPageEntity
-}
-
-type GetInvolvedPageEntityResponseCollection {
-  data: [GetInvolvedPageEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input GetInvolvedPageFiltersInput {
-  and: [GetInvolvedPageFiltersInput]
-  createdAt: DateTimeFilterInput
-  highlights: ComponentBlocksContentPageItemFiltersInput
-  locale: StringFilterInput
-  localizations: GetInvolvedPageFiltersInput
-  not: GetInvolvedPageFiltersInput
-  or: [GetInvolvedPageFiltersInput]
-  seo: ComponentBlocksSeoFiltersInput
-  updatedAt: DateTimeFilterInput
-}
-
-input GetInvolvedPageInput {
-  highlights: [ComponentBlocksContentPageItemInput]
-  sections: [GetInvolvedPageSectionsDynamicZoneInput!]
-  seo: ComponentBlocksSeoInput
-}
-
-type GetInvolvedPageRelationResponseCollection {
-  data: [GetInvolvedPageEntity!]!
-}
-
-union GetInvolvedPageSectionsDynamicZone = ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | Error
-
-scalar GetInvolvedPageSectionsDynamicZoneInput
+union GenericMorph = AboutUsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
 
 type HomePage {
   createdAt: DateTime
@@ -1591,7 +1541,6 @@ type Mutation {
   createExhibitionsPageLocalization(data: ExhibitionsPageInput, id: ID, locale: I18NLocaleCode): ExhibitionsPageEntityResponse
   createExplorePageLocalization(data: ExplorePageInput, id: ID, locale: I18NLocaleCode): ExplorePageEntityResponse
   createGeneralLocalization(data: GeneralInput, id: ID, locale: I18NLocaleCode): GeneralEntityResponse
-  createGetInvolvedPageLocalization(data: GetInvolvedPageInput, id: ID, locale: I18NLocaleCode): GetInvolvedPageEntityResponse
   createHomePageLocalization(data: HomePageInput, id: ID, locale: I18NLocaleCode): HomePageEntityResponse
   createMainPage(data: MainPageInput!, locale: I18NLocaleCode): MainPageEntityResponse
   createMainPageLocalization(data: MainPageInput, id: ID, locale: I18NLocaleCode): MainPageEntityResponse
@@ -1621,7 +1570,6 @@ type Mutation {
   deleteExhibitionsPage(locale: I18NLocaleCode): ExhibitionsPageEntityResponse
   deleteExplorePage(locale: I18NLocaleCode): ExplorePageEntityResponse
   deleteGeneral(locale: I18NLocaleCode): GeneralEntityResponse
-  deleteGetInvolvedPage(locale: I18NLocaleCode): GetInvolvedPageEntityResponse
   deleteHomePage(locale: I18NLocaleCode): HomePageEntityResponse
   deleteMainPage(id: ID!, locale: I18NLocaleCode): MainPageEntityResponse
   deleteMenu(locale: I18NLocaleCode): MenuEntityResponse
@@ -1663,7 +1611,6 @@ type Mutation {
   updateExplorePage(data: ExplorePageInput!, locale: I18NLocaleCode): ExplorePageEntityResponse
   updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
   updateGeneral(data: GeneralInput!, locale: I18NLocaleCode): GeneralEntityResponse
-  updateGetInvolvedPage(data: GetInvolvedPageInput!, locale: I18NLocaleCode): GetInvolvedPageEntityResponse
   updateHomePage(data: HomePageInput!, locale: I18NLocaleCode): HomePageEntityResponse
   updateMainPage(data: MainPageInput!, id: ID!, locale: I18NLocaleCode): MainPageEntityResponse
   updateMenu(data: MenuInput!, locale: I18NLocaleCode): MenuEntityResponse
@@ -1814,7 +1761,6 @@ type Query {
   exhibitionsPage(locale: I18NLocaleCode): ExhibitionsPageEntityResponse
   explorePage(locale: I18NLocaleCode): ExplorePageEntityResponse
   general(locale: I18NLocaleCode): GeneralEntityResponse
-  getInvolvedPage(locale: I18NLocaleCode): GetInvolvedPageEntityResponse
   homePage(locale: I18NLocaleCode): HomePageEntityResponse
   i18NLocale(id: ID): I18NLocaleEntityResponse
   i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): I18NLocaleEntityResponseCollection

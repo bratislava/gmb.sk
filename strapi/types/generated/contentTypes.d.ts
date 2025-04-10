@@ -952,71 +952,6 @@ export interface ApiGeneralGeneral extends Schema.SingleType {
   };
 }
 
-export interface ApiGetInvolvedPageGetInvolvedPage extends Schema.SingleType {
-  collectionName: 'get_involved_pages';
-  info: {
-    description: '';
-    displayName: 'Zapojte sa';
-    pluralName: 'get-involved-pages';
-    singularName: 'get-involved-page';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::get-involved-page.get-involved-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    highlights: Attribute.Component<'blocks.content-page-item', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Attribute.String;
-    localizations: Attribute.Relation<
-      'api::get-involved-page.get-involved-page',
-      'oneToMany',
-      'api::get-involved-page.get-involved-page'
-    >;
-    sections: Attribute.DynamicZone<
-      [
-        'sections.page-section',
-        'sections.news-section',
-        'sections.newsletter-section',
-        'sections.opening-hours-section'
-      ]
-    > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    seo: Attribute.Component<'blocks.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'api::get-involved-page.get-involved-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiHomePageHomePage extends Schema.SingleType {
   collectionName: 'home_pages';
   info: {
@@ -2044,7 +1979,6 @@ declare module '@strapi/types' {
       'api::exhibitions-page.exhibitions-page': ApiExhibitionsPageExhibitionsPage;
       'api::explore-page.explore-page': ApiExplorePageExplorePage;
       'api::general.general': ApiGeneralGeneral;
-      'api::get-involved-page.get-involved-page': ApiGetInvolvedPageGetInvolvedPage;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::main-page.main-page': ApiMainPageMainPage;
       'api::menu.menu': ApiMenuMenu;
