@@ -1036,53 +1036,6 @@ type Error {
   message: String
 }
 
-type ExhibitionsPage {
-  archiveSeo: ComponentBlocksSeo
-  createdAt: DateTime
-  highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
-  locale: String
-  localizations: ExhibitionsPageRelationResponseCollection
-  seo: ComponentBlocksSeo
-  updatedAt: DateTime
-}
-
-type ExhibitionsPageEntity {
-  attributes: ExhibitionsPage
-  id: ID
-}
-
-type ExhibitionsPageEntityResponse {
-  data: ExhibitionsPageEntity
-}
-
-type ExhibitionsPageEntityResponseCollection {
-  data: [ExhibitionsPageEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input ExhibitionsPageFiltersInput {
-  and: [ExhibitionsPageFiltersInput]
-  archiveSeo: ComponentBlocksSeoFiltersInput
-  createdAt: DateTimeFilterInput
-  highlights: ComponentBlocksContentPageItemFiltersInput
-  locale: StringFilterInput
-  localizations: ExhibitionsPageFiltersInput
-  not: ExhibitionsPageFiltersInput
-  or: [ExhibitionsPageFiltersInput]
-  seo: ComponentBlocksSeoFiltersInput
-  updatedAt: DateTimeFilterInput
-}
-
-input ExhibitionsPageInput {
-  archiveSeo: ComponentBlocksSeoInput
-  highlights: [ComponentBlocksContentPageItemInput]
-  seo: ComponentBlocksSeoInput
-}
-
-type ExhibitionsPageRelationResponseCollection {
-  data: [ExhibitionsPageEntity!]!
-}
-
 type ExplorePage {
   createdAt: DateTime
   highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
@@ -1223,7 +1176,7 @@ type GeneralRelationResponseCollection {
   data: [GeneralEntity!]!
 }
 
-union GenericMorph = AboutUsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
+union GenericMorph = AboutUsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExplorePage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
 
 type HomePage {
   createdAt: DateTime
@@ -1538,7 +1491,6 @@ type Mutation {
   createContactCardLocalization(data: ContactCardInput, id: ID, locale: I18NLocaleCode): ContactCardEntityResponse
   createContentPage(data: ContentPageInput!, locale: I18NLocaleCode): ContentPageEntityResponse
   createContentPageLocalization(data: ContentPageInput, id: ID, locale: I18NLocaleCode): ContentPageEntityResponse
-  createExhibitionsPageLocalization(data: ExhibitionsPageInput, id: ID, locale: I18NLocaleCode): ExhibitionsPageEntityResponse
   createExplorePageLocalization(data: ExplorePageInput, id: ID, locale: I18NLocaleCode): ExplorePageEntityResponse
   createGeneralLocalization(data: GeneralInput, id: ID, locale: I18NLocaleCode): GeneralEntityResponse
   createHomePageLocalization(data: HomePageInput, id: ID, locale: I18NLocaleCode): HomePageEntityResponse
@@ -1567,7 +1519,6 @@ type Mutation {
   deleteAboutUsPage(locale: I18NLocaleCode): AboutUsPageEntityResponse
   deleteContactCard(id: ID!, locale: I18NLocaleCode): ContactCardEntityResponse
   deleteContentPage(id: ID!, locale: I18NLocaleCode): ContentPageEntityResponse
-  deleteExhibitionsPage(locale: I18NLocaleCode): ExhibitionsPageEntityResponse
   deleteExplorePage(locale: I18NLocaleCode): ExplorePageEntityResponse
   deleteGeneral(locale: I18NLocaleCode): GeneralEntityResponse
   deleteHomePage(locale: I18NLocaleCode): HomePageEntityResponse
@@ -1607,7 +1558,6 @@ type Mutation {
   updateAboutUsPage(data: AboutUsPageInput!, locale: I18NLocaleCode): AboutUsPageEntityResponse
   updateContactCard(data: ContactCardInput!, id: ID!, locale: I18NLocaleCode): ContactCardEntityResponse
   updateContentPage(data: ContentPageInput!, id: ID!, locale: I18NLocaleCode): ContentPageEntityResponse
-  updateExhibitionsPage(data: ExhibitionsPageInput!, locale: I18NLocaleCode): ExhibitionsPageEntityResponse
   updateExplorePage(data: ExplorePageInput!, locale: I18NLocaleCode): ExplorePageEntityResponse
   updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
   updateGeneral(data: GeneralInput!, locale: I18NLocaleCode): GeneralEntityResponse
@@ -1758,7 +1708,6 @@ type Query {
   contentPage(id: ID, locale: I18NLocaleCode): ContentPageEntityResponse
   contentPageBySlug(isPublished: Boolean, locale: I18NLocaleCode, slug: String): ContentPageEntityResponse
   contentPages(filters: ContentPageFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContentPageEntityResponseCollection
-  exhibitionsPage(locale: I18NLocaleCode): ExhibitionsPageEntityResponse
   explorePage(locale: I18NLocaleCode): ExplorePageEntityResponse
   general(locale: I18NLocaleCode): GeneralEntityResponse
   homePage(locale: I18NLocaleCode): HomePageEntityResponse

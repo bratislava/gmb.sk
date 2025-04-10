@@ -748,64 +748,6 @@ export interface ApiContentPageContentPage extends Schema.CollectionType {
   };
 }
 
-export interface ApiExhibitionsPageExhibitionsPage extends Schema.SingleType {
-  collectionName: 'exhibitions_pages';
-  info: {
-    description: '';
-    displayName: 'V\u00FDstavy';
-    pluralName: 'exhibitions-pages';
-    singularName: 'exhibitions-page';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    archiveSeo: Attribute.Component<'blocks.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::exhibitions-page.exhibitions-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    highlights: Attribute.Component<'blocks.content-page-item', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Attribute.String;
-    localizations: Attribute.Relation<
-      'api::exhibitions-page.exhibitions-page',
-      'oneToMany',
-      'api::exhibitions-page.exhibitions-page'
-    >;
-    seo: Attribute.Component<'blocks.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'api::exhibitions-page.exhibitions-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiExplorePageExplorePage extends Schema.SingleType {
   collectionName: 'explore_pages';
   info: {
@@ -1976,7 +1918,6 @@ declare module '@strapi/types' {
       'api::about-us-page.about-us-page': ApiAboutUsPageAboutUsPage;
       'api::contact-card.contact-card': ApiContactCardContactCard;
       'api::content-page.content-page': ApiContentPageContentPage;
-      'api::exhibitions-page.exhibitions-page': ApiExhibitionsPageExhibitionsPage;
       'api::explore-page.explore-page': ApiExplorePageExplorePage;
       'api::general.general': ApiGeneralGeneral;
       'api::home-page.home-page': ApiHomePageHomePage;

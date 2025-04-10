@@ -1212,65 +1212,6 @@ export type Error = {
   message?: Maybe<Scalars['String']['output']>;
 };
 
-export type ExhibitionsPage = {
-  __typename?: 'ExhibitionsPage';
-  archiveSeo?: Maybe<ComponentBlocksSeo>;
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  highlights?: Maybe<Array<Maybe<ComponentBlocksContentPageItem>>>;
-  locale?: Maybe<Scalars['String']['output']>;
-  localizations?: Maybe<ExhibitionsPageRelationResponseCollection>;
-  seo?: Maybe<ComponentBlocksSeo>;
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-
-export type ExhibitionsPageHighlightsArgs = {
-  filters?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type ExhibitionsPageEntity = {
-  __typename?: 'ExhibitionsPageEntity';
-  attributes?: Maybe<ExhibitionsPage>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
-
-export type ExhibitionsPageEntityResponse = {
-  __typename?: 'ExhibitionsPageEntityResponse';
-  data?: Maybe<ExhibitionsPageEntity>;
-};
-
-export type ExhibitionsPageEntityResponseCollection = {
-  __typename?: 'ExhibitionsPageEntityResponseCollection';
-  data: Array<ExhibitionsPageEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type ExhibitionsPageFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ExhibitionsPageFiltersInput>>>;
-  archiveSeo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  highlights?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
-  locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<ExhibitionsPageFiltersInput>;
-  not?: InputMaybe<ExhibitionsPageFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ExhibitionsPageFiltersInput>>>;
-  seo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type ExhibitionsPageInput = {
-  archiveSeo?: InputMaybe<ComponentBlocksSeoInput>;
-  highlights?: InputMaybe<Array<InputMaybe<ComponentBlocksContentPageItemInput>>>;
-  seo?: InputMaybe<ComponentBlocksSeoInput>;
-};
-
-export type ExhibitionsPageRelationResponseCollection = {
-  __typename?: 'ExhibitionsPageRelationResponseCollection';
-  data: Array<ExhibitionsPageEntity>;
-};
-
 export type ExplorePage = {
   __typename?: 'ExplorePage';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -1428,7 +1369,7 @@ export type GeneralRelationResponseCollection = {
   data: Array<GeneralEntity>;
 };
 
-export type GenericMorph = AboutUsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage;
+export type GenericMorph = AboutUsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExplorePage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage;
 
 export type HomePage = {
   __typename?: 'HomePage';
@@ -1776,7 +1717,6 @@ export type Mutation = {
   createContactCardLocalization?: Maybe<ContactCardEntityResponse>;
   createContentPage?: Maybe<ContentPageEntityResponse>;
   createContentPageLocalization?: Maybe<ContentPageEntityResponse>;
-  createExhibitionsPageLocalization?: Maybe<ExhibitionsPageEntityResponse>;
   createExplorePageLocalization?: Maybe<ExplorePageEntityResponse>;
   createGeneralLocalization?: Maybe<GeneralEntityResponse>;
   createHomePageLocalization?: Maybe<HomePageEntityResponse>;
@@ -1803,7 +1743,6 @@ export type Mutation = {
   deleteAboutUsPage?: Maybe<AboutUsPageEntityResponse>;
   deleteContactCard?: Maybe<ContactCardEntityResponse>;
   deleteContentPage?: Maybe<ContentPageEntityResponse>;
-  deleteExhibitionsPage?: Maybe<ExhibitionsPageEntityResponse>;
   deleteExplorePage?: Maybe<ExplorePageEntityResponse>;
   deleteGeneral?: Maybe<GeneralEntityResponse>;
   deleteHomePage?: Maybe<HomePageEntityResponse>;
@@ -1835,7 +1774,6 @@ export type Mutation = {
   updateAboutUsPage?: Maybe<AboutUsPageEntityResponse>;
   updateContactCard?: Maybe<ContactCardEntityResponse>;
   updateContentPage?: Maybe<ContentPageEntityResponse>;
-  updateExhibitionsPage?: Maybe<ExhibitionsPageEntityResponse>;
   updateExplorePage?: Maybe<ExplorePageEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateGeneral?: Maybe<GeneralEntityResponse>;
@@ -1893,13 +1831,6 @@ export type MutationCreateContentPageArgs = {
 
 export type MutationCreateContentPageLocalizationArgs = {
   data?: InputMaybe<ContentPageInput>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
-export type MutationCreateExhibitionsPageLocalizationArgs = {
-  data?: InputMaybe<ExhibitionsPageInput>;
   id?: InputMaybe<Scalars['ID']['input']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
@@ -2055,11 +1986,6 @@ export type MutationDeleteContentPageArgs = {
 };
 
 
-export type MutationDeleteExhibitionsPageArgs = {
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
 export type MutationDeleteExplorePageArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
@@ -2197,12 +2123,6 @@ export type MutationUpdateContactCardArgs = {
 export type MutationUpdateContentPageArgs = {
   data: ContentPageInput;
   id: Scalars['ID']['input'];
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
-export type MutationUpdateExhibitionsPageArgs = {
-  data: ExhibitionsPageInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
@@ -2478,7 +2398,6 @@ export type Query = {
   contentPage?: Maybe<ContentPageEntityResponse>;
   contentPageBySlug?: Maybe<ContentPageEntityResponse>;
   contentPages?: Maybe<ContentPageEntityResponseCollection>;
-  exhibitionsPage?: Maybe<ExhibitionsPageEntityResponse>;
   explorePage?: Maybe<ExplorePageEntityResponse>;
   general?: Maybe<GeneralEntityResponse>;
   homePage?: Maybe<HomePageEntityResponse>;
@@ -2551,11 +2470,6 @@ export type QueryContentPagesArgs = {
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryExhibitionsPageArgs = {
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 
