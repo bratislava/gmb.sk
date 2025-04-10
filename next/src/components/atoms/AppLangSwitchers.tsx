@@ -9,7 +9,7 @@ import { getEquivalentRouteInTargetLocale } from '@/src/utils/localeRoutes'
 type AppLangSwitchersProps = { showBothLanguages?: boolean } & Pick<PageWrapperProps, 'page'>
 
 const AppLangSwitchers = ({ page, showBothLanguages }: AppLangSwitchersProps) => {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const router = useRouter()
   const currentLanguage = i18n.language
@@ -49,17 +49,23 @@ const AppLangSwitchers = ({ page, showBothLanguages }: AppLangSwitchersProps) =>
           hidden: currentLanguage === 'sk' && !showBothLanguages,
         })}
         onClick={() => onLocaleChange('sk')}
+        aria-label={t('localization.aria.slovak')}
         type="button"
       >
         SK
       </button>
-      {showBothLanguages && <div className="px-2">/</div>}
+      {showBothLanguages ? (
+        <div aria-hidden className="px-2">
+          /
+        </div>
+      ) : null}
       <button
         className={cx('cursor-pointer', {
           'font-semibold': currentLanguage === 'en',
           hidden: currentLanguage === 'en' && !showBothLanguages,
         })}
         onClick={() => onLocaleChange('en')}
+        aria-label={t('localization.aria.english')}
         type="button"
       >
         EN
