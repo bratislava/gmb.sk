@@ -1294,74 +1294,6 @@ export interface ApiTicketTicket extends Schema.CollectionType {
   };
 }
 
-export interface ApiVisitUsPageVisitUsPage extends Schema.SingleType {
-  collectionName: 'visit_us_pages';
-  info: {
-    description: '';
-    displayName: 'Nav\u0161t\u00EDvte';
-    pluralName: 'visit-us-pages';
-    singularName: 'visit-us-page';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::visit-us-page.visit-us-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    highlights: Attribute.Component<'blocks.content-page-item', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Attribute.String;
-    localizations: Attribute.Relation<
-      'api::visit-us-page.visit-us-page',
-      'oneToMany',
-      'api::visit-us-page.visit-us-page'
-    >;
-    sections: Attribute.DynamicZone<
-      [
-        'sections.page-section',
-        'sections.news-section',
-        'sections.newsletter-section',
-        'sections.richtext-section',
-        'sections.tickets-section',
-        'sections.map-section',
-        'sections.opening-hours-section'
-      ]
-    > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    seo: Attribute.Component<'blocks.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'api::visit-us-page.visit-us-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginContentReleasesRelease extends Schema.CollectionType {
   collectionName: 'strapi_releases';
   info: {
@@ -1809,7 +1741,6 @@ declare module '@strapi/types' {
       'api::tag-category.tag-category': ApiTagCategoryTagCategory;
       'api::tag.tag': ApiTagTag;
       'api::ticket.ticket': ApiTicketTicket;
-      'api::visit-us-page.visit-us-page': ApiVisitUsPageVisitUsPage;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

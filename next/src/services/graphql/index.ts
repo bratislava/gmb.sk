@@ -32,7 +32,6 @@ export type Scalars = {
   Time: { input: any; output: any; }
   /** The `Upload` scalar type represents a file upload. */
   Upload: { input: any; output: any; }
-  VisitUsPageSectionsDynamicZoneInput: { input: any; output: any; }
 };
 
 export type BooleanFilterInput = {
@@ -1252,7 +1251,7 @@ export type GeneralRelationResponseCollection = {
   data: Array<GeneralEntity>;
 };
 
-export type GenericMorph = ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage;
+export type GenericMorph = ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type HomePage = {
   __typename?: 'HomePage';
@@ -1620,7 +1619,6 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
-  createVisitUsPageLocalization?: Maybe<VisitUsPageEntityResponse>;
   deleteContactCard?: Maybe<ContactCardEntityResponse>;
   deleteContentPage?: Maybe<ContentPageEntityResponse>;
   deleteGeneral?: Maybe<GeneralEntityResponse>;
@@ -1638,7 +1636,6 @@ export type Mutation = {
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
   /** Delete an existing user */
   deleteUsersPermissionsUser: UsersPermissionsUserEntityResponse;
-  deleteVisitUsPage?: Maybe<VisitUsPageEntityResponse>;
   /** Confirm an email users email address */
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
   /** Request a reset password token */
@@ -1668,7 +1665,6 @@ export type Mutation = {
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
   /** Update an existing user */
   updateUsersPermissionsUser: UsersPermissionsUserEntityResponse;
-  updateVisitUsPage?: Maybe<VisitUsPageEntityResponse>;
   upload: UploadFileEntityResponse;
 };
 
@@ -1825,13 +1821,6 @@ export type MutationCreateUsersPermissionsUserArgs = {
 };
 
 
-export type MutationCreateVisitUsPageLocalizationArgs = {
-  data?: InputMaybe<VisitUsPageInput>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
 export type MutationDeleteContactCardArgs = {
   id: Scalars['ID']['input'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
@@ -1912,11 +1901,6 @@ export type MutationDeleteUsersPermissionsRoleArgs = {
 
 export type MutationDeleteUsersPermissionsUserArgs = {
   id: Scalars['ID']['input'];
-};
-
-
-export type MutationDeleteVisitUsPageArgs = {
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 
@@ -2061,12 +2045,6 @@ export type MutationUpdateUsersPermissionsRoleArgs = {
 export type MutationUpdateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
   id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdateVisitUsPageArgs = {
-  data: VisitUsPageInput;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 
@@ -2267,7 +2245,6 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
-  visitUsPage?: Maybe<VisitUsPageEntityResponse>;
 };
 
 
@@ -2486,11 +2463,6 @@ export type QueryUsersPermissionsUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type QueryVisitUsPageArgs = {
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 export type ResponseCollectionMeta = {
@@ -3152,66 +3124,6 @@ export type UsersPermissionsUserRelationResponseCollection = {
   __typename?: 'UsersPermissionsUserRelationResponseCollection';
   data: Array<UsersPermissionsUserEntity>;
 };
-
-export type VisitUsPage = {
-  __typename?: 'VisitUsPage';
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  highlights?: Maybe<Array<Maybe<ComponentBlocksContentPageItem>>>;
-  locale?: Maybe<Scalars['String']['output']>;
-  localizations?: Maybe<VisitUsPageRelationResponseCollection>;
-  sections?: Maybe<Array<Maybe<VisitUsPageSectionsDynamicZone>>>;
-  seo?: Maybe<ComponentBlocksSeo>;
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-
-export type VisitUsPageHighlightsArgs = {
-  filters?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type VisitUsPageEntity = {
-  __typename?: 'VisitUsPageEntity';
-  attributes?: Maybe<VisitUsPage>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
-
-export type VisitUsPageEntityResponse = {
-  __typename?: 'VisitUsPageEntityResponse';
-  data?: Maybe<VisitUsPageEntity>;
-};
-
-export type VisitUsPageEntityResponseCollection = {
-  __typename?: 'VisitUsPageEntityResponseCollection';
-  data: Array<VisitUsPageEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type VisitUsPageFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<VisitUsPageFiltersInput>>>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  highlights?: InputMaybe<ComponentBlocksContentPageItemFiltersInput>;
-  locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<VisitUsPageFiltersInput>;
-  not?: InputMaybe<VisitUsPageFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<VisitUsPageFiltersInput>>>;
-  seo?: InputMaybe<ComponentBlocksSeoFiltersInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type VisitUsPageInput = {
-  highlights?: InputMaybe<Array<InputMaybe<ComponentBlocksContentPageItemInput>>>;
-  sections?: InputMaybe<Array<Scalars['VisitUsPageSectionsDynamicZoneInput']['input']>>;
-  seo?: InputMaybe<ComponentBlocksSeoInput>;
-};
-
-export type VisitUsPageRelationResponseCollection = {
-  __typename?: 'VisitUsPageRelationResponseCollection';
-  data: Array<VisitUsPageEntity>;
-};
-
-export type VisitUsPageSectionsDynamicZone = ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsRichtextSection | ComponentSectionsTicketsSection | Error;
 
 export type ImageEntityFragment = { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null };
 

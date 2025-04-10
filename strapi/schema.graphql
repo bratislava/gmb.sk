@@ -1082,7 +1082,7 @@ type GeneralRelationResponseCollection {
   data: [GeneralEntity!]!
 }
 
-union GenericMorph = ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
+union GenericMorph = ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type HomePage {
   createdAt: DateTime
@@ -1419,7 +1419,6 @@ type Mutation {
 
   """Create a new user"""
   createUsersPermissionsUser(data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
-  createVisitUsPageLocalization(data: VisitUsPageInput, id: ID, locale: I18NLocaleCode): VisitUsPageEntityResponse
   deleteContactCard(id: ID!, locale: I18NLocaleCode): ContactCardEntityResponse
   deleteContentPage(id: ID!, locale: I18NLocaleCode): ContentPageEntityResponse
   deleteGeneral(locale: I18NLocaleCode): GeneralEntityResponse
@@ -1439,7 +1438,6 @@ type Mutation {
 
   """Delete an existing user"""
   deleteUsersPermissionsUser(id: ID!): UsersPermissionsUserEntityResponse!
-  deleteVisitUsPage(locale: I18NLocaleCode): VisitUsPageEntityResponse
 
   """Confirm an email users email address"""
   emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
@@ -1477,7 +1475,6 @@ type Mutation {
 
   """Update an existing user"""
   updateUsersPermissionsUser(data: UsersPermissionsUserInput!, id: ID!): UsersPermissionsUserEntityResponse!
-  updateVisitUsPage(data: VisitUsPageInput!, locale: I18NLocaleCode): VisitUsPageEntityResponse
   upload(field: String, file: Upload!, info: FileInfoInput, ref: String, refId: ID): UploadFileEntityResponse!
 }
 
@@ -1636,7 +1633,6 @@ type Query {
   usersPermissionsRoles(filters: UsersPermissionsRoleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsRoleEntityResponseCollection
   usersPermissionsUser(id: ID): UsersPermissionsUserEntityResponse
   usersPermissionsUsers(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserEntityResponseCollection
-  visitUsPage(locale: I18NLocaleCode): VisitUsPageEntityResponse
 }
 
 type ResponseCollectionMeta {
@@ -2191,53 +2187,3 @@ input UsersPermissionsUserInput {
 type UsersPermissionsUserRelationResponseCollection {
   data: [UsersPermissionsUserEntity!]!
 }
-
-type VisitUsPage {
-  createdAt: DateTime
-  highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
-  locale: String
-  localizations: VisitUsPageRelationResponseCollection
-  sections: [VisitUsPageSectionsDynamicZone]
-  seo: ComponentBlocksSeo
-  updatedAt: DateTime
-}
-
-type VisitUsPageEntity {
-  attributes: VisitUsPage
-  id: ID
-}
-
-type VisitUsPageEntityResponse {
-  data: VisitUsPageEntity
-}
-
-type VisitUsPageEntityResponseCollection {
-  data: [VisitUsPageEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input VisitUsPageFiltersInput {
-  and: [VisitUsPageFiltersInput]
-  createdAt: DateTimeFilterInput
-  highlights: ComponentBlocksContentPageItemFiltersInput
-  locale: StringFilterInput
-  localizations: VisitUsPageFiltersInput
-  not: VisitUsPageFiltersInput
-  or: [VisitUsPageFiltersInput]
-  seo: ComponentBlocksSeoFiltersInput
-  updatedAt: DateTimeFilterInput
-}
-
-input VisitUsPageInput {
-  highlights: [ComponentBlocksContentPageItemInput]
-  sections: [VisitUsPageSectionsDynamicZoneInput!]
-  seo: ComponentBlocksSeoInput
-}
-
-type VisitUsPageRelationResponseCollection {
-  data: [VisitUsPageEntity!]!
-}
-
-union VisitUsPageSectionsDynamicZone = ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsRichtextSection | ComponentSectionsTicketsSection | Error
-
-scalar VisitUsPageSectionsDynamicZoneInput
