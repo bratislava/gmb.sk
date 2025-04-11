@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import Page from '@/src/components/pages/Page'
+import HomePage from '@/src/components/pages/HomePage'
 import { GeneralQuery, HomePageQuery, NewsQuery } from '@/src/services/graphql'
 import { client } from '@/src/services/graphql/gql'
 import { GeneralContextProvider } from '@/src/utils/generalContext'
@@ -19,7 +19,7 @@ export const Index = ({ homePage, generalQuery, news }: IndexProps) => {
 
   return (
     <GeneralContextProvider general={generalQuery}>
-      <Page
+      <HomePage
         page={homePage}
         title={t('common.home')}
         newsItems={news?.data?.filter(hasAttributes)}

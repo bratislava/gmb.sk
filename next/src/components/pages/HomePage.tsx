@@ -2,43 +2,25 @@ import { useTranslation } from 'next-i18next'
 
 import SeoHead from '@/src/components/atoms/SeoHead'
 import HighlightsSection from '@/src/components/molecules/sections/HighlightsSection'
-import MapSection from '@/src/components/molecules/sections/MapSection'
 import NewsletterSection from '@/src/components/molecules/sections/NewsletterSection'
 import NewsSection from '@/src/components/molecules/sections/NewsSection'
 import OpeningHoursSection from '@/src/components/molecules/sections/OpeningHoursSection'
 import PageSectionContainer from '@/src/components/molecules/sections/PageSectionContainer'
 import PartnersSection from '@/src/components/molecules/sections/PartnersSection'
 import RichtextSection from '@/src/components/molecules/sections/RichtextSection'
-import TicketsSection from '@/src/components/molecules/sections/TicketsSection'
 import Submenu from '@/src/components/molecules/Submenu'
 import PageWrapper from '@/src/components/pages/PageWrapper'
-import {
-  AboutUsPageQuery,
-  CollectionPageQuery,
-  GetInvolvedPageQuery,
-  HomePageQuery,
-  NewsItemEntityFragment,
-  TicketEntityFragment,
-  VisitUsPageQuery,
-} from '@/src/services/graphql'
+import { HomePageQuery, NewsItemEntityFragment } from '@/src/services/graphql'
 import { getAnchor } from '@/src/utils/getAnchor'
 import { hasAttributes, isDefined, WithAttributes } from '@/src/utils/isDefined'
 
-interface PageProps {
-  // TODO `page` should only be of `HomePageQuery['homePage']` type once the menu has been refactored
-  page:
-    | AboutUsPageQuery['aboutUsPage']
-    | GetInvolvedPageQuery['getInvolvedPage']
-    | VisitUsPageQuery['visitUsPage']
-    | CollectionPageQuery['collectionsPage']
-    | HomePageQuery['homePage']
+interface HomePageProps {
+  page: HomePageQuery['homePage']
   title: string
   newsItems?: WithAttributes<NewsItemEntityFragment>[] | null
-  tickets?: WithAttributes<TicketEntityFragment>[] | null
 }
 
-// TODO This component could be renamed to `HomePage` for clarity
-const Page = ({ page: pageResponse, title, newsItems, tickets }: PageProps) => {
+const HomePage = ({ page: pageResponse, title, newsItems }: HomePageProps) => {
   const { t } = useTranslation()
 
   const page = pageResponse?.data?.attributes
@@ -64,7 +46,7 @@ const Page = ({ page: pageResponse, title, newsItems, tickets }: PageProps) => {
           .filter(hasAttributes)}
       />
 
-      {page?.sections && <Submenu items={submenu} />}
+      {page?.sections ? <Submenu items={submenu} /> : null}
 
       {page?.sections
         ?.filter(isDefined)
@@ -99,33 +81,15 @@ const Page = ({ page: pageResponse, title, newsItems, tickets }: PageProps) => {
             )
           }
 
-          if (section.__typename === 'ComponentSectionsPageSection') {
+          if (
+            section.__typename === 'ComponentSectionsPartnersSection' &&
+            section?.partners?.length
+          ) {
             return (
-              <PageSectionContainer
-                section={section}
+              <PartnersSection
+                title={section.title ?? t('common.partners')}
                 anchor={getAnchor(section.submenuTitle)}
-                key={`${section.__typename}-${section.id}`}
-              />
-            )
-          }
-
-          if (section.__typename === 'ComponentSectionsMapSection') {
-            return (
-              <MapSection
-                title={section.title ?? undefined}
-                anchor={getAnchor(section.submenuTitle)}
-                key={`${section.__typename}-${section.id}`}
-              />
-            )
-          }
-
-          if (section.__typename === 'ComponentSectionsTicketsSection' && tickets) {
-            return (
-              <TicketsSection
-                title={section.title ?? undefined}
-                text={section.text ?? undefined}
-                anchor={getAnchor(section.submenuTitle)}
-                tickets={tickets}
+                partners={section.partners.map((item) => item?.partner?.data).filter(hasAttributes)}
                 key={`${section.__typename}-${section.id}`}
               />
             )
@@ -142,20 +106,20 @@ const Page = ({ page: pageResponse, title, newsItems, tickets }: PageProps) => {
             )
           }
 
+          if (section.__typename === 'ComponentSectionsPageSection') {
+            return (
+              <PageSectionContainer
+                section={section}
+                anchor={getAnchor(section.submenuTitle)}
+                key={`${section.__typename}-${section.id}`}
+              />
+            )
+          }
+
           return null
         })}
-
-      {pageResponse?.data?.attributes?.__typename === 'HomePage' &&
-      pageResponse.data?.attributes?.partners?.length ? (
-        <PartnersSection
-          title={t('common.partners')}
-          partners={pageResponse.data?.attributes?.partners
-            ?.map((item) => item?.partner?.data)
-            ?.filter(hasAttributes)}
-        />
-      ) : null}
     </PageWrapper>
   )
 }
 
-export default Page
+export default HomePage

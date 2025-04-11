@@ -24,7 +24,6 @@ export const getServerSideProps: GetServerSideProps<ErrorProps> = async (context
 
   const [generalQuery, translations] = await Promise.all([
     client.General({ locale }),
-    client.VisitUsPage({ locale }),
     serverSideTranslations(locale),
   ])
 
