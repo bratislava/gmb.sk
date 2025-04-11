@@ -7,6 +7,7 @@ import NewsSection from '@/src/components/molecules/sections/NewsSection'
 import OpeningHoursSection from '@/src/components/molecules/sections/OpeningHoursSection'
 import PageSectionContainer from '@/src/components/molecules/sections/PageSectionContainer'
 import PartnersSection from '@/src/components/molecules/sections/PartnersSection'
+import RichtextSection from '@/src/components/molecules/sections/RichtextSection'
 import Submenu from '@/src/components/molecules/Submenu'
 import PageWrapper from '@/src/components/pages/PageWrapper'
 import { HomePageQuery, NewsItemEntityFragment } from '@/src/services/graphql'
@@ -89,6 +90,17 @@ const HomePage = ({ page: pageResponse, title, newsItems }: HomePageProps) => {
                 title={section.title ?? t('common.partners')}
                 anchor={getAnchor(section.submenuTitle)}
                 partners={section.partners.map((item) => item?.partner?.data).filter(hasAttributes)}
+                key={`${section.__typename}-${section.id}`}
+              />
+            )
+          }
+
+          if (section.__typename === 'ComponentSectionsRichtextSection') {
+            return (
+              <RichtextSection
+                content={section.content}
+                anchor={getAnchor(section.submenuTitle)}
+                className="px-xMd py-yMd"
                 key={`${section.__typename}-${section.id}`}
               />
             )
