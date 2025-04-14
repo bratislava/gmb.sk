@@ -1,1 +1,4 @@
-export const DEFAULT_LANG = 'sk'
+export const NOT_FOUND = {
+  notFound: true,
+  revalidate: 10,
+} as const

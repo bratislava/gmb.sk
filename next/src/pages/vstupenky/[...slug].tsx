@@ -9,6 +9,7 @@ import {
   GeneralQuery,
 } from '@/src/services/graphql'
 import { client } from '@/src/services/graphql/gql'
+import { NOT_FOUND } from '@/src/utils/consts'
 import { GeneralContextProvider } from '@/src/utils/generalContext'
 import { getTodaysDate } from '@/src/utils/getTodaysDate'
 import { hasAttributes, withAttributes } from '@/src/utils/isDefined'
@@ -42,9 +43,7 @@ const Tickets = ({ generalQuery, contentPage, currentEvents }: TicketProps) => {
 
 export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, locale = 'sk' }) => {
   if (!params) {
-    return {
-      notFound: true,
-    }
+    return NOT_FOUND
   }
   const slug = (typeof params.slug === 'string' ? params.slug : params.slug?.join('/')) ?? ''
 
@@ -61,9 +60,7 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
   ])
 
   if (!contentPage) {
-    return {
-      notFound: true,
-    }
+    return NOT_FOUND
   }
 
   if (!contentPage?.data?.attributes?.place?.data?.attributes?.slug) {

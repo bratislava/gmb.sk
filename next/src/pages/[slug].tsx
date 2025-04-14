@@ -12,6 +12,7 @@ import {
   TicketsQuery,
 } from '@/src/services/graphql'
 import { client } from '@/src/services/graphql/gql'
+import { NOT_FOUND } from '@/src/utils/consts'
 import { GeneralContextProvider } from '@/src/utils/generalContext'
 import { getTodaysDate } from '@/src/utils/getTodaysDate'
 import { hasAttributes, isDefined } from '@/src/utils/isDefined'
@@ -67,9 +68,7 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
   const slug = params?.slug
 
   if (!slug) {
-    return {
-      notFound: true,
-    }
+    return NOT_FOUND
   }
 
   // eslint-disable-next-line no-console
@@ -155,9 +154,7 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
   const mainPage = mainPages?.data[0]
 
   if (!mainPage) {
-    return {
-      notFound: true,
-    }
+    return NOT_FOUND
   }
 
   return {

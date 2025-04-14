@@ -4,6 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import DetailPage from '@/src/components/pages/DetailPage'
 import { ContentPageBySlugQuery, GeneralQuery } from '@/src/services/graphql'
 import { client } from '@/src/services/graphql/gql'
+import { NOT_FOUND } from '@/src/utils/consts'
 import { GeneralContextProvider } from '@/src/utils/generalContext'
 import { hasAttributes, isDefined, withAttributes } from '@/src/utils/isDefined'
 
@@ -28,9 +29,7 @@ const Detail = ({ generalQuery, contentPage }: DetailProps) => {
 
 export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, locale = 'sk' }) => {
   if (!params) {
-    return {
-      notFound: true,
-    }
+    return NOT_FOUND
   }
 
   const slug = (typeof params.slug === 'string' ? params.slug : params.slug?.join('/')) ?? ''
@@ -42,9 +41,7 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, loca
   ])
 
   if (!contentPage) {
-    return {
-      notFound: true,
-    }
+    return NOT_FOUND
   }
 
   return {
