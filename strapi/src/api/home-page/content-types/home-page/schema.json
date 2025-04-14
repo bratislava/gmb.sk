@@ -37,18 +37,10 @@
         "sections.news-section",
         "sections.newsletter-section",
         "sections.page-section",
-        "sections.opening-hours-section"
+        "sections.opening-hours-section",
+        "sections.richtext-section",
+        "sections.partners-section"
       ]
-    },
-    "partners": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "blocks.partner-item"
     },
     "seo": {
       "type": "component",

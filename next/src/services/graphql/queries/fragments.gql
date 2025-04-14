@@ -521,15 +521,6 @@ fragment DownloadSection on ComponentSectionsDownloadSection {
   }
 }
 
-fragment ArchiveSection on ComponentSectionsArchiveSection {
-  id
-  title
-  submenuTitle
-  archiveCard {
-    ...ExhibitionArchive
-  }
-}
-
 fragment ArchiveBannerSection on ComponentSectionsArchiveBannerSection {
   id
   title
@@ -552,11 +543,19 @@ fragment GlobalSearchSection on ComponentSectionsGlobalSearchSection {
   title
 }
 
-fragment Sections on VisitUsPageSectionsDynamicZone {
+fragment Sections on ContentPageMainContentDynamicZone {
   ... on Error {
     code
     message
   }
+  ... on ComponentSectionsRichtextSection {
+    __typename
+    ...RichtextSection
+  }
+}
+
+fragment MainPageSections on MainPageSectionsDynamicZone {
+  ...Sections
   ... on ComponentSectionsPageSection {
     __typename
     ...PageSection
@@ -581,14 +580,6 @@ fragment Sections on VisitUsPageSectionsDynamicZone {
     __typename
     ...MapSection
   }
-  ... on ComponentSectionsRichtextSection {
-    __typename
-    ...RichtextSection
-  }
-}
-
-fragment MainPageSections on MainPageSectionsDynamicZone {
-  ...Sections
   ... on ComponentSectionsHighlightsSection {
     __typename
     ...HighlightsSection
@@ -620,14 +611,7 @@ fragment MainPageSections on MainPageSectionsDynamicZone {
 }
 
 fragment MainContent on ContentPageMainContentDynamicZone {
-  ... on Error {
-    code
-    message
-  }
-  ... on ComponentSectionsRichtextSection {
-    __typename
-    ...RichtextSection
-  }
+  ...Sections
   ... on ComponentSectionsVideoSection {
     __typename
     ...VideoSection
@@ -643,5 +627,29 @@ fragment MainContent on ContentPageMainContentDynamicZone {
   ... on ComponentSectionsContactCardsSection {
     __typename
     ...ContactCardsSection
+  }
+}
+
+fragment HomePageSections on HomePageSectionsDynamicZone {
+  ...Sections
+  ... on ComponentSectionsPageSection {
+    __typename
+    ...PageSection
+  }
+  ... on ComponentSectionsNewsSection {
+    __typename
+    ...NewsSection
+  }
+  ... on ComponentSectionsOpeningHoursSection {
+    __typename
+    ...OpeningHoursSection
+  }
+  ... on ComponentSectionsNewsletterSection {
+    __typename
+    ...NewsletterSection
+  }
+  ... on ComponentSectionsPartnersSection {
+    __typename
+    ...PartnersSection
   }
 }

@@ -42,40 +42,8 @@ const nextConfig = {
          * https://stackoverflow.com/questions/68723485/how-to-setup-i18n-translated-url-routes-in-next-js/68731057#68731057
          */
         {
-          source: '/visit-us',
-          destination: '/navstivte',
-        },
-        {
-          source: '/exhibitions',
-          destination: '/vystavy',
-        },
-        {
-          source: '/about-gallery',
-          destination: '/o-galerii',
-        },
-        {
-          source: '/explore',
-          destination: '/objavujte',
-        },
-        {
-          source: '/get-involved',
-          destination: '/zapojte-sa',
-        },
-        {
-          source: '/collections',
-          destination: '/zbierky',
-        },
-        {
-          source: '/exhibitions/archive',
-          destination: '/vystavy/archiv',
-        },
-        {
           source: '/tickets/:event',
           destination: '/vstupenky/:event',
-        },
-        {
-          source: '/disclosure-of-information',
-          destination: '/zverejnovanie-informacii',
         },
       ],
     }

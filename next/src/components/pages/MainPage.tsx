@@ -85,7 +85,7 @@ const MainPage = ({
     <PageWrapper page={hasAttributes(pageEntity) ? pageEntity : undefined}>
       <SeoHead title={title} seo={page?.seo} />
 
-      {page?.sections && <Submenu items={submenu} />}
+      {page?.sections ? <Submenu items={submenu} /> : null}
 
       {page?.sections
         ?.filter(isDefined)

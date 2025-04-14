@@ -3,7 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import MainPage from '@/src/components/pages/MainPage'
 import {
-  ExhibitionsPageQuery,
+  ExhibitionsAndEventsQuery,
   GeneralQuery,
   MainPageEntityFragment,
   NewsQuery,
@@ -22,9 +22,9 @@ interface MenuPageProps {
   page: MainPageEntityFragment
   news: NewsQuery['news']
   tickets: TicketsQuery['tickets']
-  exhibitions: ExhibitionsPageQuery['exhibitions']
-  permanentExhibitions: ExhibitionsPageQuery['permanentExhibitions']
-  additionalProgram: ExhibitionsPageQuery['additionalProgram']
+  exhibitions: ExhibitionsAndEventsQuery['exhibitions']
+  permanentExhibitions: ExhibitionsAndEventsQuery['permanentExhibitions']
+  additionalProgram: ExhibitionsAndEventsQuery['additionalProgram']
   places: PlacesQuery['places']
   tagsProgram: TagsByCategorySlugQuery['tagCategoryBySlug']
   tagsTargetGroups: TagsByCategorySlugQuery['tagCategoryBySlug']
@@ -143,13 +143,14 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
       .map((tag) => tag.attributes.slug)
       .filter((tagSlug) => tagSlug !== tagExhibitions && tagSlug !== tagPermanentExhibitions) ?? []
 
-  const { exhibitions, permanentExhibitions, additionalProgram } = await client.ExhibitionsPage({
-    locale,
-    today,
-    tagExhibitions,
-    tagPermanentExhibitions,
-    tagsAdditionalProgram,
-  })
+  const { exhibitions, permanentExhibitions, additionalProgram } =
+    await client.ExhibitionsAndEvents({
+      locale,
+      today,
+      tagExhibitions,
+      tagPermanentExhibitions,
+      tagsAdditionalProgram,
+    })
 
   const mainPage = mainPages?.data[0]
 

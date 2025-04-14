@@ -362,136 +362,6 @@ export interface AdminUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiAboutUsPageAboutUsPage extends Schema.SingleType {
-  collectionName: 'about_us_pages';
-  info: {
-    description: '';
-    displayName: 'O gal\u00E9rii';
-    pluralName: 'about-us-pages';
-    singularName: 'about-us-page';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::about-us-page.about-us-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    highlights: Attribute.Component<'blocks.content-page-item', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Attribute.String;
-    localizations: Attribute.Relation<
-      'api::about-us-page.about-us-page',
-      'oneToMany',
-      'api::about-us-page.about-us-page'
-    >;
-    sections: Attribute.DynamicZone<
-      [
-        'sections.news-section',
-        'sections.newsletter-section',
-        'sections.page-section',
-        'sections.opening-hours-section'
-      ]
-    > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    seo: Attribute.Component<'blocks.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'api::about-us-page.about-us-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCollectionsPageCollectionsPage extends Schema.SingleType {
-  collectionName: 'collections_pages';
-  info: {
-    description: '';
-    displayName: 'Zbierky';
-    pluralName: 'collections-pages';
-    singularName: 'collections-page';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::collections-page.collections-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    highlights: Attribute.Component<'blocks.content-page-item', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Attribute.String;
-    localizations: Attribute.Relation<
-      'api::collections-page.collections-page',
-      'oneToMany',
-      'api::collections-page.collections-page'
-    >;
-    sections: Attribute.DynamicZone<
-      [
-        'sections.page-section',
-        'sections.news-section',
-        'sections.newsletter-section',
-        'sections.opening-hours-section'
-      ]
-    > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    seo: Attribute.Component<'blocks.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'api::collections-page.collections-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiContactCardContactCard extends Schema.CollectionType {
   collectionName: 'contact_cards';
   info: {
@@ -813,122 +683,6 @@ export interface ApiContentPageContentPage extends Schema.CollectionType {
   };
 }
 
-export interface ApiExhibitionsPageExhibitionsPage extends Schema.SingleType {
-  collectionName: 'exhibitions_pages';
-  info: {
-    description: '';
-    displayName: 'V\u00FDstavy';
-    pluralName: 'exhibitions-pages';
-    singularName: 'exhibitions-page';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    archiveSection: Attribute.Component<'sections.archive-section'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    archiveSeo: Attribute.Component<'blocks.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::exhibitions-page.exhibitions-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    highlights: Attribute.Component<'blocks.content-page-item', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Attribute.String;
-    localizations: Attribute.Relation<
-      'api::exhibitions-page.exhibitions-page',
-      'oneToMany',
-      'api::exhibitions-page.exhibitions-page'
-    >;
-    seo: Attribute.Component<'blocks.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'api::exhibitions-page.exhibitions-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiExplorePageExplorePage extends Schema.SingleType {
-  collectionName: 'explore_pages';
-  info: {
-    description: '';
-    displayName: 'Objavujte';
-    pluralName: 'explore-pages';
-    singularName: 'explore-page';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::explore-page.explore-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    highlights: Attribute.Component<'blocks.content-page-item', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Attribute.String;
-    localizations: Attribute.Relation<
-      'api::explore-page.explore-page',
-      'oneToMany',
-      'api::explore-page.explore-page'
-    >;
-    seo: Attribute.Component<'blocks.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'api::explore-page.explore-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiGeneralGeneral extends Schema.SingleType {
   collectionName: 'generals';
   info: {
@@ -1023,71 +777,6 @@ export interface ApiGeneralGeneral extends Schema.SingleType {
   };
 }
 
-export interface ApiGetInvolvedPageGetInvolvedPage extends Schema.SingleType {
-  collectionName: 'get_involved_pages';
-  info: {
-    description: '';
-    displayName: 'Zapojte sa';
-    pluralName: 'get-involved-pages';
-    singularName: 'get-involved-page';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::get-involved-page.get-involved-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    highlights: Attribute.Component<'blocks.content-page-item', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Attribute.String;
-    localizations: Attribute.Relation<
-      'api::get-involved-page.get-involved-page',
-      'oneToMany',
-      'api::get-involved-page.get-involved-page'
-    >;
-    sections: Attribute.DynamicZone<
-      [
-        'sections.page-section',
-        'sections.news-section',
-        'sections.newsletter-section',
-        'sections.opening-hours-section'
-      ]
-    > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    seo: Attribute.Component<'blocks.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'api::get-involved-page.get-involved-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiHomePageHomePage extends Schema.SingleType {
   collectionName: 'home_pages';
   info: {
@@ -1124,18 +813,14 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
       'oneToMany',
       'api::home-page.home-page'
     >;
-    partners: Attribute.Component<'blocks.partner-item', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     sections: Attribute.DynamicZone<
       [
         'sections.news-section',
         'sections.newsletter-section',
         'sections.page-section',
-        'sections.opening-hours-section'
+        'sections.opening-hours-section',
+        'sections.richtext-section',
+        'sections.partners-section'
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1612,74 +1297,6 @@ export interface ApiTicketTicket extends Schema.CollectionType {
   };
 }
 
-export interface ApiVisitUsPageVisitUsPage extends Schema.SingleType {
-  collectionName: 'visit_us_pages';
-  info: {
-    description: '';
-    displayName: 'Nav\u0161t\u00EDvte';
-    pluralName: 'visit-us-pages';
-    singularName: 'visit-us-page';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::visit-us-page.visit-us-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    highlights: Attribute.Component<'blocks.content-page-item', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    locale: Attribute.String;
-    localizations: Attribute.Relation<
-      'api::visit-us-page.visit-us-page',
-      'oneToMany',
-      'api::visit-us-page.visit-us-page'
-    >;
-    sections: Attribute.DynamicZone<
-      [
-        'sections.page-section',
-        'sections.news-section',
-        'sections.newsletter-section',
-        'sections.richtext-section',
-        'sections.tickets-section',
-        'sections.map-section',
-        'sections.opening-hours-section'
-      ]
-    > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    seo: Attribute.Component<'blocks.seo'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'api::visit-us-page.visit-us-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginContentReleasesRelease extends Schema.CollectionType {
   collectionName: 'strapi_releases';
   info: {
@@ -2116,14 +1733,9 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::about-us-page.about-us-page': ApiAboutUsPageAboutUsPage;
-      'api::collections-page.collections-page': ApiCollectionsPageCollectionsPage;
       'api::contact-card.contact-card': ApiContactCardContactCard;
       'api::content-page.content-page': ApiContentPageContentPage;
-      'api::exhibitions-page.exhibitions-page': ApiExhibitionsPageExhibitionsPage;
-      'api::explore-page.explore-page': ApiExplorePageExplorePage;
       'api::general.general': ApiGeneralGeneral;
-      'api::get-involved-page.get-involved-page': ApiGetInvolvedPageGetInvolvedPage;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::main-page.main-page': ApiMainPageMainPage;
       'api::menu.menu': ApiMenuMenu;
@@ -2132,7 +1744,6 @@ declare module '@strapi/types' {
       'api::tag-category.tag-category': ApiTagCategoryTagCategory;
       'api::tag.tag': ApiTagTag;
       'api::ticket.ticket': ApiTicketTicket;
-      'api::visit-us-page.visit-us-page': ApiVisitUsPageVisitUsPage;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -185,19 +185,6 @@ export interface SectionsArchiveBannerSection extends Schema.Component {
   };
 }
 
-export interface SectionsArchiveSection extends Schema.Component {
-  collectionName: 'components_sections_archive_sections';
-  info: {
-    description: '';
-    displayName: 'archive section';
-  };
-  attributes: {
-    archiveCard: Attribute.Component<'blocks.exhibition-archive'>;
-    submenuTitle: Attribute.String;
-    title: Attribute.String;
-  };
-}
-
 export interface SectionsAudioSection extends Schema.Component {
   collectionName: 'components_sections_audio_sections';
   info: {
@@ -466,7 +453,6 @@ declare module '@strapi/types' {
       'blocks.position-item': BlocksPositionItem;
       'blocks.seo': BlocksSeo;
       'sections.archive-banner-section': SectionsArchiveBannerSection;
-      'sections.archive-section': SectionsArchiveSection;
       'sections.audio-section': SectionsAudioSection;
       'sections.contact-cards-section': SectionsContactCardsSection;
       'sections.disclosure-section': SectionsDisclosureSection;

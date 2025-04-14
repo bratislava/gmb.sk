@@ -2,56 +2,6 @@
 ### Do not make changes to this file directly
 
 
-type AboutUsPage {
-  createdAt: DateTime
-  highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
-  locale: String
-  localizations: AboutUsPageRelationResponseCollection
-  sections: [AboutUsPageSectionsDynamicZone]
-  seo: ComponentBlocksSeo
-  updatedAt: DateTime
-}
-
-type AboutUsPageEntity {
-  attributes: AboutUsPage
-  id: ID
-}
-
-type AboutUsPageEntityResponse {
-  data: AboutUsPageEntity
-}
-
-type AboutUsPageEntityResponseCollection {
-  data: [AboutUsPageEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input AboutUsPageFiltersInput {
-  and: [AboutUsPageFiltersInput]
-  createdAt: DateTimeFilterInput
-  highlights: ComponentBlocksContentPageItemFiltersInput
-  locale: StringFilterInput
-  localizations: AboutUsPageFiltersInput
-  not: AboutUsPageFiltersInput
-  or: [AboutUsPageFiltersInput]
-  seo: ComponentBlocksSeoFiltersInput
-  updatedAt: DateTimeFilterInput
-}
-
-input AboutUsPageInput {
-  highlights: [ComponentBlocksContentPageItemInput]
-  sections: [AboutUsPageSectionsDynamicZoneInput!]
-  seo: ComponentBlocksSeoInput
-}
-
-type AboutUsPageRelationResponseCollection {
-  data: [AboutUsPageEntity!]!
-}
-
-union AboutUsPageSectionsDynamicZone = ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | Error
-
-scalar AboutUsPageSectionsDynamicZoneInput
-
 input BooleanFilterInput {
   and: [Boolean]
   between: [Boolean]
@@ -76,56 +26,6 @@ input BooleanFilterInput {
   or: [Boolean]
   startsWith: Boolean
 }
-
-type CollectionsPage {
-  createdAt: DateTime
-  highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
-  locale: String
-  localizations: CollectionsPageRelationResponseCollection
-  sections: [CollectionsPageSectionsDynamicZone]
-  seo: ComponentBlocksSeo
-  updatedAt: DateTime
-}
-
-type CollectionsPageEntity {
-  attributes: CollectionsPage
-  id: ID
-}
-
-type CollectionsPageEntityResponse {
-  data: CollectionsPageEntity
-}
-
-type CollectionsPageEntityResponseCollection {
-  data: [CollectionsPageEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input CollectionsPageFiltersInput {
-  and: [CollectionsPageFiltersInput]
-  createdAt: DateTimeFilterInput
-  highlights: ComponentBlocksContentPageItemFiltersInput
-  locale: StringFilterInput
-  localizations: CollectionsPageFiltersInput
-  not: CollectionsPageFiltersInput
-  or: [CollectionsPageFiltersInput]
-  seo: ComponentBlocksSeoFiltersInput
-  updatedAt: DateTimeFilterInput
-}
-
-input CollectionsPageInput {
-  highlights: [ComponentBlocksContentPageItemInput]
-  sections: [CollectionsPageSectionsDynamicZoneInput!]
-  seo: ComponentBlocksSeoInput
-}
-
-type CollectionsPageRelationResponseCollection {
-  data: [CollectionsPageEntity!]!
-}
-
-union CollectionsPageSectionsDynamicZone = ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | Error
-
-scalar CollectionsPageSectionsDynamicZoneInput
 
 type ComponentBlocksContactCardItem {
   contactCard: ContactCardEntityResponse
@@ -403,29 +303,6 @@ input ComponentSectionsArchiveBannerSectionFiltersInput {
 
 input ComponentSectionsArchiveBannerSectionInput {
   banner: ComponentBlocksExhibitionArchiveInput
-  id: ID
-  submenuTitle: String
-  title: String
-}
-
-type ComponentSectionsArchiveSection {
-  archiveCard: ComponentBlocksExhibitionArchive
-  id: ID!
-  submenuTitle: String
-  title: String
-}
-
-input ComponentSectionsArchiveSectionFiltersInput {
-  and: [ComponentSectionsArchiveSectionFiltersInput]
-  archiveCard: ComponentBlocksExhibitionArchiveFiltersInput
-  not: ComponentSectionsArchiveSectionFiltersInput
-  or: [ComponentSectionsArchiveSectionFiltersInput]
-  submenuTitle: StringFilterInput
-  title: StringFilterInput
-}
-
-input ComponentSectionsArchiveSectionInput {
-  archiveCard: ComponentBlocksExhibitionArchiveInput
   id: ID
   submenuTitle: String
   title: String
@@ -1109,100 +986,6 @@ type Error {
   message: String
 }
 
-type ExhibitionsPage {
-  archiveSection: ComponentSectionsArchiveSection
-  archiveSeo: ComponentBlocksSeo
-  createdAt: DateTime
-  highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
-  locale: String
-  localizations: ExhibitionsPageRelationResponseCollection
-  seo: ComponentBlocksSeo
-  updatedAt: DateTime
-}
-
-type ExhibitionsPageEntity {
-  attributes: ExhibitionsPage
-  id: ID
-}
-
-type ExhibitionsPageEntityResponse {
-  data: ExhibitionsPageEntity
-}
-
-type ExhibitionsPageEntityResponseCollection {
-  data: [ExhibitionsPageEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input ExhibitionsPageFiltersInput {
-  and: [ExhibitionsPageFiltersInput]
-  archiveSection: ComponentSectionsArchiveSectionFiltersInput
-  archiveSeo: ComponentBlocksSeoFiltersInput
-  createdAt: DateTimeFilterInput
-  highlights: ComponentBlocksContentPageItemFiltersInput
-  locale: StringFilterInput
-  localizations: ExhibitionsPageFiltersInput
-  not: ExhibitionsPageFiltersInput
-  or: [ExhibitionsPageFiltersInput]
-  seo: ComponentBlocksSeoFiltersInput
-  updatedAt: DateTimeFilterInput
-}
-
-input ExhibitionsPageInput {
-  archiveSection: ComponentSectionsArchiveSectionInput
-  archiveSeo: ComponentBlocksSeoInput
-  highlights: [ComponentBlocksContentPageItemInput]
-  seo: ComponentBlocksSeoInput
-}
-
-type ExhibitionsPageRelationResponseCollection {
-  data: [ExhibitionsPageEntity!]!
-}
-
-type ExplorePage {
-  createdAt: DateTime
-  highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
-  locale: String
-  localizations: ExplorePageRelationResponseCollection
-  seo: ComponentBlocksSeo
-  updatedAt: DateTime
-}
-
-type ExplorePageEntity {
-  attributes: ExplorePage
-  id: ID
-}
-
-type ExplorePageEntityResponse {
-  data: ExplorePageEntity
-}
-
-type ExplorePageEntityResponseCollection {
-  data: [ExplorePageEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input ExplorePageFiltersInput {
-  and: [ExplorePageFiltersInput]
-  createdAt: DateTimeFilterInput
-  highlights: ComponentBlocksContentPageItemFiltersInput
-  locale: StringFilterInput
-  localizations: ExplorePageFiltersInput
-  not: ExplorePageFiltersInput
-  or: [ExplorePageFiltersInput]
-  seo: ComponentBlocksSeoFiltersInput
-  updatedAt: DateTimeFilterInput
-}
-
-input ExplorePageInput {
-  highlights: [ComponentBlocksContentPageItemInput]
-  seo: ComponentBlocksSeoInput
-}
-
-type ExplorePageRelationResponseCollection {
-  data: [ExplorePageEntity!]!
-}
-
 input FileInfoInput {
   alternativeText: String
   caption: String
@@ -1299,64 +1082,13 @@ type GeneralRelationResponseCollection {
   data: [GeneralEntity!]!
 }
 
-union GenericMorph = AboutUsPage | CollectionsPage | ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsArchiveSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | ExhibitionsPage | ExplorePage | General | GetInvolvedPage | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | VisitUsPage
-
-type GetInvolvedPage {
-  createdAt: DateTime
-  highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
-  locale: String
-  localizations: GetInvolvedPageRelationResponseCollection
-  sections: [GetInvolvedPageSectionsDynamicZone]
-  seo: ComponentBlocksSeo
-  updatedAt: DateTime
-}
-
-type GetInvolvedPageEntity {
-  attributes: GetInvolvedPage
-  id: ID
-}
-
-type GetInvolvedPageEntityResponse {
-  data: GetInvolvedPageEntity
-}
-
-type GetInvolvedPageEntityResponseCollection {
-  data: [GetInvolvedPageEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input GetInvolvedPageFiltersInput {
-  and: [GetInvolvedPageFiltersInput]
-  createdAt: DateTimeFilterInput
-  highlights: ComponentBlocksContentPageItemFiltersInput
-  locale: StringFilterInput
-  localizations: GetInvolvedPageFiltersInput
-  not: GetInvolvedPageFiltersInput
-  or: [GetInvolvedPageFiltersInput]
-  seo: ComponentBlocksSeoFiltersInput
-  updatedAt: DateTimeFilterInput
-}
-
-input GetInvolvedPageInput {
-  highlights: [ComponentBlocksContentPageItemInput]
-  sections: [GetInvolvedPageSectionsDynamicZoneInput!]
-  seo: ComponentBlocksSeoInput
-}
-
-type GetInvolvedPageRelationResponseCollection {
-  data: [GetInvolvedPageEntity!]!
-}
-
-union GetInvolvedPageSectionsDynamicZone = ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | Error
-
-scalar GetInvolvedPageSectionsDynamicZoneInput
+union GenericMorph = ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type HomePage {
   createdAt: DateTime
   highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
   locale: String
   localizations: HomePageRelationResponseCollection
-  partners(filters: ComponentBlocksPartnerItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksPartnerItem]
   sections: [HomePageSectionsDynamicZone]
   seo: ComponentBlocksSeo
   updatedAt: DateTime
@@ -1384,14 +1116,12 @@ input HomePageFiltersInput {
   localizations: HomePageFiltersInput
   not: HomePageFiltersInput
   or: [HomePageFiltersInput]
-  partners: ComponentBlocksPartnerItemFiltersInput
   seo: ComponentBlocksSeoFiltersInput
   updatedAt: DateTimeFilterInput
 }
 
 input HomePageInput {
   highlights: [ComponentBlocksContentPageItemInput]
-  partners: [ComponentBlocksPartnerItemInput]
   sections: [HomePageSectionsDynamicZoneInput!]
   seo: ComponentBlocksSeoInput
 }
@@ -1400,7 +1130,7 @@ type HomePageRelationResponseCollection {
   data: [HomePageEntity!]!
 }
 
-union HomePageSectionsDynamicZone = ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | Error
+union HomePageSectionsDynamicZone = ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | Error
 
 scalar HomePageSectionsDynamicZoneInput
 
@@ -1662,16 +1392,11 @@ type MenuRelationResponseCollection {
 type Mutation {
   """Change user password. Confirm with the current password."""
   changePassword(currentPassword: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
-  createAboutUsPageLocalization(data: AboutUsPageInput, id: ID, locale: I18NLocaleCode): AboutUsPageEntityResponse
-  createCollectionsPageLocalization(data: CollectionsPageInput, id: ID, locale: I18NLocaleCode): CollectionsPageEntityResponse
   createContactCard(data: ContactCardInput!, locale: I18NLocaleCode): ContactCardEntityResponse
   createContactCardLocalization(data: ContactCardInput, id: ID, locale: I18NLocaleCode): ContactCardEntityResponse
   createContentPage(data: ContentPageInput!, locale: I18NLocaleCode): ContentPageEntityResponse
   createContentPageLocalization(data: ContentPageInput, id: ID, locale: I18NLocaleCode): ContentPageEntityResponse
-  createExhibitionsPageLocalization(data: ExhibitionsPageInput, id: ID, locale: I18NLocaleCode): ExhibitionsPageEntityResponse
-  createExplorePageLocalization(data: ExplorePageInput, id: ID, locale: I18NLocaleCode): ExplorePageEntityResponse
   createGeneralLocalization(data: GeneralInput, id: ID, locale: I18NLocaleCode): GeneralEntityResponse
-  createGetInvolvedPageLocalization(data: GetInvolvedPageInput, id: ID, locale: I18NLocaleCode): GetInvolvedPageEntityResponse
   createHomePageLocalization(data: HomePageInput, id: ID, locale: I18NLocaleCode): HomePageEntityResponse
   createMainPage(data: MainPageInput!, locale: I18NLocaleCode): MainPageEntityResponse
   createMainPageLocalization(data: MainPageInput, id: ID, locale: I18NLocaleCode): MainPageEntityResponse
@@ -1694,15 +1419,9 @@ type Mutation {
 
   """Create a new user"""
   createUsersPermissionsUser(data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
-  createVisitUsPageLocalization(data: VisitUsPageInput, id: ID, locale: I18NLocaleCode): VisitUsPageEntityResponse
-  deleteAboutUsPage(locale: I18NLocaleCode): AboutUsPageEntityResponse
-  deleteCollectionsPage(locale: I18NLocaleCode): CollectionsPageEntityResponse
   deleteContactCard(id: ID!, locale: I18NLocaleCode): ContactCardEntityResponse
   deleteContentPage(id: ID!, locale: I18NLocaleCode): ContentPageEntityResponse
-  deleteExhibitionsPage(locale: I18NLocaleCode): ExhibitionsPageEntityResponse
-  deleteExplorePage(locale: I18NLocaleCode): ExplorePageEntityResponse
   deleteGeneral(locale: I18NLocaleCode): GeneralEntityResponse
-  deleteGetInvolvedPage(locale: I18NLocaleCode): GetInvolvedPageEntityResponse
   deleteHomePage(locale: I18NLocaleCode): HomePageEntityResponse
   deleteMainPage(id: ID!, locale: I18NLocaleCode): MainPageEntityResponse
   deleteMenu(locale: I18NLocaleCode): MenuEntityResponse
@@ -1719,7 +1438,6 @@ type Mutation {
 
   """Delete an existing user"""
   deleteUsersPermissionsUser(id: ID!): UsersPermissionsUserEntityResponse!
-  deleteVisitUsPage(locale: I18NLocaleCode): VisitUsPageEntityResponse
 
   """Confirm an email users email address"""
   emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
@@ -1737,15 +1455,10 @@ type Mutation {
   Reset user password. Confirm with a code (resetToken from forgotPassword)
   """
   resetPassword(code: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
-  updateAboutUsPage(data: AboutUsPageInput!, locale: I18NLocaleCode): AboutUsPageEntityResponse
-  updateCollectionsPage(data: CollectionsPageInput!, locale: I18NLocaleCode): CollectionsPageEntityResponse
   updateContactCard(data: ContactCardInput!, id: ID!, locale: I18NLocaleCode): ContactCardEntityResponse
   updateContentPage(data: ContentPageInput!, id: ID!, locale: I18NLocaleCode): ContentPageEntityResponse
-  updateExhibitionsPage(data: ExhibitionsPageInput!, locale: I18NLocaleCode): ExhibitionsPageEntityResponse
-  updateExplorePage(data: ExplorePageInput!, locale: I18NLocaleCode): ExplorePageEntityResponse
   updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
   updateGeneral(data: GeneralInput!, locale: I18NLocaleCode): GeneralEntityResponse
-  updateGetInvolvedPage(data: GetInvolvedPageInput!, locale: I18NLocaleCode): GetInvolvedPageEntityResponse
   updateHomePage(data: HomePageInput!, locale: I18NLocaleCode): HomePageEntityResponse
   updateMainPage(data: MainPageInput!, id: ID!, locale: I18NLocaleCode): MainPageEntityResponse
   updateMenu(data: MenuInput!, locale: I18NLocaleCode): MenuEntityResponse
@@ -1762,7 +1475,6 @@ type Mutation {
 
   """Update an existing user"""
   updateUsersPermissionsUser(data: UsersPermissionsUserInput!, id: ID!): UsersPermissionsUserEntityResponse!
-  updateVisitUsPage(data: VisitUsPageInput!, locale: I18NLocaleCode): VisitUsPageEntityResponse
   upload(field: String, file: Upload!, info: FileInfoInput, ref: String, refId: ID): UploadFileEntityResponse!
 }
 
@@ -1887,17 +1599,12 @@ enum PublicationState {
 }
 
 type Query {
-  aboutUsPage(locale: I18NLocaleCode): AboutUsPageEntityResponse
-  collectionsPage(locale: I18NLocaleCode): CollectionsPageEntityResponse
   contactCard(id: ID, locale: I18NLocaleCode): ContactCardEntityResponse
   contactCards(filters: ContactCardFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, sort: [String] = []): ContactCardEntityResponseCollection
   contentPage(id: ID, locale: I18NLocaleCode): ContentPageEntityResponse
   contentPageBySlug(isPublished: Boolean, locale: I18NLocaleCode, slug: String): ContentPageEntityResponse
   contentPages(filters: ContentPageFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContentPageEntityResponseCollection
-  exhibitionsPage(locale: I18NLocaleCode): ExhibitionsPageEntityResponse
-  explorePage(locale: I18NLocaleCode): ExplorePageEntityResponse
   general(locale: I18NLocaleCode): GeneralEntityResponse
-  getInvolvedPage(locale: I18NLocaleCode): GetInvolvedPageEntityResponse
   homePage(locale: I18NLocaleCode): HomePageEntityResponse
   i18NLocale(id: ID): I18NLocaleEntityResponse
   i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): I18NLocaleEntityResponseCollection
@@ -1926,7 +1633,6 @@ type Query {
   usersPermissionsRoles(filters: UsersPermissionsRoleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsRoleEntityResponseCollection
   usersPermissionsUser(id: ID): UsersPermissionsUserEntityResponse
   usersPermissionsUsers(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserEntityResponseCollection
-  visitUsPage(locale: I18NLocaleCode): VisitUsPageEntityResponse
 }
 
 type ResponseCollectionMeta {
@@ -2481,53 +2187,3 @@ input UsersPermissionsUserInput {
 type UsersPermissionsUserRelationResponseCollection {
   data: [UsersPermissionsUserEntity!]!
 }
-
-type VisitUsPage {
-  createdAt: DateTime
-  highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
-  locale: String
-  localizations: VisitUsPageRelationResponseCollection
-  sections: [VisitUsPageSectionsDynamicZone]
-  seo: ComponentBlocksSeo
-  updatedAt: DateTime
-}
-
-type VisitUsPageEntity {
-  attributes: VisitUsPage
-  id: ID
-}
-
-type VisitUsPageEntityResponse {
-  data: VisitUsPageEntity
-}
-
-type VisitUsPageEntityResponseCollection {
-  data: [VisitUsPageEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input VisitUsPageFiltersInput {
-  and: [VisitUsPageFiltersInput]
-  createdAt: DateTimeFilterInput
-  highlights: ComponentBlocksContentPageItemFiltersInput
-  locale: StringFilterInput
-  localizations: VisitUsPageFiltersInput
-  not: VisitUsPageFiltersInput
-  or: [VisitUsPageFiltersInput]
-  seo: ComponentBlocksSeoFiltersInput
-  updatedAt: DateTimeFilterInput
-}
-
-input VisitUsPageInput {
-  highlights: [ComponentBlocksContentPageItemInput]
-  sections: [VisitUsPageSectionsDynamicZoneInput!]
-  seo: ComponentBlocksSeoInput
-}
-
-type VisitUsPageRelationResponseCollection {
-  data: [VisitUsPageEntity!]!
-}
-
-union VisitUsPageSectionsDynamicZone = ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsRichtextSection | ComponentSectionsTicketsSection | Error
-
-scalar VisitUsPageSectionsDynamicZoneInput

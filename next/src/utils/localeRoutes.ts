@@ -5,16 +5,8 @@ import { hasAttributes, isDefined, WithAttributes } from '@/src/utils/isDefined'
 const routesSkToEn = {
   // Routes
   '/': '/',
-  '/navstivte': '/visit-us',
-  '/vystavy': '/exhibitions',
-  '/o-galerii': '/about-gallery',
-  '/objavujte': '/explore',
-  '/zapojte-sa': '/get-involved',
-  '/zbierky': '/collections',
   '/detail': '/detail',
   '/vstupenky': '/tickets',
-  '/vystavy/archiv': '/exhibitions/archive',
-  '/zverejnovanie-informacii': '/disclosure-of-information',
   '/detail/ochrana-osobnych-udajov': '/detail/privacy-policy',
   // Tags
   vystavy: 'exhibitions',
