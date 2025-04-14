@@ -129,6 +129,9 @@ fragment MenuEntity on MenuEntity {
     menuLinks {
       ...MenuLinkItem
     }
+    searchLink {
+      ...MenuLinkItem
+    }
   }
 }
 
