@@ -24,6 +24,9 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
 
   const { slug, coverMedia, title, tags, perex, addedAt, dateFrom, dateTo } = sectionItem.attributes
 
+  const cleanPath = router.asPath.split('?')[0].split('#')[0] // Remove query parameters and hash fragments
+  // Using `asPath` ensures that dynamic segments e.g., [slug] are correctly replaced with actual values
+
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article className="relative flex min-h-full flex-col gap-y-yMd">
@@ -50,7 +53,7 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
               <Link
                 className=""
                 role="button"
-                href={`${router.pathname}/?tags=${tag.attributes.slug}`}
+                href={`/${cleanPath}/?tags=${tag.attributes.slug}`}
                 key={tag.attributes.slug}
               >
                 {tag.attributes.title}
