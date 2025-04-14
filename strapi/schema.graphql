@@ -1620,6 +1620,7 @@ type Menu {
   locale: String
   localizations: MenuRelationResponseCollection
   menuLinks(filters: ComponentBlocksMenuLinkItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksMenuLinkItem]
+  searchLink: ComponentBlocksMenuLinkItem
   updatedAt: DateTime
 }
 
@@ -1645,11 +1646,13 @@ input MenuFiltersInput {
   menuLinks: ComponentBlocksMenuLinkItemFiltersInput
   not: MenuFiltersInput
   or: [MenuFiltersInput]
+  searchLink: ComponentBlocksMenuLinkItemFiltersInput
   updatedAt: DateTimeFilterInput
 }
 
 input MenuInput {
   menuLinks: [ComponentBlocksMenuLinkItemInput]
+  searchLink: ComponentBlocksMenuLinkItemInput
 }
 
 type MenuRelationResponseCollection {

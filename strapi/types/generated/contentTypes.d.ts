@@ -1246,6 +1246,7 @@ export interface ApiMainPageMainPage extends Schema.CollectionType {
 export interface ApiMenuMenu extends Schema.SingleType {
   collectionName: 'menus';
   info: {
+    description: '';
     displayName: 'Menu';
     pluralName: 'menus';
     singularName: 'menu';
@@ -1269,6 +1270,12 @@ export interface ApiMenuMenu extends Schema.SingleType {
       'api::menu.menu'
     >;
     menuLinks: Attribute.Component<'blocks.menu-link-item', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    searchLink: Attribute.Component<'blocks.menu-link-item'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
