@@ -28,6 +28,8 @@ spec:
           envFrom:
             - secretRef:
                 name: ${BUILD_REPOSITORY_NAME}-general-secret
+            - secretRef:
+                name: city-gallery-strapi-revalidate-secret
             - configMapRef:
                 name: ${BUILD_REPOSITORY_NAME}-env
           readinessProbe:
