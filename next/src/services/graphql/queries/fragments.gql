@@ -220,6 +220,7 @@ fragment ContentPageEntity on ContentPageEntity {
     seo {
       ...Seo
     }
+    publishedAt
     localizations {
       data {
         attributes {
@@ -248,6 +249,7 @@ fragment GlobalSearchPageEntity on ContentPageEntity {
         ...TagEntity
       }
     }
+    publishedAt
   }
 }
 
