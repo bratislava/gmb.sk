@@ -231,11 +231,23 @@ fragment ContentPageEntity on ContentPageEntity {
   }
 }
 
-fragment CommonSearchPageEntity on ContentPageEntity {
+fragment GlobalSearchPageEntity on ContentPageEntity {
   id
   attributes {
     title
     slug
+    subtitle
+    perex
+    coverMedia {
+      data {
+        ...ImageEntity
+      }
+    }
+    tags {
+      data {
+        ...TagEntity
+      }
+    }
   }
 }
 
