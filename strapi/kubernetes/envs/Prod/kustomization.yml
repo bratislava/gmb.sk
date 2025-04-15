@@ -2,10 +2,12 @@ resources:
   - scaler.yml
   - ../../base
   - secrets/mailgun.secret.yml
-
+  - secrets/database.secret.yml
+  - secrets/meilisearch.secret.yml
+  - secrets/strapi.secret.yml
+  - secrets/revalidate.secret.yml
 generatorOptions:
   disableNameSuffixHash: true
-
 configMapGenerator:
   - name: ${BUILD_REPOSITORY_NAME}-env
     namespace: ${NAMESPACE}
