@@ -59,6 +59,7 @@ const ExhibitionArchiveSection = ({ title }: ExhibitionArchiveSectionProps) => {
         }}
         filters={
           <>
+            {/* TODO We could use the SearchBar component here */}
             <div>
               <input
                 className="h-fit max-w-full border-b-2 border-solid border-white/60 bg-transparent text-xl focus:border-white/100 focus:outline-none active:border-white/100"

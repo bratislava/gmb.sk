@@ -2,7 +2,7 @@ import cx from 'classnames'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useWindowSize } from 'usehooks-ts'
 
 import CloseIcon from '@/src/assets/icons/close-x.svg'
@@ -13,23 +13,29 @@ import AppLangSwitchers from '@/src/components/atoms/AppLangSwitchers'
 import Button from '@/src/components/atoms/Button'
 import Link from '@/src/components/atoms/Link'
 import SkipNavigation from '@/src/components/atoms/SkipNavigation'
-import SearchBar from '@/src/components/molecules/SearchBar'
 import { PageWrapperProps } from '@/src/components/pages/PageWrapper'
 import { useGeneralContext } from '@/src/utils/generalContext'
 import { getBreakpointValue } from '@/src/utils/getBreakpointValue'
+import { getMenuLinkProps } from '@/src/utils/getMenuLinkProps'
 import { getParsedMenu } from '@/src/utils/getParsedMenu'
 
 type NavigationProps = Pick<PageWrapperProps, 'page'>
 
 const Navigation = ({ page }: NavigationProps) => {
   const { t, i18n } = useTranslation()
+
   const router = useRouter()
+
   const { width: windowWidth } = useWindowSize()
   const { menu } = useGeneralContext()
 
-  const menuLinks = getParsedMenu(menu)
+  // Memoize derived state to avoid unnecessary re-renders
+  const menuLinks = useMemo(() => getParsedMenu(menu), [menu])
 
-  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
+  const { children: searchLinkLabel, href: searchLinkHref } = getMenuLinkProps(
+    menu?.data?.attributes?.searchLink
+  )
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -40,39 +46,12 @@ const Navigation = ({ page }: NavigationProps) => {
     }
   }, [router.events])
 
-  useEffect(() => {
-    router.events.on('routeChangeComplete', closeSearchBar)
-
-    return () => {
-      router.events.off('routeChangeComplete', closeSearchBar)
-    }
-  }, [router.events])
-
-  useEffect(() => {
-    document.body.style.overflow = isSearchBarOpen ? 'hidden' : 'auto'
-
-    return () => {
-      document.body.style.overflow = 'auto'
-    }
-  }, [isSearchBarOpen])
-
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
   }
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false)
-  }
-
-  const toggleSearchBar = () => {
-    setIsSearchBarOpen(!isSearchBarOpen)
-    if (isMobileMenuOpen) {
-      closeMobileMenu()
-    }
-  }
-
-  const closeSearchBar = () => {
-    setIsSearchBarOpen(false)
   }
 
   return (
@@ -136,31 +115,23 @@ const Navigation = ({ page }: NavigationProps) => {
             })}
           >
             {menuLinks.map((menuLink, index) => {
-              const label = menuLink?.title ?? menuLink?.mainPage?.title ?? ''
+              const { children: label, href, target, hasButtonStyle } = getMenuLinkProps(menuLink)
 
-              const slug = menuLink?.mainPage?.slug
-              // Add a leading slash to ensure that the link as an absolute path
-              const href = menuLink?.url ?? (slug && `/${slug}`) ?? '#'
-
-              const isLast = menuLinks.length - 1 === index
-              const hasButtonStyle = menuLink?.hasButtonStyle && isLast
-
-              const isExternal = href.startsWith('http')
-
-              // Add nbsp and arrow to indicate external link
-              // \u{0000FE0E} is Unicode variation selector that prevents symbols to be rendered as emojis on iOS
-              // https://stackoverflow.com/questions/8335724/unicode-characters-being-drawn-differently-in-ios5
+              const useButtonStyle = hasButtonStyle && menuLinks.length - 1 === index
 
               return (
                 <li key={menuLink.id} className="flex text-center">
-                  {hasButtonStyle ? (
+                  {useButtonStyle ? (
                     <Button size="small" href={href}>
                       {label}
                     </Button>
                   ) : (
-                    <Link href={href} target={isExternal ? '_blank' : '_self'}>
+                    <Link href={href} target={target}>
                       {label}
-                      {isExternal ? `\u00A0↗\u{0000FE0E}` : ''}
+                      {target === '_blank' ? `\u00A0↗\u{0000FE0E}` : ''}
+                      {/* Add nbsp and arrow to indicate external link
+                      \u{0000FE0E} is Unicode variation selector that prevents symbols to be rendered as emojis on iOS
+                      https://stackoverflow.com/questions/8335724/unicode-characters-being-drawn-differently-in-ios5 */}
                     </Link>
                   )}
                 </li>
@@ -168,9 +139,13 @@ const Navigation = ({ page }: NavigationProps) => {
             })}
 
             <li className="-mx-2 flex px-2">
-              <button type="button" onClick={toggleSearchBar} aria-label={t('common.search')}>
+              <Button
+                size="link"
+                href={searchLinkHref}
+                aria-label={searchLinkLabel ?? t('common.search')}
+              >
                 <SearchIcon className="dw-[36]" />
-              </button>
+              </Button>
             </li>
 
             <li className="flex w-5 justify-center">
@@ -182,8 +157,6 @@ const Navigation = ({ page }: NavigationProps) => {
 
       {/* empty div under navigation header */}
       <div className="relative w-full pb-nav" />
-
-      {isSearchBarOpen ? <SearchBar closeSearchBar={closeSearchBar} /> : null}
     </>
   )
 }

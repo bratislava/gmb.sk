@@ -35,10 +35,7 @@ const CardSection = ({
         <div
           className={cx(
             'grid grid-cols-1 gap-x-6 gap-y-14 px-xMd md:grid-cols-2 lg:grid-cols-3 lg:gap-x-10',
-            {
-              'py-yLg': !title,
-              'pb-yLg': title,
-            }
+            { 'py-yLg': !title, 'pb-yLg': title }
           )}
         >
           {[1, 2, 3].map((_, index) => (
@@ -48,19 +45,19 @@ const CardSection = ({
         </div>
       ) : sectionItems?.length ? (
         <>
-          <div
+          {/* Cards list */}
+          <ul
             className={cx(
               'grid grid-cols-1 gap-x-6 gap-y-14 px-xMd md:grid-cols-2 lg:grid-cols-3 lg:gap-x-10',
-              {
-                'py-yLg': !title,
-                'pb-yLg': title,
-              }
+              { 'py-yLg': !title, 'pb-yLg': title }
             )}
           >
             {sectionItems.map((item) => (
-              <Card key={item.attributes.slug} sectionItem={item} showTags={showTags} />
+              <li key={item.attributes.slug}>
+                <Card sectionItem={item} showTags={showTags} />
+              </li>
             ))}
-          </div>
+          </ul>
 
           {loadmoreButton && <div className="flex justify-center py-12">{loadmoreButton}</div>}
         </>

@@ -7,16 +7,11 @@ export const getParsedMenu = (menu: GeneralQuery['menu']) => {
   return menuLinks
     .filter(isDefined)
     .map((menuLink: MenuLinkItemFragment) => {
-      const { title, slug } = menuLink?.mainPage?.data?.attributes ?? {}
-
       return {
         id: menuLink.id,
         title: menuLink?.title,
         url: menuLink?.url,
-        mainPage: {
-          title,
-          slug,
-        },
+        mainPage: menuLink?.mainPage,
         hasButtonStyle: menuLink?.hasButtonStyle,
       }
     })
