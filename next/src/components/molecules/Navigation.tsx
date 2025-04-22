@@ -117,11 +117,11 @@ const Navigation = ({ page }: NavigationProps) => {
             {menuLinks.map((menuLink, index) => {
               const { children: label, href, target, hasButtonStyle } = getMenuLinkProps(menuLink)
 
-              const useButtonStyle = hasButtonStyle && menuLinks.length - 1 === index
+              const shouldRenderAsButton = hasButtonStyle && menuLinks.length - 1 === index
 
               return (
                 <li key={menuLink.id} className="flex text-center">
-                  {useButtonStyle ? (
+                  {shouldRenderAsButton ? (
                     <Button size="small" href={href}>
                       {label}
                     </Button>
