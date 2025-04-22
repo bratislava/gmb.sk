@@ -6,12 +6,10 @@ import Head from 'next/head'
 import Script from 'next/script'
 import { appWithTranslation, SSRConfig, useTranslation } from 'next-i18next'
 import { NextAdapter } from 'next-query-params'
-import { SWRConfig } from 'swr'
 import { QueryParamProvider } from 'use-query-params'
 
 import nextI18NextConfig from '@/next-i18next.config'
 import { isProd } from '@/src/utils/isProd'
-import { logError } from '@/src/utils/logger'
 
 const CustomApp = ({ Component, pageProps }: AppProps<SSRConfig>) => {
   const { t } = useTranslation()
@@ -32,23 +30,14 @@ const CustomApp = ({ Component, pageProps }: AppProps<SSRConfig>) => {
       </Head>
       <QueryClientProvider client={queryClient}>
         <QueryParamProvider adapter={NextAdapter}>
-          <SWRConfig
-            value={{
-              onError: (error: unknown) => {
-                logError(error)
-              },
-            }}
-          >
-            {isProd() ? (
-              <Script
-                strategy="afterInteractive"
-                data-domain="gmb.sk"
-                src="https://plausible.io/js/script.outbound-links.file-downloads.js"
-              />
-            ) : null}
-
-            <Component {...pageProps} />
-          </SWRConfig>
+          {isProd() ? (
+            <Script
+              strategy="afterInteractive"
+              data-domain="gmb.sk"
+              src="https://plausible.io/js/script.outbound-links.file-downloads.js"
+            />
+          ) : null}
+          <Component {...pageProps} />
         </QueryParamProvider>
       </QueryClientProvider>
     </>
