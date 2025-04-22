@@ -1,7 +1,5 @@
-import last from 'lodash/last'
-import useSWRInfinite from 'swr/infinite'
+import { useInfiniteQuery } from '@tanstack/react-query'
 
-import { GlobalSearchPageEntityFragment } from '@/src/services/graphql'
 import {
   globalSearchFetcher,
   GlobalSearchFilters,
@@ -11,51 +9,51 @@ import { hasAttributes, isDefined } from '@/src/utils/isDefined'
 export const PAGE_SIZE = 6
 
 export const useSearchResults = (searchValue: string, locale: string, tagSlugs?: string[]) => {
-  const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
-    (index, previousList: GlobalSearchPageEntityFragment[]) => {
-      if (index !== 0 && previousList.length === 0) {
-        return null
-      }
+  const options = {
+    searchValue,
+    pageSize: PAGE_SIZE,
+    tagSlugs,
+  } as Omit<GlobalSearchFilters, 'page'>
 
-      const variables: GlobalSearchFilters = {
-        searchValue,
-        pageSize: PAGE_SIZE,
-        page: index + 1,
-        tagSlugs,
-      }
+  const {
+    data,
+    hasNextPage,
+    fetchNextPage,
+    isLoading,
+    isFetchingNextPage,
+    error,
+    isError,
+    isFetching,
+    isPending,
+    isRefetching,
+    refetch,
+  } = useInfiniteQuery({
+    queryKey: ['SearchResultsInfinite', options, locale],
+    queryFn: ({ pageParam }) => globalSearchFetcher({ ...options, page: pageParam }, locale),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, _allPages, lastPageParam) =>
+      lastPage.hits.length < PAGE_SIZE ? undefined : lastPageParam + 1,
+    // Check whether we’ve reached the end of the results. If not, calculate the cursor for the next page
+  })
 
-      return ['SearchResults', variables, locale]
-    },
-    ([, variables, localeInner]) => globalSearchFetcher(variables, localeInner)
-  )
-
-  const filteredResults = data
-    ?.map((result) => result.hits)
-    .filter(isDefined)
-    .flat()
-    .filter(hasAttributes)
-
-  const isLoadingInitialData = !data && !error
-
-  const isLoadingMore = isLoadingInitialData || (size > 0 && data && data[size - 1] === undefined)
-
-  const isEmpty = filteredResults?.length === 0
-
-  const previousPagesLength = last(data)?.hits.length || 0
-
-  const isReachingEnd = isEmpty || previousPagesLength < PAGE_SIZE
+  const filteredResults =
+    data?.pages
+      ?.flatMap((result) => result.hits)
+      .filter(isDefined)
+      .filter(hasAttributes) ?? []
 
   return {
     data,
-    error,
-    mutate,
-    size,
-    setSize,
-    isValidating,
     filteredResults,
-    isLoadingInitialData,
-    isLoadingMore,
-    isEmpty,
-    isReachingEnd,
+    isError,
+    error,
+    hasNextPage,
+    fetchNextPage,
+    isLoading,
+    isFetchingNextPage,
+    isFetching,
+    isPending,
+    isRefetching,
+    refetch,
   }
 }
