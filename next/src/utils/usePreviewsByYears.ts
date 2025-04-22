@@ -1,8 +1,6 @@
-import last from 'lodash/last'
-import useSWRInfinite from 'swr/infinite'
+import { useInfiniteQuery } from '@tanstack/react-query'
 
-import { SectionItemEntityFragment } from '@/src/services/graphql'
-import { archiveFetcher } from '@/src/services/meili/fetchers/archiveFetcher'
+import { archiveFetcher, ArchiveFilters } from '@/src/services/meili/fetchers/archiveFetcher'
 import { hasAttributes, isDefined } from '@/src/utils/isDefined'
 
 export const PAGE_SIZE = 6
@@ -16,52 +14,50 @@ export const usePreviewsByYears = ({
   activeYears: string[]
   locale: string
 }) => {
-  const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
-    (index, previousList: SectionItemEntityFragment[]) => {
-      if (index !== 0 && previousList.length === 0) {
-        return null
-      }
+  const options = {
+    searchValue,
+    pageSize: PAGE_SIZE,
+    years: activeYears,
+  } as Omit<ArchiveFilters, 'page'>
 
-      const variables = {
-        pageSize: PAGE_SIZE,
-        page: index + 1,
-        activeYears,
-        searchValue,
-        years: activeYears,
-      }
+  const {
+    data,
+    isError,
+    error,
+    hasNextPage,
+    fetchNextPage,
+    isLoading,
+    isFetchingNextPage,
+    isFetching,
+    isPending,
+    isRefetching,
+    refetch,
+  } = useInfiniteQuery({
+    queryKey: ['PreviewsByYears', options, locale],
+    queryFn: ({ pageParam }) => archiveFetcher({ ...options, page: pageParam }, locale),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, _allPages, lastPageParam) =>
+      lastPage.hits.length < PAGE_SIZE ? undefined : lastPageParam + 1,
+  })
 
-      return ['PreviewsByYears', variables, locale]
-    },
-    ([, variables, localeInner]) => archiveFetcher(variables, localeInner)
-  )
-
-  const filteredPages = data
-    ?.map((page) => page.hits)
-    .filter(isDefined)
-    .flat()
-    .filter(hasAttributes)
-
-  const isLoadingInitialData = !data && !error
-
-  const isLoadingMore = isLoadingInitialData || (size > 0 && data && data[size - 1] === undefined)
-
-  const isEmpty = filteredPages?.length === 0
-
-  const previousPagesLength = last(data)?.hits.length || 0
-
-  const isReachingEnd = isEmpty || previousPagesLength < PAGE_SIZE
+  const filteredPages =
+    data?.pages
+      ?.flatMap((page) => page.hits)
+      .filter(isDefined)
+      .filter(hasAttributes) ?? []
 
   return {
     data,
-    error,
-    mutate,
-    size,
-    setSize,
-    isValidating,
     filteredPages,
-    isLoadingInitialData,
-    isLoadingMore,
-    isEmpty,
-    isReachingEnd,
+    isError,
+    error,
+    hasNextPage,
+    fetchNextPage,
+    isLoading,
+    isFetchingNextPage,
+    isFetching,
+    isPending,
+    isRefetching,
+    refetch,
   }
 }
