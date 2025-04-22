@@ -1,6 +1,6 @@
 /* eslint-disable xss/no-mixed-html */
+import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
-import useSWR from 'swr'
 
 const getOEmbedUrl = (url: string) => {
   if (url.includes('soundcloud')) {
@@ -49,13 +49,20 @@ type ParsedEmbedHtml = string | JSX.Element | JSX.Element[]
 const Audio = ({ url }: AudioProps) => {
   const { t } = useTranslation()
 
-  const { data: oembedHtml, error } = useSWR<ParsedEmbedHtml, Error>(url, fetchOEmbedHtml)
+  const {
+    data: oembedHtml,
+    error,
+    isLoading,
+  } = useQuery<ParsedEmbedHtml, Error>({
+    queryKey: ['audio', url],
+    queryFn: () => fetchOEmbedHtml(url),
+  })
 
   if (error) {
     return <div>{t('common.error')}</div>
   }
 
-  if (!oembedHtml) {
+  if (isLoading) {
     return <div>{t('common.loading')}</div>
   }
 
