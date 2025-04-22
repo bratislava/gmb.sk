@@ -5,6 +5,7 @@ import DisclosureSection from '@/src/components/molecules/sections/DisclosureSec
 import ExhibitionArchiveSection from '@/src/components/molecules/sections/ExhibitionArchiveSection'
 import ExhibitionsSection from '@/src/components/molecules/sections/ExhibitionsSection'
 import ExploreSection from '@/src/components/molecules/sections/ExploreSection'
+import GlobalSearchSection from '@/src/components/molecules/sections/GlobalSearchSection'
 import HighlightsSection from '@/src/components/molecules/sections/HighlightsSection'
 import MapSection from '@/src/components/molecules/sections/MapSection'
 import NewsletterSection from '@/src/components/molecules/sections/NewsletterSection'
@@ -237,6 +238,15 @@ const MainPage = ({
                 title={section.title ?? undefined}
                 anchor={getAnchor(section.submenuTitle)}
                 additionalFilesSection={section?.additionalFilesSection}
+                key={`${section.__typename}-${section.id}`}
+              />
+            )
+          }
+
+          if (section.__typename === 'ComponentSectionsGlobalSearchSection') {
+            return (
+              <GlobalSearchSection
+                title={section.title ?? undefined}
                 key={`${section.__typename}-${section.id}`}
               />
             )

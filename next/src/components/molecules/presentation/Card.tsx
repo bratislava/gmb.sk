@@ -49,16 +49,20 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
             dateTo: dateTo as string,
           }) && <span className="pr-2 text-nav uppercase text-red-600">{t('common.today')}!</span>}
           <div className="z-[1] flex grow flex-wrap gap-x-6 gap-y-3">
-            {tags?.data.filter(hasAttributes).map((tag) => (
-              <Link
-                className=""
-                role="button"
-                href={`/${cleanPath}/?tags=${tag.attributes.slug}`}
-                key={tag.attributes.slug}
-              >
-                {tag.attributes.title}
-              </Link>
-            ))}
+            {tags?.data.filter(hasAttributes).map((tag) => {
+              const path = `${cleanPath}/?tags=${tag.attributes.slug}`
+
+              return (
+                <Link
+                  className=""
+                  role="button"
+                  href={router.asPath.startsWith('/') ? path : `/${path}`}
+                  key={tag.attributes.slug}
+                >
+                  {tag.attributes.title}
+                </Link>
+              )
+            })}
           </div>
           {addedAt && (
             <div className="shrink-0 text-btn text-gmbGray">
