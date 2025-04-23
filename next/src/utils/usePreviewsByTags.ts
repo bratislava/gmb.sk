@@ -47,6 +47,7 @@ export const usePreviewsByTags = ({
     ...tagSlugsVariables,
     ...activePlacesVariables,
   } as Omit<PreviewsByTagsQueryVariables, 'offset'>
+  // Omit offset from options as it will be calculated dynamically based on pageParam in the queryFn
 
   const {
     data,
