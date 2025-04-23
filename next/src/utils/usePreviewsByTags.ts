@@ -62,7 +62,7 @@ export const usePreviewsByTags = ({
     isRefetching,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ['PreviewByTags', options, locale],
+    queryKey: ['PreviewsByTags', options, locale],
     queryFn: ({ pageParam }) =>
       client.PreviewsByTags({ ...options, offset: pageParam * PAGE_SIZE }),
     initialPageParam: 0, // This is required in v5
