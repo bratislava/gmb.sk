@@ -53,7 +53,7 @@ const ExhibitionsSection = ({
   const [activePlaces, setActivePlaces] = useState<string[]>([])
   const initialTags = tagsProgram?.map((tag) => tag.attributes.slug) ?? []
 
-  const { size, setSize, filteredPages, isLoadingInitialData, isReachingEnd, isLoadingMore } =
+  const { filteredPages, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage } =
     usePreviewsByTags({
       activeTags: activeTags.length > 0 ? activeTags : initialTags,
       activePlaces,
@@ -132,16 +132,15 @@ const ExhibitionsSection = ({
           </div>
           <CardSection
             sectionItems={filteredPages}
-            isLoading={isLoadingInitialData}
+            isLoading={isLoading}
             loadmoreButton={
-              !isReachingEnd && (
+              hasNextPage ? (
                 <div className="flex justify-center py-12">
-                  {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-                  <Button onClick={() => setSize(size + 1)} disabled={isLoadingMore}>
+                  <Button onClick={fetchNextPage} disabled={isFetchingNextPage}>
                     {t('common.exploreMoreContent')}
                   </Button>
                 </div>
-              )
+              ) : null
             }
             showTags
           />
