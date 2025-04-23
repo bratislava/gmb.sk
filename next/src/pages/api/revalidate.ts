@@ -18,41 +18,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Response>) => {
       const contentPageUrl = `/detail/${payload?.entry?.slug}`
       const ticketsPageUrl = `/vstupenky/${payload?.entry?.slug}`
 
-      await Promise.all([
-        res.revalidate(contentPageUrl),
-        res.revalidate(ticketsPageUrl),
-        res.revalidate('/'),
-      ])
+      await Promise.all([res.revalidate(contentPageUrl), res.revalidate(ticketsPageUrl)])
     }
 
-    if (payload?.model === 'about-us-page') {
-      console.log('api/revalidate:', `about-us-page`)
-      await res.revalidate('/o-galerii')
-    }
-
-    if (payload?.model === 'collections-page') {
-      console.log('api/revalidate:', `collections-page`)
-      await res.revalidate('/zbierky')
-    }
-
-    if (payload?.model === 'exhibitions-page') {
-      console.log('api/revalidate:', `exhibitions-page`)
-      await res.revalidate('/vystavy')
-    }
-
-    if (payload?.model === 'explore-page') {
-      console.log('api/revalidate:', `explore-page`)
-      await res.revalidate('/objavujte')
-    }
-
-    if (payload?.model === 'get-involved-page') {
-      console.log('api/revalidate:', `get-involved-page`)
-      await res.revalidate('/zapojte-sa')
-    }
-
-    if (payload?.model === 'visit-us-page') {
-      console.log('api/revalidate:', `visit-us-page`)
-      await res.revalidate('/navstivte')
+    if (payload?.model === 'main-page') {
+      console.log('api/revalidate:', `/${payload?.entry?.slug}`)
+      await res.revalidate(`/${payload?.entry?.slug}`)
     }
 
     /** Always revalidate index */
