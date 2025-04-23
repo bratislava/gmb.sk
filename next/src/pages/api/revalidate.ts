@@ -3,7 +3,10 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 type Response = { revalidated: boolean } | { message: string } | string
 type RequestPayload = { model: string; entry: { slug: string } }
 
-const revalidate = async (req: NextApiRequest, res: NextApiResponse<Response>) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse<Response>) => {
+  // Check for secret to confirm this is a valid request
+  console.log('api/revalidate Revalidate webhook called')
+
   if (req.query.secret !== process.env.REVALIDATE_SECRET_TOKEN) {
     return res.status(401).json({ message: 'Invalid token' })
   }
@@ -15,47 +18,25 @@ const revalidate = async (req: NextApiRequest, res: NextApiResponse<Response>) =
       const contentPageUrl = `/detail/${payload?.entry?.slug}`
       const ticketsPageUrl = `/vstupenky/${payload?.entry?.slug}`
 
-      await Promise.all([
-        res.revalidate(contentPageUrl),
-        res.revalidate(ticketsPageUrl),
-        res.revalidate('/'),
-      ])
+      await Promise.all([res.revalidate(contentPageUrl), res.revalidate(ticketsPageUrl)])
     }
 
-    if (payload?.model === 'about-us-page') {
-      await res.revalidate('/o-galerii')
-    }
-
-    if (payload?.model === 'collections-page') {
-      await res.revalidate('/zbierky')
-    }
-
-    if (payload?.model === 'exhibitions-page') {
-      await res.revalidate('/vystavy')
-    }
-
-    if (payload?.model === 'explore-page') {
-      await res.revalidate('/objavujte')
-    }
-
-    if (payload?.model === 'get-involved-page') {
-      await res.revalidate('/zapojte-sa')
-    }
-
-    if (payload?.model === 'visit-us-page') {
-      await res.revalidate('/navstivte')
+    if (payload?.model === 'main-page') {
+      console.log('api/revalidate:', `/${payload?.entry?.slug}`)
+      await res.revalidate(`/${payload?.entry?.slug}`)
     }
 
     /** Always revalidate index */
+    console.log('api/revalidate:', `homepage`)
     await res.revalidate('/')
 
     return res.json({ revalidated: true })
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.log('Error while revalidating ==>', error)
+    console.log('api/revalidate Error while revalidating ==>', error)
 
     return res.status(500).send('Error revalidating')
   }
 }
 
-export default revalidate
+export default handler
