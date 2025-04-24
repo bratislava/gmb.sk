@@ -14,7 +14,7 @@ const DisclosureSection = ({ title, anchor, additionalFilesSection }: Disclosure
 
   return (
     <Section title={title ?? t('footer.disclosureOfInformation')} anchor={anchor}>
-      <div className="px-xMd py-yLg">
+      <div className="px-xMd pb-yLg">
         <iframe
           title={t('footer.disclosureOfInformation')}
           src="https://zmluvy.egov.sk/egov/contracts/place:259/iframe/showZmluvy/showFaktury/showObjednavky/orderBy:datum/direction:desc"
