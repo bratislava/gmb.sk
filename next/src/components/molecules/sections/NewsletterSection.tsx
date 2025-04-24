@@ -11,9 +11,12 @@ import { generateImageSizes } from '@/src/utils/generateImageSizes'
 
 export interface NewsletterSectionProps {
   anchor?: string
+  title?: string
+  subTitle?: string
+  text?: string
 }
 
-const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
+const NewsletterSection = ({ anchor, title, subTitle, text }: NewsletterSectionProps) => {
   const { t } = useTranslation()
   const [email, setEmail] = useState('')
   const [agree, setAgree] = useState(false)
@@ -41,6 +44,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
     if (email.length === 0) {
       newEmailError = t('errors.emailMandatory')
     } else if (
+      // eslint-disable-next-line security/detect-unsafe-regex
       !/^(([^\s"(),.:;<>@[\\\]]+(\.[^\s"(),.:;<>@[\\\]]+)*)|(".+"))@((\[(?:\d{1,3}\.){3}\d{1,3}])|(([\dA-Za-z-]+\.)+[A-Za-z]{2,}))$/.test(
         String(email).toLowerCase()
       )
@@ -70,9 +74,9 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
     >
       <div className="lg:w-4/6 xl:w-3/6">
         <h2 className="text-xxl">
-          {t('newsletter.beInThePicture')}
+          {title ?? t('newsletter.beInThePicture')}
           <br />
-          <span className="font-regular">{t('newsletter.newsletter')}</span>
+          <span className="font-regular">{subTitle ?? t('newsletter.newsletter')}</span>
         </h2>
 
         <MailchimpSubscribe
@@ -89,7 +93,7 @@ const NewsletterSection = ({ anchor }: NewsletterSectionProps) => {
 
             return (
               <>
-                <p className="py-yLg text-xl">{t('newsletter.beInformedEvents')}</p>
+                <p className="py-yLg text-xl">{text ?? t('newsletter.beInformedEvents')}</p>
                 <label htmlFor="email-input" className="text-md">
                   {t('newsletter.insertEmail')}
                   <span className="pl-[6px] text-red-500">*</span>
