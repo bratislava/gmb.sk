@@ -60,16 +60,6 @@
       },
       "type": "richtext"
     },
-    "disclosureMoreFiles": {
-      "type": "component",
-      "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "sections.download-section"
-    },
     "socialLinks": {
       "type": "component",
       "repeatable": false,

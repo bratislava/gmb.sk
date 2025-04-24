@@ -707,12 +707,6 @@ export interface ApiGeneralGeneral extends Schema.SingleType {
       'admin::user'
     > &
       Attribute.Private;
-    disclosureMoreFiles: Attribute.Component<'sections.download-section'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     email: Attribute.Email &
       Attribute.SetPluginOptions<{
         i18n: {
