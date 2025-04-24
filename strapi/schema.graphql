@@ -1019,7 +1019,6 @@ input FloatFilterInput {
 
 type General {
   createdAt: DateTime
-  disclosureMoreFiles: ComponentSectionsDownloadSection
   email: String
   footerLinks1: ComponentBlocksLinks
   footerLinks2: ComponentBlocksLinks
@@ -1050,7 +1049,6 @@ type GeneralEntityResponseCollection {
 input GeneralFiltersInput {
   and: [GeneralFiltersInput]
   createdAt: DateTimeFilterInput
-  disclosureMoreFiles: ComponentSectionsDownloadSectionFiltersInput
   email: StringFilterInput
   footerLinks1: ComponentBlocksLinksFiltersInput
   footerLinks2: ComponentBlocksLinksFiltersInput
@@ -1067,7 +1065,6 @@ input GeneralFiltersInput {
 }
 
 input GeneralInput {
-  disclosureMoreFiles: ComponentSectionsDownloadSectionInput
   email: String
   footerLinks1: ComponentBlocksLinksInput
   footerLinks2: ComponentBlocksLinksInput

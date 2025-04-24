@@ -1184,7 +1184,6 @@ export type FloatFilterInput = {
 export type General = {
   __typename?: 'General';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
-  disclosureMoreFiles?: Maybe<ComponentSectionsDownloadSection>;
   email?: Maybe<Scalars['String']['output']>;
   footerLinks1?: Maybe<ComponentBlocksLinks>;
   footerLinks2?: Maybe<ComponentBlocksLinks>;
@@ -1218,7 +1217,6 @@ export type GeneralEntityResponseCollection = {
 export type GeneralFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<GeneralFiltersInput>>>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
-  disclosureMoreFiles?: InputMaybe<ComponentSectionsDownloadSectionFiltersInput>;
   email?: InputMaybe<StringFilterInput>;
   footerLinks1?: InputMaybe<ComponentBlocksLinksFiltersInput>;
   footerLinks2?: InputMaybe<ComponentBlocksLinksFiltersInput>;
@@ -1235,7 +1233,6 @@ export type GeneralFiltersInput = {
 };
 
 export type GeneralInput = {
-  disclosureMoreFiles?: InputMaybe<ComponentSectionsDownloadSectionInput>;
   email?: InputMaybe<Scalars['String']['input']>;
   footerLinks1?: InputMaybe<ComponentBlocksLinksInput>;
   footerLinks2?: InputMaybe<ComponentBlocksLinksInput>;
