@@ -552,19 +552,28 @@ input ComponentSectionsNewsSectionInput {
 
 type ComponentSectionsNewsletterSection {
   id: ID!
+  subTitle: String
   submenuTitle: String
+  text: String
+  title: String
 }
 
 input ComponentSectionsNewsletterSectionFiltersInput {
   and: [ComponentSectionsNewsletterSectionFiltersInput]
   not: ComponentSectionsNewsletterSectionFiltersInput
   or: [ComponentSectionsNewsletterSectionFiltersInput]
+  subTitle: StringFilterInput
   submenuTitle: StringFilterInput
+  text: StringFilterInput
+  title: StringFilterInput
 }
 
 input ComponentSectionsNewsletterSectionInput {
   id: ID
+  subTitle: String
   submenuTitle: String
+  text: String
+  title: String
 }
 
 type ComponentSectionsOpeningHoursSection {

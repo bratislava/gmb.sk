@@ -645,19 +645,28 @@ export type ComponentSectionsNewsSectionInput = {
 export type ComponentSectionsNewsletterSection = {
   __typename?: 'ComponentSectionsNewsletterSection';
   id: Scalars['ID']['output'];
+  subTitle?: Maybe<Scalars['String']['output']>;
   submenuTitle?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 export type ComponentSectionsNewsletterSectionFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentSectionsNewsletterSectionFiltersInput>>>;
   not?: InputMaybe<ComponentSectionsNewsletterSectionFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentSectionsNewsletterSectionFiltersInput>>>;
+  subTitle?: InputMaybe<StringFilterInput>;
   submenuTitle?: InputMaybe<StringFilterInput>;
+  text?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
 };
 
 export type ComponentSectionsNewsletterSectionInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
+  subTitle?: InputMaybe<Scalars['String']['input']>;
   submenuTitle?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ComponentSectionsOpeningHoursSection = {
