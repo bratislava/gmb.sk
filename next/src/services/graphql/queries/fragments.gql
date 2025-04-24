@@ -466,7 +466,10 @@ fragment NewsSection on ComponentSectionsNewsSection {
 
 fragment NewsletterSection on ComponentSectionsNewsletterSection {
   id
+  title
+  subTitle
   submenuTitle
+  text
 }
 
 fragment RichtextSection on ComponentSectionsRichtextSection {
