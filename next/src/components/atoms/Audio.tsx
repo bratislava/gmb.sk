@@ -52,7 +52,7 @@ const Audio = ({ url }: AudioProps) => {
   const {
     data: oembedHtml,
     error,
-    isLoading,
+    isPending, // Standard in v5 (isLoading is a subset of isPending)
   } = useQuery<ParsedEmbedHtml, Error>({
     queryKey: ['Audio', url],
     queryFn: () => fetchOEmbedHtml(url),
@@ -62,7 +62,7 @@ const Audio = ({ url }: AudioProps) => {
     return <div>{t('common.error')}</div>
   }
 
-  if (isLoading) {
+  if (isPending) {
     return <div>{t('common.loading')}</div>
   }
 
