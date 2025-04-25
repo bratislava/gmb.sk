@@ -52,7 +52,7 @@ const Audio = ({ url }: AudioProps) => {
   const {
     data: oembedHtml,
     error,
-    isPending, // Standard in v5 (isLoading is a subset of isPending)
+    isPending,
   } = useQuery<ParsedEmbedHtml, Error>({
     queryKey: ['Audio', url],
     queryFn: () => fetchOEmbedHtml(url),
