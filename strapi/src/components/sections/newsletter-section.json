@@ -2,12 +2,22 @@
   "collectionName": "components_sections_newsletter_sections",
   "info": {
     "displayName": "newsletter section",
-    "icon": "mail-bulk"
+    "icon": "mail-bulk",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "submenuTitle": {
       "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
     }
   }
 }

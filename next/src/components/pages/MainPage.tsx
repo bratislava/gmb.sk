@@ -117,6 +117,9 @@ const MainPage = ({
             return (
               <NewsletterSection
                 anchor={getAnchor(section.submenuTitle)}
+                title={section.title ?? undefined}
+                subtitle={section.subtitle ?? undefined}
+                text={section.text ?? undefined}
                 key={`${section.__typename}-${section.id}`}
               />
             )

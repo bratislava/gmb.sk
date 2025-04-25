@@ -339,11 +339,15 @@ export interface SectionsNewsSection extends Schema.Component {
 export interface SectionsNewsletterSection extends Schema.Component {
   collectionName: 'components_sections_newsletter_sections';
   info: {
+    description: '';
     displayName: 'newsletter section';
     icon: 'mail-bulk';
   };
   attributes: {
     submenuTitle: Attribute.String;
+    subtitle: Attribute.String;
+    text: Attribute.Text;
+    title: Attribute.String;
   };
 }
 
