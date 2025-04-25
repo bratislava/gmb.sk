@@ -4,14 +4,17 @@ import { useState } from 'react'
 import FileIcon from '@/src/assets/icons/file.svg'
 import Button from '@/src/components/atoms/Button'
 import { DownloadItemFragment } from '@/src/services/graphql'
+import { useGetDownloadAriaLabel } from '@/src/utils/useGetDownloadAriaLabel'
 
 interface DownloadProps {
   downloadItem: DownloadItemFragment
 }
 
 const DownloadItem = ({ downloadItem }: DownloadProps) => {
-  const [fetching, setFetching] = useState(false)
   const { t } = useTranslation()
+  const { getDownloadAriaLabel } = useGetDownloadAriaLabel()
+
+  const [fetching, setFetching] = useState(false)
 
   const file = downloadItem?.file.data?.attributes
 
@@ -48,12 +51,12 @@ const DownloadItem = ({ downloadItem }: DownloadProps) => {
         <Button
           disabled={fetching}
           onClick={() => download(file?.url, file?.name)}
-          aria-label={t('common.downloadFile', { file: file?.name })}
+          aria-label={getDownloadAriaLabel(downloadItem)}
           size="link"
           color="light"
           className="flex flex-col gap-yMd"
         >
-          <div className="relative left-[calc(-10*var(--size-factor))] size-fit">
+          <div aria-hidden className="relative left-[calc(-10*var(--size-factor))] size-fit">
             <FileIcon fill="#fff" className="relative dw-[96]" />
             <span className="absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 text-md uppercase">
               {file?.ext?.slice(1, 5)}
