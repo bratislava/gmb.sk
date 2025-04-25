@@ -12,11 +12,11 @@ import { generateImageSizes } from '@/src/utils/generateImageSizes'
 export interface NewsletterSectionProps {
   anchor?: string
   title?: string
-  subTitle?: string
+  subtitle?: string
   text?: string
 }
 
-const NewsletterSection = ({ anchor, title, subTitle, text }: NewsletterSectionProps) => {
+const NewsletterSection = ({ anchor, title, subtitle, text }: NewsletterSectionProps) => {
   const { t } = useTranslation()
   const [email, setEmail] = useState('')
   const [agree, setAgree] = useState(false)
@@ -76,7 +76,7 @@ const NewsletterSection = ({ anchor, title, subTitle, text }: NewsletterSectionP
         <h2 className="text-xxl">
           {title ?? t('newsletter.beInThePicture')}
           <br />
-          <span className="font-regular">{subTitle ?? t('newsletter.newsletter')}</span>
+          <span className="font-regular">{subtitle ?? t('newsletter.newsletter')}</span>
         </h2>
 
         <MailchimpSubscribe

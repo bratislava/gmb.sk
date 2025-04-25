@@ -467,7 +467,7 @@ fragment NewsSection on ComponentSectionsNewsSection {
 fragment NewsletterSection on ComponentSectionsNewsletterSection {
   id
   title
-  subTitle
+  subtitle
   submenuTitle
   text
 }

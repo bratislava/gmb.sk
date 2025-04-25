@@ -345,7 +345,7 @@ export interface SectionsNewsletterSection extends Schema.Component {
   };
   attributes: {
     submenuTitle: Attribute.String;
-    subTitle: Attribute.String;
+    subtitle: Attribute.String;
     text: Attribute.Text;
     title: Attribute.String;
   };
