@@ -47,7 +47,7 @@ const GlobalSearchSection = ({ title }: GlobalSearchSectionProps) => {
 
   // Paginated results
 
-  const { filteredResults, isLoadingInitialData, isLoadingMore, isReachingEnd, size, setSize } =
+  const { filteredResults, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } =
     useSearchResults(filters.searchValue, locale, filters?.tagSlugs)
 
   return (
@@ -61,15 +61,15 @@ const GlobalSearchSection = ({ title }: GlobalSearchSectionProps) => {
           <CardSection
             sectionItems={filteredResults?.filter(isDefined)}
             showTags
-            isLoading={isLoadingInitialData}
+            isLoading={isLoading}
             loadmoreButton={
-              !isReachingEnd && (
+              hasNextPage ? (
                 <div className="flex justify-center py-12">
-                  <Button onClick={() => setSize(size + 1)} disabled={isLoadingMore}>
+                  <Button onClick={fetchNextPage} disabled={isFetchingNextPage}>
                     {t('common.exploreMoreContent')}
                   </Button>
                 </div>
-              )
+              ) : null
             }
           />
         </div>

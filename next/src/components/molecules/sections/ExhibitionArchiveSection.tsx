@@ -33,7 +33,7 @@ const ExhibitionArchiveSection = ({ title }: ExhibitionArchiveSectionProps) => {
 
   const [activeYears, setActiveYears] = useState<string[]>([])
 
-  const { size, setSize, filteredPages, isLoadingInitialData, isLoadingMore, isReachingEnd } =
+  const { filteredPages, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } =
     usePreviewsByYears({
       searchValue,
       activeYears: activeYears.length > 0 ? activeYears : [],
@@ -78,15 +78,15 @@ const ExhibitionArchiveSection = ({ title }: ExhibitionArchiveSectionProps) => {
       <div className="relative min-h-screen bg-white">
         <CardSection
           sectionItems={filteredPages?.filter(isDefined)}
-          isLoading={isLoadingInitialData}
+          isLoading={isLoading}
           loadmoreButton={
-            !isReachingEnd && (
+            hasNextPage ? (
               <div className="flex justify-center py-12">
-                <Button onClick={() => setSize(size + 1)} disabled={isLoadingMore}>
+                <Button onClick={fetchNextPage} disabled={isFetchingNextPage}>
                   {t('common.exploreMoreContent')}
                 </Button>
               </div>
-            )
+            ) : null
           }
         />
       </div>

@@ -25,7 +25,7 @@ const ExploreSection = ({ title, tagsTypes, tagsProjects, tagsOthers }: ExploreS
   const [activeTags, setActiveTags] = useState<string[]>([])
   const initialTags = tagsTypes?.map((tag) => tag.attributes.slug) ?? []
 
-  const { size, setSize, filteredPages, isLoadingInitialData, isLoadingMore, isReachingEnd } =
+  const { filteredPages, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage } =
     usePreviewsByTags({
       activeTags: activeTags.length > 0 ? activeTags : initialTags,
       activePlaces: [],
@@ -59,18 +59,19 @@ const ExploreSection = ({ title, tagsTypes, tagsProjects, tagsOthers }: ExploreS
           />
         }
       />
+
       <div className="relative min-h-screen bg-white">
         <CardSection
           sectionItems={filteredPages?.filter(isDefined)}
-          isLoading={isLoadingInitialData}
+          isLoading={isLoading}
           loadmoreButton={
-            !isReachingEnd && (
+            hasNextPage ? (
               <div className="flex justify-center py-12">
-                <Button onClick={() => setSize(size + 1)} disabled={isLoadingMore}>
+                <Button onClick={fetchNextPage} disabled={isFetchingNextPage}>
                   {t('common.exploreMoreContent')}
                 </Button>
               </div>
-            )
+            ) : null
           }
           showTags
         />
