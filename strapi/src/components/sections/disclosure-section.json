@@ -11,11 +11,6 @@
     },
     "submenuTitle": {
       "type": "string"
-    },
-    "additionalFilesSection": {
-      "type": "component",
-      "repeatable": false,
-      "component": "sections.download-section"
     }
   }
 }

@@ -355,14 +355,12 @@ input ComponentSectionsContactCardsSectionInput {
 }
 
 type ComponentSectionsDisclosureSection {
-  additionalFilesSection: ComponentSectionsDownloadSection
   id: ID!
   submenuTitle: String
   title: String
 }
 
 input ComponentSectionsDisclosureSectionFiltersInput {
-  additionalFilesSection: ComponentSectionsDownloadSectionFiltersInput
   and: [ComponentSectionsDisclosureSectionFiltersInput]
   not: ComponentSectionsDisclosureSectionFiltersInput
   or: [ComponentSectionsDisclosureSectionFiltersInput]
@@ -371,7 +369,6 @@ input ComponentSectionsDisclosureSectionFiltersInput {
 }
 
 input ComponentSectionsDisclosureSectionInput {
-  additionalFilesSection: ComponentSectionsDownloadSectionInput
   id: ID
   submenuTitle: String
   title: String
