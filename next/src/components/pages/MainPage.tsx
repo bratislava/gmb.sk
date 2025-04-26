@@ -240,7 +240,6 @@ const MainPage = ({
               <DisclosureSection
                 title={section.title ?? undefined}
                 anchor={getAnchor(section.submenuTitle)}
-                additionalFilesSection={section?.additionalFilesSection}
                 key={`${section.__typename}-${section.id}`}
               />
             )
