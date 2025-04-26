@@ -439,9 +439,6 @@ fragment DisclosureSection on ComponentSectionsDisclosureSection {
   id
   title
   submenuTitle
-  additionalFilesSection {
-    ...DownloadSection
-  }
 }
 
 fragment PageSection on ComponentSectionsPageSection {
