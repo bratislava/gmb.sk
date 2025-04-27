@@ -622,6 +622,10 @@ fragment MainPageSections on MainPageSectionsDynamicZone {
     __typename
     ...GlobalSearchSection
   }
+  ... on ComponentSectionsDownloadSection {
+    __typename
+    ...DownloadSection
+  }
 }
 
 fragment MainContent on ContentPageMainContentDynamicZone {
