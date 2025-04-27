@@ -883,6 +883,7 @@ export interface ApiMainPageMainPage extends Schema.CollectionType {
         'sections.opening-hours-section',
         'sections.newsletter-section',
         'sections.news-section',
+        'sections.download-section',
         'sections.map-section',
         'sections.global-search-section'
       ]
