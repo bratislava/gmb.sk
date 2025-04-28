@@ -1,10 +1,10 @@
 import { useToggleState } from '@react-stately/toggle'
 import type { AriaCheckboxProps } from '@react-types/checkbox'
-import cx from 'classnames'
 import { useRef } from 'react'
 import { mergeProps, useCheckbox, useFocusRing, VisuallyHidden } from 'react-aria'
 
 import CheckIcon from '@/src/assets/icons/check.svg'
+import cn from '@/src/utils/cn'
 
 /* eslint-disable react/destructuring-assignment */
 
@@ -21,7 +21,7 @@ const Checkbox = (
   const { focusProps } = useFocusRing()
 
   const isDisabledOrReadonly = props.isDisabled || props.isReadOnly
-  const checkboxClassName = cx(
+  const checkboxClassName = cn(
     'mr-[14px] grid h-[var(--font-size-btn)] w-[var(--font-size-btn)] shrink-0 place-content-center border-2 text-black',
     {
       'border-white': !props.hasError,
@@ -30,7 +30,7 @@ const Checkbox = (
     }
   )
 
-  const labelClassName = cx('group flex items-center', { 'cursor-pointer': !isDisabledOrReadonly })
+  const labelClassName = cn('group flex items-center', { 'cursor-pointer': !isDisabledOrReadonly })
 
   return (
     // The eslint rule itself suggests nesting `input` inside the `label`, but is not able to detect it.

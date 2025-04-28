@@ -1,8 +1,8 @@
-import cx from 'classnames'
 import NextLink from 'next/link'
 import { useTranslation } from 'next-i18next'
 import { ReactNode } from 'react'
 
+import cn from '@/src/utils/cn'
 import { getRouteForLocale, isOfTypeRoute } from '@/src/utils/localeRoutes'
 
 type LinkProps = React.ComponentPropsWithoutRef<'a'> & {
@@ -69,7 +69,7 @@ const Link = ({
       rel={rel}
       onClick={handleClick}
       {...rest}
-      className={cx(
+      className={cn(
         {
           'group flex cursor-pointer items-center text-nav uppercase': !preserveStyle,
           'underline-offset-2 hover:underline': !noUnderline,

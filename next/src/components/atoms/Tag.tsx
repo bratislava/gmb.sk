@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cn from '@/src/utils/cn'
 
 interface ITagPRops {
   title: string
@@ -15,11 +15,9 @@ const Tag = ({ title, isActive = false, onClick, className }: ITagPRops) => {
       role="button"
       tabIndex={0}
       aria-pressed={isActive}
-      className={cx(
+      className={cn(
         'flex justify-center border-2 border-white px-[calc(30*var(--size-factor))] py-[calc(12*var(--size-factor))] text-center text-nav uppercase',
-        {
-          'bg-white text-gmbDark': isActive,
-        },
+        { 'bg-white text-gmbDark': isActive },
         className
       )}
     >

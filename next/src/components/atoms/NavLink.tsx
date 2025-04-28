@@ -1,8 +1,8 @@
-import cx from 'classnames'
 import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
 
 import Link from '@/src/components/atoms/Link'
+import cn from '@/src/utils/cn'
 
 export interface INavLinkProps {
   url: string
@@ -16,9 +16,7 @@ const NavLink = ({ url, children }: INavLinkProps) => {
   return (
     <Link
       href={url}
-      className={cx('whitespace-nowrap', {
-        'underline underline-offset-2': isActive,
-      })}
+      className={cn('whitespace-nowrap', { 'underline underline-offset-2': isActive })}
     >
       {children}
     </Link>

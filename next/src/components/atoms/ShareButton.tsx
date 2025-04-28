@@ -1,4 +1,3 @@
-import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 
 import EmailIcon from '@/src/assets/icons/social-platforms/email.svg'
@@ -7,6 +6,7 @@ import LinkedInIcon from '@/src/assets/icons/social-platforms/linkedin.svg'
 import TwitterIcon from '@/src/assets/icons/social-platforms/twitter.svg'
 import WhatsAppIcon from '@/src/assets/icons/social-platforms/whatsapp.svg'
 import Link from '@/src/components/atoms/Link'
+import cn from '@/src/utils/cn'
 import { getNextUrl } from '@/src/utils/getNextUrl'
 
 interface ShareButtonProps {
@@ -71,7 +71,7 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
       }}
       aria-label={translationMap[platform]}
     >
-      <span className={cx(className)}>
+      <span className={cn(className)}>
         <ShareIcon {...size} className="dw-[32]" />
       </span>
     </Link>
