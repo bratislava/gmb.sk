@@ -1,10 +1,10 @@
-import cx from 'classnames'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import supersub from 'remark-supersub'
 
 import ImageFigure from '@/src/components/atoms/ImageFigure'
 import Link from '@/src/components/atoms/Link'
+import cn from '@/src/utils/cn'
 
 export interface CityGalleryMarkdownProps {
   content: string | null | undefined
@@ -14,7 +14,7 @@ export interface CityGalleryMarkdownProps {
 
 const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMarkdownProps) => {
   return (
-    <div className={cx(className, 'relative')}>
+    <div className={cn('relative', className)}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm, supersub]}
         components={{

@@ -1,5 +1,6 @@
-import cx from 'classnames'
 import { useEffect, useState } from 'react'
+
+import cn from '@/src/utils/cn'
 
 interface IVideo {
   url: string
@@ -50,34 +51,16 @@ const Video = ({ className, url, size = 'default' }: IVideo) => {
 
   if (isYoutubeVideo && embedUrl) {
     return (
-      <figure
-        className={cx(className, {
-          'aspect-video w-full': size === 'default',
-        })}
-      >
-        <iframe
-          title="Youtube video"
-          className={cx('h-full w-full')}
-          src={embedUrl}
-          allowFullScreen
-        />
+      <figure className={cn({ 'aspect-video w-full': size === 'default' }, className)}>
+        <iframe title="Youtube video" src={embedUrl} allowFullScreen className="size-full" />
       </figure>
     )
   }
 
   if (isVimeoVideo && embedUrl) {
     return (
-      <figure
-        className={cx(className, {
-          'aspect-video w-full': size === 'default',
-        })}
-      >
-        <iframe
-          title="Vimeo video"
-          className={cx('h-full w-full')}
-          src={embedUrl}
-          allowFullScreen
-        />
+      <figure className={cn({ 'aspect-video w-full': size === 'default' }, className)}>
+        <iframe title="Vimeo video" src={embedUrl} allowFullScreen className="size-full" />
       </figure>
     )
   }

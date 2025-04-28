@@ -1,9 +1,9 @@
-import cx from 'classnames'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import React, { useCallback } from 'react'
 
 import { PageWrapperProps } from '@/src/components/pages/PageWrapper'
+import cn from '@/src/utils/cn'
 import { getEquivalentRouteInTargetLocale } from '@/src/utils/localeRoutes'
 
 type AppLangSwitchersProps = { showBothLanguages?: boolean } & Pick<PageWrapperProps, 'page'>
@@ -42,9 +42,9 @@ const AppLangSwitchers = ({ page, showBothLanguages }: AppLangSwitchersProps) =>
   )
 
   return (
-    <div className={cx('flex', { 'text-nav': !showBothLanguages })}>
+    <div className={cn('flex', { 'text-nav': !showBothLanguages })}>
       <button
-        className={cx('cursor-pointer', {
+        className={cn('cursor-pointer', {
           'font-semibold': currentLanguage === 'sk',
           hidden: currentLanguage === 'sk' && !showBothLanguages,
         })}
@@ -60,7 +60,7 @@ const AppLangSwitchers = ({ page, showBothLanguages }: AppLangSwitchersProps) =>
         </div>
       ) : null}
       <button
-        className={cx('cursor-pointer', {
+        className={cn('cursor-pointer', {
           'font-semibold': currentLanguage === 'en',
           hidden: currentLanguage === 'en' && !showBothLanguages,
         })}

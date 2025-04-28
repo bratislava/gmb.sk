@@ -1,6 +1,7 @@
-import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import { Dispatch, SetStateAction } from 'react'
+
+import cn from '@/src/utils/cn'
 
 type SearchBarProps = {
   input: string
@@ -12,7 +13,7 @@ const SearchBar = ({ input, setInput, className }: SearchBarProps) => {
   const { t } = useTranslation()
 
   return (
-    <div className={cx(className, 'bg-gmbDark')}>
+    <div className={cn('bg-gmbDark', className)}>
       <input
         className="h-fit max-w-full border-b-2 border-solid border-white/60 bg-transparent text-xl text-white focus:border-white/100 focus:outline-none active:border-white/100"
         placeholder={t('common.searchText')}

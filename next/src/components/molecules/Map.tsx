@@ -1,6 +1,5 @@
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import {
   FC,
@@ -20,6 +19,7 @@ import GmbLogoIcon from '@/src/assets/icons/map-icons/gmb-logo.svg'
 import MirbachovPalacIcon from '@/src/assets/icons/map-icons/mirbachov-palac.svg'
 import PalffyhoPalacIcon from '@/src/assets/icons/map-icons/palffyho-palac.svg'
 import Link from '@/src/components/atoms/Link'
+import cn from '@/src/utils/cn'
 import { useGeneralContext } from '@/src/utils/generalContext'
 
 interface MapProps {
@@ -387,11 +387,9 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
             <button
               type="button"
               key={tab.key}
-              className={cx(
+              className={cn(
                 'flex items-center space-x-2 px-4 py-2 uppercase underline-offset-2 hover:underline',
-                {
-                  underline: selectedTab?.key === tab.key,
-                }
+                { underline: selectedTab?.key === tab.key }
               )}
               onClick={() =>
                 selectedTab?.key === tab.key ? setSelectedTab(null) : setSelectedTab(tab)
@@ -436,14 +434,14 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
                   aria-label={gallery.localisedName}
                 >
                   <gallery.icon
-                    className={cx('group-hover:scale-0', {
+                    className={cn('group-hover:scale-0', {
                       'scale-0': selectedGallery?.key === gallery.key,
                     })}
                     width="64"
                     height="64"
                   />
                   <gallery.hoverIcon
-                    className={cx('absolute top-0 group-hover:scale-100', {
+                    className={cn('absolute top-0 group-hover:scale-100', {
                       'scale-100': selectedGallery?.key === gallery.key,
                       'scale-0': selectedGallery?.key !== gallery.key,
                     })}
@@ -494,7 +492,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
               `https://www.google.com/maps/place/${selectedFeaturePoint[1]},${selectedFeaturePoint[0]}`) ??
             '#'
           }
-          className={cx(
+          className={cn(
             'flex w-fit items-center border border-white px-8 py-2 uppercase hover:bg-white hover:text-gmbDark',
             { invisible: !(selectedPlaceUrl ?? selectedFeaturePoint) }
           )}
