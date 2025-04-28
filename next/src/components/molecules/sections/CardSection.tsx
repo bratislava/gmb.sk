@@ -1,4 +1,3 @@
-import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import { ReactNode } from 'react'
 
@@ -6,6 +5,7 @@ import Card from '@/src/components/molecules/presentation/Card'
 import CardSkeleton from '@/src/components/molecules/presentation/CardSkeleton'
 import Section from '@/src/components/molecules/sections/Section'
 import { SectionItemEntityFragment } from '@/src/services/graphql'
+import cn from '@/src/utils/cn'
 import { WithAttributes } from '@/src/utils/isDefined'
 
 interface CardsSectionProps {
@@ -33,7 +33,7 @@ const CardSection = ({
     <Section anchor={anchor} title={title}>
       {isLoading ? (
         <div
-          className={cx(
+          className={cn(
             'grid grid-cols-1 gap-x-6 gap-y-14 px-xMd md:grid-cols-2 lg:grid-cols-3 lg:gap-x-10',
             { 'py-yLg': !title, 'pb-yLg': title }
           )}
@@ -47,7 +47,7 @@ const CardSection = ({
         <>
           {/* Cards list */}
           <ul
-            className={cx(
+            className={cn(
               'grid grid-cols-1 gap-x-6 gap-y-14 px-xMd md:grid-cols-2 lg:grid-cols-3 lg:gap-x-10',
               { 'py-yLg': !title, 'pb-yLg': title }
             )}

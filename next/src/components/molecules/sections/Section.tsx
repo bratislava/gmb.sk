@@ -1,7 +1,7 @@
-import cx from 'classnames'
 import { ReactNode } from 'react'
 
 import SectionHeading from '@/src/components/atoms/SectionHeading'
+import cn from '@/src/utils/cn'
 
 export interface ISectionProps {
   title?: string
@@ -15,7 +15,7 @@ const Section = ({ title, anchor, color = 'light', children, className }: ISecti
   return (
     <section
       id={anchor}
-      className={cx(
+      className={cn(
         'relative scroll-mt-nav',
         {
           'bg-white': color === 'light',

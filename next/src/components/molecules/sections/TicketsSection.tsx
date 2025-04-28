@@ -1,10 +1,10 @@
-import cx from 'classnames'
 import Script from 'next/script'
 
 import CityGalleryMarkdown from '@/src/components/atoms/CityGalleryMarkdown'
 import Section from '@/src/components/molecules/sections/Section'
 import Ticket from '@/src/components/molecules/Ticket/Ticket'
 import { TicketEntityFragment } from '@/src/services/graphql'
+import cn from '@/src/utils/cn'
 import { WithAttributes } from '@/src/utils/isDefined'
 
 interface TicketsSectionProps {
@@ -20,12 +20,7 @@ const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) =
       {/* Load GoOut script to be able to show purchase form */}
       <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
 
-      <div
-        className={cx('px-xMd pb-yMd', {
-          'py-yMd': !title,
-          'pb-yMd': title,
-        })}
-      >
+      <div className={cn('px-xMd pb-yMd', { 'py-yMd': !title, 'pb-yMd': title })}>
         <CityGalleryMarkdown content={text} />
 
         <div className="mt-yMd flex flex-wrap justify-between lg:flex-nowrap lg:justify-items-stretch">
