@@ -1,4 +1,3 @@
-import cx from 'classnames'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
@@ -8,6 +7,7 @@ import Button from '@/src/components/atoms/Button'
 import Link from '@/src/components/atoms/Link'
 import Subtitle from '@/src/components/atoms/Subtitle'
 import { SectionItemEntityFragment } from '@/src/services/graphql'
+import cn from '@/src/utils/cn'
 import { generateImageSizes } from '@/src/utils/generateImageSizes'
 import { getContentPageColor } from '@/src/utils/getContentPageColor'
 import { hasAttributes, WithAttributes } from '@/src/utils/isDefined'
@@ -29,9 +29,7 @@ const ChessboardTile = ({ sectionItem, isLeft, showTags, customLinkHref }: Chess
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article
-      className={cx('relative min-h-chessboardTile lg:flex', {
-        'flex-row-reverse': isLeft,
-      })}
+      className={cn('relative min-h-chessboardTile lg:flex', { 'flex-row-reverse': isLeft })}
     >
       <div className="relative min-h-chessboardTile w-full bg-gmbLightGray lg:h-auto lg:w-1/2">
         {coverMedia?.data?.attributes ? (

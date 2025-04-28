@@ -1,6 +1,5 @@
-import cx from 'classnames'
-
 import { ImageWithFormatsEntityFragment } from '@/src/services/graphql'
+import cn from '@/src/utils/cn'
 import { WithAttributes } from '@/src/utils/isDefined'
 
 interface ImageGalleryTileProps {
@@ -16,11 +15,7 @@ const ImageGalleryTile = ({ image, className, onChoose, index }: ImageGalleryTil
   const { url, alternativeText } = image.attributes
 
   return (
-    <button
-      type="button"
-      className={cx(className, 'h-full w-full')}
-      onClick={() => onChoose(index)}
-    >
+    <button type="button" className={cn('size-full', className)} onClick={() => onChoose(index)}>
       <img src={url} alt={alternativeText ?? ''} className="size-full object-cover" />
     </button>
   )
