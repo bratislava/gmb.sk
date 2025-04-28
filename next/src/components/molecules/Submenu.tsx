@@ -1,4 +1,3 @@
-import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import { ReactNode, useEffect, useState } from 'react'
 
@@ -6,6 +5,7 @@ import ChevronDownIcon from '@/src/assets/icons/chevron-down.svg'
 import Button from '@/src/components/atoms/Button'
 import Link from '@/src/components/atoms/Link'
 import SubmenuModal from '@/src/components/molecules/SubmenuModal'
+import cn from '@/src/utils/cn'
 import { getAnchor } from '@/src/utils/getAnchor'
 import { onEnterOrSpaceKeyDown } from '@/src/utils/onEnterOrSpaceKeyDown'
 
@@ -74,14 +74,7 @@ const Submenu = ({ items, filters, clearFilters }: SubmenuProps) => {
             )}
           </div>
         </div>
-        <div
-          className={cx({
-            visible: isFilterOpen,
-            hidden: !isFilterOpen,
-          })}
-        >
-          {filters}
-        </div>
+        <div className={cn({ visible: isFilterOpen, hidden: !isFilterOpen })}>{filters}</div>
       </div>
 
       {/* Mobile submenu */}
