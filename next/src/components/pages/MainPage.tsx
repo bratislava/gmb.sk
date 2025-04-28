@@ -2,6 +2,7 @@ import { useTranslation } from 'next-i18next'
 
 import SeoHead from '@/src/components/atoms/SeoHead'
 import DisclosureSection from '@/src/components/molecules/sections/DisclosureSection'
+import DownloadSection from '@/src/components/molecules/sections/DownloadSection'
 import ExhibitionArchiveSection from '@/src/components/molecules/sections/ExhibitionArchiveSection'
 import ExhibitionsSection from '@/src/components/molecules/sections/ExhibitionsSection'
 import ExploreSection from '@/src/components/molecules/sections/ExploreSection'
@@ -240,7 +241,6 @@ const MainPage = ({
               <DisclosureSection
                 title={section.title ?? undefined}
                 anchor={getAnchor(section.submenuTitle)}
-                additionalFilesSection={section?.additionalFilesSection}
                 key={`${section.__typename}-${section.id}`}
               />
             )
@@ -250,6 +250,17 @@ const MainPage = ({
             return (
               <GlobalSearchSection
                 title={section.title ?? undefined}
+                key={`${section.__typename}-${section.id}`}
+              />
+            )
+          }
+
+          if (section.__typename === 'ComponentSectionsDownloadSection') {
+            return (
+              <DownloadSection
+                title={section.title}
+                anchor={getAnchor(section.submenuTitle)}
+                files={section?.files?.filter(isDefined)}
                 key={`${section.__typename}-${section.id}`}
               />
             )

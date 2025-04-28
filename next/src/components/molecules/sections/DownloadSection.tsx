@@ -1,16 +1,15 @@
 import DownloadItem from '@/src/components/atoms/DownloadItem'
 import Section from '@/src/components/molecules/sections/Section'
 import { DownloadItemFragment } from '@/src/services/graphql'
-import { isDefined } from '@/src/utils/isDefined'
 
 interface DownloadSectionProps {
   title?: string | null
-  files?: DownloadItemFragment[]
+  files?: DownloadItemFragment[] | null
   anchor?: string
 }
 
 const DownloadSection = ({ files, title, anchor }: DownloadSectionProps) => {
-  if (files?.length === 0) {
+  if (!files || files.length === 0) {
     return null
   }
 
@@ -18,7 +17,9 @@ const DownloadSection = ({ files, title, anchor }: DownloadSectionProps) => {
     <Section anchor={anchor} color="dark" className="px-xMd py-yLg">
       {title && <h2 className="pb-yLg text-xxl">{title}</h2>}
       <div className="grid grid-flow-row grid-cols-2 gap-x-xMd gap-y-yMd md:grid-cols-3 lg:grid-cols-5">
-        {files?.filter(isDefined).map((item) => <DownloadItem downloadItem={item} key={item.id} />)}
+        {files.map((item) => (
+          <DownloadItem downloadItem={item} key={item.id} />
+        ))}
       </div>
     </Section>
   )

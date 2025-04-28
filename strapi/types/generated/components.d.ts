@@ -225,7 +225,6 @@ export interface SectionsDisclosureSection extends Schema.Component {
     displayName: 'disclosure section';
   };
   attributes: {
-    additionalFilesSection: Attribute.Component<'sections.download-section'>;
     submenuTitle: Attribute.String;
     title: Attribute.String;
   };

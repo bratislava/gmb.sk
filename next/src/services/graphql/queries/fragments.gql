@@ -439,9 +439,6 @@ fragment DisclosureSection on ComponentSectionsDisclosureSection {
   id
   title
   submenuTitle
-  additionalFilesSection {
-    ...DownloadSection
-  }
 }
 
 fragment PageSection on ComponentSectionsPageSection {
@@ -624,6 +621,10 @@ fragment MainPageSections on MainPageSectionsDynamicZone {
   ... on ComponentSectionsGlobalSearchSection {
     __typename
     ...GlobalSearchSection
+  }
+  ... on ComponentSectionsDownloadSection {
+    __typename
+    ...DownloadSection
   }
 }
 
