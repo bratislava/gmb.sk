@@ -1,4 +1,3 @@
-import cx from 'classnames'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import ReactMarkdown from 'react-markdown'
@@ -6,6 +5,7 @@ import remarkGfm from 'remark-gfm'
 
 import Button from '@/src/components/atoms/Button'
 import styles from '@/src/components/molecules/Ticket/Ticket.module.css'
+import cn from '@/src/utils/cn'
 
 interface ITicketProps {
   title: string | null | undefined
@@ -22,9 +22,9 @@ const Ticket = ({ title, price, description, purchaseIdSelf, purchaseIdGift }: I
 
   return (
     <div
-      className={cx(
-        styles.ticket,
-        'goout-ticket relative mb-yMd flex min-h-ticket w-full flex-col justify-between bg-gmbLightGray p-8 last:mb-0 first-of-type:before:hidden last-of-type:after:hidden hover:bg-[#6cc7ed] lg:mb-0'
+      className={cn(
+        'goout-ticket relative mb-yMd flex min-h-ticket w-full flex-col justify-between bg-gmbLightGray p-8 last:mb-0 first-of-type:before:hidden last-of-type:after:hidden hover:bg-[#6cc7ed] lg:mb-0',
+        styles.ticket
       )}
     >
       <div className="pb-yMd">

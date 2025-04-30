@@ -1,6 +1,5 @@
-import cx from 'classnames'
-
 import Link from '@/src/components/atoms/Link'
+import cn from '@/src/utils/cn'
 
 type ButtonProps = React.DetailedHTMLProps<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -27,8 +26,7 @@ const Button = ({
   ...rest
 }: ButtonProps) => {
   const styles = {
-    className: cx(
-      className,
+    className: cn(
       'flex justify-center border-2 border-solid text-center text-btn font-medium uppercase',
       {
         'px-[calc(40*var(--size-factor))] py-[calc(14*var(--size-factor))]': size === 'small',
@@ -46,7 +44,8 @@ const Button = ({
         'border-none text-gmbDark': color === 'dark' && size === 'link',
         'border-none text-white': color === 'light' && size === 'link',
         'after:absolute after:inset-0': stretched,
-      }
+      },
+      className
     ),
   }
 

@@ -1,4 +1,3 @@
-import cx from 'classnames'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Image from 'next/image'
@@ -13,6 +12,7 @@ import { SidePanelTime } from '@/src/components/atoms/SidePanelTime'
 import Subtitle from '@/src/components/atoms/Subtitle'
 import SidePanel from '@/src/components/molecules/SidePanel'
 import { HighlightsItemEntityFragment } from '@/src/services/graphql'
+import cn from '@/src/utils/cn'
 import { getBreakpointValue } from '@/src/utils/getBreakpointValue'
 import { getContentPageColor } from '@/src/utils/getContentPageColor'
 import { getPurchaseId } from '@/src/utils/getPurchaseId'
@@ -124,11 +124,9 @@ const Highlight = ({ highlight }: HighlightProps) => {
             {/* Basic info on mobile. It shows only datetime, place and Buy tickets btn, if no override is present.
                 The classic sidepanel is not displayed on mobile screen. */}
             <div
-              className={cx(
+              className={cn(
                 'flex w-full flex-1 flex-col justify-between gap-y-yMd justify-self-stretch lg:hidden',
-                {
-                  hidden: renderOverride,
-                }
+                { hidden: renderOverride }
               )}
             >
               <div className="my-auto">

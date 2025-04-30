@@ -1,7 +1,7 @@
-import cx from 'classnames'
 import { useEffect, useState } from 'react'
 
 import ShareIcon from '@/src/assets/icons/share-nodes.svg'
+import cn from '@/src/utils/cn'
 import { getNextUrl } from '@/src/utils/getNextUrl'
 
 interface MobileShareButtonProps {
@@ -38,7 +38,7 @@ const MobileShareButton = ({ className, slug, title }: MobileShareButtonProps) =
   }
 
   return (
-    <button type="button" className={cx(className)} onClick={openShareDialog}>
+    <button type="button" className={cn(className)} onClick={openShareDialog}>
       <ShareIcon className="dw-[32]" />
     </button>
   )

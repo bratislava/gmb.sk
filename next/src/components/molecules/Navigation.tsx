@@ -1,4 +1,3 @@
-import cx from 'classnames'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
@@ -14,6 +13,7 @@ import Button from '@/src/components/atoms/Button'
 import Link from '@/src/components/atoms/Link'
 import SkipNavigation from '@/src/components/atoms/SkipNavigation'
 import { PageWrapperProps } from '@/src/components/pages/PageWrapper'
+import cn from '@/src/utils/cn'
 import { useGeneralContext } from '@/src/utils/generalContext'
 import { getBreakpointValue } from '@/src/utils/getBreakpointValue'
 import { getMenuLinkProps } from '@/src/utils/getMenuLinkProps'
@@ -108,7 +108,7 @@ const Navigation = ({ page }: NavigationProps) => {
 
           {/* Navigation links */}
           <ul
-            className={cx('lg:flex lg:gap-x-xMd', {
+            className={cn('lg:flex lg:gap-x-xMd', {
               'absolute left-0 top-nav flex w-full flex-col items-center justify-center gap-7 bg-white py-yLg':
                 isMobileMenuOpen && (!windowWidth || windowWidth < getBreakpointValue('lg')),
               hidden: !isMobileMenuOpen,
