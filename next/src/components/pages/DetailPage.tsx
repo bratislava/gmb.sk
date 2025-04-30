@@ -218,7 +218,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
           />
         </div>
       </div>
-      {slider && <ImgSwiper slides={slider?.medias?.data.filter(hasAttributes)} />}
+      {slider ? <ImgSwiper slides={slider?.medias?.data.filter(hasAttributes)} /> : null}
       {relatedContentFiltered.length > 0 ? (
         <ChessboardSection
           anchor={getAnchor(relatedContentSubmenuTitle)}
