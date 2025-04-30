@@ -23,7 +23,7 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
   const navigationStyle =
     'absolute cursor-pointer top-1/2 z-10 text-gmbDark font-[swiper-icons] text-[32px] font-heavy -mt-4 select-none'
 
-  return slides ? (
+  return slides?.length ? (
     <Swiper
       loop
       speed={600}
