@@ -42,6 +42,7 @@ export interface BlocksExhibitionArchive extends Schema.Component {
     perex: Attribute.Text;
     subtitle: Attribute.String;
     title: Attribute.String & Attribute.Required;
+    url: Attribute.String;
   };
 }
 
