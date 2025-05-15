@@ -289,7 +289,7 @@ input ComponentBlocksSeoInput {
 }
 
 type ComponentSectionsArchiveBannerSection {
-  banner: ComponentBlocksExhibitionArchive
+  banner: ComponentBlocksExhibitionArchive!
   id: ID!
   submenuTitle: String
   title: String
