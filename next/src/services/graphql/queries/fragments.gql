@@ -263,6 +263,7 @@ fragment ExhibitionArchive on ComponentBlocksExhibitionArchive {
       ...ImageEntity
     }
   }
+  url
 }
 
 fragment NewsItemEntity on ContentPageEntity {

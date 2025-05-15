@@ -42,6 +42,7 @@ export interface BlocksExhibitionArchive extends Schema.Component {
     perex: Attribute.Text;
     subtitle: Attribute.String;
     title: Attribute.String & Attribute.Required;
+    url: Attribute.String;
   };
 }
 
@@ -176,10 +177,12 @@ export interface BlocksSeo extends Schema.Component {
 export interface SectionsArchiveBannerSection extends Schema.Component {
   collectionName: 'components_sections_archive_banner_sections';
   info: {
+    description: '';
     displayName: 'archive banner section';
   };
   attributes: {
-    banner: Attribute.Component<'blocks.exhibition-archive'>;
+    banner: Attribute.Component<'blocks.exhibition-archive'> &
+      Attribute.Required;
     submenuTitle: Attribute.String;
     title: Attribute.String;
   };

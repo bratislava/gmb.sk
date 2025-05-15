@@ -20,12 +20,15 @@
       "type": "string"
     },
     "coverMedia": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": false
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "url": {
+      "type": "string"
     }
   }
 }

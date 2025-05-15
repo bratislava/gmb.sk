@@ -68,6 +68,7 @@ type ComponentBlocksExhibitionArchive {
   perex: String
   subtitle: String
   title: String!
+  url: String
 }
 
 input ComponentBlocksExhibitionArchiveFiltersInput {
@@ -78,6 +79,7 @@ input ComponentBlocksExhibitionArchiveFiltersInput {
   perex: StringFilterInput
   subtitle: StringFilterInput
   title: StringFilterInput
+  url: StringFilterInput
 }
 
 input ComponentBlocksExhibitionArchiveInput {
@@ -87,6 +89,7 @@ input ComponentBlocksExhibitionArchiveInput {
   perex: String
   subtitle: String
   title: String
+  url: String
 }
 
 type ComponentBlocksFileItem {
@@ -286,7 +289,7 @@ input ComponentBlocksSeoInput {
 }
 
 type ComponentSectionsArchiveBannerSection {
-  banner: ComponentBlocksExhibitionArchive
+  banner: ComponentBlocksExhibitionArchive!
   id: ID!
   submenuTitle: String
   title: String
