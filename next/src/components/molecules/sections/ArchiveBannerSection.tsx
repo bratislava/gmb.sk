@@ -4,12 +4,10 @@ import { ArchiveBannerSectionFragment, SectionItemEntityFragment } from '@/src/s
 import { WithAttributes } from '@/src/utils/isDefined'
 
 type ArchiveBannerSectionProps = Pick<ISectionProps, 'title' | 'anchor'> & {
-  banner?: ArchiveBannerSectionFragment['banner']
+  banner: ArchiveBannerSectionFragment['banner']
 }
 
 const ArchiveBannerSection = ({ title, anchor, banner }: ArchiveBannerSectionProps) => {
-  if (!banner) return null
-
   return (
     <Section title={title} anchor={anchor}>
       <ChessboardTile
