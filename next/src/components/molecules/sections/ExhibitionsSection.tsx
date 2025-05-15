@@ -165,8 +165,8 @@ const ExhibitionsSection = ({
           />
           {archiveBannerSection ? (
             <ArchiveBannerSection
-              title={archiveBannerSection?.title ?? undefined}
-              anchor={getAnchor(archiveBannerSection?.submenuTitle)}
+              title={archiveBannerSection.title ?? undefined}
+              anchor={getAnchor(archiveBannerSection.submenuTitle)}
               banner={archiveBannerSection?.banner}
             />
           ) : null}
