@@ -18,6 +18,7 @@ const PartnersSection = ({ partners, title, anchor }: PartnersSectionProps) => {
           <Link
             href={partner.attributes.link ?? '#'}
             key={partner.id}
+            aria-label={partner.attributes.title}
             preserveStyle
             noUnderline
             className="flex items-center justify-center overflow-hidden dh-[115] dw-[115]"
