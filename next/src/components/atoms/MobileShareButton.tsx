@@ -38,7 +38,7 @@ const MobileShareButton = ({ className, slug, title }: MobileShareButtonProps) =
   }
 
   return (
-    <button type="button" className={cn(className)} onClick={openShareDialog}>
+    <button type="button" className={cn(className)} onClick={openShareDialog} aria-label={title}>
       <ShareIcon className="dw-[32]" />
     </button>
   )
