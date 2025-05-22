@@ -163,7 +163,7 @@ const NewsletterSection = ({ anchor, title, subtitle, text }: NewsletterSectionP
       <div className="relative mb-yMd h-40 text-center lg:mb-0 lg:h-auto lg:w-2/6">
         <Image
           src={NewsletterImg}
-          alt="newsletter"
+          alt=""
           fill
           className="object-contain"
           sizes={generateImageSizes({ default: '33vw' })}
