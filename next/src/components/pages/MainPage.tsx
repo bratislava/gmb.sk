@@ -86,6 +86,7 @@ const MainPage = ({
   return (
     <PageWrapper page={hasAttributes(pageEntity) ? pageEntity : undefined}>
       <SeoHead title={title} seo={page?.seo} />
+      <h1 className="sr-only">{title}</h1>
 
       {page?.sections ? <Submenu items={submenu} /> : null}
 
