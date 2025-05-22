@@ -39,6 +39,7 @@ const HomePage = ({ page: pageResponse, title, newsItems }: HomePageProps) => {
   return (
     <PageWrapper>
       <SeoHead title={title} seo={page?.seo} />
+      <h1 className="sr-only">{t('common.bratislavaCityGallery')}</h1>
 
       <HighlightsSection
         highlights={page?.highlights
