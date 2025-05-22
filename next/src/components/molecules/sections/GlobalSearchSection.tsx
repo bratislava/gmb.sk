@@ -57,7 +57,7 @@ const GlobalSearchSection = ({ title }: GlobalSearchSectionProps) => {
 
         {/* Search results */}
         <div className="flex flex-col">
-          <h3 className="px-xMd text-xxl">{t('common.found')}</h3>
+          <h2 className="px-xMd text-xxl">{t('common.found')}</h2>
           <CardSection
             sectionItems={filteredResults?.filter(isDefined)}
             showTags
