@@ -51,6 +51,7 @@
   "fileItem.aria.downloadFile": "Download file",
   "fileItem.aria.downloadFileAriaLabel": "Download file {{title}}, format {{format}}, {{size}}",
   "footer.disclosureOfInformation": "Disclosure of information",
+  "galleryModal.aria.closeGallery": "Close image gallery",
   "localization.aria.english": "English",
   "localization.aria.slovak": "Slovensky",
   "map.bikeText": "Leave your bicycle at any of the bike stands or use bike sharing.",

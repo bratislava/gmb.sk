@@ -55,6 +55,7 @@
   "fileItem.aria.downloadFile": "Stiahnuť súbor",
   "fileItem.aria.downloadFileAriaLabel": "Stiahnuť súbor {{title}}, formát {{format}}, {{size}}",
   "footer.disclosureOfInformation": "Zverejňovanie informácií",
+  "galleryModal.aria.closeGallery": "Zavrieť galériu obrázkov",
   "localization.aria.english": "English",
   "localization.aria.slovak": "Slovensky",
   "map.bikeText": "Odložte si svoj bicykel v niektorom zo stojanov alebo využite zdieľané bicykle.",
