@@ -114,8 +114,13 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
         overlayClassName="bg-[rgba(0,0,0,0.9)] fixed inset-0 z-[51]"
       >
         <div className="relative flex h-full flex-col place-content-center text-white">
-          <button type="button" className="absolute right-xSm top-ySm z-10" onClick={closeModal}>
-            <CloseIcon className="dw-[25]" />
+          <button
+            type="button"
+            className="absolute right-xSm top-ySm z-10"
+            onClick={closeModal}
+            aria-label={t('galleryModal.aria.closeGallery')}
+          >
+            <CloseIcon className="dw-[25]" aria-hidden />
           </button>
           <div>
             <ReactImageGallery
