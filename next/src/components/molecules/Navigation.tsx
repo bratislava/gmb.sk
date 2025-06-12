@@ -17,7 +17,7 @@ import cn from '@/src/utils/cn'
 import { useGeneralContext } from '@/src/utils/generalContext'
 import { getBreakpointValue } from '@/src/utils/getBreakpointValue'
 import { getMenuLinkProps } from '@/src/utils/getMenuLinkProps'
-import { getParsedMenu } from '@/src/utils/getParsedMenu'
+import { isDefined } from '@/src/utils/isDefined'
 
 type NavigationProps = Pick<PageWrapperProps, 'page'>
 
@@ -30,7 +30,10 @@ const Navigation = ({ page }: NavigationProps) => {
   const { menu } = useGeneralContext()
 
   // Memoize derived state to avoid unnecessary re-renders
-  const menuLinks = useMemo(() => getParsedMenu(menu), [menu])
+  const menuLinks = useMemo(
+    () => menu?.data?.attributes?.menuLinks?.filter(isDefined) ?? [],
+    [menu]
+  )
 
   const { children: searchLinkLabel, href: searchLinkHref } = getMenuLinkProps(
     menu?.data?.attributes?.searchLink
@@ -121,17 +124,18 @@ const Navigation = ({ page }: NavigationProps) => {
 
               return (
                 <li key={menuLink.id} className="flex text-center">
+                  {/* Add nbsp and arrow to indicate external link */}
+                  {/* \u{0000FE0E} is Unicode variation selector that prevents symbols to be rendered as emojis on iOS */}
+                  {/* https://stackoverflow.com/questions/8335724/unicode-characters-being-drawn-differently-in-ios5 */}
                   {shouldRenderAsButton ? (
-                    <Button size="small" href={href}>
+                    <Button size="small" href={href} target={target}>
                       {label}
+                      {target === '_blank' ? `\u00A0↗\u{0000FE0E}` : ''}
                     </Button>
                   ) : (
                     <Link href={href} target={target}>
                       {label}
                       {target === '_blank' ? `\u00A0↗\u{0000FE0E}` : ''}
-                      {/* Add nbsp and arrow to indicate external link
-                      \u{0000FE0E} is Unicode variation selector that prevents symbols to be rendered as emojis on iOS
-                      https://stackoverflow.com/questions/8335724/unicode-characters-being-drawn-differently-in-ios5 */}
                     </Link>
                   )}
                 </li>

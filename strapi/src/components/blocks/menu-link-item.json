@@ -1,7 +1,8 @@
 {
   "collectionName": "components_blocks_menu_link_items",
   "info": {
-    "displayName": "menu link item"
+    "displayName": "menu link item",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -16,6 +17,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::main-page.main-page"
+    },
+    "contentPage": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::content-page.content-page"
     },
     "hasButtonStyle": {
       "type": "boolean",
