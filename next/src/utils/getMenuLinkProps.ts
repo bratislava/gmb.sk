@@ -5,20 +5,27 @@ import { MenuLinkItemFragment } from '@/src/services/graphql'
  */
 
 export const getMenuLinkProps = (link: MenuLinkItemFragment | null | undefined) => {
-  const { title, slug } = link?.mainPage?.data?.attributes ?? {}
-
-  const href = link?.url ?? (slug && `/${slug}`) ?? '#' // Add a leading slash to ensure that the link is an absolute path
-  const label = link?.title ?? title ?? ''
-  const target = href.startsWith('http') ? '_blank' : '_self'
+  let href = '#'
+  let label = link?.title ?? ''
+  let target: '_blank' | undefined
 
   if (!link) {
-    return { children: label, href } // TODO
+    return { children: label, href } // TODO?
   }
 
-  return {
-    children: label,
-    href,
-    target,
-    hasButtonStyle: link?.hasButtonStyle,
+  console.log('menu link', link)
+
+  if ('mainPage' in link && link.mainPage?.data?.attributes) {
+    label = link.title ?? link.mainPage.data.attributes.title
+    href = `/${link.mainPage.data.attributes.slug}`
+  } else if ('contentPage' in link && link.contentPage?.data?.attributes) {
+    label = link.title ?? link.contentPage.data.attributes.title
+    href = `/detail/${link.contentPage.data.attributes.slug}`
+  } else if (link.url) {
+    label = link.title ?? link.url
+    href = link.url
+    target = href.startsWith('http') ? '_blank' : undefined
   }
+
+  return { children: label, href, target, hasButtonStyle: link.hasButtonStyle }
 }

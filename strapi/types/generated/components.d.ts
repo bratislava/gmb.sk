@@ -98,9 +98,15 @@ export interface BlocksLinks extends Schema.Component {
 export interface BlocksMenuLinkItem extends Schema.Component {
   collectionName: 'components_blocks_menu_link_items';
   info: {
+    description: '';
     displayName: 'menu link item';
   };
   attributes: {
+    contentPage: Attribute.Relation<
+      'blocks.menu-link-item',
+      'oneToOne',
+      'api::content-page.content-page'
+    >;
     hasButtonStyle: Attribute.Boolean & Attribute.DefaultTo<false>;
     mainPage: Attribute.Relation<
       'blocks.menu-link-item',

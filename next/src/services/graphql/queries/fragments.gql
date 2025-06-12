@@ -135,6 +135,14 @@ fragment MenuEntity on MenuEntity {
   }
 }
 
+fragment MainPageSlugEntity on MainPageEntity {
+  id
+  attributes {
+    title
+    slug
+  }
+}
+
 fragment MainPageEntity on MainPageEntity {
   id
   __typename
@@ -158,7 +166,8 @@ fragment MainPageEntity on MainPageEntity {
   }
 }
 
-fragment MainPageSlugEntity on MainPageEntity {
+fragment ContentPageSlugEntity on ContentPageEntity {
+  id
   attributes {
     title
     slug
@@ -341,6 +350,11 @@ fragment MenuLinkItem on ComponentBlocksMenuLinkItem {
   mainPage {
     data {
       ...MainPageSlugEntity
+    }
+  }
+  contentPage {
+    data {
+      ...ContentPageSlugEntity
     }
   }
   hasButtonStyle

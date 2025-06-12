@@ -172,6 +172,7 @@ input ComponentBlocksLinksInput {
 }
 
 type ComponentBlocksMenuLinkItem {
+  contentPage: ContentPageEntityResponse
   hasButtonStyle: Boolean
   id: ID!
   mainPage: MainPageEntityResponse
@@ -181,6 +182,7 @@ type ComponentBlocksMenuLinkItem {
 
 input ComponentBlocksMenuLinkItemFiltersInput {
   and: [ComponentBlocksMenuLinkItemFiltersInput]
+  contentPage: ContentPageFiltersInput
   hasButtonStyle: BooleanFilterInput
   mainPage: MainPageFiltersInput
   not: ComponentBlocksMenuLinkItemFiltersInput
@@ -190,6 +192,7 @@ input ComponentBlocksMenuLinkItemFiltersInput {
 }
 
 input ComponentBlocksMenuLinkItemInput {
+  contentPage: ID
   hasButtonStyle: Boolean
   id: ID
   mainPage: ID
