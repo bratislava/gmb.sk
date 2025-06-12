@@ -1,0 +1,749 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::content-page.content-page",
+  "value": {
+    "uid": "api::content-page.content-page",
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "title",
+      "defaultSortBy": "updatedAt",
+      "defaultSortOrder": "DESC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "title": {
+        "edit": {
+          "label": "Nadpis",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "Nadpis",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "titleToShow": {
+        "edit": {
+          "label": "Nadpis so zalomením",
+          "description": "Nepovinné, použiť iba vtedy, keď je potrebné špeciálne zalomenie riadkov v nadpise. Aplikuje sa na tablete a desktope. Ak je prázdny, použije sa Nadpis.",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "titleToShow",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "useDatetimeAsSubtitle": {
+        "edit": {
+          "label": "Použiť dátum a čas ako podnadpis",
+          "description": "Zobrazí sa vo formáte \"Dátum od / Ča od\"",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "useDatetimeAsSubtitle",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "subtitle": {
+        "edit": {
+          "label": "Podnadpis",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "Podnadpis",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "slug": {
+        "edit": {
+          "label": "Slug",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "Slug",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "perex": {
+        "edit": {
+          "label": "Perex",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "perex",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "coverMedia": {
+        "edit": {
+          "label": "Ilustračný obrázok",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "Obrázok",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "color": {
+        "edit": {
+          "label": "Farba",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "Farba",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "inheritColorFromParent": {
+        "edit": {
+          "label": "Zdediť farbu z rodičovskej stránky",
+          "description": "Musí byť zároveň vybraná Rodičovská stránka v bočnom paneli.",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "inheritColorFromParent",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "mainContent": {
+        "edit": {
+          "label": "mainContent",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "mainContent",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "slider": {
+        "edit": {
+          "label": "Slider",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "slider",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "relatedContentTitle": {
+        "edit": {
+          "label": "Súvisiaci obsah – nadpis",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "relatedContentTitle",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "relatedContentSubmenuTitle": {
+        "edit": {
+          "label": "Súvisiaci obsah - nadpis v submenu",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "relatedContentSubmenuTitle",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "downloadSection": {
+        "edit": {
+          "label": "Na stiahnutie",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "downloadSection",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "dateFrom": {
+        "edit": {
+          "label": "Dátum od",
+          "description": "Vypniť iba pre programové stránky. Vyplniť vždy aj Dátum do.",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "dateFrom",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "dateTo": {
+        "edit": {
+          "label": "Dátum do",
+          "description": "Vypniť iba pre programové stránky. Vyplniť vždy aj Dátum od.",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "dateTo",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "timeFrom": {
+        "edit": {
+          "label": "Čas od",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "step": 5
+        },
+        "list": {
+          "label": "timeFrom",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "timeTo": {
+        "edit": {
+          "label": "Čas do",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "step": 5
+        },
+        "list": {
+          "label": "timeTo",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "showRemainingTime": {
+        "edit": {
+          "label": "Zobraziť zostávajúci čas",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "showRemainingTime",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "placeTitle": {
+        "edit": {
+          "label": "Miesto - špeciálny názov",
+          "description": "Slúži na prepísanie názvu miesta z vybraného v pravom bočnom paneli, alebo na zadanie špecifického netradičného miesta.",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "placeTitle",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "placeAddress": {
+        "edit": {
+          "label": "Miesto - špeciálna adresa",
+          "description": "Slúži na prepísanie názvu miesta z vybraného v pravom bočnom paneli, alebo na zadanie špecifického netradičného miesta.",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "placeAddress",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "sellTickets": {
+        "edit": {
+          "label": "Predaj vstupeniek",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "Predaj vstupeniek",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "purchaseId": {
+        "edit": {
+          "label": "Nákupný formulár GoOut",
+          "description": "URL musí začínať \"/listky/...\". Ak je pole prázdne, použije sa ID formulár paláca.",
+          "placeholder": "Príklad: /listky/workshop-pre-verejnost/hppn/",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "purchaseId",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "positions": {
+        "edit": {
+          "label": "Pozície",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "positions",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "partners": {
+        "edit": {
+          "label": "Partneri",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "partners",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "showShareButtons": {
+        "edit": {
+          "label": "Zobraziť tlačidlá pre Zdieľanie",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "showShareButtons",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "override": {
+        "edit": {
+          "label": "Ručné zadanie obsahu sidepanelu v highlighte",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "override",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "seo": {
+        "edit": {
+          "label": "Seo",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "seo",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "place": {
+        "edit": {
+          "label": "Miesto",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "place",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "tags": {
+        "edit": {
+          "label": "Tag",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "titleInternal"
+        },
+        "list": {
+          "label": "Tagy",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "parentPage": {
+        "edit": {
+          "label": "Rodičovská stránka",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "Rodičovská stránka",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "childPages": {
+        "edit": {
+          "label": "Dcérske stránky",
+          "description": "Súvisiaci obsah, napr. „sprievodný program k výstave“",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "childPages",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "addedAt": {
+        "edit": {
+          "label": "Pridané",
+          "description": "Vypniť iba pre informatívne stránky",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "addedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdBy": {
+        "edit": {
+          "label": "createdBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "createdBy",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedBy": {
+        "edit": {
+          "label": "updatedBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "updatedBy",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "coverMedia",
+        "title",
+        "slug",
+        "tags",
+        "color",
+        "parentPage",
+        "sellTickets",
+        "updatedAt"
+      ],
+      "edit": [
+        [
+          {
+            "name": "title",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "titleToShow",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "slug",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "subtitle",
+            "size": 8
+          },
+          {
+            "name": "useDatetimeAsSubtitle",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "perex",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "coverMedia",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "color",
+            "size": 6
+          },
+          {
+            "name": "inheritColorFromParent",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "mainContent",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "slider",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "relatedContentTitle",
+            "size": 6
+          },
+          {
+            "name": "relatedContentSubmenuTitle",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "downloadSection",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "addedAt",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "dateFrom",
+            "size": 4
+          },
+          {
+            "name": "dateTo",
+            "size": 4
+          },
+          {
+            "name": "showRemainingTime",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "timeFrom",
+            "size": 4
+          },
+          {
+            "name": "timeTo",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "place",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "placeTitle",
+            "size": 6
+          },
+          {
+            "name": "placeAddress",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "sellTickets",
+            "size": 4
+          },
+          {
+            "name": "purchaseId",
+            "size": 8
+          }
+        ],
+        [
+          {
+            "name": "positions",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "showShareButtons",
+            "size": 4
+          }
+        ],
+        [
+          {
+            "name": "partners",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "override",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "seo",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "tags",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "parentPage",
+            "size": 6
+          },
+          {
+            "name": "childPages",
+            "size": 6
+          }
+        ]
+      ]
+    }
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

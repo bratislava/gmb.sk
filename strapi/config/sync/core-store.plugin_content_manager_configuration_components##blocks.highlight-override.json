@@ -1,0 +1,56 @@
+{
+  "key": "plugin_content_manager_configuration_components::blocks.highlight-override",
+  "value": {
+    "uid": "blocks.highlight-override",
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "id",
+      "defaultSortBy": "id",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "highlightContent": {
+        "edit": {
+          "label": "Richtext v highlighte",
+          "description": "Ak je tento text definovaný, zobrazí sa v highlighte namiesto štandardných údajov.",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "highlightContent",
+          "searchable": false,
+          "sortable": false
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id"
+      ],
+      "edit": [
+        [
+          {
+            "name": "highlightContent",
+            "size": 12
+          }
+        ]
+      ]
+    },
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}
