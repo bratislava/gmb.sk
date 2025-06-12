@@ -21,7 +21,7 @@
       },
       "menuLinks": {
         "edit": {
-          "label": "menuLinks",
+          "label": "Odkazy v menu",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -35,7 +35,7 @@
       },
       "searchLink": {
         "edit": {
-          "label": "searchLink",
+          "label": "Vyhľadávanie",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -107,12 +107,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "menuLinks",
-        "createdAt",
-        "updatedAt"
-      ],
       "edit": [
         [
           {
@@ -126,6 +120,12 @@
             "size": 12
           }
         ]
+      ],
+      "list": [
+        "id",
+        "menuLinks",
+        "createdAt",
+        "updatedAt"
       ]
     },
     "uid": "api::menu.menu"

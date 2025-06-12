@@ -22,7 +22,7 @@
       },
       "title": {
         "edit": {
-          "label": "title",
+          "label": "Názov",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -36,7 +36,7 @@
       },
       "slug": {
         "edit": {
-          "label": "slug",
+          "label": "Slug",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -50,7 +50,7 @@
       },
       "tagCategory": {
         "edit": {
-          "label": "tagCategory",
+          "label": "Kategória",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -65,7 +65,7 @@
       },
       "contentPages": {
         "edit": {
-          "label": "contentPages",
+          "label": "Obsahové stránky",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -80,8 +80,8 @@
       },
       "titleInternal": {
         "edit": {
-          "label": "titleInternal",
-          "description": "",
+          "label": "Interný názov",
+          "description": "Pre ľahšie vyhľadanie tagu v Strapi",
           "placeholder": "",
           "visible": true,
           "editable": true
@@ -152,12 +152,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "slug",
-        "tagCategory"
-      ],
       "edit": [
         [
           {
@@ -185,6 +179,12 @@
             "size": 6
           }
         ]
+      ],
+      "list": [
+        "id",
+        "title",
+        "slug",
+        "tagCategory"
       ]
     }
   },

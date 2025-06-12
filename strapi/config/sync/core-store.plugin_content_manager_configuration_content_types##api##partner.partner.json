@@ -22,7 +22,7 @@
       },
       "title": {
         "edit": {
-          "label": "title",
+          "label": "Názov",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -36,7 +36,7 @@
       },
       "link": {
         "edit": {
-          "label": "link",
+          "label": "Link",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -50,7 +50,7 @@
       },
       "logo": {
         "edit": {
-          "label": "logo",
+          "label": "Logo",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -122,21 +122,17 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "link",
-        "logo"
-      ],
       "edit": [
         [
           {
             "name": "title",
-            "size": 6
-          },
+            "size": 12
+          }
+        ],
+        [
           {
             "name": "link",
-            "size": 6
+            "size": 12
           }
         ],
         [
@@ -145,6 +141,12 @@
             "size": 6
           }
         ]
+      ],
+      "list": [
+        "id",
+        "title",
+        "link",
+        "logo"
       ]
     }
   },

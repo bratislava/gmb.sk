@@ -22,7 +22,7 @@
       },
       "title": {
         "edit": {
-          "label": "title",
+          "label": "Nadpis",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -36,7 +36,7 @@
       },
       "submenuTitle": {
         "edit": {
-          "label": "submenuTitle",
+          "label": "Nadpis v submenu",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -50,7 +50,7 @@
       },
       "contacts": {
         "edit": {
-          "label": "contacts",
+          "label": "Kontakty",
           "description": "",
           "placeholder": "",
           "visible": true,

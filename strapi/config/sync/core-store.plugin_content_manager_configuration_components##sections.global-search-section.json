@@ -21,7 +21,7 @@
       },
       "title": {
         "edit": {
-          "label": "title",
+          "label": "Nadpis",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -43,7 +43,7 @@
         [
           {
             "name": "title",
-            "size": 6
+            "size": 12
           }
         ]
       ]

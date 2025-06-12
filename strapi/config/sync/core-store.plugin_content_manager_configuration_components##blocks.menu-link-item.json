@@ -21,8 +21,8 @@
       },
       "title": {
         "edit": {
-          "label": "title",
-          "description": "",
+          "label": "Text odkazu",
+          "description": "Ak je toto pole prázdne, text odkazu bude zodpovedať názvu zadanej entity (Hlavná alebo Obsahová stránka)) alebo zadanej URL (z poľa Url). Zo zvyšných polí treba vyplniť vždy iba jedno. Ak sa vyplní viacero, odkaz bude smerovať na prvé vyplnené pole a ostatné sa odignorujú.",
           "placeholder": "",
           "visible": true,
           "editable": true
@@ -35,7 +35,7 @@
       },
       "url": {
         "edit": {
-          "label": "url",
+          "label": "Url",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -49,7 +49,7 @@
       },
       "mainPage": {
         "edit": {
-          "label": "mainPage",
+          "label": "Hlavná stránka",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -64,7 +64,7 @@
       },
       "contentPage": {
         "edit": {
-          "label": "contentPage",
+          "label": "Obsahová stránka",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -79,8 +79,8 @@
       },
       "hasButtonStyle": {
         "edit": {
-          "label": "hasButtonStyle",
-          "description": "",
+          "label": "Zobraziť ako tlačidlo",
+          "description": "Aplikuje sa iba pre posledný odkaz v menu.",
           "placeholder": "",
           "visible": true,
           "editable": true
@@ -103,11 +103,7 @@
         [
           {
             "name": "title",
-            "size": 6
-          },
-          {
-            "name": "url",
-            "size": 6
+            "size": 12
           }
         ],
         [
@@ -116,13 +112,17 @@
             "size": 6
           },
           {
-            "name": "hasButtonStyle",
-            "size": 4
+            "name": "contentPage",
+            "size": 6
           }
         ],
         [
           {
-            "name": "contentPage",
+            "name": "url",
+            "size": 6
+          },
+          {
+            "name": "hasButtonStyle",
             "size": 6
           }
         ]

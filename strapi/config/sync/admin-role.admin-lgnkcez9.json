@@ -557,10 +557,12 @@
           "menuLinks.title",
           "menuLinks.url",
           "menuLinks.mainPage",
+          "menuLinks.contentPage",
           "menuLinks.hasButtonStyle",
           "searchLink.title",
           "searchLink.url",
           "searchLink.mainPage",
+          "searchLink.contentPage",
           "searchLink.hasButtonStyle"
         ],
         "locales": [
@@ -591,10 +593,12 @@
           "menuLinks.title",
           "menuLinks.url",
           "menuLinks.mainPage",
+          "menuLinks.contentPage",
           "menuLinks.hasButtonStyle",
           "searchLink.title",
           "searchLink.url",
           "searchLink.mainPage",
+          "searchLink.contentPage",
           "searchLink.hasButtonStyle"
         ],
         "locales": [
@@ -613,10 +617,12 @@
           "menuLinks.title",
           "menuLinks.url",
           "menuLinks.mainPage",
+          "menuLinks.contentPage",
           "menuLinks.hasButtonStyle",
           "searchLink.title",
           "searchLink.url",
           "searchLink.mainPage",
+          "searchLink.contentPage",
           "searchLink.hasButtonStyle"
         ],
         "locales": [

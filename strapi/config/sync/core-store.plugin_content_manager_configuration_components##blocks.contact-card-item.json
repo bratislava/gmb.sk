@@ -22,7 +22,7 @@
       },
       "contactCard": {
         "edit": {
-          "label": "contactCard",
+          "label": "Kontakt",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -45,7 +45,7 @@
         [
           {
             "name": "contactCard",
-            "size": 6
+            "size": 12
           }
         ]
       ]

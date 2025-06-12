@@ -22,7 +22,7 @@
       },
       "title": {
         "edit": {
-          "label": "title",
+          "label": "Názov",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -36,7 +36,7 @@
       },
       "slug": {
         "edit": {
-          "label": "slug",
+          "label": "Slug",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -50,7 +50,7 @@
       },
       "tags": {
         "edit": {
-          "label": "tags",
+          "label": "Tagy",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -123,29 +123,31 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "slug",
-        "tags"
-      ],
       "edit": [
         [
           {
             "name": "title",
-            "size": 6
-          },
+            "size": 12
+          }
+        ],
+        [
           {
             "name": "slug",
-            "size": 6
+            "size": 12
           }
         ],
         [
           {
             "name": "tags",
-            "size": 6
+            "size": 12
           }
         ]
+      ],
+      "list": [
+        "id",
+        "title",
+        "slug",
+        "tags"
       ]
     }
   },

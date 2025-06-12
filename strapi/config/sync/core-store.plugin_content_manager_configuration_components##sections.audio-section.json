@@ -50,7 +50,7 @@
       },
       "url": {
         "edit": {
-          "label": "URL",
+          "label": "Url",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -84,7 +84,7 @@
         [
           {
             "name": "url",
-            "size": 6
+            "size": 12
           }
         ]
       ]

@@ -28,7 +28,7 @@
           "editable": true
         },
         "list": {
-          "label": "title",
+          "label": "Nadpis",
           "searchable": true,
           "sortable": true
         }
@@ -42,7 +42,7 @@
           "editable": true
         },
         "list": {
-          "label": "slug",
+          "label": "Slug",
           "searchable": true,
           "sortable": true
         }
@@ -165,7 +165,7 @@
         "id",
         "title",
         "slug",
-        "seo"
+        "updatedAt"
       ]
     },
     "uid": "api::main-page.main-page"

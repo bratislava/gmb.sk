@@ -22,7 +22,7 @@
       },
       "title": {
         "edit": {
-          "label": "title",
+          "label": "Nadpis",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -36,7 +36,7 @@
       },
       "price": {
         "edit": {
-          "label": "price",
+          "label": "Cena",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -50,7 +50,7 @@
       },
       "description": {
         "edit": {
-          "label": "description",
+          "label": "Popis",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -64,7 +64,7 @@
       },
       "purchaseIdSelf": {
         "edit": {
-          "label": "purchaseIdSelf",
+          "label": "purchaseId - kúpiť pre seba",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -78,7 +78,7 @@
       },
       "purchaseIdGift": {
         "edit": {
-          "label": "purchaseIdGift",
+          "label": "purchaseId - kúpiť ako darček",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -150,19 +150,14 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "price",
-        "purchaseIdSelf",
-        "purchaseIdGift"
-      ],
       "edit": [
         [
           {
             "name": "title",
-            "size": 6
-          },
+            "size": 12
+          }
+        ],
+        [
           {
             "name": "price",
             "size": 4
@@ -184,6 +179,13 @@
             "size": 6
           }
         ]
+      ],
+      "list": [
+        "id",
+        "title",
+        "price",
+        "purchaseIdSelf",
+        "purchaseIdGift"
       ]
     }
   },
