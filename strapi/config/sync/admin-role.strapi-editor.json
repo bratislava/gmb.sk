@@ -1,0 +1,423 @@
+{
+  "name": "Editor",
+  "code": "strapi-editor",
+  "description": "Editors can manage and publish contents including those of other users.",
+  "permissions": [
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::content-page.content-page",
+      "properties": {
+        "fields": [
+          "title",
+          "subtitle",
+          "slug",
+          "perex",
+          "coverMedia",
+          "color",
+          "inheritColorFromParent",
+          "mainContent",
+          "slider.submenuTitle",
+          "slider.medias",
+          "relatedContentTitle",
+          "relatedContentSubmenuTitle",
+          "downloadSection.title",
+          "downloadSection.submenuTitle",
+          "downloadSection.files.title",
+          "downloadSection.files.file",
+          "dateFrom",
+          "dateTo",
+          "timeFrom",
+          "timeTo",
+          "showRemainingTime",
+          "placeTitle",
+          "placeAddress",
+          "purchaseId",
+          "positions.title",
+          "positions.names",
+          "partners.partner",
+          "override.highlightContent",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.keywords",
+          "place",
+          "tags",
+          "parentPage",
+          "childPages"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::content-page.content-page",
+      "properties": {
+        "fields": [
+          "title",
+          "subtitle",
+          "slug",
+          "perex",
+          "coverMedia",
+          "color",
+          "inheritColorFromParent",
+          "mainContent",
+          "slider.submenuTitle",
+          "slider.medias",
+          "relatedContentTitle",
+          "relatedContentSubmenuTitle",
+          "downloadSection.title",
+          "downloadSection.submenuTitle",
+          "downloadSection.files.title",
+          "downloadSection.files.file",
+          "dateFrom",
+          "dateTo",
+          "timeFrom",
+          "timeTo",
+          "showRemainingTime",
+          "placeTitle",
+          "placeAddress",
+          "purchaseId",
+          "positions.title",
+          "positions.names",
+          "partners.partner",
+          "override.highlightContent",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.keywords",
+          "place",
+          "tags",
+          "parentPage",
+          "childPages"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::content-page.content-page",
+      "properties": {
+        "fields": [
+          "title",
+          "subtitle",
+          "slug",
+          "perex",
+          "coverMedia",
+          "color",
+          "inheritColorFromParent",
+          "mainContent",
+          "slider.submenuTitle",
+          "slider.medias",
+          "relatedContentTitle",
+          "relatedContentSubmenuTitle",
+          "downloadSection.title",
+          "downloadSection.submenuTitle",
+          "downloadSection.files.title",
+          "downloadSection.files.file",
+          "dateFrom",
+          "dateTo",
+          "timeFrom",
+          "timeTo",
+          "showRemainingTime",
+          "placeTitle",
+          "placeAddress",
+          "purchaseId",
+          "positions.title",
+          "positions.names",
+          "partners.partner",
+          "override.highlightContent",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.keywords",
+          "place",
+          "tags",
+          "parentPage",
+          "childPages"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::home-page.home-page",
+      "properties": {
+        "fields": [
+          "highlights.contentPage",
+          "sections",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.keywords"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::home-page.home-page",
+      "properties": {
+        "fields": [
+          "highlights.contentPage",
+          "sections",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.keywords"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::home-page.home-page",
+      "properties": {
+        "fields": [
+          "highlights.contentPage",
+          "sections",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.keywords"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::partner.partner",
+      "properties": {
+        "fields": [
+          "title",
+          "link",
+          "logo"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::partner.partner",
+      "properties": {
+        "fields": [
+          "title",
+          "link",
+          "logo"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::partner.partner",
+      "properties": {
+        "fields": [
+          "title",
+          "link",
+          "logo"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::place.place",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "address",
+          "contentPages"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::place.place",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "address",
+          "contentPages"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::place.place",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "address",
+          "contentPages"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::tag-category.tag-category",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "tags"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::tag-category.tag-category",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "tags"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::tag-category.tag-category",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "tags"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::tag.tag",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "tagCategory",
+          "contentPages"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::tag.tag",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "tagCategory",
+          "contentPages"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::tag.tag",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "tagCategory",
+          "contentPages"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::ticket.ticket",
+      "properties": {
+        "fields": [
+          "title",
+          "price",
+          "description"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::ticket.ticket",
+      "properties": {
+        "fields": [
+          "title",
+          "price",
+          "description"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::ticket.ticket",
+      "properties": {
+        "fields": [
+          "title",
+          "price",
+          "description"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::upload.assets.copy-link",
+      "subject": null,
+      "properties": {},
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::upload.assets.create",
+      "subject": null,
+      "properties": {},
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::upload.assets.download",
+      "subject": null,
+      "properties": {},
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::upload.assets.update",
+      "subject": null,
+      "properties": {},
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "plugin::upload.read",
+      "subject": null,
+      "properties": {},
+      "conditions": [],
+      "actionParameters": null
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "Project manager",
+  "code": "meilisearch-lgnkdkc6",
+  "description": "Môže pridávať nových používateľov a má plnú kontrolu nad nastaveniami Meilisearch pluginu.\nUrčené pre: Projektových manažérov (použiť spolu s rolou Admin)",
+  "permissions": [
+    {
+      "action": "admin::roles.read",
+      "subject": null,
+      "properties": {},
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "admin::users.create",
+      "subject": null,
+      "properties": {},
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "admin::users.read",
+      "subject": null,
+      "properties": {},
+      "conditions": [],
+      "actionParameters": null
+    },
+    {
+      "action": "admin::users.update",
+      "subject": null,
+      "properties": {},
+      "conditions": [],
+      "actionParameters": null
+    }
+  ]
+}

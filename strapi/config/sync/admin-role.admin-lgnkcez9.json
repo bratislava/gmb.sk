@@ -1,0 +1,928 @@
+{
+  "name": "Admin",
+  "code": "admin-lgnkcez9",
+  "description": "Má plnú kontrolu nad úpravou všetkých obsahových typov (kolekcií aj jednoduchých), a plnú kontrolu nad nahrávaním súborov.\nTúto rolu dostávajú administrátori na strane klienta/mestskej organizácie.",
+  "permissions": [
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::contact-card.contact-card",
+      "properties": {
+        "fields": [
+          "name",
+          "position",
+          "email",
+          "phone1",
+          "phone2"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::contact-card.contact-card",
+      "properties": {
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::contact-card.contact-card",
+      "properties": {
+        "fields": [
+          "name",
+          "position",
+          "email",
+          "phone1",
+          "phone2"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::contact-card.contact-card",
+      "properties": {
+        "fields": [
+          "name",
+          "position",
+          "email",
+          "phone1",
+          "phone2"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::content-page.content-page",
+      "properties": {
+        "fields": [
+          "title",
+          "titleToShow",
+          "useDatetimeAsSubtitle",
+          "subtitle",
+          "slug",
+          "perex",
+          "coverMedia",
+          "color",
+          "inheritColorFromParent",
+          "mainContent",
+          "slider.submenuTitle",
+          "slider.medias",
+          "relatedContentTitle",
+          "relatedContentSubmenuTitle",
+          "downloadSection.title",
+          "downloadSection.submenuTitle",
+          "downloadSection.files.title",
+          "downloadSection.files.file",
+          "dateFrom",
+          "dateTo",
+          "timeFrom",
+          "timeTo",
+          "showRemainingTime",
+          "placeTitle",
+          "placeAddress",
+          "sellTickets",
+          "purchaseId",
+          "positions.title",
+          "positions.names",
+          "partners.partner",
+          "showShareButtons",
+          "override.highlightContent",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.keywords",
+          "seo.metaImage",
+          "place",
+          "tags",
+          "parentPage",
+          "childPages",
+          "addedAt"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::content-page.content-page",
+      "properties": {
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::content-page.content-page",
+      "properties": {
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::content-page.content-page",
+      "properties": {
+        "fields": [
+          "title",
+          "titleToShow",
+          "useDatetimeAsSubtitle",
+          "subtitle",
+          "slug",
+          "perex",
+          "coverMedia",
+          "color",
+          "inheritColorFromParent",
+          "mainContent",
+          "slider.submenuTitle",
+          "slider.medias",
+          "relatedContentTitle",
+          "relatedContentSubmenuTitle",
+          "downloadSection.title",
+          "downloadSection.submenuTitle",
+          "downloadSection.files.title",
+          "downloadSection.files.file",
+          "dateFrom",
+          "dateTo",
+          "timeFrom",
+          "timeTo",
+          "showRemainingTime",
+          "placeTitle",
+          "placeAddress",
+          "sellTickets",
+          "purchaseId",
+          "positions.title",
+          "positions.names",
+          "partners.partner",
+          "showShareButtons",
+          "override.highlightContent",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.keywords",
+          "seo.metaImage",
+          "place",
+          "tags",
+          "parentPage",
+          "childPages",
+          "addedAt"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::content-page.content-page",
+      "properties": {
+        "fields": [
+          "title",
+          "titleToShow",
+          "useDatetimeAsSubtitle",
+          "subtitle",
+          "slug",
+          "perex",
+          "coverMedia",
+          "color",
+          "inheritColorFromParent",
+          "mainContent",
+          "slider.submenuTitle",
+          "slider.medias",
+          "relatedContentTitle",
+          "relatedContentSubmenuTitle",
+          "downloadSection.title",
+          "downloadSection.submenuTitle",
+          "downloadSection.files.title",
+          "downloadSection.files.file",
+          "dateFrom",
+          "dateTo",
+          "timeFrom",
+          "timeTo",
+          "showRemainingTime",
+          "placeTitle",
+          "placeAddress",
+          "sellTickets",
+          "purchaseId",
+          "positions.title",
+          "positions.names",
+          "partners.partner",
+          "showShareButtons",
+          "override.highlightContent",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.keywords",
+          "seo.metaImage",
+          "place",
+          "tags",
+          "parentPage",
+          "childPages",
+          "addedAt"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::general.general",
+      "properties": {
+        "fields": [
+          "name",
+          "email",
+          "mirbach.title",
+          "mirbach.address",
+          "mirbach.zip",
+          "mirbach.city",
+          "mirbach.phone",
+          "palffy.title",
+          "palffy.address",
+          "palffy.zip",
+          "palffy.city",
+          "palffy.phone",
+          "openingHours",
+          "socialLinks.title",
+          "socialLinks.links.title",
+          "socialLinks.links.url",
+          "socialLinks.links.newWindow",
+          "footerLinks1.title",
+          "footerLinks1.links.title",
+          "footerLinks1.links.url",
+          "footerLinks1.links.newWindow",
+          "footerLinks2.title",
+          "footerLinks2.links.title",
+          "footerLinks2.links.url",
+          "footerLinks2.links.newWindow"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::general.general",
+      "properties": {
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::general.general",
+      "properties": {
+        "fields": [
+          "name",
+          "email",
+          "mirbach.title",
+          "mirbach.address",
+          "mirbach.zip",
+          "mirbach.city",
+          "mirbach.phone",
+          "palffy.title",
+          "palffy.address",
+          "palffy.zip",
+          "palffy.city",
+          "palffy.phone",
+          "openingHours",
+          "socialLinks.title",
+          "socialLinks.links.title",
+          "socialLinks.links.url",
+          "socialLinks.links.newWindow",
+          "footerLinks1.title",
+          "footerLinks1.links.title",
+          "footerLinks1.links.url",
+          "footerLinks1.links.newWindow",
+          "footerLinks2.title",
+          "footerLinks2.links.title",
+          "footerLinks2.links.url",
+          "footerLinks2.links.newWindow"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::general.general",
+      "properties": {
+        "fields": [
+          "name",
+          "email",
+          "mirbach.title",
+          "mirbach.address",
+          "mirbach.zip",
+          "mirbach.city",
+          "mirbach.phone",
+          "palffy.title",
+          "palffy.address",
+          "palffy.zip",
+          "palffy.city",
+          "palffy.phone",
+          "openingHours",
+          "socialLinks.title",
+          "socialLinks.links.title",
+          "socialLinks.links.url",
+          "socialLinks.links.newWindow",
+          "footerLinks1.title",
+          "footerLinks1.links.title",
+          "footerLinks1.links.url",
+          "footerLinks1.links.newWindow",
+          "footerLinks2.title",
+          "footerLinks2.links.title",
+          "footerLinks2.links.url",
+          "footerLinks2.links.newWindow"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::home-page.home-page",
+      "properties": {
+        "fields": [
+          "highlights.contentPage",
+          "sections",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.keywords",
+          "seo.metaImage"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::home-page.home-page",
+      "properties": {
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::home-page.home-page",
+      "properties": {
+        "fields": [
+          "highlights.contentPage",
+          "sections",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.keywords",
+          "seo.metaImage"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::home-page.home-page",
+      "properties": {
+        "fields": [
+          "highlights.contentPage",
+          "sections",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.keywords",
+          "seo.metaImage"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::main-page.main-page",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "sections",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.keywords",
+          "seo.metaImage"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::main-page.main-page",
+      "properties": {
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::main-page.main-page",
+      "properties": {
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::main-page.main-page",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "sections",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.keywords",
+          "seo.metaImage"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::main-page.main-page",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "sections",
+          "seo.metaTitle",
+          "seo.metaDescription",
+          "seo.keywords",
+          "seo.metaImage"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::menu.menu",
+      "properties": {
+        "fields": [
+          "menuLinks.title",
+          "menuLinks.url",
+          "menuLinks.mainPage",
+          "menuLinks.contentPage",
+          "menuLinks.hasButtonStyle",
+          "searchLink.title",
+          "searchLink.url",
+          "searchLink.mainPage",
+          "searchLink.contentPage",
+          "searchLink.hasButtonStyle"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::menu.menu",
+      "properties": {
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::menu.menu",
+      "properties": {
+        "fields": [
+          "menuLinks.title",
+          "menuLinks.url",
+          "menuLinks.mainPage",
+          "menuLinks.contentPage",
+          "menuLinks.hasButtonStyle",
+          "searchLink.title",
+          "searchLink.url",
+          "searchLink.mainPage",
+          "searchLink.contentPage",
+          "searchLink.hasButtonStyle"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::menu.menu",
+      "properties": {
+        "fields": [
+          "menuLinks.title",
+          "menuLinks.url",
+          "menuLinks.mainPage",
+          "menuLinks.contentPage",
+          "menuLinks.hasButtonStyle",
+          "searchLink.title",
+          "searchLink.url",
+          "searchLink.mainPage",
+          "searchLink.contentPage",
+          "searchLink.hasButtonStyle"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::partner.partner",
+      "properties": {
+        "fields": [
+          "title",
+          "link",
+          "logo"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::partner.partner",
+      "properties": {
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::partner.partner",
+      "properties": {
+        "fields": [
+          "title",
+          "link",
+          "logo"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::partner.partner",
+      "properties": {
+        "fields": [
+          "title",
+          "link",
+          "logo"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::place.place",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "address",
+          "contentPages",
+          "purchaseId"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::tag-category.tag-category",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "tags"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::tag.tag",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "tagCategory",
+          "contentPages",
+          "titleInternal"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::tag.tag",
+      "properties": {
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::tag.tag",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "tagCategory",
+          "contentPages",
+          "titleInternal"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::tag.tag",
+      "properties": {
+        "fields": [
+          "title",
+          "slug",
+          "tagCategory",
+          "contentPages",
+          "titleInternal"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "subject": "api::ticket.ticket",
+      "properties": {
+        "fields": [
+          "title",
+          "price",
+          "description",
+          "purchaseIdSelf",
+          "purchaseIdGift"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "subject": "api::ticket.ticket",
+      "properties": {
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.publish",
+      "subject": "api::ticket.ticket",
+      "properties": {
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "subject": "api::ticket.ticket",
+      "properties": {
+        "fields": [
+          "title",
+          "price",
+          "description",
+          "purchaseIdSelf",
+          "purchaseIdGift"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "subject": "api::ticket.ticket",
+      "properties": {
+        "fields": [
+          "title",
+          "price",
+          "description",
+          "purchaseIdSelf",
+          "purchaseIdGift"
+        ],
+        "locales": [
+          "en",
+          "sk"
+        ]
+      },
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::upload.assets.copy-link",
+      "subject": null,
+      "properties": {},
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::upload.assets.create",
+      "subject": null,
+      "properties": {},
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::upload.assets.download",
+      "subject": null,
+      "properties": {},
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::upload.assets.update",
+      "subject": null,
+      "properties": {},
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::upload.configure-view",
+      "subject": null,
+      "properties": {},
+      "conditions": [],
+      "actionParameters": {}
+    },
+    {
+      "action": "plugin::upload.read",
+      "subject": null,
+      "properties": {},
+      "conditions": [],
+      "actionParameters": {}
+    }
+  ]
+}

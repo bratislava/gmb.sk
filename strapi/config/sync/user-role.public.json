@@ -1,0 +1,85 @@
+{
+  "name": "Public",
+  "description": "Default role given to unauthenticated user.",
+  "type": "public",
+  "permissions": [
+    {
+      "action": "api::contact-card.contact-card.find"
+    },
+    {
+      "action": "api::contact-card.contact-card.findOne"
+    },
+    {
+      "action": "api::content-page.content-page.find"
+    },
+    {
+      "action": "api::content-page.content-page.findOne"
+    },
+    {
+      "action": "api::general.general.find"
+    },
+    {
+      "action": "api::home-page.home-page.find"
+    },
+    {
+      "action": "api::main-page.main-page.find"
+    },
+    {
+      "action": "api::main-page.main-page.findOne"
+    },
+    {
+      "action": "api::menu.menu.find"
+    },
+    {
+      "action": "api::partner.partner.find"
+    },
+    {
+      "action": "api::partner.partner.findOne"
+    },
+    {
+      "action": "api::place.place.find"
+    },
+    {
+      "action": "api::place.place.findOne"
+    },
+    {
+      "action": "api::tag-category.tag-category.find"
+    },
+    {
+      "action": "api::tag-category.tag-category.findOne"
+    },
+    {
+      "action": "api::tag.tag.find"
+    },
+    {
+      "action": "api::tag.tag.findOne"
+    },
+    {
+      "action": "api::ticket.ticket.find"
+    },
+    {
+      "action": "api::ticket.ticket.findOne"
+    },
+    {
+      "action": "plugin::i18n.locales.listLocales"
+    },
+    {
+      "action": "plugin::upload.content-api.find"
+    },
+    {
+      "action": "plugin::upload.content-api.findOne"
+    },
+    {
+      "action": "plugin::users-permissions.auth.callback"
+    },
+    {
+      "action": "plugin::users-permissions.auth.connect"
+    },
+    {
+      "action": "plugin::users-permissions.auth.register"
+    },
+    {
+      "action": "plugin::users-permissions.user.me"
+    }
+  ]
+}
