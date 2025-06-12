@@ -1,5 +1,6 @@
-import meilisearchConfig from "./plugins.meilisearch.config"
-import graphqlConfig from "./plugins.graphql.config"
+import meilisearchConfig from './plugins.meilisearch.config'
+import graphqlConfig from './plugins.graphql.config'
+import configSyncConfig from './plugins.config-sync.config'
 
 const pluginsConfig = ({ env }) => ({
   graphql: {
@@ -7,6 +8,10 @@ const pluginsConfig = ({ env }) => ({
   },
   meilisearch: {
     config: meilisearchConfig,
+  },
+  'config-sync': {
+    enabled: true,
+    config: configSyncConfig,
   },
   email: {
     config: {
@@ -19,7 +24,7 @@ const pluginsConfig = ({ env }) => ({
       },
       settings: {
         defaultFrom: env('MAILGUN_EMAIL'),
-        defaultReplyTo: env('MAILGUN_EMAIL')
+        defaultReplyTo: env('MAILGUN_EMAIL'),
       },
     },
   },
