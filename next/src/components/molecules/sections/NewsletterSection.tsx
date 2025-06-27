@@ -96,7 +96,6 @@ const NewsletterSection = ({ anchor, title, subtitle, text }: NewsletterSectionP
                 <p className="py-yLg text-xl">{text ?? t('newsletter.beInformedEvents')}</p>
                 <label htmlFor="email-input" className="text-md">
                   {t('newsletter.insertEmail')}
-                  <span className="pl-[6px] text-red-500">*</span>
                 </label>
                 <div className="flex flex-col gap-xMd py-2 md:flex-row">
                   <div className="grow">
@@ -119,7 +118,6 @@ const NewsletterSection = ({ anchor, title, subtitle, text }: NewsletterSectionP
                     <div className="mt-6 flex w-full items-center lg:whitespace-nowrap">
                       <Checkbox isSelected={agree} onChange={setAgree} hasError={!!agreeError}>
                         {t('common.gdprAccept')}
-                        <span className="pl-[6px] text-red-500">*</span>
                       </Checkbox>
                     </div>
                     {agreeError ? (
