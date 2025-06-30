@@ -13,8 +13,6 @@ export const getMenuLinkProps = (link: MenuLinkItemFragment | null | undefined) 
     return { children: label, href } // TODO?
   }
 
-  console.log('menu link', link)
-
   if ('mainPage' in link && link.mainPage?.data?.attributes) {
     label = link.title ?? link.mainPage.data.attributes.title
     href = `/${link.mainPage.data.attributes.slug}`
