@@ -2,6 +2,8 @@
 import mailchimp from '@mailchimp/mailchimp_marketing'
 import { NextApiRequest, NextApiResponse } from 'next'
 
+import { isDefined } from '@/src/utils/isDefined'
+
 mailchimp.setConfig({
   apiKey: process.env.MAILCHIMP_API_KEY,
   server: process.env.MAILCHIMP_API_SERVER,
@@ -19,6 +21,17 @@ const Subscribe = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
+    if (
+      [
+        process.env.MAILCHIMP_API_KEY,
+        process.env.MAILCHIMP_API_SERVER,
+        process.env.MAILCHIMP_AUDIENCE_ID,
+      ].some((variable) => !isDefined(variable))
+    ) {
+      // TODO: better error information, maybe assert all env vars globally
+      throw new Error('Missing some environment variables')
+    }
+
     if (process.env.MAILCHIMP_AUDIENCE_ID) {
       await mailchimp.lists.addListMember(process.env.MAILCHIMP_AUDIENCE_ID, {
         email_address: email,
