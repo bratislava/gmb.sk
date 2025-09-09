@@ -1,11 +1,13 @@
-const { i18n } = require('./next-i18next.config')
+const i18nextConfig = require('./next-i18next.config')
 const svgoConfig = require('./svgo.config.js')
 
 /**
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-  i18n,
+  i18n: i18nextConfig.i18n,
+  reactStrictMode: true,
+  output: 'standalone',
   images: {
     remotePatterns: [
       {
@@ -16,13 +18,15 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn-api.bratislava.sk',
       },
+      {
+        protocol: 'https',
+        hostname: '*.s3.bratislava.sk',
+      },
     ],
   },
-  reactStrictMode: true,
   serverRuntimeConfig: {
     strapiUrl: process.env.STRAPI_URL,
   },
-  output: 'standalone',
 
   async rewrites() {
     return {

@@ -38,7 +38,7 @@ spec:
             - secretRef:
                 name: ${BUILD_REPOSITORY_NAME}-internals-secret
             - secretRef:
-                name: minio-secret-standalone
+                name: ${BUILD_REPOSITORY_NAME}-minio-secret
             - secretRef:
                 name: ${BUILD_REPOSITORY_NAME}-mailgun-secret
             - secretRef:
