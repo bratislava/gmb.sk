@@ -1,5 +1,4 @@
 resources:
-  - scaler.yml
   - ../../base
   - secrets/mailgun.secret.yml
   - secrets/database.secret.yml
