@@ -568,6 +568,11 @@ const nextConfig = {
         destination: '/detail/stipendium-radislava-matustika',
         permanent: true,
       },
+      {
+        source: '/detail/atelier-v-mirbachovom-palaci-1',
+        destination: '/detail/atelier-v-mirbachovom-palaci',
+        permanent: true,
+      },
       // Path matching, local non-specific
       {
         source: '/content/:slug',
