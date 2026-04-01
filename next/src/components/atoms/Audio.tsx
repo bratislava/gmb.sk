@@ -1,4 +1,3 @@
-/* eslint-disable xss/no-mixed-html */
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
 

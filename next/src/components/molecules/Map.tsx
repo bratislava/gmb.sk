@@ -412,7 +412,6 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
             }}
             onLoad={onMapLoad}
             onClick={onMapClick}
-            // eslint-disable-next-line no-secrets/no-secrets
             mapStyle="mapbox://styles/bratislava01/cl10zhtsr007t15o8zon1rwsb"
             doubleClickZoom={false}
             dragRotate={false}
