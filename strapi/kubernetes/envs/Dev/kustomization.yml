@@ -1,7 +1,6 @@
 resources:
   - ../../base
   - secrets/mailgun.secret.yml
-  - secrets/database.secret.yml
   - secrets/meilisearch.secret.yml
   - secrets/strapi.secret.yml
   - secrets/revalidate.secret.yml
