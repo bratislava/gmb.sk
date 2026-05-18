@@ -68,18 +68,6 @@
     },
     {
       "action": "plugin::upload.content-api.findOne"
-    },
-    {
-      "action": "plugin::users-permissions.auth.callback"
-    },
-    {
-      "action": "plugin::users-permissions.auth.connect"
-    },
-    {
-      "action": "plugin::users-permissions.auth.register"
-    },
-    {
-      "action": "plugin::users-permissions.user.me"
     }
   ]
 }
