@@ -44,8 +44,6 @@ interface AudioProps {
   url: string
 }
 
-type ParsedEmbedHtml = ReactNode
-
 const Audio = ({ url }: AudioProps) => {
   const { t } = useTranslation()
 
@@ -53,7 +51,7 @@ const Audio = ({ url }: AudioProps) => {
     data: oembedHtml,
     error,
     isPending,
-  } = useQuery<ParsedEmbedHtml>({
+  } = useQuery<ReactNode>({
     queryKey: ['Audio', url],
     queryFn: async () => fetchOEmbedHtml(url),
   })
