@@ -76,7 +76,7 @@ const CityGalleryMarkdown = ({ className, content, accentColor }: CityGalleryMar
           ),
           img: ({ src, alt, sizes, width, height }) => (
             <div className="relative">
-              {src && (
+              {typeof src === 'string' && (
                 <ImageFigure src={src} alt={alt} sizes={sizes} width={width} height={height} />
               )}
             </div>

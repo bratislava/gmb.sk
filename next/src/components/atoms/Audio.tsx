@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
+import { ReactNode } from 'react'
 
 const getOEmbedUrl = (url: string) => {
   if (url.includes('soundcloud')) {
@@ -23,7 +24,7 @@ interface OEmbedResponse {
 const fetchOEmbedHtml = async (url: string) => {
   const oEmbedUrl = getOEmbedUrl(url)
   /** Fetch embed HTML from the oembed api for given url */
-  const oembedDataPromise = fetch(oEmbedUrl).then((res) => {
+  const oembedDataPromise = fetch(oEmbedUrl).then(async (res) => {
     if (res.ok) {
       return res.json() as Promise<OEmbedResponse>
     }
@@ -43,8 +44,6 @@ interface AudioProps {
   url: string
 }
 
-type ParsedEmbedHtml = string | JSX.Element | JSX.Element[]
-
 const Audio = ({ url }: AudioProps) => {
   const { t } = useTranslation()
 
@@ -52,9 +51,9 @@ const Audio = ({ url }: AudioProps) => {
     data: oembedHtml,
     error,
     isPending,
-  } = useQuery<ParsedEmbedHtml, Error>({
+  } = useQuery<ReactNode>({
     queryKey: ['Audio', url],
-    queryFn: () => fetchOEmbedHtml(url),
+    queryFn: async () => fetchOEmbedHtml(url),
   })
 
   if (error) {

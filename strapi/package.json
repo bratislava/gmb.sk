@@ -23,14 +23,14 @@
     "@strapi/provider-email-mailgun": "4.26.0",
     "@strapi/provider-upload-aws-s3": "4.26.0",
     "@strapi/strapi": "4.26.0",
-    "patch-package": "^7.0.2",
-    "pg": "^8.16.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^5.3.4",
-    "strapi-plugin-config-sync": "^1.2.6",
+    "patch-package": "7.0.2",
+    "pg": "8.16.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "5.3.4",
+    "strapi-plugin-config-sync": "1.2.6",
     "strapi-plugin-meilisearch": "0.9.2",
-    "styled-components": "^5.3.11"
+    "styled-components": "5.3.11"
   },
   "author": {
     "name": "A Strapi developer"
