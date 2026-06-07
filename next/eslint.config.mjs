@@ -4,10 +4,20 @@ export default [
   ...createNextConfig({
     ignores: ['src/services/graphql/**'],
   }),
-
+  // https://github.com/bratislava/eslint-config/blob/b17b3028c67e639cf5cef183817f9087d6281d7e/packages/next/README.md#tailwind-css
+  {
+    settings: {
+      'better-tailwindcss': {
+        entryPoint: './src/styles/globals.css',
+        callees: ['cx', 'classnames', 'clsx', 'cn', 'twMerge', 'tw'],
+      },
+    },
+  },
   // Project-specific rule overrides
   {
     rules: {
+      'better-tailwindcss/enforce-consistent-line-wrapping': 'off',
+
       'arrow-body-style': 'off',
       '@next/next/no-img-element': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
@@ -19,9 +29,7 @@ export default [
       'sonarjs/no-duplicate-string': 'off',
       'react/display-name': 'off',
       'padding-line-between-statements': ['warn', { blankLine: 'always', prev: '*', next: 'return' }],
-      // tailwindcss overrides
-      'tailwindcss/classnames-order': ['warn', { callees: ['classnames', 'cx'], officialSorting: true }],
-      'tailwindcss/no-custom-classname': ['warn', { whitelist: ['.*dw.*', '.*dh.*'] }],
+
       // violations downgraded to warn
       '@typescript-eslint/no-unnecessary-condition': 'warn', // 100 violations
       'sonarjs/single-character-alternation': 'warn', // 23 violations
