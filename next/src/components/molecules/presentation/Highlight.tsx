@@ -19,12 +19,11 @@ import { getPurchaseId } from '@/src/utils/getPurchaseId'
 import { isDefined, WithAttributes } from '@/src/utils/isDefined'
 import { onEnterOrSpaceKeyDown } from '@/src/utils/onEnterOrSpaceKeyDown'
 
-interface HighlightProps {
+type Props = {
   highlight: WithAttributes<HighlightsItemEntityFragment>
 }
 
-// eslint-disable-next-line sonarjs/cognitive-complexity
-const Highlight = ({ highlight }: HighlightProps) => {
+const Highlight = ({ highlight }: Props) => {
   const { t } = useTranslation()
   const router = useRouter()
 
@@ -88,10 +87,8 @@ const Highlight = ({ highlight }: HighlightProps) => {
         className="group flex h-[calc(100vh-var(--nav-height))] w-full cursor-pointer flex-col"
         tabIndex={-1}
         id={`articleDiv${highlight.id ?? ''}`}
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        onClick={() => router.push(`/detail/${slug}`)}
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        onKeyDown={onEnterOrSpaceKeyDown(() => router.push(`/detail/${slug}`))}
+        onClick={async () => router.push(`/detail/${slug}`)}
+        onKeyDown={onEnterOrSpaceKeyDown(async () => router.push(`/detail/${slug}`))}
       >
         <div className="relative flex grow cursor-pointer">
           <Image
@@ -126,7 +123,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
             <div
               className={cn(
                 'flex w-full flex-1 flex-col justify-between gap-y-yMd justify-self-stretch lg:hidden',
-                { hidden: renderOverride }
+                { hidden: renderOverride },
               )}
             >
               <div className="my-auto">

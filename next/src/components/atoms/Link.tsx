@@ -49,10 +49,10 @@ const Link = ({
       translatedRoute = getRouteForLocale(route, locale || i18n.language || 'sk')
     }
     // eslint-disable-next-line no-param-reassign
-    href = `${[translatedRoute, ...restRoute].join('')}`
+    href = [translatedRoute, ...restRoute].join('')
   }
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     // Prevent propagation, e.g. when Link is used for tags on Card
     e.stopPropagation()
     if (onClick) {
@@ -75,7 +75,7 @@ const Link = ({
           'underline-offset-2 hover:underline': !noUnderline,
           'after:absolute after:inset-0': stretched,
         },
-        className
+        className,
       )}
     >
       {children}

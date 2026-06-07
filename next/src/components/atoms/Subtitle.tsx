@@ -5,18 +5,17 @@ import { formatDateString } from '@/src/utils/formatDateString'
 import { formatTimeString } from '@/src/utils/formatTimeString'
 import { WithAttributes } from '@/src/utils/isDefined'
 
-interface ISubtitleProps {
+type Props = {
   page: WithAttributes<ContentPageEntityFragment>
 }
 
-const Subtitle = ({ page }: ISubtitleProps) => {
+const Subtitle = ({ page }: Props) => {
   const { i18n } = useTranslation()
 
   const { subtitle, useDatetimeAsSubtitle, dateFrom, timeFrom } = page.attributes
 
   return (
     /* strings are valid JSX.Element types but typescript has bug with it, so it needs to be wrapped with fragment */
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {/* Show only dateFrom and timeFrom, as GMB wanted */}
       {useDatetimeAsSubtitle ? (

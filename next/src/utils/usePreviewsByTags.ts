@@ -19,7 +19,7 @@ export const usePreviewsByTags = ({
   kind: 'program' | 'explore'
 }) => {
   const tagSlugsVariables: Omit<PreviewsByTagsQueryVariables, 'locale'> = activeTags.includes(
-    'archive'
+    'archive',
   )
     ? {
         dateForFilteringPastEvents: getTodaysDate(),
@@ -63,7 +63,7 @@ export const usePreviewsByTags = ({
     refetch,
   } = useInfiniteQuery({
     queryKey: ['PreviewsByTags', options, locale],
-    queryFn: ({ pageParam }) =>
+    queryFn: async ({ pageParam }) =>
       client.PreviewsByTags({ ...options, offset: pageParam * PAGE_SIZE }),
     initialPageParam: 0, // This is required in v5
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>

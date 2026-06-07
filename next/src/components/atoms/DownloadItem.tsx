@@ -24,7 +24,7 @@ const DownloadItem = ({ downloadItem }: DownloadProps) => {
         <div aria-hidden className="relative left-[calc(-10*var(--size-factor))] size-fit">
           <FileIcon fill="#fff" className="relative dw-[96]" />
           {file.ext ? (
-            <span className="absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 text-md uppercase">
+            <span className="absolute top-1/2 left-1/2 block -translate-1/2 text-md uppercase">
               {formatFileExtension(file.ext)}
             </span>
           ) : null}

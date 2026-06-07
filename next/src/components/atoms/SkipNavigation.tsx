@@ -16,7 +16,7 @@ const SkipNavigation = () => {
   const { t } = useTranslation()
 
   return (
-    <div className="fixed left-0 top-nav z-10 translate-x-[-1000px] bg-white p-6 transition-transform focus-within:translate-x-0">
+    <div className="fixed top-nav left-0 z-10 translate-x-[-1000px] bg-white p-6 transition-transform focus-within:translate-x-0">
       <Button onClick={handleSkip}>{t('navigation.skipNavigation')}</Button>
     </div>
   )

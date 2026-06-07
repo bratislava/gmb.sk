@@ -12,7 +12,7 @@ export const useSearch = ({ syncWithUrlQuery = false }: UseSearchOptions) => {
     withDefault(StringParam, ''),
     {
       removeDefaultsFromUrl: true,
-    }
+    },
   )
   const [input, setInput] = useState<string>('')
   const value = syncWithUrlQuery ? routerQueryValue : input

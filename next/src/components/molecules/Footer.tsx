@@ -16,7 +16,6 @@ const Footer = ({ page }: FooterProps) => {
 
   const { general } = useGeneralContext()
 
-  // eslint-disable-next-line no-unsafe-optional-chaining
   const { name, openingHours, mirbach, palffy, socialLinks, footerLinks1, footerLinks2 } =
     general?.data?.attributes ?? {}
 
@@ -75,7 +74,6 @@ const Footer = ({ page }: FooterProps) => {
         <div className="flex h-full flex-col justify-between">
           <h3 className="pb-yMd text-xl">{footerLinks1?.title}</h3>
           <div className="flex flex-col">
-            {/* eslint-disable-next-line sonarjs/no-identical-functions */}
             {footerLinks1?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}
@@ -93,7 +91,6 @@ const Footer = ({ page }: FooterProps) => {
         <div className="col-span-2 flex h-full flex-col justify-between md:col-span-1">
           <h3 className="pb-yMd text-xl">{footerLinks2?.title}</h3>
           <div className="flex flex-col">
-            {/* eslint-disable-next-line sonarjs/no-identical-functions */}
             {footerLinks2?.links?.map((link, index) => (
               <Link
                 href={link?.url || '#'}

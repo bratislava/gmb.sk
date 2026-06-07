@@ -42,7 +42,7 @@ type StaticParams = {
 }
 
 export const getStaticPaths: GetStaticPaths<StaticParams> = async ({ locales = [] }) => {
-  const mainPageSlugsPromises = locales.map((locale) => client.AllMainPageSlugs({ locale }))
+  const mainPageSlugsPromises = locales.map(async (locale) => client.AllMainPageSlugs({ locale }))
   const mainPageSlugsResponses = await Promise.all(mainPageSlugsPromises)
 
   const paths = mainPageSlugsResponses.flatMap((mainPageSlugResponse, index) =>
@@ -52,7 +52,7 @@ export const getStaticPaths: GetStaticPaths<StaticParams> = async ({ locales = [
       .map((mainPage) => ({
         params: { slug: mainPage.attributes.slug },
         locale: locales[index],
-      }))
+      })),
   )
 
   // eslint-disable-next-line no-console
@@ -217,7 +217,7 @@ const MenuPage = ({
         tagsOthers={tagsOthers?.data?.attributes?.tags?.data.filter(hasAttributes)}
         tagsExploreTypes={tagsExploreTypes?.data?.attributes?.tags?.data.filter(hasAttributes)}
         tagsExploreProjects={tagsExploreProjects?.data?.attributes?.tags?.data.filter(
-          hasAttributes
+          hasAttributes,
         )}
         tagsExploreOthers={tagsExploreOthers?.data?.attributes?.tags?.data.filter(hasAttributes)}
       />

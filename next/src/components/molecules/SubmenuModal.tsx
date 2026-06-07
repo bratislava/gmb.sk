@@ -19,8 +19,8 @@ const SubmenuModal = ({ onClose, items, filters, onSubmenuItemClick }: ISubmenuM
   return (
     <div className="fixed inset-x-0 top-nav z-20 flex h-[calc(100vh-var(--nav-height))] flex-col justify-between bg-gmbDark p-12 text-white lg:hidden">
       <div className="flex max-h-full flex-col">
-        <button type="button" className="absolute right-0 top-0 px-xMd py-yMd" onClick={onClose}>
-          <CloseIcon className="dh-[30] dw-[30]" />
+        <button type="button" className="absolute top-0 right-0 px-xMd py-yMd" onClick={onClose}>
+          <CloseIcon className="size-[calc(30*var(--size-factor))]" />
         </button>
         <div className="mt-12 flex w-full shrink-0 grow-0 flex-col items-center gap-yMd">
           {items?.map((item) => (

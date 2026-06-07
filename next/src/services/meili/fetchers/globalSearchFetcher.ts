@@ -23,7 +23,7 @@ export const getGlobalSearchQueryKey = (filters: GlobalSearchFilters, locale: st
   locale,
 ]
 
-export const globalSearchFetcher = (filters: GlobalSearchFilters, locale: string) => {
+export const globalSearchFetcher = async (filters: GlobalSearchFilters, locale: string) => {
   return meiliClient
     .index('search_index')
     .search(filters.searchValue, {

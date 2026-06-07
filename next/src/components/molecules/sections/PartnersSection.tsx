@@ -21,7 +21,7 @@ const PartnersSection = ({ partners, title, anchor }: PartnersSectionProps) => {
             aria-label={partner.attributes.title}
             preserveStyle
             noUnderline
-            className="flex items-center justify-center overflow-hidden dh-[115] dw-[115]"
+            className="flex dh-[115] dw-[115] items-center justify-center overflow-hidden"
             target="_blank"
           >
             <img

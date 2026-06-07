@@ -15,7 +15,7 @@ const SearchBar = ({ input, setInput, className }: SearchBarProps) => {
   return (
     <div className={cn('bg-gmbDark', className)}>
       <input
-        className="h-fit max-w-full border-b-2 border-solid border-white/60 bg-transparent text-xl text-white focus:border-white/100 focus:outline-none active:border-white/100"
+        className="h-fit max-w-full border-b-2 border-solid border-white/60 bg-transparent text-xl text-white focus:border-white focus:outline-none active:border-white"
         placeholder={t('common.searchText')}
         aria-label={t('common.searchText')}
         onChange={(event) => {

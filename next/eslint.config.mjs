@@ -17,6 +17,7 @@ export default [
   {
     rules: {
       'better-tailwindcss/enforce-consistent-line-wrapping': 'off',
+      '@typescript-eslint/consistent-type-definitions': 'off',
 
       // TODO decide what to do with these
       'arrow-body-style': 'off',
@@ -49,7 +50,7 @@ export default [
       'sonarjs/single-character-alternation': 'warn', // 23 violations
       '@typescript-eslint/no-unused-vars': 'warn', // 17 violations
       '@typescript-eslint/no-unsafe-argument': 'warn', // 15 violations
-      '@typescript-eslint/consistent-type-definitions': 'warn', // 14 violations
+
       '@typescript-eslint/promise-function-async': 'warn', // 13 violations
       'react-hooks/set-state-in-effect': 'warn', // 8 violations
       '@typescript-eslint/no-deprecated': 'warn', // 5 violations

@@ -28,7 +28,6 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
   // Using `asPath` ensures that dynamic segments e.g., [slug] are correctly replaced with actual values
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article className="relative flex min-h-full flex-col gap-y-yMd">
       <div className="relative aspect-4/3 overflow-hidden bg-gmbLightGray">
         {coverMedia?.data?.attributes ? (
@@ -47,7 +46,7 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
           {isToday({
             dateFrom: dateFrom as string,
             dateTo: dateTo as string,
-          }) && <span className="pr-2 text-nav uppercase text-red-600">{t('common.today')}!</span>}
+          }) && <span className="pr-2 text-nav text-red-600 uppercase">{t('common.today')}!</span>}
           <div className="z-1 flex grow flex-wrap gap-x-6 gap-y-3">
             {tags?.data.filter(hasAttributes).map((tag) => {
               const path = `${cleanPath}/?tags=${tag.attributes.slug}`

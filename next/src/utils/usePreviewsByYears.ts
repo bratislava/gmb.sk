@@ -34,7 +34,7 @@ export const usePreviewsByYears = ({
     refetch,
   } = useInfiniteQuery({
     queryKey: ['PreviewsByYears', options, locale],
-    queryFn: ({ pageParam }) => archiveFetcher({ ...options, page: pageParam }, locale),
+    queryFn: async ({ pageParam }) => archiveFetcher({ ...options, page: pageParam }, locale),
     initialPageParam: 1,
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
       lastPage.hits.length < PAGE_SIZE ? undefined : lastPageParam + 1,
