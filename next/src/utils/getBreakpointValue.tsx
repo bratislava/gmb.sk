@@ -1,15 +1,8 @@
-import resolveConfig from 'tailwindcss/resolveConfig'
-import { KeyValuePair } from 'tailwindcss/types/config'
+import { Breakpoint, screens } from "@/src/utils/screens"
 
-import tailwindConfig from '@/tailwind.config'
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const fullConfig = resolveConfig(tailwindConfig as any)
-
-export const getBreakpointValue = (value: string): number => {
-  const screens = fullConfig.theme?.screens as KeyValuePair<string, string>
-  if (screens && screens[value]) {
-    return +screens[value].slice(0, screens[value].indexOf('px'))
+export const getBreakpointValue = (value: Breakpoint): number => {
+  if (value in screens) {
+    return Number(screens[value].slice(0, screens[value].indexOf('px')))
   }
 
   return 0

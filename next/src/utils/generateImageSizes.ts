@@ -1,4 +1,4 @@
-import screens from '@/tailwind.config.screens'
+import { screens } from "@/src/utils/screens"
 
 type SizesInput = {
   [K in keyof typeof screens]?: string
@@ -21,7 +21,7 @@ export const generateImageSizes = (sizes: SizesInput) => {
       Object.keys(screens).filter((screen) => sizesKeys.includes(screen)) as [keyof typeof screens]
     )
       .reverse()
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+       
       .map((screen) => `(min-width: ${screens[screen]}) ${sizes[screen]}`),
     sizes.default,
   ].join(', ')

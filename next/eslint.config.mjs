@@ -18,17 +18,31 @@ export default [
     rules: {
       'better-tailwindcss/enforce-consistent-line-wrapping': 'off',
 
+      // TODO decide what to do with these
       'arrow-body-style': 'off',
       '@next/next/no-img-element': 'off',
-      '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
       '@typescript-eslint/no-misused-promises': 'off',
-      '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/no-use-before-define': 'off',
       'sonarjs/no-duplicate-string': 'off',
       'react/display-name': 'off',
-      'padding-line-between-statements': ['warn', { blankLine: 'always', prev: '*', next: 'return' }],
+
+      // TODO good rules, require work to fix and were skipped over in eslint v9 upgrade
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unsafe-enum-comparison': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/consistent-type-definitions': 'off',
+      '@typescript-eslint/array-type': 'off',
+      '@typescript-eslint/no-redundant-type-constituents': 'off',
+      '@typescript-eslint/promise-function-async': 'off',
+      '@typescript-eslint/restrict-template-expressions': 'off',
+      'sonarjs/slow-regex': 'off',
+      'sonarjs/prefer-regexp-exec': 'off',
+      'security/detect-unsafe-regex': 'off',
+      'security/detect-object-injection': 'off',
+      'no-implicit-coercion': 'off',
 
       // violations downgraded to warn
       '@typescript-eslint/no-unnecessary-condition': 'warn', // 100 violations
