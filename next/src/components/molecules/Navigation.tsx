@@ -82,7 +82,7 @@ const Navigation = ({ page }: NavigationProps) => {
               <span
                 id="navLogoText"
                 aria-hidden
-                className="relative ml-4 whitespace-nowrap text-sm leading-[var(--font-size-sm)] group-hover:underline"
+                className="relative ml-4 whitespace-nowrap text-sm leading-(--font-size-sm) group-hover:underline"
               >
                 {i18n.language === 'sk' ? t('common.cityGallery') : t('common.bratislavaGenitiv')}
                 <br />

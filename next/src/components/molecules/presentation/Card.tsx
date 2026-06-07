@@ -48,7 +48,7 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
             dateFrom: dateFrom as string,
             dateTo: dateTo as string,
           }) && <span className="pr-2 text-nav uppercase text-red-600">{t('common.today')}!</span>}
-          <div className="z-[1] flex grow flex-wrap gap-x-6 gap-y-3">
+          <div className="z-1 flex grow flex-wrap gap-x-6 gap-y-3">
             {tags?.data.filter(hasAttributes).map((tag) => {
               const path = `${cleanPath}/?tags=${tag.attributes.slug}`
 

@@ -85,7 +85,7 @@ const Highlight = ({ highlight }: HighlightProps) => {
     <article className="relative h-fit w-full bg-gmbLightGray">
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
-        className="group flex h-[calc(100vh_-_var(--nav-height))] w-full cursor-pointer flex-col"
+        className="group flex h-[calc(100vh-var(--nav-height))] w-full cursor-pointer flex-col"
         tabIndex={-1}
         id={`articleDiv${highlight.id ?? ''}`}
         // eslint-disable-next-line @typescript-eslint/no-misused-promises

@@ -451,7 +451,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
               </Marker>
             ))}
           </Mapbox>
-          <div className="pointer-events-none absolute right-0 top-0 hidden h-full w-1/6 bg-gradient-to-r from-transparent to-gmbDark lg:block" />
+          <div className="pointer-events-none absolute right-0 top-0 hidden h-full w-1/6 bg-linear-to-r from-transparent to-gmbDark lg:block" />
         </div>
       </div>
       <div className="flex items-center p-8 lg:col-start-3 lg:h-[600px]">

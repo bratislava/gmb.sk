@@ -111,7 +111,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
         onRequestClose={closeModal}
         ariaHideApp={false}
         className="relative size-full"
-        overlayClassName="bg-[rgba(0,0,0,0.9)] fixed inset-0 z-[51]"
+        overlayClassName="bg-[rgba(0,0,0,0.9)] fixed inset-0 z-51"
       >
         <div className="relative flex h-full flex-col place-content-center text-white">
           <button

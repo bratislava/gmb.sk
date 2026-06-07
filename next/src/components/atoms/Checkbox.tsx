@@ -22,7 +22,7 @@ const Checkbox = (
 
   const isDisabledOrReadonly = props.isDisabled || props.isReadOnly
   const checkboxClassName = cn(
-    'mr-[14px] grid h-[var(--font-size-btn)] w-[var(--font-size-btn)] shrink-0 place-content-center border-2 text-black',
+    'mr-[14px] grid size-(--font-size-btn) shrink-0 place-content-center border-2 text-black',
     {
       'border-white': !props.hasError,
       'bg-white': !props.hasError && props.isSelected,
@@ -34,7 +34,7 @@ const Checkbox = (
 
   return (
     // The eslint rule itself suggests nesting `input` inside the `label`, but is not able to detect it.
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
+     
     <label className={labelClassName}>
       <VisuallyHidden>
         <input {...mergeProps(inputProps, focusProps)} ref={ref} />
