@@ -78,7 +78,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
 
   const renderThumbInner = (item: ReactImageGalleryItem) => {
     return (
-      // eslint-disable-next-line tailwindcss/no-custom-classname
+      /* eslint-disable better-tailwindcss/no-unknown-classes */
       <span className="image-gallery-thumbnail-inner">
         <img
           className="mx-auto max-h-[80px] object-contain"
@@ -89,7 +89,6 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
           title={item.thumbnailTitle}
         />
         {item.thumbnailLabel && (
-          // eslint-disable-next-line tailwindcss/no-custom-classname
           <div className="image-gallery-thumbnail-label">{item.thumbnailLabel}</div>
         )}
       </span>
@@ -116,7 +115,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
         <div className="relative flex h-full flex-col place-content-center text-white">
           <button
             type="button"
-            className="absolute right-xSm top-ySm z-10"
+            className="absolute top-ySm right-xSm z-10"
             onClick={closeModal}
             aria-label={t('galleryModal.aria.closeGallery')}
           >
@@ -149,7 +148,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
             {filteredMedias
               .slice(
                 1,
-                mediasToShow === filteredMedias.length - 1 ? mediasToShow + 1 : mediasToShow
+                mediasToShow === filteredMedias.length - 1 ? mediasToShow + 1 : mediasToShow,
               )
               .map((media, index) => (
                 <div

@@ -34,7 +34,7 @@ const TicketPage = ({ contentPage, currentEvents }: ITicketPageProps) => {
   } = contentPage.attributes
 
   return (
-    /* eslint-disable tailwindcss/no-custom-classname */
+    /* eslint-disable better-tailwindcss/no-unknown-classes */
     <PageWrapper page={contentPage}>
       <SeoHead seo={seo} title={title} description={subtitle} />
       <section
@@ -78,7 +78,7 @@ const TicketPage = ({ contentPage, currentEvents }: ITicketPageProps) => {
         })}
       />
     </PageWrapper>
-    /* eslint-enable tailwindcss/no-custom-classname */
+    /* eslint-enable better-tailwindcss/no-unknown-classes */
   )
 }
 

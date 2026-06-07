@@ -1,6 +1,6 @@
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
+import 'swiper/swiper.css'
+import 'swiper/modules/navigation.css'
+import 'swiper/modules/pagination.css'
 
 import Image from 'next/image'
 import { useRef } from 'react'
@@ -34,9 +34,7 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
       }}
       onBeforeInit={(swiper) => {
         if (swiper?.params?.navigation) {
-          // eslint-disable-next-line no-param-reassign
           ;(swiper.params.navigation as NavigationOptions).prevEl = navigationPrevRef.current
-          // eslint-disable-next-line no-param-reassign
           ;(swiper.params.navigation as NavigationOptions).nextEl = navigationNextRef.current
         }
       }}
@@ -48,7 +46,7 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
         bulletActiveClass: 'bg-gmbDark',
       }}
       modules={[Navigation, Autoplay, Pagination]}
-      className="w-full dh-[600]"
+      className="dh-[600] w-full"
       id={anchor}
     >
       {slides?.map((item, index) => (
@@ -71,8 +69,8 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
       <div ref={navigationNextRef} className={cn('right-11', navigationStyle)}>
         next
       </div>
-      {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
-      <div className="swiper-pagination absolute !bottom-12 z-10" />
+      {/* eslint-disable-next-line better-tailwindcss/no-unknown-classes */}
+      <div className="swiper-pagination absolute bottom-12! z-10" />
     </Swiper>
   ) : null
 }
