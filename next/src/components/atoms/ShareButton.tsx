@@ -65,7 +65,6 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
         if (!openInNewWindow.has(platform)) {
           return
         }
-         
         window.open(encodedHref, t('common.share'), 'width=600,height=600')
         event.preventDefault()
       }}

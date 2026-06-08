@@ -1,5 +1,7 @@
 // Keep in sync with breakpoint definitions in globals.css
 
+export type Breakpoint = keyof typeof screens
+
 export const screens = {
   // 'no breakpoint' refers to phone portrait
   sm: '640px', // phone landscape
@@ -13,5 +15,3 @@ export const screens = {
   // '3xl': '1920px', // large desktop full hd - the most standard
   // '4xl': '2560px', // extra large desktop
 }
-
-export type Breakpoint = keyof typeof screens

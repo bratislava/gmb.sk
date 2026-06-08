@@ -13,7 +13,7 @@ import cn from '@/src/utils/cn'
  */
 const Checkbox = (
   /* isIndeterminate is not supported */
-  props: Omit<AriaCheckboxProps, 'isIndeterminate'> & { hasError?: boolean }
+  props: Omit<AriaCheckboxProps, 'isIndeterminate'> & { hasError?: boolean },
 ) => {
   const state = useToggleState(props)
   const ref = useRef<HTMLInputElement>(null)
@@ -27,14 +27,13 @@ const Checkbox = (
       'border-white': !props.hasError,
       'bg-white': !props.hasError && props.isSelected,
       'bg-transparent': !props.isSelected,
-    }
+    },
   )
 
   const labelClassName = cn('group flex items-center', { 'cursor-pointer': !isDisabledOrReadonly })
 
   return (
     // The eslint rule itself suggests nesting `input` inside the `label`, but is not able to detect it.
-     
     <label className={labelClassName}>
       <VisuallyHidden>
         <input {...mergeProps(inputProps, focusProps)} ref={ref} />
