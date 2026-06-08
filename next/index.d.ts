@@ -4,3 +4,8 @@ declare module '*.svg' {
 }
 
 declare module '*.css'
+
+// swiper CSS exports have no `types` field in their package.json exports map, so TS can't resolve them
+declare module 'swiper/css'
+declare module 'swiper/css/navigation'
+declare module 'swiper/css/pagination'

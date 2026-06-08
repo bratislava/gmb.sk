@@ -1,6 +1,6 @@
-import 'swiper/swiper.css'
-import 'swiper/modules/navigation.css'
-import 'swiper/modules/pagination.css'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
 import Image from 'next/image'
 import { useRef } from 'react'
