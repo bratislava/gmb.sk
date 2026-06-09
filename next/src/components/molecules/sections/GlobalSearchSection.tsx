@@ -24,7 +24,7 @@ const GlobalSearchSection = ({ title }: GlobalSearchSectionProps) => {
   const { input, setInput, searchValue } = useSearch({ syncWithUrlQuery: false })
 
   const [filters, setFilters] = useRoutePreservedState<GlobalSearchFilters>(
-    globalSearchDefaultFilters
+    globalSearchDefaultFilters,
   )
 
   useEffect(() => {

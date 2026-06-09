@@ -23,7 +23,7 @@ const twMerge = extendTailwindMerge({
   },
 })
 
-function cn(...args: ClassValue[]) {
+const cn = (...args: ClassValue[]) => {
   return twMerge(clsx(args))
 }
 

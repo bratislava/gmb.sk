@@ -1,0 +1,7 @@
+# Add files here to ignore them from prettier formatting
+
+package-lock.json
+build
+.cache
+.tmp
+strapi-updater.json
