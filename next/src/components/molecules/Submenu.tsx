@@ -86,7 +86,7 @@ const Submenu = ({ items, filters, clearFilters }: SubmenuProps) => {
         onKeyDown={onEnterOrSpaceKeyDown(() => setModalOpen((prev) => !prev))}
         tabIndex={0}
         aria-expanded={isModalOpen}
-        className="relative flex w-full items-center justify-between bg-gmbDark px-xMd py-yMd text-md uppercase text-white lg:hidden"
+        className="relative flex w-full items-center justify-between bg-gmbDark px-xMd py-yMd text-md text-white uppercase lg:hidden"
       >
         {t('common.quickNavigation')}
         <ChevronDownIcon className="dh-[12] dw-[20]" />

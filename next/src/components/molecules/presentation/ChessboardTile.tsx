@@ -27,7 +27,6 @@ const ChessboardTile = ({ sectionItem, isLeft, showTags, customLinkHref }: Chess
   const { slug, coverMedia, title, tags, perex } = sectionItem.attributes
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <article
       className={cn('relative min-h-chessboardTile lg:flex', { 'flex-row-reverse': isLeft })}
     >

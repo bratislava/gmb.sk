@@ -46,9 +46,8 @@ const NewsletterSection = ({ anchor, title, subtitle, text }: NewsletterSectionP
     if (email.length === 0) {
       newEmailError = t('errors.emailMandatory')
     } else if (
-      // eslint-disable-next-line security/detect-unsafe-regex
       !/^(([^\s"(),.:;<>@[\\\]]+(\.[^\s"(),.:;<>@[\\\]]+)*)|(".+"))@((\[(?:\d{1,3}\.){3}\d{1,3}])|(([\dA-Za-z-]+\.)+[A-Za-z]{2,}))$/.test(
-        String(email).toLowerCase()
+        String(email).toLowerCase(),
       )
     ) {
       newEmailError = t('errors.emailIncorrectFormat')

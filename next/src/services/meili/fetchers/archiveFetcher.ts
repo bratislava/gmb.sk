@@ -20,7 +20,7 @@ export const archiveDefaultFilters: ArchiveFilters = {
 
 // export const getArchiveQueryKey = (filters: ArchiveFilters, locale: string) => ['archive', filters, locale]
 
-export const archiveFetcher = (filters: ArchiveFilters, locale: string) => {
+export const archiveFetcher = async (filters: ArchiveFilters, locale: string) => {
   const exhibitionsTags = [
     getRouteForLocale('vystavy', locale),
     getRouteForLocale('stale-expozicie', locale),

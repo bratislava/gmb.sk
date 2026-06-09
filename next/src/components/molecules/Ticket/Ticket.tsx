@@ -15,7 +15,7 @@ interface ITicketProps {
   purchaseIdGift: string | null | undefined
 }
 
-/* eslint-disable tailwindcss/no-custom-classname */
+/* eslint-disable better-tailwindcss/no-unknown-classes */
 const Ticket = ({ title, price, description, purchaseIdSelf, purchaseIdGift }: ITicketProps) => {
   const { t } = useTranslation()
   const router = useRouter()
@@ -24,7 +24,7 @@ const Ticket = ({ title, price, description, purchaseIdSelf, purchaseIdGift }: I
     <div
       className={cn(
         'goout-ticket relative mb-yMd flex min-h-ticket w-full flex-col justify-between bg-gmbLightGray p-8 last:mb-0 first-of-type:before:hidden last-of-type:after:hidden hover:bg-[#6cc7ed] lg:mb-0',
-        styles.ticket
+        styles.ticket,
       )}
     >
       <div className="pb-yMd">
@@ -56,7 +56,7 @@ const Ticket = ({ title, price, description, purchaseIdSelf, purchaseIdGift }: I
             className="goout-btn-buy-self w-fit px-xMd"
             data-goout-id={purchaseIdSelf}
             data-goout-ticket-category="{category may go here}"
-            onClick={() => router.replace(`#goout-form`)}
+            onClick={async () => router.replace(`#goout-form`)}
           >
             {t('common.buyForYourself')}
           </Button>
@@ -67,7 +67,7 @@ const Ticket = ({ title, price, description, purchaseIdSelf, purchaseIdGift }: I
             className="goout-btn-buy-gift mt-4 w-fit px-xMd"
             data-goout-id={purchaseIdGift}
             data-goout-ticket-category="{category may go here}"
-            onClick={() => router.replace(`#goout-form`)}
+            onClick={async () => router.replace(`#goout-form`)}
           >
             {t('common.buyAsGift')}
           </Button>
@@ -76,6 +76,6 @@ const Ticket = ({ title, price, description, purchaseIdSelf, purchaseIdGift }: I
     </div>
   )
 }
-/* eslint-enable tailwindcss/no-custom-classname */
+/* eslint-enable better-tailwindcss/no-unknown-classes */
 
 export default Ticket

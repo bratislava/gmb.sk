@@ -4,30 +4,53 @@ export default [
   ...createNextConfig({
     ignores: ['src/services/graphql/**'],
   }),
-
+  // https://github.com/bratislava/eslint-config/blob/b17b3028c67e639cf5cef183817f9087d6281d7e/packages/next/README.md#tailwind-css
+  {
+    settings: {
+      'better-tailwindcss': {
+        entryPoint: './src/styles/globals.css',
+        callees: ['cx', 'classnames', 'clsx', 'cn', 'twMerge', 'tw'],
+      },
+    },
+  },
   // Project-specific rule overrides
   {
     rules: {
+      'better-tailwindcss/enforce-consistent-line-wrapping': 'off',
+      '@typescript-eslint/consistent-type-definitions': 'off',
+
+      // TODO decide what to do with these
       'arrow-body-style': 'off',
       '@next/next/no-img-element': 'off',
-      '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
       '@typescript-eslint/no-misused-promises': 'off',
-      '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/no-use-before-define': 'off',
       'sonarjs/no-duplicate-string': 'off',
       'react/display-name': 'off',
-      'padding-line-between-statements': ['warn', { blankLine: 'always', prev: '*', next: 'return' }],
-      // tailwindcss overrides
-      'tailwindcss/classnames-order': ['warn', { callees: ['classnames', 'cx'], officialSorting: true }],
-      'tailwindcss/no-custom-classname': ['warn', { whitelist: ['.*dw.*', '.*dh.*'] }],
+
+      // TODO good rules, require work to fix and were skipped over in eslint v9 upgrade
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unsafe-enum-comparison': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/consistent-type-definitions': 'off',
+      '@typescript-eslint/array-type': 'off',
+      '@typescript-eslint/no-redundant-type-constituents': 'off',
+      '@typescript-eslint/promise-function-async': 'off',
+      '@typescript-eslint/restrict-template-expressions': 'off',
+      'sonarjs/slow-regex': 'off',
+      'sonarjs/prefer-regexp-exec': 'off',
+      'security/detect-unsafe-regex': 'off',
+      'security/detect-object-injection': 'off',
+      'no-implicit-coercion': 'off',
+
       // violations downgraded to warn
       '@typescript-eslint/no-unnecessary-condition': 'warn', // 100 violations
       'sonarjs/single-character-alternation': 'warn', // 23 violations
       '@typescript-eslint/no-unused-vars': 'warn', // 17 violations
       '@typescript-eslint/no-unsafe-argument': 'warn', // 15 violations
-      '@typescript-eslint/consistent-type-definitions': 'warn', // 14 violations
+
       '@typescript-eslint/promise-function-async': 'warn', // 13 violations
       'react-hooks/set-state-in-effect': 'warn', // 8 violations
       '@typescript-eslint/no-deprecated': 'warn', // 5 violations

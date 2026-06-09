@@ -29,7 +29,7 @@ export const useSearchResults = (searchValue: string, locale: string, tagSlugs?:
     refetch,
   } = useInfiniteQuery({
     queryKey: ['SearchResultsInfinite', options, locale],
-    queryFn: ({ pageParam }) => globalSearchFetcher({ ...options, page: pageParam }, locale),
+    queryFn: async ({ pageParam }) => globalSearchFetcher({ ...options, page: pageParam }, locale),
     initialPageParam: 1,
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
       lastPage.hits.length < PAGE_SIZE ? undefined : lastPageParam + 1,

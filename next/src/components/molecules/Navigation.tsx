@@ -32,11 +32,11 @@ const Navigation = ({ page }: NavigationProps) => {
   // Memoize derived state to avoid unnecessary re-renders
   const menuLinks = useMemo(
     () => menu?.data?.attributes?.menuLinks?.filter(isDefined) ?? [],
-    [menu]
+    [menu],
   )
 
   const { children: searchLinkLabel, href: searchLinkHref } = getMenuLinkProps(
-    menu?.data?.attributes?.searchLink
+    menu?.data?.attributes?.searchLink,
   )
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -82,7 +82,7 @@ const Navigation = ({ page }: NavigationProps) => {
               <span
                 id="navLogoText"
                 aria-hidden
-                className="relative ml-4 whitespace-nowrap text-sm leading-[var(--font-size-sm)] group-hover:underline"
+                className="relative ml-4 text-sm leading-(--font-size-sm) whitespace-nowrap group-hover:underline"
               >
                 {i18n.language === 'sk' ? t('common.cityGallery') : t('common.bratislavaGenitiv')}
                 <br />
@@ -103,16 +103,20 @@ const Navigation = ({ page }: NavigationProps) => {
             }
           >
             {isMobileMenuOpen ? (
-              <CloseIcon className="dh-[30] dw-[30]" />
+              <CloseIcon className="size-[calc(30*var(--size-factor))]" />
             ) : (
-              <HamburgerIcon className="ml-[-5] dh-[30] dw-[30]" width={20} height={20} />
+              <HamburgerIcon
+                className="ml-[-5] size-[calc(30*var(--size-factor))]"
+                width={20}
+                height={20}
+              />
             )}
           </button>
 
           {/* Navigation links */}
           <ul
             className={cn('lg:flex lg:gap-x-xMd', {
-              'absolute left-0 top-nav flex w-full flex-col items-center justify-center gap-7 bg-white py-yLg':
+              'absolute top-nav left-0 flex w-full flex-col items-center justify-center gap-7 bg-white py-yLg':
                 isMobileMenuOpen && (!windowWidth || windowWidth < getBreakpointValue('lg')),
               hidden: !isMobileMenuOpen,
             })}

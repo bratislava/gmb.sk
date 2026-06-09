@@ -127,7 +127,7 @@ const ExhibitionsSection = ({
             {`${t('common.filteredBy')}: `}
             {[...activeTags, ...activePlaces].map(
               (tag, index) =>
-                `${tag}${index === [...activeTags, ...activePlaces].length - 1 ? '' : ', '} `
+                `${tag}${index === [...activeTags, ...activePlaces].length - 1 ? '' : ', '} `,
             )}
           </div>
           <CardSection

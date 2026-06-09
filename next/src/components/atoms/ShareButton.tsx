@@ -65,7 +65,6 @@ const ShareButton = ({ slug, platform, title, className }: ShareButtonProps) => 
         if (!openInNewWindow.has(platform)) {
           return
         }
-        // eslint-disable-next-line security/detect-non-literal-fs-filename
         window.open(encodedHref, t('common.share'), 'width=600,height=600')
         event.preventDefault()
       }}

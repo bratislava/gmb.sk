@@ -56,14 +56,16 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, loca
 
 export const getStaticPaths: GetStaticPaths = async ({ locales = [] }) => {
   /** Get all content pages for each locale. It would be better to fetch all content pages in one query, but I didn't find a way */
-  const contentPageSlugsPromises = locales.map((locale) => client.AllContentPageSlugs({ locale }))
+  const contentPageSlugsPromises = locales.map(async (locale) =>
+    client.AllContentPageSlugs({ locale }),
+  )
   const contentPageSlugsResponses = await Promise.all(contentPageSlugsPromises)
 
   /** We have a quite complicated and nested structure here, so we need to flatten the response and filter out nullables */
   const allContentPages = contentPageSlugsResponses
     .flat()
     .map((contentPageSlugsResponse) =>
-      contentPageSlugsResponse.contentPages?.data.filter(hasAttributes)
+      contentPageSlugsResponse.contentPages?.data.filter(hasAttributes),
     )
     .filter(isDefined)
     .flat()

@@ -27,7 +27,7 @@ const ExhibitionArchiveSection = ({ title }: ExhibitionArchiveSectionProps) => {
     const startYear = 2006 // this is the oldest exhibition
 
     return Array.from({ length: todaysYear - startYear + 1 }, (_, i) =>
-      (i + startYear).toString()
+      (i + startYear).toString(),
     ).reverse()
   }, [])
 
@@ -62,7 +62,7 @@ const ExhibitionArchiveSection = ({ title }: ExhibitionArchiveSectionProps) => {
             {/* TODO We could use the SearchBar component here */}
             <div>
               <input
-                className="h-fit max-w-full border-b-2 border-solid border-white/60 bg-transparent text-xl focus:border-white/100 focus:outline-none active:border-white/100"
+                className="h-fit max-w-full border-b-2 border-solid border-white/60 bg-transparent text-xl focus:border-white focus:outline-none active:border-white"
                 placeholder={t('common.searchText')}
                 aria-label={t('common.searchText')}
                 onChange={(e) => {

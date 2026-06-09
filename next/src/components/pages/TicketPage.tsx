@@ -34,12 +34,12 @@ const TicketPage = ({ contentPage, currentEvents }: ITicketPageProps) => {
   } = contentPage.attributes
 
   return (
-    /* eslint-disable tailwindcss/no-custom-classname */
+    /* eslint-disable better-tailwindcss/no-unknown-classes */
     <PageWrapper page={contentPage}>
       <SeoHead seo={seo} title={title} description={subtitle} />
       <section
         data-goout-id={getPurchaseId(contentPage)}
-        className="goout-event-wrapper relative flex min-h-[calc(100vh_-_var(--nav-height))] flex-col"
+        className="goout-event-wrapper relative flex min-h-[calc(100vh-var(--nav-height))] flex-col"
       >
         <header className="px-xMd py-yMd lg:pr-sidepanel">
           <Link href={`/detail/${slug}`} preserveStyle noUnderline>
@@ -78,7 +78,7 @@ const TicketPage = ({ contentPage, currentEvents }: ITicketPageProps) => {
         })}
       />
     </PageWrapper>
-    /* eslint-enable tailwindcss/no-custom-classname */
+    /* eslint-enable better-tailwindcss/no-unknown-classes */
   )
 }
 

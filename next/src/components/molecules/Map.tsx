@@ -119,7 +119,6 @@ function usePreviousImmediate<T>(currentValue: T): T | null {
   return previousRef.current
 }
 
-// eslint-disable-next-line sonarjs/cognitive-complexity
 const Map = ({ mapboxAccessToken }: MapProps) => {
   const { general } = useGeneralContext()
   const { palffy, mirbach, openingHours } = general?.data?.attributes ?? {}
@@ -278,7 +277,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
                 <div>{t('map.connections')}</div>
                 <div>{properties.connections}</div>
               </div>
-            </div>
+            </div>,
           )
           break
 
@@ -301,7 +300,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
                 <div>{t('map.contact')}</div>
                 <div>{properties.contact}</div>
               </div>
-            </div>
+            </div>,
           )
           break
 
@@ -320,7 +319,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
                 <div>{t('map.contact')}</div>
                 <div>{properties.contact}</div>
               </div>
-            </div>
+            </div>,
           )
           break
 
@@ -332,7 +331,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
                 <div>{t('map.count')}</div>
                 <div>{properties.count}</div>
               </div>
-            </div>
+            </div>,
           )
           break
 
@@ -344,7 +343,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
       setSelectedFeaturePoint([event.lngLat.lng, event.lngLat.lat])
       setSelectedPlaceUrl(null)
     },
-    [t]
+    [t],
   )
 
   // on layers change
@@ -389,7 +388,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
               key={tab.key}
               className={cn(
                 'flex items-center space-x-2 px-4 py-2 uppercase underline-offset-2 hover:underline',
-                { underline: selectedTab?.key === tab.key }
+                { underline: selectedTab?.key === tab.key },
               )}
               onClick={() =>
                 selectedTab?.key === tab.key ? setSelectedTab(null) : setSelectedTab(tab)
@@ -451,11 +450,11 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
               </Marker>
             ))}
           </Mapbox>
-          <div className="pointer-events-none absolute right-0 top-0 hidden h-full w-1/6 bg-gradient-to-r from-transparent to-gmbDark lg:block" />
+          <div className="pointer-events-none absolute top-0 right-0 hidden h-full w-1/6 bg-linear-to-r from-transparent to-gmbDark lg:block" />
         </div>
       </div>
       <div className="flex items-center p-8 lg:col-start-3 lg:h-[600px]">
-        <div className="flex flex-col space-y-4 text-[20px] leading-6 lg:px-xMd">
+        <div className="flex flex-col space-y-4 text-[20px]/6 lg:px-xMd">
           {description ?? (
             <>
               {!['mhd', 'bike', 'car'].includes(selectedTab?.key ?? '') && (
@@ -493,7 +492,7 @@ const Map = ({ mapboxAccessToken }: MapProps) => {
           }
           className={cn(
             'flex w-fit items-center border border-white px-8 py-2 uppercase hover:bg-white hover:text-gmbDark',
-            { invisible: !(selectedPlaceUrl ?? selectedFeaturePoint) }
+            { invisible: !(selectedPlaceUrl ?? selectedFeaturePoint) },
           )}
           rel="noreferrer"
         >

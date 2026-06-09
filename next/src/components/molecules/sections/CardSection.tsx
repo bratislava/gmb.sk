@@ -35,7 +35,7 @@ const CardSection = ({
         <div
           className={cn(
             'grid grid-cols-1 gap-x-6 gap-y-14 px-xMd md:grid-cols-2 lg:grid-cols-3 lg:gap-x-10',
-            { 'py-yLg': !title, 'pb-yLg': title }
+            { 'py-yLg': !title, 'pb-yLg': title },
           )}
         >
           {[1, 2, 3].map((_, index) => (
@@ -49,7 +49,7 @@ const CardSection = ({
           <ul
             className={cn(
               'grid grid-cols-1 gap-x-6 gap-y-14 px-xMd md:grid-cols-2 lg:grid-cols-3 lg:gap-x-10',
-              { 'py-yLg': !title, 'pb-yLg': title }
+              { 'py-yLg': !title, 'pb-yLg': title },
             )}
           >
             {sectionItems.map((item) => (
@@ -62,7 +62,7 @@ const CardSection = ({
           {loadmoreButton && <div className="flex justify-center py-12">{loadmoreButton}</div>}
         </>
       ) : (
-        <div className="relative px-xMd pb-[calc(var(--padding-y)+40px)] pt-yMd">
+        <div className="relative px-xMd pt-yMd pb-[calc(var(--padding-y)+40px)]">
           <p className="text-md">{noItemsMessage ?? t('common.nothingToShow')}</p>
         </div>
       )}

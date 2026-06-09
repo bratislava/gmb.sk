@@ -1,32 +1,114 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin 'tailwind-scrollbar-hide';
+
+/* When updating the theme don't forget to update the `twMerge` implementation in `cn.ts`. */
+
+@theme {
+  /* BREAKPOINTS */
+
+  /* Keep in sync with screens.ts */
+  --breakpoint-xs: initial;
+  --breakpoint-sm: 40rem; /* 640px  - phone landscape */
+  --breakpoint-md: 48rem; /* 768px  - iPad portrait   */
+  --breakpoint-lg: 64rem; /* 1024px - iPad landscape  */
+  --breakpoint-xl: 80rem; /* 1280px - small desktop   */
+  --breakpoint-2xl: initial;
+
+  /* COLORS */
+
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-gmbDark: #141414;
+  --color-gmbLightGray: #efefef;
+  --color-gmbGray: #757575;
+
+  /* TEXT */
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-heavy: 900;
+
+  --text-xxl: var(--font-size-xxl);
+  --text-xxl--line-height: var(--line-height-xxl);
+  --text-xl: var(--font-size-xl);
+  --text-xl--line-height: var(--line-height-xl);
+  --text-lg: var(--font-size-lg);
+  --text-lg--line-height: var(--line-height-lg);
+  --text-md: var(--font-size-md);
+  --text-md--line-height: var(--line-height-md);
+  --text-sm: var(--font-size-sm);
+  --text-sm--line-height: var(--line-height-sm);
+  --text-nav: var(--font-size-nav);
+  --text-nav--line-height: var(--line-height-nav);
+  --text-btn: var(--font-size-btn);
+  --text-btn--line-height: var(--line-height-btn);
+
+  /* SPACING */
+
+  --spacing-xSm: var(--padding-x-sm);
+  --spacing-xMd: var(--padding-x-md);
+  --spacing-xLg: var(--padding-x-lg);
+
+  --spacing-ySm: var(--padding-y-sm);
+  --spacing-yMd: var(--padding-y-md);
+  --spacing-yLg: var(--padding-y-lg);
+  --spacing-yXl: var(--padding-y-xl);
+
+  --spacing-nav: var(--nav-height);
+  --spacing-sidepanel: var(--sidepanel-width);
+  --spacing-ticketSidebar: var(--ticket-sidebar-width);
+  --spacing-logoHeight: var(--logo-height);
+  --spacing-logoWidth: var(--logo-width);
+}
 
 @layer base {
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Denim', sans-serif;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    width: 100%;
+  }
+
   @font-face {
     font-family: Denim;
     font-weight: 300;
     src: url(/fonts/Light/Denim-Light.woff2) format('woff2');
     src: url(/fonts/Light/Denim-Light.woff) format('woff');
   }
+
   @font-face {
     font-family: Denim;
     font-weight: 400;
     src: url(/fonts/Regular/Denim-Regular.woff2) format('woff2');
     src: url(/fonts/Regular/Denim-Regular.woff) format('woff');
   }
+
   @font-face {
     font-family: Denim;
     font-weight: 500;
     src: url(/fonts/Medium/Denim-Medium.woff2) format('woff2');
     src: url(/fonts/Medium/Denim-Medium.woff) format('woff');
   }
+
   @font-face {
     font-family: Denim;
     font-weight: 600;
     src: url(/fonts/SemiBold/Denim-SemiBold.woff2) format('woff2');
     src: url(/fonts/SemiBold/Denim-SemiBold.woff) format('woff');
   }
+
   @font-face {
     font-family: Denim;
     font-weight: 700;
@@ -40,20 +122,7 @@
     src: url(/fonts/Heavy/Denim-Heavy.woff) format('woff');
   }
 
-  html,
-  body {
-    padding: 0;
-    margin: 0;
-    font-family: 'Denim', sans-serif;
-    font-weight: 500;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    scroll-behavior: smooth;
-    width: 100%;
-  }
-}
-
-/* Font sizes, paddings and margins are calculated using CSS clamp function.
+  /* Font sizes, paddings and margins are calculated using CSS clamp function.
    You can read more about fluid font sizes for example here: https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/
    The exact values were computed manually with help of google sheets (it should be uploaded on our drive)
    and checked using tool: https://websemantics.uk/tools/responsive-font-calculator/.
@@ -62,117 +131,162 @@
    but after the whole research and try and error process I just ended up with this manually calculated values.
    */
 
-:root,
-::after,
-::before {
-  --sidepanel-width: 100%;
-  --ticket-sidebar-width: 100%;
+  :root,
+  ::after,
+  ::before {
+    --sidepanel-width: 100%;
+    --ticket-sidebar-width: 100%;
 
-  /* 0.0417rem(0.6672px) at 80rem(1280px) increasing to 0.0833rem(1.3328px) at 160rem(2560px) */
-  --size-factor: clamp(0.0417rem, calc(0.0417rem + ((1vw - 0.8rem) * 0.0521)), 0.0833rem);
-  /* 18.75rem(300px) at <=80rem(1280px) increasing to 37.5rem(600px) at 160rem(2560px) */
-  --chessboard-height: clamp(18.75rem, calc(18.75rem + ((1vw - 0.8rem) * 23.4375)), 37.5rem);
+    /* 0.0417rem(0.6672px) at 80rem(1280px) increasing to 0.0833rem(1.3328px) at 160rem(2560px) */
+    --size-factor: clamp(0.0417rem, calc(0.0417rem + ((1vw - 0.8rem) * 0.0521)), 0.0833rem);
+    /* 18.75rem(300px) at <=80rem(1280px) increasing to 37.5rem(600px) at 160rem(2560px) */
+    --chessboard-height: clamp(18.75rem, calc(18.75rem + ((1vw - 0.8rem) * 23.4375)), 37.5rem);
 
-  /* 0.875rem(14px) at 23.375rem(374px) increasing to 1.8333rem(29.3328px) at 80rem(1280px) */
-  --font-size-sm: clamp(0.875rem, calc(0.875rem + ((1vw - 0.23375rem) * 0.0736)), 1.8333rem);
-  /* 0.9375rem(15px) at 23.375rem(374px) increasing to 2rem(32px) at 80rem(1280px) */
-  --font-size-md: clamp(0.9375rem, calc(0.9375rem + ((1vw - 0.23375rem) * 0.1104)), 2rem);
-  /* 1rem(16px) at 23.375rem(374px) increasing to 2.5rem(40px) at 80rem(1280px) */
-  --font-size-lg: clamp(1rem, calc(1rem + ((1vw - 0.23375rem) * 0.4415)), 2.5rem);
-  /* 1.25rem(20px) at 23.375rem(374px) increasing to 3.6667rem(58.6672px) at 80rem(1280px) */
-  --font-size-xl: clamp(1.25rem, calc(1.25rem + ((1vw - 0.23375rem) * 1.0302)), 3.6667rem);
-  /* 1.5rem(24px) at 23.375rem(374px) increasing to 4.1667rem(66.6672px) at 80rem(1280px) */
-  --font-size-xxl: clamp(1.5rem, calc(1.5rem + ((1vw - 0.23375rem) * 1.0302)), 4.1667rem);
-  /* 0.875rem(14px) at 23.375rem(374px) increasing to 1.8333rem(29.3328px) at 80rem(1280px) */
-  --font-size-btn: clamp(0.875rem, calc(0.875rem + ((1vw - 0.23375rem) * 0.0736)), 1.8333rem);
-  /* 0.875rem(14px) at 23.375rem(374px) increasing to 1.8333rem(29.3328px) at 80rem(1280px) */
-  --font-size-nav: clamp(0.875rem, calc(0.875rem + ((1vw - 0.23375rem) * 0.0736)), 1.8333rem);
+    /* 0.875rem(14px) at 23.375rem(374px) increasing to 1.8333rem(29.3328px) at 80rem(1280px) */
+    --font-size-sm: clamp(0.875rem, calc(0.875rem + ((1vw - 0.23375rem) * 0.0736)), 1.8333rem);
+    /* 0.9375rem(15px) at 23.375rem(374px) increasing to 2rem(32px) at 80rem(1280px) */
+    --font-size-md: clamp(0.9375rem, calc(0.9375rem + ((1vw - 0.23375rem) * 0.1104)), 2rem);
+    /* 1rem(16px) at 23.375rem(374px) increasing to 2.5rem(40px) at 80rem(1280px) */
+    --font-size-lg: clamp(1rem, calc(1rem + ((1vw - 0.23375rem) * 0.4415)), 2.5rem);
+    /* 1.25rem(20px) at 23.375rem(374px) increasing to 3.6667rem(58.6672px) at 80rem(1280px) */
+    --font-size-xl: clamp(1.25rem, calc(1.25rem + ((1vw - 0.23375rem) * 1.0302)), 3.6667rem);
+    /* 1.5rem(24px) at 23.375rem(374px) increasing to 4.1667rem(66.6672px) at 80rem(1280px) */
+    --font-size-xxl: clamp(1.5rem, calc(1.5rem + ((1vw - 0.23375rem) * 1.0302)), 4.1667rem);
+    /* 0.875rem(14px) at 23.375rem(374px) increasing to 1.8333rem(29.3328px) at 80rem(1280px) */
+    --font-size-btn: clamp(0.875rem, calc(0.875rem + ((1vw - 0.23375rem) * 0.0736)), 1.8333rem);
+    /* 0.875rem(14px) at 23.375rem(374px) increasing to 1.8333rem(29.3328px) at 80rem(1280px) */
+    --font-size-nav: clamp(0.875rem, calc(0.875rem + ((1vw - 0.23375rem) * 0.0736)), 1.8333rem);
 
-  --padding-x-sm: 0.75rem;
-  /* 1.125rem(18px) at 23.375rem(374px) increasing to 3.3333rem(53.3328px) at 80rem(1280px) */
-  --padding-x-md: clamp(1.125rem, calc(1.125rem + ((1vw - 0.23375rem) * 0.9566)), 3.3333rem);
-  /* 2rem(32px) at 23.375rem(374px) increasing to 7.8333rem(125.3328px) at 80rem(1280px) */
-  --padding-x-lg: clamp(2rem, calc(2rem + ((1vw - 0.23375rem) * 3.3848)), 7.8333rem);
-  /* 0.75rem(12px) at 23.375rem(374px) increasing to 1.5833rem(25.3328px) at 80rem(1280px) */
-  --padding-y-sm: clamp(0.75rem, calc(0.75rem + ((1vw - 0.23375rem) * 0.0736)), 1.5833rem);
-  /* 1.5rem(24px) at 23.375rem(374px) increasing to 3.1667rem(50.6672px) at 80rem(1280px) */
-  --padding-y-md: clamp(1.5rem, calc(1.5rem + ((1vw - 0.23375rem) * 0.1472)), 3.1667rem);
-  /* 3.5rem(56px) at 23.375rem(374px) increasing to 7.5rem(120px) at 80rem(1280px) */
-  --padding-y-lg: clamp(3.5rem, calc(3.5rem + ((1vw - 0.23375rem) * 0.4415)), 7.5rem);
-  /* 5.625rem(90px) at 23.375rem(374px) increasing to 13.3333rem(213.3328px) at 80rem(1280px) */
-  --padding-y-xl: clamp(5.625rem, calc(5.625rem + ((1vw - 0.23375rem) * 1.8396)), 13.3333rem);
+    --padding-x-sm: 0.75rem;
+    /* 1.125rem(18px) at 23.375rem(374px) increasing to 3.3333rem(53.3328px) at 80rem(1280px) */
+    --padding-x-md: clamp(1.125rem, calc(1.125rem + ((1vw - 0.23375rem) * 0.9566)), 3.3333rem);
+    /* 2rem(32px) at 23.375rem(374px) increasing to 7.8333rem(125.3328px) at 80rem(1280px) */
+    --padding-x-lg: clamp(2rem, calc(2rem + ((1vw - 0.23375rem) * 3.3848)), 7.8333rem);
+    /* 0.75rem(12px) at 23.375rem(374px) increasing to 1.5833rem(25.3328px) at 80rem(1280px) */
+    --padding-y-sm: clamp(0.75rem, calc(0.75rem + ((1vw - 0.23375rem) * 0.0736)), 1.5833rem);
+    /* 1.5rem(24px) at 23.375rem(374px) increasing to 3.1667rem(50.6672px) at 80rem(1280px) */
+    --padding-y-md: clamp(1.5rem, calc(1.5rem + ((1vw - 0.23375rem) * 0.1472)), 3.1667rem);
+    /* 3.5rem(56px) at 23.375rem(374px) increasing to 7.5rem(120px) at 80rem(1280px) */
+    --padding-y-lg: clamp(3.5rem, calc(3.5rem + ((1vw - 0.23375rem) * 0.4415)), 7.5rem);
+    /* 5.625rem(90px) at 23.375rem(374px) increasing to 13.3333rem(213.3328px) at 80rem(1280px) */
+    --padding-y-xl: clamp(5.625rem, calc(5.625rem + ((1vw - 0.23375rem) * 1.8396)), 13.3333rem);
 
-  /* 1.9375rem(31px) at 23.375rem(374px) increasing to 5.6667rem(90.6672px) at 80rem(1280px) */
-  --logo-height: clamp(1.9375rem, calc(1.9375rem + ((1vw - 0.23375rem) * 1.582)), 5.6667rem);
-  /* 5.75rem(92px) at 23.375rem(374px) increasing to 17rem(272px) at 80rem(1280px) */
-  --logo-width: clamp(5.75rem, calc(5.75rem + ((1vw - 0.23375rem) * 4.8565)), 17rem);
-  /* 4.375rem(70px) at 23.375rem(374px) increasing to 10rem(160px) at 80rem(1280px) */
-  --nav-height: clamp(4.375rem, calc(4.375rem + ((1vw - 0.23375rem) * 1.1038)), 10rem);
-  /* 13.75rem(220px) at 23.375rem(374px) increasing to 38.3333rem(613.3328px) at 80rem(1280px) */
-  --ticket-height: clamp(13.75rem, calc(13.75rem + ((1vw - 0.23375rem) * 9.565)), 38.3333rem);
+    /* 1.9375rem(31px) at 23.375rem(374px) increasing to 5.6667rem(90.6672px) at 80rem(1280px) */
+    --logo-height: clamp(1.9375rem, calc(1.9375rem + ((1vw - 0.23375rem) * 1.582)), 5.6667rem);
+    /* 5.75rem(92px) at 23.375rem(374px) increasing to 17rem(272px) at 80rem(1280px) */
+    --logo-width: clamp(5.75rem, calc(5.75rem + ((1vw - 0.23375rem) * 4.8565)), 17rem);
+    /* 4.375rem(70px) at 23.375rem(374px) increasing to 10rem(160px) at 80rem(1280px) */
+    --nav-height: clamp(4.375rem, calc(4.375rem + ((1vw - 0.23375rem) * 1.1038)), 10rem);
+    /* 13.75rem(220px) at 23.375rem(374px) increasing to 38.3333rem(613.3328px) at 80rem(1280px) */
+    --ticket-height: clamp(13.75rem, calc(13.75rem + ((1vw - 0.23375rem) * 9.565)), 38.3333rem);
 
-  --line-height-xxl: calc(var(--font-size-xxl) * 1.08);
-  --line-height-xl: calc(var(--font-size-xl) * 1.1);
-  --line-height-lg: calc(var(--font-size-lg) * 1.1333);
-  --line-height-md: calc(var(--font-size-md) * 1.1667);
-  --line-height-sm: calc(var(--font-size-sm) * 1.2);
-  --line-height-nav: calc(var(--font-size-nav) * 1.3636);
-  --line-height-btn: calc(var(--font-size-btn) * 1.3636);
-}
+    --line-height-xxl: calc(var(--font-size-xxl) * 1.08);
+    --line-height-xl: calc(var(--font-size-xl) * 1.1);
+    --line-height-lg: calc(var(--font-size-lg) * 1.1333);
+    --line-height-md: calc(var(--font-size-md) * 1.1667);
+    --line-height-sm: calc(var(--font-size-sm) * 1.2);
+    --line-height-nav: calc(var(--font-size-nav) * 1.3636);
+    --line-height-btn: calc(var(--font-size-btn) * 1.3636);
+  }
 
-@screen lg {
-  :root {
-    /* The sidepanel works from lg screen size higher so it needs to be defined here */
-    /* 22.3333rem(357.3328px) at 64rem(1024px) increasing to 55.8333rem(893.3328px) at 160rem(2560px) */
-    --sidepanel-width: clamp(22.3333rem, calc(22.3333rem + ((1vw - 0.8rem) * 41.875)), 55.8333rem);
+  @media (width >= theme(--breakpoint-lg)) {
+    :root {
+      /* The sidepanel works from lg screen size higher so it needs to be defined here */
+      /* 22.3333rem(357.3328px) at 64rem(1024px) increasing to 55.8333rem(893.3328px) at 160rem(2560px) */
+      --sidepanel-width: clamp(
+        22.3333rem,
+        calc(22.3333rem + ((1vw - 0.8rem) * 41.875)),
+        55.8333rem
+      );
+    }
+  }
+
+  @media (width >= theme(--breakpoint-xl)) {
+    :root {
+      /* 0.9167rem(14.6672px) at 80rem(1280px) increasing to 1.8333rem(29.3328px) at 160rem(2560px) */
+      --font-size-sm: clamp(0.9167rem, calc(0.9167rem + ((1vw - 0.8rem) * 1.1458)), 1.8333rem);
+      /* 1rem(16px) at 80rem(1280px) increasing to 2rem(32px) at 160rem(2560px) */
+      --font-size-md: clamp(1rem, calc(1rem + ((1vw - 0.8rem) * 1.25)), 2rem);
+      /* 1.25rem(20px) at 80rem(1280px) increasing to 2.5rem(40px) at 160rem(2560px) */
+      --font-size-lg: clamp(1.25rem, calc(1.25rem + ((1vw - 0.8rem) * 1.5625)), 2.5rem);
+      /* 1.8333rem(29.3328px) at 80rem(1280px) increasing to 3.6667rem(58.6672px) at 160rem(2560px) */
+      --font-size-xl: clamp(1.8333rem, calc(1.8333rem + ((1vw - 0.8rem) * 2.2917)), 3.6667rem);
+      /* 2.0833rem(33.3328px) at 80rem(1280px) increasing to 4.1667rem(66.6672px) at 160rem(2560px) */
+      --font-size-xxl: clamp(2.0833rem, calc(2.0833rem + ((1vw - 0.8rem) * 2.6042)), 4.1667rem);
+      /* 0.9167rem(14.6672px) at 80rem(1280px) increasing to 1.8333rem(29.3328px) at 160rem(2560px) */
+      --font-size-btn: clamp(0.9167rem, calc(0.9167rem + ((1vw - 0.8rem) * 1.1458)), 1.8333rem);
+      /* 0.9167rem(14.6672px) at 80rem(1280px) increasing to 1.8333rem(29.3328px) at 160rem(2560px) */
+      --font-size-nav: clamp(0.9167rem, calc(0.9167rem + ((1vw - 0.8rem) * 1.1458)), 1.8333rem);
+
+      /* 0.75rem(12px) at 80rem(1280px) increasing to 1.5rem(24px) at 160rem(2560px) */
+      --padding-x-sm: clamp(0.75rem, calc(0.75rem + ((1vw - 0.8rem) * 0.9375)), 1.5rem);
+      /* 1.6667rem(26.6672px) at 80rem(1280px) increasing to 3.3333rem(53.3328px) at 160rem(2560px) */
+      --padding-x-md: clamp(1.6667rem, calc(1.6667rem + ((1vw - 0.8rem) * 2.0833)), 3.3333rem);
+      /* 3.9167rem(62.6672px) at 80rem(1280px) increasing to 7.8333rem(125.3328px) at 160rem(2560px) */
+      --padding-x-lg: clamp(3.9167rem, calc(3.9167rem + ((1vw - 0.8rem) * 4.8958)), 7.8333rem);
+      /* 0.7917rem(12.6672px) at 80rem(1280px) increasing to 1.5833rem(25.3328px) at 160rem(2560px) */
+      --padding-y-sm: clamp(0.7917rem, calc(0.7917rem + ((1vw - 0.8rem) * 0.9896)), 1.5833rem);
+      /* 1.5833rem(25.3328px) at 80rem(1280px) increasing to 3.1667rem(50.6672px) at 160rem(2560px) */
+      --padding-y-md: clamp(1.5833rem, calc(1.5833rem + ((1vw - 0.8rem) * 1.9792)), 3.1667rem);
+      /* 3.75rem(60px) at 80rem(1280px) increasing to 7.5rem(120px) at 160rem(2560px) */
+      --padding-y-lg: clamp(3.75rem, calc(3.75rem + ((1vw - 0.8rem) * 4.6875)), 7.5rem);
+      /* 6.6667rem(106.6672px) at 80rem(1280px) increasing to 13.3333rem(213.3328px) at 160rem(2560px) */
+      --padding-y-xl: clamp(6.6667rem, calc(6.6667rem + ((1vw - 0.8rem) * 8.3333)), 13.3333rem);
+
+      /* 2.8333rem(45.3328px) at 80rem(1280px) increasing to 5.6667rem(90.6672px) at 160rem(2560px) */
+      --logo-height: clamp(2.8333rem, calc(2.8333rem + ((1vw - 0.8rem) * 3.5417)), 5.6667rem);
+      /* 8.5rem(136px) at 80rem(1280px) increasing to 17rem(272px) at 160rem(2560px) */
+      --logo-width: clamp(8.5rem, calc(8.5rem + ((1vw - 0.8rem) * 10.625)), 17rem);
+      /* 5rem(80px) at 80rem(1280px) increasing to 10rem(160px) at 160rem(2560px) */
+      --nav-height: clamp(5rem, calc(5rem + ((1vw - 0.8rem) * 6.25)), 10rem);
+      /* 19.1667rem(306.6672px) at 80rem(1280px) increasing to 38.3333rem(613.3328px) at 160rem(2560px) */
+      --ticket-height: clamp(19.1667rem, calc(19.1667rem + ((1vw - 0.8rem) * 23.9583)), 38.3333rem);
+      /* 19.7917rem(316.6672px) at 80rem(1280px) increasing to 39.5833rem(633.3328px) at 160rem(2560px) */
+      --ticket-sidebar-width: clamp(
+        19.7917rem,
+        calc(19.7917rem + ((1vw - 0.8rem) * 24.7396)),
+        39.5833rem
+      );
+    }
+  }
+
+  /* TAILWIND OVERRIDES */
+
+  /* Set default border color: https://tailwindcss.com/docs/upgrade-guide#default-border-color */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gmbDark, currentcolor);
+  }
+
+  /* button cursor is not set to pointer on default in Tailwind v4, we do it manually */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
   }
 }
 
-@screen xl {
-  :root {
-    /* 0.9167rem(14.6672px) at 80rem(1280px) increasing to 1.8333rem(29.3328px) at 160rem(2560px) */
-    --font-size-sm: clamp(0.9167rem, calc(0.9167rem + ((1vw - 0.8rem) * 1.1458)), 1.8333rem);
-    /* 1rem(16px) at 80rem(1280px) increasing to 2rem(32px) at 160rem(2560px) */
-    --font-size-md: clamp(1rem, calc(1rem + ((1vw - 0.8rem) * 1.25)), 2rem);
-    /* 1.25rem(20px) at 80rem(1280px) increasing to 2.5rem(40px) at 160rem(2560px) */
-    --font-size-lg: clamp(1.25rem, calc(1.25rem + ((1vw - 0.8rem) * 1.5625)), 2.5rem);
-    /* 1.8333rem(29.3328px) at 80rem(1280px) increasing to 3.6667rem(58.6672px) at 160rem(2560px) */
-    --font-size-xl: clamp(1.8333rem, calc(1.8333rem + ((1vw - 0.8rem) * 2.2917)), 3.6667rem);
-    /* 2.0833rem(33.3328px) at 80rem(1280px) increasing to 4.1667rem(66.6672px) at 160rem(2560px) */
-    --font-size-xxl: clamp(2.0833rem, calc(2.0833rem + ((1vw - 0.8rem) * 2.6042)), 4.1667rem);
-    /* 0.9167rem(14.6672px) at 80rem(1280px) increasing to 1.8333rem(29.3328px) at 160rem(2560px) */
-    --font-size-btn: clamp(0.9167rem, calc(0.9167rem + ((1vw - 0.8rem) * 1.1458)), 1.8333rem);
-    /* 0.9167rem(14.6672px) at 80rem(1280px) increasing to 1.8333rem(29.3328px) at 160rem(2560px) */
-    --font-size-nav: clamp(0.9167rem, calc(0.9167rem + ((1vw - 0.8rem) * 1.1458)), 1.8333rem);
+/* UTILITIES  - DYNAMIC SIZING */
 
-    /* 0.75rem(12px) at 80rem(1280px) increasing to 1.5rem(24px) at 160rem(2560px) */
-    --padding-x-sm: clamp(0.75rem, calc(0.75rem + ((1vw - 0.8rem) * 0.9375)), 1.5rem);
-    /* 1.6667rem(26.6672px) at 80rem(1280px) increasing to 3.3333rem(53.3328px) at 160rem(2560px) */
-    --padding-x-md: clamp(1.6667rem, calc(1.6667rem + ((1vw - 0.8rem) * 2.0833)), 3.3333rem);
-    /* 3.9167rem(62.6672px) at 80rem(1280px) increasing to 7.8333rem(125.3328px) at 160rem(2560px) */
-    --padding-x-lg: clamp(3.9167rem, calc(3.9167rem + ((1vw - 0.8rem) * 4.8958)), 7.8333rem);
-    /* 0.7917rem(12.6672px) at 80rem(1280px) increasing to 1.5833rem(25.3328px) at 160rem(2560px) */
-    --padding-y-sm: clamp(0.7917rem, calc(0.7917rem + ((1vw - 0.8rem) * 0.9896)), 1.5833rem);
-    /* 1.5833rem(25.3328px) at 80rem(1280px) increasing to 3.1667rem(50.6672px) at 160rem(2560px) */
-    --padding-y-md: clamp(1.5833rem, calc(1.5833rem + ((1vw - 0.8rem) * 1.9792)), 3.1667rem);
-    /* 3.75rem(60px) at 80rem(1280px) increasing to 7.5rem(120px) at 160rem(2560px) */
-    --padding-y-lg: clamp(3.75rem, calc(3.75rem + ((1vw - 0.8rem) * 4.6875)), 7.5rem);
-    /* 6.6667rem(106.6672px) at 80rem(1280px) increasing to 13.3333rem(213.3328px) at 160rem(2560px) */
-    --padding-y-xl: clamp(6.6667rem, calc(6.6667rem + ((1vw - 0.8rem) * 8.3333)), 13.3333rem);
+/* Use as dw-[size] or dh-[size] where size is the desired size in pixels on a FHD screen.
+   e.g. dw-[30] sets width = 30 * --size-factor (in rem, fluid between 1280px and 2560px) */
 
-    /* 2.8333rem(45.3328px) at 80rem(1280px) increasing to 5.6667rem(90.6672px) at 160rem(2560px) */
-    --logo-height: clamp(2.8333rem, calc(2.8333rem + ((1vw - 0.8rem) * 3.5417)), 5.6667rem);
-    /* 8.5rem(136px) at 80rem(1280px) increasing to 17rem(272px) at 160rem(2560px) */
-    --logo-width: clamp(8.5rem, calc(8.5rem + ((1vw - 0.8rem) * 10.625)), 17rem);
-    /* 5rem(80px) at 80rem(1280px) increasing to 10rem(160px) at 160rem(2560px) */
-    --nav-height: clamp(5rem, calc(5rem + ((1vw - 0.8rem) * 6.25)), 10rem);
-    /* 19.1667rem(306.6672px) at 80rem(1280px) increasing to 38.3333rem(613.3328px) at 160rem(2560px) */
-    --ticket-height: clamp(19.1667rem, calc(19.1667rem + ((1vw - 0.8rem) * 23.9583)), 38.3333rem);
-    /* 19.7917rem(316.6672px) at 80rem(1280px) increasing to 39.5833rem(633.3328px) at 160rem(2560px) */
-    --ticket-sidebar-width: clamp(
-      19.7917rem,
-      calc(19.7917rem + ((1vw - 0.8rem) * 24.7396)),
-      39.5833rem
-    );
-  }
+@utility dw-* {
+  width: calc(--value([number]) * var(--size-factor));
+}
+
+@utility dh-* {
+  height: calc(--value([number]) * var(--size-factor));
+}
+
+/* UTILITIES - OTHER */
+
+@utility min-h-ticket {
+  min-height: var(--ticket-height);
+}
+
+@utility min-h-chessboardTile {
+  min-height: var(--chessboard-height);
 }
