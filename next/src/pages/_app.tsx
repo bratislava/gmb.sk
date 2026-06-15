@@ -5,8 +5,7 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
 import { appWithTranslation, SSRConfig, useTranslation } from 'next-i18next'
-import { NextAdapter } from 'next-query-params'
-import { QueryParamProvider } from 'use-query-params'
+import { NuqsAdapter } from 'nuqs/adapters/next/pages'
 
 import nextI18NextConfig from '@/next-i18next.config'
 import { isProd } from '@/src/utils/isProd'
@@ -29,7 +28,7 @@ const CustomApp = ({ Component, pageProps }: AppProps<SSRConfig>) => {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <QueryClientProvider client={queryClient}>
-        <QueryParamProvider adapter={NextAdapter}>
+        <NuqsAdapter>
           {isProd() ? (
             <Script
               strategy="afterInteractive"
@@ -38,7 +37,7 @@ const CustomApp = ({ Component, pageProps }: AppProps<SSRConfig>) => {
             />
           ) : null}
           <Component {...pageProps} />
-        </QueryParamProvider>
+        </NuqsAdapter>
       </QueryClientProvider>
     </>
   )
