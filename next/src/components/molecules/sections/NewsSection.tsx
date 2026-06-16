@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 
 import NewsBar from '@/src/components/molecules/presentation/NewsBar'
 import Section from '@/src/components/molecules/sections/Section'

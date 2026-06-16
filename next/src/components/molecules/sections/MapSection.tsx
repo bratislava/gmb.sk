@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 
 import Map from '@/src/components/molecules/Map'
 import Section from '@/src/components/molecules/sections/Section'

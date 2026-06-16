@@ -1,5 +1,5 @@
 import { GetStaticProps, NextPage } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations'
 
 import ErrorPage from '@/src/components/pages/ErrorPage'
 import { GeneralQuery } from '@/src/services/graphql'

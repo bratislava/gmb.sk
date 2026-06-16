@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 

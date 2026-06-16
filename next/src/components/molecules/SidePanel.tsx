@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import { useEffect, useState } from 'react'
 
 import Button from '@/src/components/atoms/Button'
@@ -105,7 +105,7 @@ const SidePanel = ({
       <aside
         className={cn(
           'flex w-full flex-col justify-between space-y-10 bg-white lg:space-y-20',
-          className
+          className,
         )}
       >
         <CityGalleryMarkdown content={overrideText} />
@@ -117,7 +117,7 @@ const SidePanel = ({
     <aside
       className={cn(
         'flex w-full flex-col justify-between gap-yLg bg-white empty:hidden',
-        className
+        className,
       )}
     >
       {perex && <p className="text-md">{perex}</p>}

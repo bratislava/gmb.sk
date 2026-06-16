@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 
 import EmailIcon from '@/src/assets/icons/social-platforms/email.svg'
 import FacebookIcon from '@/src/assets/icons/social-platforms/facebook.svg'

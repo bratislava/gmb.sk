@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 
 import TagGroup from '@/src/components/molecules/TagGroup'
 import { PlaceEntityFragment, TagEntityFragment } from '@/src/services/graphql'

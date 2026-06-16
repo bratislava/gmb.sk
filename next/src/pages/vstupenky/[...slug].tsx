@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next'
 import Script from 'next/script'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations'
 
 import TicketPage from '@/src/components/pages/TicketPage'
 import {

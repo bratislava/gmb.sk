@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 
 import Link from '@/src/components/atoms/Link'
 import SeoHead from '@/src/components/atoms/SeoHead'
@@ -58,13 +58,6 @@ const TicketPage = ({ contentPage, currentEvents }: ITicketPageProps) => {
             <SidePanelTime datetime={{ dateFrom, dateTo, timeFrom, timeTo }} isOneLine />
           </div>
         </header>
-
-        {/* TODO */}
-        {/* <aside id="sidebar" className="hidden w-ticketSidebar flex-col bg-gmbDark px-xMd py-yMd text-white lg:flex">
-          <p className="text-lg">{ticketIncludesText}</p>
-          <div className="grow" />
-          <Link href="#relatedContent">{t('common.showIncludedEvents')}</Link>
-  </aside> */}
 
         <div id="goout-form" className="grow bg-gmbLightGray px-xMd py-yLg" />
       </section>

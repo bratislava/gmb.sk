@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 
 import FileIcon from '@/src/assets/icons/file.svg'
 import Button from '@/src/components/atoms/Button'

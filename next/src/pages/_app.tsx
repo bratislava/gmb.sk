@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
-import { appWithTranslation, SSRConfig, useTranslation } from 'next-i18next'
+import { appWithTranslation, SSRConfig, useTranslation } from 'next-i18next/pages'
 import { NuqsAdapter } from 'nuqs/adapters/next/pages'
 
 import nextI18NextConfig from '@/next-i18next.config'

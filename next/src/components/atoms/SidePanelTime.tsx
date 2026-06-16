@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 
 import TimeIcon from '@/src/assets/icons/time.svg'
 import { DatetimeFragment } from '@/src/services/graphql'
