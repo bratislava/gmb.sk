@@ -11,7 +11,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import Mapbox, { MapRef, Marker } from 'react-map-gl'
+import Mapbox, { MapRef, Marker } from 'react-map-gl/mapbox'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
