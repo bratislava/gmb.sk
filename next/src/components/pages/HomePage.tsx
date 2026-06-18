@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 
 import SeoHead from '@/src/components/atoms/SeoHead'
 import HighlightsSection from '@/src/components/molecules/sections/HighlightsSection'

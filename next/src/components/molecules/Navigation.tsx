@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import { useEffect, useMemo, useState } from 'react'
 import { useWindowSize } from 'usehooks-ts'
 

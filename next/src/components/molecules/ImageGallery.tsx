@@ -1,6 +1,6 @@
 import 'react-image-gallery/styles/css/image-gallery.css'
 
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import { useEffect, useRef, useState } from 'react'
 import ReactImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
 import Modal from 'react-modal'

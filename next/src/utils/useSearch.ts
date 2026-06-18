@@ -1,5 +1,5 @@
+import { useQueryState } from 'nuqs'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { StringParam, useQueryParam, withDefault } from 'use-query-params'
 import { useDebounceValue } from 'usehooks-ts'
 
 type UseSearchOptions = {
@@ -7,13 +7,10 @@ type UseSearchOptions = {
 }
 
 export const useSearch = ({ syncWithUrlQuery = false }: UseSearchOptions) => {
-  const [routerQueryValue, setRouterQueryValue] = useQueryParam(
-    'query',
-    withDefault(StringParam, ''),
-    {
-      removeDefaultsFromUrl: true,
-    },
-  )
+  const [routerQueryValue, setRouterQueryValue] = useQueryState('query', {
+    defaultValue: '',
+    clearOnDefault: true,
+  })
   const [input, setInput] = useState<string>('')
   const value = syncWithUrlQuery ? routerQueryValue : input
   const [debouncedInput] = useDebounceValue<string>(value, 300)

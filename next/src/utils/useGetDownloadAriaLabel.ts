@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 
 import { DownloadItemFragment } from '@/src/services/graphql'
 import { formatFileExtension } from '@/src/utils/formatFileExtension'

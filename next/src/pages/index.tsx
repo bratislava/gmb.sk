@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next/pages'
+import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations'
 
 import HomePage from '@/src/components/pages/HomePage'
 import { GeneralQuery, HomePageQuery, NewsQuery } from '@/src/services/graphql'

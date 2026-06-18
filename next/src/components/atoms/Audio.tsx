@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import { ReactNode } from 'react'
 
 const getOEmbedUrl = (url: string) => {

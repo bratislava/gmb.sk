@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
-import React, { useCallback } from 'react'
+import { useTranslation } from 'next-i18next/pages'
+import { useCallback } from 'react'
 
 import { PageWrapperProps } from '@/src/components/pages/PageWrapper'
 import cn from '@/src/utils/cn'
@@ -25,7 +25,7 @@ const AppLangSwitchers = ({ page, showBothLanguages }: AppLangSwitchersProps) =>
       const equivalentRouteInTargetLocale = getEquivalentRouteInTargetLocale(
         cleanPath,
         locale,
-        page
+        page,
       )
 
       if (!equivalentRouteInTargetLocale) {
@@ -38,7 +38,7 @@ const AppLangSwitchers = ({ page, showBothLanguages }: AppLangSwitchersProps) =>
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.replace({ pathname: equivalentRouteInTargetLocale }, undefined, { locale })
     },
-    [asPath, page, router]
+    [asPath, page, router],
   )
 
   return (

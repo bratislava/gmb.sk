@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 
 import Audio from '@/src/components/atoms/Audio'
 import SeoHead from '@/src/components/atoms/SeoHead'
@@ -64,7 +64,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
     childPages?.data
       .filter(hasAttributes)
       .filter((child) =>
-        child.attributes.dateTo ? getDaysLeft(child.attributes.dateTo) >= 0 : child
+        child.attributes.dateTo ? getDaysLeft(child.attributes.dateTo) >= 0 : child,
       )
       .sort((a, b) => (a.attributes.dateFrom > b.attributes.dateFrom ? 1 : -1)) ?? []
 

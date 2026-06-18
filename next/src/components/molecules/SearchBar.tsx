@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import { Dispatch, SetStateAction } from 'react'
 
 import cn from '@/src/utils/cn'

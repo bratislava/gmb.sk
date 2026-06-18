@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations'
 
 import DetailPage from '@/src/components/pages/DetailPage'
 import { ContentPageBySlugQuery, GeneralQuery } from '@/src/services/graphql'

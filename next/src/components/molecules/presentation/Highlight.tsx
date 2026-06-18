@@ -2,7 +2,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import { useEffect } from 'react'
 import { useWindowSize } from 'usehooks-ts'
 
@@ -49,7 +49,14 @@ const Highlight = ({ highlight }: Props) => {
   gsap.registerPlugin(ScrollTrigger)
 
   useEffect(() => {
-    if (highlight.id && windowWidth && windowWidth >= getBreakpointValue('lg')) {
+    if (!(highlight.id && windowWidth && windowWidth >= getBreakpointValue('lg'))) {
+      return undefined
+    }
+
+    // Scope the triggers so each effect run (e.g. on resize / Strict Mode remount) kills
+    // its own pins instead of stacking duplicate, conflicting ScrollTriggers on the same
+    // elements — without this, the pinned highlight image would flicker/disappear.
+    const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: `#sidepanel${highlight.id}`,
         start: 'top bottom',
@@ -65,7 +72,9 @@ const Highlight = ({ highlight }: Props) => {
         pinSpacing: false,
         scrub: 0,
       })
-    }
+    })
+
+    return () => ctx.revert()
   }, [highlight.id, windowWidth])
 
   const renderOverride = !!override?.highlightContent

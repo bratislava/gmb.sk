@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 
 import { ContentPageEntityFragment } from '@/src/services/graphql'
 import { formatDateString } from '@/src/utils/formatDateString'

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next/pages'
 import { useEffect, useRef, useState } from 'react'
 
 import NewsletterImg from '@/src/assets/images/v-obraze-white.png'
