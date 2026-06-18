@@ -55,7 +55,7 @@ const Highlight = ({ highlight }: Props) => {
 
     // Scope the triggers so each effect run (e.g. on resize / Strict Mode remount) kills
     // its own pins instead of stacking duplicate, conflicting ScrollTriggers on the same
-    // elements — without this, the pinned highlight image to flicker/disappear.
+    // elements — without this, the pinned highlight image would flicker/disappear.
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: `#sidepanel${highlight.id}`,
