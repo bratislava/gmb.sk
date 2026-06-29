@@ -30,7 +30,7 @@
     "@react-stately/toggle": "3.10.1",
     "@react-types/checkbox": "3.11.0",
     "@tanstack/react-query": "5.101.0",
-    "@types/mailchimp__mailchimp_marketing": "3.0.21",
+    "@types/mailchimp__mailchimp_marketing": "3.0.22",
     "clsx": "2.1.1",
     "graphql": "16.14.1",
     "graphql-request": "7.4.0",
