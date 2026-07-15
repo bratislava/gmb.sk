@@ -1,9 +1,9 @@
-"use strict"
+'use strict'
 
-import placesData from "./seeders/data/places.json"
-import tagCategoriesData from "./seeders/data/tag-categories.json"
-import tagsData from "./seeders/data/tags.json"
-import { seedCollectionWithTranslation } from "./seeders/seedCollectionWithTranslation"
+import placesData from './seeders/data/places.json'
+import tagCategoriesData from './seeders/data/tag-categories.json'
+import tagsData from './seeders/data/tags.json'
+import { seedCollectionWithTranslation } from './seeders/seedCollectionWithTranslation'
 
 export default {
   /**
@@ -13,20 +13,14 @@ export default {
    * This gives you an opportunity to extend code.
    */
   register: ({ strapi }) => {
-    const { transformArgs, getContentTypeArgs } = strapi
-      .plugin("graphql")
-      .service("builders").utils
-    const extensionService = strapi.plugin("graphql").service("extension")
+    const { transformArgs, getContentTypeArgs } = strapi.plugin('graphql').service('builders').utils
+    const extensionService = strapi.plugin('graphql').service('extension')
 
     const extension = ({ nexus }) => {
       /* Followed from https://github.com/strapi/strapi/issues/11745#issuecomment-984637527 */
-      const generateBySlugQuery = (
-        queryName: string,
-        responseType: string,
-        apiName: string
-      ) => {
+      const generateBySlugQuery = (queryName: string, responseType: string, apiName: string) => {
         return nexus.extendType({
-          type: "Query",
+          type: 'Query',
           definition(t) {
             t.field(queryName, {
               type: responseType,
@@ -44,7 +38,7 @@ export default {
                 if (isPublished) {
                   filters = { slug, publishedAt: { $notNull: true } }
                 }
-                const results = await strapi.entityService.findMany(apiName, {
+                const results = await strapi.documents(apiName).findMany({
                   filters,
                   locale,
                 })
@@ -62,34 +56,30 @@ export default {
         // Nexus
         types: [
           generateBySlugQuery(
-            "tagCategoryBySlug",
-            "TagCategoryEntityResponse",
-            "api::tag-category.tag-category"
+            'tagCategoryBySlug',
+            'TagCategoryEntityResponse',
+            'api::tag-category.tag-category'
           ),
-          generateBySlugQuery("tagBySlug", "TagEntityResponse", "api::tag.tag"),
+          generateBySlugQuery('tagBySlug', 'TagEntityResponse', 'api::tag.tag'),
+          generateBySlugQuery('placeBySlug', 'PlaceEntityResponse', 'api::place.place'),
           generateBySlugQuery(
-            "placeBySlug",
-            "PlaceEntityResponse",
-            "api::place.place"
-          ),
-          generateBySlugQuery(
-            "contentPageBySlug",
-            "ContentPageEntityResponse",
-            "api::content-page.content-page"
+            'contentPageBySlug',
+            'ContentPageEntityResponse',
+            'api::content-page.content-page'
           ),
         ],
 
         resolversConfig: {
-          "Query.tagCategoryBySlug": {
+          'Query.tagCategoryBySlug': {
             auth: false,
           },
-          "Query.tagBySlug": {
+          'Query.tagBySlug': {
             auth: false,
           },
-          "Query.placeBySlug": {
+          'Query.placeBySlug': {
             auth: false,
           },
-          "Query.contentPageBySlug": {
+          'Query.contentPageBySlug': {
             auth: false,
           },
         },
@@ -124,7 +114,7 @@ export default {
         url: `${process.env.REVALIDATE_NEXT_URL}/api/revalidate?secret=${process.env.REVALIDATE_SECRET_TOKEN}`,
         events: ['entry.create', 'entry.update', 'entry.publish'],
         headers: {},
-        isEnabled: true
+        isEnabled: true,
       })
       console.log('Revalidate webhook created')
     } else {
@@ -134,66 +124,64 @@ export default {
     // ADDING ENGLISH LOCALE
     //------------------------------------
     const existingEnglish = await strapi.db
-      .query("plugin::i18n.locale")
-      .findOne({ where: { code: "en" } })
+      .query('plugin::i18n.locale')
+      .findOne({ where: { code: 'en' } })
     if (!existingEnglish) {
-      const english = { name: "English (en)", code: "en" }
+      const english = { name: 'English (en)', code: 'en' }
       try {
-        await strapi.db.query("plugin::i18n.locale").create({ data: english })
+        await strapi.db.query('plugin::i18n.locale').create({ data: english })
       } catch (error: any) {
-        console.log(
-          "Caught error while creating locale, checking if locale created successfully."
-        )
+        console.log('Caught error while creating locale, checking if locale created successfully.')
         const createdEnglish = await strapi.db
-          .query("plugin::i18n.locale")
+          .query('plugin::i18n.locale')
           .findOne({ where: english })
-        if (createdEnglish) console.log("Created English locale.")
+        if (createdEnglish) console.log('Created English locale.')
       }
     }
     console.log({
-      locales: await strapi.db.query("plugin::i18n.locale").findMany(),
+      locales: await strapi.db.query('plugin::i18n.locale').findMany(),
     })
     //------------------------------------
     // ADDING TAG-CATEGORIES
     //------------------------------------
     await seedCollectionWithTranslation(
       strapi,
-      "api::tag-category.tag-category",
+      'api::tag-category.tag-category',
       tagCategoriesData,
       {
         title: (sourceItem) => sourceItem.title,
         slug: (sourceItem) => sourceItem.slug,
         locale: (sourceItem) => sourceItem.locale,
       },
-      "slug"
+      'slug'
     )
     //------------------------------------
     // ADDING TAGS
     //------------------------------------
     await seedCollectionWithTranslation(
       strapi,
-      "api::tag.tag",
+      'api::tag.tag',
       tagsData,
       {
         title: (sourceItem) => sourceItem.title,
         slug: (sourceItem) => sourceItem.slug,
         tagCategory: async (sourceItem) => {
           const tagCategory = await strapi.db
-            .query("api::tag-category.tag-category", "i18n")
+            .query('api::tag-category.tag-category', 'i18n')
             .findOne({ where: { slug: sourceItem.tagCategory } })
           console.log({ tagCategory })
           return tagCategory.id
         },
         locale: (sourceItem) => sourceItem.locale,
       },
-      "slug"
+      'slug'
     )
     //------------------------------------
     // ADDING PLACES
     //------------------------------------
     await seedCollectionWithTranslation(
       strapi,
-      "api::place.place",
+      'api::place.place',
       placesData,
       {
         title: (sourceItem) => sourceItem.title,
@@ -201,7 +189,7 @@ export default {
         address: (sourceItem) => sourceItem.address,
         locale: (sourceItem) => sourceItem.locale,
       },
-      "slug"
+      'slug'
     )
   },
 }

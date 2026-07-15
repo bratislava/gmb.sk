@@ -733,8 +733,6 @@ input ComponentSectionsVideoSectionInput {
 type ContactCard {
   createdAt: DateTime
   email: String
-  locale: String
-  localizations(filters: ContactCardFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): ContactCardRelationResponseCollection
   name: String!
   phone1: String
   phone2: String
@@ -761,8 +759,6 @@ input ContactCardFiltersInput {
   createdAt: DateTimeFilterInput
   email: StringFilterInput
   id: IDFilterInput
-  locale: StringFilterInput
-  localizations: ContactCardFiltersInput
   name: StringFilterInput
   not: ContactCardFiltersInput
   or: [ContactCardFiltersInput]
@@ -794,8 +790,6 @@ type ContentPage {
   dateTo: Date
   downloadSection: ComponentSectionsDownloadSection
   inheritColorFromParent: Boolean
-  locale: String
-  localizations(filters: ContentPageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContentPageRelationResponseCollection
   mainContent: [ContentPageMainContentDynamicZone]
   override: ComponentBlocksHighlightOverride
   parentPage: ContentPageEntityResponse
@@ -850,8 +844,6 @@ input ContentPageFiltersInput {
   downloadSection: ComponentSectionsDownloadSectionFiltersInput
   id: IDFilterInput
   inheritColorFromParent: BooleanFilterInput
-  locale: StringFilterInput
-  localizations: ContentPageFiltersInput
   not: ContentPageFiltersInput
   or: [ContentPageFiltersInput]
   override: ComponentBlocksHighlightOverrideFiltersInput
@@ -1034,8 +1026,6 @@ type General {
   email: String
   footerLinks1: ComponentBlocksLinks
   footerLinks2: ComponentBlocksLinks
-  locale: String
-  localizations: GeneralRelationResponseCollection
   mirbach: ComponentBlocksPalace
   name: String
   openingHours: String
@@ -1064,8 +1054,6 @@ input GeneralFiltersInput {
   email: StringFilterInput
   footerLinks1: ComponentBlocksLinksFiltersInput
   footerLinks2: ComponentBlocksLinksFiltersInput
-  locale: StringFilterInput
-  localizations: GeneralFiltersInput
   mirbach: ComponentBlocksPalaceFiltersInput
   name: StringFilterInput
   not: GeneralFiltersInput
@@ -1091,13 +1079,11 @@ type GeneralRelationResponseCollection {
   data: [GeneralEntity!]!
 }
 
-union GenericMorph = ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | General | HomePage | MainPage | Menu | Partner | Place | Tag | TagCategory | Ticket | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type HomePage {
   createdAt: DateTime
   highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
-  locale: String
-  localizations: HomePageRelationResponseCollection
   sections: [HomePageSectionsDynamicZone]
   seo: ComponentBlocksSeo
   updatedAt: DateTime
@@ -1121,8 +1107,6 @@ input HomePageFiltersInput {
   and: [HomePageFiltersInput]
   createdAt: DateTimeFilterInput
   highlights: ComponentBlocksContentPageItemFiltersInput
-  locale: StringFilterInput
-  localizations: HomePageFiltersInput
   not: HomePageFiltersInput
   or: [HomePageFiltersInput]
   seo: ComponentBlocksSeoFiltersInput
@@ -1142,50 +1126,6 @@ type HomePageRelationResponseCollection {
 union HomePageSectionsDynamicZone = ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | Error
 
 scalar HomePageSectionsDynamicZoneInput
-
-type I18NLocale {
-  code: String
-  createdAt: DateTime
-  name: String
-  updatedAt: DateTime
-}
-
-"""A string used to identify an i18n locale"""
-scalar I18NLocaleCode
-
-type I18NLocaleEntity {
-  attributes: I18NLocale
-  id: ID
-}
-
-type I18NLocaleEntityResponse {
-  data: I18NLocaleEntity
-}
-
-type I18NLocaleEntityResponseCollection {
-  data: [I18NLocaleEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input I18NLocaleFiltersInput {
-  and: [I18NLocaleFiltersInput]
-  code: StringFilterInput
-  createdAt: DateTimeFilterInput
-  id: IDFilterInput
-  name: StringFilterInput
-  not: I18NLocaleFiltersInput
-  or: [I18NLocaleFiltersInput]
-  updatedAt: DateTimeFilterInput
-}
-
-input I18NLocaleInput {
-  code: String
-  name: String
-}
-
-type I18NLocaleRelationResponseCollection {
-  data: [I18NLocaleEntity!]!
-}
 
 input IDFilterInput {
   and: [ID]
@@ -1299,8 +1239,6 @@ input LongFilterInput {
 
 type MainPage {
   createdAt: DateTime
-  locale: String
-  localizations(filters: MainPageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): MainPageRelationResponseCollection
   publishedAt: DateTime
   sections: [MainPageSectionsDynamicZone]
   seo: ComponentBlocksSeo
@@ -1327,8 +1265,6 @@ input MainPageFiltersInput {
   and: [MainPageFiltersInput]
   createdAt: DateTimeFilterInput
   id: IDFilterInput
-  locale: StringFilterInput
-  localizations: MainPageFiltersInput
   not: MainPageFiltersInput
   or: [MainPageFiltersInput]
   publishedAt: DateTimeFilterInput
@@ -1356,8 +1292,6 @@ scalar MainPageSectionsDynamicZoneInput
 
 type Menu {
   createdAt: DateTime
-  locale: String
-  localizations: MenuRelationResponseCollection
   menuLinks(filters: ComponentBlocksMenuLinkItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksMenuLinkItem]
   searchLink: ComponentBlocksMenuLinkItem
   updatedAt: DateTime
@@ -1380,8 +1314,6 @@ type MenuEntityResponseCollection {
 input MenuFiltersInput {
   and: [MenuFiltersInput]
   createdAt: DateTimeFilterInput
-  locale: StringFilterInput
-  localizations: MenuFiltersInput
   menuLinks: ComponentBlocksMenuLinkItemFiltersInput
   not: MenuFiltersInput
   or: [MenuFiltersInput]
@@ -1401,25 +1333,14 @@ type MenuRelationResponseCollection {
 type Mutation {
   """Change user password. Confirm with the current password."""
   changePassword(currentPassword: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
-  createContactCard(data: ContactCardInput!, locale: I18NLocaleCode): ContactCardEntityResponse
-  createContactCardLocalization(data: ContactCardInput, id: ID, locale: I18NLocaleCode): ContactCardEntityResponse
-  createContentPage(data: ContentPageInput!, locale: I18NLocaleCode): ContentPageEntityResponse
-  createContentPageLocalization(data: ContentPageInput, id: ID, locale: I18NLocaleCode): ContentPageEntityResponse
-  createGeneralLocalization(data: GeneralInput, id: ID, locale: I18NLocaleCode): GeneralEntityResponse
-  createHomePageLocalization(data: HomePageInput, id: ID, locale: I18NLocaleCode): HomePageEntityResponse
-  createMainPage(data: MainPageInput!, locale: I18NLocaleCode): MainPageEntityResponse
-  createMainPageLocalization(data: MainPageInput, id: ID, locale: I18NLocaleCode): MainPageEntityResponse
-  createMenuLocalization(data: MenuInput, id: ID, locale: I18NLocaleCode): MenuEntityResponse
-  createPartner(data: PartnerInput!, locale: I18NLocaleCode): PartnerEntityResponse
-  createPartnerLocalization(data: PartnerInput, id: ID, locale: I18NLocaleCode): PartnerEntityResponse
-  createPlace(data: PlaceInput!, locale: I18NLocaleCode): PlaceEntityResponse
-  createPlaceLocalization(data: PlaceInput, id: ID, locale: I18NLocaleCode): PlaceEntityResponse
-  createTag(data: TagInput!, locale: I18NLocaleCode): TagEntityResponse
-  createTagCategory(data: TagCategoryInput!, locale: I18NLocaleCode): TagCategoryEntityResponse
-  createTagCategoryLocalization(data: TagCategoryInput, id: ID, locale: I18NLocaleCode): TagCategoryEntityResponse
-  createTagLocalization(data: TagInput, id: ID, locale: I18NLocaleCode): TagEntityResponse
-  createTicket(data: TicketInput!, locale: I18NLocaleCode): TicketEntityResponse
-  createTicketLocalization(data: TicketInput, id: ID, locale: I18NLocaleCode): TicketEntityResponse
+  createContactCard(data: ContactCardInput!): ContactCardEntityResponse
+  createContentPage(data: ContentPageInput!): ContentPageEntityResponse
+  createMainPage(data: MainPageInput!): MainPageEntityResponse
+  createPartner(data: PartnerInput!): PartnerEntityResponse
+  createPlace(data: PlaceInput!): PlaceEntityResponse
+  createTag(data: TagInput!): TagEntityResponse
+  createTagCategory(data: TagCategoryInput!): TagCategoryEntityResponse
+  createTicket(data: TicketInput!): TicketEntityResponse
   createUploadFile(data: UploadFileInput!): UploadFileEntityResponse
   createUploadFolder(data: UploadFolderInput!): UploadFolderEntityResponse
 
@@ -1428,17 +1349,17 @@ type Mutation {
 
   """Create a new user"""
   createUsersPermissionsUser(data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
-  deleteContactCard(id: ID!, locale: I18NLocaleCode): ContactCardEntityResponse
-  deleteContentPage(id: ID!, locale: I18NLocaleCode): ContentPageEntityResponse
-  deleteGeneral(locale: I18NLocaleCode): GeneralEntityResponse
-  deleteHomePage(locale: I18NLocaleCode): HomePageEntityResponse
-  deleteMainPage(id: ID!, locale: I18NLocaleCode): MainPageEntityResponse
-  deleteMenu(locale: I18NLocaleCode): MenuEntityResponse
-  deletePartner(id: ID!, locale: I18NLocaleCode): PartnerEntityResponse
-  deletePlace(id: ID!, locale: I18NLocaleCode): PlaceEntityResponse
-  deleteTag(id: ID!, locale: I18NLocaleCode): TagEntityResponse
-  deleteTagCategory(id: ID!, locale: I18NLocaleCode): TagCategoryEntityResponse
-  deleteTicket(id: ID!, locale: I18NLocaleCode): TicketEntityResponse
+  deleteContactCard(id: ID!): ContactCardEntityResponse
+  deleteContentPage(id: ID!): ContentPageEntityResponse
+  deleteGeneral: GeneralEntityResponse
+  deleteHomePage: HomePageEntityResponse
+  deleteMainPage(id: ID!): MainPageEntityResponse
+  deleteMenu: MenuEntityResponse
+  deletePartner(id: ID!): PartnerEntityResponse
+  deletePlace(id: ID!): PlaceEntityResponse
+  deleteTag(id: ID!): TagEntityResponse
+  deleteTagCategory(id: ID!): TagCategoryEntityResponse
+  deleteTicket(id: ID!): TicketEntityResponse
   deleteUploadFile(id: ID!): UploadFileEntityResponse
   deleteUploadFolder(id: ID!): UploadFolderEntityResponse
 
@@ -1464,18 +1385,18 @@ type Mutation {
   Reset user password. Confirm with a code (resetToken from forgotPassword)
   """
   resetPassword(code: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
-  updateContactCard(data: ContactCardInput!, id: ID!, locale: I18NLocaleCode): ContactCardEntityResponse
-  updateContentPage(data: ContentPageInput!, id: ID!, locale: I18NLocaleCode): ContentPageEntityResponse
+  updateContactCard(data: ContactCardInput!, id: ID!): ContactCardEntityResponse
+  updateContentPage(data: ContentPageInput!, id: ID!): ContentPageEntityResponse
   updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
-  updateGeneral(data: GeneralInput!, locale: I18NLocaleCode): GeneralEntityResponse
-  updateHomePage(data: HomePageInput!, locale: I18NLocaleCode): HomePageEntityResponse
-  updateMainPage(data: MainPageInput!, id: ID!, locale: I18NLocaleCode): MainPageEntityResponse
-  updateMenu(data: MenuInput!, locale: I18NLocaleCode): MenuEntityResponse
-  updatePartner(data: PartnerInput!, id: ID!, locale: I18NLocaleCode): PartnerEntityResponse
-  updatePlace(data: PlaceInput!, id: ID!, locale: I18NLocaleCode): PlaceEntityResponse
-  updateTag(data: TagInput!, id: ID!, locale: I18NLocaleCode): TagEntityResponse
-  updateTagCategory(data: TagCategoryInput!, id: ID!, locale: I18NLocaleCode): TagCategoryEntityResponse
-  updateTicket(data: TicketInput!, id: ID!, locale: I18NLocaleCode): TicketEntityResponse
+  updateGeneral(data: GeneralInput!): GeneralEntityResponse
+  updateHomePage(data: HomePageInput!): HomePageEntityResponse
+  updateMainPage(data: MainPageInput!, id: ID!): MainPageEntityResponse
+  updateMenu(data: MenuInput!): MenuEntityResponse
+  updatePartner(data: PartnerInput!, id: ID!): PartnerEntityResponse
+  updatePlace(data: PlaceInput!, id: ID!): PlaceEntityResponse
+  updateTag(data: TagInput!, id: ID!): TagEntityResponse
+  updateTagCategory(data: TagCategoryInput!, id: ID!): TagCategoryEntityResponse
+  updateTicket(data: TicketInput!, id: ID!): TicketEntityResponse
   updateUploadFile(data: UploadFileInput!, id: ID!): UploadFileEntityResponse
   updateUploadFolder(data: UploadFolderInput!, id: ID!): UploadFolderEntityResponse
 
@@ -1504,8 +1425,6 @@ input PaginationArg {
 type Partner {
   createdAt: DateTime
   link: String
-  locale: String
-  localizations(filters: PartnerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): PartnerRelationResponseCollection
   logo: UploadFileEntityResponse!
   title: String!
   updatedAt: DateTime
@@ -1530,8 +1449,6 @@ input PartnerFiltersInput {
   createdAt: DateTimeFilterInput
   id: IDFilterInput
   link: StringFilterInput
-  locale: StringFilterInput
-  localizations: PartnerFiltersInput
   not: PartnerFiltersInput
   or: [PartnerFiltersInput]
   title: StringFilterInput
@@ -1552,8 +1469,6 @@ type Place {
   address: String!
   contentPages(filters: ContentPageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContentPageRelationResponseCollection
   createdAt: DateTime
-  locale: String
-  localizations(filters: PlaceFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): PlaceRelationResponseCollection
   purchaseId: String
   slug: String!
   title: String!
@@ -1580,8 +1495,6 @@ input PlaceFiltersInput {
   contentPages: ContentPageFiltersInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
-  locale: StringFilterInput
-  localizations: PlaceFiltersInput
   not: PlaceFiltersInput
   or: [PlaceFiltersInput]
   purchaseId: StringFilterInput
@@ -1608,32 +1521,30 @@ enum PublicationState {
 }
 
 type Query {
-  contactCard(id: ID, locale: I18NLocaleCode): ContactCardEntityResponse
-  contactCards(filters: ContactCardFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, sort: [String] = []): ContactCardEntityResponseCollection
-  contentPage(id: ID, locale: I18NLocaleCode): ContentPageEntityResponse
-  contentPageBySlug(isPublished: Boolean, locale: I18NLocaleCode, slug: String): ContentPageEntityResponse
-  contentPages(filters: ContentPageFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContentPageEntityResponseCollection
-  general(locale: I18NLocaleCode): GeneralEntityResponse
-  homePage(locale: I18NLocaleCode): HomePageEntityResponse
-  i18NLocale(id: ID): I18NLocaleEntityResponse
-  i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): I18NLocaleEntityResponseCollection
-  mainPage(id: ID, locale: I18NLocaleCode): MainPageEntityResponse
-  mainPages(filters: MainPageFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): MainPageEntityResponseCollection
+  contactCard(id: ID): ContactCardEntityResponse
+  contactCards(filters: ContactCardFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): ContactCardEntityResponseCollection
+  contentPage(id: ID): ContentPageEntityResponse
+  contentPageBySlug(isPublished: Boolean, slug: String): ContentPageEntityResponse
+  contentPages(filters: ContentPageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContentPageEntityResponseCollection
+  general: GeneralEntityResponse
+  homePage: HomePageEntityResponse
+  mainPage(id: ID): MainPageEntityResponse
+  mainPages(filters: MainPageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): MainPageEntityResponseCollection
   me: UsersPermissionsMe
-  menu(locale: I18NLocaleCode): MenuEntityResponse
-  partner(id: ID, locale: I18NLocaleCode): PartnerEntityResponse
-  partners(filters: PartnerFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, sort: [String] = []): PartnerEntityResponseCollection
-  place(id: ID, locale: I18NLocaleCode): PlaceEntityResponse
-  placeBySlug(isPublished: Boolean, locale: I18NLocaleCode, slug: String): PlaceEntityResponse
-  places(filters: PlaceFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, sort: [String] = []): PlaceEntityResponseCollection
-  tag(id: ID, locale: I18NLocaleCode): TagEntityResponse
-  tagBySlug(isPublished: Boolean, locale: I18NLocaleCode, slug: String): TagEntityResponse
-  tagCategories(filters: TagCategoryFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, sort: [String] = []): TagCategoryEntityResponseCollection
-  tagCategory(id: ID, locale: I18NLocaleCode): TagCategoryEntityResponse
-  tagCategoryBySlug(isPublished: Boolean, locale: I18NLocaleCode, slug: String): TagCategoryEntityResponse
-  tags(filters: TagFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, sort: [String] = []): TagEntityResponseCollection
-  ticket(id: ID, locale: I18NLocaleCode): TicketEntityResponse
-  tickets(filters: TicketFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TicketEntityResponseCollection
+  menu: MenuEntityResponse
+  partner(id: ID): PartnerEntityResponse
+  partners(filters: PartnerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): PartnerEntityResponseCollection
+  place(id: ID): PlaceEntityResponse
+  placeBySlug(isPublished: Boolean, slug: String): PlaceEntityResponse
+  places(filters: PlaceFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): PlaceEntityResponseCollection
+  tag(id: ID): TagEntityResponse
+  tagBySlug(isPublished: Boolean, slug: String): TagEntityResponse
+  tagCategories(filters: TagCategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): TagCategoryEntityResponseCollection
+  tagCategory(id: ID): TagCategoryEntityResponse
+  tagCategoryBySlug(isPublished: Boolean, slug: String): TagCategoryEntityResponse
+  tags(filters: TagFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): TagEntityResponseCollection
+  ticket(id: ID): TicketEntityResponse
+  tickets(filters: TicketFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TicketEntityResponseCollection
   uploadFile(id: ID): UploadFileEntityResponse
   uploadFiles(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileEntityResponseCollection
   uploadFolder(id: ID): UploadFolderEntityResponse
@@ -1676,8 +1587,6 @@ input StringFilterInput {
 type Tag {
   contentPages(filters: ContentPageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContentPageRelationResponseCollection
   createdAt: DateTime
-  locale: String
-  localizations(filters: TagFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): TagRelationResponseCollection
   slug: String!
   tagCategory: TagCategoryEntityResponse
   title: String!
@@ -1687,8 +1596,6 @@ type Tag {
 
 type TagCategory {
   createdAt: DateTime
-  locale: String
-  localizations(filters: TagCategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): TagCategoryRelationResponseCollection
   slug: String!
   tags(filters: TagFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): TagRelationResponseCollection
   title: String!
@@ -1713,8 +1620,6 @@ input TagCategoryFiltersInput {
   and: [TagCategoryFiltersInput]
   createdAt: DateTimeFilterInput
   id: IDFilterInput
-  locale: StringFilterInput
-  localizations: TagCategoryFiltersInput
   not: TagCategoryFiltersInput
   or: [TagCategoryFiltersInput]
   slug: StringFilterInput
@@ -1752,8 +1657,6 @@ input TagFiltersInput {
   contentPages: ContentPageFiltersInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
-  locale: StringFilterInput
-  localizations: TagFiltersInput
   not: TagFiltersInput
   or: [TagFiltersInput]
   slug: StringFilterInput
@@ -1778,8 +1681,6 @@ type TagRelationResponseCollection {
 type Ticket {
   createdAt: DateTime
   description: String
-  locale: String
-  localizations(filters: TicketFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TicketRelationResponseCollection
   price: Int
   publishedAt: DateTime
   purchaseIdGift: String
@@ -1807,8 +1708,6 @@ input TicketFiltersInput {
   createdAt: DateTimeFilterInput
   description: StringFilterInput
   id: IDFilterInput
-  locale: StringFilterInput
-  localizations: TicketFiltersInput
   not: TicketFiltersInput
   or: [TicketFiltersInput]
   price: IntFilterInput
