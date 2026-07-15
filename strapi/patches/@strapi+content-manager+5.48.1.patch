@@ -1,0 +1,37 @@
+diff --git a/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.js b/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.js
+index da1b83d..5d8332f 100644
+--- a/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.js
++++ b/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.js
+@@ -48,7 +48,7 @@ const Wysiwyg = /*#__PURE__*/ React__namespace.forwardRef(({ hint, disabled, lab
+     };
+     const handleSelectAssets = (files)=>{
+         const formattedFiles = files.map((f)=>({
+-                alt: f.alternativeText || f.name,
++                alt: `${f.alternativeText ?? ''}||${f.caption ?? ''}`,
+                 url: urls.prefixFileUrlWithBackendUrl(f.url),
+                 mime: f.mime
+             }));
+diff --git a/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.mjs b/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.mjs
+index 887e12b..13c7d8b 100644
+--- a/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.mjs
++++ b/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.mjs
+@@ -1,7 +1,7 @@
+-import { jsxs, jsx } from 'react/jsx-runtime';
+-import * as React from 'react';
+ import { useField, useIsMobile, useStrapiApp } from '@strapi/admin/strapi-admin';
+-import { Field, Flex, Box } from '@strapi/design-system';
++import { Box, Field, Flex } from '@strapi/design-system';
++import * as React from 'react';
++import { jsx, jsxs } from 'react/jsx-runtime';
+ import { prefixFileUrlWithBackendUrl } from '../../../../../utils/urls.mjs';
+ import { Editor } from './Editor.mjs';
+ import { EditorLayout } from './EditorLayout.mjs';
+@@ -27,7 +27,7 @@ const Wysiwyg = /*#__PURE__*/ React.forwardRef(({ hint, disabled, label, name, p
+     };
+     const handleSelectAssets = (files)=>{
+         const formattedFiles = files.map((f)=>({
+-                alt: f.alternativeText || f.name,
++                alt: `${f.alternativeText ?? ''}||${f.caption ?? ''}`,
+                 url: prefixFileUrlWithBackendUrl(f.url),
+                 mime: f.mime
+             }));
