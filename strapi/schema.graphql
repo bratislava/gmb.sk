@@ -1864,6 +1864,13 @@ type Query {
     publicationFilter: PublicationFilter
     status: PublicationStatus = PUBLISHED
   ): ContentPage
+  contentPageBySlug(
+    isPublished: Boolean
+
+    """The locale to use for the query"""
+    locale: I18NLocaleCode
+    slug: String
+  ): ContentPageEntityResponse
   contentPages(
     filters: ContentPageFiltersInput
     hasPublishedVersion: Boolean
@@ -1985,6 +1992,13 @@ type Query {
     publicationFilter: PublicationFilter
     status: PublicationStatus = PUBLISHED
   ): Place
+  placeBySlug(
+    isPublished: Boolean
+
+    """The locale to use for the query"""
+    locale: I18NLocaleCode
+    slug: String
+  ): PlaceEntityResponse
   places(
     filters: PlaceFiltersInput
     hasPublishedVersion: Boolean
@@ -2022,6 +2036,13 @@ type Query {
     publicationFilter: PublicationFilter
     status: PublicationStatus = PUBLISHED
   ): Tag
+  tagBySlug(
+    isPublished: Boolean
+
+    """The locale to use for the query"""
+    locale: I18NLocaleCode
+    slug: String
+  ): TagEntityResponse
   tagCategories(
     filters: TagCategoryFiltersInput
     hasPublishedVersion: Boolean
@@ -2053,6 +2074,13 @@ type Query {
     publicationFilter: PublicationFilter
     status: PublicationStatus = PUBLISHED
   ): TagCategory
+  tagCategoryBySlug(
+    isPublished: Boolean
+
+    """The locale to use for the query"""
+    locale: I18NLocaleCode
+    slug: String
+  ): TagCategoryEntityResponse
   tags(
     filters: TagFiltersInput
     hasPublishedVersion: Boolean
