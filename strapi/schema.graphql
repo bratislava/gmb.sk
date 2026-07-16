@@ -28,9 +28,7 @@ input BooleanFilterInput {
 }
 
 type ComponentBlocksContactCardItem {
-  attributes: ComponentBlocksContactCardItem! @deprecated(reason: "Use root level fields instead")
   contactCard: ContactCard
-  data: ComponentBlocksContactCardItem! @deprecated(reason: "Use root level fields instead")
   id: ID!
 }
 
@@ -47,9 +45,7 @@ input ComponentBlocksContactCardItemInput {
 }
 
 type ComponentBlocksContentPageItem {
-  attributes: ComponentBlocksContentPageItem! @deprecated(reason: "Use root level fields instead")
   contentPage: ContentPage
-  data: ComponentBlocksContentPageItem! @deprecated(reason: "Use root level fields instead")
   id: ID!
 }
 
@@ -66,10 +62,8 @@ input ComponentBlocksContentPageItemInput {
 }
 
 type ComponentBlocksExhibitionArchive {
-  attributes: ComponentBlocksExhibitionArchive! @deprecated(reason: "Use root level fields instead")
   color: String
   coverMedia: UploadFile
-  data: ComponentBlocksExhibitionArchive! @deprecated(reason: "Use root level fields instead")
   id: ID!
   perex: String
   subtitle: String
@@ -99,8 +93,6 @@ input ComponentBlocksExhibitionArchiveInput {
 }
 
 type ComponentBlocksFileItem {
-  attributes: ComponentBlocksFileItem! @deprecated(reason: "Use root level fields instead")
-  data: ComponentBlocksFileItem! @deprecated(reason: "Use root level fields instead")
   file: UploadFile!
   id: ID!
   title: String
@@ -120,8 +112,6 @@ input ComponentBlocksFileItemInput {
 }
 
 type ComponentBlocksHighlightOverride {
-  attributes: ComponentBlocksHighlightOverride! @deprecated(reason: "Use root level fields instead")
-  data: ComponentBlocksHighlightOverride! @deprecated(reason: "Use root level fields instead")
   highlightContent: String
   id: ID!
 }
@@ -139,8 +129,6 @@ input ComponentBlocksHighlightOverrideInput {
 }
 
 type ComponentBlocksLinkItem {
-  attributes: ComponentBlocksLinkItem! @deprecated(reason: "Use root level fields instead")
-  data: ComponentBlocksLinkItem! @deprecated(reason: "Use root level fields instead")
   id: ID!
   newWindow: Boolean
   title: String!
@@ -164,8 +152,6 @@ input ComponentBlocksLinkItemInput {
 }
 
 type ComponentBlocksLinks {
-  attributes: ComponentBlocksLinks! @deprecated(reason: "Use root level fields instead")
-  data: ComponentBlocksLinks! @deprecated(reason: "Use root level fields instead")
   id: ID!
   links(filters: ComponentBlocksLinkItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksLinkItem]
   title: String
@@ -186,9 +172,7 @@ input ComponentBlocksLinksInput {
 }
 
 type ComponentBlocksMenuLinkItem {
-  attributes: ComponentBlocksMenuLinkItem! @deprecated(reason: "Use root level fields instead")
   contentPage: ContentPage
-  data: ComponentBlocksMenuLinkItem! @deprecated(reason: "Use root level fields instead")
   hasButtonStyle: Boolean
   id: ID!
   mainPage: MainPage
@@ -218,9 +202,7 @@ input ComponentBlocksMenuLinkItemInput {
 
 type ComponentBlocksPalace {
   address: String
-  attributes: ComponentBlocksPalace! @deprecated(reason: "Use root level fields instead")
   city: String
-  data: ComponentBlocksPalace! @deprecated(reason: "Use root level fields instead")
   id: ID!
   phone: String
   title: String
@@ -248,8 +230,6 @@ input ComponentBlocksPalaceInput {
 }
 
 type ComponentBlocksPartnerItem {
-  attributes: ComponentBlocksPartnerItem! @deprecated(reason: "Use root level fields instead")
-  data: ComponentBlocksPartnerItem! @deprecated(reason: "Use root level fields instead")
   id: ID!
   partner: Partner
 }
@@ -267,8 +247,6 @@ input ComponentBlocksPartnerItemInput {
 }
 
 type ComponentBlocksPositionItem {
-  attributes: ComponentBlocksPositionItem! @deprecated(reason: "Use root level fields instead")
-  data: ComponentBlocksPositionItem! @deprecated(reason: "Use root level fields instead")
   id: ID!
   names: String
   title: String
@@ -289,8 +267,6 @@ input ComponentBlocksPositionItemInput {
 }
 
 type ComponentBlocksSeo {
-  attributes: ComponentBlocksSeo! @deprecated(reason: "Use root level fields instead")
-  data: ComponentBlocksSeo! @deprecated(reason: "Use root level fields instead")
   id: ID!
   keywords: String
   metaDescription: String
@@ -316,9 +292,7 @@ input ComponentBlocksSeoInput {
 }
 
 type ComponentSectionsArchiveBannerSection {
-  attributes: ComponentSectionsArchiveBannerSection! @deprecated(reason: "Use root level fields instead")
   banner: ComponentBlocksExhibitionArchive!
-  data: ComponentSectionsArchiveBannerSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   submenuTitle: String
   title: String
@@ -341,8 +315,6 @@ input ComponentSectionsArchiveBannerSectionInput {
 }
 
 type ComponentSectionsAudioSection {
-  attributes: ComponentSectionsAudioSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsAudioSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   submenuTitle: String
   title: String
@@ -366,9 +338,7 @@ input ComponentSectionsAudioSectionInput {
 }
 
 type ComponentSectionsContactCardsSection {
-  attributes: ComponentSectionsContactCardsSection! @deprecated(reason: "Use root level fields instead")
   contacts(filters: ComponentBlocksContactCardItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContactCardItem]
-  data: ComponentSectionsContactCardsSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   submenuTitle: String
   title: String
@@ -391,8 +361,6 @@ input ComponentSectionsContactCardsSectionInput {
 }
 
 type ComponentSectionsDisclosureSection {
-  attributes: ComponentSectionsDisclosureSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsDisclosureSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   submenuTitle: String
   title: String
@@ -413,8 +381,6 @@ input ComponentSectionsDisclosureSectionInput {
 }
 
 type ComponentSectionsDownloadSection {
-  attributes: ComponentSectionsDownloadSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsDownloadSection! @deprecated(reason: "Use root level fields instead")
   files(filters: ComponentBlocksFileItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksFileItem]
   id: ID!
   submenuTitle: String
@@ -438,8 +404,6 @@ input ComponentSectionsDownloadSectionInput {
 }
 
 type ComponentSectionsExhibitionArchiveSection {
-  attributes: ComponentSectionsExhibitionArchiveSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsExhibitionArchiveSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   title: String
 }
@@ -458,8 +422,6 @@ input ComponentSectionsExhibitionArchiveSectionInput {
 
 type ComponentSectionsExhibitionsSection {
   archiveBannerSection: ComponentSectionsArchiveBannerSection
-  attributes: ComponentSectionsExhibitionsSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsExhibitionsSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   title: String
 }
@@ -479,8 +441,6 @@ input ComponentSectionsExhibitionsSectionInput {
 }
 
 type ComponentSectionsExploreSection {
-  attributes: ComponentSectionsExploreSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsExploreSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   title: String
 }
@@ -498,8 +458,6 @@ input ComponentSectionsExploreSectionInput {
 }
 
 type ComponentSectionsGallerySection {
-  attributes: ComponentSectionsGallerySection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsGallerySection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   medias(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [UploadFile]!
   medias_connection(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
@@ -523,8 +481,6 @@ input ComponentSectionsGallerySectionInput {
 }
 
 type ComponentSectionsGlobalSearchSection {
-  attributes: ComponentSectionsGlobalSearchSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsGlobalSearchSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   title: String
 }
@@ -542,8 +498,6 @@ input ComponentSectionsGlobalSearchSectionInput {
 }
 
 type ComponentSectionsHighlightsSection {
-  attributes: ComponentSectionsHighlightsSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsHighlightsSection! @deprecated(reason: "Use root level fields instead")
   highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
   id: ID!
 }
@@ -561,8 +515,6 @@ input ComponentSectionsHighlightsSectionInput {
 }
 
 type ComponentSectionsMapSection {
-  attributes: ComponentSectionsMapSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsMapSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   submenuTitle: String
   title: String
@@ -583,8 +535,6 @@ input ComponentSectionsMapSectionInput {
 }
 
 type ComponentSectionsNewsSection {
-  attributes: ComponentSectionsNewsSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsNewsSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   submenuTitle: String
   title: String
@@ -605,8 +555,6 @@ input ComponentSectionsNewsSectionInput {
 }
 
 type ComponentSectionsNewsletterSection {
-  attributes: ComponentSectionsNewsletterSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsNewsletterSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   submenuTitle: String
   subtitle: String
@@ -633,8 +581,6 @@ input ComponentSectionsNewsletterSectionInput {
 }
 
 type ComponentSectionsOpeningHoursSection {
-  attributes: ComponentSectionsOpeningHoursSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsOpeningHoursSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   submenuTitle: String
 }
@@ -652,9 +598,7 @@ input ComponentSectionsOpeningHoursSectionInput {
 }
 
 type ComponentSectionsPageSection {
-  attributes: ComponentSectionsPageSection! @deprecated(reason: "Use root level fields instead")
   contentPages(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
-  data: ComponentSectionsPageSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   layout: ENUM_COMPONENTSECTIONSPAGESECTION_LAYOUT
   submenuTitle: String
@@ -680,8 +624,6 @@ input ComponentSectionsPageSectionInput {
 }
 
 type ComponentSectionsPartnersSection {
-  attributes: ComponentSectionsPartnersSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsPartnersSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   partners(filters: ComponentBlocksPartnerItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksPartnerItem]
   submenuTitle: String
@@ -705,9 +647,7 @@ input ComponentSectionsPartnersSectionInput {
 }
 
 type ComponentSectionsRichtextSection {
-  attributes: ComponentSectionsRichtextSection! @deprecated(reason: "Use root level fields instead")
   content: String
-  data: ComponentSectionsRichtextSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   submenuTitle: String
 }
@@ -727,8 +667,6 @@ input ComponentSectionsRichtextSectionInput {
 }
 
 type ComponentSectionsSliderSection {
-  attributes: ComponentSectionsSliderSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsSliderSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   medias(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [UploadFile]!
   medias_connection(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
@@ -749,8 +687,6 @@ input ComponentSectionsSliderSectionInput {
 }
 
 type ComponentSectionsTicketsSection {
-  attributes: ComponentSectionsTicketsSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsTicketsSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   submenuTitle: String
   text: String
@@ -774,8 +710,6 @@ input ComponentSectionsTicketsSectionInput {
 }
 
 type ComponentSectionsVideoSection {
-  attributes: ComponentSectionsVideoSection! @deprecated(reason: "Use root level fields instead")
-  data: ComponentSectionsVideoSection! @deprecated(reason: "Use root level fields instead")
   id: ID!
   submenuTitle: String
   title: String
@@ -799,12 +733,9 @@ input ComponentSectionsVideoSectionInput {
 }
 
 type ContactCard {
-  attributes: ContactCard! @deprecated(reason: "Use root level fields instead")
   createdAt: DateTime
-  data: ContactCard! @deprecated(reason: "Use root level fields instead")
   documentId: ID!
   email: String
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   locale: String
   localizations(filters: ContactCardFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ContactCard]!
   localizations_connection(filters: ContactCardFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): ContactCardRelationResponseCollection
@@ -826,8 +757,6 @@ type ContactCardEntityResponse {
 }
 
 type ContactCardEntityResponseCollection {
-  data: [ContactCard!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [ContactCard!]!
   pageInfo: Pagination!
 }
@@ -859,24 +788,20 @@ input ContactCardInput {
 }
 
 type ContactCardRelationResponseCollection {
-  data: [ContactCard!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [ContactCard!]!
 }
 
 type ContentPage {
   addedAt: DateTime
-  attributes: ContentPage! @deprecated(reason: "Use root level fields instead")
   childPages(filters: ContentPageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ContentPage]!
   childPages_connection(filters: ContentPageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): ContentPageRelationResponseCollection
   color: String
   coverMedia: UploadFile
   createdAt: DateTime
-  data: ContentPage! @deprecated(reason: "Use root level fields instead")
   dateFrom: Date
   dateTo: Date
   documentId: ID!
   downloadSection: ComponentSectionsDownloadSection
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   inheritColorFromParent: Boolean
   locale: String
   localizations(filters: ContentPageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ContentPage]!
@@ -921,8 +846,6 @@ type ContentPageEntityResponse {
 }
 
 type ContentPageEntityResponseCollection {
-  data: [ContentPage!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [ContentPage!]!
   pageInfo: Pagination!
 }
@@ -1012,7 +935,6 @@ union ContentPageMainContentDynamicZone = ComponentSectionsAudioSection | Compon
 scalar ContentPageMainContentDynamicZoneInput
 
 type ContentPageRelationResponseCollection {
-  data: [ContentPage!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [ContentPage!]!
 }
 
@@ -1123,14 +1045,11 @@ input FloatFilterInput {
 }
 
 type General {
-  attributes: General! @deprecated(reason: "Use root level fields instead")
   createdAt: DateTime
-  data: General! @deprecated(reason: "Use root level fields instead")
   documentId: ID!
   email: String
   footerLinks1: ComponentBlocksLinks
   footerLinks2: ComponentBlocksLinks
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   locale: String
   localizations: [General]!
   localizations_connection: GeneralRelationResponseCollection
@@ -1153,8 +1072,6 @@ type GeneralEntityResponse {
 }
 
 type GeneralEntityResponseCollection {
-  data: [General!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [General!]!
   pageInfo: Pagination!
 }
@@ -1191,19 +1108,15 @@ input GeneralInput {
 }
 
 type GeneralRelationResponseCollection {
-  data: [General!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [General!]!
 }
 
 union GenericMorph = ComponentBlocksContactCardItem | ComponentBlocksContentPageItem | ComponentBlocksExhibitionArchive | ComponentBlocksFileItem | ComponentBlocksHighlightOverride | ComponentBlocksLinkItem | ComponentBlocksLinks | ComponentBlocksMenuLinkItem | ComponentBlocksPalace | ComponentBlocksPartnerItem | ComponentBlocksPositionItem | ComponentBlocksSeo | ComponentSectionsArchiveBannerSection | ComponentSectionsAudioSection | ComponentSectionsContactCardsSection | ComponentSectionsDisclosureSection | ComponentSectionsDownloadSection | ComponentSectionsExhibitionArchiveSection | ComponentSectionsExhibitionsSection | ComponentSectionsExploreSection | ComponentSectionsGallerySection | ComponentSectionsGlobalSearchSection | ComponentSectionsHighlightsSection | ComponentSectionsMapSection | ComponentSectionsNewsSection | ComponentSectionsNewsletterSection | ComponentSectionsOpeningHoursSection | ComponentSectionsPageSection | ComponentSectionsPartnersSection | ComponentSectionsRichtextSection | ComponentSectionsSliderSection | ComponentSectionsTicketsSection | ComponentSectionsVideoSection | ContactCard | ContentPage | General | HomePage | I18NLocale | MainPage | Menu | Partner | Place | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | Tag | TagCategory | Ticket | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type HomePage {
-  attributes: HomePage! @deprecated(reason: "Use root level fields instead")
   createdAt: DateTime
-  data: HomePage! @deprecated(reason: "Use root level fields instead")
   documentId: ID!
   highlights(filters: ComponentBlocksContentPageItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentBlocksContentPageItem]
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   locale: String
   localizations: [HomePage]!
   localizations_connection: HomePageRelationResponseCollection
@@ -1223,8 +1136,6 @@ type HomePageEntityResponse {
 }
 
 type HomePageEntityResponseCollection {
-  data: [HomePage!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [HomePage!]!
   pageInfo: Pagination!
 }
@@ -1250,7 +1161,6 @@ input HomePageInput {
 }
 
 type HomePageRelationResponseCollection {
-  data: [HomePage!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [HomePage!]!
 }
 
@@ -1259,12 +1169,9 @@ union HomePageSectionsDynamicZone = ComponentSectionsNewsSection | ComponentSect
 scalar HomePageSectionsDynamicZoneInput
 
 type I18NLocale {
-  attributes: I18NLocale! @deprecated(reason: "Use root level fields instead")
   code: String
   createdAt: DateTime
-  data: I18NLocale! @deprecated(reason: "Use root level fields instead")
   documentId: ID!
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   name: String
   publishedAt: DateTime
   updatedAt: DateTime
@@ -1283,8 +1190,6 @@ type I18NLocaleEntityResponse {
 }
 
 type I18NLocaleEntityResponseCollection {
-  data: [I18NLocale!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [I18NLocale!]!
   pageInfo: Pagination!
 }
@@ -1308,7 +1213,6 @@ input I18NLocaleInput {
 }
 
 type I18NLocaleRelationResponseCollection {
-  data: [I18NLocale!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [I18NLocale!]!
 }
 
@@ -1423,11 +1327,8 @@ input LongFilterInput {
 }
 
 type MainPage {
-  attributes: MainPage! @deprecated(reason: "Use root level fields instead")
   createdAt: DateTime
-  data: MainPage! @deprecated(reason: "Use root level fields instead")
   documentId: ID!
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   locale: String
   localizations(filters: MainPageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [MainPage]!
   localizations_connection(filters: MainPageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): MainPageRelationResponseCollection
@@ -1449,8 +1350,6 @@ type MainPageEntityResponse {
 }
 
 type MainPageEntityResponseCollection {
-  data: [MainPage!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [MainPage!]!
   pageInfo: Pagination!
 }
@@ -1479,7 +1378,6 @@ input MainPageInput {
 }
 
 type MainPageRelationResponseCollection {
-  data: [MainPage!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [MainPage!]!
 }
 
@@ -1488,11 +1386,8 @@ union MainPageSectionsDynamicZone = ComponentSectionsDisclosureSection | Compone
 scalar MainPageSectionsDynamicZoneInput
 
 type Menu {
-  attributes: Menu! @deprecated(reason: "Use root level fields instead")
   createdAt: DateTime
-  data: Menu! @deprecated(reason: "Use root level fields instead")
   documentId: ID!
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   locale: String
   localizations: [Menu]!
   localizations_connection: MenuRelationResponseCollection
@@ -1512,8 +1407,6 @@ type MenuEntityResponse {
 }
 
 type MenuEntityResponseCollection {
-  data: [Menu!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [Menu!]!
   pageInfo: Pagination!
 }
@@ -1538,7 +1431,6 @@ input MenuInput {
 }
 
 type MenuRelationResponseCollection {
-  data: [Menu!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [Menu!]!
 }
 
@@ -1804,11 +1696,8 @@ input PaginationArg {
 }
 
 type Partner {
-  attributes: Partner! @deprecated(reason: "Use root level fields instead")
   createdAt: DateTime
-  data: Partner! @deprecated(reason: "Use root level fields instead")
   documentId: ID!
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   link: String
   locale: String
   localizations(filters: PartnerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Partner]!
@@ -1829,8 +1718,6 @@ type PartnerEntityResponse {
 }
 
 type PartnerEntityResponseCollection {
-  data: [Partner!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [Partner!]!
   pageInfo: Pagination!
 }
@@ -1857,19 +1744,15 @@ input PartnerInput {
 }
 
 type PartnerRelationResponseCollection {
-  data: [Partner!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [Partner!]!
 }
 
 type Place {
   address: String!
-  attributes: Place! @deprecated(reason: "Use root level fields instead")
   contentPages(filters: ContentPageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ContentPage]!
   contentPages_connection(filters: ContentPageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): ContentPageRelationResponseCollection
   createdAt: DateTime
-  data: Place! @deprecated(reason: "Use root level fields instead")
   documentId: ID!
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   locale: String
   localizations(filters: PlaceFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Place]!
   localizations_connection(filters: PlaceFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): PlaceRelationResponseCollection
@@ -1890,8 +1773,6 @@ type PlaceEntityResponse {
 }
 
 type PlaceEntityResponseCollection {
-  data: [Place!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [Place!]!
   pageInfo: Pagination!
 }
@@ -1923,7 +1804,6 @@ input PlaceInput {
 }
 
 type PlaceRelationResponseCollection {
-  data: [Place!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [Place!]!
 }
 
@@ -2270,12 +2150,9 @@ type ResponseCollectionMeta {
 }
 
 type ReviewWorkflowsWorkflow {
-  attributes: ReviewWorkflowsWorkflow! @deprecated(reason: "Use root level fields instead")
   contentTypes: JSON!
   createdAt: DateTime
-  data: ReviewWorkflowsWorkflow! @deprecated(reason: "Use root level fields instead")
   documentId: ID!
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   name: String!
   publishedAt: DateTime
   stageRequiredToPublish: ReviewWorkflowsWorkflowStage
@@ -2294,8 +2171,6 @@ type ReviewWorkflowsWorkflowEntityResponse {
 }
 
 type ReviewWorkflowsWorkflowEntityResponseCollection {
-  data: [ReviewWorkflowsWorkflow!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [ReviewWorkflowsWorkflow!]!
   pageInfo: Pagination!
 }
@@ -2323,17 +2198,13 @@ input ReviewWorkflowsWorkflowInput {
 }
 
 type ReviewWorkflowsWorkflowRelationResponseCollection {
-  data: [ReviewWorkflowsWorkflow!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [ReviewWorkflowsWorkflow!]!
 }
 
 type ReviewWorkflowsWorkflowStage {
-  attributes: ReviewWorkflowsWorkflowStage! @deprecated(reason: "Use root level fields instead")
   color: String
   createdAt: DateTime
-  data: ReviewWorkflowsWorkflowStage! @deprecated(reason: "Use root level fields instead")
   documentId: ID!
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   name: String
   publishedAt: DateTime
   updatedAt: DateTime
@@ -2350,8 +2221,6 @@ type ReviewWorkflowsWorkflowStageEntityResponse {
 }
 
 type ReviewWorkflowsWorkflowStageEntityResponseCollection {
-  data: [ReviewWorkflowsWorkflowStage!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [ReviewWorkflowsWorkflowStage!]!
   pageInfo: Pagination!
 }
@@ -2377,7 +2246,6 @@ input ReviewWorkflowsWorkflowStageInput {
 }
 
 type ReviewWorkflowsWorkflowStageRelationResponseCollection {
-  data: [ReviewWorkflowsWorkflowStage!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [ReviewWorkflowsWorkflowStage!]!
 }
 
@@ -2407,13 +2275,10 @@ input StringFilterInput {
 }
 
 type Tag {
-  attributes: Tag! @deprecated(reason: "Use root level fields instead")
   contentPages(filters: ContentPageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ContentPage]!
   contentPages_connection(filters: ContentPageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): ContentPageRelationResponseCollection
   createdAt: DateTime
-  data: Tag! @deprecated(reason: "Use root level fields instead")
   documentId: ID!
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   locale: String
   localizations(filters: TagFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Tag]!
   localizations_connection(filters: TagFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): TagRelationResponseCollection
@@ -2426,11 +2291,8 @@ type Tag {
 }
 
 type TagCategory {
-  attributes: TagCategory! @deprecated(reason: "Use root level fields instead")
   createdAt: DateTime
-  data: TagCategory! @deprecated(reason: "Use root level fields instead")
   documentId: ID!
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   locale: String
   localizations(filters: TagCategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [TagCategory]!
   localizations_connection(filters: TagCategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): TagCategoryRelationResponseCollection
@@ -2452,8 +2314,6 @@ type TagCategoryEntityResponse {
 }
 
 type TagCategoryEntityResponseCollection {
-  data: [TagCategory!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [TagCategory!]!
   pageInfo: Pagination!
 }
@@ -2481,7 +2341,6 @@ input TagCategoryInput {
 }
 
 type TagCategoryRelationResponseCollection {
-  data: [TagCategory!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [TagCategory!]!
 }
 
@@ -2495,8 +2354,6 @@ type TagEntityResponse {
 }
 
 type TagEntityResponseCollection {
-  data: [Tag!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [Tag!]!
   pageInfo: Pagination!
 }
@@ -2528,17 +2385,13 @@ input TagInput {
 }
 
 type TagRelationResponseCollection {
-  data: [Tag!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [Tag!]!
 }
 
 type Ticket {
-  attributes: Ticket! @deprecated(reason: "Use root level fields instead")
   createdAt: DateTime
-  data: Ticket! @deprecated(reason: "Use root level fields instead")
   description: String
   documentId: ID!
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   locale: String
   localizations(filters: TicketFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Ticket]!
   localizations_connection(filters: TicketFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): TicketRelationResponseCollection
@@ -2560,8 +2413,6 @@ type TicketEntityResponse {
 }
 
 type TicketEntityResponseCollection {
-  data: [Ticket!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [Ticket!]!
   pageInfo: Pagination!
 }
@@ -2593,7 +2444,6 @@ input TicketInput {
 }
 
 type TicketRelationResponseCollection {
-  data: [Ticket!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [Ticket!]!
 }
 
@@ -2627,17 +2477,14 @@ input TimeFilterInput {
 
 type UploadFile {
   alternativeText: String
-  attributes: UploadFile! @deprecated(reason: "Use root level fields instead")
   caption: String
   createdAt: DateTime
-  data: UploadFile! @deprecated(reason: "Use root level fields instead")
   documentId: ID!
   ext: String
   focalPoint: JSON
   formats: JSON
   hash: String!
   height: Int
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   mime: String!
   name: String!
   previewUrl: String
@@ -2661,8 +2508,6 @@ type UploadFileEntityResponse {
 }
 
 type UploadFileEntityResponseCollection {
-  data: [UploadFile!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [UploadFile!]!
   pageInfo: Pagination!
 }
@@ -2712,7 +2557,6 @@ input UploadFileInput {
 }
 
 type UploadFileRelationResponseCollection {
-  data: [UploadFile!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [UploadFile!]!
 }
 
@@ -2758,11 +2602,8 @@ type UsersPermissionsPasswordPayload {
 
 type UsersPermissionsPermission {
   action: String!
-  attributes: UsersPermissionsPermission! @deprecated(reason: "Use root level fields instead")
   createdAt: DateTime
-  data: UsersPermissionsPermission! @deprecated(reason: "Use root level fields instead")
   documentId: ID!
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   publishedAt: DateTime
   role: UsersPermissionsRole
   updatedAt: DateTime
@@ -2778,8 +2619,6 @@ type UsersPermissionsPermissionEntityResponse {
 }
 
 type UsersPermissionsPermissionEntityResponseCollection {
-  data: [UsersPermissionsPermission!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [UsersPermissionsPermission!]!
   pageInfo: Pagination!
 }
@@ -2803,7 +2642,6 @@ input UsersPermissionsPermissionInput {
 }
 
 type UsersPermissionsPermissionRelationResponseCollection {
-  data: [UsersPermissionsPermission!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [UsersPermissionsPermission!]!
 }
 
@@ -2814,12 +2652,9 @@ input UsersPermissionsRegisterInput {
 }
 
 type UsersPermissionsRole {
-  attributes: UsersPermissionsRole! @deprecated(reason: "Use root level fields instead")
   createdAt: DateTime
-  data: UsersPermissionsRole! @deprecated(reason: "Use root level fields instead")
   description: String
   documentId: ID!
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   name: String!
   permissions(filters: UsersPermissionsPermissionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [UsersPermissionsPermission]!
   permissions_connection(filters: UsersPermissionsPermissionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsPermissionRelationResponseCollection
@@ -2840,8 +2675,6 @@ type UsersPermissionsRoleEntityResponse {
 }
 
 type UsersPermissionsRoleEntityResponseCollection {
-  data: [UsersPermissionsRole!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [UsersPermissionsRole!]!
   pageInfo: Pagination!
 }
@@ -2871,7 +2704,6 @@ input UsersPermissionsRoleInput {
 }
 
 type UsersPermissionsRoleRelationResponseCollection {
-  data: [UsersPermissionsRole!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [UsersPermissionsRole!]!
 }
 
@@ -2880,14 +2712,11 @@ type UsersPermissionsUpdateRolePayload {
 }
 
 type UsersPermissionsUser {
-  attributes: UsersPermissionsUser! @deprecated(reason: "Use root level fields instead")
   blocked: Boolean
   confirmed: Boolean
   createdAt: DateTime
-  data: UsersPermissionsUser! @deprecated(reason: "Use root level fields instead")
   documentId: ID!
   email: String!
-  id: ID! @deprecated(reason: "Use `documentId` instead")
   provider: String
   publishedAt: DateTime
   role: UsersPermissionsRole
@@ -2905,8 +2734,6 @@ type UsersPermissionsUserEntityResponse {
 }
 
 type UsersPermissionsUserEntityResponseCollection {
-  data: [UsersPermissionsUser!]! @deprecated(reason: "Use `nodes` field instead")
-  meta: ResponseCollectionMeta! @deprecated(reason: "Use the `pageInfo` field instead")
   nodes: [UsersPermissionsUser!]!
   pageInfo: Pagination!
 }
@@ -2939,6 +2766,5 @@ input UsersPermissionsUserInput {
 }
 
 type UsersPermissionsUserRelationResponseCollection {
-  data: [UsersPermissionsUser!]! @deprecated(reason: "Use `nodes` field instead")
   nodes: [UsersPermissionsUser!]!
 }
