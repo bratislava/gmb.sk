@@ -11,7 +11,7 @@ export default {
     const extensionService = strapi.plugin('graphql').service('extension')
 
     const extension = ({ nexus }) => {
-      /* Followed from https://github.com/strapi/strapi/issues/11745#issuecomment-984637527 */
+      /* Adapted from https://github.com/strapi/strapi/issues/11745#issuecomment-984637527 for v5's flat response shape */
       const generateBySlugQuery = (queryName: string, responseType: string, apiName: string) => {
         return nexus.extendType({
           type: 'Query',
@@ -38,7 +38,7 @@ export default {
                 })
 
                 if (results.length > 0) {
-                  return { value: results[0] }
+                  return results[0]
                 }
               },
             })
@@ -49,18 +49,10 @@ export default {
       return {
         // Nexus
         types: [
-          generateBySlugQuery(
-            'tagCategoryBySlug',
-            'TagCategoryEntityResponse',
-            'api::tag-category.tag-category'
-          ),
-          generateBySlugQuery('tagBySlug', 'TagEntityResponse', 'api::tag.tag'),
-          generateBySlugQuery('placeBySlug', 'PlaceEntityResponse', 'api::place.place'),
-          generateBySlugQuery(
-            'contentPageBySlug',
-            'ContentPageEntityResponse',
-            'api::content-page.content-page'
-          ),
+          generateBySlugQuery('tagCategoryBySlug', 'TagCategory', 'api::tag-category.tag-category'),
+          generateBySlugQuery('tagBySlug', 'Tag', 'api::tag.tag'),
+          generateBySlugQuery('placeBySlug', 'Place', 'api::place.place'),
+          generateBySlugQuery('contentPageBySlug', 'ContentPage', 'api::content-page.content-page'),
         ],
 
         resolversConfig: {

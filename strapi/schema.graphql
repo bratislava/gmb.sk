@@ -1870,7 +1870,7 @@ type Query {
     """The locale to use for the query"""
     locale: I18NLocaleCode
     slug: String
-  ): ContentPageEntityResponse
+  ): ContentPage
   contentPages(
     filters: ContentPageFiltersInput
     hasPublishedVersion: Boolean
@@ -1998,7 +1998,7 @@ type Query {
     """The locale to use for the query"""
     locale: I18NLocaleCode
     slug: String
-  ): PlaceEntityResponse
+  ): Place
   places(
     filters: PlaceFiltersInput
     hasPublishedVersion: Boolean
@@ -2042,7 +2042,7 @@ type Query {
     """The locale to use for the query"""
     locale: I18NLocaleCode
     slug: String
-  ): TagEntityResponse
+  ): Tag
   tagCategories(
     filters: TagCategoryFiltersInput
     hasPublishedVersion: Boolean
@@ -2080,7 +2080,7 @@ type Query {
     """The locale to use for the query"""
     locale: I18NLocaleCode
     slug: String
-  ): TagCategoryEntityResponse
+  ): TagCategory
   tags(
     filters: TagFiltersInput
     hasPublishedVersion: Boolean
