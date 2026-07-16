@@ -77,7 +77,7 @@ fragment Partners on ContentPage {
 }
 
 fragment SliderSection on ComponentSectionsSliderSection {
-  documentId
+  id
   submenuTitle
   medias {
     ...ImageEntity
@@ -268,7 +268,7 @@ fragment Partner on ComponentBlocksPartnerItem {
 }
 
 fragment MenuLinkItem on ComponentBlocksMenuLinkItem {
-  documentId
+  id
   title
   url
   mainPage {
@@ -281,7 +281,7 @@ fragment MenuLinkItem on ComponentBlocksMenuLinkItem {
 }
 
 fragment DownloadItem on ComponentBlocksFileItem {
-  documentId
+  id
   title
   file {
     name
@@ -332,24 +332,24 @@ fragment ContactCardEntity on ContactCard {
 }
 
 fragment OpeningHoursSection on ComponentSectionsOpeningHoursSection {
-  documentId
+  id
   submenuTitle
 }
 
 fragment HighlightsSection on ComponentSectionsHighlightsSection {
-  documentId
+  id
   highlights {
     ...Highlight
   }
 }
 
 fragment ExhibitionArchiveSection on ComponentSectionsExhibitionArchiveSection {
-  documentId
+  id
   title
 }
 
 fragment PartnersSection on ComponentSectionsPartnersSection {
-  documentId
+  id
   title
   submenuTitle
   partners {
@@ -358,18 +358,18 @@ fragment PartnersSection on ComponentSectionsPartnersSection {
 }
 
 fragment ExploreSection on ComponentSectionsExploreSection {
-  documentId
+  id
   title
 }
 
 fragment DisclosureSection on ComponentSectionsDisclosureSection {
-  documentId
+  id
   title
   submenuTitle
 }
 
 fragment PageSection on ComponentSectionsPageSection {
-  documentId
+  id
   title
   submenuTitle
   layout
@@ -381,13 +381,13 @@ fragment PageSection on ComponentSectionsPageSection {
 }
 
 fragment NewsSection on ComponentSectionsNewsSection {
-  documentId
+  id
   title
   submenuTitle
 }
 
 fragment NewsletterSection on ComponentSectionsNewsletterSection {
-  documentId
+  id
   title
   subtitle
   submenuTitle
@@ -395,27 +395,27 @@ fragment NewsletterSection on ComponentSectionsNewsletterSection {
 }
 
 fragment RichtextSection on ComponentSectionsRichtextSection {
-  documentId
+  id
   submenuTitle
   content
 }
 
 fragment VideoSection on ComponentSectionsVideoSection {
-  documentId
+  id
   title
   submenuTitle
   url
 }
 
 fragment AudioSection on ComponentSectionsAudioSection {
-  documentId
+  id
   title
   submenuTitle
   url
 }
 
 fragment GallerySection on ComponentSectionsGallerySection {
-  documentId
+  id
   title
   submenuTitle
   medias {
@@ -424,7 +424,7 @@ fragment GallerySection on ComponentSectionsGallerySection {
 }
 
 fragment ContactCardsSection on ComponentSectionsContactCardsSection {
-  documentId
+  id
   title
   submenuTitle
   contacts {
@@ -435,20 +435,20 @@ fragment ContactCardsSection on ComponentSectionsContactCardsSection {
 }
 
 fragment TicketsSection on ComponentSectionsTicketsSection {
-  documentId
+  id
   title
   submenuTitle
   text
 }
 
 fragment MapSection on ComponentSectionsMapSection {
-  documentId
+  id
   title
   submenuTitle
 }
 
 fragment DownloadSection on ComponentSectionsDownloadSection {
-  documentId
+  id
   title
   submenuTitle
   files {
@@ -457,7 +457,7 @@ fragment DownloadSection on ComponentSectionsDownloadSection {
 }
 
 fragment ArchiveBannerSection on ComponentSectionsArchiveBannerSection {
-  documentId
+  id
   title
   submenuTitle
   banner {
@@ -466,7 +466,7 @@ fragment ArchiveBannerSection on ComponentSectionsArchiveBannerSection {
 }
 
 fragment ExhibitionsSection on ComponentSectionsExhibitionsSection {
-  documentId
+  id
   title
   archiveBannerSection {
     ...ArchiveBannerSection
@@ -474,7 +474,7 @@ fragment ExhibitionsSection on ComponentSectionsExhibitionsSection {
 }
 
 fragment GlobalSearchSection on ComponentSectionsGlobalSearchSection {
-  documentId
+  id
   title
 }
 
