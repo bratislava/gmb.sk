@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::tag.tag",
+  "key": "plugin_content_manager_configuration_content_types::plugin::review-workflows.workflow",
   "value": {
-    "uid": "api::tag.tag",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "titleInternal",
-      "defaultSortBy": "id",
+      "relationOpenMode": "modal",
+      "mainField": "name",
+      "defaultSortBy": "name",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,76 +20,62 @@
           "sortable": true
         }
       },
-      "title": {
+      "name": {
         "edit": {
-          "label": "Názov",
+          "label": "name",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "title",
+          "label": "name",
           "searchable": true,
           "sortable": true
         }
       },
-      "slug": {
+      "stages": {
         "edit": {
-          "label": "Slug",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "slug",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "tagCategory": {
-        "edit": {
-          "label": "Kategória",
+          "label": "stages",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "title"
+          "mainField": "name"
         },
         "list": {
-          "label": "tagCategory",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "contentPages": {
-        "edit": {
-          "label": "Obsahové stránky",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "contentPages",
+          "label": "stages",
           "searchable": false,
           "sortable": false
         }
       },
-      "titleInternal": {
+      "stageRequiredToPublish": {
         "edit": {
-          "label": "Interný názov",
-          "description": "Pre ľahšie vyhľadanie tagu v Strapi",
+          "label": "stageRequiredToPublish",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "name"
+        },
+        "list": {
+          "label": "stageRequiredToPublish",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "contentTypes": {
+        "edit": {
+          "label": "contentTypes",
+          "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "titleInternal",
-          "searchable": true,
-          "sortable": true
+          "label": "contentTypes",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -162,39 +148,36 @@
     "layouts": {
       "list": [
         "id",
-        "title",
-        "slug",
-        "tagCategory"
+        "name",
+        "stages",
+        "stageRequiredToPublish"
       ],
       "edit": [
         [
           {
-            "name": "title",
+            "name": "name",
             "size": 6
           },
           {
-            "name": "slug",
+            "name": "stages",
             "size": 6
           }
         ],
         [
           {
-            "name": "titleInternal",
-            "size": 6
-          },
-          {
-            "name": "tagCategory",
+            "name": "stageRequiredToPublish",
             "size": 6
           }
         ],
         [
           {
-            "name": "contentPages",
-            "size": 6
+            "name": "contentTypes",
+            "size": 12
           }
         ]
       ]
-    }
+    },
+    "uid": "plugin::review-workflows.workflow"
   },
   "type": "object",
   "environment": null,
