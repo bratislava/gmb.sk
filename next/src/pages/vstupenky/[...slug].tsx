@@ -22,7 +22,7 @@ interface TicketProps {
 }
 
 const Tickets = ({ generalQuery, contentPage, currentEvents }: TicketProps) => {
-  const contentPageWithAttributes = withAttributes(contentPage?.data)
+  const contentPageWithAttributes = withAttributes(contentPage?)
 
   if (!contentPage || !contentPageWithAttributes) {
     return null
@@ -35,7 +35,7 @@ const Tickets = ({ generalQuery, contentPage, currentEvents }: TicketProps) => {
 
       <TicketPage
         contentPage={contentPageWithAttributes}
-        currentEvents={currentEvents?.data.filter(hasAttributes)}
+        currentEvents={currentEvents?.filter(hasAttributes)}
       />
     </GeneralContextProvider>
   )
@@ -63,7 +63,7 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
     return NOT_FOUND
   }
 
-  if (!contentPage?.data?.attributes?.place?.data?.attributes?.slug) {
+  if (!contentPage?.place?.slug) {
     return {
       props: {
         generalQuery,
@@ -79,7 +79,7 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
     today,
     tagExhibitions: getRouteForLocale('vystavy', locale),
     tagPermanentExhibitions: getRouteForLocale('stale-expozicie', locale),
-    place: contentPage.data?.attributes?.place?.data?.attributes?.slug,
+    place: contentPage.place?.slug,
   })
 
   return {

@@ -46,11 +46,11 @@ export const getStaticPaths: GetStaticPaths<StaticParams> = async ({ locales = [
   const mainPageSlugsResponses = await Promise.all(mainPageSlugsPromises)
 
   const paths = mainPageSlugsResponses.flatMap((mainPageSlugResponse, index) =>
-    (mainPageSlugResponse?.mainPages?.data ?? [])
+    (mainPageSlugResponse?.mainPages? ?? [])
       .filter(hasAttributes)
       .filter(isDefined)
       .map((mainPage) => ({
-        params: { slug: mainPage.attributes.slug },
+        params: { slug: mainPage.slug },
         locale: locales[index],
       })),
   )
@@ -137,9 +137,9 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
   const tagExhibitions = getRouteForLocale('vystavy', locale)
   const tagPermanentExhibitions = getRouteForLocale('stale-expozicie', locale)
   const tagsAdditionalProgram =
-    tagsProgram?.data?.attributes?.tags?.data
+    tagsProgram?.tags?
       .filter(hasAttributes)
-      .map((tag) => tag.attributes.slug)
+      .map((tag) => tag.slug)
       .filter((tagSlug) => tagSlug !== tagExhibitions && tagSlug !== tagPermanentExhibitions) ?? []
 
   const { exhibitions, permanentExhibitions, additionalProgram } =
@@ -151,7 +151,7 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
       tagsAdditionalProgram,
     })
 
-  const mainPage = mainPages?.data[0]
+  const mainPage = mainPages?[0]
 
   if (!mainPage) {
     return NOT_FOUND
@@ -202,24 +202,24 @@ const MenuPage = ({
   return (
     <GeneralContextProvider general={generalQuery}>
       <MainPage
-        title={page?.attributes?.title ?? ''}
+        title={page?.title ?? ''}
         page={page}
-        newsItems={news?.data?.filter(hasAttributes)}
-        tickets={tickets?.data.filter(hasAttributes)}
-        exhibitions={exhibitions?.data.filter(hasAttributes)}
-        permanentExhibitions={permanentExhibitions?.data.filter(hasAttributes)}
-        additionalProgram={additionalProgram?.data.filter(hasAttributes)}
-        places={places?.data.filter(hasAttributes)}
-        tagsProgram={tagsProgram?.data?.attributes?.tags?.data.filter(hasAttributes)}
-        tagsTargetGroups={tagsTargetGroups?.data?.attributes?.tags?.data.filter(hasAttributes)}
-        tagsLanguages={tagsLanguages?.data?.attributes?.tags?.data.filter(hasAttributes)}
-        tagsProjects={tagsProjects?.data?.attributes?.tags?.data.filter(hasAttributes)}
-        tagsOthers={tagsOthers?.data?.attributes?.tags?.data.filter(hasAttributes)}
-        tagsExploreTypes={tagsExploreTypes?.data?.attributes?.tags?.data.filter(hasAttributes)}
-        tagsExploreProjects={tagsExploreProjects?.data?.attributes?.tags?.data.filter(
+        newsItems={news?.filter(hasAttributes)}
+        tickets={tickets?.filter(hasAttributes)}
+        exhibitions={exhibitions?.filter(hasAttributes)}
+        permanentExhibitions={permanentExhibitions?.filter(hasAttributes)}
+        additionalProgram={additionalProgram?.filter(hasAttributes)}
+        places={places?.filter(hasAttributes)}
+        tagsProgram={tagsProgram?.tags?.filter(hasAttributes)}
+        tagsTargetGroups={tagsTargetGroups?.tags?.filter(hasAttributes)}
+        tagsLanguages={tagsLanguages?.tags?.filter(hasAttributes)}
+        tagsProjects={tagsProjects?.tags?.filter(hasAttributes)}
+        tagsOthers={tagsOthers?.tags?.filter(hasAttributes)}
+        tagsExploreTypes={tagsExploreTypes?.tags?.filter(hasAttributes)}
+        tagsExploreProjects={tagsExploreProjects?.tags?.filter(
           hasAttributes,
         )}
-        tagsExploreOthers={tagsExploreOthers?.data?.attributes?.tags?.data.filter(hasAttributes)}
+        tagsExploreOthers={tagsExploreOthers?.tags?.filter(hasAttributes)}
       />
     </GeneralContextProvider>
   )

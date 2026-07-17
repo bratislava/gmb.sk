@@ -53,10 +53,10 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
         // eslint-disable-next-line react/no-array-index-key
         <SwiperSlide key={index}>
           <Image
-            src={item.attributes.url}
+            src={item.url}
             layout="fill"
             objectFit="cover"
-            alt={item.attributes.alternativeText ?? ''}
+            alt={item.alternativeText ?? ''}
             unoptimized
           />
         </SwiperSlide>

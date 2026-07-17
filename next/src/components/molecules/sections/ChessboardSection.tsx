@@ -4,11 +4,10 @@ import Button from '@/src/components/atoms/Button'
 import ChessboardTile from '@/src/components/molecules/presentation/ChessboardTile'
 import Section from '@/src/components/molecules/sections/Section'
 import { SectionItemEntityFragment } from '@/src/services/graphql'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface ChessboardProps {
   title?: string
-  sectionItems?: WithAttributes<SectionItemEntityFragment>[]
+  sectionItems?: SectionItemEntityFragment[]
   anchor?: string
   flipped?: boolean
   showTags?: boolean
@@ -33,7 +32,7 @@ const ChessboardSection = ({
             <ChessboardTile
               sectionItem={item}
               isLeft={flipped ? i % 2 !== 1 : i % 2 !== 0}
-              key={item.attributes.slug}
+              key={item.slug}
               showTags={showTags}
             />
           ))}

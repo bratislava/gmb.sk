@@ -27,11 +27,11 @@ const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) =
           {tickets?.map((ticket) => (
             <Ticket
               key={ticket.id}
-              title={ticket.attributes.title}
-              price={ticket.attributes.price}
-              description={ticket.attributes.description}
-              purchaseIdSelf={ticket.attributes.purchaseIdSelf}
-              purchaseIdGift={ticket.attributes.purchaseIdGift}
+              title={ticket.title}
+              price={ticket.price}
+              description={ticket.description}
+              purchaseIdSelf={ticket.purchaseIdSelf}
+              purchaseIdGift={ticket.purchaseIdGift}
             />
           ))}
         </div>

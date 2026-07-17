@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next/pages'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import Button from '@/src/components/atoms/Button'
@@ -51,7 +51,7 @@ const ExhibitionsSection = ({
 
   const [activeTags, setActiveTags] = useState<string[]>([])
   const [activePlaces, setActivePlaces] = useState<string[]>([])
-  const initialTags = tagsProgram?.map((tag) => tag.attributes.slug) ?? []
+  const initialTags = tagsProgram?.map((tag) => tag.slug) ?? []
 
   const { filteredPages, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage } =
     usePreviewsByTags({

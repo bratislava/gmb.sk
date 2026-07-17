@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next/pages'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import Button from '@/src/components/atoms/Button'
@@ -23,7 +23,7 @@ const ExploreSection = ({ title, tagsTypes, tagsProjects, tagsOthers }: ExploreS
   const { query } = useRouter()
 
   const [activeTags, setActiveTags] = useState<string[]>([])
-  const initialTags = tagsTypes?.map((tag) => tag.attributes.slug) ?? []
+  const initialTags = tagsTypes?.map((tag) => tag.slug) ?? []
 
   const { filteredPages, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage } =
     usePreviewsByTags({

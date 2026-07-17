@@ -31,12 +31,12 @@ const TagGroup = ({ tags, activeTags, setActiveTags }: ITagGroupProps) => {
           />
         ) : (
           <Tag
-            title={tag.attributes.title}
-            key={tag.attributes.slug}
-            isActive={activeTags.includes(tag.attributes.slug)}
-            onClick={() => handleTagClick(tag.attributes.slug)}
+            title={tag.title}
+            key={tag.slug}
+            isActive={activeTags.includes(tag.slug)}
+            onClick={() => handleTagClick(tag.slug)}
           />
-        )
+        ),
       )}
     </>
   )

@@ -14,7 +14,7 @@ interface DetailProps {
 }
 
 const Detail = ({ generalQuery, contentPage }: DetailProps) => {
-  const contentPageWithAttributes = withAttributes(contentPage?.data)
+  const contentPageWithAttributes = withAttributes(contentPage?)
 
   if (!contentPage || !contentPageWithAttributes) {
     return null
@@ -65,7 +65,7 @@ export const getStaticPaths: GetStaticPaths = async ({ locales = [] }) => {
   const allContentPages = contentPageSlugsResponses
     .flat()
     .map((contentPageSlugsResponse) =>
-      contentPageSlugsResponse.contentPages?.data.filter(hasAttributes),
+      contentPageSlugsResponse.contentPages?.filter(hasAttributes),
     )
     .filter(isDefined)
     .flat()
@@ -73,9 +73,9 @@ export const getStaticPaths: GetStaticPaths = async ({ locales = [] }) => {
   const paths = allContentPages.map((contentPage) => {
     return {
       params: {
-        slug: [contentPage.attributes.slug],
+        slug: [contentPage.slug],
       },
-      locale: contentPage.attributes.locale ?? undefined,
+      locale: contentPage.locale ?? undefined,
     }
   })
 

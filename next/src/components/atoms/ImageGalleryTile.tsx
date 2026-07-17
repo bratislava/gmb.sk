@@ -1,9 +1,8 @@
 import { ImageWithFormatsEntityFragment } from '@/src/services/graphql'
 import cn from '@/src/utils/cn'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface ImageGalleryTileProps {
-  image?: WithAttributes<ImageWithFormatsEntityFragment> | null
+  image?: ImageWithFormatsEntityFragment | null
   className?: string
   onChoose: (index: number) => void
   index: number
@@ -12,7 +11,7 @@ interface ImageGalleryTileProps {
 const ImageGalleryTile = ({ image, className, onChoose, index }: ImageGalleryTileProps) => {
   if (!image) return null
 
-  const { url, alternativeText } = image.attributes
+  const { url, alternativeText } = image
 
   return (
     <button type="button" className={cn('size-full', className)} onClick={() => onChoose(index)}>

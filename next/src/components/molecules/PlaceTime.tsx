@@ -9,8 +9,8 @@ interface IPlaceTimeProps {
 
 const PlaceTime = ({ place, datetime }: IPlaceTimeProps) => {
   if (
-    place?.place?.data?.attributes?.address ||
-    place?.place?.data?.attributes?.title ||
+    place?.place?.address ||
+    place?.place?.title ||
     place?.placeAddress ||
     place?.placeTitle ||
     datetime?.dateFrom ||

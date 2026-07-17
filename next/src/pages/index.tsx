@@ -19,11 +19,7 @@ export const Index = ({ homePage, generalQuery, news }: IndexProps) => {
 
   return (
     <GeneralContextProvider general={generalQuery}>
-      <HomePage
-        page={homePage}
-        title={t('common.home')}
-        newsItems={news?.data?.filter(hasAttributes)}
-      />
+      <HomePage page={homePage} title={t('common.home')} newsItems={news?.filter(hasAttributes)} />
     </GeneralContextProvider>
   )
 }

@@ -1,6 +1,6 @@
+import { useTranslation } from 'next-i18next/pages'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next/pages'
 
 import { ImageEntityFragment, SeoFragment } from '@/src/services/graphql'
 import { getNextUrl } from '@/src/utils/getNextUrl'
@@ -42,14 +42,14 @@ const SeoHead = ({ title, seo, ogType = 'website', description, image }: SeoHead
       {fullUrl ? <meta property="og:url" content={fullUrl} /> : null}
 
       {/* TODO: Twitter's image size limit is only 1MB */}
-      <meta property="og:image" content={image?.attributes?.url ?? ''} />
+      <meta property="og:image" content={image?.url ?? ''} />
       <meta name="twitter:card" content="summary_large_image" />
 
       {/* Comments from: https://css-tricks.com/essential-meta-tags-social-media/ */}
       {/* Non-Essential, But Recommended */}
       <meta property="og:description" content={seo?.metaDescription || description || ''} />
       <meta property="og:site_name" content={t('common.bratislavaCityGallery')} />
-      <meta name="twitter:image:alt" content={image?.attributes?.alternativeText ?? ''} />
+      <meta name="twitter:image:alt" content={image?.alternativeText ?? ''} />
 
       {/* Non-Essential, But Required for Analytics */}
       <meta property="fb:app_id" content="your_app_id" />

@@ -14,7 +14,7 @@ const DownloadItem = ({ downloadItem }: DownloadProps) => {
   const { t } = useTranslation()
   const { getDownloadAriaLabel } = useGetDownloadAriaLabel()
 
-  const file = downloadItem?.file.data?.attributes
+  const file = downloadItem?.file
 
   return file ? (
     <div className="relative flex h-full flex-col justify-between gap-yMd">

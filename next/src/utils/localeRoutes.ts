@@ -61,25 +61,25 @@ function getContentPageDetailRouteForTargetLocale(
   contentPageLocalizations: WithAttributes<ContentPageEntityFragment>['attributes']['localizations'],
   targetLocale: string
 ) {
-  const contentPageInTargetLocale = contentPageLocalizations?.data
+  const contentPageInTargetLocale = contentPageLocalizations?
     ?.filter(hasAttributes)
-    .find((localization) => localization.attributes.locale === targetLocale)
+    .find((localization) => localization.locale === targetLocale)
 
   if (!contentPageInTargetLocale) {
     return
   }
 
   // eslint-disable-next-line consistent-return
-  return `/detail/${contentPageInTargetLocale?.attributes.slug}`
+  return `/detail/${contentPageInTargetLocale?.slug}`
 }
 
 function getContentPageTicketsRouteForTargetLocale(
   contentPageLocalizations: WithAttributes<ContentPageEntityFragment>['attributes']['localizations'],
   targetLocale: string
 ) {
-  const contentPageInTargetLocale = contentPageLocalizations?.data
+  const contentPageInTargetLocale = contentPageLocalizations?
     ?.filter(hasAttributes)
-    .find((localization) => localization.attributes.locale === targetLocale)
+    .find((localization) => localization.locale === targetLocale)
 
   if (!contentPageInTargetLocale) {
     return
@@ -88,21 +88,21 @@ function getContentPageTicketsRouteForTargetLocale(
   const ticketsRoute = getRouteForLocale('/vstupenky', targetLocale)
 
   // eslint-disable-next-line consistent-return
-  return `${ticketsRoute}/${contentPageInTargetLocale?.attributes.slug}`
+  return `${ticketsRoute}/${contentPageInTargetLocale?.slug}`
 }
 
 const getMainPageRouteForTargetLocale = (
   mainPageLocalizations: WithAttributes<MainPageEntityFragment>['attributes']['localizations'],
   targetLocale: string
 ) => {
-  const mainPageInTargetLocale = mainPageLocalizations?.data
+  const mainPageInTargetLocale = mainPageLocalizations?
     ?.filter(hasAttributes)
-    .find((localization) => localization.attributes.locale === targetLocale)
+    .find((localization) => localization.locale === targetLocale)
 
   if (!mainPageInTargetLocale) return
 
   // Always ensure slug has a leading slash to prevent issues with routing
-  const slug = mainPageInTargetLocale?.attributes.slug
+  const slug = mainPageInTargetLocale?.slug
 
   // eslint-disable-next-line consistent-return
   return slug?.startsWith('/') ? slug : `/${slug}`
@@ -123,20 +123,20 @@ export function getEquivalentRouteInTargetLocale(
   page: Page
 ) {
   if (isMainPage(page)) {
-    return getMainPageRouteForTargetLocale(page.attributes.localizations, targetLocale)
+    return getMainPageRouteForTargetLocale(page.localizations, targetLocale)
   }
 
   const isDetailRoute = path.startsWith('/detail') && isDefined(page)
 
   if (isDetailRoute) {
-    return getContentPageDetailRouteForTargetLocale(page.attributes.localizations, targetLocale)
+    return getContentPageDetailRouteForTargetLocale(page.localizations, targetLocale)
   }
 
   const isTicketsRoute =
     (path.startsWith('/tickets') || path.startsWith('/vstupenky')) && isDefined(page)
 
   if (isTicketsRoute) {
-    return getContentPageTicketsRouteForTargetLocale(page.attributes.localizations, targetLocale)
+    return getContentPageTicketsRouteForTargetLocale(page.localizations, targetLocale)
   }
 
   return getRouteForTargetLocale(path, targetLocale)

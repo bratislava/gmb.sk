@@ -19,7 +19,7 @@ const NewsSection = ({ items, title, anchor }: NewsProps) => {
       {items.length > 0 ? (
         <>
           {items.map((item) => (
-            <NewsBar key={item.attributes?.slug} newsItem={item} />
+            <NewsBar key={item.slug} newsItem={item} />
           ))}
         </>
       ) : (

@@ -9,11 +9,11 @@ export interface SidePanelPlaceProps {
 export const SidePanelPlace = ({ placeFragment, isOneLine = false }: SidePanelPlaceProps) => {
   const { place, placeTitle, placeAddress } = placeFragment
 
-  if (!place?.data && !placeTitle && !placeAddress) {
+  if (!place && !placeTitle && !placeAddress) {
     return null
   }
 
-  if (!place?.data?.attributes?.title && !placeTitle && isOneLine) {
+  if (!place?.title && !placeTitle && isOneLine) {
     return null
   }
 
@@ -27,9 +27,9 @@ export const SidePanelPlace = ({ placeFragment, isOneLine = false }: SidePanelPl
       <address className="flex items-center gap-3 not-italic">
         {isOneLine && <LocationIcon className="dh-[24]" />}
         <span>
-          {placeTitle || place?.data?.attributes?.title}
+          {placeTitle || place?.title}
           {!isOneLine && <br />}
-          {!isOneLine && (placeAddress || place?.data?.attributes?.address)}
+          {!isOneLine && (placeAddress || place?.address)}
         </span>
       </address>
     </div>

@@ -68,7 +68,7 @@ const MainPage = ({
 }: MainPageProps) => {
   const { t } = useTranslation()
 
-  const page = pageEntity?.attributes
+  const page = pageEntity?
 
   if (!page) return null
 
@@ -179,7 +179,7 @@ const MainPage = ({
                 title={section?.title ?? t('common.partners')}
                 anchor={getAnchor(section.submenuTitle)}
                 partners={section.partners
-                  ?.map((item) => item?.partner?.data)
+                  ?.map((item) => item?.partner?)
                   ?.filter(hasAttributes)}
                 key={`${section.__typename}-${section.id}`}
               />
@@ -190,7 +190,7 @@ const MainPage = ({
             return (
               <HighlightsSection
                 highlights={section?.highlights
-                  ?.map((highlight) => highlight?.contentPage?.data)
+                  ?.map((highlight) => highlight?.contentPage?)
                   .filter(hasAttributes)}
                 key={`${section.__typename}-${section.id}`}
               />

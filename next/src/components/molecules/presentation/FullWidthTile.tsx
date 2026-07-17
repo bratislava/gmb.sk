@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import { useTranslation } from 'next-i18next/pages'
+import Image from 'next/image'
 import { useId } from 'react'
 
 import Button from '@/src/components/atoms/Button'
@@ -17,14 +17,14 @@ const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
   const { t } = useTranslation()
   const titleId = useId()
 
-  const { slug, coverMedia, title } = sectionItem.attributes
+  const { slug, coverMedia, title } = sectionItem
 
   return (
     <article className="relative h-auto w-full">
       <div className="relative flex h-screen min-h-screen w-full items-center justify-center overflow-hidden lg:h-full">
-        {coverMedia?.data?.attributes?.url && (
+        {coverMedia?.url && (
           <Image
-            src={coverMedia.data.attributes.url}
+            src={coverMedia.url}
             alt=""
             className="object-cover"
             fill

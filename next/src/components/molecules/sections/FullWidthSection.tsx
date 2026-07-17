@@ -19,7 +19,7 @@ const FullWidthSection = ({ title, sectionItems, anchor, loadmore }: FullWidthSe
   return (
     <Section anchor={anchor} title={title}>
       {sectionItems?.map((item) => (
-        <FullWidthTile key={item.attributes.slug} sectionItem={item} />
+        <FullWidthTile key={item.slug} sectionItem={item} />
       ))}
 
       {loadmore && (

@@ -1,8 +1,8 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { useTranslation } from 'next-i18next/pages'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next/pages'
 import { useEffect } from 'react'
 import { useWindowSize } from 'usehooks-ts'
 
@@ -16,11 +16,11 @@ import cn from '@/src/utils/cn'
 import { getBreakpointValue } from '@/src/utils/getBreakpointValue'
 import { getContentPageColor } from '@/src/utils/getContentPageColor'
 import { getPurchaseId } from '@/src/utils/getPurchaseId'
-import { isDefined, WithAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 import { onEnterOrSpaceKeyDown } from '@/src/utils/onEnterOrSpaceKeyDown'
 
 type Props = {
-  highlight: WithAttributes<HighlightsItemEntityFragment>
+  highlight: HighlightsItemEntityFragment
 }
 
 const Highlight = ({ highlight }: Props) => {
@@ -44,12 +44,12 @@ const Highlight = ({ highlight }: Props) => {
     override,
     perex,
     coverMedia,
-  } = highlight.attributes
+  } = highlight
 
   gsap.registerPlugin(ScrollTrigger)
 
   useEffect(() => {
-    if (!(highlight.id && windowWidth && windowWidth >= getBreakpointValue('lg'))) {
+    if (!(highlight.documentId && windowWidth && windowWidth >= getBreakpointValue('lg'))) {
       return undefined
     }
 
@@ -58,30 +58,30 @@ const Highlight = ({ highlight }: Props) => {
     // elements — without this, the pinned highlight image would flicker/disappear.
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
-        trigger: `#sidepanel${highlight.id}`,
+        trigger: `#sidepanel${highlight.documentId}`,
         start: 'top bottom',
         end: 'bottom bottom',
-        pin: `#articleHeader${highlight.id}`,
+        pin: `#articleHeader${highlight.documentId}`,
         pinSpacing: false,
         scrub: 0,
       })
       ScrollTrigger.create({
-        trigger: `#sidepanel${highlight.id}`,
+        trigger: `#sidepanel${highlight.documentId}`,
         start: 'top bottom',
-        pin: `#articleImg${highlight.id}`,
+        pin: `#articleImg${highlight.documentId}`,
         pinSpacing: false,
         scrub: 0,
       })
     })
 
     return () => ctx.revert()
-  }, [highlight.id, windowWidth])
+  }, [highlight.documentId, windowWidth])
 
   const renderOverride = !!override?.highlightContent
 
   const renderEventDetailsSidepanel = !!(
     placeAddress ||
-    isDefined(place?.data?.attributes) ||
+    isDefined(place) ||
     placeTitle ||
     isDefined(dateFrom) ||
     (positions && positions?.length > 0) ||
@@ -95,15 +95,15 @@ const Highlight = ({ highlight }: Props) => {
       <div
         className="group flex h-[calc(100vh-var(--nav-height))] w-full cursor-pointer flex-col"
         tabIndex={-1}
-        id={`articleDiv${highlight.id ?? ''}`}
+        id={`articleDiv${highlight.documentId ?? ''}`}
         onClick={async () => router.push(`/detail/${slug}`)}
         onKeyDown={onEnterOrSpaceKeyDown(async () => router.push(`/detail/${slug}`))}
       >
         <div className="relative flex grow cursor-pointer">
           <Image
-            id={`articleImg${highlight.id ?? ''}`}
-            src={coverMedia?.data?.attributes?.url ?? ''}
-            alt={coverMedia?.data?.attributes?.alternativeText ?? ''}
+            id={`articleImg${highlight.documentId ?? ''}`}
+            src={coverMedia?.url ?? ''}
+            alt={coverMedia?.alternativeText ?? ''}
             className="object-cover"
             fill
             priority
@@ -112,7 +112,7 @@ const Highlight = ({ highlight }: Props) => {
         <div
           className="h-fit w-full px-xMd py-yMd lg:h-auto lg:pr-sidepanel"
           style={{ background: getContentPageColor(highlight) }}
-          id={`articleHeader${highlight.id ?? ''}`}
+          id={`articleHeader${highlight.documentId ?? ''}`}
         >
           <div className="flex flex-col items-start justify-between gap-y-yMd lg:mr-xLg">
             <Link href={`/detail/${slug}`} preserveStyle stretched className="hover:no-underline">
@@ -145,11 +145,9 @@ const Highlight = ({ highlight }: Props) => {
                     {t('common.buyTickets')}
                   </Button>
                 )}
-                {(placeTitle || place?.data?.attributes?.title) && (
+                {(placeTitle || place?.title) && (
                   <div className="flex flex-1 items-center justify-start">
-                    <span className="text-btn uppercase">
-                      {placeTitle || place?.data?.attributes?.title}
-                    </span>
+                    <span className="text-btn uppercase">{placeTitle || place?.title}</span>
                   </div>
                 )}
               </div>
@@ -157,7 +155,10 @@ const Highlight = ({ highlight }: Props) => {
           </div>
         </div>
       </div>
-      <div className="relative ml-auto w-sidepanel bg-white" id={`sidepanel${highlight.id ?? ''}`}>
+      <div
+        className="relative ml-auto w-sidepanel bg-white"
+        id={`sidepanel${highlight.documentId ?? ''}`}
+      >
         {renderOverride && override?.highlightContent ? (
           /* If there is override, display it on both mobile and desktop */
           <div className="min-h-fit p-10">

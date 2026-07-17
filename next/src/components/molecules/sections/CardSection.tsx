@@ -53,7 +53,7 @@ const CardSection = ({
             )}
           >
             {sectionItems.map((item) => (
-              <li key={item.attributes.slug}>
+              <li key={item.slug}>
                 <Card sectionItem={item} showTags={showTags} />
               </li>
             ))}

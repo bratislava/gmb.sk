@@ -50,7 +50,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
   const filteredMedias = medias?.filter(hasAttributes)
 
   const items = filteredMedias.map((media) => {
-    const { url, formats, caption } = media.attributes
+    const { url, formats, caption } = media
     const { thumbnail } = formats as StrapiImageFormats
     const item: ReactImageGalleryItem = {
       original: url,
@@ -152,7 +152,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
               )
               .map((media, index) => (
                 <div
-                  key={media.attributes.url}
+                  key={media.url}
                   ref={index === 0 ? subImageRef : null}
                   style={{ height: subImageWidth }}
                 >
@@ -163,7 +163,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
                       setShowModal(true)
                       setImageIndex(id)
                     }}
-                    key={media.attributes.url}
+                    key={media.url}
                   />
                 </div>
               ))}

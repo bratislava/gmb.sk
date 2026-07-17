@@ -10,11 +10,9 @@ export type WithRequired<Type, Key extends keyof Type> = Type & {
   [Property in Key]-?: NonNullable<Type[Property]>
 }
 
-export type WithAttributes<Type extends ObjWithAttributes> = WithRequired<Type, 'attributes'>
-
 export function hasAttributes<T extends ObjWithAttributes>(
   value: T | null | undefined,
-): value is WithAttributes<T> {
+): value is WithAttributes<T {
   return isDefined(value) && 'attributes' in value && isDefined(value.attributes)
 }
 

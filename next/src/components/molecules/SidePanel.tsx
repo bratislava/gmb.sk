@@ -87,7 +87,7 @@ const SidePanel = ({
 
   if (
     !place?.placeAddress &&
-    !place?.place?.data?.attributes &&
+    !place?.place &&
     !place?.placeTitle &&
     !datetime?.dateFrom &&
     positions?.length === 0 &&
@@ -170,14 +170,14 @@ const SidePanel = ({
           <div className="flex flex-wrap gap-5">
             {partners?.map((partner) => (
               <Link
-                key={partner.attributes.title}
+                key={partner.title}
                 target="_blank"
-                href={partner.attributes.link ?? '#'}
+                href={partner.link ?? '#'}
                 className="overflow-hidden"
               >
                 <img
-                  src={partner.attributes.logo.data?.attributes?.url}
-                  alt={partner.attributes.logo.data?.attributes?.alternativeText ?? ''}
+                  src={partner.logo.url}
+                  alt={partner.logo.alternativeText ?? ''}
                   className="h-[50px]"
                 />
               </Link>

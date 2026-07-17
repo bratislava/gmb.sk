@@ -16,8 +16,8 @@ const parsePurchaseId = (purchaseId: string) => {
 }
 
 export function getPurchaseId(contentPage: WithAttributes<ContentPageEntityFragment>) {
-  const { sellTickets, purchaseId, place } = contentPage.attributes
-  const { purchaseId: placePurchaseId } = place?.data?.attributes ?? {}
+  const { sellTickets, purchaseId, place } = contentPage
+  const { purchaseId: placePurchaseId } = place? ?? {}
 
   if (sellTickets) {
     if (purchaseId) {

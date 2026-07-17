@@ -1,9 +1,8 @@
 import Link from '@/src/components/atoms/Link'
 import { ContactCardEntityFragment } from '@/src/services/graphql'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface IContactCardProps {
-  contact: WithAttributes<ContactCardEntityFragment> | undefined | null
+  contact: ContactCardEntityFragment | undefined | null
 }
 
 const ContactCard = ({ contact }: IContactCardProps) => {
@@ -11,7 +10,7 @@ const ContactCard = ({ contact }: IContactCardProps) => {
     return null
   }
 
-  const { name, position, email, phone1, phone2 } = contact.attributes
+  const { name, position, email, phone1, phone2 } = contact
 
   return (
     <div className="flex flex-col space-y-1 pb-yMd">

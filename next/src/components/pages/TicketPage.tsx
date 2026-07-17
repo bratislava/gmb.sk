@@ -31,7 +31,7 @@ const TicketPage = ({ contentPage, currentEvents }: ITicketPageProps) => {
     timeTo,
     slug,
     seo,
-  } = contentPage.attributes
+  } = contentPage
 
   return (
     /* eslint-disable better-tailwindcss/no-unknown-classes */
@@ -67,7 +67,7 @@ const TicketPage = ({ contentPage, currentEvents }: ITicketPageProps) => {
         title={t('common.ticketValidAlsoFor')}
         sectionItems={currentEvents}
         noItemsMessage={t('common.noCurrentEvents', {
-          place: place?.data?.attributes?.title,
+          place: place?.title,
         })}
       />
     </PageWrapper>

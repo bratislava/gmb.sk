@@ -1,6 +1,6 @@
+import { useTranslation } from 'next-i18next/pages'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next/pages'
 import { useId } from 'react'
 
 import Button from '@/src/components/atoms/Button'
@@ -24,16 +24,16 @@ const ChessboardTile = ({ sectionItem, isLeft, showTags, customLinkHref }: Chess
   const router = useRouter()
   const titleId = useId()
 
-  const { slug, coverMedia, title, tags, perex } = sectionItem.attributes
+  const { slug, coverMedia, title, tags, perex } = sectionItem
 
   return (
     <article
       className={cn('relative min-h-chessboardTile lg:flex', { 'flex-row-reverse': isLeft })}
     >
       <div className="relative min-h-chessboardTile w-full bg-gmbLightGray lg:h-auto lg:w-1/2">
-        {coverMedia?.data?.attributes ? (
+        {coverMedia ? (
           <Image
-            src={coverMedia.data.attributes.url}
+            src={coverMedia.url}
             alt=""
             fill
             className="object-cover"
@@ -54,13 +54,9 @@ const ChessboardTile = ({ sectionItem, isLeft, showTags, customLinkHref }: Chess
 
         {showTags && tags && (
           <div className="flex space-x-3">
-            {tags.data.filter(hasAttributes).map((tag) => (
-              <Link
-                role="button"
-                href={`${router.pathname}/?tags=${tag.attributes.slug}`}
-                key={tag.attributes.slug}
-              >
-                {tag.attributes.title}
+            {tags.filter(hasAttributes).map((tag) => (
+              <Link role="button" href={`${router.pathname}/?tags=${tag.slug}`} key={tag.slug}>
+                {tag.title}
               </Link>
             ))}
           </div>

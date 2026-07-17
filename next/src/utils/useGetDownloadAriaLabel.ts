@@ -14,7 +14,7 @@ export const useGetDownloadAriaLabel = () => {
   const getDownloadAriaLabel = (downloadItem: DownloadItemFragment): string => {
     if (!downloadItem) return t('fileItem.aria.downloadFile')
 
-    const file = downloadItem?.file.data?.attributes
+    const file = downloadItem?.file
 
     const formattedFileFormat = formatFileExtension(file?.ext) ?? ''
     const formattedFileSize = formatFileSize(file?.size, i18n.language) ?? ''

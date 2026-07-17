@@ -17,7 +17,7 @@ const Footer = ({ page }: FooterProps) => {
   const { general } = useGeneralContext()
 
   const { name, openingHours, mirbach, palffy, socialLinks, footerLinks1, footerLinks2 } =
-    general?.data?.attributes ?? {}
+    general ?? {}
 
   const currentYear = useMemo(() => {
     return new Date().getFullYear()
