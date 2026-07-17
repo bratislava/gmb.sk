@@ -5,10 +5,9 @@ import Section from '@/src/components/molecules/sections/Section'
 import Ticket from '@/src/components/molecules/Ticket/Ticket'
 import { TicketEntityFragment } from '@/src/services/graphql'
 import cn from '@/src/utils/cn'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface TicketsSectionProps {
-  tickets: WithAttributes<TicketEntityFragment>[]
+  tickets: TicketEntityFragment[]
   title?: string
   text?: string
   anchor?: string

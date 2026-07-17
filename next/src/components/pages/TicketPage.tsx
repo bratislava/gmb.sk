@@ -9,11 +9,10 @@ import CardSection from '@/src/components/molecules/sections/CardSection'
 import PageWrapper from '@/src/components/pages/PageWrapper'
 import { ContentPageEntityFragment, SectionItemEntityFragment } from '@/src/services/graphql'
 import { getPurchaseId } from '@/src/utils/getPurchaseId'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface ITicketPageProps {
-  contentPage: WithAttributes<ContentPageEntityFragment>
-  currentEvents?: WithAttributes<SectionItemEntityFragment>[]
+  contentPage: ContentPageEntityFragment
+  currentEvents?: SectionItemEntityFragment[]
 }
 
 const TicketPage = ({ contentPage, currentEvents }: ITicketPageProps) => {

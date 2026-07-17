@@ -32,20 +32,20 @@ import { hasAttributes, isDefined, WithAttributes } from '@/src/utils/isDefined'
 type MainPageProps = {
   title: string
   page: MainPageEntityFragment
-  newsItems?: WithAttributes<NewsItemEntityFragment>[] | null
-  tickets?: WithAttributes<TicketEntityFragment>[] | null
-  exhibitions?: WithAttributes<SectionItemEntityFragment>[]
-  permanentExhibitions?: WithAttributes<SectionItemEntityFragment>[]
-  additionalProgram?: WithAttributes<SectionItemEntityFragment>[]
-  places?: WithAttributes<PlaceEntityFragment>[]
-  tagsProgram?: WithAttributes<TagEntityFragment>[]
-  tagsTargetGroups?: WithAttributes<TagEntityFragment>[]
-  tagsLanguages?: WithAttributes<TagEntityFragment>[]
-  tagsProjects?: WithAttributes<TagEntityFragment>[]
-  tagsOthers?: WithAttributes<TagEntityFragment>[]
-  tagsExploreTypes?: WithAttributes<TagEntityFragment>[]
-  tagsExploreProjects?: WithAttributes<TagEntityFragment>[]
-  tagsExploreOthers?: WithAttributes<TagEntityFragment>[]
+  newsItems?: NewsItemEntityFragment[] | null
+  tickets?: TicketEntityFragment[] | null
+  exhibitions?: SectionItemEntityFragment[]
+  permanentExhibitions?: SectionItemEntityFragment[]
+  additionalProgram?: SectionItemEntityFragment[]
+  places?: PlaceEntityFragment[]
+  tagsProgram?: TagEntityFragment[]
+  tagsTargetGroups?: TagEntityFragment[]
+  tagsLanguages?: TagEntityFragment[]
+  tagsProjects?: TagEntityFragment[]
+  tagsOthers?: TagEntityFragment[]
+  tagsExploreTypes?: TagEntityFragment[]
+  tagsExploreProjects?: TagEntityFragment[]
+  tagsExploreOthers?: TagEntityFragment[]
 }
 
 const MainPage = ({
@@ -179,7 +179,7 @@ const MainPage = ({
                 title={section?.title ?? t('common.partners')}
                 anchor={getAnchor(section.submenuTitle)}
                 partners={section.partners
-                  ?.map((item) => item?.partner?)
+                  ?.map((item) => item?.partner)
                   ?.filter(hasAttributes)}
                 key={`${section.__typename}-${section.id}`}
               />
@@ -190,7 +190,7 @@ const MainPage = ({
             return (
               <HighlightsSection
                 highlights={section?.highlights
-                  ?.map((highlight) => highlight?.contentPage?)
+                  ?.map((highlight) => highlight?.contentPage)
                   .filter(hasAttributes)}
                 key={`${section.__typename}-${section.id}`}
               />

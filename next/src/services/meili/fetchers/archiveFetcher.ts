@@ -1,7 +1,6 @@
 import { SectionItemEntityFragment } from '@/src/services/graphql'
 import { getMeilisearchPageOptions } from '@/src/services/meili/getMeilisearchPageOptions'
 import { meiliClient } from '@/src/services/meili/meilisearch'
-import { WithAttributes } from '@/src/utils/isDefined'
 import { getRouteForLocale } from '@/src/utils/localeRoutes'
 
 export type ArchiveFilters = {
@@ -63,7 +62,7 @@ export const archiveFetcher = async (filters: ArchiveFilters, locale: string) =>
                 },
               },
             },
-          } as WithAttributes<SectionItemEntityFragment>
+          } as SectionItemEntityFragment
         }),
       }
     })

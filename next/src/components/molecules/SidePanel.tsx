@@ -15,7 +15,7 @@ import {
 } from '@/src/services/graphql'
 import cn from '@/src/utils/cn'
 import getDaysLeft from '@/src/utils/getDaysLeft'
-import { isDefined, WithAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 import mobileAndTabletRegexCheck from '@/src/utils/mobileAndTabletRegexCheck'
 
 interface SidePanelProps {
@@ -25,7 +25,7 @@ interface SidePanelProps {
   place?: ContentPagePlaceFragment
   datetime?: DatetimeFragment
   positions?: PositionFragment[]
-  partners?: WithAttributes<PartnerEntityFragment>[]
+  partners?: PartnerEntityFragment[]
   purchaseId?: string | null
   slug?: string
   showShare?: boolean

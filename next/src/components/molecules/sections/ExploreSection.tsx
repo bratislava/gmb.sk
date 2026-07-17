@@ -8,14 +8,14 @@ import CardSection from '@/src/components/molecules/sections/CardSection'
 import Section from '@/src/components/molecules/sections/Section'
 import Submenu from '@/src/components/molecules/Submenu'
 import { TagEntityFragment } from '@/src/services/graphql'
-import { isDefined, WithAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 import { usePreviewsByTags } from '@/src/utils/usePreviewsByTags'
 
 interface ExploreSectionProps {
   title?: string
-  tagsTypes?: WithAttributes<TagEntityFragment>[]
-  tagsProjects?: WithAttributes<TagEntityFragment>[]
-  tagsOthers?: WithAttributes<TagEntityFragment>[]
+  tagsTypes?: TagEntityFragment[]
+  tagsProjects?: TagEntityFragment[]
+  tagsOthers?: TagEntityFragment[]
 }
 
 const ExploreSection = ({ title, tagsTypes, tagsProjects, tagsOthers }: ExploreSectionProps) => {

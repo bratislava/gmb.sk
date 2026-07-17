@@ -3,10 +3,9 @@ import { useTranslation } from 'next-i18next/pages'
 import NewsBar from '@/src/components/molecules/presentation/NewsBar'
 import Section from '@/src/components/molecules/sections/Section'
 import { NewsItemEntityFragment } from '@/src/services/graphql'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface NewsProps {
-  items: WithAttributes<NewsItemEntityFragment>[]
+  items: NewsItemEntityFragment[]
   title?: string
   anchor?: string
 }

@@ -13,10 +13,10 @@ export const getMenuLinkProps = (link: MenuLinkItemFragment | null | undefined) 
     return { children: label, href } // TODO?
   }
 
-  if ('mainPage' in link && link.mainPage?) {
+  if ('mainPage' in link && link.mainPage) {
     label = link.title ?? link.mainPage.title
     href = `/${link.mainPage.slug}`
-  } else if ('contentPage' in link && link.contentPage?) {
+  } else if ('contentPage' in link && link.contentPage) {
     label = link.title ?? link.contentPage.title
     href = `/detail/${link.contentPage.slug}`
   } else if (link.url) {

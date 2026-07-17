@@ -1,7 +1,7 @@
 import { GlobalSearchPageEntityFragment, TagEntityFragment } from '@/src/services/graphql'
 import { getMeilisearchPageOptions } from '@/src/services/meili/getMeilisearchPageOptions'
 import { meiliClient } from '@/src/services/meili/meilisearch'
-import { isDefined, WithAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 import { PAGE_SIZE } from '@/src/utils/useSearchResults'
 
 export type GlobalSearchFilters = {
@@ -62,7 +62,7 @@ export const globalSearchFetcher = async (filters: GlobalSearchFilters, locale: 
               },
               perex: hit.perex,
               tags: {
-                data: hit.tags.map((tag: TagEntityFragment['attributes']) => ({
+                data: hit.tags.map((tag: TagEntityFragment) => ({
                   attributes: {
                     title: tag?.title,
                     slug: tag?.slug,
@@ -71,7 +71,7 @@ export const globalSearchFetcher = async (filters: GlobalSearchFilters, locale: 
               },
               publishedAt: hit.publishedAt,
             },
-          } as WithAttributes<GlobalSearchPageEntityFragment>
+          } as GlobalSearchPageEntityFragment
         }),
       }
     })

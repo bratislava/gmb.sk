@@ -73,9 +73,9 @@ export const usePreviewsByTags = ({
 
   const filteredPages =
     (data?.pages
-      ?.flatMap((page) => page.contentPages?)
+      ?.flatMap((page) => page.contentPages)
       .filter(isDefined)
-      .filter(withAttributes) as WithAttributes<SectionItemEntityFragment>[]) ?? []
+      .filter(withAttributes) as SectionItemEntityFragment[]) ?? []
 
   return {
     data,

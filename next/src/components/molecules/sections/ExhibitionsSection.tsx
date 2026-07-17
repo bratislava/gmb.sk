@@ -1,5 +1,5 @@
-import { useTranslation } from 'next-i18next/pages'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next/pages'
 import { useEffect, useState } from 'react'
 
 import Button from '@/src/components/atoms/Button'
@@ -16,21 +16,21 @@ import {
   TagEntityFragment,
 } from '@/src/services/graphql'
 import { getAnchor } from '@/src/utils/getAnchor'
-import { isDefined, WithAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 import { usePreviewsByTags } from '@/src/utils/usePreviewsByTags'
 
 type ExhibitionsSectionProps = {
   title?: string
   archiveBannerSection?: ExhibitionsSectionFragment['archiveBannerSection']
-  exhibitions?: WithAttributes<SectionItemEntityFragment>[]
-  permanentExhibitions?: WithAttributes<SectionItemEntityFragment>[]
-  additionalProgram?: WithAttributes<SectionItemEntityFragment>[]
-  places?: WithAttributes<PlaceEntityFragment>[]
-  tagsProgram?: WithAttributes<TagEntityFragment>[]
-  tagsTargetGroups?: WithAttributes<TagEntityFragment>[]
-  tagsLanguages?: WithAttributes<TagEntityFragment>[]
-  tagsProjects?: WithAttributes<TagEntityFragment>[]
-  tagsOthers?: WithAttributes<TagEntityFragment>[]
+  exhibitions?: SectionItemEntityFragment[]
+  permanentExhibitions?: SectionItemEntityFragment[]
+  additionalProgram?: SectionItemEntityFragment[]
+  places?: PlaceEntityFragment[]
+  tagsProgram?: TagEntityFragment[]
+  tagsTargetGroups?: TagEntityFragment[]
+  tagsLanguages?: TagEntityFragment[]
+  tagsProjects?: TagEntityFragment[]
+  tagsOthers?: TagEntityFragment[]
 }
 
 const ExhibitionsSection = ({
@@ -79,7 +79,7 @@ const ExhibitionsSection = ({
    *  as an active tag, it adds a variable 'today' that will be used to show only content that has either `dateTo` in the past (exhibition that has ended)
    *  or `dateFrom` in the past AND dateTo null, which means it was only a one-day event. All other tags still apply while archive is active.
    */
-  const archiveTagEntity: WithAttributes<TagEntityFragment> = {
+  const archiveTagEntity: TagEntityFragment = {
     __typename: 'TagEntity',
     attributes: {
       __typename: 'Tag',

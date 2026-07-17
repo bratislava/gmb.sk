@@ -7,10 +7,9 @@ import Subtitle from '@/src/components/atoms/Subtitle'
 import { SectionItemEntityFragment } from '@/src/services/graphql'
 import { generateImageSizes } from '@/src/utils/generateImageSizes'
 import { getContentPageColor } from '@/src/utils/getContentPageColor'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface IFullWidthTileProps {
-  sectionItem: WithAttributes<SectionItemEntityFragment>
+  sectionItem: SectionItemEntityFragment
 }
 
 const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {

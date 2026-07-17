@@ -14,7 +14,7 @@ interface DetailProps {
 }
 
 const Detail = ({ generalQuery, contentPage }: DetailProps) => {
-  const contentPageWithAttributes = withAttributes(contentPage?)
+  const contentPageWithAttributes = withAttributes(contentPage)
 
   if (!contentPage || !contentPageWithAttributes) {
     return null

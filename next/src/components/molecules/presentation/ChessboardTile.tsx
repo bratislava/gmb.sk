@@ -10,10 +10,10 @@ import { SectionItemEntityFragment } from '@/src/services/graphql'
 import cn from '@/src/utils/cn'
 import { generateImageSizes } from '@/src/utils/generateImageSizes'
 import { getContentPageColor } from '@/src/utils/getContentPageColor'
-import { hasAttributes, WithAttributes } from '@/src/utils/isDefined'
+import { hasAttributes } from '@/src/utils/isDefined'
 
 interface ChessboardTileProps {
-  sectionItem: WithAttributes<SectionItemEntityFragment>
+  sectionItem: SectionItemEntityFragment
   isLeft?: boolean
   showTags?: boolean
   customLinkHref?: string

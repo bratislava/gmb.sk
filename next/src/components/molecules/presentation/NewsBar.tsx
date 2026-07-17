@@ -4,10 +4,9 @@ import Button from '@/src/components/atoms/Button'
 import Link from '@/src/components/atoms/Link'
 import { NewsItemEntityFragment } from '@/src/services/graphql'
 import { getContentPageColor } from '@/src/utils/getContentPageColor'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface NewsBarProps {
-  newsItem: WithAttributes<NewsItemEntityFragment>
+  newsItem: NewsItemEntityFragment
 }
 
 const NewsBar = ({ newsItem }: NewsBarProps) => {

@@ -10,10 +10,9 @@ import { NavigationOptions } from 'swiper/types'
 
 import { ImageEntityFragment } from '@/src/services/graphql'
 import cn from '@/src/utils/cn'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface ImgSwiperProps {
-  slides?: WithAttributes<ImageEntityFragment>[]
+  slides?: ImageEntityFragment[]
   anchor?: string
 }
 

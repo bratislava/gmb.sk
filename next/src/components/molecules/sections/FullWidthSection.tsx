@@ -4,11 +4,10 @@ import Button from '@/src/components/atoms/Button'
 import FullWidthTile from '@/src/components/molecules/presentation/FullWidthTile'
 import Section from '@/src/components/molecules/sections/Section'
 import { SectionItemEntityFragment } from '@/src/services/graphql'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface FullWidthSectionProps {
   title?: string
-  sectionItems?: WithAttributes<SectionItemEntityFragment>[]
+  sectionItems?: SectionItemEntityFragment[]
   anchor?: string
   loadmore?: boolean
 }

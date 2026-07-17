@@ -1,10 +1,9 @@
 import Highlight from '@/src/components/molecules/presentation/Highlight'
 import Section from '@/src/components/molecules/sections/Section'
 import { HighlightsItemEntityFragment } from '@/src/services/graphql'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface IHighlightSectionsProps {
-  highlights: WithAttributes<HighlightsItemEntityFragment>[] | null | undefined
+  highlights: HighlightsItemEntityFragment[] | null | undefined
 }
 
 const HighlightsSection = ({ highlights }: IHighlightSectionsProps) => {

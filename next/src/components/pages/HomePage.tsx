@@ -93,7 +93,7 @@ const HomePage = ({ page: pageResponse, title, newsItems }: HomePageProps) => {
               <PartnersSection
                 title={section.title ?? t('common.partners')}
                 anchor={getAnchor(section.submenuTitle)}
-                partners={section.partners.map((item) => item?.partner?).filter(hasAttributes)}
+                partners={section.partners.map((item) => item?.partner).filter(hasAttributes)}
                 key={`${section.__typename}-${section.id}`}
               />
             )

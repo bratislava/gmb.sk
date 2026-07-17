@@ -46,7 +46,7 @@ export const getStaticPaths: GetStaticPaths<StaticParams> = async ({ locales = [
   const mainPageSlugsResponses = await Promise.all(mainPageSlugsPromises)
 
   const paths = mainPageSlugsResponses.flatMap((mainPageSlugResponse, index) =>
-    (mainPageSlugResponse?.mainPages? ?? [])
+    (mainPageSlugResponse?.mainPages ?? [])
       .filter(hasAttributes)
       .filter(isDefined)
       .map((mainPage) => ({
@@ -137,7 +137,7 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
   const tagExhibitions = getRouteForLocale('vystavy', locale)
   const tagPermanentExhibitions = getRouteForLocale('stale-expozicie', locale)
   const tagsAdditionalProgram =
-    tagsProgram?.tags?
+    tagsProgram?.tags
       .filter(hasAttributes)
       .map((tag) => tag.slug)
       .filter((tagSlug) => tagSlug !== tagExhibitions && tagSlug !== tagPermanentExhibitions) ?? []
@@ -151,7 +151,7 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
       tagsAdditionalProgram,
     })
 
-  const mainPage = mainPages?[0]
+  const mainPage = mainPages?.[0]
 
   if (!mainPage) {
     return NOT_FOUND

@@ -67,6 +67,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
         child.dateTo ? getDaysLeft(child.dateTo) >= 0 : child,
       )
       .sort((a, b) => (a.dateFrom > b.dateFrom ? 1 : -1)) ?? []
+      
 
   const showRelatedContent = relatedContentFiltered.length > 0
 
@@ -84,7 +85,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
     submenu.push(downloadSection?.submenuTitle)
   }
 
-  const seoImage = seo?.metaImage? || coverMedia?
+  const seoImage = seo?.metaImage || coverMedia
 
   return (
     <PageWrapper page={contentPage}>

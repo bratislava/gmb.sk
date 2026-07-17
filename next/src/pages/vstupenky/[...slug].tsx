@@ -22,7 +22,7 @@ interface TicketProps {
 }
 
 const Tickets = ({ generalQuery, contentPage, currentEvents }: TicketProps) => {
-  const contentPageWithAttributes = withAttributes(contentPage?)
+  const contentPageWithAttributes = withAttributes(contentPage)
 
   if (!contentPage || !contentPageWithAttributes) {
     return null

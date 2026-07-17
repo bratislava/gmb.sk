@@ -1,9 +1,8 @@
 import Tag from '@/src/components/atoms/Tag'
 import { PlaceEntityFragment, TagEntityFragment } from '@/src/services/graphql'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface ITagGroupProps {
-  tags: WithAttributes<TagEntityFragment>[] | WithAttributes<PlaceEntityFragment>[] | string[]
+  tags: TagEntityFragment[] | PlaceEntityFragment[] | string[]
   activeTags: string[]
   setActiveTags: React.Dispatch<React.SetStateAction<string[]>>
 }
@@ -22,13 +21,13 @@ const TagGroup = ({ tags, activeTags, setActiveTags }: ITagGroupProps) => {
       {tags.map((tag) =>
         typeof tag === 'string' ? (
           // Used for years in filters, set to same width
-          <Tag
+          (<Tag
             title={tag}
             key={tag}
             isActive={activeTags.includes(tag)}
             onClick={() => handleTagClick(tag)}
             className="w-[calc(110*var(--size-factor))]"
-          />
+          />)
         ) : (
           <Tag
             title={tag.title}
@@ -39,7 +38,7 @@ const TagGroup = ({ tags, activeTags, setActiveTags }: ITagGroupProps) => {
         ),
       )}
     </>
-  )
+  );
 }
 
 export default TagGroup

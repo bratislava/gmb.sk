@@ -58,11 +58,11 @@ export function getRouteForTargetLocale(route: string, targetLocale: string) {
 }
 
 function getContentPageDetailRouteForTargetLocale(
-  contentPageLocalizations: WithAttributes<ContentPageEntityFragment>['attributes']['localizations'],
+  contentPageLocalizations: ContentPageEntityFragment['localizations'],
   targetLocale: string
 ) {
   const contentPageInTargetLocale = contentPageLocalizations?
-    ?.filter(hasAttributes)
+    .filter(hasAttributes)
     .find((localization) => localization.locale === targetLocale)
 
   if (!contentPageInTargetLocale) {
@@ -74,11 +74,11 @@ function getContentPageDetailRouteForTargetLocale(
 }
 
 function getContentPageTicketsRouteForTargetLocale(
-  contentPageLocalizations: WithAttributes<ContentPageEntityFragment>['attributes']['localizations'],
+  contentPageLocalizations: ContentPageEntityFragment['localizations'],
   targetLocale: string
 ) {
   const contentPageInTargetLocale = contentPageLocalizations?
-    ?.filter(hasAttributes)
+    .filter(hasAttributes)
     .find((localization) => localization.locale === targetLocale)
 
   if (!contentPageInTargetLocale) {
@@ -92,11 +92,11 @@ function getContentPageTicketsRouteForTargetLocale(
 }
 
 const getMainPageRouteForTargetLocale = (
-  mainPageLocalizations: WithAttributes<MainPageEntityFragment>['attributes']['localizations'],
+  mainPageLocalizations: MainPageEntityFragment['localizations'],
   targetLocale: string
 ) => {
   const mainPageInTargetLocale = mainPageLocalizations?
-    ?.filter(hasAttributes)
+    .filter(hasAttributes)
     .find((localization) => localization.locale === targetLocale)
 
   if (!mainPageInTargetLocale) return
@@ -109,11 +109,11 @@ const getMainPageRouteForTargetLocale = (
 }
 
 type Page =
-  | WithAttributes<ContentPageEntityFragment>
-  | WithAttributes<MainPageEntityFragment>
+  | ContentPageEntityFragment
+  | MainPageEntityFragment
   | undefined
 
-const isMainPage = (page: Page): page is WithAttributes<MainPageEntityFragment> => {
+const isMainPage = (page: Page): page is MainPageEntityFragment => {
   return isDefined(page) && page.__typename === 'MainPageEntity'
 }
 
