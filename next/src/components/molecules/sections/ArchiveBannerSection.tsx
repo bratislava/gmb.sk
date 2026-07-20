@@ -10,7 +10,7 @@ const ArchiveBannerSection = ({ title, anchor, banner }: ArchiveBannerSectionPro
   return (
     <Section title={title} anchor={anchor}>
       <ChessboardTile
-        sectionItem={{ attributes: { ...banner } } as SectionItemEntityFragment}
+        sectionItem={{ ...banner } as SectionItemEntityFragment}
         customLinkHref={banner.url ?? '#'}
       />
     </Section>

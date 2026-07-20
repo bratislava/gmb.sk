@@ -1,5 +1,5 @@
-import { useTranslation } from 'next-i18next/pages'
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next/pages'
 import { useId } from 'react'
 
 import Button from '@/src/components/atoms/Button'

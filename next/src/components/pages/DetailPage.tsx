@@ -20,7 +20,7 @@ import { getAnchor } from '@/src/utils/getAnchor'
 import { getContentPageColor } from '@/src/utils/getContentPageColor'
 import getDaysLeft from '@/src/utils/getDaysLeft'
 import { getPurchaseId } from '@/src/utils/getPurchaseId'
-import { hasAttributes, isDefined, withAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 
 interface DetailPageProps {
   contentPage: ContentPageEntityFragment
@@ -61,13 +61,9 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
 
   // TODO Add parent page as related content, with option to not to include it :D
   const relatedContentFiltered =
-    childPages?
-      .filter(hasAttributes)
-      .filter((child) =>
-        child.dateTo ? getDaysLeft(child.dateTo) >= 0 : child,
-      )
+    childPages
+      .filter((child) => (child?.dateTo ? getDaysLeft(child.dateTo) >= 0 : child))
       .sort((a, b) => (a.dateFrom > b.dateFrom ? 1 : -1)) ?? []
-      
 
   const showRelatedContent = relatedContentFiltered.length > 0
 
@@ -111,7 +107,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
             datetime={{ dateFrom, dateTo, timeFrom, timeTo, showRemainingTime }}
             place={{ place, placeTitle, placeAddress }}
             positions={positions?.filter(isDefined)}
-            partners={partners?.map((item) => item?.partner).filter(hasAttributes)}
+            partners={partners?.map((item) => item?.partner).filter(isDefined)}
             purchaseId={getPurchaseId(contentPage)}
             slug={slug}
             showShare={showShare}
@@ -180,7 +176,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
                     className="pb-yMd"
                   >
                     {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
-                    <ImageGallery medias={section.medias} />
+                    <ImageGallery medias={section.medias.filter(isDefined)} />
                   </Section>
                 )
               }
@@ -196,7 +192,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
                       <ContactCard
                         // eslint-disable-next-line react/no-array-index-key
                         key={index}
-                        contact={withAttributes(contactItem?.contactCard)}
+                        contact={contactItem?.contactCard}
                       />
                     ))}
                   </Section>
@@ -211,7 +207,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
           {/* Mobile sidepanel info part 2 */}
           <SidePanel
             positions={positions?.filter(isDefined)}
-            partners={partners?.map((item) => item?.partner).filter(hasAttributes)}
+            partners={partners?.map((item) => item?.partner).filter(isDefined)}
             slug={slug}
             showShare={showShare}
             title={title}
@@ -219,12 +215,12 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
           />
         </div>
       </div>
-      {slider ? <ImgSwiper slides={slider?.medias?.filter(hasAttributes)} /> : null}
+      {slider ? <ImgSwiper slides={slider.medias.filter(isDefined)} /> : null}
       {relatedContentFiltered.length > 0 ? (
         <ChessboardSection
           anchor={getAnchor(relatedContentSubmenuTitle)}
           title={relatedContentTitle ?? undefined}
-          sectionItems={relatedContentFiltered}
+          sectionItems={relatedContentFiltered.filter(isDefined)}
         />
       ) : null}
       {downloadSection && (

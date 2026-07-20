@@ -1,6 +1,6 @@
-import { useTranslation } from 'next-i18next/pages'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next/pages'
 import { useId } from 'react'
 
 import Button from '@/src/components/atoms/Button'
@@ -48,22 +48,20 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
             dateTo: dateTo as string,
           }) && <span className="pr-2 text-nav text-red-600 uppercase">{t('common.today')}!</span>}
           <div className="z-1 flex grow flex-wrap gap-x-6 gap-y-3">
-            {tags
-              ?.filter((tag) => isDefined(tag?.slug))
-              .map((tag) => {
-                const path = `${cleanPath}/?tags=${tag.slug}`
+            {tags.filter(isDefined).map((tag) => {
+              const path = `${cleanPath}/?tags=${tag.slug}`
 
-                return (
-                  <Link
-                    className=""
-                    role="button"
-                    href={router.asPath.startsWith('/') ? path : `/${path}`}
-                    key={tag.slug}
-                  >
-                    {tag.title}
-                  </Link>
-                )
-              })}
+              return (
+                <Link
+                  className=""
+                  role="button"
+                  href={router.asPath.startsWith('/') ? path : `/${path}`}
+                  key={tag.slug}
+                >
+                  {tag.title}
+                </Link>
+              )
+            })}
           </div>
           {addedAt && (
             <div className="shrink-0 text-btn text-gmbGray">

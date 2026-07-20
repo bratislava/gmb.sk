@@ -1,6 +1,6 @@
 import { ContentPageEntityFragment, MainPageEntityFragment } from '@/src/services/graphql'
 import { getKeyByValue } from '@/src/utils/getKeyByValue'
-import { hasAttributes, isDefined, WithAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 
 const routesSkToEn = {
   // Routes
@@ -59,10 +59,10 @@ export function getRouteForTargetLocale(route: string, targetLocale: string) {
 
 function getContentPageDetailRouteForTargetLocale(
   contentPageLocalizations: ContentPageEntityFragment['localizations'],
-  targetLocale: string
+  targetLocale: string,
 ) {
-  const contentPageInTargetLocale = contentPageLocalizations?
-    .filter(hasAttributes)
+  const contentPageInTargetLocale = contentPageLocalizations
+    .filter(isDefined)
     .find((localization) => localization.locale === targetLocale)
 
   if (!contentPageInTargetLocale) {
@@ -75,10 +75,10 @@ function getContentPageDetailRouteForTargetLocale(
 
 function getContentPageTicketsRouteForTargetLocale(
   contentPageLocalizations: ContentPageEntityFragment['localizations'],
-  targetLocale: string
+  targetLocale: string,
 ) {
-  const contentPageInTargetLocale = contentPageLocalizations?
-    .filter(hasAttributes)
+  const contentPageInTargetLocale = contentPageLocalizations
+    .filter(isDefined)
     .find((localization) => localization.locale === targetLocale)
 
   if (!contentPageInTargetLocale) {
@@ -93,10 +93,10 @@ function getContentPageTicketsRouteForTargetLocale(
 
 const getMainPageRouteForTargetLocale = (
   mainPageLocalizations: MainPageEntityFragment['localizations'],
-  targetLocale: string
+  targetLocale: string,
 ) => {
-  const mainPageInTargetLocale = mainPageLocalizations?
-    .filter(hasAttributes)
+  const mainPageInTargetLocale = mainPageLocalizations
+    .filter(isDefined)
     .find((localization) => localization.locale === targetLocale)
 
   if (!mainPageInTargetLocale) return
@@ -108,19 +108,16 @@ const getMainPageRouteForTargetLocale = (
   return slug?.startsWith('/') ? slug : `/${slug}`
 }
 
-type Page =
-  | ContentPageEntityFragment
-  | MainPageEntityFragment
-  | undefined
+type Page = ContentPageEntityFragment | MainPageEntityFragment | undefined
 
 const isMainPage = (page: Page): page is MainPageEntityFragment => {
-  return isDefined(page) && page.__typename === 'MainPageEntity'
+  return isDefined(page) && page.__typename === 'MainPage'
 }
 
 export function getEquivalentRouteInTargetLocale(
   path: string, // Expects full path from Next router
   targetLocale: string,
-  page: Page
+  page: Page,
 ) {
   if (isMainPage(page)) {
     return getMainPageRouteForTargetLocale(page.localizations, targetLocale)

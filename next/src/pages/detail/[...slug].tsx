@@ -6,7 +6,7 @@ import { ContentPageBySlugQuery, GeneralQuery } from '@/src/services/graphql'
 import { client } from '@/src/services/graphql/gql'
 import { NOT_FOUND } from '@/src/utils/consts'
 import { GeneralContextProvider } from '@/src/utils/generalContext'
-import { hasAttributes, isDefined, withAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 
 interface DetailProps {
   generalQuery: GeneralQuery
@@ -14,15 +14,13 @@ interface DetailProps {
 }
 
 const Detail = ({ generalQuery, contentPage }: DetailProps) => {
-  const contentPageWithAttributes = withAttributes(contentPage)
-
-  if (!contentPage || !contentPageWithAttributes) {
+  if (!contentPage) {
     return null
   }
 
   return (
     <GeneralContextProvider general={generalQuery}>
-      <DetailPage contentPage={contentPageWithAttributes} />
+      <DetailPage contentPage={contentPage} />
     </GeneralContextProvider>
   )
 }
@@ -64,18 +62,16 @@ export const getStaticPaths: GetStaticPaths = async ({ locales = [] }) => {
   /** We have a quite complicated and nested structure here, so we need to flatten the response and filter out nullables */
   const allContentPages = contentPageSlugsResponses
     .flat()
-    .map((contentPageSlugsResponse) =>
-      contentPageSlugsResponse.contentPages?.filter(hasAttributes),
-    )
+    .map((contentPageSlugsResponse) => contentPageSlugsResponse.contentPages)
     .filter(isDefined)
     .flat()
 
   const paths = allContentPages.map((contentPage) => {
     return {
       params: {
-        slug: [contentPage.slug],
+        slug: [contentPage?.slug],
       },
-      locale: contentPage.locale ?? undefined,
+      locale: contentPage?.locale ?? undefined,
     }
   })
 

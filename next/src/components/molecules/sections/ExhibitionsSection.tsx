@@ -80,12 +80,9 @@ const ExhibitionsSection = ({
    *  or `dateFrom` in the past AND dateTo null, which means it was only a one-day event. All other tags still apply while archive is active.
    */
   const archiveTagEntity: TagEntityFragment = {
-    __typename: 'TagEntity',
-    attributes: {
-      __typename: 'Tag',
-      title: i18n.language === 'sk' ? 'Archív' : 'Archive',
-      slug: 'archive',
-    },
+    __typename: 'Tag',
+    title: i18n.language === 'sk' ? 'Archív' : 'Archive',
+    slug: 'archive',
   }
 
   return (

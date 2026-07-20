@@ -25,7 +25,7 @@ const TicketsSection = ({ tickets, title, text, anchor }: TicketsSectionProps) =
         <div className="mt-yMd flex flex-wrap justify-between lg:flex-nowrap lg:justify-items-stretch">
           {tickets?.map((ticket) => (
             <Ticket
-              key={ticket.id}
+              key={ticket.documentId}
               title={ticket.title}
               price={ticket.price}
               description={ticket.description}

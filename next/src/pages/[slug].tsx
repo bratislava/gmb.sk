@@ -15,7 +15,7 @@ import { client } from '@/src/services/graphql/gql'
 import { NOT_FOUND } from '@/src/utils/consts'
 import { GeneralContextProvider } from '@/src/utils/generalContext'
 import { getTodaysDate } from '@/src/utils/getTodaysDate'
-import { hasAttributes, isDefined } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 import { getRouteForLocale } from '@/src/utils/localeRoutes'
 
 interface MenuPageProps {
@@ -46,13 +46,10 @@ export const getStaticPaths: GetStaticPaths<StaticParams> = async ({ locales = [
   const mainPageSlugsResponses = await Promise.all(mainPageSlugsPromises)
 
   const paths = mainPageSlugsResponses.flatMap((mainPageSlugResponse, index) =>
-    (mainPageSlugResponse?.mainPages ?? [])
-      .filter(hasAttributes)
-      .filter(isDefined)
-      .map((mainPage) => ({
-        params: { slug: mainPage.slug },
-        locale: locales[index],
-      })),
+    mainPageSlugResponse.mainPages.filter(isDefined).map((mainPage) => ({
+      params: { slug: mainPage.slug },
+      locale: locales[index],
+    })),
   )
 
   // eslint-disable-next-line no-console
@@ -138,7 +135,7 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
   const tagPermanentExhibitions = getRouteForLocale('stale-expozicie', locale)
   const tagsAdditionalProgram =
     tagsProgram?.tags
-      .filter(hasAttributes)
+      .filter(isDefined)
       .map((tag) => tag.slug)
       .filter((tagSlug) => tagSlug !== tagExhibitions && tagSlug !== tagPermanentExhibitions) ?? []
 
@@ -204,22 +201,20 @@ const MenuPage = ({
       <MainPage
         title={page?.title ?? ''}
         page={page}
-        newsItems={news?.filter(hasAttributes)}
-        tickets={tickets?.filter(hasAttributes)}
-        exhibitions={exhibitions?.filter(hasAttributes)}
-        permanentExhibitions={permanentExhibitions?.filter(hasAttributes)}
-        additionalProgram={additionalProgram?.filter(hasAttributes)}
-        places={places?.filter(hasAttributes)}
-        tagsProgram={tagsProgram?.tags?.filter(hasAttributes)}
-        tagsTargetGroups={tagsTargetGroups?.tags?.filter(hasAttributes)}
-        tagsLanguages={tagsLanguages?.tags?.filter(hasAttributes)}
-        tagsProjects={tagsProjects?.tags?.filter(hasAttributes)}
-        tagsOthers={tagsOthers?.tags?.filter(hasAttributes)}
-        tagsExploreTypes={tagsExploreTypes?.tags?.filter(hasAttributes)}
-        tagsExploreProjects={tagsExploreProjects?.tags?.filter(
-          hasAttributes,
-        )}
-        tagsExploreOthers={tagsExploreOthers?.tags?.filter(hasAttributes)}
+        newsItems={news.filter(isDefined)}
+        tickets={tickets.filter(isDefined)}
+        exhibitions={exhibitions.filter(isDefined)}
+        permanentExhibitions={permanentExhibitions.filter(isDefined)}
+        additionalProgram={additionalProgram.filter(isDefined)}
+        places={places.filter(isDefined)}
+        tagsProgram={tagsProgram?.tags.filter(isDefined)}
+        tagsTargetGroups={tagsTargetGroups?.tags.filter(isDefined)}
+        tagsLanguages={tagsLanguages?.tags.filter(isDefined)}
+        tagsProjects={tagsProjects?.tags.filter(isDefined)}
+        tagsOthers={tagsOthers?.tags.filter(isDefined)}
+        tagsExploreTypes={tagsExploreTypes?.tags.filter(isDefined)}
+        tagsExploreProjects={tagsExploreProjects?.tags.filter(isDefined)}
+        tagsExploreOthers={tagsExploreOthers?.tags.filter(isDefined)}
       />
     </GeneralContextProvider>
   )

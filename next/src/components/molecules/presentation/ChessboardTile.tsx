@@ -1,6 +1,6 @@
-import { useTranslation } from 'next-i18next/pages'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next/pages'
 import { useId } from 'react'
 
 import Button from '@/src/components/atoms/Button'
@@ -10,7 +10,7 @@ import { SectionItemEntityFragment } from '@/src/services/graphql'
 import cn from '@/src/utils/cn'
 import { generateImageSizes } from '@/src/utils/generateImageSizes'
 import { getContentPageColor } from '@/src/utils/getContentPageColor'
-import { hasAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 
 interface ChessboardTileProps {
   sectionItem: SectionItemEntityFragment
@@ -54,7 +54,7 @@ const ChessboardTile = ({ sectionItem, isLeft, showTags, customLinkHref }: Chess
 
         {showTags && tags && (
           <div className="flex space-x-3">
-            {tags.filter(hasAttributes).map((tag) => (
+            {tags.filter(isDefined).map((tag) => (
               <Link role="button" href={`${router.pathname}/?tags=${tag.slug}`} key={tag.slug}>
                 {tag.title}
               </Link>

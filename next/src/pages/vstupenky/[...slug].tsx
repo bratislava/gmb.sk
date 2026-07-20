@@ -12,7 +12,7 @@ import { client } from '@/src/services/graphql/gql'
 import { NOT_FOUND } from '@/src/utils/consts'
 import { GeneralContextProvider } from '@/src/utils/generalContext'
 import { getTodaysDate } from '@/src/utils/getTodaysDate'
-import { hasAttributes, withAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 import { getRouteForLocale } from '@/src/utils/localeRoutes'
 
 interface TicketProps {
@@ -22,9 +22,7 @@ interface TicketProps {
 }
 
 const Tickets = ({ generalQuery, contentPage, currentEvents }: TicketProps) => {
-  const contentPageWithAttributes = withAttributes(contentPage)
-
-  if (!contentPage || !contentPageWithAttributes) {
+  if (!contentPage) {
     return null
   }
 
@@ -33,10 +31,7 @@ const Tickets = ({ generalQuery, contentPage, currentEvents }: TicketProps) => {
       {/* Load GoOut script to be able to show purchase form */}
       <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
 
-      <TicketPage
-        contentPage={contentPageWithAttributes}
-        currentEvents={currentEvents?.filter(hasAttributes)}
-      />
+      <TicketPage contentPage={contentPage} currentEvents={currentEvents?.filter(isDefined)} />
     </GeneralContextProvider>
   )
 }

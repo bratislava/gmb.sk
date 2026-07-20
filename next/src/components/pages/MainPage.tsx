@@ -27,7 +27,7 @@ import {
   TicketEntityFragment,
 } from '@/src/services/graphql'
 import { getAnchor } from '@/src/utils/getAnchor'
-import { hasAttributes, isDefined, WithAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 
 type MainPageProps = {
   title: string
@@ -68,7 +68,7 @@ const MainPage = ({
 }: MainPageProps) => {
   const { t } = useTranslation()
 
-  const page = pageEntity?
+  const page = pageEntity
 
   if (!page) return null
 
@@ -84,7 +84,7 @@ const MainPage = ({
     })
 
   return (
-    <PageWrapper page={hasAttributes(pageEntity) ? pageEntity : undefined}>
+    <PageWrapper page={page}>
       <SeoHead title={title} seo={page?.seo} />
       <h1 className="sr-only">{title}</h1>
 
@@ -178,9 +178,7 @@ const MainPage = ({
               <PartnersSection
                 title={section?.title ?? t('common.partners')}
                 anchor={getAnchor(section.submenuTitle)}
-                partners={section.partners
-                  ?.map((item) => item?.partner)
-                  ?.filter(hasAttributes)}
+                partners={(section.partners ?? []).map((item) => item?.partner).filter(isDefined)}
                 key={`${section.__typename}-${section.id}`}
               />
             )
@@ -191,7 +189,7 @@ const MainPage = ({
               <HighlightsSection
                 highlights={section?.highlights
                   ?.map((highlight) => highlight?.contentPage)
-                  .filter(hasAttributes)}
+                  .filter(isDefined)}
                 key={`${section.__typename}-${section.id}`}
               />
             )
