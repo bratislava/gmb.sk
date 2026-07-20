@@ -1,5 +1,4 @@
 import { ContentPageEntityFragment } from '@/src/services/graphql'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 const parsePurchaseId = (purchaseId: string) => {
   let pId = purchaseId
@@ -17,7 +16,7 @@ const parsePurchaseId = (purchaseId: string) => {
 
 export function getPurchaseId(contentPage: ContentPageEntityFragment) {
   const { sellTickets, purchaseId, place } = contentPage
-  const { purchaseId: placePurchaseId } = place? ?? {}
+  const { purchaseId: placePurchaseId } = place ?? {}
 
   if (sellTickets) {
     if (purchaseId) {
