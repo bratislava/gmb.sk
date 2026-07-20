@@ -61,17 +61,16 @@ export const getStaticPaths: GetStaticPaths = async ({ locales = [] }) => {
 
   /** We have a quite complicated and nested structure here, so we need to flatten the response and filter out nullables */
   const allContentPages = contentPageSlugsResponses
-    .flat()
     .map((contentPageSlugsResponse) => contentPageSlugsResponse.contentPages)
-    .filter(isDefined)
     .flat()
+    .filter(isDefined)
 
   const paths = allContentPages.map((contentPage) => {
     return {
       params: {
-        slug: [contentPage?.slug],
+        slug: [contentPage.slug],
       },
-      locale: contentPage?.locale ?? undefined,
+      locale: contentPage.locale ?? undefined,
     }
   })
 

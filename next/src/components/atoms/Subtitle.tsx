@@ -5,7 +5,10 @@ import { formatDateString } from '@/src/utils/formatDateString'
 import { formatTimeString } from '@/src/utils/formatTimeString'
 
 type Props = {
-  page: ContentPageEntityFragment
+  page: Pick<
+    ContentPageEntityFragment,
+    'subtitle' | 'useDatetimeAsSubtitle' | 'dateFrom' | 'timeFrom'
+  >
 }
 
 const Subtitle = ({ page }: Props) => {

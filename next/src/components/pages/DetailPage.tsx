@@ -60,10 +60,10 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
   const { t, i18n } = useTranslation()
 
   // TODO Add parent page as related content, with option to not to include it :D
-  const relatedContentFiltered =
-    childPages
-      .filter((child) => (child?.dateTo ? getDaysLeft(child.dateTo) >= 0 : child))
-      .sort((a, b) => (a.dateFrom > b.dateFrom ? 1 : -1)) ?? []
+  const relatedContentFiltered = childPages
+    .filter(isDefined)
+    .filter((child) => (child?.dateTo ? getDaysLeft(child.dateTo) >= 0 : child))
+    .sort((a, b) => (a.dateFrom > b.dateFrom ? 1 : -1))
 
   const showRelatedContent = relatedContentFiltered.length > 0
 
