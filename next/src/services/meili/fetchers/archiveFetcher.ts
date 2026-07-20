@@ -50,18 +50,12 @@ export const archiveFetcher = async (filters: ArchiveFilters, locale: string) =>
         ...response,
         hits: response.hits.map((hit) => {
           return {
-            id: hit.id,
-            attributes: {
-              title: hit.title,
-              subtitle: hit.subtitle,
-              slug: hit.slug,
-              perex: hit.perex,
-              coverMedia: {
-                data: {
-                  attributes: hit.coverMedia,
-                },
-              },
-            },
+            documentId: hit.id,
+            title: hit.title,
+            subtitle: hit.subtitle,
+            slug: hit.slug,
+            perex: hit.perex,
+            coverMedia: hit.coverMedia,
           } as SectionItemEntityFragment
         }),
       }

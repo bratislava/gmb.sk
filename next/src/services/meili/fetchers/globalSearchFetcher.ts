@@ -52,25 +52,17 @@ export const globalSearchFetcher = async (filters: GlobalSearchFilters, locale: 
         ...response,
         hits: response.hits.map((hit) => {
           return {
-            id: hit.id,
-            attributes: {
-              title: hit.title,
-              subtitle: hit.subtitle,
-              slug: hit.slug,
-              coverMedia: {
-                data: { attributes: hit.coverMedia },
-              },
-              perex: hit.perex,
-              tags: {
-                data: hit.tags.map((tag: TagEntityFragment) => ({
-                  attributes: {
-                    title: tag?.title,
-                    slug: tag?.slug,
-                  },
-                })),
-              },
-              publishedAt: hit.publishedAt,
-            },
+            documentId: hit.id,
+            title: hit.title,
+            subtitle: hit.subtitle,
+            slug: hit.slug,
+            coverMedia: hit.coverMedia,
+            perex: hit.perex,
+            tags: hit.tags.map((tag: TagEntityFragment) => ({
+              title: tag.title,
+              slug: tag.slug,
+            })),
+            publishedAt: hit.publishedAt,
           } as GlobalSearchPageEntityFragment
         }),
       }

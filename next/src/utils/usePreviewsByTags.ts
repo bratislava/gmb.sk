@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 
-import { PreviewsByTagsQueryVariables, SectionItemEntityFragment } from '@/src/services/graphql'
+import { PreviewsByTagsQueryVariables } from '@/src/services/graphql'
 import { client } from '@/src/services/graphql/gql'
 import { getTodaysDate } from '@/src/utils/getTodaysDate'
 import { isDefined } from '@/src/utils/isDefined'
@@ -67,15 +67,11 @@ export const usePreviewsByTags = ({
       client.PreviewsByTags({ ...options, offset: pageParam * PAGE_SIZE }),
     initialPageParam: 0, // This is required in v5
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
-      (lastPage.contentPages?.length ?? 0) < PAGE_SIZE ? undefined : lastPageParam + 1,
+      lastPage.contentPages.length < PAGE_SIZE ? undefined : lastPageParam + 1,
     // Check whether we’ve reached the data's end. If not, calculate the cursor for the next page
   })
 
-  const filteredPages =
-    (data?.pages
-      ?.flatMap((page) => page.contentPages)
-      .filter(isDefined)
-      .filter(withAttributes) as SectionItemEntityFragment[]) ?? []
+  const filteredPages = data?.pages.flatMap((page) => page.contentPages).filter(isDefined) ?? []
 
   return {
     data,
