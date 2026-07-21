@@ -14,11 +14,11 @@ const DownloadItem = ({ downloadItem }: DownloadProps) => {
   const { t } = useTranslation()
   const { getDownloadAriaLabel } = useGetDownloadAriaLabel()
 
-  const file = downloadItem?.file
+  const file = downloadItem.file
 
-  return file ? (
+  return (
     <div className="relative flex h-full flex-col justify-between gap-yMd">
-      <h4 className="text-lg">{downloadItem.title ?? file.name ?? ''}</h4>
+      <h4 className="text-lg">{downloadItem.title ?? file.name}</h4>
 
       <div className="flex flex-col items-start gap-yMd">
         <div aria-hidden className="relative left-[calc(-10*var(--size-factor))] size-fit">
@@ -42,7 +42,7 @@ const DownloadItem = ({ downloadItem }: DownloadProps) => {
         </Button>
       </div>
     </div>
-  ) : null
+  )
 }
 
 export default DownloadItem

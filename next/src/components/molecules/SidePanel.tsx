@@ -168,7 +168,7 @@ const SidePanel = ({
         <div>
           <h4 className="mb-yMd text-lg">{t('common.partners')}</h4>
           <div className="flex flex-wrap gap-5">
-            {partners?.map((partner) => (
+            {partners.map((partner) => (
               <Link
                 key={partner.title}
                 target="_blank"

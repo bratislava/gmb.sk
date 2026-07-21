@@ -24,8 +24,8 @@ const PartnersSection = ({ partners, title, anchor }: PartnersSectionProps) => {
             target="_blank"
           >
             <img
-              src={partner?.logo.url}
-              alt={partner?.logo.alternativeText ?? ''}
+              src={partner.logo.url}
+              alt={partner.logo.alternativeText ?? ''}
               className="h-[115px] object-contain"
             />
           </Link>

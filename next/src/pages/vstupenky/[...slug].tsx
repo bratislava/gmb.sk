@@ -58,7 +58,7 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
     return NOT_FOUND
   }
 
-  if (!contentPage?.place?.slug) {
+  if (!contentPage.place?.slug) {
     return {
       props: {
         generalQuery,
@@ -74,7 +74,7 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
     today,
     tagExhibitions: getRouteForLocale('vystavy', locale),
     tagPermanentExhibitions: getRouteForLocale('stale-expozicie', locale),
-    place: contentPage.place?.slug,
+    place: contentPage.place.slug,
   })
 
   return {

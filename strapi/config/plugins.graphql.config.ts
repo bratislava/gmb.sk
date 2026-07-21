@@ -5,7 +5,6 @@ const graphqlConfig = {
     // When changing schema path, also change watchIgnoreFiles in strapi/config/admin.js
     schema: true,
   },
-  v4CompatibilityMode: false,
 }
 
 export default graphqlConfig

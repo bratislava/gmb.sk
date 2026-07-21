@@ -220,7 +220,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
         <ChessboardSection
           anchor={getAnchor(relatedContentSubmenuTitle)}
           title={relatedContentTitle ?? undefined}
-          sectionItems={relatedContentFiltered.filter(isDefined)}
+          sectionItems={relatedContentFiltered}
         />
       ) : null}
       {downloadSection && (

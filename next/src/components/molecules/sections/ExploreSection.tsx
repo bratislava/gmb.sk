@@ -1,5 +1,5 @@
-import { useTranslation } from 'next-i18next/pages'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next/pages'
 import { useEffect, useState } from 'react'
 
 import Button from '@/src/components/atoms/Button'
@@ -62,7 +62,7 @@ const ExploreSection = ({ title, tagsTypes, tagsProjects, tagsOthers }: ExploreS
 
       <div className="relative min-h-screen bg-white">
         <CardSection
-          sectionItems={filteredPages?.filter(isDefined)}
+          sectionItems={filteredPages.filter(isDefined)}
           isLoading={isLoading}
           loadmoreButton={
             hasNextPage ? (

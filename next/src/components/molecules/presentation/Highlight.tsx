@@ -84,7 +84,7 @@ const Highlight = ({ highlight }: Props) => {
     isDefined(place) ||
     placeTitle ||
     isDefined(dateFrom) ||
-    (positions && positions?.length > 0) ||
+    (positions && positions.length > 0) ||
     perex ||
     getPurchaseId(highlight)
   )
@@ -95,13 +95,13 @@ const Highlight = ({ highlight }: Props) => {
       <div
         className="group flex h-[calc(100vh-var(--nav-height))] w-full cursor-pointer flex-col"
         tabIndex={-1}
-        id={`articleDiv${highlight.documentId ?? ''}`}
+        id={`articleDiv${highlight.documentId}`}
         onClick={async () => router.push(`/detail/${slug}`)}
         onKeyDown={onEnterOrSpaceKeyDown(async () => router.push(`/detail/${slug}`))}
       >
         <div className="relative flex grow cursor-pointer">
           <Image
-            id={`articleImg${highlight.documentId ?? ''}`}
+            id={`articleImg${highlight.documentId}`}
             src={coverMedia?.url ?? ''}
             alt={coverMedia?.alternativeText ?? ''}
             className="object-cover"
@@ -112,7 +112,7 @@ const Highlight = ({ highlight }: Props) => {
         <div
           className="h-fit w-full px-xMd py-yMd lg:h-auto lg:pr-sidepanel"
           style={{ background: getContentPageColor(highlight) }}
-          id={`articleHeader${highlight.documentId ?? ''}`}
+          id={`articleHeader${highlight.documentId}`}
         >
           <div className="flex flex-col items-start justify-between gap-y-yMd lg:mr-xLg">
             <Link href={`/detail/${slug}`} preserveStyle stretched className="hover:no-underline">
@@ -157,12 +157,12 @@ const Highlight = ({ highlight }: Props) => {
       </div>
       <div
         className="relative ml-auto w-sidepanel bg-white"
-        id={`sidepanel${highlight.documentId ?? ''}`}
+        id={`sidepanel${highlight.documentId}`}
       >
-        {renderOverride && override?.highlightContent ? (
+        {renderOverride && override.highlightContent ? (
           /* If there is override, display it on both mobile and desktop */
           <div className="min-h-fit p-10">
-            <SidePanel overrideText={override?.highlightContent} />
+            <SidePanel overrideText={override.highlightContent} />
           </div>
         ) : renderEventDetailsSidepanel ? (
           /* If there is no override, display classic sidepanel on desktop */

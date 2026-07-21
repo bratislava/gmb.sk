@@ -20,21 +20,16 @@ interface HomePageProps {
   newsItems?: NewsItemEntityFragment[] | null
 }
 
-const HomePage = ({ page: pageResponse, title, newsItems }: HomePageProps) => {
+const HomePage = ({ page, title, newsItems }: HomePageProps) => {
   const { t } = useTranslation()
-
-  const page = pageResponse
 
   const submenu: string[] = []
 
-  page?.sections
-    ?.filter(isDefined)
-    .filter(isDefined)
-    .forEach((section) => {
-      if ('submenuTitle' in section && section.submenuTitle) {
-        submenu.push(section.submenuTitle)
-      }
-    })
+  page?.sections?.filter(isDefined).forEach((section) => {
+    if ('submenuTitle' in section && section.submenuTitle) {
+      submenu.push(section.submenuTitle)
+    }
+  })
 
   return (
     <PageWrapper>

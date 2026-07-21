@@ -14,15 +14,15 @@ export const useGetDownloadAriaLabel = () => {
   const getDownloadAriaLabel = (downloadItem: DownloadItemFragment): string => {
     if (!downloadItem) return t('fileItem.aria.downloadFile')
 
-    const file = downloadItem?.file
+    const file = downloadItem.file
 
-    const formattedFileFormat = formatFileExtension(file?.ext) ?? ''
-    const formattedFileSize = formatFileSize(file?.size, i18n.language) ?? ''
+    const formattedFileFormat = formatFileExtension(file.ext) ?? ''
+    const formattedFileSize = formatFileSize(file.size, i18n.language) ?? ''
     // Provide an empty string as the fallback value to prevent Next from displaying
     // `undefined` or `null` in the translated text when variables are missing
 
     return t('fileItem.aria.downloadFileAriaLabel', {
-      title: downloadItem.title ?? file?.name ?? '',
+      title: downloadItem.title ?? file.name,
       format: formattedFileFormat,
       size: formattedFileSize,
     })

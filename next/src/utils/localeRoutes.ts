@@ -70,7 +70,7 @@ function getContentPageDetailRouteForTargetLocale(
   }
 
   // eslint-disable-next-line consistent-return
-  return `/detail/${contentPageInTargetLocale?.slug}`
+  return `/detail/${contentPageInTargetLocale.slug}`
 }
 
 function getContentPageTicketsRouteForTargetLocale(
@@ -88,7 +88,7 @@ function getContentPageTicketsRouteForTargetLocale(
   const ticketsRoute = getRouteForLocale('/vstupenky', targetLocale)
 
   // eslint-disable-next-line consistent-return
-  return `${ticketsRoute}/${contentPageInTargetLocale?.slug}`
+  return `${ticketsRoute}/${contentPageInTargetLocale.slug}`
 }
 
 const getMainPageRouteForTargetLocale = (
@@ -102,10 +102,10 @@ const getMainPageRouteForTargetLocale = (
   if (!mainPageInTargetLocale) return
 
   // Always ensure slug has a leading slash to prevent issues with routing
-  const slug = mainPageInTargetLocale?.slug
+  const slug = mainPageInTargetLocale.slug
 
   // eslint-disable-next-line consistent-return
-  return slug?.startsWith('/') ? slug : `/${slug}`
+  return slug.startsWith('/') ? slug : `/${slug}`
 }
 
 type Page = ContentPageEntityFragment | MainPageEntityFragment | undefined

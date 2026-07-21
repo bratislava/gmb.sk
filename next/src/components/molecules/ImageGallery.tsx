@@ -45,7 +45,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
   if (!medias) {
     return null
   }
-  
+
   const items = medias.map((media) => {
     const { url, formats, caption } = media
     const { thumbnail } = formats as StrapiImageFormats
@@ -78,7 +78,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
       /* eslint-disable better-tailwindcss/no-unknown-classes */
       <span className="image-gallery-thumbnail-inner">
         <img
-          className="mx-auto max-h-[80px] object-contain"
+          className="mx-auto max-h-20 object-contain"
           src={item.thumbnail}
           height={item.thumbnailHeight}
           width={item.thumbnailWidth}
@@ -143,10 +143,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
           </div>
           <div className="grid h-fit grid-cols-3 grid-rows-1 gap-[calc(8*var(--size-factor))] sm:grid-cols-4 md:grid-cols-5">
             {medias
-              .slice(
-                1,
-                mediasToShow === medias.length - 1 ? mediasToShow + 1 : mediasToShow,
-              )
+              .slice(1, mediasToShow === medias.length - 1 ? mediasToShow + 1 : mediasToShow)
               .map((media, index) => (
                 <div
                   key={media.url}

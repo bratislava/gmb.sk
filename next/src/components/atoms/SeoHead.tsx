@@ -1,6 +1,6 @@
-import { useTranslation } from 'next-i18next/pages'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next/pages'
 
 import { ImageEntityFragment, SeoFragment } from '@/src/services/graphql'
 import { getNextUrl } from '@/src/utils/getNextUrl'

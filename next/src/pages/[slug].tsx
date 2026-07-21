@@ -148,7 +148,7 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
       tagsAdditionalProgram,
     })
 
-  const mainPage = mainPages?.[0]
+  const mainPage = mainPages[0]
 
   if (!mainPage) {
     return NOT_FOUND
@@ -199,7 +199,7 @@ const MenuPage = ({
   return (
     <GeneralContextProvider general={generalQuery}>
       <MainPage
-        title={page?.title ?? ''}
+        title={page.title}
         page={page}
         newsItems={news.filter(isDefined)}
         tickets={tickets.filter(isDefined)}

@@ -50,7 +50,7 @@ type MainPageProps = {
 
 const MainPage = ({
   title,
-  page: pageEntity,
+  page,
   newsItems,
   tickets,
   exhibitions,
@@ -68,31 +68,23 @@ const MainPage = ({
 }: MainPageProps) => {
   const { t } = useTranslation()
 
-  const page = pageEntity
-
-  if (!page) return null
-
   const submenu: string[] = []
 
-  page?.sections
-    ?.filter(isDefined)
-    .filter(isDefined)
-    .forEach((section) => {
-      if ('submenuTitle' in section && section.submenuTitle) {
-        submenu.push(section.submenuTitle)
-      }
-    })
+  page.sections?.filter(isDefined).forEach((section) => {
+    if ('submenuTitle' in section && section.submenuTitle) {
+      submenu.push(section.submenuTitle)
+    }
+  })
 
   return (
     <PageWrapper page={page}>
-      <SeoHead title={title} seo={page?.seo} />
+      <SeoHead title={title} seo={page.seo} />
       <h1 className="sr-only">{title}</h1>
 
-      {page?.sections ? <Submenu items={submenu} /> : null}
+      {page.sections ? <Submenu items={submenu} /> : null}
 
-      {page?.sections
+      {page.sections
         ?.filter(isDefined)
-        .filter(isDefined)
         // eslint-disable-next-line sonarjs/cognitive-complexity
         .map((section) => {
           if (section.__typename === 'ComponentSectionsNewsSection' && newsItems) {
@@ -176,9 +168,9 @@ const MainPage = ({
           ) {
             return (
               <PartnersSection
-                title={section?.title ?? t('common.partners')}
+                title={section.title ?? t('common.partners')}
                 anchor={getAnchor(section.submenuTitle)}
-                partners={(section.partners ?? []).map((item) => item?.partner).filter(isDefined)}
+                partners={section.partners.map((item) => item?.partner).filter(isDefined)}
                 key={`${section.__typename}-${section.id}`}
               />
             )
@@ -187,7 +179,7 @@ const MainPage = ({
           if (section.__typename === 'ComponentSectionsHighlightsSection') {
             return (
               <HighlightsSection
-                highlights={section?.highlights
+                highlights={section.highlights
                   ?.map((highlight) => highlight?.contentPage)
                   .filter(isDefined)}
                 key={`${section.__typename}-${section.id}`}

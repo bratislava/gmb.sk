@@ -21,13 +21,13 @@ const TagGroup = ({ tags, activeTags, setActiveTags }: ITagGroupProps) => {
       {tags.map((tag) =>
         typeof tag === 'string' ? (
           // Used for years in filters, set to same width
-          (<Tag
+          <Tag
             title={tag}
             key={tag}
             isActive={activeTags.includes(tag)}
             onClick={() => handleTagClick(tag)}
             className="w-[calc(110*var(--size-factor))]"
-          />)
+          />
         ) : (
           <Tag
             title={tag.title}
@@ -38,7 +38,7 @@ const TagGroup = ({ tags, activeTags, setActiveTags }: ITagGroupProps) => {
         ),
       )}
     </>
-  );
+  )
 }
 
 export default TagGroup

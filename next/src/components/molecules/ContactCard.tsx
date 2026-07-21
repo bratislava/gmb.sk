@@ -2,7 +2,7 @@ import Link from '@/src/components/atoms/Link'
 import { ContactCardEntityFragment } from '@/src/services/graphql'
 
 interface IContactCardProps {
-  contact: ContactCardEntityFragment | undefined | null
+  contact?: ContactCardEntityFragment | null
 }
 
 const ContactCard = ({ contact }: IContactCardProps) => {
