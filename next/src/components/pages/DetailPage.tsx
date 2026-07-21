@@ -62,7 +62,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
   // TODO Add parent page as related content, with option to not to include it :D
   const relatedContentFiltered = childPages
     .filter(isDefined)
-    .filter((child) => (child?.dateTo ? getDaysLeft(child.dateTo) >= 0 : child))
+    .filter((child) => (child.dateTo ? getDaysLeft(child.dateTo) >= 0 : child))
     .sort((a, b) => (a.dateFrom > b.dateFrom ? 1 : -1))
 
   const showRelatedContent = relatedContentFiltered.length > 0
@@ -78,7 +78,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
     submenu.push(relatedContentSubmenuTitle)
   }
   if (downloadSection?.submenuTitle) {
-    submenu.push(downloadSection?.submenuTitle)
+    submenu.push(downloadSection.submenuTitle)
   }
 
   const seoImage = seo?.metaImage || coverMedia

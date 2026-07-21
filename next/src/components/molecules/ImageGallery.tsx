@@ -42,10 +42,6 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
     setShowModal(false)
   }
 
-  if (!medias) {
-    return null
-  }
-
   const items = medias.map((media) => {
     const { url, formats, caption } = media
     const { thumbnail } = formats as StrapiImageFormats
