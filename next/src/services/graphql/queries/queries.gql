@@ -15,14 +15,6 @@ query Places($locale: I18NLocaleCode!) {
   }
 }
 
-query TagsByCategorySlug($locale: I18NLocaleCode!, $tag: String!) {
-  tagCategoryBySlug(locale: $locale, slug: $tag) {
-    tags(sort: "id:asc", pagination: { limit: 100 }) {
-      ...TagEntity
-    }
-  }
-}
-
 query News(
   $locale: I18NLocaleCode!
   $tag: String!
@@ -68,16 +60,17 @@ query PreviewsByTags(
   }
 }
 
-query PreviewContentPageBySlug($slug: String!) {
-  contentPageBySlug(slug: $slug, locale: "all") {
-    slug
-    locale
+query ContentPageBySlug($locale: I18NLocaleCode!, $slug: String!) {
+  contentPages(filters: { slug: { eq: $slug } }, locale: $locale) {
+    ...ContentPageEntity
   }
 }
 
-query ContentPageBySlug($locale: I18NLocaleCode!, $slug: String!, $isPublished: Boolean!) {
-  contentPageBySlug(slug: $slug, locale: $locale, isPublished: $isPublished) {
-    ...ContentPageEntity
+query TagsByCategorySlug($locale: I18NLocaleCode!, $tag: String!) {
+  tagCategories(filters: { slug: { eq: $tag } }, locale: $locale) {
+    tags(sort: "id:asc", pagination: { limit: 100 }) {
+      ...TagEntity
+    }
   }
 }
 

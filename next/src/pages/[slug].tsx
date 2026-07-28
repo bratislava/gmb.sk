@@ -27,14 +27,14 @@ interface MenuPageProps {
   permanentExhibitions: ExhibitionsAndEventsQuery['permanentExhibitions']
   additionalProgram: ExhibitionsAndEventsQuery['additionalProgram']
   places: PlacesQuery['places']
-  tagsProgram: TagsByCategorySlugQuery['tagCategoryBySlug']
-  tagsTargetGroups: TagsByCategorySlugQuery['tagCategoryBySlug']
-  tagsLanguages: TagsByCategorySlugQuery['tagCategoryBySlug']
-  tagsProjects: TagsByCategorySlugQuery['tagCategoryBySlug']
-  tagsOthers: TagsByCategorySlugQuery['tagCategoryBySlug']
-  tagsExploreTypes: TagsByCategorySlugQuery['tagCategoryBySlug']
-  tagsExploreProjects: TagsByCategorySlugQuery['tagCategoryBySlug']
-  tagsExploreOthers: TagsByCategorySlugQuery['tagCategoryBySlug']
+  tagsPrograms: TagsByCategorySlugQuery['tagCategories']
+  tagsTargetGroups: TagsByCategorySlugQuery['tagCategories']
+  tagsLanguages: TagsByCategorySlugQuery['tagCategories']
+  tagsProjects: TagsByCategorySlugQuery['tagCategories']
+  tagsOthers: TagsByCategorySlugQuery['tagCategories']
+  tagsExploreTypes: TagsByCategorySlugQuery['tagCategories']
+  tagsExploreProjects: TagsByCategorySlugQuery['tagCategories']
+  tagsExploreOthers: TagsByCategorySlugQuery['tagCategories']
 }
 
 type StaticParams = {
@@ -77,14 +77,14 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
     { news },
     { tickets },
     { places },
-    { tagCategoryBySlug: tagsProgram },
-    { tagCategoryBySlug: tagsTargetGroups },
-    { tagCategoryBySlug: tagsLanguages },
-    { tagCategoryBySlug: tagsProjects },
-    { tagCategoryBySlug: tagsOthers },
-    { tagCategoryBySlug: tagsExploreTypes },
-    { tagCategoryBySlug: tagsExploreProjects },
-    { tagCategoryBySlug: tagsExploreOthers },
+    { tagCategories: tagsPrograms },
+    { tagCategories: tagsTargetGroups },
+    { tagCategories: tagsLanguages },
+    { tagCategories: tagsProjects },
+    { tagCategories: tagsOthers },
+    { tagCategories: tagsExploreTypes },
+    { tagCategories: tagsExploreProjects },
+    { tagCategories: tagsExploreOthers },
     translations,
   ] = await Promise.all([
     client.General({ locale }),
@@ -134,9 +134,9 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
   const tagExhibitions = getRouteForLocale('vystavy', locale)
   const tagPermanentExhibitions = getRouteForLocale('stale-expozicie', locale)
   const tagsAdditionalProgram =
-    tagsProgram?.tags
+    tagsPrograms
       .filter(isDefined)
-      .map((tag) => tag.slug)
+      .map((tag) => tag.tags[0]?.slug as string)
       .filter((tagSlug) => tagSlug !== tagExhibitions && tagSlug !== tagPermanentExhibitions) ?? []
 
   const { exhibitions, permanentExhibitions, additionalProgram } =
@@ -164,7 +164,7 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
       permanentExhibitions,
       additionalProgram,
       places,
-      tagsProgram,
+      tagsPrograms,
       tagsTargetGroups,
       tagsLanguages,
       tagsProjects,
@@ -187,7 +187,7 @@ const MenuPage = ({
   permanentExhibitions,
   additionalProgram,
   places,
-  tagsProgram,
+  tagsPrograms,
   tagsTargetGroups,
   tagsLanguages,
   tagsProjects,
@@ -207,14 +207,14 @@ const MenuPage = ({
         permanentExhibitions={permanentExhibitions.filter(isDefined)}
         additionalProgram={additionalProgram.filter(isDefined)}
         places={places.filter(isDefined)}
-        tagsProgram={tagsProgram?.tags.filter(isDefined)}
-        tagsTargetGroups={tagsTargetGroups?.tags.filter(isDefined)}
-        tagsLanguages={tagsLanguages?.tags.filter(isDefined)}
-        tagsProjects={tagsProjects?.tags.filter(isDefined)}
-        tagsOthers={tagsOthers?.tags.filter(isDefined)}
-        tagsExploreTypes={tagsExploreTypes?.tags.filter(isDefined)}
-        tagsExploreProjects={tagsExploreProjects?.tags.filter(isDefined)}
-        tagsExploreOthers={tagsExploreOthers?.tags.filter(isDefined)}
+        tagsProgram={tagsPrograms?.[0]?.tags.filter(isDefined)}
+        tagsTargetGroups={tagsTargetGroups?.[0]?.tags.filter(isDefined)}
+        tagsLanguages={tagsLanguages?.[0]?.tags.filter(isDefined)}
+        tagsProjects={tagsProjects?.[0]?.tags.filter(isDefined)}
+        tagsOthers={tagsOthers?.[0]?.tags.filter(isDefined)}
+        tagsExploreTypes={tagsExploreTypes?.[0]?.tags.filter(isDefined)}
+        tagsExploreProjects={tagsExploreProjects?.[0]?.tags.filter(isDefined)}
+        tagsExploreOthers={tagsExploreOthers?.[0]?.tags.filter(isDefined)}
       />
     </GeneralContextProvider>
   )

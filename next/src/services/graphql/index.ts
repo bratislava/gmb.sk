@@ -2256,7 +2256,6 @@ export type Query = {
   contactCards: Array<Maybe<ContactCard>>;
   contactCards_connection?: Maybe<ContactCardEntityResponseCollection>;
   contentPage?: Maybe<ContentPage>;
-  contentPageBySlug?: Maybe<ContentPage>;
   contentPages: Array<Maybe<ContentPage>>;
   contentPages_connection?: Maybe<ContentPageEntityResponseCollection>;
   general?: Maybe<General>;
@@ -2273,7 +2272,6 @@ export type Query = {
   partners: Array<Maybe<Partner>>;
   partners_connection?: Maybe<PartnerEntityResponseCollection>;
   place?: Maybe<Place>;
-  placeBySlug?: Maybe<Place>;
   places: Array<Maybe<Place>>;
   places_connection?: Maybe<PlaceEntityResponseCollection>;
   reviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
@@ -2283,11 +2281,9 @@ export type Query = {
   reviewWorkflowsWorkflows: Array<Maybe<ReviewWorkflowsWorkflow>>;
   reviewWorkflowsWorkflows_connection?: Maybe<ReviewWorkflowsWorkflowEntityResponseCollection>;
   tag?: Maybe<Tag>;
-  tagBySlug?: Maybe<Tag>;
   tagCategories: Array<Maybe<TagCategory>>;
   tagCategories_connection?: Maybe<TagCategoryEntityResponseCollection>;
   tagCategory?: Maybe<TagCategory>;
-  tagCategoryBySlug?: Maybe<TagCategory>;
   tags: Array<Maybe<Tag>>;
   tags_connection?: Maybe<TagEntityResponseCollection>;
   ticket?: Maybe<Ticket>;
@@ -2342,13 +2338,6 @@ export type QueryContentPageArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
-};
-
-
-export type QueryContentPageBySlugArgs = {
-  isPublished?: InputMaybe<Scalars['Boolean']['input']>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -2497,13 +2486,6 @@ export type QueryPlaceArgs = {
 };
 
 
-export type QueryPlaceBySlugArgs = {
-  isPublished?: InputMaybe<Scalars['Boolean']['input']>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-
 export type QueryPlacesArgs = {
   filters?: InputMaybe<PlaceFiltersInput>;
   hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2591,13 +2573,6 @@ export type QueryTagArgs = {
 };
 
 
-export type QueryTagBySlugArgs = {
-  isPublished?: InputMaybe<Scalars['Boolean']['input']>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-};
-
-
 export type QueryTagCategoriesArgs = {
   filters?: InputMaybe<TagCategoryFiltersInput>;
   hasPublishedVersion?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2626,13 +2601,6 @@ export type QueryTagCategoryArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   publicationFilter?: InputMaybe<PublicationFilter>;
   status?: InputMaybe<PublicationStatus>;
-};
-
-
-export type QueryTagCategoryBySlugArgs = {
-  isPublished?: InputMaybe<Scalars['Boolean']['input']>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -3752,14 +3720,6 @@ export type PlacesQueryVariables = Exact<{
 
 export type PlacesQuery = { __typename?: 'Query', places: Array<{ __typename?: 'Place', title: string, slug: string, address: string } | null> };
 
-export type TagsByCategorySlugQueryVariables = Exact<{
-  locale: Scalars['I18NLocaleCode']['input'];
-  tag: Scalars['String']['input'];
-}>;
-
-
-export type TagsByCategorySlugQuery = { __typename?: 'Query', tagCategoryBySlug?: { __typename?: 'TagCategory', tags: Array<{ __typename?: 'Tag', title: string, slug: string } | null> } | null };
-
 export type NewsQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input'];
   tag: Scalars['String']['input'];
@@ -3784,21 +3744,21 @@ export type PreviewsByTagsQueryVariables = Exact<{
 
 export type PreviewsByTagsQuery = { __typename?: 'Query', contentPages: Array<{ __typename?: 'ContentPage', perex?: string | null, documentId: string, title: string, subtitle?: string | null, addedAt?: any | null, useDatetimeAsSubtitle?: boolean | null, slug: string, color?: string | null, inheritColorFromParent?: boolean | null, dateFrom?: any | null, dateTo?: any | null, timeFrom?: any | null, timeTo?: any | null, showRemainingTime?: boolean | null, coverMedia?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null, tags: Array<{ __typename?: 'Tag', title: string, slug: string } | null>, parentPage?: { __typename?: 'ContentPage', color?: string | null } | null } | null> };
 
-export type PreviewContentPageBySlugQueryVariables = Exact<{
-  slug: Scalars['String']['input'];
-}>;
-
-
-export type PreviewContentPageBySlugQuery = { __typename?: 'Query', contentPageBySlug?: { __typename?: 'ContentPage', slug: string, locale?: string | null } | null };
-
 export type ContentPageBySlugQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input'];
   slug: Scalars['String']['input'];
-  isPublished: Scalars['Boolean']['input'];
 }>;
 
 
-export type ContentPageBySlugQuery = { __typename?: 'Query', contentPageBySlug?: { __typename?: 'ContentPage', documentId: string, title: string, titleToShow?: string | null, subtitle?: string | null, useDatetimeAsSubtitle?: boolean | null, slug: string, addedAt?: any | null, perex?: string | null, color?: string | null, inheritColorFromParent?: boolean | null, sellTickets?: boolean | null, purchaseId?: string | null, showShareButtons?: boolean | null, relatedContentTitle?: string | null, relatedContentSubmenuTitle?: string | null, publishedAt?: any | null, dateFrom?: any | null, dateTo?: any | null, timeFrom?: any | null, timeTo?: any | null, showRemainingTime?: boolean | null, placeTitle?: string | null, placeAddress?: string | null, coverMedia?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null, mainContent?: Array<{ __typename: 'ComponentSectionsAudioSection', id: string, title?: string | null, submenuTitle?: string | null, url?: string | null } | { __typename: 'ComponentSectionsContactCardsSection', id: string, title?: string | null, submenuTitle?: string | null, contacts?: Array<{ __typename?: 'ComponentBlocksContactCardItem', contactCard?: { __typename?: 'ContactCard', documentId: string, name: string, position?: string | null, email?: string | null, phone1?: string | null, phone2?: string | null } | null } | null> | null } | { __typename: 'ComponentSectionsGallerySection', id: string, title?: string | null, submenuTitle?: string | null, medias: Array<{ __typename?: 'UploadFile', formats?: any | null, caption?: string | null, url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null> } | { __typename: 'ComponentSectionsRichtextSection', id: string, submenuTitle?: string | null, content?: string | null } | { __typename: 'ComponentSectionsVideoSection', id: string, title?: string | null, submenuTitle?: string | null, url?: string | null } | { __typename?: 'Error', code: string, message?: string | null } | null> | null, slider?: { __typename?: 'ComponentSectionsSliderSection', id: string, submenuTitle?: string | null, medias: Array<{ __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null> } | null, downloadSection?: { __typename?: 'ComponentSectionsDownloadSection', id: string, title?: string | null, submenuTitle?: string | null, files?: Array<{ __typename?: 'ComponentBlocksFileItem', id: string, title?: string | null, file: { __typename?: 'UploadFile', name: string, caption?: string | null, alternativeText?: string | null, ext?: string | null, size: number, url: string } } | null> | null } | null, parentPage?: { __typename?: 'ContentPage', color?: string | null } | null, childPages: Array<{ __typename?: 'ContentPage', perex?: string | null, documentId: string, title: string, subtitle?: string | null, addedAt?: any | null, useDatetimeAsSubtitle?: boolean | null, slug: string, color?: string | null, inheritColorFromParent?: boolean | null, dateFrom?: any | null, dateTo?: any | null, timeFrom?: any | null, timeTo?: any | null, showRemainingTime?: boolean | null, coverMedia?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null, tags: Array<{ __typename?: 'Tag', title: string, slug: string } | null>, parentPage?: { __typename?: 'ContentPage', color?: string | null } | null } | null>, tags: Array<{ __typename?: 'Tag', title: string, slug: string } | null>, seo?: { __typename?: 'ComponentBlocksSeo', metaTitle?: string | null, metaDescription?: string | null, keywords?: string | null, metaImage?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null } | null, localizations: Array<{ __typename?: 'ContentPage', slug: string, locale?: string | null } | null>, place?: { __typename?: 'Place', title: string, address: string, slug: string, purchaseId?: string | null } | null, positions?: Array<{ __typename?: 'ComponentBlocksPositionItem', title?: string | null, names?: string | null } | null> | null, partners?: Array<{ __typename?: 'ComponentBlocksPartnerItem', partner?: { __typename?: 'Partner', documentId: string, title: string, link?: string | null, logo: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } } | null } | null> | null } | null };
+export type ContentPageBySlugQuery = { __typename?: 'Query', contentPages: Array<{ __typename?: 'ContentPage', documentId: string, title: string, titleToShow?: string | null, subtitle?: string | null, useDatetimeAsSubtitle?: boolean | null, slug: string, addedAt?: any | null, perex?: string | null, color?: string | null, inheritColorFromParent?: boolean | null, sellTickets?: boolean | null, purchaseId?: string | null, showShareButtons?: boolean | null, relatedContentTitle?: string | null, relatedContentSubmenuTitle?: string | null, publishedAt?: any | null, dateFrom?: any | null, dateTo?: any | null, timeFrom?: any | null, timeTo?: any | null, showRemainingTime?: boolean | null, placeTitle?: string | null, placeAddress?: string | null, coverMedia?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null, mainContent?: Array<{ __typename: 'ComponentSectionsAudioSection', id: string, title?: string | null, submenuTitle?: string | null, url?: string | null } | { __typename: 'ComponentSectionsContactCardsSection', id: string, title?: string | null, submenuTitle?: string | null, contacts?: Array<{ __typename?: 'ComponentBlocksContactCardItem', contactCard?: { __typename?: 'ContactCard', documentId: string, name: string, position?: string | null, email?: string | null, phone1?: string | null, phone2?: string | null } | null } | null> | null } | { __typename: 'ComponentSectionsGallerySection', id: string, title?: string | null, submenuTitle?: string | null, medias: Array<{ __typename?: 'UploadFile', formats?: any | null, caption?: string | null, url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null> } | { __typename: 'ComponentSectionsRichtextSection', id: string, submenuTitle?: string | null, content?: string | null } | { __typename: 'ComponentSectionsVideoSection', id: string, title?: string | null, submenuTitle?: string | null, url?: string | null } | { __typename?: 'Error', code: string, message?: string | null } | null> | null, slider?: { __typename?: 'ComponentSectionsSliderSection', id: string, submenuTitle?: string | null, medias: Array<{ __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null> } | null, downloadSection?: { __typename?: 'ComponentSectionsDownloadSection', id: string, title?: string | null, submenuTitle?: string | null, files?: Array<{ __typename?: 'ComponentBlocksFileItem', id: string, title?: string | null, file: { __typename?: 'UploadFile', name: string, caption?: string | null, alternativeText?: string | null, ext?: string | null, size: number, url: string } } | null> | null } | null, parentPage?: { __typename?: 'ContentPage', color?: string | null } | null, childPages: Array<{ __typename?: 'ContentPage', perex?: string | null, documentId: string, title: string, subtitle?: string | null, addedAt?: any | null, useDatetimeAsSubtitle?: boolean | null, slug: string, color?: string | null, inheritColorFromParent?: boolean | null, dateFrom?: any | null, dateTo?: any | null, timeFrom?: any | null, timeTo?: any | null, showRemainingTime?: boolean | null, coverMedia?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null, tags: Array<{ __typename?: 'Tag', title: string, slug: string } | null>, parentPage?: { __typename?: 'ContentPage', color?: string | null } | null } | null>, tags: Array<{ __typename?: 'Tag', title: string, slug: string } | null>, seo?: { __typename?: 'ComponentBlocksSeo', metaTitle?: string | null, metaDescription?: string | null, keywords?: string | null, metaImage?: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } | null } | null, localizations: Array<{ __typename?: 'ContentPage', slug: string, locale?: string | null } | null>, place?: { __typename?: 'Place', title: string, address: string, slug: string, purchaseId?: string | null } | null, positions?: Array<{ __typename?: 'ComponentBlocksPositionItem', title?: string | null, names?: string | null } | null> | null, partners?: Array<{ __typename?: 'ComponentBlocksPartnerItem', partner?: { __typename?: 'Partner', documentId: string, title: string, link?: string | null, logo: { __typename?: 'UploadFile', url: string, alternativeText?: string | null, width?: number | null, height?: number | null } } | null } | null> | null } | null> };
+
+export type TagsByCategorySlugQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input'];
+  tag: Scalars['String']['input'];
+}>;
+
+
+export type TagsByCategorySlugQuery = { __typename?: 'Query', tagCategories: Array<{ __typename?: 'TagCategory', tags: Array<{ __typename?: 'Tag', title: string, slug: string } | null> } | null> };
 
 export type AllContentPageSlugsQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input'];
@@ -4571,15 +4531,6 @@ export const PlacesDocument = gql`
   }
 }
     `;
-export const TagsByCategorySlugDocument = gql`
-    query TagsByCategorySlug($locale: I18NLocaleCode!, $tag: String!) {
-  tagCategoryBySlug(locale: $locale, slug: $tag) {
-    tags(sort: "id:asc", pagination: {limit: 100}) {
-      ...TagEntity
-    }
-  }
-}
-    ${TagEntityFragmentDoc}`;
 export const NewsDocument = gql`
     query News($locale: I18NLocaleCode!, $tag: String!, $limit: Int = 5, $sort: [String] = ["publishedAt:desc"]) {
   news: contentPages(
@@ -4604,21 +4555,22 @@ export const PreviewsByTagsDocument = gql`
   }
 }
     ${SectionItemEntityFragmentDoc}`;
-export const PreviewContentPageBySlugDocument = gql`
-    query PreviewContentPageBySlug($slug: String!) {
-  contentPageBySlug(slug: $slug, locale: "all") {
-    slug
-    locale
-  }
-}
-    `;
 export const ContentPageBySlugDocument = gql`
-    query ContentPageBySlug($locale: I18NLocaleCode!, $slug: String!, $isPublished: Boolean!) {
-  contentPageBySlug(slug: $slug, locale: $locale, isPublished: $isPublished) {
+    query ContentPageBySlug($locale: I18NLocaleCode!, $slug: String!) {
+  contentPages(filters: {slug: {eq: $slug}}, locale: $locale) {
     ...ContentPageEntity
   }
 }
     ${ContentPageEntityFragmentDoc}`;
+export const TagsByCategorySlugDocument = gql`
+    query TagsByCategorySlug($locale: I18NLocaleCode!, $tag: String!) {
+  tagCategories(filters: {slug: {eq: $tag}}, locale: $locale) {
+    tags(sort: "id:asc", pagination: {limit: 100}) {
+      ...TagEntity
+    }
+  }
+}
+    ${TagEntityFragmentDoc}`;
 export const AllContentPageSlugsDocument = gql`
     query AllContentPageSlugs($locale: I18NLocaleCode!) {
   contentPages(locale: $locale) {
@@ -4714,20 +4666,17 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     Places(variables: PlacesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PlacesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PlacesQuery>(PlacesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Places', 'query', variables);
     },
-    TagsByCategorySlug(variables: TagsByCategorySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TagsByCategorySlugQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TagsByCategorySlugQuery>(TagsByCategorySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'TagsByCategorySlug', 'query', variables);
-    },
     News(variables: NewsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<NewsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<NewsQuery>(NewsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'News', 'query', variables);
     },
     PreviewsByTags(variables: PreviewsByTagsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PreviewsByTagsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PreviewsByTagsQuery>(PreviewsByTagsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PreviewsByTags', 'query', variables);
     },
-    PreviewContentPageBySlug(variables: PreviewContentPageBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PreviewContentPageBySlugQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PreviewContentPageBySlugQuery>(PreviewContentPageBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PreviewContentPageBySlug', 'query', variables);
-    },
     ContentPageBySlug(variables: ContentPageBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ContentPageBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ContentPageBySlugQuery>(ContentPageBySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ContentPageBySlug', 'query', variables);
+    },
+    TagsByCategorySlug(variables: TagsByCategorySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TagsByCategorySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TagsByCategorySlugQuery>(TagsByCategorySlugDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'TagsByCategorySlug', 'query', variables);
     },
     AllContentPageSlugs(variables: AllContentPageSlugsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<AllContentPageSlugsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<AllContentPageSlugsQuery>(AllContentPageSlugsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AllContentPageSlugs', 'query', variables);

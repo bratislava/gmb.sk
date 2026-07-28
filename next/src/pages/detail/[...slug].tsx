@@ -32,12 +32,13 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, loca
 
   const slug = (typeof params.slug === 'string' ? params.slug : params.slug?.join('/')) ?? ''
 
-  const [generalQuery, { contentPageBySlug: contentPage }, translations] = await Promise.all([
+  const [generalQuery, { contentPages }, translations] = await Promise.all([
     client.General({ locale }),
-    client.ContentPageBySlug({ slug, locale, isPublished: true }),
+    client.ContentPageBySlug({ slug, locale }),
     serverSideTranslations(locale),
   ])
 
+  const contentPage = contentPages?.[0]
   if (!contentPage) {
     return NOT_FOUND
   }
