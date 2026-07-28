@@ -30,7 +30,8 @@ export default {
 
                 let filters: any = { slug }
                 if (isPublished) {
-                  filters = { slug, publishedAt: { $notNull: true } }
+                  filters = { slug }
+                  status: isPublished ? 'published' : 'draft'
                 }
                 const results = await strapi.documents(apiName).findMany({
                   filters,
