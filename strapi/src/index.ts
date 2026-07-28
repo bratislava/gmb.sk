@@ -28,14 +28,11 @@ export default {
                   usePagination: false,
                 })
 
-                let filters: any = { slug }
-                if (isPublished) {
-                  filters = { slug }
-                  status: isPublished ? 'published' : 'draft'
-                }
+                const filters: any = { slug }
                 const results = await strapi.documents(apiName).findMany({
                   filters,
                   locale,
+                  status: isPublished ? 'published' : 'draft',
                 })
 
                 if (results.length > 0) {
