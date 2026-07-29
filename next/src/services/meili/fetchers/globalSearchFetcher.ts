@@ -1,4 +1,3 @@
-import { GlobalSearchPageEntityFragment, TagEntityFragment } from '@/src/services/graphql'
 import { getMeilisearchPageOptions } from '@/src/services/meili/getMeilisearchPageOptions'
 import { meiliClient } from '@/src/services/meili/meilisearch'
 import { isDefined } from '@/src/utils/isDefined'
@@ -24,47 +23,25 @@ export const getGlobalSearchQueryKey = (filters: GlobalSearchFilters, locale: st
 ]
 
 export const globalSearchFetcher = async (filters: GlobalSearchFilters, locale: string) => {
-  return meiliClient
-    .index('search_index')
-    .search(filters.searchValue, {
-      ...getMeilisearchPageOptions({ page: filters.page, pageSize: filters.pageSize }),
-      filter: [
-        `locale = '${locale}'`,
-        filters?.tagSlugs?.length
-          ? filters.tagSlugs.map((tagSlug) => `tags.slug = '${tagSlug}'`)
-          : null,
-      ].filter(isDefined),
-      sort: ['publishedAtTimestamp:desc'],
-      attributesToRetrieve: [
-        // Only properties that are required to display listing are retrieved
-        'id',
-        'title',
-        'subtitle',
-        'slug',
-        'coverMedia',
-        'perex',
-        'tags',
-        'publishedAt',
-      ],
-    })
-    .then((response) => {
-      return {
-        ...response,
-        hits: response.hits.map((hit) => {
-          return {
-            documentId: hit.id,
-            title: hit.title,
-            subtitle: hit.subtitle,
-            slug: hit.slug,
-            coverMedia: hit.coverMedia,
-            perex: hit.perex,
-            tags: hit.tags.map((tag: TagEntityFragment) => ({
-              title: tag.title,
-              slug: tag.slug,
-            })),
-            publishedAt: hit.publishedAt,
-          } as GlobalSearchPageEntityFragment
-        }),
-      }
-    })
+  return meiliClient.index('search_index').search(filters.searchValue, {
+    ...getMeilisearchPageOptions({ page: filters.page, pageSize: filters.pageSize }),
+    filter: [
+      `locale = '${locale}'`,
+      filters?.tagSlugs?.length
+        ? filters.tagSlugs.map((tagSlug) => `tags.slug = '${tagSlug}'`)
+        : null,
+    ].filter(isDefined),
+    sort: ['publishedAtTimestamp:desc'],
+    attributesToRetrieve: [
+      // Only properties that are required to display listing are retrieved
+      'id',
+      'title',
+      'subtitle',
+      'slug',
+      'coverMedia',
+      'perex',
+      'tags',
+      'publishedAt',
+    ],
+  })
 }
