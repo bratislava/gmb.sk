@@ -28,14 +28,14 @@ export const globalSearchFetcher = async (filters: GlobalSearchFilters, locale: 
     ...getMeilisearchPageOptions({ page: filters.page, pageSize: filters.pageSize }),
     filter: [
       `locale = '${locale}'`,
-      filters?.tagSlugs?.length
+      filters.tagSlugs?.length
         ? filters.tagSlugs.map((tagSlug) => `tags.slug = '${tagSlug}'`)
         : null,
     ].filter(isDefined),
     sort: ['publishedAtTimestamp:desc'],
     attributesToRetrieve: [
       // Only properties that are required to display listing are retrieved
-      'id',
+      'documentId',
       'title',
       'subtitle',
       'slug',

@@ -35,7 +35,7 @@ export const archiveFetcher = async (filters: ArchiveFilters, locale: string) =>
     sort: ['exhibitionYear:desc'],
     attributesToRetrieve: [
       // Only properties that are required to display listing are retrieved
-      'id',
+      'documentId',
       'title',
       'subtitle',
       'slug',
