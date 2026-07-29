@@ -17,11 +17,12 @@ import { getRouteForLocale } from '@/src/utils/localeRoutes'
 
 interface TicketProps {
   generalQuery: GeneralQuery
-  contentPage: ContentPageBySlugQuery['contentPageBySlug']
+  contentPages: ContentPageBySlugQuery['contentPages']
   currentEvents?: ExhibitionsByPlaceQuery['currentEvents']
 }
 
-const Tickets = ({ generalQuery, contentPage, currentEvents }: TicketProps) => {
+const Tickets = ({ generalQuery, contentPages, currentEvents }: TicketProps) => {
+  const contentPage = contentPages[0]
   if (!contentPage) {
     return null
   }
@@ -44,16 +45,16 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
 
   const today = getTodaysDate()
 
-  const [generalQuery, { contentPageBySlug: contentPage }, translations] = await Promise.all([
+  const [generalQuery, { contentPages }, translations] = await Promise.all([
     client.General({ locale }),
     client.ContentPageBySlug({
       slug,
       locale,
-      isPublished: true,
     }),
     serverSideTranslations(locale),
   ])
 
+  const contentPage = contentPages[0]
   if (!contentPage) {
     return NOT_FOUND
   }
@@ -62,7 +63,7 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
     return {
       props: {
         generalQuery,
-        contentPage,
+        contentPages,
         ...translations,
       },
     }
@@ -80,7 +81,7 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
   return {
     props: {
       generalQuery,
-      contentPage,
+      contentPages,
       currentEvents,
       ...translations,
     },

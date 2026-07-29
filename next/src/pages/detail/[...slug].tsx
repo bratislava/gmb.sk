@@ -10,10 +10,11 @@ import { isDefined } from '@/src/utils/isDefined'
 
 interface DetailProps {
   generalQuery: GeneralQuery
-  contentPage: ContentPageBySlugQuery['contentPageBySlug']
+  contentPages: ContentPageBySlugQuery['contentPages']
 }
 
-const Detail = ({ generalQuery, contentPage }: DetailProps) => {
+const Detail = ({ generalQuery, contentPages }: DetailProps) => {
+  const contentPage = contentPages[0]
   if (!contentPage) {
     return null
   }
@@ -38,7 +39,7 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, loca
     serverSideTranslations(locale),
   ])
 
-  const contentPage = contentPages?.[0]
+  const contentPage = contentPages[0]
   if (!contentPage) {
     return NOT_FOUND
   }
@@ -46,7 +47,7 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, loca
   return {
     props: {
       generalQuery,
-      contentPage,
+      contentPages,
       ...translations,
     },
     revalidate: 10,

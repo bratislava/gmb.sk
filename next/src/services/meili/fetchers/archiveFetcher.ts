@@ -1,3 +1,4 @@
+import { SectionItemEntityFragment } from '@/src/services/graphql'
 import { getMeilisearchPageOptions } from '@/src/services/meili/getMeilisearchPageOptions'
 import { meiliClient } from '@/src/services/meili/meilisearch'
 import { getRouteForLocale } from '@/src/utils/localeRoutes'
@@ -41,5 +42,5 @@ export const archiveFetcher = async (filters: ArchiveFilters, locale: string) =>
       'coverMedia',
       'perex',
     ],
-  })
+  }) as Promise<{ hits: SectionItemEntityFragment[] | null }>
 }

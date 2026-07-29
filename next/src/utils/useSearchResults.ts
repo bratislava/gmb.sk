@@ -32,7 +32,7 @@ export const useSearchResults = (searchValue: string, locale: string, tagSlugs?:
     queryFn: async ({ pageParam }) => globalSearchFetcher({ ...options, page: pageParam }, locale),
     initialPageParam: 1,
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
-      lastPage.hits.length < PAGE_SIZE ? undefined : lastPageParam + 1,
+      (lastPage.hits?.length ?? 0) < PAGE_SIZE ? undefined : lastPageParam + 1,
     // Check whether we’ve reached the end of the results. If not, calculate the cursor for the next page
   })
 

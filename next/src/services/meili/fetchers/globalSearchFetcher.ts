@@ -1,3 +1,4 @@
+import { SectionItemEntityFragment } from '@/src/services/graphql'
 import { getMeilisearchPageOptions } from '@/src/services/meili/getMeilisearchPageOptions'
 import { meiliClient } from '@/src/services/meili/meilisearch'
 import { isDefined } from '@/src/utils/isDefined'
@@ -43,5 +44,5 @@ export const globalSearchFetcher = async (filters: GlobalSearchFilters, locale: 
       'tags',
       'publishedAt',
     ],
-  })
+  }) as Promise<{ hits: SectionItemEntityFragment[] | null }>
 }
