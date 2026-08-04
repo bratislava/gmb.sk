@@ -44,5 +44,5 @@ export const globalSearchFetcher = async (filters: GlobalSearchFilters, locale: 
       'tags',
       'publishedAt',
     ],
-  }) as Promise<{ hits: SectionItemEntityFragment[] | null }>
+  }) as Promise<{ hits: SectionItemEntityFragment[] }>
 }

@@ -42,5 +42,5 @@ export const archiveFetcher = async (filters: ArchiveFilters, locale: string) =>
       'coverMedia',
       'perex',
     ],
-  }) as Promise<{ hits: SectionItemEntityFragment[] | null }>
+  }) as Promise<{ hits: SectionItemEntityFragment[] }>
 }
