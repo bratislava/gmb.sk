@@ -1,6 +1,9 @@
 'use strict'
 
-import { Core } from '@strapi/strapi'
+import placesData from './seeders/data/places.json'
+import tagCategoriesData from './seeders/data/tag-categories.json'
+import tagsData from './seeders/data/tags.json'
+import { seedCollectionWithTranslation } from './seeders/seedCollectionWithTranslation'
 
 export default {
   /**
@@ -10,7 +13,7 @@ export default {
    * This gives you an opportunity to extend code.
    */
 
-  register({ strapi }: { strapi: Core.Strapi }) {},
+  register: ({ strapi }) => {},
 
   /**
    * An asynchronous bootstrap function that runs before
@@ -61,5 +64,55 @@ export default {
     console.log({
       locales: await strapi.db.query('plugin::i18n.locale').findMany(),
     })
+    //------------------------------------
+    // ADDING TAG-CATEGORIES
+    //------------------------------------
+    await seedCollectionWithTranslation(
+      strapi,
+      'api::tag-category.tag-category',
+      tagCategoriesData,
+      {
+        title: (sourceItem) => sourceItem.title,
+        slug: (sourceItem) => sourceItem.slug,
+        locale: (sourceItem) => sourceItem.locale,
+      },
+      'slug'
+    )
+    //------------------------------------
+    // ADDING TAGS
+    //------------------------------------
+    await seedCollectionWithTranslation(
+      strapi,
+      'api::tag.tag',
+      tagsData,
+      {
+        title: (sourceItem) => sourceItem.title,
+        slug: (sourceItem) => sourceItem.slug,
+        tagCategory: async (sourceItem) => {
+          const tagCategory = await strapi.db
+            .query('api::tag-category.tag-category', 'i18n')
+            .findOne({ where: { slug: sourceItem.tagCategory } })
+          console.log({ tagCategory })
+          return tagCategory.id
+        },
+        locale: (sourceItem) => sourceItem.locale,
+      },
+      'slug'
+    )
+    //------------------------------------
+    // ADDING PLACES
+    //------------------------------------
+    await seedCollectionWithTranslation(
+      strapi,
+      'api::place.place',
+      placesData,
+      {
+        title: (sourceItem) => sourceItem.title,
+        slug: (sourceItem) => sourceItem.slug,
+        address: (sourceItem) => sourceItem.address,
+        locale: (sourceItem) => sourceItem.locale,
+      },
+      'slug'
+    )
   },
 }
