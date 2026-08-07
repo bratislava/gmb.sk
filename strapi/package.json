@@ -30,7 +30,7 @@
     "react-router-dom": "6.30.4",
     "strapi-plugin-config-sync": "3.2.0",
     "strapi-plugin-meilisearch": "0.16.5",
-    "styled-components": "6.30.4"
+    "styled-components": "6.4.3"
   },
   "devDependencies": {
     "cross-env": "7.0.3"
