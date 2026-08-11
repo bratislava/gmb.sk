@@ -1,2 +1,2 @@
-schema: 'schema.graphql'
-documents: 'src/**/*.{graphql,js,ts,jsx,tsx}'
+schema: 'strapi/schema.graphql'
+documents: 'next/src/**/*.{graphql,gql,js,ts,jsx,tsx}'

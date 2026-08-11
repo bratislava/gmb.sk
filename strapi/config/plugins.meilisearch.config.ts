@@ -5,7 +5,7 @@ const meilisearchConfig = {
   'content-page': {
     indexName: 'search_index',
     entriesQuery: {
-      locale: 'all',
+      locale: '*',
     },
     settings: {
       searchableAttributes: [
