@@ -4,7 +4,7 @@
     "sizeOptimization": true,
     "responsiveDimensions": true,
     "autoOrientation": false,
-    "aiMetadata": true
+    "aiMetadata": false
   },
   "type": "object",
   "environment": null,

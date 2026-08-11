@@ -101,6 +101,11 @@
       "locale": null
     },
     {
+      "action": "plugin::i18n.locales.listLocales",
+      "documentId": "xliyhdcrjlt6g9tnfhz1o55p",
+      "locale": null
+    },
+    {
       "action": "plugin::upload.content-api.find",
       "documentId": "z7yq827tuvzqv1xsrv81ah6p",
       "locale": null
