@@ -89,11 +89,17 @@ export default {
         title: (sourceItem) => sourceItem.title,
         slug: (sourceItem) => sourceItem.slug,
         tagCategory: async (sourceItem) => {
-          const tagCategory = await strapi.db
-            .query('api::tag-category.tag-category', 'i18n')
-            .findOne({ where: { slug: sourceItem.tagCategory } })
-          console.log({ tagCategory })
-          return tagCategory.id
+          const tagCategory = await strapi
+            .documents('api::tag-category.tag-category')
+            .findFirst({ filters: { slug: sourceItem.tagCategory }, locale: sourceItem.locale })
+
+          if (!tagCategory) {
+            throw new Error(
+              `Tag category '${sourceItem.tagCategory}' not found while seeding tag '${sourceItem.slug}'.`
+            )
+          }
+
+          return tagCategory.documentId
         },
         locale: (sourceItem) => sourceItem.locale,
       },
