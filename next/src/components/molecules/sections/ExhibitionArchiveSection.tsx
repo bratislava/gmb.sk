@@ -77,7 +77,7 @@ const ExhibitionArchiveSection = ({ title }: ExhibitionArchiveSectionProps) => {
       />
       <div className="relative min-h-screen bg-white">
         <CardSection
-          sectionItems={filteredPages?.filter(isDefined)}
+          sectionItems={filteredPages.filter(isDefined)}
           isLoading={isLoading}
           loadmoreButton={
             hasNextPage ? (

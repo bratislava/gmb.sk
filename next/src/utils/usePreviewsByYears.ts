@@ -37,7 +37,7 @@ export const usePreviewsByYears = ({
     queryFn: async ({ pageParam }) => archiveFetcher({ ...options, page: pageParam }, locale),
     initialPageParam: 1,
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
-      (lastPage.hits?.length ?? 0) < PAGE_SIZE ? undefined : lastPageParam + 1,
+      lastPage.hits.length < PAGE_SIZE ? undefined : lastPageParam + 1,
   })
 
   const filteredPages = data?.pages.flatMap((page) => page.hits).filter(isDefined) ?? []

@@ -52,7 +52,7 @@ const ChessboardTile = ({ sectionItem, isLeft, showTags, customLinkHref }: Chess
           </p>
         </div>
 
-        {showTags && tags && (
+        {showTags && tags.length > 0 && (
           <div className="flex space-x-3">
             {tags.filter(isDefined).map((tag) => (
               <Link role="button" href={`${router.pathname}/?tags=${tag.slug}`} key={tag.slug}>

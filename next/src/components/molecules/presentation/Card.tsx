@@ -41,7 +41,7 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
         ) : null}
       </div>
 
-      {showTags && tags ? (
+      {showTags && tags.length > 0 ? (
         <div className="flex gap-6">
           {isToday({
             dateFrom: dateFrom as string,
