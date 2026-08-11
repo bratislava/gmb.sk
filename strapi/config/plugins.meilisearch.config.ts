@@ -26,15 +26,9 @@ const meilisearchConfig = {
       ...entry,
       // Meilisearch doesn't support filtering dates as ISO strings, therefore we convert it to UNIX timestamp to
       // use (number) filters.
-      publishedAtTimestamp: entry.publishedAt
-        ? new Date(entry.publishedAt).getTime()
-        : undefined,
-      dateFromTimestamp: entry.dateFrom
-        ? new Date(entry.dateFrom).getTime()
-        : undefined,
-      exhibitionYear: entry.dateFrom
-        ? new Date(entry.dateFrom).getFullYear()
-        : undefined,
+      publishedAtTimestamp: entry.publishedAt ? new Date(entry.publishedAt).getTime() : undefined,
+      dateFromTimestamp: entry.dateFrom ? new Date(entry.dateFrom).getTime() : undefined,
+      exhibitionYear: entry.dateFrom ? new Date(entry.dateFrom).getFullYear() : undefined,
     }),
   },
 }

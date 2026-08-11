@@ -41,6 +41,13 @@ export const archiveFetcher = async (filters: ArchiveFilters, locale: string) =>
       'slug',
       'coverMedia',
       'perex',
+      'tags',
     ],
-  }) as Promise<{ hits: SectionItemEntityFragment[] }>
+  }) as Promise<{
+    hits: Pick<
+      SectionItemEntityFragment,
+      // keep in sync with attributesToRetrieve above
+      'documentId' | 'title' | 'subtitle' | 'slug' | 'coverMedia' | 'perex' | 'tags'
+    >[]
+  }>
 }

@@ -233,6 +233,7 @@ fragment NewsItemEntity on ContentPage {
 
 fragment SectionItemEntity on ContentPage {
   ...NewsItemEntity
+  publishedAt
   perex
   coverMedia {
     ...ImageEntity
