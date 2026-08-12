@@ -9,11 +9,11 @@ import Subtitle from '@/src/components/atoms/Subtitle'
 import { SectionItemEntityFragment } from '@/src/services/graphql'
 import { formatDateString } from '@/src/utils/formatDateString'
 import { generateImageSizes } from '@/src/utils/generateImageSizes'
-import { hasAttributes, WithAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 import { isToday } from '@/src/utils/isToday'
 
 interface CardProps {
-  sectionItem: WithAttributes<SectionItemEntityFragment>
+  sectionItem: SectionItemEntityFragment
   showTags?: boolean
 }
 
@@ -22,7 +22,7 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
   const router = useRouter()
   const titleId = useId()
 
-  const { slug, coverMedia, title, tags, perex, addedAt, dateFrom, dateTo } = sectionItem.attributes
+  const { slug, coverMedia, title, tags, perex, addedAt, dateFrom, dateTo } = sectionItem
 
   const cleanPath = router.asPath.split('?')[0].split('#')[0] // Remove query parameters and hash fragments
   // Using `asPath` ensures that dynamic segments e.g., [slug] are correctly replaced with actual values
@@ -30,9 +30,9 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
   return (
     <article className="relative flex min-h-full flex-col gap-y-yMd">
       <div className="relative aspect-4/3 overflow-hidden bg-gmbLightGray">
-        {coverMedia?.data?.attributes ? (
+        {coverMedia ? (
           <Image
-            src={coverMedia.data.attributes.url}
+            src={coverMedia.url}
             alt=""
             className="object-cover"
             fill
@@ -41,24 +41,24 @@ const Card = ({ sectionItem, showTags }: CardProps) => {
         ) : null}
       </div>
 
-      {showTags && tags ? (
+      {showTags && tags.length > 0 ? (
         <div className="flex gap-6">
           {isToday({
             dateFrom: dateFrom as string,
             dateTo: dateTo as string,
           }) && <span className="pr-2 text-nav text-red-600 uppercase">{t('common.today')}!</span>}
           <div className="z-1 flex grow flex-wrap gap-x-6 gap-y-3">
-            {tags?.data.filter(hasAttributes).map((tag) => {
-              const path = `${cleanPath}/?tags=${tag.attributes.slug}`
+            {tags.filter(isDefined).map((tag) => {
+              const path = `${cleanPath}/?tags=${tag.slug}`
 
               return (
                 <Link
                   className=""
                   role="button"
                   href={router.asPath.startsWith('/') ? path : `/${path}`}
-                  key={tag.attributes.slug}
+                  key={tag.slug}
                 >
-                  {tag.attributes.title}
+                  {tag.title}
                 </Link>
               )
             })}

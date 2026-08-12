@@ -34,11 +34,11 @@ const OpeningHoursSection = ({ anchor }: OpeningHoursSectionProps) => {
     },
   ]
 
-  if (!general?.data?.attributes) {
+  if (!general) {
     return null
   }
 
-  const { openingHours, mirbach, palffy } = general.data.attributes
+  const { openingHours, mirbach, palffy } = general
 
   return (
     <Section

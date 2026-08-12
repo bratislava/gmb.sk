@@ -1,39 +1,17 @@
 query General($locale: I18NLocaleCode!) {
   general(locale: $locale) {
-    data {
-      ...GeneralEntity
-    }
+    ...GeneralEntity
   }
   menu(locale: $locale) {
-    data {
-      ...MenuEntity
-    }
+    ...MenuEntity
   }
 }
 
 query Places($locale: I18NLocaleCode!) {
   places(locale: $locale) {
-    data {
-      attributes {
-        title
-        slug
-        address
-      }
-    }
-  }
-}
-
-query TagsByCategorySlug($locale: I18NLocaleCode!, $tag: String!) {
-  tagCategoryBySlug(locale: $locale, slug: $tag) {
-    data {
-      attributes {
-        tags(sort: "id:asc", pagination: { limit: 100 }) {
-          data {
-            ...TagEntity
-          }
-        }
-      }
-    }
+    title
+    slug
+    address
   }
 }
 
@@ -49,9 +27,7 @@ query News(
     pagination: { limit: $limit }
     filters: { tags: { slug: { eq: $tag } } }
   ) {
-    data {
-      ...NewsItemEntity
-    }
+    ...NewsItemEntity
   }
 }
 
@@ -80,66 +56,47 @@ query PreviewsByTags(
     }
     sort: $sort
   ) {
-    data {
-      ...SectionItemEntity
-    }
+    ...SectionItemEntity
   }
 }
 
-query PreviewContentPageBySlug($slug: String!) {
-  contentPageBySlug(slug: $slug, locale: "all") {
-    data {
-      attributes {
-        slug
-        locale
-      }
-    }
+query ContentPageBySlug($locale: I18NLocaleCode!, $slug: String!) {
+  contentPages(filters: { slug: { eq: $slug } }, locale: $locale) {
+    ...ContentPageEntity
   }
 }
 
-query ContentPageBySlug($locale: I18NLocaleCode!, $slug: String!, $isPublished: Boolean!) {
-  contentPageBySlug(slug: $slug, locale: $locale, isPublished: $isPublished) {
-    data {
-      ...ContentPageEntity
+query TagsByCategorySlug($locale: I18NLocaleCode!, $tag: String!) {
+  tagCategories(filters: { slug: { eq: $tag } }, locale: $locale) {
+    tags(sort: "id:asc", pagination: { limit: 100 }) {
+      ...TagEntity
     }
   }
 }
 
 query AllContentPageSlugs($locale: I18NLocaleCode!) {
   contentPages(locale: $locale) {
-    data {
-      attributes {
-        slug
-        locale
-      }
-    }
+    slug
+    locale
   }
 }
 
 query MainPageBySlug($slug: String!, $locale: I18NLocaleCode!) {
   mainPages(filters: { slug: { eq: $slug } }, locale: $locale) {
-    data {
-      ...MainPageEntity
-    }
+    ...MainPageEntity
   }
 }
 
 query AllMainPageSlugs($locale: I18NLocaleCode!) {
   mainPages(locale: $locale) {
-    data {
-      attributes {
-        slug
-        locale
-      }
-    }
+    slug
+    locale
   }
 }
 
 query Tickets($locale: I18NLocaleCode!) {
   tickets(locale: $locale) {
-    data {
-      ...TicketEntity
-    }
+    ...TicketEntity
   }
 }
 
@@ -165,27 +122,21 @@ query ExhibitionsByPlace(
       slug: { ne: $slug }
     }
   ) {
-    data {
-      ...SectionItemEntity
-    }
+    ...SectionItemEntity
   }
 }
 
 query HomePage($locale: I18NLocaleCode!) {
   homePage(locale: $locale) {
-    data {
-      attributes {
-        __typename
-        highlights {
-          ...Highlight
-        }
-        sections {
-          ...HomePageSections
-        }
-        seo {
-          ...Seo
-        }
-      }
+    __typename
+    highlights {
+      ...Highlight
+    }
+    sections {
+      ...HomePageSections
+    }
+    seo {
+      ...Seo
     }
   }
 }
@@ -201,25 +152,19 @@ query ExhibitionsAndEvents(
     locale: $locale
     filters: { tags: { slug: { eq: $tagExhibitions } }, dateTo: { gte: $today } }
   ) {
-    data {
-      ...SectionItemEntity
-    }
+    ...SectionItemEntity
   }
   permanentExhibitions: contentPages(
     locale: $locale
     filters: { tags: { slug: { eq: $tagPermanentExhibitions } }, dateFrom: { lte: $today } }
   ) {
-    data {
-      ...SectionItemEntity
-    }
+    ...SectionItemEntity
   }
   additionalProgram: contentPages(
     locale: $locale
     filters: { tags: { slug: { in: $tagsAdditionalProgram } }, dateTo: { gte: $today } }
     sort: ["dateFrom:asc"]
   ) {
-    data {
-      ...SectionItemEntity
-    }
+    ...SectionItemEntity
   }
 }

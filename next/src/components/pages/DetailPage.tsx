@@ -20,10 +20,10 @@ import { getAnchor } from '@/src/utils/getAnchor'
 import { getContentPageColor } from '@/src/utils/getContentPageColor'
 import getDaysLeft from '@/src/utils/getDaysLeft'
 import { getPurchaseId } from '@/src/utils/getPurchaseId'
-import { hasAttributes, isDefined, WithAttributes, withAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 
 interface DetailPageProps {
-  contentPage: WithAttributes<ContentPageEntityFragment>
+  contentPage: ContentPageEntityFragment
 }
 
 const DetailPage = ({ contentPage }: DetailPageProps) => {
@@ -52,7 +52,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
     downloadSection,
     seo,
     coverMedia,
-  } = contentPage.attributes
+  } = contentPage
 
   // 'true' as fallback for older pages where showShareButtons is not defined
   const showShare = showShareButtons ?? true
@@ -60,13 +60,10 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
   const { t, i18n } = useTranslation()
 
   // TODO Add parent page as related content, with option to not to include it :D
-  const relatedContentFiltered =
-    childPages?.data
-      .filter(hasAttributes)
-      .filter((child) =>
-        child.attributes.dateTo ? getDaysLeft(child.attributes.dateTo) >= 0 : child,
-      )
-      .sort((a, b) => (a.attributes.dateFrom > b.attributes.dateFrom ? 1 : -1)) ?? []
+  const relatedContentFiltered = childPages
+    .filter(isDefined)
+    .filter((child) => (child.dateTo ? getDaysLeft(child.dateTo) >= 0 : child))
+    .sort((a, b) => (a.dateFrom > b.dateFrom ? 1 : -1))
 
   const showRelatedContent = relatedContentFiltered.length > 0
 
@@ -81,10 +78,10 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
     submenu.push(relatedContentSubmenuTitle)
   }
   if (downloadSection?.submenuTitle) {
-    submenu.push(downloadSection?.submenuTitle)
+    submenu.push(downloadSection.submenuTitle)
   }
 
-  const seoImage = seo?.metaImage?.data || coverMedia?.data
+  const seoImage = seo?.metaImage || coverMedia
 
   return (
     <PageWrapper page={contentPage}>
@@ -110,7 +107,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
             datetime={{ dateFrom, dateTo, timeFrom, timeTo, showRemainingTime }}
             place={{ place, placeTitle, placeAddress }}
             positions={positions?.filter(isDefined)}
-            partners={partners?.map((item) => item?.partner?.data).filter(hasAttributes)}
+            partners={partners?.map((item) => item?.partner).filter(isDefined)}
             purchaseId={getPurchaseId(contentPage)}
             slug={slug}
             showShare={showShare}
@@ -179,7 +176,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
                     className="pb-yMd"
                   >
                     {section.title && <h3 className="pb-yMd text-lg">{section.title}</h3>}
-                    <ImageGallery medias={section.medias?.data} />
+                    <ImageGallery medias={section.medias.filter(isDefined)} />
                   </Section>
                 )
               }
@@ -195,7 +192,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
                       <ContactCard
                         // eslint-disable-next-line react/no-array-index-key
                         key={index}
-                        contact={withAttributes(contactItem?.contactCard?.data)}
+                        contact={contactItem?.contactCard}
                       />
                     ))}
                   </Section>
@@ -210,7 +207,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
           {/* Mobile sidepanel info part 2 */}
           <SidePanel
             positions={positions?.filter(isDefined)}
-            partners={partners?.map((item) => item?.partner?.data).filter(hasAttributes)}
+            partners={partners?.map((item) => item?.partner).filter(isDefined)}
             slug={slug}
             showShare={showShare}
             title={title}
@@ -218,7 +215,7 @@ const DetailPage = ({ contentPage }: DetailPageProps) => {
           />
         </div>
       </div>
-      {slider ? <ImgSwiper slides={slider?.medias?.data.filter(hasAttributes)} /> : null}
+      {slider ? <ImgSwiper slides={slider.medias.filter(isDefined)} /> : null}
       {relatedContentFiltered.length > 0 ? (
         <ChessboardSection
           anchor={getAnchor(relatedContentSubmenuTitle)}

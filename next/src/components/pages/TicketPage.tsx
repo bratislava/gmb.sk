@@ -9,11 +9,10 @@ import CardSection from '@/src/components/molecules/sections/CardSection'
 import PageWrapper from '@/src/components/pages/PageWrapper'
 import { ContentPageEntityFragment, SectionItemEntityFragment } from '@/src/services/graphql'
 import { getPurchaseId } from '@/src/utils/getPurchaseId'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface ITicketPageProps {
-  contentPage: WithAttributes<ContentPageEntityFragment>
-  currentEvents?: WithAttributes<SectionItemEntityFragment>[]
+  contentPage: ContentPageEntityFragment
+  currentEvents?: SectionItemEntityFragment[]
 }
 
 const TicketPage = ({ contentPage, currentEvents }: ITicketPageProps) => {
@@ -31,7 +30,7 @@ const TicketPage = ({ contentPage, currentEvents }: ITicketPageProps) => {
     timeTo,
     slug,
     seo,
-  } = contentPage.attributes
+  } = contentPage
 
   return (
     /* eslint-disable better-tailwindcss/no-unknown-classes */
@@ -67,7 +66,7 @@ const TicketPage = ({ contentPage, currentEvents }: ITicketPageProps) => {
         title={t('common.ticketValidAlsoFor')}
         sectionItems={currentEvents}
         noItemsMessage={t('common.noCurrentEvents', {
-          place: place?.data?.attributes?.title,
+          place: place?.title,
         })}
       />
     </PageWrapper>

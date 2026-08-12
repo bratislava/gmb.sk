@@ -1,0 +1,2 @@
+schema: 'strapi/schema.graphql'
+documents: 'next/src/**/*.{graphql,gql,js,ts,jsx,tsx}'

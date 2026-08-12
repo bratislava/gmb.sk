@@ -15,7 +15,7 @@ import { client } from '@/src/services/graphql/gql'
 import { NOT_FOUND } from '@/src/utils/consts'
 import { GeneralContextProvider } from '@/src/utils/generalContext'
 import { getTodaysDate } from '@/src/utils/getTodaysDate'
-import { hasAttributes, isDefined } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 import { getRouteForLocale } from '@/src/utils/localeRoutes'
 
 interface MenuPageProps {
@@ -27,14 +27,14 @@ interface MenuPageProps {
   permanentExhibitions: ExhibitionsAndEventsQuery['permanentExhibitions']
   additionalProgram: ExhibitionsAndEventsQuery['additionalProgram']
   places: PlacesQuery['places']
-  tagsProgram: TagsByCategorySlugQuery['tagCategoryBySlug']
-  tagsTargetGroups: TagsByCategorySlugQuery['tagCategoryBySlug']
-  tagsLanguages: TagsByCategorySlugQuery['tagCategoryBySlug']
-  tagsProjects: TagsByCategorySlugQuery['tagCategoryBySlug']
-  tagsOthers: TagsByCategorySlugQuery['tagCategoryBySlug']
-  tagsExploreTypes: TagsByCategorySlugQuery['tagCategoryBySlug']
-  tagsExploreProjects: TagsByCategorySlugQuery['tagCategoryBySlug']
-  tagsExploreOthers: TagsByCategorySlugQuery['tagCategoryBySlug']
+  tagsPrograms: TagsByCategorySlugQuery['tagCategories']
+  tagsTargetGroups: TagsByCategorySlugQuery['tagCategories']
+  tagsLanguages: TagsByCategorySlugQuery['tagCategories']
+  tagsProjects: TagsByCategorySlugQuery['tagCategories']
+  tagsOthers: TagsByCategorySlugQuery['tagCategories']
+  tagsExploreTypes: TagsByCategorySlugQuery['tagCategories']
+  tagsExploreProjects: TagsByCategorySlugQuery['tagCategories']
+  tagsExploreOthers: TagsByCategorySlugQuery['tagCategories']
 }
 
 type StaticParams = {
@@ -46,13 +46,10 @@ export const getStaticPaths: GetStaticPaths<StaticParams> = async ({ locales = [
   const mainPageSlugsResponses = await Promise.all(mainPageSlugsPromises)
 
   const paths = mainPageSlugsResponses.flatMap((mainPageSlugResponse, index) =>
-    (mainPageSlugResponse?.mainPages?.data ?? [])
-      .filter(hasAttributes)
-      .filter(isDefined)
-      .map((mainPage) => ({
-        params: { slug: mainPage.attributes.slug },
-        locale: locales[index],
-      })),
+    mainPageSlugResponse.mainPages.filter(isDefined).map((mainPage) => ({
+      params: { slug: mainPage.slug },
+      locale: locales[index],
+    })),
   )
 
   // eslint-disable-next-line no-console
@@ -80,14 +77,14 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
     { news },
     { tickets },
     { places },
-    { tagCategoryBySlug: tagsProgram },
-    { tagCategoryBySlug: tagsTargetGroups },
-    { tagCategoryBySlug: tagsLanguages },
-    { tagCategoryBySlug: tagsProjects },
-    { tagCategoryBySlug: tagsOthers },
-    { tagCategoryBySlug: tagsExploreTypes },
-    { tagCategoryBySlug: tagsExploreProjects },
-    { tagCategoryBySlug: tagsExploreOthers },
+    { tagCategories: tagsPrograms },
+    { tagCategories: tagsTargetGroups },
+    { tagCategories: tagsLanguages },
+    { tagCategories: tagsProjects },
+    { tagCategories: tagsOthers },
+    { tagCategories: tagsExploreTypes },
+    { tagCategories: tagsExploreProjects },
+    { tagCategories: tagsExploreOthers },
     translations,
   ] = await Promise.all([
     client.General({ locale }),
@@ -137,9 +134,9 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
   const tagExhibitions = getRouteForLocale('vystavy', locale)
   const tagPermanentExhibitions = getRouteForLocale('stale-expozicie', locale)
   const tagsAdditionalProgram =
-    tagsProgram?.data?.attributes?.tags?.data
-      .filter(hasAttributes)
-      .map((tag) => tag.attributes.slug)
+    tagsPrograms
+      .filter(isDefined)
+      .map((tag) => tag.tags[0]?.slug as string)
       .filter((tagSlug) => tagSlug !== tagExhibitions && tagSlug !== tagPermanentExhibitions) ?? []
 
   const { exhibitions, permanentExhibitions, additionalProgram } =
@@ -151,7 +148,7 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
       tagsAdditionalProgram,
     })
 
-  const mainPage = mainPages?.data[0]
+  const mainPage = mainPages[0]
 
   if (!mainPage) {
     return NOT_FOUND
@@ -167,7 +164,7 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
       permanentExhibitions,
       additionalProgram,
       places,
-      tagsProgram,
+      tagsPrograms,
       tagsTargetGroups,
       tagsLanguages,
       tagsProjects,
@@ -190,7 +187,7 @@ const MenuPage = ({
   permanentExhibitions,
   additionalProgram,
   places,
-  tagsProgram,
+  tagsPrograms,
   tagsTargetGroups,
   tagsLanguages,
   tagsProjects,
@@ -202,24 +199,22 @@ const MenuPage = ({
   return (
     <GeneralContextProvider general={generalQuery}>
       <MainPage
-        title={page?.attributes?.title ?? ''}
+        title={page.title}
         page={page}
-        newsItems={news?.data?.filter(hasAttributes)}
-        tickets={tickets?.data.filter(hasAttributes)}
-        exhibitions={exhibitions?.data.filter(hasAttributes)}
-        permanentExhibitions={permanentExhibitions?.data.filter(hasAttributes)}
-        additionalProgram={additionalProgram?.data.filter(hasAttributes)}
-        places={places?.data.filter(hasAttributes)}
-        tagsProgram={tagsProgram?.data?.attributes?.tags?.data.filter(hasAttributes)}
-        tagsTargetGroups={tagsTargetGroups?.data?.attributes?.tags?.data.filter(hasAttributes)}
-        tagsLanguages={tagsLanguages?.data?.attributes?.tags?.data.filter(hasAttributes)}
-        tagsProjects={tagsProjects?.data?.attributes?.tags?.data.filter(hasAttributes)}
-        tagsOthers={tagsOthers?.data?.attributes?.tags?.data.filter(hasAttributes)}
-        tagsExploreTypes={tagsExploreTypes?.data?.attributes?.tags?.data.filter(hasAttributes)}
-        tagsExploreProjects={tagsExploreProjects?.data?.attributes?.tags?.data.filter(
-          hasAttributes,
-        )}
-        tagsExploreOthers={tagsExploreOthers?.data?.attributes?.tags?.data.filter(hasAttributes)}
+        newsItems={news.filter(isDefined)}
+        tickets={tickets.filter(isDefined)}
+        exhibitions={exhibitions.filter(isDefined)}
+        permanentExhibitions={permanentExhibitions.filter(isDefined)}
+        additionalProgram={additionalProgram.filter(isDefined)}
+        places={places.filter(isDefined)}
+        tagsProgram={tagsPrograms?.[0]?.tags.filter(isDefined)}
+        tagsTargetGroups={tagsTargetGroups?.[0]?.tags.filter(isDefined)}
+        tagsLanguages={tagsLanguages?.[0]?.tags.filter(isDefined)}
+        tagsProjects={tagsProjects?.[0]?.tags.filter(isDefined)}
+        tagsOthers={tagsOthers?.[0]?.tags.filter(isDefined)}
+        tagsExploreTypes={tagsExploreTypes?.[0]?.tags.filter(isDefined)}
+        tagsExploreProjects={tagsExploreProjects?.[0]?.tags.filter(isDefined)}
+        tagsExploreOthers={tagsExploreOthers?.[0]?.tags.filter(isDefined)}
       />
     </GeneralContextProvider>
   )

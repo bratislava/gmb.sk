@@ -132,9 +132,23 @@
           "searchable": true,
           "sortable": true
         }
+      },
+      "documentId": {
+        "edit": {},
+        "list": {
+          "label": "documentId",
+          "searchable": true,
+          "sortable": true
+        }
       }
     },
     "layouts": {
+      "list": [
+        "id",
+        "title",
+        "slug",
+        "updatedAt"
+      ],
       "edit": [
         [
           {
@@ -160,12 +174,6 @@
             "size": 12
           }
         ]
-      ],
-      "list": [
-        "id",
-        "title",
-        "slug",
-        "updatedAt"
       ]
     },
     "uid": "api::main-page.main-page"

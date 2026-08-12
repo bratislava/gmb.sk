@@ -1,7 +1,6 @@
 import { SectionItemEntityFragment } from '@/src/services/graphql'
 import { getMeilisearchPageOptions } from '@/src/services/meili/getMeilisearchPageOptions'
 import { meiliClient } from '@/src/services/meili/meilisearch'
-import { WithAttributes } from '@/src/utils/isDefined'
 import { getRouteForLocale } from '@/src/utils/localeRoutes'
 
 export type ArchiveFilters = {
@@ -26,45 +25,29 @@ export const archiveFetcher = async (filters: ArchiveFilters, locale: string) =>
     getRouteForLocale('stale-expozicie', locale),
   ]
 
-  return meiliClient
-    .index('search_index')
-    .search(filters.searchValue, {
-      ...getMeilisearchPageOptions({ page: filters.page, pageSize: filters.pageSize }),
-      filter: [
-        `locale = ${locale}`,
-        `tags.slug IN [${exhibitionsTags.join(', ')}]`,
-        filters.years.length > 0 ? `exhibitionYear IN [${filters.years.join(', ')}]` : '',
-      ],
-      sort: ['exhibitionYear:desc'],
-      attributesToRetrieve: [
-        // Only properties that are required to display listing are retrieved
-        'id',
-        'title',
-        'subtitle',
-        'slug',
-        'coverMedia',
-        'perex',
-      ],
-    })
-    .then((response) => {
-      return {
-        ...response,
-        hits: response.hits.map((hit) => {
-          return {
-            id: hit.id,
-            attributes: {
-              title: hit.title,
-              subtitle: hit.subtitle,
-              slug: hit.slug,
-              perex: hit.perex,
-              coverMedia: {
-                data: {
-                  attributes: hit.coverMedia,
-                },
-              },
-            },
-          } as WithAttributes<SectionItemEntityFragment>
-        }),
-      }
-    })
+  return meiliClient.index('search_index').search(filters.searchValue, {
+    ...getMeilisearchPageOptions({ page: filters.page, pageSize: filters.pageSize }),
+    filter: [
+      `locale = ${locale}`,
+      `tags.slug IN [${exhibitionsTags.join(', ')}]`,
+      filters.years.length > 0 ? `exhibitionYear IN [${filters.years.join(', ')}]` : '',
+    ],
+    sort: ['exhibitionYear:desc'],
+    attributesToRetrieve: [
+      // Only properties that are required to display listing are retrieved
+      'documentId',
+      'title',
+      'subtitle',
+      'slug',
+      'coverMedia',
+      'perex',
+      'tags',
+    ],
+  }) as Promise<{
+    hits: Pick<
+      SectionItemEntityFragment,
+      // keep in sync with attributesToRetrieve above
+      'documentId' | 'title' | 'subtitle' | 'slug' | 'coverMedia' | 'perex' | 'tags'
+    >[]
+  }>
 }

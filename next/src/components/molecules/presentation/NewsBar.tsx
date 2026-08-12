@@ -4,10 +4,9 @@ import Button from '@/src/components/atoms/Button'
 import Link from '@/src/components/atoms/Link'
 import { NewsItemEntityFragment } from '@/src/services/graphql'
 import { getContentPageColor } from '@/src/utils/getContentPageColor'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface NewsBarProps {
-  newsItem: WithAttributes<NewsItemEntityFragment>
+  newsItem: NewsItemEntityFragment
 }
 
 const NewsBar = ({ newsItem }: NewsBarProps) => {
@@ -19,13 +18,13 @@ const NewsBar = ({ newsItem }: NewsBarProps) => {
       style={{ background: getContentPageColor(newsItem) }}
     >
       <Link
-        href={`/detail/${newsItem.attributes.slug}`}
+        href={`/detail/${newsItem.slug}`}
         stretched
         preserveStyle
         className="hover:no-underline"
       >
-        <h3 className="text-xl whitespace-pre-wrap">{newsItem.attributes.title}</h3>
-        <p className="text-xl font-regular whitespace-pre-wrap">{newsItem.attributes.subtitle}</p>
+        <h3 className="text-xl whitespace-pre-wrap">{newsItem.title}</h3>
+        <p className="text-xl font-regular whitespace-pre-wrap">{newsItem.subtitle}</p>
       </Link>
 
       <div className="hidden lg:block">

@@ -1,58 +1,44 @@
-fragment ImageEntity on UploadFileEntity {
-  attributes {
-    url
-    alternativeText
-    width
-    height
-  }
+fragment ImageEntity on UploadFile {
+  url
+  alternativeText
+  width
+  height
 }
 
-fragment ImageWithFormatsEntity on UploadFileEntity {
+fragment ImageWithFormatsEntity on UploadFile {
   ...ImageEntity
-  attributes {
-    formats
-    caption
-  }
+  formats
+  caption
 }
 
-fragment TicketEntity on TicketEntity {
-  id
-  attributes {
-    title
-    price
-    description
-    purchaseIdSelf
-    purchaseIdGift
-  }
+fragment TicketEntity on Ticket {
+  documentId
+  title
+  price
+  description
+  purchaseIdSelf
+  purchaseIdGift
 }
 
-fragment PartnerEntity on PartnerEntity {
-  id
-  attributes {
-    title
-    logo {
-      data {
-        ...ImageEntity
-      }
-    }
-    link
+fragment PartnerEntity on Partner {
+  documentId
+  title
+  logo {
+    ...ImageEntity
   }
+  link
 }
 
-fragment TagEntity on TagEntity {
-  attributes {
-    title
-    slug
-  }
+fragment TagEntity on Tag {
+  title
+  slug
 }
 
-fragment PlaceEntity on PlaceEntity {
-  attributes {
-    title
-    address
-    slug
-    purchaseId
-  }
+fragment PlaceEntity on Place {
+  title
+  address
+  slug
+  purchaseId
 }
 
 fragment Position on ComponentBlocksPositionItem {
@@ -70,9 +56,7 @@ fragment Datetime on ContentPage {
 
 fragment ContentPagePlace on ContentPage {
   place {
-    data {
-      ...PlaceEntity
-    }
+    ...PlaceEntity
   }
   placeTitle
   placeAddress
@@ -87,9 +71,7 @@ fragment Positions on ContentPage {
 fragment Partners on ContentPage {
   partners(pagination: { limit: 100 }) {
     partner {
-      data {
-        ...PartnerEntity
-      }
+      ...PartnerEntity
     }
   }
 }
@@ -98,9 +80,7 @@ fragment SliderSection on ComponentSectionsSliderSection {
   id
   submenuTitle
   medias {
-    data {
-      ...ImageEntity
-    }
+    ...ImageEntity
   }
 }
 
@@ -109,9 +89,7 @@ fragment Seo on ComponentBlocksSeo {
   metaDescription
   keywords
   metaImage {
-    data {
-      ...ImageEntity
-    }
+    ...ImageEntity
   }
 }
 
@@ -124,142 +102,108 @@ fragment Links on ComponentBlocksLinks {
   }
 }
 
-fragment MenuEntity on MenuEntity {
-  attributes {
-    menuLinks {
-      ...MenuLinkItem
-    }
-    searchLink {
-      ...MenuLinkItem
-    }
+fragment MenuEntity on Menu {
+  menuLinks {
+    ...MenuLinkItem
+  }
+  searchLink {
+    ...MenuLinkItem
   }
 }
 
-fragment MainPageSlugEntity on MainPageEntity {
-  id
-  attributes {
-    title
-    slug
-  }
+fragment MainPageSlugEntity on MainPage {
+  documentId
+  title
+  slug
 }
 
-fragment MainPageEntity on MainPageEntity {
-  id
+fragment MainPageEntity on MainPage {
+  documentId
   __typename
-  attributes {
-    title
+  title
+  slug
+  sections {
+    ...MainPageSections
+  }
+  seo {
+    ...Seo
+  }
+  localizations {
     slug
-    sections {
-      ...MainPageSections
-    }
-    seo {
-      ...Seo
-    }
-    localizations {
-      data {
-        attributes {
-          slug
-          locale
-        }
-      }
-    }
+    locale
   }
 }
 
-fragment ContentPageSlugEntity on ContentPageEntity {
-  id
-  attributes {
-    title
-    slug
-  }
+fragment ContentPageSlugEntity on ContentPage {
+  documentId
+  title
+  slug
 }
 
-fragment ContentPageEntity on ContentPageEntity {
-  id
-  attributes {
-    title
-    titleToShow
-    subtitle
-    useDatetimeAsSubtitle
-    slug
-    addedAt
-    coverMedia {
-      data {
-        ...ImageEntity
-      }
-    }
-    perex
+fragment ContentPageEntity on ContentPage {
+  documentId
+  title
+  titleToShow
+  subtitle
+  useDatetimeAsSubtitle
+  slug
+  addedAt
+  coverMedia {
+    ...ImageEntity
+  }
+  perex
+  color
+  inheritColorFromParent
+  ...Datetime
+  ...ContentPagePlace
+  ...Positions
+  ...Partners
+  sellTickets
+  purchaseId
+  showShareButtons
+  mainContent {
+    ...MainContent
+  }
+  slider {
+    ...SliderSection
+  }
+  relatedContentTitle
+  relatedContentSubmenuTitle
+  downloadSection {
+    ...DownloadSection
+  }
+  parentPage {
     color
-    inheritColorFromParent
-    ...Datetime
-    ...ContentPagePlace
-    ...Positions
-    ...Partners
-    sellTickets
-    purchaseId
-    showShareButtons
-    mainContent {
-      ...MainContent
-    }
-    slider {
-      ...SliderSection
-    }
-    relatedContentTitle
-    relatedContentSubmenuTitle
-    downloadSection {
-      ...DownloadSection
-    }
-    parentPage {
-      data {
-        attributes {
-          color
-        }
-      }
-    }
-    childPages {
-      data {
-        ...SectionItemEntity
-      }
-    }
-    tags {
-      data {
-        ...TagEntity
-      }
-    }
-    seo {
-      ...Seo
-    }
-    publishedAt
-    localizations {
-      data {
-        attributes {
-          slug
-          locale
-        }
-      }
-    }
+  }
+  childPages {
+    ...SectionItemEntity
+  }
+  tags {
+    ...TagEntity
+  }
+  seo {
+    ...Seo
+  }
+  publishedAt
+  localizations {
+    slug
+    locale
   }
 }
 
-fragment GlobalSearchPageEntity on ContentPageEntity {
-  id
-  attributes {
-    title
-    slug
-    subtitle
-    perex
-    coverMedia {
-      data {
-        ...ImageEntity
-      }
-    }
-    tags {
-      data {
-        ...TagEntity
-      }
-    }
-    publishedAt
+fragment GlobalSearchPageEntity on ContentPage {
+  documentId
+  title
+  slug
+  subtitle
+  perex
+  coverMedia {
+    ...ImageEntity
   }
+  tags {
+    ...TagEntity
+  }
+  publishedAt
 }
 
 fragment ExhibitionArchive on ComponentBlocksExhibitionArchive {
@@ -268,78 +212,59 @@ fragment ExhibitionArchive on ComponentBlocksExhibitionArchive {
   perex
   color
   coverMedia {
-    data {
-      ...ImageEntity
-    }
+    ...ImageEntity
   }
   url
 }
 
-fragment NewsItemEntity on ContentPageEntity {
-  id
-  attributes {
-    title
-    subtitle
-    addedAt
-    useDatetimeAsSubtitle
-    slug
+fragment NewsItemEntity on ContentPage {
+  documentId
+  title
+  subtitle
+  addedAt
+  useDatetimeAsSubtitle
+  slug
+  color
+  inheritColorFromParent
+  parentPage {
     color
-    inheritColorFromParent
-    parentPage {
-      data {
-        attributes {
-          color
-        }
-      }
-    }
   }
 }
 
-fragment SectionItemEntity on ContentPageEntity {
+fragment SectionItemEntity on ContentPage {
   ...NewsItemEntity
-  attributes {
-    perex
-    coverMedia {
-      data {
-        ...ImageEntity
-      }
-    }
-    ...Datetime
-    tags {
-      data {
-        ...TagEntity
-      }
-    }
+  publishedAt
+  perex
+  coverMedia {
+    ...ImageEntity
+  }
+  ...Datetime
+  tags {
+    ...TagEntity
   }
 }
 
-fragment HighlightsItemEntity on ContentPageEntity {
+fragment HighlightsItemEntity on ContentPage {
   ...SectionItemEntity
-  attributes {
-    titleToShow
-    ...ContentPagePlace
-    ...Positions
-    sellTickets
-    purchaseId
-    override {
-      highlightContent
-    }
+  titleToShow
+  ...ContentPagePlace
+  ...Positions
+  sellTickets
+  purchaseId
+  override {
+    highlightContent
   }
 }
 
 fragment Highlight on ComponentBlocksContentPageItem {
   contentPage {
-    data {
-      ...HighlightsItemEntity
-    }
+    ...HighlightsItemEntity
   }
 }
 
 fragment Partner on ComponentBlocksPartnerItem {
   partner {
-    data {
-      ...PartnerEntity
-    }
+    ...PartnerEntity
   }
 }
 
@@ -348,14 +273,10 @@ fragment MenuLinkItem on ComponentBlocksMenuLinkItem {
   title
   url
   mainPage {
-    data {
-      ...MainPageSlugEntity
-    }
+    ...MainPageSlugEntity
   }
   contentPage {
-    data {
-      ...ContentPageSlugEntity
-    }
+    ...ContentPageSlugEntity
   }
   hasButtonStyle
 }
@@ -364,16 +285,12 @@ fragment DownloadItem on ComponentBlocksFileItem {
   id
   title
   file {
-    data {
-      attributes {
-        name
-        caption
-        alternativeText
-        ext
-        size
-        url
-      }
-    }
+    name
+    caption
+    alternativeText
+    ext
+    size
+    url
   }
 }
 
@@ -385,38 +302,34 @@ fragment PalaceDetails on ComponentBlocksPalace {
   phone
 }
 
-fragment GeneralEntity on GeneralEntity {
-  attributes {
-    name
-    email
-    openingHours
-    mirbach {
-      ...PalaceDetails
-    }
-    palffy {
-      ...PalaceDetails
-    }
-    socialLinks {
-      ...Links
-    }
-    footerLinks1 {
-      ...Links
-    }
-    footerLinks2 {
-      ...Links
-    }
+fragment GeneralEntity on General {
+  name
+  email
+  openingHours
+  mirbach {
+    ...PalaceDetails
+  }
+  palffy {
+    ...PalaceDetails
+  }
+  socialLinks {
+    ...Links
+  }
+  footerLinks1 {
+    ...Links
+  }
+  footerLinks2 {
+    ...Links
   }
 }
 
-fragment ContactCardEntity on ContactCardEntity {
-  id
-  attributes {
-    name
-    position
-    email
-    phone1
-    phone2
-  }
+fragment ContactCardEntity on ContactCard {
+  documentId
+  name
+  position
+  email
+  phone1
+  phone2
 }
 
 fragment OpeningHoursSection on ComponentSectionsOpeningHoursSection {
@@ -463,9 +376,7 @@ fragment PageSection on ComponentSectionsPageSection {
   layout
   contentPages {
     contentPage {
-      data {
-        ...SectionItemEntity
-      }
+      ...SectionItemEntity
     }
   }
 }
@@ -509,9 +420,7 @@ fragment GallerySection on ComponentSectionsGallerySection {
   title
   submenuTitle
   medias {
-    data {
-      ...ImageWithFormatsEntity
-    }
+    ...ImageWithFormatsEntity
   }
 }
 
@@ -521,9 +430,7 @@ fragment ContactCardsSection on ComponentSectionsContactCardsSection {
   submenuTitle
   contacts {
     contactCard {
-      data {
-        ...ContactCardEntity
-      }
+      ...ContactCardEntity
     }
   }
 }

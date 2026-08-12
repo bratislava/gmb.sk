@@ -6,23 +6,22 @@ import { ContentPageBySlugQuery, GeneralQuery } from '@/src/services/graphql'
 import { client } from '@/src/services/graphql/gql'
 import { NOT_FOUND } from '@/src/utils/consts'
 import { GeneralContextProvider } from '@/src/utils/generalContext'
-import { hasAttributes, isDefined, withAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 
 interface DetailProps {
   generalQuery: GeneralQuery
-  contentPage: ContentPageBySlugQuery['contentPageBySlug']
+  contentPages: ContentPageBySlugQuery['contentPages']
 }
 
-const Detail = ({ generalQuery, contentPage }: DetailProps) => {
-  const contentPageWithAttributes = withAttributes(contentPage?.data)
-
-  if (!contentPage || !contentPageWithAttributes) {
+const Detail = ({ generalQuery, contentPages }: DetailProps) => {
+  const contentPage = contentPages[0]
+  if (!contentPage) {
     return null
   }
 
   return (
     <GeneralContextProvider general={generalQuery}>
-      <DetailPage contentPage={contentPageWithAttributes} />
+      <DetailPage contentPage={contentPage} />
     </GeneralContextProvider>
   )
 }
@@ -34,12 +33,13 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, loca
 
   const slug = (typeof params.slug === 'string' ? params.slug : params.slug?.join('/')) ?? ''
 
-  const [generalQuery, { contentPageBySlug: contentPage }, translations] = await Promise.all([
+  const [generalQuery, { contentPages }, translations] = await Promise.all([
     client.General({ locale }),
-    client.ContentPageBySlug({ slug, locale, isPublished: true }),
+    client.ContentPageBySlug({ slug, locale }),
     serverSideTranslations(locale),
   ])
 
+  const contentPage = contentPages[0]
   if (!contentPage) {
     return NOT_FOUND
   }
@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps<DetailProps> = async ({ params, loca
   return {
     props: {
       generalQuery,
-      contentPage,
+      contentPages,
       ...translations,
     },
     revalidate: 10,
@@ -63,19 +63,16 @@ export const getStaticPaths: GetStaticPaths = async ({ locales = [] }) => {
 
   /** We have a quite complicated and nested structure here, so we need to flatten the response and filter out nullables */
   const allContentPages = contentPageSlugsResponses
+    .map((contentPageSlugsResponse) => contentPageSlugsResponse.contentPages)
     .flat()
-    .map((contentPageSlugsResponse) =>
-      contentPageSlugsResponse.contentPages?.data.filter(hasAttributes),
-    )
     .filter(isDefined)
-    .flat()
 
   const paths = allContentPages.map((contentPage) => {
     return {
       params: {
-        slug: [contentPage.attributes.slug],
+        slug: [contentPage.slug],
       },
-      locale: contentPage.attributes.locale ?? undefined,
+      locale: contentPage.locale ?? undefined,
     }
   })
 

@@ -15,7 +15,7 @@ import {
 } from '@/src/services/graphql'
 import cn from '@/src/utils/cn'
 import getDaysLeft from '@/src/utils/getDaysLeft'
-import { isDefined, WithAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 import mobileAndTabletRegexCheck from '@/src/utils/mobileAndTabletRegexCheck'
 
 interface SidePanelProps {
@@ -25,7 +25,7 @@ interface SidePanelProps {
   place?: ContentPagePlaceFragment
   datetime?: DatetimeFragment
   positions?: PositionFragment[]
-  partners?: WithAttributes<PartnerEntityFragment>[]
+  partners?: PartnerEntityFragment[]
   purchaseId?: string | null
   slug?: string
   showShare?: boolean
@@ -87,7 +87,7 @@ const SidePanel = ({
 
   if (
     !place?.placeAddress &&
-    !place?.place?.data?.attributes &&
+    !place?.place &&
     !place?.placeTitle &&
     !datetime?.dateFrom &&
     positions?.length === 0 &&
@@ -168,16 +168,16 @@ const SidePanel = ({
         <div>
           <h4 className="mb-yMd text-lg">{t('common.partners')}</h4>
           <div className="flex flex-wrap gap-5">
-            {partners?.map((partner) => (
+            {partners.map((partner) => (
               <Link
-                key={partner.attributes.title}
+                key={partner.title}
                 target="_blank"
-                href={partner.attributes.link ?? '#'}
+                href={partner.link ?? '#'}
                 className="overflow-hidden"
               >
                 <img
-                  src={partner.attributes.logo.data?.attributes?.url}
-                  alt={partner.attributes.logo.data?.attributes?.alternativeText ?? ''}
+                  src={partner.logo.url}
+                  alt={partner.logo.alternativeText ?? ''}
                   className="h-[50px]"
                 />
               </Link>

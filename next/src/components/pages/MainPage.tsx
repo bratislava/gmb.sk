@@ -27,30 +27,30 @@ import {
   TicketEntityFragment,
 } from '@/src/services/graphql'
 import { getAnchor } from '@/src/utils/getAnchor'
-import { hasAttributes, isDefined, WithAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 
 type MainPageProps = {
   title: string
   page: MainPageEntityFragment
-  newsItems?: WithAttributes<NewsItemEntityFragment>[] | null
-  tickets?: WithAttributes<TicketEntityFragment>[] | null
-  exhibitions?: WithAttributes<SectionItemEntityFragment>[]
-  permanentExhibitions?: WithAttributes<SectionItemEntityFragment>[]
-  additionalProgram?: WithAttributes<SectionItemEntityFragment>[]
-  places?: WithAttributes<PlaceEntityFragment>[]
-  tagsProgram?: WithAttributes<TagEntityFragment>[]
-  tagsTargetGroups?: WithAttributes<TagEntityFragment>[]
-  tagsLanguages?: WithAttributes<TagEntityFragment>[]
-  tagsProjects?: WithAttributes<TagEntityFragment>[]
-  tagsOthers?: WithAttributes<TagEntityFragment>[]
-  tagsExploreTypes?: WithAttributes<TagEntityFragment>[]
-  tagsExploreProjects?: WithAttributes<TagEntityFragment>[]
-  tagsExploreOthers?: WithAttributes<TagEntityFragment>[]
+  newsItems?: NewsItemEntityFragment[] | null
+  tickets?: TicketEntityFragment[] | null
+  exhibitions?: SectionItemEntityFragment[]
+  permanentExhibitions?: SectionItemEntityFragment[]
+  additionalProgram?: SectionItemEntityFragment[]
+  places?: PlaceEntityFragment[]
+  tagsProgram?: TagEntityFragment[]
+  tagsTargetGroups?: TagEntityFragment[]
+  tagsLanguages?: TagEntityFragment[]
+  tagsProjects?: TagEntityFragment[]
+  tagsOthers?: TagEntityFragment[]
+  tagsExploreTypes?: TagEntityFragment[]
+  tagsExploreProjects?: TagEntityFragment[]
+  tagsExploreOthers?: TagEntityFragment[]
 }
 
 const MainPage = ({
   title,
-  page: pageEntity,
+  page,
   newsItems,
   tickets,
   exhibitions,
@@ -68,31 +68,23 @@ const MainPage = ({
 }: MainPageProps) => {
   const { t } = useTranslation()
 
-  const page = pageEntity?.attributes
-
-  if (!page) return null
-
   const submenu: string[] = []
 
-  page?.sections
-    ?.filter(isDefined)
-    .filter(isDefined)
-    .forEach((section) => {
-      if ('submenuTitle' in section && section.submenuTitle) {
-        submenu.push(section.submenuTitle)
-      }
-    })
+  page.sections?.filter(isDefined).forEach((section) => {
+    if ('submenuTitle' in section && section.submenuTitle) {
+      submenu.push(section.submenuTitle)
+    }
+  })
 
   return (
-    <PageWrapper page={hasAttributes(pageEntity) ? pageEntity : undefined}>
-      <SeoHead title={title} seo={page?.seo} />
+    <PageWrapper page={page}>
+      <SeoHead title={title} seo={page.seo} />
       <h1 className="sr-only">{title}</h1>
 
-      {page?.sections ? <Submenu items={submenu} /> : null}
+      {page.sections ? <Submenu items={submenu} /> : null}
 
-      {page?.sections
+      {page.sections
         ?.filter(isDefined)
-        .filter(isDefined)
         // eslint-disable-next-line sonarjs/cognitive-complexity
         .map((section) => {
           if (section.__typename === 'ComponentSectionsNewsSection' && newsItems) {
@@ -176,11 +168,9 @@ const MainPage = ({
           ) {
             return (
               <PartnersSection
-                title={section?.title ?? t('common.partners')}
+                title={section.title ?? t('common.partners')}
                 anchor={getAnchor(section.submenuTitle)}
-                partners={section.partners
-                  ?.map((item) => item?.partner?.data)
-                  ?.filter(hasAttributes)}
+                partners={section.partners.map((item) => item?.partner).filter(isDefined)}
                 key={`${section.__typename}-${section.id}`}
               />
             )
@@ -189,9 +179,9 @@ const MainPage = ({
           if (section.__typename === 'ComponentSectionsHighlightsSection') {
             return (
               <HighlightsSection
-                highlights={section?.highlights
-                  ?.map((highlight) => highlight?.contentPage?.data)
-                  .filter(hasAttributes)}
+                highlights={section.highlights
+                  ?.map((highlight) => highlight?.contentPage)
+                  .filter(isDefined)}
                 key={`${section.__typename}-${section.id}`}
               />
             )

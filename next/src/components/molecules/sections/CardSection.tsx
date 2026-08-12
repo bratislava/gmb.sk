@@ -6,11 +6,10 @@ import CardSkeleton from '@/src/components/molecules/presentation/CardSkeleton'
 import Section from '@/src/components/molecules/sections/Section'
 import { SectionItemEntityFragment } from '@/src/services/graphql'
 import cn from '@/src/utils/cn'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface CardsSectionProps {
   title?: string
-  sectionItems?: WithAttributes<SectionItemEntityFragment>[]
+  sectionItems?: SectionItemEntityFragment[]
   anchor?: string
   showTags?: boolean
   isLoading?: boolean
@@ -53,7 +52,7 @@ const CardSection = ({
             )}
           >
             {sectionItems.map((item) => (
-              <li key={item.attributes.slug}>
+              <li key={item.slug}>
                 <Card sectionItem={item} showTags={showTags} />
               </li>
             ))}

@@ -1,12 +1,11 @@
 import Link from '@/src/components/atoms/Link'
 import Section from '@/src/components/molecules/sections/Section'
 import { PartnerEntityFragment } from '@/src/services/graphql'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface PartnersSectionProps {
   title?: string
   anchor?: string
-  partners?: WithAttributes<PartnerEntityFragment>[]
+  partners?: PartnerEntityFragment[]
 }
 
 const PartnersSection = ({ partners, title, anchor }: PartnersSectionProps) => {
@@ -16,17 +15,17 @@ const PartnersSection = ({ partners, title, anchor }: PartnersSectionProps) => {
       <div className="flex flex-wrap gap-xMd">
         {partners?.map((partner) => (
           <Link
-            href={partner.attributes.link ?? '#'}
-            key={partner.id}
-            aria-label={partner.attributes.title}
+            href={partner.link ?? '#'}
+            key={partner.documentId}
+            aria-label={partner.title}
             preserveStyle
             noUnderline
             className="flex dh-[115] dw-[115] items-center justify-center overflow-hidden"
             target="_blank"
           >
             <img
-              src={partner?.attributes.logo.data?.attributes?.url}
-              alt={partner?.attributes.logo.data?.attributes?.alternativeText ?? ''}
+              src={partner.logo.url}
+              alt={partner.logo.alternativeText ?? ''}
               className="h-[115px] object-contain"
             />
           </Link>

@@ -10,10 +10,10 @@ import { SectionItemEntityFragment } from '@/src/services/graphql'
 import cn from '@/src/utils/cn'
 import { generateImageSizes } from '@/src/utils/generateImageSizes'
 import { getContentPageColor } from '@/src/utils/getContentPageColor'
-import { hasAttributes, WithAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 
 interface ChessboardTileProps {
-  sectionItem: WithAttributes<SectionItemEntityFragment>
+  sectionItem: SectionItemEntityFragment
   isLeft?: boolean
   showTags?: boolean
   customLinkHref?: string
@@ -24,16 +24,16 @@ const ChessboardTile = ({ sectionItem, isLeft, showTags, customLinkHref }: Chess
   const router = useRouter()
   const titleId = useId()
 
-  const { slug, coverMedia, title, tags, perex } = sectionItem.attributes
+  const { slug, coverMedia, title, tags, perex } = sectionItem
 
   return (
     <article
       className={cn('relative min-h-chessboardTile lg:flex', { 'flex-row-reverse': isLeft })}
     >
       <div className="relative min-h-chessboardTile w-full bg-gmbLightGray lg:h-auto lg:w-1/2">
-        {coverMedia?.data?.attributes ? (
+        {coverMedia ? (
           <Image
-            src={coverMedia.data.attributes.url}
+            src={coverMedia.url}
             alt=""
             fill
             className="object-cover"
@@ -52,15 +52,11 @@ const ChessboardTile = ({ sectionItem, isLeft, showTags, customLinkHref }: Chess
           </p>
         </div>
 
-        {showTags && tags && (
+        {showTags && tags.length > 0 && (
           <div className="flex space-x-3">
-            {tags.data.filter(hasAttributes).map((tag) => (
-              <Link
-                role="button"
-                href={`${router.pathname}/?tags=${tag.attributes.slug}`}
-                key={tag.attributes.slug}
-              >
-                {tag.attributes.title}
+            {tags.filter(isDefined).map((tag) => (
+              <Link role="button" href={`${router.pathname}/?tags=${tag.slug}`} key={tag.slug}>
+                {tag.title}
               </Link>
             ))}
           </div>

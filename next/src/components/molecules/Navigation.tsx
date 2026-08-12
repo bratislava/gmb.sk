@@ -30,14 +30,9 @@ const Navigation = ({ page }: NavigationProps) => {
   const { menu } = useGeneralContext()
 
   // Memoize derived state to avoid unnecessary re-renders
-  const menuLinks = useMemo(
-    () => menu?.data?.attributes?.menuLinks?.filter(isDefined) ?? [],
-    [menu],
-  )
+  const menuLinks = useMemo(() => menu?.menuLinks?.filter(isDefined) ?? [], [menu])
 
-  const { children: searchLinkLabel, href: searchLinkHref } = getMenuLinkProps(
-    menu?.data?.attributes?.searchLink,
-  )
+  const { children: searchLinkLabel, href: searchLinkHref } = getMenuLinkProps(menu?.searchLink)
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 

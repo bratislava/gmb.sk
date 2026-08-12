@@ -3,16 +3,18 @@ import { useTranslation } from 'next-i18next/pages'
 import { ContentPageEntityFragment } from '@/src/services/graphql'
 import { formatDateString } from '@/src/utils/formatDateString'
 import { formatTimeString } from '@/src/utils/formatTimeString'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 type Props = {
-  page: WithAttributes<ContentPageEntityFragment>
+  page: Pick<
+    ContentPageEntityFragment,
+    'subtitle' | 'useDatetimeAsSubtitle' | 'dateFrom' | 'timeFrom'
+  >
 }
 
 const Subtitle = ({ page }: Props) => {
   const { i18n } = useTranslation()
 
-  const { subtitle, useDatetimeAsSubtitle, dateFrom, timeFrom } = page.attributes
+  const { subtitle, useDatetimeAsSubtitle, dateFrom, timeFrom } = page
 
   return (
     /* strings are valid JSX.Element types but typescript has bug with it, so it needs to be wrapped with fragment */

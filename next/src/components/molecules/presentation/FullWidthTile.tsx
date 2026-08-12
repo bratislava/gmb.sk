@@ -7,24 +7,23 @@ import Subtitle from '@/src/components/atoms/Subtitle'
 import { SectionItemEntityFragment } from '@/src/services/graphql'
 import { generateImageSizes } from '@/src/utils/generateImageSizes'
 import { getContentPageColor } from '@/src/utils/getContentPageColor'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface IFullWidthTileProps {
-  sectionItem: WithAttributes<SectionItemEntityFragment>
+  sectionItem: SectionItemEntityFragment
 }
 
 const FullWidthTile = ({ sectionItem }: IFullWidthTileProps) => {
   const { t } = useTranslation()
   const titleId = useId()
 
-  const { slug, coverMedia, title } = sectionItem.attributes
+  const { slug, coverMedia, title } = sectionItem
 
   return (
     <article className="relative h-auto w-full">
       <div className="relative flex h-screen min-h-screen w-full items-center justify-center overflow-hidden lg:h-full">
-        {coverMedia?.data?.attributes?.url && (
+        {coverMedia?.url && (
           <Image
-            src={coverMedia.data.attributes.url}
+            src={coverMedia.url}
             alt=""
             className="object-cover"
             fill

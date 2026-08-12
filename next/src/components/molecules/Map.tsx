@@ -121,7 +121,7 @@ function usePreviousImmediate<T>(currentValue: T): T | null {
 
 const Map = ({ mapboxAccessToken }: MapProps) => {
   const { general } = useGeneralContext()
-  const { palffy, mirbach, openingHours } = general?.data?.attributes ?? {}
+  const { palffy, mirbach, openingHours } = general ?? {}
 
   const [selectedTab, setSelectedTab] = useState<Tab | null>(null)
   const previousSelectedTab = usePreviousImmediate(selectedTab)

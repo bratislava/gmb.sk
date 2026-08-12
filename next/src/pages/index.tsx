@@ -6,7 +6,7 @@ import HomePage from '@/src/components/pages/HomePage'
 import { GeneralQuery, HomePageQuery, NewsQuery } from '@/src/services/graphql'
 import { client } from '@/src/services/graphql/gql'
 import { GeneralContextProvider } from '@/src/utils/generalContext'
-import { hasAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 
 interface IndexProps {
   generalQuery: GeneralQuery
@@ -19,11 +19,7 @@ export const Index = ({ homePage, generalQuery, news }: IndexProps) => {
 
   return (
     <GeneralContextProvider general={generalQuery}>
-      <HomePage
-        page={homePage}
-        title={t('common.home')}
-        newsItems={news?.data?.filter(hasAttributes)}
-      />
+      <HomePage page={homePage} title={t('common.home')} newsItems={news.filter(isDefined)} />
     </GeneralContextProvider>
   )
 }

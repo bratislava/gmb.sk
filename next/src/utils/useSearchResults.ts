@@ -4,7 +4,7 @@ import {
   globalSearchFetcher,
   GlobalSearchFilters,
 } from '@/src/services/meili/fetchers/globalSearchFetcher'
-import { hasAttributes, isDefined } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 
 export const PAGE_SIZE = 6
 
@@ -36,11 +36,7 @@ export const useSearchResults = (searchValue: string, locale: string, tagSlugs?:
     // Check whether we’ve reached the end of the results. If not, calculate the cursor for the next page
   })
 
-  const filteredResults =
-    data?.pages
-      ?.flatMap((result) => result.hits)
-      .filter(isDefined)
-      .filter(hasAttributes) ?? []
+  const filteredResults = data?.pages.flatMap((result) => result.hits).filter(isDefined) ?? []
 
   return {
     data,

@@ -1,14 +1,14 @@
 {
-  "key": "plugin_content_manager_configuration_content_types::api::tag.tag",
+  "key": "plugin_content_manager_configuration_content_types::plugin::review-workflows.workflow-stage",
   "value": {
-    "uid": "api::tag.tag",
     "settings": {
       "bulkable": true,
       "filterable": true,
       "searchable": true,
       "pageSize": 10,
-      "mainField": "titleInternal",
-      "defaultSortBy": "id",
+      "relationOpenMode": "modal",
+      "mainField": "name",
+      "defaultSortBy": "name",
       "defaultSortOrder": "ASC"
     },
     "metadatas": {
@@ -20,76 +20,62 @@
           "sortable": true
         }
       },
-      "title": {
+      "name": {
         "edit": {
-          "label": "Názov",
+          "label": "name",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "title",
+          "label": "name",
           "searchable": true,
           "sortable": true
         }
       },
-      "slug": {
+      "color": {
         "edit": {
-          "label": "Slug",
+          "label": "color",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "slug",
+          "label": "color",
           "searchable": true,
           "sortable": true
         }
       },
-      "tagCategory": {
+      "workflow": {
         "edit": {
-          "label": "Kategória",
+          "label": "workflow",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "title"
+          "mainField": "name"
         },
         "list": {
-          "label": "tagCategory",
+          "label": "workflow",
           "searchable": true,
           "sortable": true
         }
       },
-      "contentPages": {
+      "permissions": {
         "edit": {
-          "label": "Obsahové stránky",
+          "label": "permissions",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true,
-          "mainField": "title"
+          "mainField": "action"
         },
         "list": {
-          "label": "contentPages",
+          "label": "permissions",
           "searchable": false,
           "sortable": false
-        }
-      },
-      "titleInternal": {
-        "edit": {
-          "label": "Interný názov",
-          "description": "Pre ľahšie vyhľadanie tagu v Strapi",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "titleInternal",
-          "searchable": true,
-          "sortable": true
         }
       },
       "createdAt": {
@@ -162,39 +148,34 @@
     "layouts": {
       "list": [
         "id",
-        "title",
-        "slug",
-        "tagCategory"
+        "name",
+        "color",
+        "workflow"
       ],
       "edit": [
         [
           {
-            "name": "title",
+            "name": "name",
             "size": 6
           },
           {
-            "name": "slug",
+            "name": "color",
             "size": 6
           }
         ],
         [
           {
-            "name": "titleInternal",
+            "name": "workflow",
             "size": 6
           },
           {
-            "name": "tagCategory",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "contentPages",
+            "name": "permissions",
             "size": 6
           }
         ]
       ]
-    }
+    },
+    "uid": "plugin::review-workflows.workflow-stage"
   },
   "type": "object",
   "environment": null,

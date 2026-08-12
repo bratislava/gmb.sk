@@ -2,13 +2,12 @@ import { useTranslation } from 'next-i18next/pages'
 
 import TagGroup from '@/src/components/molecules/TagGroup'
 import { PlaceEntityFragment, TagEntityFragment } from '@/src/services/graphql'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface FiltersProps {
-  tagGroups?: WithAttributes<TagEntityFragment>[][]
+  tagGroups?: TagEntityFragment[][]
   activeTags?: string[]
   setActiveTags?: React.Dispatch<React.SetStateAction<string[]>>
-  places?: WithAttributes<PlaceEntityFragment>[]
+  places?: PlaceEntityFragment[]
   activePlaces?: string[]
   setActivePlaces?: React.Dispatch<React.SetStateAction<string[]>>
   years?: string[]

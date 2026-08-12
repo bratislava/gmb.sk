@@ -10,10 +10,9 @@ import { NavigationOptions } from 'swiper/types'
 
 import { ImageEntityFragment } from '@/src/services/graphql'
 import cn from '@/src/utils/cn'
-import { WithAttributes } from '@/src/utils/isDefined'
 
 interface ImgSwiperProps {
-  slides?: WithAttributes<ImageEntityFragment>[]
+  slides?: ImageEntityFragment[]
   anchor?: string
 }
 
@@ -53,10 +52,10 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
         // eslint-disable-next-line react/no-array-index-key
         <SwiperSlide key={index}>
           <Image
-            src={item.attributes.url}
+            src={item.url}
             layout="fill"
             objectFit="cover"
-            alt={item.attributes.alternativeText ?? ''}
+            alt={item.alternativeText ?? ''}
             unoptimized
           />
         </SwiperSlide>

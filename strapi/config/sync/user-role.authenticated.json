@@ -2,12 +2,18 @@
   "name": "Authenticated",
   "description": "Default role given to authenticated user.",
   "type": "authenticated",
+  "documentId": "ei8tdrhe7s9n2axillcxsu19",
+  "locale": null,
   "permissions": [
     {
-      "action": "plugin::users-permissions.auth.connect"
+      "action": "plugin::users-permissions.auth.connect",
+      "documentId": "xv7yiluzx2tb0b0f2tulie3v",
+      "locale": null
     },
     {
-      "action": "plugin::users-permissions.user.me"
+      "action": "plugin::users-permissions.user.me",
+      "documentId": "ro5a86v7jvx8p3bes46qbz3n",
+      "locale": null
     }
   ]
 }

@@ -12,19 +12,18 @@ import { client } from '@/src/services/graphql/gql'
 import { NOT_FOUND } from '@/src/utils/consts'
 import { GeneralContextProvider } from '@/src/utils/generalContext'
 import { getTodaysDate } from '@/src/utils/getTodaysDate'
-import { hasAttributes, withAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 import { getRouteForLocale } from '@/src/utils/localeRoutes'
 
 interface TicketProps {
   generalQuery: GeneralQuery
-  contentPage: ContentPageBySlugQuery['contentPageBySlug']
+  contentPages: ContentPageBySlugQuery['contentPages']
   currentEvents?: ExhibitionsByPlaceQuery['currentEvents']
 }
 
-const Tickets = ({ generalQuery, contentPage, currentEvents }: TicketProps) => {
-  const contentPageWithAttributes = withAttributes(contentPage?.data)
-
-  if (!contentPage || !contentPageWithAttributes) {
+const Tickets = ({ generalQuery, contentPages, currentEvents }: TicketProps) => {
+  const contentPage = contentPages[0]
+  if (!contentPage) {
     return null
   }
 
@@ -33,10 +32,7 @@ const Tickets = ({ generalQuery, contentPage, currentEvents }: TicketProps) => {
       {/* Load GoOut script to be able to show purchase form */}
       <Script src="https://partners.goout.net/sk-bratislava/gmbsk.js" />
 
-      <TicketPage
-        contentPage={contentPageWithAttributes}
-        currentEvents={currentEvents?.data.filter(hasAttributes)}
-      />
+      <TicketPage contentPage={contentPage} currentEvents={currentEvents?.filter(isDefined)} />
     </GeneralContextProvider>
   )
 }
@@ -49,25 +45,25 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
 
   const today = getTodaysDate()
 
-  const [generalQuery, { contentPageBySlug: contentPage }, translations] = await Promise.all([
+  const [generalQuery, { contentPages }, translations] = await Promise.all([
     client.General({ locale }),
     client.ContentPageBySlug({
       slug,
       locale,
-      isPublished: true,
     }),
     serverSideTranslations(locale),
   ])
 
+  const contentPage = contentPages[0]
   if (!contentPage) {
     return NOT_FOUND
   }
 
-  if (!contentPage?.data?.attributes?.place?.data?.attributes?.slug) {
+  if (!contentPage.place?.slug) {
     return {
       props: {
         generalQuery,
-        contentPage,
+        contentPages,
         ...translations,
       },
     }
@@ -79,13 +75,13 @@ export const getStaticProps: GetStaticProps<TicketProps> = async ({ params, loca
     today,
     tagExhibitions: getRouteForLocale('vystavy', locale),
     tagPermanentExhibitions: getRouteForLocale('stale-expozicie', locale),
-    place: contentPage.data?.attributes?.place?.data?.attributes?.slug,
+    place: contentPage.place.slug,
   })
 
   return {
     props: {
       generalQuery,
-      contentPage,
+      contentPages,
       currentEvents,
       ...translations,
     },

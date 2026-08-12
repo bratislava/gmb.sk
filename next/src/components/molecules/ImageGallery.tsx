@@ -12,7 +12,6 @@ import ImageGalleryTile from '@/src/components/atoms/ImageGalleryTile'
 import { ImageWithFormatsEntityFragment } from '@/src/services/graphql'
 import { StrapiImageFormats } from '@/src/types/strapiImageFormats'
 import { getBreakpointValue } from '@/src/utils/getBreakpointValue'
-import { hasAttributes, withAttributes } from '@/src/utils/isDefined'
 
 interface ImageGalleryProps {
   medias?: ImageWithFormatsEntityFragment[]
@@ -43,14 +42,8 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
     setShowModal(false)
   }
 
-  if (!medias) {
-    return null
-  }
-
-  const filteredMedias = medias?.filter(hasAttributes)
-
-  const items = filteredMedias.map((media) => {
-    const { url, formats, caption } = media.attributes
+  const items = medias.map((media) => {
+    const { url, formats, caption } = media
     const { thumbnail } = formats as StrapiImageFormats
     const item: ReactImageGalleryItem = {
       original: url,
@@ -81,7 +74,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
       /* eslint-disable better-tailwindcss/no-unknown-classes */
       <span className="image-gallery-thumbnail-inner">
         <img
-          className="mx-auto max-h-[80px] object-contain"
+          className="mx-auto max-h-20 object-contain"
           src={item.thumbnail}
           height={item.thumbnailHeight}
           width={item.thumbnailWidth}
@@ -136,7 +129,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
         <div className="flex flex-col gap-[calc(8*var(--size-factor))]">
           <div className="h-[50vh]">
             <ImageGalleryTile
-              image={withAttributes(medias[0])}
+              image={medias[0]}
               index={0}
               onChoose={(id) => {
                 setShowModal(true)
@@ -145,14 +138,11 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
             />
           </div>
           <div className="grid h-fit grid-cols-3 grid-rows-1 gap-[calc(8*var(--size-factor))] sm:grid-cols-4 md:grid-cols-5">
-            {filteredMedias
-              .slice(
-                1,
-                mediasToShow === filteredMedias.length - 1 ? mediasToShow + 1 : mediasToShow,
-              )
+            {medias
+              .slice(1, mediasToShow === medias.length - 1 ? mediasToShow + 1 : mediasToShow)
               .map((media, index) => (
                 <div
-                  key={media.attributes.url}
+                  key={media.url}
                   ref={index === 0 ? subImageRef : null}
                   style={{ height: subImageWidth }}
                 >
@@ -163,21 +153,21 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
                       setShowModal(true)
                       setImageIndex(id)
                     }}
-                    key={media.attributes.url}
+                    key={media.url}
                   />
                 </div>
               ))}
-            {filteredMedias.length > mediasToShow + 1 && (
+            {medias.length > mediasToShow + 1 && (
               <button
                 type="button"
                 className="flex size-full items-center justify-center border-2 border-gmbDark text-center"
                 onClick={() => {
                   setShowModal(true)
-                  setImageIndex(filteredMedias.length > mediasToShow ? mediasToShow : 0)
+                  setImageIndex(medias.length > mediasToShow ? mediasToShow : 0)
                 }}
               >
                 <span className="inline-block text-btn">
-                  {t('common.morePhotos', { count: filteredMedias.length - mediasToShow })}
+                  {t('common.morePhotos', { count: medias.length - mediasToShow })}
                 </span>
               </button>
             )}

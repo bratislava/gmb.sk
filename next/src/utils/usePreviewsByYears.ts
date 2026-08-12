@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 
 import { archiveFetcher, ArchiveFilters } from '@/src/services/meili/fetchers/archiveFetcher'
-import { hasAttributes, isDefined } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 
 export const PAGE_SIZE = 6
 
@@ -40,11 +40,7 @@ export const usePreviewsByYears = ({
       lastPage.hits.length < PAGE_SIZE ? undefined : lastPageParam + 1,
   })
 
-  const filteredPages =
-    data?.pages
-      ?.flatMap((page) => page.hits)
-      .filter(isDefined)
-      .filter(hasAttributes) ?? []
+  const filteredPages = data?.pages.flatMap((page) => page.hits).filter(isDefined) ?? []
 
   return {
     data,

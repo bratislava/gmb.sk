@@ -12,29 +12,24 @@ import Submenu from '@/src/components/molecules/Submenu'
 import PageWrapper from '@/src/components/pages/PageWrapper'
 import { HomePageQuery, NewsItemEntityFragment } from '@/src/services/graphql'
 import { getAnchor } from '@/src/utils/getAnchor'
-import { hasAttributes, isDefined, WithAttributes } from '@/src/utils/isDefined'
+import { isDefined } from '@/src/utils/isDefined'
 
 interface HomePageProps {
   page: HomePageQuery['homePage']
   title: string
-  newsItems?: WithAttributes<NewsItemEntityFragment>[] | null
+  newsItems?: NewsItemEntityFragment[] | null
 }
 
-const HomePage = ({ page: pageResponse, title, newsItems }: HomePageProps) => {
+const HomePage = ({ page, title, newsItems }: HomePageProps) => {
   const { t } = useTranslation()
-
-  const page = pageResponse?.data?.attributes
 
   const submenu: string[] = []
 
-  page?.sections
-    ?.filter(isDefined)
-    .filter(isDefined)
-    .forEach((section) => {
-      if ('submenuTitle' in section && section.submenuTitle) {
-        submenu.push(section.submenuTitle)
-      }
-    })
+  page?.sections?.filter(isDefined).forEach((section) => {
+    if ('submenuTitle' in section && section.submenuTitle) {
+      submenu.push(section.submenuTitle)
+    }
+  })
 
   return (
     <PageWrapper>
@@ -42,9 +37,7 @@ const HomePage = ({ page: pageResponse, title, newsItems }: HomePageProps) => {
       <h1 className="sr-only">{t('common.bratislavaCityGallery')}</h1>
 
       <HighlightsSection
-        highlights={page?.highlights
-          ?.map((highlight) => highlight?.contentPage?.data)
-          .filter(hasAttributes)}
+        highlights={page?.highlights?.map((highlight) => highlight?.contentPage).filter(isDefined)}
       />
 
       {page?.sections ? <Submenu items={submenu} /> : null}
@@ -93,7 +86,7 @@ const HomePage = ({ page: pageResponse, title, newsItems }: HomePageProps) => {
               <PartnersSection
                 title={section.title ?? t('common.partners')}
                 anchor={getAnchor(section.submenuTitle)}
-                partners={section.partners.map((item) => item?.partner?.data).filter(hasAttributes)}
+                partners={section.partners.map((item) => item?.partner).filter(isDefined)}
                 key={`${section.__typename}-${section.id}`}
               />
             )
