@@ -133,11 +133,11 @@ export const getStaticProps: GetStaticProps<MenuPageProps, StaticParams> = async
 
   const tagExhibitions = getRouteForLocale('vystavy', locale)
   const tagPermanentExhibitions = getRouteForLocale('stale-expozicie', locale)
-  const tagsAdditionalProgram =
-    tagsPrograms
-      .filter(isDefined)
-      .map((tag) => tag.tags[0]?.slug as string)
-      .filter((tagSlug) => tagSlug !== tagExhibitions && tagSlug !== tagPermanentExhibitions) ?? []
+  const tagsAdditionalProgram = tagsPrograms
+    .flatMap((tag) => tag?.tags)
+    .map((tag) => tag?.slug)
+    .filter((tagSlug) => tagSlug !== tagExhibitions && tagSlug !== tagPermanentExhibitions)
+    .filter(isDefined)
 
   const { exhibitions, permanentExhibitions, additionalProgram } =
     await client.ExhibitionsAndEvents({
@@ -203,8 +203,10 @@ const MenuPage = ({
         page={page}
         newsItems={news.filter(isDefined)}
         tickets={tickets.filter(isDefined)}
+        // HORNE
         exhibitions={exhibitions.filter(isDefined)}
         permanentExhibitions={permanentExhibitions.filter(isDefined)}
+        // SPODNE
         additionalProgram={additionalProgram.filter(isDefined)}
         places={places.filter(isDefined)}
         tagsProgram={tagsPrograms?.[0]?.tags.filter(isDefined)}
