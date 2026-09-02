@@ -28,7 +28,7 @@ const Ticket = ({ title, price, description, purchaseIdSelf, purchaseIdGift }: I
       )}
     >
       <div className="pb-yMd">
-        <h3 className="text-xl">{title}</h3>
+        <h3 className="goout-event-title text-xl">{title}</h3>
         {price && <p className="text-xl font-regular">{price}€</p>}
       </div>
       <div>
