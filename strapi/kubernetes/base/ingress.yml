@@ -6,9 +6,11 @@ metadata:
   labels:
     service: app
   annotations:
+    nginx.org/client-max-body-size: '0'
+    nginx.org/location-snippets: |
+      proxy_request_buffering off;
     cert-manager.io/cluster-issuer: letsencrypt
     cert-manager.io/issue-temporary-certificate: 'true'
-    kubernetes.io/ingress.class: haproxy
 spec:
   tls:
     - hosts:
