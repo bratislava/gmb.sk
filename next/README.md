@@ -1,9 +1,10 @@
 # Bratislava City Gallery website
 
-Install dependencies:
+Install dependencies and create `.env.local` file which is .gitignored and used for local dev:
 
 ```bash
 npm install
+cp .env.example .env.local
 ```
 
 To start the frontend app, simply run:
@@ -12,7 +13,7 @@ To start the frontend app, simply run:
 npm run dev
 ```
 
-For CMS setup see `strapi` directory. You can also run the project against staging or production strapi (useful when developing and debugging) - provided that you're not working on Strapi model changes.
+For CMS setup see `strapi` directory. `.env.example` points to a local Strapi - you can also run the project against the deployed Strapi (useful when developing and debugging, provided that you're not working on Strapi model changes) by uncommenting the alternative `NEXT_PUBLIC_STRAPI_URL` and `NEXT_PUBLIC_MEILISEARCH_*` values in your `.env.local`.
 
 ## Generate GraphQL
 

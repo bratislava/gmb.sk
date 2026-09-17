@@ -14,7 +14,9 @@ Our goal is to be transparent about services we’re developing and providing, a
 
 ## Local installation
 
-Follow user guide in folders `/strapi` and `/next`.
+Follow user guide in folders `/strapi` and `/next`. In both of them the local dev setup is `cp .env.example .env.local`.
+
+`REVALIDATE_SECRET_TOKEN` can be any string, it just has to be the same in `strapi/.env.local` and `next/.env.local` - Strapi uses it to authorize its revalidation requests to Next.
 
 You need `node` and `npm` installed locally.
 
