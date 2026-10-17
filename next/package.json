@@ -67,7 +67,7 @@
     "@bratislava/eslint-config-next": "0.15.0",
     "@graphql-codegen/cli": "5.0.5",
     "@graphql-codegen/typescript": "4.1.6",
-    "@graphql-codegen/typescript-graphql-request": "6.2.1",
+    "@graphql-codegen/typescript-graphql-request": "7.1.0",
     "@graphql-codegen/typescript-operations": "4.6.0",
     "@svgr/webpack": "8.1.0",
     "@tailwindcss/postcss": "4.3.0",
