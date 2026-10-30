@@ -1,8 +1,8 @@
-import 'react-image-gallery/styles/css/image-gallery.css'
+import 'react-image-gallery/styles/image-gallery.css'
 
 import { useTranslation } from 'next-i18next/pages'
 import { useEffect, useRef, useState } from 'react'
-import ReactImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
+import ReactImageGallery, { GalleryItem } from 'react-image-gallery'
 import Modal from 'react-modal'
 import { useWindowSize } from 'usehooks-ts'
 
@@ -45,7 +45,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
   const items = medias.map((media) => {
     const { url, formats, caption } = media
     const { thumbnail } = formats as StrapiImageFormats
-    const item: ReactImageGalleryItem = {
+    const item: GalleryItem = {
       original: url,
       thumbnail: thumbnail.url,
       description: caption ?? undefined,
@@ -54,7 +54,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
     return item
   })
 
-  const renderItem = (item: ReactImageGalleryItem) => {
+  const renderItem = (item: GalleryItem) => {
     return (
       <ImageGalleryItem
         description={item.description}
@@ -69,7 +69,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
     )
   }
 
-  const renderThumbInner = (item: ReactImageGalleryItem) => {
+  const renderThumbInner = (item: GalleryItem) => {
     return (
       /* eslint-disable better-tailwindcss/no-unknown-classes */
       <span className="image-gallery-thumbnail-inner">

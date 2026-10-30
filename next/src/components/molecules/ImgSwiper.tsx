@@ -6,7 +6,6 @@ import Image from 'next/image'
 import { useRef } from 'react'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { NavigationOptions } from 'swiper/types'
 
 import { ImageEntityFragment } from '@/src/services/graphql'
 import cn from '@/src/utils/cn'
@@ -33,8 +32,8 @@ const ImgSwiper = ({ slides, anchor }: ImgSwiperProps) => {
       }}
       onBeforeInit={(swiper) => {
         if (swiper?.params?.navigation) {
-          ;(swiper.params.navigation as NavigationOptions).prevEl = navigationPrevRef.current
-          ;(swiper.params.navigation as NavigationOptions).nextEl = navigationNextRef.current
+          swiper.params.navigation.prevEl = navigationPrevRef.current
+          swiper.params.navigation.nextEl = navigationNextRef.current
         }
       }}
       pagination={{
