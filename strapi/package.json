@@ -18,16 +18,16 @@
     "ts:generate-types": "strapi ts:generate-types"
   },
   "dependencies": {
-    "@strapi/plugin-graphql": "5.48.1",
-    "@strapi/plugin-users-permissions": "5.48.1",
-    "@strapi/provider-email-mailgun": "5.48.1",
-    "@strapi/provider-upload-aws-s3": "5.48.1",
-    "@strapi/strapi": "5.48.1",
+    "@strapi/plugin-graphql": "5.60.0",
+    "@strapi/plugin-users-permissions": "5.60.0",
+    "@strapi/provider-email-mailgun": "5.60.0",
+    "@strapi/provider-upload-aws-s3": "5.60.0",
+    "@strapi/strapi": "5.60.0",
     "patch-package": "8.0.1",
     "pg": "8.21.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-router-dom": "6.30.4",
+    "react-router-dom": "6.30.6",
     "strapi-plugin-config-sync": "3.2.0",
     "strapi-plugin-meilisearch": "0.16.5",
     "styled-components": "6.4.3"
@@ -35,22 +35,13 @@
   "devDependencies": {
     "cross-env": "7.0.3"
   },
-  "overrides": {
-    "@strapi/admin": "5.48.1",
-    "@strapi/data-transfer": "5.48.1",
-    "@strapi/logger": "5.48.1",
-    "@strapi/permissions": "5.48.1",
-    "@strapi/types": "5.48.1",
-    "@strapi/typescript-utils": "5.48.1",
-    "@strapi/utils": "5.48.1"
-  },
   "engines": {
-    "node": ">=20.19.x",
-    "npm": ">=10.8.x"
+    "node": ">=24.22.x",
+    "npm": ">=11.19.x"
   },
   "volta": {
-    "node": "20.19.0",
-    "npm": "10.8.2"
+    "node": "24.22.2",
+    "npm": "11.19.1"
   },
   "strapi": {
     "uuid": "20072671-bc90-4b88-a793-c0ab37171cec"

@@ -1208,6 +1208,7 @@ input I18NLocaleFiltersInput {
 
 input I18NLocaleInput {
   code: String
+  locale: String
   name: String
   publishedAt: DateTime
 }
@@ -2163,6 +2164,7 @@ input ReviewWorkflowsWorkflowFiltersInput {
 
 input ReviewWorkflowsWorkflowInput {
   contentTypes: JSON
+  locale: String
   name: String
   publishedAt: DateTime
   stageRequiredToPublish: ID
@@ -2212,6 +2214,7 @@ input ReviewWorkflowsWorkflowStageFiltersInput {
 
 input ReviewWorkflowsWorkflowStageInput {
   color: String
+  locale: String
   name: String
   publishedAt: DateTime
   workflow: ID
@@ -2514,9 +2517,11 @@ input UploadFileInput {
   caption: String
   ext: String
   focalPoint: JSON
+  folderPath: String
   formats: JSON
   hash: String
   height: Int
+  locale: String
   mime: String
   name: String
   previewUrl: String
@@ -2609,6 +2614,7 @@ input UsersPermissionsPermissionFiltersInput {
 
 input UsersPermissionsPermissionInput {
   action: String
+  locale: String
   publishedAt: DateTime
   role: ID
 }
@@ -2668,6 +2674,7 @@ input UsersPermissionsRoleFiltersInput {
 
 input UsersPermissionsRoleInput {
   description: String
+  locale: String
   name: String
   permissions: [ID]
   publishedAt: DateTime
@@ -2728,11 +2735,14 @@ input UsersPermissionsUserFiltersInput {
 
 input UsersPermissionsUserInput {
   blocked: Boolean
+  confirmationToken: String
   confirmed: Boolean
   email: String
+  locale: String
   password: String
   provider: String
   publishedAt: DateTime
+  resetPasswordToken: String
   role: ID
   username: String
 }

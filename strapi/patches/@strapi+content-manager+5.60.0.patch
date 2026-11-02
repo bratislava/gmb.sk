@@ -1,18 +1,18 @@
 diff --git a/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.js b/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.js
-index da1b83d..5d8332f 100644
+index 941651e..c504794 100644
 --- a/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.js
 +++ b/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.js
-@@ -48,7 +48,7 @@ const Wysiwyg = /*#__PURE__*/ React__namespace.forwardRef(({ hint, disabled, lab
+@@ -49,7 +49,7 @@ const Wysiwyg = /*#__PURE__*/ React__namespace.forwardRef(({ hint, disabled, lab
      };
      const handleSelectAssets = (files)=>{
          const formattedFiles = files.map((f)=>({
 -                alt: f.alternativeText || f.name,
 +                alt: `${f.alternativeText ?? ''}||${f.caption ?? ''}`,
-                 url: urls.prefixFileUrlWithBackendUrl(f.url),
+                 url: urls.prefixFileUrlWithBackendUrl(f.url) ?? f.url,
                  mime: f.mime
              }));
 diff --git a/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.mjs b/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.mjs
-index 887e12b..9822538 100644
+index 42a4985..28f7731 100644
 --- a/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.mjs
 +++ b/node_modules/@strapi/content-manager/dist/admin/pages/EditView/components/FormInputs/Wysiwyg/Field.mjs
 @@ -27,7 +27,7 @@ const Wysiwyg = /*#__PURE__*/ React.forwardRef(({ hint, disabled, label, name, p
@@ -21,6 +21,6 @@ index 887e12b..9822538 100644
          const formattedFiles = files.map((f)=>({
 -                alt: f.alternativeText || f.name,
 +                alt: `${f.alternativeText ?? ''}||${f.caption ?? ''}`,
-                 url: prefixFileUrlWithBackendUrl(f.url),
+                 url: prefixFileUrlWithBackendUrl(f.url) ?? f.url,
                  mime: f.mime
              }));
