@@ -44,10 +44,11 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
 
   const items = medias.map((media) => {
     const { url, formats, caption } = media
-    const { thumbnail } = formats as StrapiImageFormats
+    // Strapi skips the thumbnail format for small images and SVGs
+    const { thumbnail } = (formats ?? {}) as Partial<StrapiImageFormats>
     const item: GalleryItem = {
       original: url,
-      thumbnail: thumbnail.url,
+      thumbnail: thumbnail?.url ?? url,
       description: caption ?? undefined,
     }
 
@@ -71,7 +72,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
 
   const renderThumbInner = (item: GalleryItem) => {
     return (
-      /* eslint-disable better-tailwindcss/no-unknown-classes */
+      // eslint-disable-next-line better-tailwindcss/no-unknown-classes
       <span className="image-gallery-thumbnail-inner">
         <img
           className="mx-auto max-h-20 object-contain"
@@ -82,6 +83,7 @@ const ImageGallery = ({ medias = [], className }: ImageGalleryProps) => {
           title={item.thumbnailTitle}
         />
         {item.thumbnailLabel && (
+          // eslint-disable-next-line better-tailwindcss/no-unknown-classes
           <div className="image-gallery-thumbnail-label">{item.thumbnailLabel}</div>
         )}
       </span>
