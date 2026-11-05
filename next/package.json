@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "3.0.80",
+    "@mrjasonroy/cache-components-cache-handler": "16.4.5",
     "@react-stately/toggle": "3.10.1",
     "@react-types/checkbox": "3.11.0",
     "@tanstack/react-query": "5.105.0",
@@ -37,6 +38,7 @@
     "gsap": "3.12.7",
     "html-react-parser": "5.2.2",
     "i18next": "26.3.1",
+    "ioredis": "5.11.1",
     "lodash": "4.18.1",
     "mapbox-gl": "3.24.0",
     "meilisearch": "0.32.4",
