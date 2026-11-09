@@ -77,7 +77,7 @@
     "@types/react-dom": "19.2.3",
     "@types/react-mailchimp-subscribe": "2.1.4",
     "@types/react-modal": "3.16.3",
-    "eslint": "9.39.1",
+    "eslint": "10.14.0",
     "i18next-cli": "1.80.5",
     "postcss": "8.5.23",
     "prettier": "3.8.3",
